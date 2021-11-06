@@ -22,11 +22,14 @@
 
         <slot name="content" />
 
-        <input
+        <textarea
             v-model="value"
             :type="type"
             :placeholder="placeholder"
-        >
+            :class="{
+                'resizeable' : resize
+            }"
+        />
     </div>
 </div>
 </template>
@@ -39,11 +42,11 @@ export default {
             type: Boolean
         },
 
-        textarea: {
+        dark: {
             type: Boolean
         },
 
-        dark: {
+        resize: {
             type: Boolean
         },
 
@@ -89,9 +92,14 @@ export default {
             font-weight: 100;
             display: flex;
     
-            input {
+            textarea {
                 outline: none;
                 width: 100%;
+                resize: none;
+            }
+
+            .resizeable {
+                resize: auto !important;
             }
         }
     

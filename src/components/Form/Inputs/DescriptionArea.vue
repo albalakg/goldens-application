@@ -1,34 +1,34 @@
 <template>
-    <div class="last_name_input_wrapper">
-        <BaseInput 
+    <div class="phone_input_wrapper">
+        <BaseTextArea 
             :outlined="outlined"
             :dark="dark"
+            :resize="resize"
             :placeholder="placeholder ? text : ''"
             :title="title ? text : ''"
-            :icon="icon ? iconSrc : ''"
             @onChange="onChange"
         />
     </div>
 </template>
 
 <script>
-import BaseInput from './BaseInput.vue';
+import BaseTextArea from './BaseTextArea.vue';
 
 export default {
     components: {
-        BaseInput
+        BaseTextArea
     },
 
     props: {
         outlined: {
             type: Boolean
         },
-
-        dark: {
+        
+        resize: {
             type: Boolean
         },
-        
-        icon: {
+
+        dark: {
             type: Boolean
         },
         
@@ -44,8 +44,7 @@ export default {
 
     data() {
         return {
-            text:       'שם משפחה',
-            iconSrc:    'mdi-account-circle'
+            text:       'תיאור',
         }
     },
 

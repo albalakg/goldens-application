@@ -36,21 +36,43 @@
 
         <br><br>
 
-        <BaseInput
-            placeholder="סיסמא"
+        <FirstNameInput
             outlined
+            icon
         >
-        </BaseInput>
+        </FirstNameInput>
 
         <br><br>
 
-        <BaseInput
-            placeholder="שם מלא"
-            icon="mdi-view-dashboard"
-            title="שם מלא"
+        <LastNameInput
+            dark
+            title
+            icon
+        >
+        </LastNameInput>
+
+        <br><br>
+       
+        <PasswordInput
             outlined
         >
-        </BaseInput>
+        </PasswordInput>
+
+        <br><br>
+       
+        <PhoneInput
+            outlined
+            icon
+        >
+        </PhoneInput>
+
+        <br><br>
+
+        <DescriptionArea
+            outlined
+            icon
+        >
+        </DescriptionArea>
     </v-flex>
 </v-container>
 </template>
@@ -58,13 +80,23 @@
 <script>
 import MainButton from './../../components/Buttons/MainButton.vue'
 import BaseInput from '../../components/Form/Inputs/BaseInput.vue'
+import FirstNameInput from '../../components/Form/Inputs/FirstNameInput.vue'
+import LastNameInput from '../../components/Form/Inputs/LastNameInput.vue'
 import EmailInput from '../../components/Form/Inputs/EmailInput.vue'
+import PasswordInput from '../../components/Form/Inputs/PasswordInput.vue'
+import PhoneInput from '../../components/Form/Inputs/PhoneInput.vue'
+import DescriptionArea from '../../components/Form/Inputs/DescriptionArea.vue'
 
 export default {
     components: {
-        BaseInput,
-        EmailInput,
         MainButton,
+        BaseInput,
+        FirstNameInput,
+        LastNameInput,
+        EmailInput,
+        PasswordInput,
+        PhoneInput,
+        DescriptionArea,
     },
 
     data() {
