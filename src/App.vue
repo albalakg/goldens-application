@@ -1,8 +1,8 @@
 <template>
   <v-app id="app">
     <DesktopMenu />
+    
     <v-main>
-      <SearchCard />
       <transition name="fade" mode="out-in">
         <router-view
           :key="$route.path"
@@ -45,22 +45,7 @@ export default {
 
   methods: {
     setInitialSettings() {
-      this.$store.dispatch('UserState/getUsers');
-      this.$store.dispatch('CourseState/getCourses');
-      this.$store.dispatch('CourseCategoryState/getCourseCategories');
-      this.$store.dispatch('LessonState/getLessons');
-      this.$store.dispatch('VideoState/getVideos');
-      this.$store.dispatch('CourseAreaState/getCourseAreas');
-      this.$store.dispatch('TestState/getTests');
-      this.$store.dispatch('CouponState/getCoupons');
-      this.$store.dispatch('OrderState/getOrders');
-      this.$store.dispatch('SupportState/getSupportTickets');
-      this.$store.dispatch('SupportState/getSupportCategories');
-      this.$store.dispatch('UserCourseState/getUsersCourses');
-      this.$store.dispatch('PoliciesState/getCookies');
-      this.$store.dispatch('PoliciesState/getTermsAndConditions');
-      this.$store.dispatch('AppState/updateLogState', Auth.isLogged());
-      this.$store.dispatch('AppState/updateItemsPerPage', window.screen.width > 1600 ? 10 : 5)
+      
     }
   }
 

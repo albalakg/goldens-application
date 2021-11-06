@@ -20,18 +20,19 @@
 
         <div class="darkBgColor pa-2">
             <BaseInput
-                placeholder="אימייל"
+                placeholder="אינפוט לרקע כהה"
             >
             </BaseInput>
         </div>
 
         <br><br>
 
-        <BaseInput
-            placeholder="אימייל"
-            dark
+        <EmailInput
+            outlined
+            title
+            icon
         >
-        </BaseInput>
+        </EmailInput>
 
         <br><br>
 
@@ -56,11 +57,13 @@
 
 <script>
 import MainButton from './../../components/Buttons/MainButton.vue'
-import BaseInput from './../../components/Form/BaseInput.vue'
+import BaseInput from '../../components/Form/Inputs/BaseInput.vue'
+import EmailInput from '../../components/Form/Inputs/EmailInput.vue'
 
 export default {
     components: {
         BaseInput,
+        EmailInput,
         MainButton,
     },
 

@@ -20,7 +20,8 @@
             </v-icon>
         </div>
 
-        <input 
+        <input
+            v-model="value"
             :type="type"
             :placeholder="placeholder"
         >
@@ -59,9 +60,15 @@ export default {
 
     },
 
+    watch: {
+        value() {
+            this.$emit('onChange', this.value);
+        }
+    },
+
     data() {
         return {
-
+            value: ''
         }
     }
 }
