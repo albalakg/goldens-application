@@ -18,7 +18,7 @@ window.FORM_DATA_CONFIG = {
   }
 }
 
-window.FILES_PATH = window.location.origin + "/files/";
+window.FILES_PATH = window.location.origin + "/assets/files/";
 
 import Auth from "./helpers/Auth";
 window.Auth = Auth;

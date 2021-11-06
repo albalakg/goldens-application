@@ -51,6 +51,10 @@ class Auth {
         return this.get() ? this.get().role : '';
     }
 
+    image() {
+        return this.get() && this.get().image ? this.get().image : '';
+    }
+
     fullName() {
         const data = this.get();
         return data ? data.first_name + ' ' + data.last_name : '';

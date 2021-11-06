@@ -68,6 +68,14 @@
 
         <br><br>
 
+        <ProfileCard
+            :size="200"
+            editable
+        >
+        </ProfileCard>
+
+        <br><br>
+
         <DescriptionArea
             outlined
             icon
@@ -93,6 +101,7 @@ import LastNameInput from '../../components/Form/Inputs/LastNameInput.vue'
 import EmailInput from '../../components/Form/Inputs/EmailInput.vue'
 import PasswordInput from '../../components/Form/Inputs/PasswordInput.vue'
 import PhoneInput from '../../components/Form/Inputs/PhoneInput.vue'
+import ProfileCard from '../../components/Cards/ProfileCard.vue'
 import DescriptionArea from '../../components/Form/Inputs/DescriptionArea.vue'
 import SupportForm from '../../components/Form/SupportForm.vue'
 
@@ -105,6 +114,7 @@ export default {
         EmailInput,
         PasswordInput,
         PhoneInput,
+        ProfileCard,
         DescriptionArea,
         SupportForm,
     },
