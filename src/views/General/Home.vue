@@ -52,6 +52,15 @@
         </LastNameInput>
 
         <br><br>
+
+        <SubmitedInput
+            dark
+            buttonText="הפעלה"
+            placeholder="קוד קופון"
+        >
+        </SubmitedInput>
+
+        <br><br>
        
         <PasswordInput
             outlined
@@ -118,6 +127,7 @@ import ProfileCard from '../../components/Cards/ProfileCard.vue'
 import DescriptionArea from '../../components/Form/Inputs/DescriptionArea.vue'
 import SupportForm from '../../components/Form/SupportForm.vue'
 import OrderSummeryCard from '../../components/Cards/OrderSummeryCard.vue'
+import SubmitedInput from '../../components/Form/Inputs/SubmitedInput.vue'
 
 export default {
     components: {
@@ -133,6 +143,7 @@ export default {
         DescriptionArea,
         SupportForm,
         OrderSummeryCard,
+        SubmitedInput,
     },
 
     data() {
