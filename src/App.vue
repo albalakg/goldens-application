@@ -1,42 +1,32 @@
 <template>
   <v-app id="app">
-
-    <span v-if="logged">
-      <Topbar />
-      <Sidebar />
-      <PrimaryMessage />
-    </span>
-    
+    <DesktopMenu />
     <v-main>
       <SearchCard />
       <transition name="fade" mode="out-in">
         <router-view
           :key="$route.path"
-          class="app_content app_animation"
-          :class="`
-            ${sidebarIsOpen && logged ? 'app_content_mini' : ''}
-            ${!logged ? 'app_content_full_screen' : ''}
-          `"
+          class="app_content"
         >
         </router-view>
       </transition>
     </v-main>
 
+    <Footer />
+    <MobileMenu />
   </v-app>
 </template>
 
 <script>
-import Sidebar from './components/Navigation/Sidebar/SidebarMain.vue';
-import Topbar from './components/Navigation/Topbar/TopbarMain.vue';
-import PrimaryMessage from './components/Messages/PrimaryMessage.vue';
-import SearchCard from './components/Navigation/Topbar/SearchCard.vue';
+import DesktopMenu from './components/App/DesktopMenu.vue'
+import Footer from './components/App/Footer.vue'
+import MobileMenu from './components/App/MobileMenu.vue'
 
 export default {
   components: {
-    Sidebar,
-    Topbar,
-    PrimaryMessage,
-    SearchCard
+    DesktopMenu,
+    Footer,
+    MobileMenu,
   },
 
   created() {
@@ -99,41 +89,10 @@ export default {
     overflow-y: auto;
     height: 100vh;
     overflow-x: hidden;
+    direction: rtl;
   }
 
   .app_content {
-    padding-top: 70px;
-    margin-left: 7vw;
-    width: 93vw;
-    padding-right: 10px;
-  }
   
-  .app_content_mini {
-    margin-left: 17vw;
-    width: 83vw;
   }
-
-  .app_content_full_screen {
-    margin-left: 0;
-    padding: 0;
-  }
-
-  #app {
-    background-color: #0B032D11;
-  }
-
-  @media only screen and (max-width: 1700px) {
-    .app_content_mini {
-      margin-left: 20vw;
-      width: 80vw;
-    }
-  }
-
-  @media only screen and (max-width: 1400px) {
-    .app_content_mini {
-      margin-left: 22vw;
-      width: 78vw;
-    }
-  }
-
 </style>

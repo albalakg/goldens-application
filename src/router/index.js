@@ -40,6 +40,13 @@ const routes = [
   // ***** AUTH END *****
 
   {
+    path: '/',
+    name: 'Home',
+    beforeEnter: Guard.admin,
+    component: () => import('../views/General/Home.vue')
+  },
+
+  {
     path: '*',
     name: 'PageNotFound',
     beforeEnter: Guard.admin,

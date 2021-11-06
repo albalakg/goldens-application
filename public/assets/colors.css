@@ -1,64 +1,15 @@
-.app_yellow {
-    color: #FFB997;
+.mainBgColor {
+  background-color: rgb(255, 89, 34);
 }
 
-.app_lightPink {
-    color: #F67E7D;
+.darkBgColor {
+  background-color: rgb(49, 53, 61);
 }
 
-.app_pink {
-    color: #843B62;
+.greyBgColor {
+  background-color: rgb(234, 235, 236);
 }
 
-.app_darkPink {
-    color: #621940;
-}
-
-.app_darkBlue {
-    color: #0B032D;
-}
-
-.app_bg_yellow {
-    background-color: #FFB997;
-}
-
-.app_bg_lightPink {
-    background-color: #F67E7D;
-}
-
-.app_bg_pink {
-    background-color: #843B62;
-}
-
-.app_bg_darkPink {
-    background-color: #621940;
-}
-
-.app_bg_darkBlue {
-    background-color: #060218;
-}
-
-.app_bg_light_yellow {
-    background-color: #FFB997AA;
-}
-
-.app_bg_light_lightPink {
-    background-color: #F67E7DAA;
-}
-
-.app_bg_light_pink {
-    background-color: #843B62AA;
-}
-
-.app_bg_light_darkPink {
-    background-color: #621940AA;
-}
-
-.app_bg_light_darkBlue {
-    background-color: #0B032DAA;
-}
-
-.app_light_bg_opacity 
-{
-    background-color: #FFFFFF33;
+.whiteBgColor {
+  background-color: rgb(255, 255, 255);
 }

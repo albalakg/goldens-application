@@ -11,17 +11,12 @@
 }
 
 .rounded {
-    border-radius: 6px;
+    border-radius: 12px;
 }
 
 .pointer {
     cursor: pointer;
 }
-
-.flex {
-    display: flex;
-}
-
 .space_between {
     justify-content: space-between;
 }
@@ -45,42 +40,4 @@
 
 .no_decoration {
     text-decoration: none;
-}
-
-.text_editor {
-    height: 300px;
-    margin-bottom: 115px;
-}
-
-.text_editor .ql-toolbar{
-    border-radius: 6px 6px 0 0;
-}
-
-.text_editor .ql-container{
-    border-radius: 0 0 6px 6px;
-}
-
-.preview_image {
-    max-height: 120px;
-    min-height: 120px;
-}
-
-.comment_text {
-    max-height: 250px;
-    overflow-y: auto;
-    margin-bottom: 10px;
-}
-
-.logo {
-    font-size: 26px;
-    font-weight: 300;
-    letter-spacing: 8px;
-    font-family: 'Bebas Neue', cursive;
-}
-
-.seperator {
-    height: 1px;
-    width: 100%;
-    background-color: #888;
-    margin: 5px 0;
 }
