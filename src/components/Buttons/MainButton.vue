@@ -50,9 +50,14 @@ export default {
         border-radius: 20px;
         border: 2px solid #fff;
         width: 100%;
+        transition: .3s transform linear;
         
         span {
             color: #fff;
+        }
+
+        &:hover {
+            transform: scale(1.05);
         }
     }
 
