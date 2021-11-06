@@ -29,6 +29,7 @@
             <MainButton 
                 dark
                 :text="buttonText"
+                @submit="submit()"
             />
         </div>
     </div>
@@ -130,6 +131,10 @@ export default {
             })
             
             return !this.errorMessage;
+        },
+
+        submit() {
+            this.$emit('submit')
         }
     }
 }
