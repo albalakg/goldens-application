@@ -49,6 +49,7 @@ export default {
         padding: 7px 25px;
         border-radius: 20px;
         border: 2px solid #fff;
+        width: 100%;
         
         span {
             color: #fff;
@@ -56,10 +57,10 @@ export default {
     }
 
     .main_button_shadow {
-        box-shadow: 0 0 10px 4px rgb(255, 89, 34, 0.3);
+        box-shadow: 0 0 15px 4px rgb(255 89 34 / 0.3);
     }
 
     .main_button_dark_shadow {
-        box-shadow: 0 0 10px 4px rgb(49, 53, 61, 0.3);
+        box-shadow: 0 0 15px 4px rgb(49, 53, 61, 0.3);
     }
 </style>

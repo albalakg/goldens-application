@@ -26,7 +26,7 @@
                         @onChange="setEmail" 
                     />
                 </v-flex>
-                <v-flex d-flex xs6 class="mr-4">
+                <v-flex d-flex justify-space-between xs6 class="mr-4">
                     <v-flex xs6>
                         <FullNameInput 
                             dark
@@ -34,7 +34,7 @@
                             @onChange="setName" 
                         />
                     </v-flex>
-                    <v-flex xs6 d-flex justify-end>
+                    <v-flex xs5 d-flex justify-end>
                         <SendButton @submit="submit()" />
                     </v-flex>
                 </v-flex>
