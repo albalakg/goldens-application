@@ -7,6 +7,7 @@
         'main_button_dark_shadow': shadow && dark,
         'main_button_dark dark_bg_color': dark,
     }"
+    :style="cssVars"
 >
     <span>
         {{ text }}
@@ -32,6 +33,19 @@ export default {
 
         dark: {
             type: Boolean
+        },
+
+        styleConfig: {
+            type: Object
+        },
+    },
+
+    computed: {
+        cssVars() {
+            return {
+                '--height': this.styleConfig && this.styleConfig.height ? this.styleConfig.height + 'px' : 'auto',
+                '--border-radius': this.styleConfig && this.styleConfig.borderRadius ? this.styleConfig.borderRadius + 'px' : '20px',
+            }
         }
     },
 
@@ -47,10 +61,11 @@ export default {
 
     .main_button_wrapper {
         padding: 7px 25px;
-        border-radius: 20px;
+        border-radius: var(--border-radius);
         border: 2px solid #fff;
         width: 100%;
         transition: .3s transform linear;
+        height: var(--height);
         
         span {
             color: #fff;

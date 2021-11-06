@@ -68,6 +68,13 @@
 
         <br><br>
 
+        <v-flex xs8 mx-auto>
+            <OrderSummeryCard :records="records">
+            </OrderSummeryCard>
+        </v-flex>
+
+        <br><br>
+
         <UnfavoriteChip>
         </UnfavoriteChip>
 
@@ -110,6 +117,7 @@ import UnfavoriteChip from '../../components/Chips/UnfavoriteChip.vue'
 import ProfileCard from '../../components/Cards/ProfileCard.vue'
 import DescriptionArea from '../../components/Form/Inputs/DescriptionArea.vue'
 import SupportForm from '../../components/Form/SupportForm.vue'
+import OrderSummeryCard from '../../components/Cards/OrderSummeryCard.vue'
 
 export default {
     components: {
@@ -124,11 +132,33 @@ export default {
         ProfileCard,
         DescriptionArea,
         SupportForm,
+        OrderSummeryCard,
     },
 
     data() {
         return {
-
+            records: [
+                {
+                    text: 'קורס בסיסי',
+                    price: '₪100',
+                    outlined: true
+                },
+                {
+                    text: 'קוד קופון',
+                    price: '-',
+                },
+                {
+                    text: 'מע"מ',
+                    price: '₪117',
+                    background: true,
+                    bold: true,
+                },
+                {
+                    text: 'סה"כ',
+                    price: '₪117',
+                    large: true
+                },
+            ]
         }
     }   
 }
