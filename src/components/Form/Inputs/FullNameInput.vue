@@ -1,36 +1,37 @@
 <template>
-    <div class="phone_input_wrapper">
-        <BaseTextArea 
-            ref="textarea"
+    <div class="first_name_input_wrapper">
+        <BaseInput 
+            ref="input"
             :outlined="outlined"
             :dark="dark"
-            :resize="resize"
-            :rules="rules"
             :placeholder="placeholder ? text : ''"
             :title="title ? text : ''"
+            :icon="icon ? iconSrc : ''"
+            :maxlength="maxlength"
+            :rules="rules"
             @onChange="onChange"
         />
     </div>
 </template>
 
 <script>
-import BaseTextArea from './BaseTextArea.vue';
+import BaseInput from './BaseInput.vue';
 
 export default {
     components: {
-        BaseTextArea
+        BaseInput
     },
 
     props: {
         outlined: {
             type: Boolean
         },
-        
-        resize: {
-            type: Boolean
-        },
 
         dark: {
+            type: Boolean
+        },
+        
+        icon: {
             type: Boolean
         },
         
@@ -46,15 +47,17 @@ export default {
 
     data() {
         return {
-            text:       'תיאור',
+            maxlength:  100,
+            text:       'שם מלא',
+            iconSrc:    'mdi-account-circle',
             rules:      [
                 {
                     rule: /^.+$/,
-                    message: 'חובה למלא את התיאור'
+                    message: 'חובה למלא שם מלא'
                 },
                 {
-                    rule: /^.{2,1000}$/,
-                    message: 'התיאור חייב להיות 2-1000 תווים'
+                    rule: /^.{2,100}$/,
+                    message: 'שם מלא חייב להיות 2-1000 תווים'
                 },
             ]
         }
@@ -66,8 +69,7 @@ export default {
         },
 
         validate() {
-            console.log('validate description');
-            return this.$refs.textarea.validate();
+            return this.$refs.input.validate();
         }
     }
 }

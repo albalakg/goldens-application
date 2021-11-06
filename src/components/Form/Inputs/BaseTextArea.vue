@@ -1,20 +1,20 @@
 <template>
-<div class="base_input_wrapper">
+<div class="base_textarea_wrapper" :style="cssVars">
     <div v-show="title" class="mb-1">
         <strong>
             {{ title }}
         </strong>
     </div>
     <div 
-        class="base_input_content"
+        class="base_textarea_content"
         :class="{
-            'base_input_outlined' : outlined,
-            'greyBgColor' : dark,
-            'whiteBgColor' : !dark,
+            'base_textarea_outlined' : outlined,
+            'grey_bg_color' : dark,
+            'white_bg_color' : !dark,
         }"
     >
 
-        <div class="base_input_icon ml-3 pl-3" v-if="icon">
+        <div class="base_textarea_icon ml-3 pl-3" v-if="icon">
             <v-icon>
                 {{ icon }}
             </v-icon>
@@ -30,6 +30,16 @@
                 'resizeable' : resize
             }"
         />
+        <div 
+            class="base_textarea_error_wrapper" 
+            :class="{
+                'base_textarea_error_wrapper_visible' : !!errorMessage 
+            }"
+        >
+            <small>
+                {{ errorMessage }}
+            </small>
+        </div>
     </div>
 </div>
 </template>
@@ -66,17 +76,61 @@ export default {
         icon: {
             type: String
         },
+
+        minHeight: {
+            type: Number,
+            default: 120
+        },
+
+        rules: {
+            type: Array,
+        }
+    },
+
+    computed: {
+        cssVars() {
+            return {
+                '--minHeight': this.minHeight + 'px',
+            }
+        }
     },
 
     watch: {
         value() {
+            this.value = this.value.trim();
             this.$emit('onChange', this.value);
+            if(this.errorMessage) {
+                this.validate();
+            }
         }
     },
 
     data() {
         return {
-            value: ''
+            value:          '',
+            errorMessage:   ''
+        }
+    },
+
+    methods: {
+        validate() {
+            this.errorMessage = '';
+            if(!this.rules) {
+                warning('Rules are required for validation');
+                return true;
+            }
+
+            this.rules.forEach(item => {
+                if(this.errorMessage) {
+                    return;
+                }
+                
+                if(!new RegExp(item.rule).test(this.value)) {
+                    this.errorMessage = item.message;
+                }
+            })
+            
+            return !this.errorMessage;
         }
     }
 }
@@ -84,9 +138,10 @@ export default {
 
 <style scoped lang="scss">
 
-    .base_input_wrapper {
+    .base_textarea_wrapper {
+        position: relative;
 
-        .base_input_content {
+        .base_textarea_content {
             border-radius: 8px;
             padding: 10px 15px;
             font-weight: 100;
@@ -96,6 +151,7 @@ export default {
                 outline: none;
                 width: 100%;
                 resize: none;
+                min-height: var(--minHeight);
             }
 
             .resizeable {
@@ -103,14 +159,29 @@ export default {
             }
         }
     
-        .base_input_icon {
+        .base_textarea_icon {
             border-left: 1px solid #DDD;
         }
     
-        .base_input_outlined {
+        .base_textarea_outlined {
             border: 1px solid #CCC;
         }
 
+        .base_textarea_error_wrapper {
+            position: absolute;
+            bottom: -25px;
+            right: 0;
+            opacity: 0;
+            transition: .3s opacity linear;
+
+            small {
+                color: red;
+            }
+        }
+
+        .base_textarea_error_wrapper_visible {
+            opacity: 1;
+        }
     }
 
 

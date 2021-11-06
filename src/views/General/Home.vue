@@ -18,7 +18,7 @@
 
         <br><br>
 
-        <div class="darkBgColor pa-2">
+        <div class="dark_bg_color pa-2">
             <BaseInput
                 placeholder="אינפוט לרקע כהה"
             >
@@ -73,6 +73,14 @@
             icon
         >
         </DescriptionArea>
+
+        <br><br>
+    </v-flex>
+    <v-flex xs7 mx-auto class="text-center">
+        <SupportForm
+
+        >
+        </SupportForm>
     </v-flex>
 </v-container>
 </template>
@@ -86,6 +94,7 @@ import EmailInput from '../../components/Form/Inputs/EmailInput.vue'
 import PasswordInput from '../../components/Form/Inputs/PasswordInput.vue'
 import PhoneInput from '../../components/Form/Inputs/PhoneInput.vue'
 import DescriptionArea from '../../components/Form/Inputs/DescriptionArea.vue'
+import SupportForm from '../../components/Form/SupportForm.vue'
 
 export default {
     components: {
@@ -97,6 +106,7 @@ export default {
         PasswordInput,
         PhoneInput,
         DescriptionArea,
+        SupportForm,
     },
 
     data() {

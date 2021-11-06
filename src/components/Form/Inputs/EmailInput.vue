@@ -1,11 +1,13 @@
 <template>
     <div class="email_input_wrapper">
-        <BaseInput 
+        <BaseInput
+            ref="input"
             :outlined="outlined"
             :dark="dark"
             :placeholder="placeholder ? text : ''"
             :title="title ? text : ''"
             :icon="icon ? iconSrc : ''"
+            :rules="rules"
             @onChange="onChange"
         />
     </div>
@@ -45,13 +47,23 @@ export default {
     data() {
         return {
             text:       'אימייל',
-            iconSrc:    'mdi-email'
+            iconSrc:    'mdi-email',
+            rules:      [
+                {
+                    rule: /^[\w\d@.!#$%&'*+\-\/=?^_`{|}~]+@[\w\d@.!#$%&'*+\-\/=?^_`{|}~]+\.[\w\d@.!#$%&'*+\-\/=?^_`{|}~]+$/,
+                    message: 'האימייל חייב להיות תקני'
+                },
+            ]
         }
     },
 
     methods: {
         onChange(value) {
             this.$emit('onChange', value);
+        },
+
+        validate() {
+            return this.$refs.input.validate();
         }
     }
 }

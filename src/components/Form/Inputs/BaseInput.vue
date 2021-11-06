@@ -9,8 +9,8 @@
         class="base_input_content"
         :class="{
             'base_input_outlined' : outlined,
-            'greyBgColor' : dark,
-            'whiteBgColor' : !dark,
+            'grey_bg_color' : dark,
+            'white_bg_color' : !dark,
         }"
     >
 
@@ -26,7 +26,18 @@
             v-model="value"
             :type="type"
             :placeholder="placeholder"
+            :maxlength="maxlength"
         >
+    </div>
+    <div 
+        class="base_input_error_wrapper" 
+        :class="{
+            'base_input_error_wrapper_visible' : !!errorMessage 
+        }"
+    >
+        <small>
+            {{ errorMessage }}
+        </small>
     </div>
 </div>
 </template>
@@ -63,17 +74,53 @@ export default {
         icon: {
             type: String
         },
+
+        maxlength: {
+            type: Number,
+            default: 1000
+        },
+
+        rules: {
+            type: Array,
+        }
     },
 
     watch: {
         value() {
+            this.value = this.value.trim();
             this.$emit('onChange', this.value);
+            if(this.errorMessage) {
+                this.validate();
+            }
         }
     },
 
     data() {
         return {
-            value: ''
+            value: '',
+            errorMessage: ''
+        }
+    },
+
+    methods: {
+        validate() {
+            this.errorMessage = '';
+            if(!this.rules) {
+                warning('Rules are required for validation');
+                return true;
+            }
+
+            this.rules.forEach(item => {
+                if(this.errorMessage) {
+                    return;
+                }
+                
+                if(!new RegExp(item.rule).test(this.value)) {
+                    this.errorMessage = item.message;
+                }
+            })
+            
+            return !this.errorMessage;
         }
     }
 }
@@ -103,6 +150,19 @@ export default {
             border: 1px solid #CCC;
         }
 
+        .base_input_error_wrapper {
+            position: absolute;
+            opacity: 0;
+            transition: .3s opacity linear;
+
+            small {
+                color: red;
+            }
+        }
+
+        .base_input_error_wrapper_visible {
+            opacity: 1;
+        }
     }
 
 

@@ -1,15 +1,25 @@
-.mainBgColor {
+.main_bg_color {
   background-color: rgb(255, 89, 34);
 }
 
-.darkBgColor {
+.dark_bg_color {
   background-color: rgb(49, 53, 61);
 }
 
-.greyBgColor {
+.grey_bg_color {
   background-color: rgb(234, 235, 236);
 }
 
-.whiteBgColor {
+.white_bg_color {
   background-color: rgb(255, 255, 255);
+}
+
+
+
+.main_text_color {
+  color: rgb(255, 89, 34);
+}
+
+.dark_text_color {
+  color: rgb(49, 53, 61);
 }

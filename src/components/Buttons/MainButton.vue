@@ -1,11 +1,11 @@
 <template>
 <button 
-    class="main_button_wrapper mainBgColor"
+    class="main_button_wrapper main_bg_color"
     @click="submit()"
     :class="{
         'main_button_shadow': shadow && !dark,
         'main_button_dark_shadow': shadow && dark,
-        'main_button_dark darkBgColor': dark,
+        'main_button_dark dark_bg_color': dark,
     }"
 >
     <span>
@@ -43,13 +43,16 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
     .main_button_wrapper {
         padding: 7px 25px;
         border-radius: 20px;
         border: 2px solid #fff;
-        color: #fff;
+        
+        span {
+            color: #fff;
+        }
     }
 
     .main_button_shadow {
@@ -59,9 +62,4 @@ export default {
     .main_button_dark_shadow {
         box-shadow: 0 0 10px 4px rgb(49, 53, 61, 0.3);
     }
-
-    .main_button_dark {
-        color: #fff;
-    }
-
 </style>
