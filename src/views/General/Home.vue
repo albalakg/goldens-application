@@ -44,6 +44,15 @@
 
         <br><br> -->
 
+        <SectionHeader
+            title="חברות שותפות"
+            backgroundTitle="שותפות"
+            subtitle="אתה שואל לגבי זה עכשיו"
+        >
+        </SectionHeader>
+
+        <br><br>
+
         <ContentImageCard
             :image="contentImageCard.image"
             :name="contentImageCard.name"
@@ -138,6 +147,7 @@ import SupportForm from '../../components/Form/SupportForm.vue'
 import OrderSummeryCard from '../../components/Cards/OrderSummeryCard.vue'
 import SubmitedInput from '../../components/Form/Inputs/SubmitedInput.vue'
 import ContentImageCard from '../../components/Cards/ContentImageCard.vue'
+import SectionHeader from '../../components/Texts/SectionHeader.vue'
 
 export default {
     components: {
@@ -155,6 +165,7 @@ export default {
         OrderSummeryCard,
         SubmitedInput,
         ContentImageCard,
+        SectionHeader,
     },
 
     data() {
