@@ -28,6 +28,7 @@
         <div class="submited_input_button">
             <MainButton 
                 dark
+                shadow
                 :text="buttonText"
                 @submit="submit()"
             />
