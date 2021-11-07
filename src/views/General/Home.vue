@@ -1,7 +1,7 @@
 <template>
 <v-container class="ma-10">
     <v-flex xs4>
-        <MainButton
+        <!-- <MainButton
             shadow
             text="כפתור רגיל"
         >
@@ -42,6 +42,15 @@
         >
         </FirstNameInput>
 
+        <br><br> -->
+
+        <ContentImageCard
+            :image="contentImageCard.image"
+            :name="contentImageCard.name"
+            :subtitle="contentImageCard.subtitle"
+        >
+        </ContentImageCard>
+
         <br><br>
 
         <LastNameInput
@@ -77,7 +86,7 @@
 
         <br><br>
 
-        <v-flex xs8 mx-auto>
+        <v-flex xs11 xl8 mx-auto>
             <OrderSummeryCard :records="records">
             </OrderSummeryCard>
         </v-flex>
@@ -105,7 +114,7 @@
 
         <br><br>
     </v-flex>
-    <v-flex xs5 mx-auto class="text-center">
+    <v-flex xs7 xl5 mx-auto class="text-center">
         <SupportForm
 
         >
@@ -128,6 +137,7 @@ import DescriptionArea from '../../components/Form/Inputs/DescriptionArea.vue'
 import SupportForm from '../../components/Form/SupportForm.vue'
 import OrderSummeryCard from '../../components/Cards/OrderSummeryCard.vue'
 import SubmitedInput from '../../components/Form/Inputs/SubmitedInput.vue'
+import ContentImageCard from '../../components/Cards/ContentImageCard.vue'
 
 export default {
     components: {
@@ -144,6 +154,7 @@ export default {
         SupportForm,
         OrderSummeryCard,
         SubmitedInput,
+        ContentImageCard,
     },
 
     data() {
@@ -169,7 +180,12 @@ export default {
                     price: '₪117',
                     large: true
                 },
-            ]
+            ],
+            contentImageCard: {
+                image: FILES_PATH + 'content_image.jfif',
+                name: 'קורס בסיסי',
+                subtitle: 'סתם משהו שלא באמת קשור לקורס'
+            }
         }
     }   
 }
