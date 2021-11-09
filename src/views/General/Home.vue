@@ -63,6 +63,13 @@
         <br><br> -->
 
 
+        <ExpandedTabs
+            :tabs="questions"
+        >
+        </ExpandedTabs>
+
+        <br><br>
+
         <SectionHeader
             title="חברות שותפות"
             backgroundTitle="שותפות"
@@ -168,6 +175,7 @@ import SubmitedInput from '../../components/Form/Inputs/SubmitedInput.vue'
 import ContentImageCard from '../../components/Cards/ContentImageCard.vue'
 import SectionHeader from '../../components/Texts/SectionHeader.vue'
 import ClientReviewCard from '../../components/Cards/ClientReviewCard.vue'
+import ExpandedTabs from '../../components/Tabs/ExpandedTabs.vue'
 
 export default {
     components: {
@@ -187,6 +195,7 @@ export default {
         ContentImageCard,
         SectionHeader,
         ClientReviewCard,
+        ExpandedTabs,
     },
 
     data() {
@@ -217,7 +226,25 @@ export default {
                 image: FILES_PATH + 'content_image.jfif',
                 name: 'קורס בסיסי',
                 subtitle: 'סתם משהו שלא באמת קשור לקורס'
-            }
+            },
+            questions: [
+                {
+                    title:  'סתם שאלה מספר 1',
+                    content: 'סתם טקסט חופשי שאין לו קשר לשום דבר למוצר כדי למלא סתם תוכן ריק'
+                },
+                {
+                    title:  'סתם שאלה מספר 2',
+                    content: 'סתם טקסט חופשי שאין לו קשר לשום דבר למוצר כדי למלא סתם תוכן ריק'
+                },
+                {
+                    title:  'סתם שאלה מספר 3',
+                    content: 'סתם טקסט חופשי שאין לו קשר לשום דבר למוצר כדי למלא סתם תוכן ריק'
+                },
+                {
+                    title:  'סתם שאלה מספר 4',
+                    content: 'סתם טקסט חופשי שאין לו קשר לשום דבר למוצר כדי למלא סתם תוכן ריק'
+                },
+            ]
         }
     }   
 }
