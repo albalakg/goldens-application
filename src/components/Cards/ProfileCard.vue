@@ -2,7 +2,7 @@
 <template>
     <div class="profile_card_wrapper" :style="cssVars">
         <img :src="imageSrc" alt="">
-        <span class="profile_icon">
+        <span class="profile_icon" v-if="editable">
             <IconChip 
                 shadow
                 icon="mdi-camera"

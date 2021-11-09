@@ -1,5 +1,23 @@
 <template>
 <v-container class="ma-10">
+    <v-flex xs5 class="px-5" mx-auto>
+        
+        <ClientReviewCard
+            name="שחר פאר"
+            course="לומדת כדורגל"
+            review="סתם משהו שאני לא יודעת בכלל אם אני אוהבת, אבל אם משהו רוצה לעשות משהו מעניין מתישהו שיפנה אלי ואענה לו בחזרה בההתאם."
+        >
+        </ClientReviewCard>
+
+        <br><br>
+
+        <SectionHeader
+            title="חברות שותפות"
+            backgroundTitle="שותפות"
+            subtitle="אתה שואל לגבי זה עכשיו"
+        >
+        </SectionHeader>
+    </v-flex>
     <v-flex xs4>
         <!-- <MainButton
             shadow
@@ -43,6 +61,7 @@
         </FirstNameInput>
 
         <br><br> -->
+
 
         <SectionHeader
             title="חברות שותפות"
@@ -148,6 +167,7 @@ import OrderSummeryCard from '../../components/Cards/OrderSummeryCard.vue'
 import SubmitedInput from '../../components/Form/Inputs/SubmitedInput.vue'
 import ContentImageCard from '../../components/Cards/ContentImageCard.vue'
 import SectionHeader from '../../components/Texts/SectionHeader.vue'
+import ClientReviewCard from '../../components/Cards/ClientReviewCard.vue'
 
 export default {
     components: {
@@ -166,6 +186,7 @@ export default {
         SubmitedInput,
         ContentImageCard,
         SectionHeader,
+        ClientReviewCard,
     },
 
     data() {
