@@ -1,7 +1,17 @@
 <template>
 <v-container class="ma-10">
-    <v-flex xs5 class="px-5" mx-auto>
-        
+    <v-flex xs5 xl3 class="px-5" mx-auto>
+        <v-flex xs6>
+            
+            <DataCard
+                title="100 שעות"
+                subtitle="אורך הקורס"
+            >
+            </DataCard>
+
+            <br><br>
+            
+        </v-flex>
         <ClientReviewCard
             name="שחר פאר"
             course="לומדת כדורגל"
@@ -176,6 +186,7 @@ import ContentImageCard from '../../components/Cards/ContentImageCard.vue'
 import SectionHeader from '../../components/Texts/SectionHeader.vue'
 import ClientReviewCard from '../../components/Cards/ClientReviewCard.vue'
 import ExpandedTabs from '../../components/Tabs/ExpandedTabs.vue'
+import DataCard from '../../components/Cards/DataCard.vue'
 
 export default {
     components: {
@@ -196,6 +207,7 @@ export default {
         SectionHeader,
         ClientReviewCard,
         ExpandedTabs,
+        DataCard,
     },
 
     data() {
