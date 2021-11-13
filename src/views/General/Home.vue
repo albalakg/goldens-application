@@ -2,6 +2,14 @@
 <v-container class="ma-10">
     <v-flex xs10 xl7 mx-auto>
         
+        <MainTabs
+            :tabs="mainTabs"
+            :activeTab="activeTab"
+            @submit="setActiveTab"
+        >
+        </MainTabs>
+        <br><br>
+        
         <OrderCourseCard
             :course="orderedCourse"
         >
@@ -199,6 +207,7 @@ import ClientReviewCard from '../../components/Cards/ClientReviewCard.vue'
 import ExpandedTabs from '../../components/Tabs/ExpandedTabs.vue'
 import DataCard from '../../components/Cards/DataCard.vue'
 import OrderCourseCard from '../../components/Cards/OrderCourseCard.vue'
+import MainTabs from '../../components/Tabs/MainTabs.vue'
 
 export default {
     components: {
@@ -221,6 +230,7 @@ export default {
         ExpandedTabs,
         DataCard,
         OrderCourseCard,
+        MainTabs,
     },
 
     data() {
@@ -276,9 +286,38 @@ export default {
                 price: '100',
                 expiration: 'תקף לשנה',
                 trailer: FILES_PATH + 'UwncLuZnK0VA8OhniaLVdjTYthBknz5UoiuPqqtw.mp4',
-            }
+            },
+            mainTabs: [
+                {
+                    title: 'פרטים אישיים',
+                    url: '/user'
+                },
+                {
+                    title: 'אימונים קודמים',
+                    url: '/user/history'
+                },
+                {
+                    title: 'מועדפים',
+                    url: '/user/favorites'
+                },
+                {
+                    title: 'הזמנות',
+                    url: '/user/orders'
+                },
+                {
+                    title: 'פניות ותמיכה',
+                    url: '/user/support'
+                },
+            ],
+            activeTab: 0,
         }
-    }   
+    },
+
+    methods: {
+        setActiveTab(index) {
+            this.activeTab = index;
+        }
+    }
 }
 </script>
 
