@@ -8,6 +8,7 @@
  * @param {String} message 
 */
 window.error = (message) => {
+    // add validation to show only in envs that aren't production
     console.error('Application Error: ' + message);
 }
 
@@ -16,5 +17,6 @@ window.error = (message) => {
  * @param {String} message 
 */
 window.warning = (message) => {
+    // add validation to show only in envs that aren't production
     console.warn('Application Warning: ' + message);
 }

@@ -3,15 +3,14 @@
     <template v-for="(tab, index) in tabs">
         <v-flex
             xs2
-            class="main_tab pointer"
+            class="main_tab"
             :key="index" 
             :class="{
                 'active_tab': activeTab === index,
             }"
             :ref="`mainTab_${index}`"
-            @click="submit(index)"
         >
-            <span>
+            <span class="pointer" @click="submit(index)">
                 {{ tab.title }}
             </span>
         </v-flex>
@@ -25,7 +24,8 @@
 </template>
 
 <script>
-const SPACE_BEHIND_THE_TAB = 10;
+const SPACE_BEHIND_THE_TAB  = 10;
+const TAB_WIDTH             = 10/12;
 
 export default {
     props: {
@@ -70,21 +70,15 @@ export default {
             const activeTab = document.querySelector('.active_tab');
             const wrapper   = document.querySelector('.main_tabs_wrapper')
             
-            if(!line) {
-                return error('Failed to find the active tab line');
-            }
-            
-            if(!activeTab) {
-                return error('Failed to find the active tab');
+            if(!line || !activeTab || !wrapper) {
+                return error('Failed to move the active line since one of the elements was not found');
             }
 
-            const rightPosition = this.calcLinePosition(wrapper, activeTab);
-            line.style.right = rightPosition + 'px'
+            line.style.right = this.calcLinePosition(wrapper, activeTab) + 'px'
         },
 
         calcLinePosition(wrapper, activeTab) {
-            const position = (wrapper.clientWidth * (10/12)) - activeTab.offsetLeft - SPACE_BEHIND_THE_TAB;
-            return position > SPACE_BEHIND_THE_TAB ? position : 0;
+            return (wrapper.clientWidth * (TAB_WIDTH)) - activeTab.offsetLeft - SPACE_BEHIND_THE_TAB;
         }
     }
 }
@@ -97,7 +91,8 @@ export default {
         padding-bottom: 20px;
         position: relative;
 
-        .main_tab:hover {
+
+        .main_tab span:hover {
             font-weight: bold;
         }
 
