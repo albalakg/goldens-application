@@ -45,6 +45,7 @@ export default {
             return {
                 '--height': this.styleConfig && this.styleConfig.height ? this.styleConfig.height + 'px' : 'auto',
                 '--border-radius': this.styleConfig && this.styleConfig.borderRadius ? this.styleConfig.borderRadius + 'px' : '20px',
+                '--padding': this.styleConfig && this.styleConfig.padding ? this.styleConfig.padding : '7px 25px',
             }
         }
     },
@@ -60,7 +61,7 @@ export default {
 <style scoped lang="scss">
 
     .main_button_wrapper {
-        padding: 7px 25px;
+        padding: var(--padding);
         border-radius: var(--border-radius);
         border: 2px solid #fff;
         width: 100%;

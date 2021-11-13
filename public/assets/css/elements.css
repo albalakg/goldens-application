@@ -41,3 +41,14 @@
 .no_decoration {
     text-decoration: none;
 }
+
+.sub_text {
+    color: #777;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.divider {
+    height: 3px;
+    background-color: #DDD;
+}

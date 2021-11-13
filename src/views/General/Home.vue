@@ -1,7 +1,18 @@
 <template>
 <v-container class="ma-10">
+    <v-flex xs10 xl7 mx-auto>
+        
+        <OrderCourseCard
+            :course="orderedCourse"
+        >
+        </OrderCourseCard>
+        <br><br>
+
+    </v-flex>
     <v-flex xs5 xl3 class="px-5" mx-auto>
+
         <v-flex xs6>
+
             
             <DataCard
                 title="100 שעות"
@@ -187,6 +198,7 @@ import SectionHeader from '../../components/Texts/SectionHeader.vue'
 import ClientReviewCard from '../../components/Cards/ClientReviewCard.vue'
 import ExpandedTabs from '../../components/Tabs/ExpandedTabs.vue'
 import DataCard from '../../components/Cards/DataCard.vue'
+import OrderCourseCard from '../../components/Cards/OrderCourseCard.vue'
 
 export default {
     components: {
@@ -208,6 +220,7 @@ export default {
         ClientReviewCard,
         ExpandedTabs,
         DataCard,
+        OrderCourseCard,
     },
 
     data() {
@@ -256,7 +269,14 @@ export default {
                     title:  'סתם שאלה מספר 4',
                     content: 'סתם טקסט חופשי שאין לו קשר לשום דבר למוצר כדי למלא סתם תוכן ריק'
                 },
-            ]
+            ],
+            orderedCourse: {
+                title: 'קורס מתחילים',
+                description: "לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית קולורס מונפרד אדנדום סילקוף, מרגשי ומרגשח. עמחליף מודוף. אודיפו בלאסטיק מונופץ קליר תילא גניסיפידא ררוטקסנוק ,טמא טיס רולוד םוספיא םרול ףילחמע .חשגרמו ישגרמ ,ףוקליס םודנדא דרפנומ סרולוק רילק ץפונומ קיטסאלב ופידוא .ףודומ",
+                price: '100',
+                expiration: 'תקף לשנה',
+                trailer: FILES_PATH + 'UwncLuZnK0VA8OhniaLVdjTYthBknz5UoiuPqqtw.mp4',
+            }
         }
     }   
 }
