@@ -45,6 +45,7 @@
                 :styleConfig="{
                     padding: '7px 45px'
                 }"
+                @submit="submit()"
             >
                 <template slot="content">
                     <span>
@@ -73,9 +74,9 @@ export default {
         }
     },
 
-    data() {
-        return {
-
+    methods: {
+        submit() {
+            this.$emit('submit');
         }
     }
 }
