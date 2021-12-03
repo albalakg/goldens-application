@@ -41,8 +41,8 @@
         <br><br>
 
         <SectionHeader
-            title="חברות שותפות"
-            backgroundTitle="שותפות"
+            title="דן"
+            backgroundTitle="וגל"
             subtitle="אתה שואל לגבי זה עכשיו"
         >
         </SectionHeader>
@@ -120,7 +120,6 @@
         <LastNameInput
             dark
             title
-            icon
         >
         </LastNameInput>
 
