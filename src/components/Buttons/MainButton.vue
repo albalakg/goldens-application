@@ -82,6 +82,7 @@ export default {
     }
 
     .main_button_dark_shadow {
+        border: 2px solid rgb(49, 53, 61);
         box-shadow: 0 0 15px 4px rgb(49, 53, 61, 0.3);
     }
 </style>

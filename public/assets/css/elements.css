@@ -52,3 +52,19 @@
     height: 3px;
     background-color: #DDD;
 }
+
+.auth_form_title {
+    font-size: 2em;
+}
+
+.auth_form_subtitle {
+
+}
+
+.link {
+    color: #000;
+}
+
+.v-application a {
+    text-decoration-color: #000;
+}

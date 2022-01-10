@@ -1,0 +1,21 @@
+<template>
+  <h1>
+    לוגו
+  </h1>
+</template>
+
+<script>
+export default {
+
+  data() {
+    return {
+
+    };
+  }
+
+}
+</script>
+
+<style scoped>
+
+</style>

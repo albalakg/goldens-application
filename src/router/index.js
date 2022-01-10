@@ -11,13 +11,13 @@ const routes = [
     path: '/signin',
     name: 'Login',
     beforeEnter: Guard.guest,
-    component: () => import('../views/Auth/Signin.vue')
+    component: () => import('../views/Auth/Signin.vue'),
   },
   {
     path: '/signup',
     name: 'Signup',
     beforeEnter: Guard.guest,
-    component: () => import('../views/Auth/Signup.vue')
+    component: () => import('../views/Auth/Signup.vue'),
   },
   {
     path: '/signout',
@@ -28,13 +28,13 @@ const routes = [
   {
     path: '/forgot-password',
     name: 'ForgotPassword',
-    beforeEnter: Guard.admin,
+    beforeEnter: Guard.guest,
     component: () => import('../views/Auth/ForgotPassword.vue')
   },
   {
     path: '/reset-password',
     name: 'ResetPassword',
-    beforeEnter: Guard.admin,
+    beforeEnter: Guard.guest,
     component: () => import('../views/Auth/ResetPassword.vue')
   },
   // ***** AUTH END *****
@@ -45,7 +45,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    beforeEnter: Guard.admin,
+    // beforeEnter: Guard.admin,
     component: () => import('../views/General/Home.vue')
   },
   {
@@ -114,7 +114,6 @@ const routes = [
   {
     path: '*',
     name: 'PageNotFound',
-    beforeEnter: Guard.admin,
     component: () => import('../views/Errors/PageNotFound.vue')
   },
 ]
