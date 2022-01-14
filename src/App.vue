@@ -49,8 +49,8 @@ export default {
     },
 
     showMenu() {
-      const pagesWithoutMenu = ['/signin', '/signout'];
-      return !pagesWithoutMenu.includes(this.$route.path);
+      const pagesWithoutMenu = ['signin', 'signout', 'forgot-password', 'reset-password'];
+      return !pagesWithoutMenu.includes(this.$route.path.replace('/', ''));
     }
   },
 
@@ -86,9 +86,5 @@ export default {
     height: 100vh;
     overflow-x: hidden;
     direction: rtl;
-  }
-
-  .app_content {
-  
   }
 </style>

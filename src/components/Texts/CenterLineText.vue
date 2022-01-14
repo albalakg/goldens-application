@@ -5,7 +5,7 @@
     </v-flex>
     <span class="mx-2">
       <strong>
-        עוד לא רשומים?
+        {{ text }}
       </strong>
     </span>
     <v-flex class="line">
@@ -17,11 +17,11 @@
 <script>
 export default {
 
-   data() {
-       return {
-
-       };
-   }
+  props: {
+    text: {
+      type: String,
+    }
+  }
 
 }
 </script>
