@@ -90,13 +90,9 @@ export default {
         },
 
         validate() {
-            let isEmailValid        = this.$refs.email.validate();
-            let isNameValid         = this.$refs.name.validate();
-            let isDescriptionValid  = this.$refs.description.validate();
-
-        console.log(isEmailValid,
-            isNameValid,
-            isDescriptionValid);
+            const isEmailValid        = this.$refs.email.validate();
+            const isNameValid         = this.$refs.name.validate();
+            const isDescriptionValid  = this.$refs.description.validate();
 
             return isEmailValid && isNameValid && isDescriptionValid;
         },

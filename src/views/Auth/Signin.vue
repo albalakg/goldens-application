@@ -11,7 +11,7 @@
                 </v-flex>
                 <v-flex xs12 md6 lg5 xl4 px-5 px-md-0>
                     <v-flex md8>
-                        <v-form class="signin_form">
+                        <v-form class="signin_form" ref="form" @submit.prevent="submit()">
                             <h2 class="auth_form_title"><span class="main_text_color">התחברות</span> לאתר</h2>
                             <h3 class="auth_form_subtitle">ברוך הבא לעולם הספורט</h3>
                             
@@ -19,9 +19,11 @@
                             <br>
                             
                             <email-input
+                                ref="email"
                                 outlined
                                 title
                                 icon
+                                @onChange="setEmail" 
                             >
                             </email-input>
                             
@@ -29,9 +31,11 @@
                             <br>
 
                             <password-input
+                                ref="password"
                                 outlined
                                 title
                                 icon
+                                @onChange="setPassword" 
                             >
                             </password-input>
                             
@@ -48,13 +52,17 @@
                                 </v-flex>
                                 <v-flex md5>
                                     <MainButton
+                                        :loading="loading"
                                         :styleConfig="{
                                             padding: '10px 25px',
                                             borderRadius: '30',
                                         }"
                                     >
                                         <template slot="content">
-                                            <strong class="white--text">
+                                            <strong class="white--text" v-if="loading">
+                                                טוען...
+                                            </strong>
+                                            <strong class="white--text" v-else>
                                                 כניסה
                                             </strong>
                                         </template>
@@ -114,8 +122,38 @@ export default {
             form: {
                 email: '',
                 password: '',
-            }
+            },
+            loading: false
         }
+    },
+
+    methods: {
+        submit() {
+
+            if(!this.validate()) {
+                return;
+            }
+
+            this.loading = true;
+
+            this.$store.dispatch('')
+
+        },
+
+        validate() {
+            const isEmailValid      = this.$refs.email.validate();
+            const isPasswordValid   = this.$refs.password.validate();
+
+            return isEmailValid && isPasswordValid;
+        },
+
+        setEmail(email) {
+            this.form.email = email;
+        },
+        
+        setPassword(password) {
+            this.form.password = password;
+        },
     }
 }
 </script>
