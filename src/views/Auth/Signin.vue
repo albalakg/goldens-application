@@ -15,8 +15,7 @@
                             <h2 class="auth_form_title"><span class="main_text_color">התחברות</span> לאתר</h2>
                             <h3 class="auth_form_subtitle">ברוך הבא לעולם הספורט</h3>
                             
-                            <br>
-                            <br>
+                            <Divider :space="8" />
                             
                             <email-input
                                 ref="email"
@@ -27,8 +26,7 @@
                             >
                             </email-input>
                             
-                            <br>
-                            <br>
+                            <Divider :space="8" />
 
                             <password-input
                                 ref="password"
@@ -39,8 +37,7 @@
                             >
                             </password-input>
                             
-                            <br>
-                            <br>
+                            <Divider :space="8" />
 
                             <v-flex d-md-flex align-center justify-space-between text-center>
                                 <v-flex md5 mb-5 mb-md-0>
@@ -70,16 +67,14 @@
                                 </v-flex>
                             </v-flex>
 
-                            <br>
-                            <br>
+                            <Divider :space="8" />
 
                             <CenterLineText
                                 class="my-3"
                                 text="עוד לא רשומים?"
                             />
 
-                            <br>
-                            <br>
+                            <Divider :space="8" />
 
                             <MainButton
                                 dark
@@ -106,6 +101,7 @@ import PasswordInput from '../../components/Form/Inputs/PasswordInput.vue'
 import EmailInput from '../../components/Form/Inputs/EmailInput.vue'
 import MainButton from '../../components/Buttons/MainButton.vue'
 import CenterLineText from '../../components/Texts/CenterLineText.vue'
+import Divider from '../../components/General/Divider.vue'
 
 export default {
     components: {
@@ -115,6 +111,7 @@ export default {
         EmailInput,
         MainButton,
         CenterLineText,
+        Divider,
     },
     
     data() {
