@@ -86,6 +86,10 @@
     color: #000;
 }
 
+.simple_link {
+    text-decoration: none;
+}
+
 .v-application a {
     text-decoration-color: #000;
 }

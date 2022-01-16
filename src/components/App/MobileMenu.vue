@@ -53,7 +53,7 @@ export default {
                 },
                 {
                     text: 'פרופיל',
-                    icon: 'mdi-home',
+                    icon: 'mdi-account-circle',
                     logged: true
                 },
                 {
@@ -63,7 +63,7 @@ export default {
                 },
                 {
                     text: 'חיפוש',
-                    icon: 'mdi-search',
+                    icon: 'mdi-magnify',
                     logged: true
                 },
             ]
@@ -87,6 +87,7 @@ export default {
         right: 0;
         width: 100vw;
         height: 80px;
+        z-index: 10;
     }
 
 </style>

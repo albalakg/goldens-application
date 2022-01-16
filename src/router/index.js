@@ -22,7 +22,7 @@ const routes = [
   {
     path: '/signout',
     name: 'Signout',
-    beforeEnter: Guard.admin,
+    beforeEnter: Guard.user,
     component: () => import('../views/Auth/Signout.vue')
   },
   {
@@ -45,25 +45,25 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    // beforeEnter: Guard.admin,
+    // beforeEnter: Guard.user,
     component: () => import('../views/General/Home.vue')
   },
   {
     path: '/about',
     name: 'About',
-    beforeEnter: Guard.admin,
+    beforeEnter: Guard.user,
     component: () => import('../views/General/About.vue')
   },
   {
     path: '/policies',
     name: 'Policies',
-    beforeEnter: Guard.admin,
+    beforeEnter: Guard.user,
     component: () => import('../views/General/Policies.vue')
   },
   {
     path: '/support',
     name: 'Support',
-    beforeEnter: Guard.admin,
+    beforeEnter: Guard.user,
     component: () => import('../views/General/Support.vue')
   },
   // ***** GENERAL PAGES END *****
@@ -73,37 +73,37 @@ const routes = [
   {
     path: '/user',
     name: 'User',
-    beforeEnter: Guard.admin,
+    beforeEnter: Guard.user,
     component: () => import('../views/User/UserIndex.vue'),
     children: [
       {
         path: '/',
         name: 'UserProfile',
-        beforeEnter: Guard.admin,
+        beforeEnter: Guard.user,
         component: () => import('../views/User/UserProfile.vue')
       },
       {
         path: '/favorites',
         name: 'UserFavorites',
-        beforeEnter: Guard.admin,
+        beforeEnter: Guard.user,
         component: () => import('../views/User/UserFavorites.vue')
       },
       {
         path: '/history',
         name: 'UserHistory',
-        beforeEnter: Guard.admin,
+        beforeEnter: Guard.user,
         component: () => import('../views/User/UserHistory.vue')
       },
       {
         path: '/orders',
         name: 'UserOrders',
-        beforeEnter: Guard.admin,
+        beforeEnter: Guard.user,
         component: () => import('../views/User/UserOrders.vue')
       },
       {
         path: '/support',
         name: 'UserSupportTickets',
-        beforeEnter: Guard.admin,
+        beforeEnter: Guard.user,
         component: () => import('../views/User/UserSupportTickets.vue')
       },
     ]

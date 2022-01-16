@@ -1,5 +1,5 @@
 <template>
-  <div class="tab_icon_wrapper text-center py-2 px-3">
+  <div class="tab_icon_wrapper text-center py-2 px-3" @click="onClick()">
     <v-icon :color="color">{{ icon }}</v-icon>
     <p class="mb-0" :class="`${color}--text`">
       {{ text }}
@@ -25,6 +25,12 @@ export default {
       type: String,
       default: 'white'
     },
+  },
+
+  methods: {
+    onClick() {
+      this.$emit('onClick');
+    }
   }
 
 }

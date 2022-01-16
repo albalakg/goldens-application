@@ -1,8 +1,8 @@
 import Auth from "./Auth";
 
 class Guard {
-  admin(to, from, next) {
-    Auth.isLogged() ? next() : next("/login");
+  user(to, from, next) {
+    Auth.isLogged() ? next() : next("/signin");
   }
 
   guest(to, from, next) {
