@@ -14,7 +14,7 @@
         }"
     >
 
-        <div class="base_input_icon ml-3 pl-3" v-if="icon">
+        <div class="base_input_main_icon ml-3 pl-3" v-if="icon">
             <v-icon>
                 {{ icon }}
             </v-icon>
@@ -28,6 +28,12 @@
             :placeholder="placeholder"
             :maxlength="maxlength"
         >
+
+        <div class="base_input_sub_icon mr-2 pointer" v-if="subIcon" @click="subIconClicked()">
+            <v-icon>
+                {{ subIcon }}
+            </v-icon>
+        </div>
     </div>
     <div 
         class="base_input_error_wrapper" 
@@ -72,6 +78,10 @@ export default {
         },
 
         icon: {
+            type: String
+        },
+
+        subIcon: {
             type: String
         },
 
@@ -121,6 +131,10 @@ export default {
             })
             
             return !this.errorMessage;
+        },
+
+        subIconClicked() {
+            this.$emit('subIconClicked')
         }
     }
 }
@@ -142,8 +156,12 @@ export default {
             }
         }
     
-        .base_input_icon {
+        .base_input_main_icon {
             border-left: 1px solid #DDD;
+        }
+
+        .base_input_sub_icon {
+
         }
     
         .base_input_outlined {

@@ -1,5 +1,3 @@
-import axios from "axios";
-
 const AuthState = {
     namespaced: true,
 
@@ -15,13 +13,7 @@ const AuthState = {
     },
 
     actions: {
-        signin() {
-            return new Promise((resolve, error) => {
-
-                axios.post
-
-            })
-        }
+       
     }
 };
 

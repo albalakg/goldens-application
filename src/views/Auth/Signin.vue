@@ -4,7 +4,7 @@
             <Logo />
         </header>
             
-        <main>
+        <main class="auth_form_top_margin">
             <v-flex d-flex flex-wrap>
                 <v-flex xs12 md6 lg7 xl8>
                     image
@@ -120,6 +120,7 @@ export default {
                 email: '',
                 password: '',
             },
+            error: '',
             loading: false
         }
     },
@@ -131,10 +132,39 @@ export default {
                 return;
             }
 
-            this.loading = true;
+            this.preSendActions();
 
-            this.$store.dispatch('')
+            axios.post('auth/login', this.form)
+                .then(res => {
+                    
+                    Auth.login(res.data.data);
+                    this.loggedSuccessfully(res.data.data);
 
+                }).catch(err => {
+                    this.error = err?.response?.data?.message;
+                }).finally(() => {
+                    this.loading = false;
+                })
+
+        },
+
+        preSendActions() {
+            this.loading    = true;
+            this.error      = '';
+        },
+
+        loggedSuccessfully(data) {
+            try {
+                if(data.courses.length) {
+                    // TODO: need to add logic that it will be the last
+                    const lastActiveCourse = data.courses[0];
+                    console.log('lastActiveCourse', lastActiveCourse);
+                    this.$router.push('/courses/' + lastActiveCourse.course.id)
+                }
+            } catch(err) {
+                error(err);
+                this.$router.push('/')
+            }
         },
 
         validate() {
@@ -156,9 +186,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
-main {
-    margin-top: 5%;
-}
 
 </style>

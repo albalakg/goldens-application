@@ -7,9 +7,11 @@
             :type="type"
             :placeholder="placeholder ? text : ''"
             :title="title ? text : ''"
-            :icon="icon ? iconSrc : ''"
+            :icon="iconSrc"
+            :subIcon="subIconSrc"
             :rules="rules"
             @onChange="onChange"
+            @subIconClicked="subIconClicked"
         />
     </div>
 </template>
@@ -32,7 +34,11 @@ export default {
         },
         
         icon: {
-            type: Boolean
+            type: Boolean,
+        },
+        
+        subIcon: {
+            type: Boolean,
         },
         
         placeholder: {
@@ -52,20 +58,38 @@ export default {
     data() {
         return {
             text:       'סיסמא',
-            type:       'password',
-            iconSrc:    'mdi-account-circle',
+            isTextVisible: false,
             rules:      [
                 {
                     rule: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d#$@!%&*\^?]{8,40}$/,
                     message: 'הסיסמא חייבת להכיל לפחות אות קטנה, אות גדולה ומספר ולהיות בין 8-40 תויים'
                 },
-            ]
+            ],
+        }
+    },
+    
+    computed: {
+        iconSrc() {
+            return this.icon ? 'mdi-account-circle' : '';
+        },
+
+        subIconSrc() {
+            const src = this.isTextVisible ? 'mdi-eye-off' : 'mdi-eye';
+            return this.icon ? src : '';
+        },
+
+        type() {
+            return this.isTextVisible ? 'text' : 'password';
         }
     },
 
     methods: {
         onChange(value) {
             this.$emit('onChange', value);
+        },
+
+        subIconClicked() {
+            this.isTextVisible = !this.isTextVisible;
         },
         
         validate() {

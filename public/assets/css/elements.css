@@ -53,6 +53,8 @@
     background-color: #DDD;
 }
 
+/* Auth Start */
+
 .auth_form_title {
     font-size: 2em;
 }
@@ -63,8 +65,22 @@
 }
 
 .auth_form_subtitle {
-
+    
 }
+
+.auth_form_top_margin {
+    margin-top: 5%;
+}
+
+@media only screen and (max-width: 1900px) {
+    
+    .auth_form_top_margin {
+        margin-top: 2%;
+    }
+    
+}
+
+/* Auth End */
 
 .link {
     color: #000;

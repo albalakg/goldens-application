@@ -97,6 +97,7 @@ export default {
     }
 
     .main_button_loading {
-
+        pointer-events: none;
+        opacity: 0.7;
     }
 </style>

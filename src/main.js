@@ -11,6 +11,7 @@ Vue.config.productionTip = false
 
 axios.defaults.baseURL = 'http://localhost:8000/api/';
 axios.defaults.headers.common["Authorization"] = `Bearer ${Auth.token()}`;
+window.axios = axios;
 
 window.FORM_DATA_CONFIG = {
   headers: {
@@ -23,7 +24,6 @@ window.FILES_PATH = window.location.origin + "/assets/files/";
 import Auth from "./helpers/Auth";
 window.Auth = Auth;
 
-// window.axios = axios;
 
 new Vue({
   vuetify,
