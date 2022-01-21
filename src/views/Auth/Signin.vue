@@ -155,6 +155,8 @@ export default {
 
         loggedSuccessfully(data) {
             try {
+                this.$store.dispatch('MessageState/addMessage', {message: 'התחברת בהצלחה, ברוך הבא!'})
+
                 if(data.courses.length) {
                     // TODO: need to add logic that it will be the last
                     const lastActiveCourse = data.courses[0];

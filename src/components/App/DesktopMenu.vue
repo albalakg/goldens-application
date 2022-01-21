@@ -117,7 +117,6 @@ export default {
 <style scoped>
 
     .desktop_menu_wrapper {
-        background-color: #31353d;
         width: 100vw;
         height: 80px;
         z-index: 10;
@@ -128,7 +127,8 @@ export default {
         top: 0;
         right: 0;
         width: 100%;
-        height: 80px
+        height: 80px;
+        background-color: #31353d;
     }
 
     .desktop_menu_filler {

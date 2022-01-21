@@ -30,7 +30,7 @@
 
                             <v-flex d-md-flex align-center justify-space-between text-center>
                                 <v-flex md5 mb-5 mb-md-0>
-                                    <router-link to="/forgot-password">
+                                    <router-link to="/signin">
                                         <span class="link">
                                             להתחברות
                                         </span>
@@ -66,7 +66,6 @@
 
 <script>
 import Logo from './../../components/General/Logo.vue'
-import PasswordInput from '../../components/Form/Inputs/PasswordInput.vue'
 import EmailInput from '../../components/Form/Inputs/EmailInput.vue'
 import MainButton from '../../components/Buttons/MainButton.vue'
 import CenterLineText from '../../components/Texts/CenterLineText.vue'
@@ -76,7 +75,6 @@ export default {
     components: {
         Logo,
         EmailInput,
-        PasswordInput,
         EmailInput,
         MainButton,
         CenterLineText,
@@ -87,7 +85,6 @@ export default {
         return {
             form: {
                 email: '',
-                password: '',
             },
             error: '',
             loading: false
@@ -103,12 +100,10 @@ export default {
 
             this.preSendActions();
 
-            axios.post('auth/login', this.form)
+            axios.post('auth/forgot-password', this.form)
                 .then(res => {
-                    
-                    Auth.login(res.data.data);
-                    this.loggedSuccessfully(res.data.data);
-
+                    this.$store.dispatch('MessageState/addMessage', {message: 'נשלחה בקשת איפוס סיסמא בהצלחה'})
+                    this.$router.push('/signin');
                 }).catch(err => {
                     this.error = err?.response?.data?.message;
                 }).finally(() => {
@@ -122,33 +117,14 @@ export default {
             this.error      = '';
         },
 
-        loggedSuccessfully(data) {
-            try {
-                if(data.courses.length) {
-                    // TODO: need to add logic that it will be the last
-                    const lastActiveCourse = data.courses[0];
-                    console.log('lastActiveCourse', lastActiveCourse);
-                    this.$router.push('/courses/' + lastActiveCourse.course.id)
-                }
-            } catch(err) {
-                error(err);
-                this.$router.push('/')
-            }
-        },
-
         validate() {
-            const isEmailValid      = this.$refs.email.validate();
-            const isPasswordValid   = this.$refs.password.validate();
+            const isEmailValid = this.$refs.email.validate();
 
-            return isEmailValid && isPasswordValid;
+            return isEmailValid;
         },
 
         setEmail(email) {
             this.form.email = email;
-        },
-        
-        setPassword(password) {
-            this.form.password = password;
         },
     }
 }

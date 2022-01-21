@@ -1,7 +1,8 @@
 <template>
   <v-app id="app">
     <DesktopMenu v-if="showMenu"/>
-    
+    <MessageCard />
+
     <v-main>
       <transition name="fade" mode="out-in">
         <router-view
@@ -21,12 +22,15 @@
 import DesktopMenu from './components/App/DesktopMenu.vue'
 import Footer from './components/App/Footer.vue'
 import MobileMenu from './components/App/MobileMenu.vue'
+import MessageCard from './components/Cards/MessageCard';
 
 export default {
   components: {
     DesktopMenu,
     Footer,
     MobileMenu,
+    MessageCard,
+
   },
 
   created() {
