@@ -10,6 +10,7 @@
             :icon="iconSrc"
             :subIcon="subIconSrc"
             :rules="rules"
+            :autocomplete="autocomplete"
             @onChange="onChange"
             @subIconClicked="subIconClicked"
         />
@@ -51,7 +52,7 @@ export default {
         },
         
         autocomplete: {
-            type: Boolean,
+            type: String,
         },
         
         confirmation: {

@@ -53,7 +53,7 @@ export default {
     },
 
     showMenu() {
-      const pagesWithoutMenu = ['signin', 'signout', 'forgot-password', 'reset-password'];
+      const pagesWithoutMenu = ['signin', 'signup', 'forgot-password', 'reset-password'];
       return !pagesWithoutMenu.includes(this.$route.path.replace('/', ''));
     }
   },

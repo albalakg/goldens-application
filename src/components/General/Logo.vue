@@ -1,7 +1,9 @@
 <template>
-  <h1>
-    לוגו
-  </h1>
+  <router-link to="/">
+    <h1>
+      לוגו
+    </h1>
+  </router-link>
 </template>
 
 <script>

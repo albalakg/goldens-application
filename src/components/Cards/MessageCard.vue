@@ -73,7 +73,7 @@ export default {
 
     .message_counter {
         padding: 0px;
-        background-color: #00000022;
+        background-color: #00000088;
         border-radius: 50%;
         height: 25px;
         width: 25px;

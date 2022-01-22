@@ -23,6 +23,7 @@
         <slot name="content" />
 
         <input
+            :autocomplete="autocomplete"
             v-model="value"
             :type="type"
             :placeholder="placeholder"
@@ -85,6 +86,11 @@ export default {
             type: String
         },
 
+        autocomplete: {
+            type: String,
+            default: ''
+        },
+
         maxlength: {
             type: Number,
             default: 1000
@@ -131,13 +137,13 @@ export default {
                 }
                 
                 if(item.value) {
-                    if(item.value !== this.value) {
+                    if(item.value !== this.value.trim()) {
                         this.errorMessage = item.message;
                     }
                 }
                 
                 if(item.rule) {
-                    if(!new RegExp(item.rule).test(this.value)) {
+                    if(!new RegExp(item.rule).test(this.value.trim())) {
                         this.errorMessage = item.message;
                     }
                 }

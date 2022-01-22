@@ -87,7 +87,8 @@
                                     borderRadius: '30',
                                 }"
                             >
-                            </MainButton></router-link>
+                            </MainButton>
+                        </router-link>
                     </v-flex>
                 </v-flex>
             </v-flex>
