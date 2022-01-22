@@ -75,7 +75,6 @@ export default {
     components: {
         Logo,
         EmailInput,
-        EmailInput,
         MainButton,
         CenterLineText,
         Divider,

@@ -53,21 +53,22 @@ export default {
         autocomplete: {
             type: Boolean,
         },
+        
+        confirmation: {
+            type: Boolean
+        },
+        
+        match: {
+            type: String,
+        },
     },
 
     data() {
         return {
-            text:       'סיסמא',
             isTextVisible: false,
-            rules:      [
-                {
-                    rule: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d#$@!%&*\^?]{8,40}$/,
-                    message: 'הסיסמא חייבת להכיל לפחות אות קטנה, אות גדולה ומספר ולהיות בין 8-40 תויים'
-                },
-            ],
         }
     },
-    
+
     computed: {
         iconSrc() {
             return this.icon ? 'mdi-account-circle' : '';
@@ -80,6 +81,28 @@ export default {
 
         type() {
             return this.isTextVisible ? 'text' : 'password';
+        },
+
+        text() {
+            return this.confirmation ? 'אימות סיסמא' : 'סיסמא'
+        },
+        
+        rules() {
+            const rules = [
+                {
+                    rule: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d#$@!%&*\^?]{8,40}$/,
+                    message: 'הסיסמא חייבת להכיל לפחות אות קטנה, אות גדולה ומספר ולהיות בין 8-40 תויים'
+                }
+            ];
+
+            if(this.match) {
+                rules.push({
+                    value: this.match,
+                    message: 'הסיסמאות לא זהות'
+                })
+            }
+
+            return rules;
         }
     },
 
@@ -94,7 +117,7 @@ export default {
         
         validate() {
             return this.$refs.input.validate();
-        }
+        },
     }
 }
 </script>

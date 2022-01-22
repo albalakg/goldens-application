@@ -115,22 +115,33 @@ export default {
     methods: {
         validate() {
             this.errorMessage = '';
-            if(!this.rules) {
-                warning('Rules are required for validation');
-                return true;
+            
+            if(this.rules) {
+                this.valdiateRules();
+                return !this.errorMessage;
             }
 
+            return !this.errorMessage;
+        },
+
+        valdiateRules() {
             this.rules.forEach(item => {
                 if(this.errorMessage) {
                     return;
                 }
                 
-                if(!new RegExp(item.rule).test(this.value)) {
-                    this.errorMessage = item.message;
+                if(item.value) {
+                    if(item.value !== this.value) {
+                        this.errorMessage = item.message;
+                    }
+                }
+                
+                if(item.rule) {
+                    if(!new RegExp(item.rule).test(this.value)) {
+                        this.errorMessage = item.message;
+                    }
                 }
             })
-            
-            return !this.errorMessage;
         },
 
         subIconClicked() {

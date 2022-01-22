@@ -39,7 +39,7 @@
                             
                             <Divider :space="8" />
 
-                            <v-flex d-md-flex align-center justify-space-between text-center>
+                            <v-flex d-md-flex align-center justify-space-between>
                                 <v-flex md5 mb-5 mb-md-0>
                                     <router-link to="/forgot-password">
                                         <span class="link">
@@ -70,12 +70,14 @@
                             <Divider :space="8" />
 
                             <CenterLineText
-                                class="my-3"
+                                class="my-3 my-lg-10"
                                 text="עוד לא רשומים?"
                             />
 
                             <Divider :space="8" />
 
+                        </v-form>
+                        <router-link to="/signup">
                             <MainButton
                                 dark
                                 shadow
@@ -85,8 +87,7 @@
                                     borderRadius: '30',
                                 }"
                             >
-                            </MainButton>
-                        </v-form>
+                            </MainButton></router-link>
                     </v-flex>
                 </v-flex>
             </v-flex>
@@ -120,7 +121,6 @@ export default {
                 email: '',
                 password: '',
             },
-            error: '',
             loading: false
         }
     },
@@ -141,7 +141,7 @@ export default {
                     this.loggedSuccessfully(res.data.data);
 
                 }).catch(err => {
-                    this.error = err?.response?.data?.message;
+                    this.$store.dispatch('MessageState/addErrorMessage', { message: 'האימייל או הסיסמא אינם תקינים' })
                 }).finally(() => {
                     this.loading = false;
                 })
@@ -150,7 +150,6 @@ export default {
 
         preSendActions() {
             this.loading    = true;
-            this.error      = '';
         },
 
         loggedSuccessfully(data) {
@@ -160,9 +159,11 @@ export default {
                 if(data.courses.length) {
                     // TODO: need to add logic that it will be the last
                     const lastActiveCourse = data.courses[0];
-                    console.log('lastActiveCourse', lastActiveCourse);
                     this.$router.push('/courses/' + lastActiveCourse.course.id)
+                    return;
                 }
+
+                this.$router.push('/');
             } catch(err) {
                 error(err);
                 this.$router.push('/')
@@ -182,7 +183,7 @@ export default {
         
         setPassword(password) {
             this.form.password = password;
-        },
+        }
     }
 }
 </script>

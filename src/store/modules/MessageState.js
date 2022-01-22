@@ -66,6 +66,12 @@ const MessageState = {
             dispatch('messageQueueWorker');
             commit('ADD_MESSAGE', options)
         },
+        
+        addErrorMessage({ commit, dispatch }, options) {
+            options.type = 'error';
+            dispatch('messageQueueWorker');
+            commit('ADD_MESSAGE', options)
+        },
 
         messageQueueWorker({ state, commit }) {
             if(!show_messages_interval) {
