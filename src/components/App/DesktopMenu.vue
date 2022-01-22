@@ -3,6 +3,7 @@
 
     <div class="desktop_menu_content">
         <v-flex d-flex justify-space-around align-center class="h100" xs10 mx-auto>
+            <Logo />
             <template v-for="(link, index) in links">
                 <v-flex d-flex justify-center :key="index">
                     <router-link v-if="link.text" class="pointer simple_link" :to="'/' + link.url">
@@ -27,9 +28,11 @@
 </template>
 
 <script>
+import Logo from './../General/Logo.vue'
 
 export default {
     components: {
+        Logo,
     },
 
     data() {
@@ -37,16 +40,6 @@ export default {
             allLinks: [
                 //guest
                 {
-                    text: 'דף הבית',
-                    url: '',
-                    logged: false
-                },
-                {
-                    text: 'הגדרות',
-                    url: 'settings',
-                    logged: false
-                },
-                {
                     text: 'קורסים',
                     url: 'courses',
                     logged: false
@@ -56,32 +49,28 @@ export default {
                     url: 'about',
                     logged: false
                 },
+                {
+                    text: 'יצירת קשר',
+                    url: 'contact',
+                    logged: false
+                },
+                {
+                    text: 'תמיכה',
+                    url: 'support',
+                    logged: false
+                },
+               
 
                 // logged
-                {
-                    text: 'דף הבית',
-                    url: '',
-                    logged: true
-                },
-                {
-                    text: 'הגדרות',
-                    url: 'settings',
-                    logged: true
-                },
-                {
-                    text: 'מי אנחנו',
-                    url: 'about',
-                    logged: true
-                },
-                {
-                    text: 'קורסים',
-                    url: 'courses',
-                    logged: true
-                },
                 {
                     icon: 'mdi-magnify',
                     logged: true,
                     action: 'toggleSearchBox'
+                },
+                {
+                    icon: 'mdi-heart',
+                    logged: true,
+                    url: 'user/favorites',
                 },
                 {
                     icon: 'mdi-account-circle',
