@@ -54,7 +54,7 @@ export default {
 
     showMenu() {
       const pagesWithoutMenu = ['signin', 'signup', 'forgot-password', 'reset-password'];
-      return !pagesWithoutMenu.includes(this.$route.path.replace('/', ''));
+      return !this.isMobile && !pagesWithoutMenu.includes(this.$route.path.replace('/', ''));
     }
   },
 

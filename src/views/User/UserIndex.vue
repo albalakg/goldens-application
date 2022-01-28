@@ -1,5 +1,6 @@
 <template>
     <div>
+        <router-link to="/signout">logout</router-link>
         <h1>
             User Index
         </h1>
