@@ -45,25 +45,21 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    // beforeEnter: Guard.user,
     component: () => import('../views/General/Home.vue')
   },
   {
     path: '/about',
     name: 'About',
-    beforeEnter: Guard.user,
     component: () => import('../views/General/About.vue')
   },
   {
     path: '/policies',
     name: 'Policies',
-    beforeEnter: Guard.user,
     component: () => import('../views/General/Policies.vue')
   },
   {
     path: '/support',
     name: 'Support',
-    beforeEnter: Guard.user,
     component: () => import('../views/General/Support.vue')
   },
   // ***** GENERAL PAGES END *****
@@ -72,7 +68,6 @@ const routes = [
   // ***** PROFILE START *****
   {
     path: '/user',
-    name: 'User',
     beforeEnter: Guard.user,
     component: () => import('../views/User/UserIndex.vue'),
     children: [

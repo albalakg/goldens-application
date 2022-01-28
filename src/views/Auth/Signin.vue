@@ -140,6 +140,7 @@ export default {
                     
                     Auth.login(res.data.data);
                     this.loggedSuccessfully(res.data.data);
+                    this.$store.dispatch('AuthState/setLogStatus', true);
 
                 }).catch(err => {
                     this.$store.dispatch('MessageState/addErrorMessage', { message: 'האימייל או הסיסמא אינם תקינים' })
@@ -156,7 +157,7 @@ export default {
         loggedSuccessfully(data) {
             try {
                 this.$store.dispatch('MessageState/addMessage', {message: 'התחברת בהצלחה, ברוך הבא!'})
-
+             
                 if(data.courses.length) {
                     // TODO: need to add logic that it will be the last
                     const lastActiveCourse = data.courses[0];

@@ -1,20 +1,15 @@
 <template>
-    <div>
-        <h1>
-            User signout
-        </h1>
-    </div>
+    
 </template>
 
 <script>
 export default {
-    data() {
-        return {
+    created() {
 
-        }
+        Auth.deleteCookie();
+        this.$store.dispatch('AuthState/setLogStatus', false);
+        this.$router.push('/signin');
+
     }
 }
 </script>
-
-<style scoped>
-</style>

@@ -60,7 +60,7 @@ export default {
 
   methods: {
     setInitialSettings() {
-      
+      this.$store.dispatch('AuthState/setLogStatus', Auth.isLogged());
     }
   }
 

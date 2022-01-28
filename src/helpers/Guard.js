@@ -6,7 +6,7 @@ class Guard {
   }
 
   guest(to, from, next) {
-    Auth.isGuest() ? next() : next("/home");
+    Auth.isGuest() ? next() : next("/");
   }
 }
 

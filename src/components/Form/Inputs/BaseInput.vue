@@ -11,6 +11,7 @@
             'base_input_outlined' : outlined,
             'grey_bg_color' : dark,
             'white_bg_color' : !dark,
+            'slim_input': slim
         }"
     >
 
@@ -58,6 +59,10 @@ export default {
         },
 
         textarea: {
+            type: Boolean
+        },
+
+        slim: {
             type: Boolean
         },
 
@@ -171,6 +176,10 @@ export default {
                 outline: none;
                 width: 100%;
             }
+        }
+
+        .slim_input {
+            padding: 5px 15px;
         }
     
         .base_input_main_icon {

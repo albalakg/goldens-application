@@ -1,7 +1,9 @@
 <template>
-  <router-link to="/">
+  <router-link :class="{
+    'dark_mode': dark
+  }" to="/">
     <h1>
-      לוגו
+      GOLDENS
     </h1>
   </router-link>
 </template>
@@ -9,15 +11,28 @@
 <script>
 export default {
 
-  data() {
-    return {
-
-    };
+  props: {
+    dark: {
+      type: Boolean
+    }
   }
 
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+
+  a {
+    text-decoration: none;
+    margin-left: 20px;
+  }
+
+  .dark_mode {
+    letter-spacing: 1px;
+  
+    h1 {
+      color: #fff;
+    }
+  }
 
 </style>

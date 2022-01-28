@@ -2,23 +2,57 @@
 <div class="desktop_menu_wrapper">
 
     <div class="desktop_menu_content">
-        <v-flex d-flex justify-space-around align-center class="h100" xs10 mx-auto>
-            <Logo />
-            <template v-for="(link, index) in links">
-                <v-flex d-flex justify-center :key="index">
-                    <router-link v-if="link.text" class="pointer simple_link" :to="'/' + link.url">
-                        <span>
-                            {{link.text}}
-                        </span>
-                    </router-link>
-                    <span v-else @click="activateAction(link.action)">
-                        <router-link class="pointer" v-if="link.url" :to="'/' + link.url">
-                            <v-icon color="white">{{link.icon}}</v-icon>
+        <v-flex d-flex align-center class="h100" xs9 mx-auto>
+            <Logo dark/>
+            <!-- <Logo /> -->
+            <v-flex d-flex align-center justify-space-between>
+                <template v-if="isLogged">
+                    <v-flex d-flex align-center>
+                        <search-input
+                            ref="search"
+                            outlined
+                            icon
+                            slim
+                        >
+                        </search-input>
+                        <router-link class="simple_link text-center" to="/user/favorites">
+                            <v-flex d-flex align-center justify-center>
+                                <div>
+                                    <v-icon color="white">mdi-heart-outline</v-icon>
+                                    <br>
+                                    <span>
+                                        הרשימה שלי
+                                    </span>
+                                </div>
+                            </v-flex>
                         </router-link>
-                        <v-icon class="pointer" v-else color="white">{{link.icon}}</v-icon>
-                    </span>
-                </v-flex>
-            </template>
+                    </v-flex>
+                </template>
+                <template v-else>
+                    <v-flex d-flex>
+                        <div v-for="(link, index) in loggedLinks" :key="index">
+                            <router-link class="simple_link" :to="`/${link.url}`">
+                                <span>
+                                    {{link.text}}
+                                </span>
+                            </router-link>
+                        </div>
+                    </v-flex>
+                </template>
+                <div class="account_wrapper">
+                    <template v-if="isLogged">
+                        <router-link class="simple_link" to="/user">
+                            <v-icon color="white">mdi-account-circle</v-icon>
+                        </router-link>
+                    </template>
+                    <template v-else>
+                        <router-link class="simple_link" to="/signin">
+                            <v-icon color="white">mdi-account-circle-outline</v-icon>
+                        </router-link>
+                    </template>
+                </div>
+            </v-flex>
+         
         </v-flex>
     </div>
 
@@ -28,65 +62,42 @@
 </template>
 
 <script>
+import SearchInput from '../Form/Inputs/SearchInput.vue';
 import Logo from './../General/Logo.vue'
 
 export default {
     components: {
         Logo,
+        SearchInput,
     },
 
     data() {
         return {
-            allLinks: [
-                //guest
+            loggedLinks: [
                 {
                     text: 'קורסים',
-                    url: 'courses',
-                    logged: false
+                    url: 'courses'
                 },
                 {
                     text: 'מי אנחנו',
-                    url: 'about',
-                    logged: false
+                    url: 'about'
                 },
                 {
-                    text: 'יצירת קשר',
-                    url: 'contact',
-                    logged: false
+                    text: 'צור קשר',
+                    url: 'contact-us'
                 },
                 {
                     text: 'תמיכה',
-                    url: 'support',
-                    logged: false
-                },
-               
-
-                // logged
-                {
-                    icon: 'mdi-magnify',
-                    logged: true,
-                    action: 'toggleSearchBox'
-                },
-                {
-                    icon: 'mdi-heart',
-                    logged: true,
-                    url: 'user/favorites',
-                },
-                {
-                    icon: 'mdi-account-circle',
-                    url: 'user',
-                    logged: true
-                },
-                
+                    url: 'support'
+                }
             ]
         }
     },
 
     computed: {
-        links() {
-            console.log('this.allLinks.filter(link => link.logged === Auth.isLogged())', this.allLinks.filter(link => link.logged === Auth.isLogged()));
-            return this.allLinks.filter(link => link.logged === Auth.isLogged())
-        }
+        isLogged() {
+            return this.$store.getters['AuthState/isLogged'];
+        },
     },
 
     methods: {
@@ -103,7 +114,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
     .desktop_menu_wrapper {
         width: 100vw;
@@ -118,6 +129,7 @@ export default {
         width: 100%;
         height: 80px;
         background-color: #31353d;
+        color: #fff;
     }
 
     .desktop_menu_filler {
@@ -127,6 +139,10 @@ export default {
 
     span {
         color: rgb(174, 174, 174);
+    }
+
+    .simple_link {
+        padding: 20px 25px;
     }
 
 </style>
