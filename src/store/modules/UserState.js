@@ -5,6 +5,7 @@ const UserState = {
 
     state: {
         user: null,
+        courses: [],
     },
 
     getters: {
@@ -14,7 +15,9 @@ const UserState = {
         progress:       state   => state.user.progress,
         favorites:      state   => state.user.favorites,
         orders:         state   => state.user.orders,
-        courses:        state   => state.user.courses,
+        courses:        state   => state.courses,
+        courseAreas:    state   => state.courseAreas,
+        lessons:        state   => state.lessons,
     },
 
     mutations: {
@@ -49,8 +52,15 @@ const UserState = {
             state.user.orders = userOrders;
         },
 
-        SET_USER_COURSES(state, userCourses) {
-            state.user.courses = userCourses;
+        SET_USER_COURSES(state, courses) {
+            state.courses = courses;
+        },
+        SET_USER_COURSE_AREAS(state, courseAreas) {
+            state.courseAreas = courseAreas;
+        },
+
+        SET_USER_LESSONS(state, lessons) {
+            state.lessons = lessons;
         },
 
     },
@@ -141,21 +151,14 @@ const UserState = {
                 })
         },
         
-        getCourses({ state, commit }) {
-            axios.get('profile/courses')
-                .then(res => {
-                    if(!state.user) {
-                        commit('SET_USER');
-                    }
-
-                    commit('SET_USER_COURSES', res.data.data);
+        setCourses({ commit }, courses) {
+            commit('SET_USER_COURSES', courses);
+            courses.forEach(course => {
+                commit('SET_USER_COURSE_AREAS', course.full_course.active_areas_with_active_lessons);
+                course.full_course.active_areas_with_active_lessons.forEach(course_area => {
+                    commit('SET_USER_LESSONS', course_area.active_lessons);
                 })
-                .catch(err => {
-                    dispatch('MessageState/addMessage', {
-                        message: 'Failed to fetch your courses',
-                        type: 'error',
-                    }, {root:true});
-                })
+            })
         },
 
     }

@@ -61,6 +61,7 @@ export default {
   methods: {
     setInitialSettings() {
       this.$store.dispatch('AuthState/setLogStatus', Auth.isLogged());
+      this.$store.dispatch('UserState/setCourses', Auth.courses());
     }
   }
 

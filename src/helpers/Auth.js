@@ -55,6 +55,10 @@ class Auth {
         return this.get() && this.get().image ? this.get().image : '';
     }
 
+    courses() {
+        return this.get() && this.get().courses ? this.get().courses : '';
+    }
+
     fullName() {
         const data = this.get();
         return data ? data.first_name + ' ' + data.last_name : '';
@@ -69,6 +73,7 @@ class Auth {
     }
 
     encrypt(data) {
+        return btoa(unescape(encodeURIComponent(JSON.stringify(data))));;
         return btoa(JSON.stringify(data));
     }
 
@@ -78,6 +83,7 @@ class Auth {
             return null;
         } 
 
+        return JSON.parse(decodeURIComponent(escape(atob(cookie))));
         return JSON.parse(atob(this.getCookie()));
     }
 
