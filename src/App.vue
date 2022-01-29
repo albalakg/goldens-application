@@ -6,7 +6,6 @@
     <v-main>
       <transition name="fade" mode="out-in">
         <router-view
-          :key="$route.path"
           class="app_content"
         >
         </router-view>
@@ -62,6 +61,7 @@ export default {
     setInitialSettings() {
       this.$store.dispatch('AuthState/setLogStatus', Auth.isLogged());
       this.$store.dispatch('UserState/setCourses', Auth.courses());
+      this.$store.dispatch('UserState/setUserProfile', Auth.get());
     }
   }
 

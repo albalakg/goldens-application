@@ -72,31 +72,31 @@ const routes = [
     component: () => import('../views/User/UserIndex.vue'),
     children: [
       {
-        path: '/',
+        path: '',
         name: 'UserProfile',
         beforeEnter: Guard.user,
         component: () => import('../views/User/UserProfile.vue')
       },
       {
-        path: '/favorites',
+        path: 'favorites',
         name: 'UserFavorites',
         beforeEnter: Guard.user,
         component: () => import('../views/User/UserFavorites.vue')
       },
       {
-        path: '/history',
+        path: 'history',
         name: 'UserHistory',
         beforeEnter: Guard.user,
         component: () => import('../views/User/UserHistory.vue')
       },
       {
-        path: '/orders',
+        path: 'orders',
         name: 'UserOrders',
         beforeEnter: Guard.user,
         component: () => import('../views/User/UserOrders.vue')
       },
       {
-        path: '/support',
+        path: 'support',
         name: 'UserSupportTickets',
         beforeEnter: Guard.user,
         component: () => import('../views/User/UserSupportTickets.vue')

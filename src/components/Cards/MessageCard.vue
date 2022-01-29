@@ -69,6 +69,8 @@ export default {
         margin: auto;
         z-index: 5;
         width: 50%;
+        min-width: 350px;
+        max-width: 90%;
     }
 
     .message_counter {

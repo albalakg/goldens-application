@@ -1,16 +1,16 @@
 <template>
-<v-flex d-flex class="main_tabs_wrapper pr-3" :style="cssVars">
+<v-flex d-flex class="main_tabs_wrapper" :style="cssVars">
     <template v-for="(tab, index) in tabs">
         <v-flex
-            xs2
             class="main_tab"
             :key="index" 
             :class="{
                 'active_tab': activeTab === index,
             }"
             :ref="`mainTab_${index}`"
+            @click="submit(index)"
         >
-            <span class="pointer" @click="submit(index)">
+            <span class="pointer">
                 {{ tab.title }}
             </span>
         </v-flex>
@@ -25,7 +25,7 @@
 
 <script>
 const SPACE_BEHIND_THE_TAB  = 10;
-const TAB_WIDTH             = 10/12;
+const TAB_WIDTH             = 6/12;
 
 export default {
     props: {
@@ -52,6 +52,15 @@ export default {
         }
     },
 
+    watch: {
+        activeTab() {
+            console.log('activeTab', this.activeTab);
+            setTimeout(() => {
+                this.moveActiveTabLine(this.activeTab)
+            }, 0);
+        }
+    },
+
     methods: {
         submit(index) {
             this.$emit('submit', index);
@@ -59,16 +68,12 @@ export default {
             if(this.routeable) {
                 this.$router.push(this.tabs[index].url)
             }
-
-            setTimeout(() => {
-                this.moveActiveTabLine(index);
-            }, 100);
         },
 
         moveActiveTabLine(index) {
             const line      = this.$refs.activeTabLine;
             const activeTab = document.querySelector('.active_tab');
-            const wrapper   = document.querySelector('.main_tabs_wrapper')
+            const wrapper   = document.querySelector('.main_tabs_wrapper');
             
             if(!line || !activeTab || !wrapper) {
                 return error('Failed to move the active line since one of the elements was not found');
@@ -78,7 +83,7 @@ export default {
         },
 
         calcLinePosition(wrapper, activeTab) {
-            return (wrapper.clientWidth * (TAB_WIDTH)) - activeTab.offsetLeft - SPACE_BEHIND_THE_TAB;
+            return (wrapper.scrollWidth * (TAB_WIDTH)) - activeTab.offsetLeft - SPACE_BEHIND_THE_TAB;
         }
     }
 }
@@ -87,17 +92,21 @@ export default {
 <style scoped lang="scss">
 
     .main_tabs_wrapper {
-        border-bottom: 1px solid #CCC;
-        padding-bottom: 20px;
         position: relative;
 
+        .main_tab {
+            padding: 0 5px;
+            min-width: 30%;
+            border-bottom: 1px solid #CCC;
+            padding-bottom: 20px;
+        }
 
         .main_tab span:hover {
             font-weight: bold;
         }
 
         .active_tab {
-            font-weight: bold;
+            text-shadow: 0px 0px black;
         }
 
         .active_tab_line {
@@ -106,7 +115,8 @@ export default {
             bottom: -2px;
             transition: .5s right ease-out;
             height: 4px;
-            width: var(--active-tab-width);
+            width: 30%;
+            // width: var(--active-tab-width);
         }
     }
 

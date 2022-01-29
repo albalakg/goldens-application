@@ -6,6 +6,7 @@
         'main_button_shadow':               shadow && !dark,
         'main_button_dark_shadow':          shadow && dark,
         'main_button_dark dark_bg_color':   dark,
+        'main_button_slim':                 slim,
         'main_button_loading':              loading
     }"
     :style="cssVars"
@@ -38,6 +39,10 @@ export default {
         },
 
         dark: {
+            type: Boolean
+        },
+
+        slim: {
             type: Boolean
         },
 
@@ -94,6 +99,10 @@ export default {
     .main_button_dark_shadow {
         border: 2px solid rgb(49, 53, 61);
         box-shadow: 0 0 15px 4px rgb(49, 53, 61, 0.3);
+    }
+
+    .main_button_slim {
+        padding: 3px 25px;
     }
 
     .main_button_loading {

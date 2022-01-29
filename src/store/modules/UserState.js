@@ -4,54 +4,48 @@ const UserState = {
     namespaced: true,
 
     state: {
-        user: null,
+        profile: [],
+        supportTickets: [],
+        progress: [],
+        favorites: [],
+        orders: [],
         courses: [],
         courseAreas: [],
         lessons: [],
     },
 
     getters: {
-        user:           state   => state.user,
-        profile:        state   => state.user.profile,
-        supportTickets: state   => state.user.supportTickets,
-        progress:       state   => state.user.progress,
-        favorites:      state   => state.user.favorites,
-        orders:         state   => state.user.orders,
+        profile:        state   => state.profile,
+        supportTickets: state   => state.supportTickets,
+        progress:       state   => state.progress,
+        favorites:      state   => state.favorites,
+        orders:         state   => state.orders,
         courses:        state   => state.courses,
         courseAreas:    state   => state.courseAreas,
         lessons:        state   => state.lessons,
+        firstName:      state   => state.profile.first_name,
+        lastName:       state   => state.profile.last_name,
     },
 
     mutations: {
-        SET_USER(state) {
-            state.user = {
-                profile:        null,
-                supportTickets: null,
-                progress:       null,
-                favorites:      null,
-                orders:         null,
-                courses:        null,
-            };
-        },
-        
         SET_USER_PROFILE(state, userProfile) {
-            state.user.profile = userProfile;
+            state.profile = userProfile;
         },
         
         SET_USER_SUPPORT_TICKETS(state, userSupportTickets) {
-            state.user.supportTickets = userSupportTickets;
+            state.supportTickets = userSupportTickets;
         },
 
         SET_USER_PROGRESS(state, userProgress) {
-            state.user.progress = userProgress;
+            state.progress = userProgress;
         },
 
         SET_USER_FAVORITES(state, userFavorites) {
-            state.user.favorites = userFavorites;
+            state.favorites = userFavorites;
         },
 
         SET_USER_ORDERS(state, userOrders) {
-            state.user.orders = userOrders;
+            state.orders = userOrders;
         },
 
         SET_USER_COURSES(state, courses) {
@@ -71,10 +65,6 @@ const UserState = {
         getProfile({ state, commit }) {
             axios.get('profile')
                 .then(res => {
-                    if(!state.user) {
-                        commit('SET_USER');
-                    }
-
                     commit('SET_USER_PROFILE', res.data.data);
                 })
                 .catch(err => {
@@ -88,10 +78,6 @@ const UserState = {
         getSupportTickets({ state, commit }) {
             axios.get('profile/support-tickets')
                 .then(res => {
-                    if(!state.user) {
-                        commit('SET_USER');
-                    }
-
                     commit('SET_USER_SUPPORT_TICKETS', res.data.data);
                 })
                 .catch(err => {
@@ -105,10 +91,6 @@ const UserState = {
         getOrders({ state, commit }) {
             axios.get('profile/orders')
                 .then(res => {
-                    if(!state.user) {
-                        commit('SET_USER');
-                    }
-
                     commit('SET_USER_ORDERS', res.data.data);
                 })
                 .catch(err => {
@@ -122,10 +104,6 @@ const UserState = {
         getFavorites({ state, commit }) {
             axios.get('profile/favorites')
                 .then(res => {
-                    if(!state.user) {
-                        commit('SET_USER');
-                    }
-
                     commit('SET_USER_FAVORITES', res.data.data);
                 })
                 .catch(err => {
@@ -139,10 +117,6 @@ const UserState = {
         getProgress({ state, commit }) {
             axios.get('profile/progress')
                 .then(res => {
-                    if(!state.user) {
-                        commit('SET_USER');
-                    }
-
                     commit('SET_USER_PROGRESS', res.data.data);
                 })
                 .catch(err => {
@@ -161,6 +135,12 @@ const UserState = {
                     commit('SET_USER_LESSONS', course_area.active_lessons);
                 })
             })
+        },
+        
+        setUserProfile({ commit }, profile) {
+            delete profile.token;
+            profile.full_name = profile.first_name + ' ' + profile.last_name;
+            commit('SET_USER_PROFILE', profile);
         },
 
     }

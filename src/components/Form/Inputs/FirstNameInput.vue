@@ -64,6 +64,10 @@ export default {
 
         validate() {
             return this.$refs.input.validate();
+        },
+
+        setValue(value) {
+            return this.$refs.input.setValue(value);
         }
     }
 }

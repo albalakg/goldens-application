@@ -83,7 +83,7 @@ export default {
                     url: 'about'
                 },
                 {
-                    text: 'צור קשר',
+                    text: 'צרו קשר',
                     url: 'contact-us'
                 },
                 {

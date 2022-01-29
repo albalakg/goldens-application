@@ -181,7 +181,11 @@ export default {
 
         focusInput() {
             this.$refs.input.focus();
-        }
+        },
+
+        setValue(value) {
+            this.value = value;
+        },
     }
 }
 </script>
