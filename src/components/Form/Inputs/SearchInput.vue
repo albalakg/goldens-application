@@ -9,6 +9,8 @@
             :icon="icon ? iconSrc : ''"
             :rules="rules"
             :slim="slim"
+            :closeable="true"
+            :subIcon="subIcon"
             @onChange="onChange"
         />
     </div>
@@ -46,14 +48,14 @@ export default {
         
         slim: {
             type: Boolean,
-        },
+        }
     },
 
     data() {
         return {
             text:       'חיפוש',
             iconSrc:    'mdi-magnify',
-            rules: []
+            rules:      []
         }
     },
 

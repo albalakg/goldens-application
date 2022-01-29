@@ -24,6 +24,8 @@
         <slot name="content" />
 
         <input
+            class="pl-4"
+            ref="input"
             :autocomplete="autocomplete"
             v-model="value"
             :type="type"
@@ -31,7 +33,12 @@
             :maxlength="maxlength"
         >
 
-        <div class="base_input_sub_icon mr-2 pointer" v-if="subIcon" @click="subIconClicked()">
+        <div class="base_input_sub_icon mr-2 pointer" v-if="closeable && value" @click="close()">
+            <v-icon>
+                mdi-close
+            </v-icon>
+        </div>
+        <div class="base_input_sub_icon mr-2 pointer" v-else-if="subIcon" @click="subIconClicked()">
             <v-icon>
                 {{ subIcon }}
             </v-icon>
@@ -54,6 +61,10 @@
 export default {
 
     props: {
+        closeable: {
+            type: Boolean
+        },
+
         outlined: {
             type: Boolean
         },
@@ -105,22 +116,26 @@ export default {
             type: Array,
         }
     },
-
-    watch: {
-        value() {
-            this.value = this.value.trim();
-            this.$emit('onChange', this.value);
-            if(this.errorMessage) {
-                this.validate();
-            }
-        }
-    },
-
+    
     data() {
         return {
             value: '',
             errorMessage: ''
         }
+    },
+
+    mounted() {
+        this.focusInput();
+    },
+
+    watch: {
+        value() {
+            this.value = this.value;
+            this.$emit('onChange', this.value);
+            if(this.errorMessage) {
+                this.validate();
+            }
+        }   
     },
 
     methods: {
@@ -157,6 +172,15 @@ export default {
 
         subIconClicked() {
             this.$emit('subIconClicked')
+        },
+
+        close() {
+            this.value = '';
+            this.focusInput();
+        },
+
+        focusInput() {
+            this.$refs.input.focus();
         }
     }
 }
@@ -171,6 +195,7 @@ export default {
             padding: 10px 15px;
             font-weight: 100;
             display: flex;
+            position: relative;
     
             input {
                 outline: none;
@@ -187,7 +212,9 @@ export default {
         }
 
         .base_input_sub_icon {
-
+            position: absolute;
+            left: 10px;
+            z-index: 2;
         }
     
         .base_input_outlined {

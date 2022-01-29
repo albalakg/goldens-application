@@ -4,7 +4,12 @@
     @close="close()"
   >
     <template slot="content">
-      <div class="class_dialog_wrapper pa-5">
+      <div 
+        class="search_dialog_wrapper pa-5"
+        :style="`
+          ${minHeight ? `min-height: ${minHeight}px;` : ''}
+        `"
+      >
         <search-input
           ref="search"
           outlined
@@ -13,6 +18,14 @@
           @onChange="onChange"
         >
         </search-input>
+
+        <div class="lessons_found_wrapper" v-if="search">
+          <div class="lesson_found_box" v-for="(lesson, index) in lessonsFound" :key="index">
+            <router-link class="simple_link" :to="`/courses/${lesson.course_id}/${lesson.course_area_id}${lesson.id}`">
+              {{lesson.name}}
+            </router-link>
+          </div>
+        </div>
       </div>
     </template>
   </base-dialog>
@@ -34,6 +47,10 @@ export default {
       type: Boolean,
     },
 
+    minHeight: {
+      type: Number,
+    },
+
     maxWidth: {
       type: Number,
     },
@@ -50,18 +67,30 @@ export default {
 
   data() {
     return {
-      search: '',
+      search: ''
     };
+  },
+
+  computed: {
+    lessons() {
+      return this.$store.getters['UserState/lessons'];
+    },
+
+    lessonsFound() {
+      return this.lessons.filter(lesson => {
+        if( 
+          lesson.name.toLowerCase().includes(this.search.toLowerCase()) ||
+          lesson.content.toLowerCase().includes(this.search.toLowerCase())
+        ) {
+          return lesson;
+        }
+      });
+    }
   },
 
   methods: {
     onChange(value) {
       this.search = value;
-      this.searchLessons();
-    },
-
-    searchLessons() {
-      
     },
 
     close() {
@@ -74,7 +103,7 @@ export default {
 
 <style scoped>
 
-  .class_dialog_wrapper {
+  .search_dialog_wrapper {
 
   }
 

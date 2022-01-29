@@ -6,6 +6,8 @@ const UserState = {
     state: {
         user: null,
         courses: [],
+        courseAreas: [],
+        lessons: [],
     },
 
     getters: {
