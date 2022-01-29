@@ -54,7 +54,6 @@ export default {
 
     watch: {
         activeTab() {
-            console.log('activeTab', this.activeTab);
             setTimeout(() => {
                 this.moveActiveTabLine(this.activeTab)
             }, 0);
@@ -74,7 +73,7 @@ export default {
             const line      = this.$refs.activeTabLine;
             const activeTab = document.querySelector('.active_tab');
             const wrapper   = document.querySelector('.main_tabs_wrapper');
-            
+
             if(!line || !activeTab || !wrapper) {
                 return error('Failed to move the active line since one of the elements was not found');
             }

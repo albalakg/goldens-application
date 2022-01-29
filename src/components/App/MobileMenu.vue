@@ -1,30 +1,36 @@
 <template>
 <div class="mobile_menu_wrapper">
-    <v-flex d-flex justify-space-around align-center class="h100">
-        <template v-for="(link, index) in links">
-            <div v-if="link.url" :key="index">
-                <router-link class="simple_link" :to="link.url">
-                    <TabIcon
-                        :text="link.text" 
-                        :icon="link.icon" 
-                        :key="index" 
-                    />
-                </router-link>
-            </div>
-            <TabIcon
-                v-else
-                :text="link.text" 
-                :icon="link.icon" 
-                :key="index"
-                @onClick="action(link.action)" 
-            />
-        </template>
-    </v-flex>
-    <search-dialog 
-        :show="showSearch"
-        :minHeight="300"
-        @close="close()"
-     />
+
+    <div class="mobile_menu_content">
+        <v-flex d-flex justify-space-around align-center class="h100">
+            <template v-for="(link, index) in links">
+                <div v-if="link.url" :key="index">
+                    <router-link class="simple_link" :to="link.url">
+                        <TabIcon
+                            :text="link.text" 
+                            :icon="link.icon" 
+                            :key="index" 
+                        />
+                    </router-link>
+                </div>
+                <TabIcon
+                    v-else
+                    :text="link.text" 
+                    :icon="link.icon" 
+                    :key="index"
+                    @onClick="action(link.action)" 
+                />
+            </template>
+        </v-flex>
+        <search-dialog 
+            :show="showSearch"
+            :minHeight="300"
+            @close="close()"
+        />
+    </div>
+
+    <div class="mobile_menu_filler"></div>
+
 </div>
 </template>
 
@@ -123,16 +129,25 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
     .mobile_menu_wrapper {
-        background-color: #31353d;
-        position: fixed;
-        bottom: 0;
-        right: 0;
         width: 100vw;
         height: 80px;
         z-index: 10;
+
+        .mobile_menu_content {
+            background-color: #31353d;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 100vw;
+        }
+
+        .mobile_menu_filler {
+            height: 80px;
+            width: 100vw;
+        }
     }
 
 </style>

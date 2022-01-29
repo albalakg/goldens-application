@@ -38,12 +38,12 @@
             </v-flex>
         </div>
 
-        <transition name="fade" mode="out-in">
-            <div class="user_content_wrapper mt-7">
+        <div class="user_content_wrapper mt-7">
+            <transition name="fade" mode="out-in">
                 <router-view>
                 </router-view>
-            </div>
-        </transition>
+            </transition>
+        </div>
     </div>
 </template>
 
@@ -95,10 +95,6 @@ export default {
     },
 
     computed: {
-        courses() {
-            return this.$store.getters['UserState/courses'] ? this.$store.getters['UserState/courses'] : '';
-        },
-
         firstName() {
             return this.$store.getters['UserState/firstName'] ? this.$store.getters['UserState/firstName'] : '';
         },

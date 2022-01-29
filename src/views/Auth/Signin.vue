@@ -158,19 +158,11 @@ export default {
             try {
                 this.$store.dispatch('MessageState/addMessage', {message: 'התחברת בהצלחה, ברוך הבא!'});
                 this.$store.dispatch('UserState/setCourses', data.courses)
-             
-                if(data.courses.length) {
-                    // TODO: need to add logic that it will be the last
-                    const lastActiveCourse = data.courses[0];
-                    this.$router.push('/courses/' + lastActiveCourse.course.id)
-                    return;
-                }
-
-                this.$router.push('/');
             } catch(err) {
                 error(err);
-                this.$router.push('/')
             }
+
+            this.$router.push('/')
         },
 
         validate() {

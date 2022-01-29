@@ -4,8 +4,9 @@ const UserState = {
     namespaced: true,
 
     state: {
-        profile: [],
         supportTickets: [],
+        profile: [],
+        lastActive: {},
         progress: [],
         favorites: [],
         orders: [],
@@ -15,16 +16,21 @@ const UserState = {
     },
 
     getters: {
-        profile:        state   => state.profile,
+        // unchecked
         supportTickets: state   => state.supportTickets,
         progress:       state   => state.progress,
         favorites:      state   => state.favorites,
         orders:         state   => state.orders,
+        profile:        state   => state.profile,
+
+        // checked
         courses:        state   => state.courses,
         courseAreas:    state   => state.courseAreas,
         lessons:        state   => state.lessons,
         firstName:      state   => state.profile.first_name,
         lastName:       state   => state.profile.last_name,
+        phone:          state   => state.profile.phone,
+        lastActive:     state   => state.lastActive,
     },
 
     mutations: {
@@ -38,6 +44,10 @@ const UserState = {
 
         SET_USER_PROGRESS(state, userProgress) {
             state.progress = userProgress;
+        },
+
+        SET_USER_LAST_ACTIVE(state, lastActive) {
+            state.lastActive = lastActive;
         },
 
         SET_USER_FAVORITES(state, userFavorites) {
@@ -62,7 +72,7 @@ const UserState = {
     },
 
     actions: {
-        getProfile({ state, commit }) {
+        getProfile({ commit }) {
             axios.get('profile')
                 .then(res => {
                     commit('SET_USER_PROFILE', res.data.data);
@@ -75,7 +85,7 @@ const UserState = {
                 })
         },
         
-        getSupportTickets({ state, commit }) {
+        getSupportTickets({ commit }) {
             axios.get('profile/support-tickets')
                 .then(res => {
                     commit('SET_USER_SUPPORT_TICKETS', res.data.data);
@@ -88,7 +98,7 @@ const UserState = {
                 })
         },
         
-        getOrders({ state, commit }) {
+        getOrders({ commit }) {
             axios.get('profile/orders')
                 .then(res => {
                     commit('SET_USER_ORDERS', res.data.data);
@@ -101,7 +111,7 @@ const UserState = {
                 })
         },
         
-        getFavorites({ state, commit }) {
+        getFavorites({ commit }) {
             axios.get('profile/favorites')
                 .then(res => {
                     commit('SET_USER_FAVORITES', res.data.data);
@@ -114,17 +124,21 @@ const UserState = {
                 })
         },
         
-        getProgress({ state, commit }) {
-            axios.get('profile/progress')
-                .then(res => {
-                    commit('SET_USER_PROGRESS', res.data.data);
-                })
-                .catch(err => {
-                    dispatch('MessageState/addMessage', {
-                        message: 'Failed to fetch your progress',
-                        type: 'error',
-                    }, {root:true});
-                })
+        getProgress({ commit }) {
+            return new Promise((resolve, reject) => {
+                axios.get('profile/progress')
+                    .then(res => {
+                        commit('SET_USER_PROGRESS', res.data.data.courses);
+                        commit('SET_USER_LAST_ACTIVE', res.data.data.last_active_lesson);
+                        resolve(res.data.data);
+                    })
+                    .catch(err => {
+                        dispatch('MessageState/addMessage', {
+                            message: 'Failed to fetch your progress',
+                            type: 'error',
+                        }, {root:true});
+                    })
+            })
         },
         
         setCourses({ commit }, courses) {

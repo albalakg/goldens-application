@@ -1,8 +1,10 @@
 <template>
     <div class="phone_input_wrapper">
         <BaseInput 
+            ref="input"
             :outlined="outlined"
             :dark="dark"
+            :readonly="readonly"
             :placeholder="placeholder ? text : ''"
             :title="title ? text : ''"
             :icon="icon ? iconSrc : ''"
@@ -25,6 +27,10 @@ export default {
         },
 
         dark: {
+            type: Boolean
+        },
+
+        readonly: {
             type: Boolean
         },
         
@@ -52,7 +58,11 @@ export default {
     methods: {
         onChange(value) {
             this.$emit('onChange', value);
-        }
+        },
+        
+        setValue(value) {
+            return this.$refs.input.setValue(value);
+        },
     }
 }
 </script>

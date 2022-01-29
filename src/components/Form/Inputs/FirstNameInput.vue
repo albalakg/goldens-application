@@ -4,6 +4,7 @@
             ref="input"
             :outlined="outlined"
             :dark="dark"
+            :readonly="readonly"
             :placeholder="placeholder ? text : ''"
             :title="title ? text : ''"
             :icon="icon ? iconSrc : ''"
@@ -23,6 +24,10 @@ export default {
 
     props: {
         outlined: {
+            type: Boolean
+        },
+
+        readonly: {
             type: Boolean
         },
 

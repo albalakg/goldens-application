@@ -6,18 +6,34 @@
             outlined
             title
             icon
-            @onChange="setFirstName" 
+            :readonly="!editMode"
+            @onChange="setFirstName"
         >
         </first-name-input>
+
+        <br>
 
         <last-name-input
             ref="lastName"
             outlined
             title
             icon
+            :readonly="!editMode"
             @onChange="setLastName" 
         >
         </last-name-input>
+
+        <br>
+
+        <phone-input
+            ref="phone"
+            outlined
+            title
+            icon
+            :readonly="!editMode"
+            @onChange="setLastName" 
+        >
+        </phone-input>
 
     </div>
 </template>
@@ -25,10 +41,12 @@
 <script>
 import FirstNameInput from '../../components/Form/Inputs/FirstNameInput.vue'
 import LastNameInput from '../../components/Form/Inputs/LastNameInput.vue'
+import PhoneInput from '../../components/Form/Inputs/PhoneInput.vue'
 export default {
     components: { 
-      FirstNameInput, 
-      LastNameInput 
+        FirstNameInput, 
+        LastNameInput,
+        PhoneInput,
     },
 
     data() {
@@ -36,7 +54,8 @@ export default {
             form: {
                 firstName: '',
                 lastName: '',
-            }
+            },
+            editMode: false,
         }
     },
 
@@ -48,6 +67,7 @@ export default {
         setInitialData() {
             this.$refs.firstName.setValue(this.$store.getters['UserState/firstName']);
             this.$refs.lastName.setValue(this.$store.getters['UserState/lastName']);
+            this.$refs.phone.setValue(this.$store.getters['UserState/phone']);
         },
 
         setFirstName(value) {

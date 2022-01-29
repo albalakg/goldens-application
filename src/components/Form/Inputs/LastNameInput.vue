@@ -8,6 +8,7 @@
             :title="title ? text : ''"
             :icon="icon ? iconSrc : ''"
             :rules="rules"
+            :readonly="readonly"
             @onChange="onChange"
         />
     </div>
@@ -23,6 +24,10 @@ export default {
 
     props: {
         outlined: {
+            type: Boolean
+        },
+
+        readonly: {
             type: Boolean
         },
 

@@ -31,6 +31,7 @@
             :type="type"
             :placeholder="placeholder"
             :maxlength="maxlength"
+            :readonly="readonly"
         >
 
         <div class="base_input_sub_icon mr-2 pointer" v-if="closeable && value" @click="close()">
@@ -70,6 +71,10 @@ export default {
         },
 
         textarea: {
+            type: Boolean
+        },
+
+        readonly: {
             type: Boolean
         },
 
