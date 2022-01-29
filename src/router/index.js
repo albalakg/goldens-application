@@ -106,6 +106,14 @@ const routes = [
   // ***** PROFILE END *****
   
 
+  // ***** COURSES START *****
+  {
+    path: '/courses/:course_id',
+    component: () => import('../views/Courses/course.vue'),
+  },
+  // ***** COURSES END *****
+  
+
   {
     path: '*',
     name: 'PageNotFound',

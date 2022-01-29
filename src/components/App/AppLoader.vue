@@ -12,7 +12,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
     .app_loader_wrapper {
         height: 100vh;
@@ -20,6 +20,11 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
+        background-color: #31353d;
+
+        h1 {
+            color: #fff;
+        }
     }
 
 </style>
