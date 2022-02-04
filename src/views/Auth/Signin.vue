@@ -157,7 +157,8 @@ export default {
         loggedSuccessfully(data) {
             try {
                 this.$store.dispatch('MessageState/addMessage', {message: 'התחברת בהצלחה, ברוך הבא!'});
-                this.$store.dispatch('UserState/setCourses', data.courses)
+                this.$store.dispatch('UserState/setCourses', data.courses);
+                this.$store.dispatch('UserState/goToLastActiveCourse', this.$route.path);
             } catch(err) {
                 error(err);
             }

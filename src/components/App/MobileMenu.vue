@@ -27,6 +27,9 @@
             :minHeight="300"
             @close="close()"
         />
+
+        <!-- <settings>
+        </settings> -->
     </div>
 
     <div class="mobile_menu_filler"></div>
@@ -35,6 +38,7 @@
 </template>
 
 <script>
+import Settings from './Settings.vue';
 import SearchDialog from '../Dialogs/SearchDialog.vue';
 import TabIcon from './../../components/Tabs/TabIcon';
 
@@ -42,6 +46,7 @@ export default {
     components: {
         TabIcon,
         SearchDialog,
+        Settings,
     },
 
     data() {
@@ -61,7 +66,7 @@ export default {
                     logged: false
                 },
                 {
-                    url: '/settings',
+                    action: 'settings',
                     text: 'הגדרות',
                     icon: 'mdi-cog',
                     logged: false
@@ -75,9 +80,9 @@ export default {
 
                 // logged
                 {
-                    url: '/',
                     text: 'דף הבית',
                     icon: 'mdi-home',
+                    action: 'home',
                     logged: true
                 },
                 {
@@ -87,7 +92,7 @@ export default {
                     logged: true
                 },
                 {
-                    url: '/settings',
+                    action: 'settings',
                     text: 'הגדרות',
                     icon: 'mdi-cog',
                     logged: true
@@ -100,12 +105,17 @@ export default {
                 },
             ],
             showSearch: false,
+            showSettings: false,
         }
     },
 
     computed: {
         links() {
             return this.allLinks.filter(link => link.logged === this.$store.getters['AuthState/isLogged'])
+        },
+
+        courses() {
+            return this.$store.getters['UserState/courses'];
         }
     },
 
@@ -124,6 +134,14 @@ export default {
 
         close() {
             this.search();
+        },
+
+        home() {
+            this.$store.dispatch('UserState/goToLastActiveCourse', this.$route.path);
+        },
+
+        settings() {
+            this.showSettings = !this.showSettings;
         }
     }
 }

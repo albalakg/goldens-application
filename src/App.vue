@@ -93,23 +93,7 @@ export default {
     async setLoggedUserData() {
       this.$store.dispatch('UserState/setCourses', Auth.courses());
       this.$store.dispatch('UserState/setUserProfile', Auth.get());
-      const userProgress = await this.$store.dispatch('UserState/getProgress');
-      this.goToLastActiveCourse(userProgress.last_active_lesson);
     },
-
-    goToLastActiveCourse(lasActiveLesson) {
-      const lesson = this.lessons.find(lesson => lesson.id = lasActiveLesson.id);
-      if(!lesson) {
-        warning('goToLastActiveCourse: last active lesson not found');
-        return;
-      }
-
-      const path = '/courses/' + lesson.course_id;
-
-      if(path !== this.$route.path) {
-        this.$router.push('/courses/' + lesson.course_id)
-      }
-    }
   }
 
 }

@@ -107,8 +107,7 @@ export default {
     methods: {
         setCurrentTab() {
             this.activeTab = this.links.findIndex(link => link.url === this.$route.path);
-            const linksWrapper = document.querySelector('.user_links_wrapper');
-            linksWrapper.scrollLeft = this.activeTab * -80;
+            this.scrollToTab();
         },
 
         setActiveTab(tab) {
@@ -119,6 +118,13 @@ export default {
                     this.$router.push(this.links[tab].url);
                 }, 0);
             }
+
+            this.scrollToTab();
+        },
+
+        scrollToTab() {
+            const linksWrapper = document.querySelector('.user_links_wrapper');
+            linksWrapper.scrollLeft = this.activeTab * -80;
         }
     }
 }
@@ -142,6 +148,7 @@ export default {
         .user_links_wrapper {
             overflow-y: hidden;
             overflow-x: scroll;
+            scroll-behavior: smooth;
             
             &::-webkit-scrollbar {
                 display: none; // Safari and Chrome

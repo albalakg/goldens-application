@@ -1,4 +1,5 @@
 import axios from "axios";
+import router from '../../router';
 
 const UserState = {
     namespaced: true,
@@ -7,7 +8,7 @@ const UserState = {
         supportTickets: [],
         profile: [],
         lastActive: {},
-        progress: [],
+        progress: null,
         favorites: [],
         orders: [],
         courses: [],
@@ -124,13 +125,18 @@ const UserState = {
                 })
         },
         
-        getProgress({ commit }) {
+        getProgress({ state, commit }) {
             return new Promise((resolve, reject) => {
+                if(state.progress) {
+                    resolve(state.lastActive);
+                    return 
+                }
+
                 axios.get('profile/progress')
                     .then(res => {
                         commit('SET_USER_PROGRESS', res.data.data.courses);
                         commit('SET_USER_LAST_ACTIVE', res.data.data.last_active_lesson);
-                        resolve(res.data.data);
+                        resolve(res.data.data.last_active_lesson);
                     })
                     .catch(err => {
                         dispatch('MessageState/addMessage', {
@@ -155,6 +161,18 @@ const UserState = {
             delete profile.token;
             profile.full_name = profile.first_name + ' ' + profile.last_name;
             commit('SET_USER_PROFILE', profile);
+        },
+        
+        async goToLastActiveCourse({ state, dispatch }, currentPath) {
+            const lastActiveLesson = await dispatch('getProgress');
+            const lesson = state.lessons.find(lesson => lesson.id == lastActiveLesson.id);
+            const route = lesson ? '/courses/' + lesson.course_id : '/'; 
+
+            if(route === currentPath) {
+                return;
+            }
+
+            router.push(route)
         },
 
     }

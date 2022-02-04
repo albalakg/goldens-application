@@ -112,7 +112,7 @@ const routes = [
     component: () => import('../views/Courses/course.vue'),
   },
   // ***** COURSES END *****
-  
+
 
   {
     path: '*',
