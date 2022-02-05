@@ -119,12 +119,16 @@ export default {
 
   body {
     overflow-y: auto;
-    height: 100vh;
     overflow-x: hidden;
+    height: 100vh;
     direction: rtl;
   }
 
   .hideScrollBar::-webkit-scrollbar {
     display: none; // Safari and Chrome
+  }
+
+  #app {
+    overflow-x: hidden;
   }
 </style>

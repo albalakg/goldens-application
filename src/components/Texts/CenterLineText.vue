@@ -1,15 +1,15 @@
 <template>
   <v-flex d-flex align-center class="center_line_text_wrapper">
     <v-flex class="line">
-      
     </v-flex>
+    
     <span class="mx-2">
       <strong>
         {{ text }}
       </strong>
     </span>
+
     <v-flex class="line">
-      
     </v-flex>
   </v-flex>
 </template>

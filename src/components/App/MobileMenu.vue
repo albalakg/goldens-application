@@ -151,7 +151,7 @@ export default {
 
     .mobile_menu_wrapper {
         width: 100vw;
-        height: 80px;
+        height:59px;
         z-index: 10;
 
         .mobile_menu_content {
@@ -163,7 +163,7 @@ export default {
         }
 
         .mobile_menu_filler {
-            height: 80px;
+            height:59px;
             width: 100vw;
         }
     }
