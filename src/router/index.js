@@ -109,7 +109,15 @@ const routes = [
   // ***** COURSES START *****
   {
     path: '/courses/:course_id',
-    component: () => import('../views/Courses/course.vue'),
+    component: () => import('../views/Courses/Course.vue'),
+  },
+  {
+    path: '/courses/:course_id/:course_area_id',
+    component: () => import('../views/Courses/CourseArea.vue'),
+  },
+  {
+    path: '/courses/:course_id/:course_area_id/:lesson_id',
+    component: () => import('../views/Courses/Lesson.vue'),
   },
   // ***** COURSES END *****
 

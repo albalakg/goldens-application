@@ -21,7 +21,7 @@
 
         <div class="lessons_found_wrapper" v-if="search">
           <div class="lesson_found_box" v-for="(lesson, index) in lessonsFound" :key="index">
-            <router-link class="simple_link" :to="`/courses/${lesson.course_id}/${lesson.course_area_id}${lesson.id}`">
+            <router-link class="simple_link" :to="`/courses/${lesson.course_id}/${lesson.course_area_id}/${lesson.id}`">
               {{lesson.name}}
             </router-link>
           </div>
