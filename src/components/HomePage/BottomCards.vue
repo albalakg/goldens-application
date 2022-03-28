@@ -39,7 +39,7 @@
 </template>
 <script>
 export default {
-  name: "SubTopics",
+  name: "BottomCards",
 };
 </script>
 <style scoped>

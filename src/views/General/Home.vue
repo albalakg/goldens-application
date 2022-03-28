@@ -36,7 +36,7 @@
       <section>
         <div id="coaches"><Coaches /></div>
         <div id="background"></div>
-        <div id="sub-topics"><SubTopics /></div>
+        <div id="sub-topics"><BottomCards /></div>
       </section>
     </v-flex>
   </v-container>
@@ -49,7 +49,7 @@ import KidBlue from "../../components/HomePage/KidBlue.vue";
 import Partnership from "../../components/HomePage/Partnership.vue";
 import Topics from "../../components/HomePage/Topics.vue";
 import Coaches from "../../components/HomePage/Coaches.vue";
-import SubTopics from "../../components/HomePage/SubTopics.vue";
+import BottomCards from "../../components/HomePage/BottomCards.vue";
 
 export default {
   components: {
@@ -59,7 +59,7 @@ export default {
     Partnership,
     Topics,
     Coaches,
-    SubTopics,
+    BottomCards,
   },
 
   created() {
