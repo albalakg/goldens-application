@@ -58,7 +58,7 @@ export default {
   /* font-family: "Arimo"; */
   font-style: normal;
   font-weight: 700;
-  font-size: 169.749px;
+  font-size: 10.5em;
   line-height: 219px;
   /* or 129% */
 

@@ -2,17 +2,25 @@
   <div id="partners-all">
     <span id="partners">המאמנים שלנו</span> <br />
     <span id="partners-background">המאמנים שלנו</span> <br />
-    <span></span>
     <div id="content-divider"></div>
 
-    <p>Lorem, ipsum dolor</p>
+    <div id="coaches">
+      <Coach1 /><Coach2 /><Coach3 /><Coach4 /><Coach5 /><Coach6 /><Coach7 />
+    </div>
   </div>
 </template>
 
 <script>
+import Coach1 from "./Coaches/Coach1.vue";
+import Coach2 from "./Coaches/Coach2.vue";
+import Coach3 from "./Coaches/Coach3.vue";
+import Coach4 from "./Coaches/Coach4.vue";
+import Coach5 from "./Coaches/Coach5.vue";
+import Coach6 from "./Coaches/Coach6.vue";
+import Coach7 from "./Coaches/Coach7.vue";
 export default {
   name: "Topics",
-  components: {},
+  components: { Coach1, Coach2, Coach3, Coach4, Coach5, Coach6, Coach7 },
 };
 </script>
 <style scoped>
@@ -53,7 +61,7 @@ export default {
   /* font-family: "Arimo"; */
   font-style: normal;
   font-weight: 700;
-  font-size: 169.749px;
+  font-size: 10.5em;
   line-height: 219px;
   /* or 129% */
 
@@ -96,5 +104,12 @@ p {
 #logos-main {
   position: absolute;
   right: -15em;
+}
+
+#coaches {
+  position: relative;
+  top: 8em;
+  left: 55em;
+  display: flex;
 }
 </style>
