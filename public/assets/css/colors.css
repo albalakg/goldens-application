@@ -14,17 +14,13 @@
   background-color: rgb(255, 255, 255);
 }
 
-
-
 .main_text_color {
-  color: rgb(255, 89, 34);
+  color: rgb(230, 178, 96);
 }
 
 .dark_text_color {
   color: rgb(49, 53, 61);
 }
-
-
 
 .main_button_shadow {
   box-shadow: 0 0 15px 4px rgb(255 89 34 / 0.3);
