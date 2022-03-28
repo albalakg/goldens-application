@@ -14,6 +14,7 @@
           משהו משהו סתם טקסט שאני מכניס פה כדי למלא תוכן. איך אין פה שום דבר
           רלוונטי. אם הגעת עד לכאן אז שאפו.
         </p>
+        <div><TopCards /></div>
       </div>
       <br />
 
@@ -50,6 +51,7 @@ import Partnership from "../../components/HomePage/Partnership.vue";
 import Topics from "../../components/HomePage/Topics.vue";
 import Coaches from "../../components/HomePage/Coaches.vue";
 import BottomCards from "../../components/HomePage/BottomCards.vue";
+import TopCards from "../../components/HomePage/TopCards.vue";
 
 export default {
   components: {
@@ -59,6 +61,7 @@ export default {
     Partnership,
     Topics,
     Coaches,
+    TopCards,
     BottomCards,
   },
 
