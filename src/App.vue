@@ -4,18 +4,16 @@
     <MessageCard />
 
     <v-main>
-      <transition-group name="fade" mode="out-in">
-        <app-loader key="loading" v-if="loading">
-        </app-loader>
-
+      <app-loader v-if="loading">
+      </app-loader>
+      <transition v-else name="fade" mode="out-in">
         <router-view
-          v-else
           key="view"
           class="app_content"
           :isLogged="isLogged"
         >
         </router-view>
-      </transition-group>
+      </transition>
     </v-main>
 
     <MobileMenu v-if="isMobile" />

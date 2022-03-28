@@ -70,7 +70,7 @@
       <v-flex xs11 mx-auto>
         <template v-for="(note, index) in sideNotes">
           <side-border-text :key="index" dark :title="note.title" :text="note.description" />
-          <div :key="index + 1" v-if="index !== sideNotes.length - 1">
+          <div :key="index + 'spacer'" v-if="index !== sideNotes.length - 1">
             <br>
             <br>
             <br>

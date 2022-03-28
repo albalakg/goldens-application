@@ -28,8 +28,10 @@
             @close="close()"
         />
 
-        <!-- <settings>
-        </settings> -->
+        <div class="settings_wrapper" :class="{'settings_visible': showSettings}">
+            <settings>
+            </settings>
+        </div>
     </div>
 
     <div class="mobile_menu_filler"></div>
@@ -66,15 +68,15 @@ export default {
                     logged: false
                 },
                 {
-                    action: 'settings',
-                    text: 'הגדרות',
-                    icon: 'mdi-cog',
-                    logged: false
-                },
-                {
                     url: '/about',
                     text: 'מי אנחנו',
                     icon: 'mdi-account-group-outline',
+                    logged: false
+                },
+                {
+                    action: 'settings',
+                    text: 'הגדרות',
+                    icon: 'mdi-cog',
                     logged: false
                 },
 
@@ -92,15 +94,15 @@ export default {
                     logged: true
                 },
                 {
-                    action: 'settings',
-                    text: 'הגדרות',
-                    icon: 'mdi-cog',
-                    logged: true
-                },
-                {
                     action: 'search',
                     text: 'חיפוש',
                     icon: 'mdi-magnify',
+                    logged: true
+                },
+                {
+                    action: 'settings',
+                    text: 'הגדרות',
+                    icon: 'mdi-cog',
                     logged: true
                 },
             ],
@@ -165,6 +167,16 @@ export default {
         .mobile_menu_filler {
             height:59px;
             width: 100vw;
+        }
+
+        .settings_wrapper {
+            position: absolute;
+            right: -100vw;
+            transition: .5s right linear;
+        }
+
+        .settings_visible {
+
         }
     }
 

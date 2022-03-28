@@ -10,7 +10,7 @@
             :rules="rules"
             :slim="slim"
             :closeable="true"
-            :subIcon="subIcon"
+            :subIcon="''"
             @onChange="onChange"
         />
     </div>
