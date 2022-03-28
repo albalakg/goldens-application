@@ -35,6 +35,8 @@
       </section>
       <section>
         <div id="coaches"><Coaches /></div>
+        <div id="background"></div>
+        <div id="sub-topics"><SubTopics /></div>
       </section>
     </v-flex>
   </v-container>
@@ -42,12 +44,12 @@
 
 <script>
 import CourseCard from "../../components/Cards/CourseCard.vue";
-import Logo from "../../components/General/Logo.vue";
 import Star from "../../components/HomePage/G-star.vue";
 import KidBlue from "../../components/HomePage/KidBlue.vue";
 import Partnership from "../../components/HomePage/Partnership.vue";
 import Topics from "../../components/HomePage/Topics.vue";
 import Coaches from "../../components/HomePage/Coaches.vue";
+import SubTopics from "../../components/HomePage/SubTopics.vue";
 
 export default {
   components: {
@@ -57,6 +59,7 @@ export default {
     Partnership,
     Topics,
     Coaches,
+    SubTopics,
   },
 
   created() {
@@ -144,5 +147,22 @@ export default {
 #coaches {
   position: relative;
   top: 97em;
+}
+
+#background {
+  position: relative;
+  background-color: #1c3f64;
+  width: 140em;
+  height: 15em;
+  top: 178em;
+  right: 4.5em;
+  z-index: -10;
+  box-shadow: 0px 20px 48.5714px rgba(49, 54, 62, 0.1);
+  border-radius: 10px;
+}
+
+#sub-topics {
+  position: relative;
+  top: 175em;
 }
 </style>
