@@ -8,7 +8,9 @@
       <p>לורם איפסום</p>
     </div>
     <div class="sub-topic">
-      <p class="headline"><span>טקטיקה</span> &nbsp; <span>קבוצתית</span></p>
+      <p class="headline">
+        <span class="even">טקטיקה</span> &nbsp; <span>קבוצתית</span>
+      </p>
       <br />
       <p>לורם איפסום</p>
     </div>
@@ -20,7 +22,9 @@
       <p>לורם איפסום</p>
     </div>
     <div class="sub-topic">
-      <p class="headline"><span>טקטיקה</span> &nbsp; <span>קבוצתית</span></p>
+      <p class="headline">
+        <span class="even">טקטיקה</span> &nbsp; <span>קבוצתית</span>
+      </p>
       <br />
       <p>לורם איפסום</p>
     </div>
@@ -58,7 +62,7 @@ export default {
 
 .headline {
   position: relative;
-  right: 2em;
+  /* right: 2em; */
   top: 2em;
 
   font-family: "Arimo";
@@ -81,10 +85,20 @@ span {
   font-family: "Arimo";
   font-style: normal;
   color: #31353d;
-  font-size: 1.5em;
+  font-size: 160%;
 }
 
 .odd {
   color: #16588f;
+}
+
+.even {
+  color: #e6b260;
+}
+
+p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
