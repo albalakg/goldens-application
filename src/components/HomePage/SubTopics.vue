@@ -85,7 +85,7 @@ span {
   font-family: "Arimo";
   font-style: normal;
   color: #31353d;
-  font-size: 160%;
+  font-size: 140%;
 }
 
 .odd {
@@ -94,6 +94,7 @@ span {
 
 .even {
   color: #e6b260;
+  font-size: 160%;
 }
 
 p {
