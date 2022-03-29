@@ -53,12 +53,13 @@ export default {
 }
 
 .container {
+  border: 1px solid red;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   position: absolute;
   right: 5em;
-  width: 110em;
+  width: 150em;
 }
 
 .headline {
