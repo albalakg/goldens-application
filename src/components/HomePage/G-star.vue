@@ -18,7 +18,7 @@ export default {
 <style scoped>
 .g-star {
   position: absolute;
-  width: 105em;
+  width: 75em;
   height: 62rem;
   left: -6em;
   top: 0.3em;
@@ -26,7 +26,7 @@ export default {
 
 .bottom-star {
   position: absolute;
-  top: 200em;
-  right: 42em;
+  top: 209em;
+  right: 63em;
 }
 </style>

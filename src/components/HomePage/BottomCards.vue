@@ -57,8 +57,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  position: absolute;
-  right: 5em;
+
   width: 150em;
 }
 

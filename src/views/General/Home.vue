@@ -3,51 +3,61 @@
     <v-flex xs11 mx-auto class="text-center">
       <!-- <Logo /> -->
 
-      <div class="allTrainings">
-        <h1>
-          כל האימונים
-          <br />
-        </h1>
-        <h2>במקום <span class="main_text_color">אחד</span></h2>
-
-        <p>
-          משהו משהו סתם טקסט שאני מכניס פה כדי למלא תוכן. איך אין פה שום דבר
-          רלוונטי. אם הגעת עד לכאן אז שאפו.
-        </p>
-        <div><TopCards /></div>
-      </div>
-      <br />
-
-      <br />
-
-      <div>
+      <!-- <div>
         <Star class="g-star" />
         <KidBlue class="kid-blue" />
-      </div>
+      </div> -->
 
       <div class="home_course_card">
         <course-card dark :course="courseCategories"> </course-card>
       </div>
-      <section class="main-content">
-        <section>
+      <Star class="star" />
+      <KidBlue class="kid-blue" />
+      <div class="main-content">
+        <div class="headline">
+          <div><h1 id="title-top" class="heading">כל האימונים</h1></div>
+          <div>
+            <h1 class="heading">במקום <span>אחד</span></h1>
+          </div>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore,
+            voluptatem numquam nostrum ducimus libero, distinctio vitae velit
+          </p>
+        </div>
+      </div>
+      <div>
+        <div class="partners"><Partnership /></div>
+      </div>
+      <div>
+        <div class="topics"><Topics /></div>
+        <div class="blue-background"></div>
+      </div>
+      <div class="coaches"><Coaches /></div>
+      <div><BottomCards /></div>
+
+      <!--  <section>
           <div class="partners"><Partnership /> <br /></div>
         </section>
+
         <section>
           <div class="topics"><Topics /></div>
         </section>
+
         <section>
           <div class="coaches"><Coaches /></div>
         </section>
+
         <section>
           <div class="bottom-cards"><BottomCards /></div>
         </section>
-      </section>
-      <section>
+      </div> -->
+
+      <!-- <section>
         <div class="about-us"><AboutUs /></div>
       </section>
       <section>
         <div class="middle-background"></div>
-      </section>
+      </section> -->
     </v-flex>
   </v-container>
 </template>
@@ -106,7 +116,10 @@ export default {
 .home_wrapper {
   h1,
   h2 {
-    font-size: 4em;
+    font-family: "Arimo";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 92.0051px;
   }
 
   h2 {
@@ -114,10 +127,34 @@ export default {
     top: -30px;
   }
 
+  span {
+    font-family: "Arimo";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 92.0051px;
+    color: rgb(230, 178, 96);
+  }
+
+  .headline {
+    display: flex;
+    flex-direction: column;
+    margin-left: 60%;
+  }
+
+  .heading {
+    margin-top: 0.4em;
+  }
+
+  #title-top {
+    margin-bottom: 0.2em;
+  }
+
   p {
     font-size: 1.2em;
-    position: relative;
-    top: -20px;
+    margin-top: 1.5em;
+    margin-left: 1em;
+    // position: relative;
+    // top: -20px;
   }
 
   .home_course_card {
@@ -127,40 +164,35 @@ export default {
 }
 
 .main-content {
-  position: absolute;
-  right: 2em;
+  // padding: 10em;
+  // background-color: red;
+  margin-bottom: 3em;
 }
 
 .kid-blue {
   position: absolute;
   width: 100em;
   height: 68rem;
-  left: -19em;
-  top: 9em;
-}
-
-.allTrainings {
-  position: absolute;
-
-  left: 74em;
-  top: 8.1em;
+  left: -25em;
+  top: 8.8em;
 }
 
 .partners {
-  position: absolute;
-  right: 130em;
-  top: 12em;
+  // background-color: yellow;
+  // border: 2px solid yellow;
+  margin-bottom: 4em;
+  margin-top: 35em;
 }
 
 .topics {
-  position: absolute;
-  top: 30em;
-  right: 130em;
+  margin-top: 5em;
+  // background-color: green;
 }
 .coaches {
-  position: absolute;
-  top: 86em;
-  right: 118.5em;
+  margin-top: -20em;
+  // position: absolute;
+  // top: 86em;
+  // right: 118.5em;
 }
 
 .bottom-cards {
@@ -182,6 +214,18 @@ export default {
   top: 270em;
   right: -0em;
   z-index: -10;
+  box-shadow: 0px 20px 48.5714px rgba(49, 54, 62, 0.1);
+  border-radius: 10px;
+}
+
+.blue-background {
+  position: relative;
+  top: 25em;
+  width: 108.6em;
+  height: 20em;
+  background: #1c3f64;
+  /* 1 */
+
   box-shadow: 0px 20px 48.5714px rgba(49, 54, 62, 0.1);
   border-radius: 10px;
 }

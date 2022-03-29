@@ -1,13 +1,13 @@
 <template>
   <div class="topic">
     <span>{{ topicTitle }}</span>
-    <span>שיפור שליטה בכדור באמצעות הקפצה</span>
+    <span>{{ topicSubtitle }}</span>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["topicTitle"],
+  props: ["topicTitle", "topicSubtitle"],
   name: "Topic",
 };
 </script>
@@ -24,7 +24,7 @@ export default {
       rgba(49, 53, 61, 0) 18.59%,
       #31353d 100%
     ),
-    url("../../../../public/assets/images/Topics/image1.png");
+    url("../../../../public/assets/images/Topics/image2.png");
   width: 14.3em;
   height: 24.8em;
   background-size: contain;
