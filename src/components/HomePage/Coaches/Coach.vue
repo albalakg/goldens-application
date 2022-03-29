@@ -12,23 +12,17 @@
 export default {
   name: "Coach",
   data: () => ({
-    coaches: [{ id: 0, name: "דניאל כהן", specialty: "כדורגל" }],
+    coaches: [
+      { id: 0, name: "דניאל כהן", specialty: "כדורגל" },
+      { id: 0, name: "דניאל כהן", specialty: "כדורגל" },
+      { id: 0, name: "דניאל כהן", specialty: "כדורגל" },
+      { id: 0, name: "דניאל כהן", specialty: "כדורגל" },
+      { id: 0, name: "דניאל כהן", specialty: "כדורגל" },
+    ],
   }),
 };
 </script>
 <style scoped>
-img {
-  width: 20em;
-  height: 25em;
-  transition: 1s;
-}
-img:hover {
-  width: 21em;
-  height: 26em;
-  filter: drop-shadow(0px 4px 40px rgba(0, 0, 0, 0.25));
-  /* transform: matrix(-1, 0, 0, 1, 0, 0); */
-}
-
 #coach-name {
   position: relative;
   top: 6em;
@@ -66,7 +60,7 @@ img:hover {
 }
 
 .coach {
-  width: 317px;
+  width: 315px;
   height: 424px;
   background-size: contain;
 

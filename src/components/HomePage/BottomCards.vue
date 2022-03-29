@@ -1,5 +1,5 @@
 <template>
-  <v-container id="container">
+  <v-container class="container">
     <div class="sub-topic">
       <p class="headline">
         <span class="odd">מסירה</span> &nbsp; <span>נכונה</span>
@@ -58,7 +58,7 @@ export default {
   flex-direction: row;
   justify-content: space-evenly;
 
-  width: 150em;
+  width: 90%;
 }
 
 .headline {

@@ -1,10 +1,6 @@
 <template>
   <div>
     <img class="g-star" src="../../../public/assets/images/svg/G-star.svg" />
-    <img
-      class="bottom-star"
-      src="../../../public/assets/images/svg/G-star-bottom.svg"
-    />
   </div>
 </template>
 
@@ -22,11 +18,5 @@ export default {
   height: 62rem;
   left: -6em;
   top: 0.3em;
-}
-
-.bottom-star {
-  position: absolute;
-  top: 209em;
-  right: 63em;
 }
 </style>

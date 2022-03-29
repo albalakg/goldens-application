@@ -33,7 +33,7 @@
         <div class="blue-background"></div>
       </div>
       <div class="coaches"><Coaches /></div>
-      <div><BottomCards /></div>
+      <div class="bottom-cards"><BottomCards /></div>
 
       <!--  <section>
           <div class="partners"><Partnership /> <br /></div>
@@ -185,7 +185,7 @@ export default {
 }
 
 .topics {
-  margin-top: 5em;
+  margin-top: 3em;
   // background-color: green;
 }
 .coaches {
@@ -196,8 +196,8 @@ export default {
 }
 
 .bottom-cards {
-  position: absolute;
-  top: 178em;
+  position: relative;
+  bottom: 8em;
 }
 
 .about-us {
@@ -221,7 +221,7 @@ export default {
 .blue-background {
   position: relative;
   top: 25em;
-  width: 108.6em;
+  width: 105.6em;
   height: 20em;
   background: #1c3f64;
   /* 1 */
