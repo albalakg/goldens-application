@@ -49,7 +49,6 @@ export default {
 </script>
 <style scoped>
 .topics {
-  border: 1px solid yellow;
   display: flex;
   justify-content: center;
   position: relative;
@@ -57,11 +56,10 @@ export default {
 }
 
 .topics-container {
-  border: 2px solid red;
   margin-right: auto;
   margin-left: auto;
 
-  width: 60%;
+  width: 50%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

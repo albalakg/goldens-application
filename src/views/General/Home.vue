@@ -180,7 +180,7 @@ export default {
 .partners {
   // background-color: yellow;
   // border: 2px solid yellow;
-  margin-bottom: 4em;
+  margin-bottom: 7em;
   margin-top: 35em;
 }
 
