@@ -18,7 +18,6 @@ export default {
       { id: 3, name: "דניאל כהן", specialty: "כדורגל" },
       { id: 4, name: "דניאל כהן", specialty: "כדורגל" },
       { id: 5, name: "דניאל כהן", specialty: "כדורגל" },
-      { id: 6, name: "דניאל כהן", specialty: "כדורגל" },
     ],
   }),
 };
@@ -74,7 +73,7 @@ span:nth-of-type(2) {
   transition: 1s;
   display: flex;
   flex-direction: row;
-  position: relative;
-  right: 18em;
+  position: absolute;
+  right: 10.5em;
 }
 </style>

@@ -5,6 +5,7 @@
     <div class="content-divider"></div>
 
     <div class="coaches"><Coach /></div>
+    <div class="blue-background"></div>
   </div>
 </template>
 
@@ -30,7 +31,7 @@ export default {
   position: absolute;
   width: 448px;
   height: 91px;
-  left: 916px;
+  left: 48em;
   top: 807px;
 
   /* identical to box height, or 129% */
@@ -104,5 +105,17 @@ p {
   top: 8em;
   left: 55em;
   display: flex;
+}
+
+.blue-background {
+  position: absolute;
+  background-color: #1c3f64;
+  width: 119.5em;
+  height: 15em;
+  top: 29em;
+  right: -44em;
+  z-index: -10;
+  box-shadow: 0px 20px 48.5714px rgba(49, 54, 62, 0.1);
+  border-radius: 10px;
 }
 </style>

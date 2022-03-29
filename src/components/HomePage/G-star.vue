@@ -25,8 +25,8 @@ export default {
 }
 
 .bottom-star {
-  position: relative;
-  top: 205em;
-  right: 11em;
+  position: absolute;
+  top: 190em;
+  right: 35em;
 }
 </style>

@@ -36,7 +36,6 @@
       </section>
       <section>
         <div class="coaches"><Coaches /></div>
-        <div class="blue-background"></div>
       </section>
       <section>
         <div class="bottom-cards"><BottomCards /></div>
@@ -123,11 +122,11 @@ export default {
 }
 
 .kid-blue {
-  position: relative;
+  position: absolute;
   width: 100em;
   height: 68rem;
-  left: -42em;
-  top: 5em;
+  left: -32em;
+  top: 9em;
 }
 
 .allTrainings {
@@ -138,43 +137,30 @@ export default {
 }
 
 .partners {
-  position: relative;
-  right: 14em;
-  bottom: 70em;
+  position: absolute;
+  right: 130em;
+  top: 10em;
 }
 
 .topics {
-  position: relative;
-  bottom: 45em;
-  right: 14em;
+  position: absolute;
+  top: 30em;
+  right: 130em;
 }
 .coaches {
-  margin: auto;
-  position: relative;
-  top: 15em;
-  right: 15em;
-}
-
-.blue-background {
-  position: relative;
-  background-color: #1c3f64;
-  width: 113em;
-  height: 15em;
-  top: 95em;
-  right: 1.6em;
-  z-index: -10;
-  box-shadow: 0px 20px 48.5714px rgba(49, 54, 62, 0.1);
-  border-radius: 10px;
+  position: absolute;
+  top: 86em;
+  right: 121em;
 }
 
 .bottom-cards {
-  position: relative;
-  top: 92em;
+  position: absolute;
+  top: 178em;
 }
 
 .about-us {
-  position: relative;
-  top: 60em;
-  left: 10em;
+  position: absolute;
+  top: 155em;
+  left: 15em;
 }
 </style>
