@@ -3,7 +3,7 @@
     <v-flex xs11 mx-auto class="text-center">
       <!-- <Logo /> -->
 
-      <div id="allTrainings">
+      <div class="allTrainings">
         <h1>
           כל האימונים
           <br />
@@ -21,23 +21,28 @@
       <br />
 
       <div>
-        <Star id="g-star" />
-        <KidBlue id="kid-blue" />
+        <Star class="g-star" />
+        <KidBlue class="kid-blue" />
       </div>
 
       <div class="home_course_card">
         <course-card dark :course="courseCategories"> </course-card>
       </div>
       <section>
-        <div id="partners"><Partnership /> <br /></div>
+        <div class="partners"><Partnership /> <br /></div>
       </section>
       <section>
-        <div id="topics"><Topics /></div>
+        <div class="topics"><Topics /></div>
       </section>
       <section>
-        <div id="coaches"><Coaches /></div>
-        <div id="background"></div>
-        <div id="sub-topics"><BottomCards /></div>
+        <div class="coaches"><Coaches /></div>
+        <div class="blue-background"></div>
+      </section>
+      <section>
+        <div class="bottom-cards"><BottomCards /></div>
+      </section>
+      <section>
+        <div class="about-us"><AboutUs /></div>
       </section>
     </v-flex>
   </v-container>
@@ -52,6 +57,7 @@ import Topics from "../../components/HomePage/Topics.vue";
 import Coaches from "../../components/HomePage/Coaches.vue";
 import BottomCards from "../../components/HomePage/BottomCards.vue";
 import TopCards from "../../components/HomePage/TopCards.vue";
+import AboutUs from "../../components/HomePage/AbouUs.vue";
 
 export default {
   components: {
@@ -63,6 +69,7 @@ export default {
     Coaches,
     TopCards,
     BottomCards,
+    AboutUs,
   },
 
   created() {
@@ -115,57 +122,59 @@ export default {
   }
 }
 
-#g-star {
-  position: absolute;
-  width: 105em;
-  height: 62rem;
-  left: -14em;
-  top: 0.3em;
-}
-
-#kid-blue {
-  position: absolute;
+.kid-blue {
+  position: relative;
   width: 100em;
   height: 68rem;
-  left: -16em;
-  top: 8.8em;
+  left: -42em;
+  top: 5em;
 }
 
-#allTrainings {
+.allTrainings {
   position: absolute;
 
   left: 74em;
   top: 8.1em;
 }
 
-#partners {
-  position: absolute;
-  left: 7em;
+.partners {
+  position: relative;
+  right: 14em;
+  bottom: 70em;
 }
 
-#topics {
+.topics {
   position: relative;
-  top: 28em;
+  bottom: 45em;
+  right: 14em;
 }
-#coaches {
+.coaches {
+  margin: auto;
   position: relative;
-  top: 97em;
+  top: 15em;
+  right: 15em;
 }
 
-#background {
+.blue-background {
   position: relative;
   background-color: #1c3f64;
-  width: 140em;
+  width: 113em;
   height: 15em;
-  top: 178em;
-  right: 4.5em;
+  top: 95em;
+  right: 1.6em;
   z-index: -10;
   box-shadow: 0px 20px 48.5714px rgba(49, 54, 62, 0.1);
   border-radius: 10px;
 }
 
-#sub-topics {
+.bottom-cards {
   position: relative;
-  top: 175em;
+  top: 92em;
+}
+
+.about-us {
+  position: relative;
+  top: 60em;
+  left: 10em;
 }
 </style>

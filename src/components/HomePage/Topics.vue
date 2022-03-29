@@ -6,18 +6,30 @@
     <div id="content-divider"></div>
 
     <p>Lorem, ipsum dolor</p>
-    <div id="topics"><Basic /> <Advanced /><Basic /> <Advanced /></div>
+    <div class="topics">
+      <div v-for="topic in topics" :key="topic.id">
+        <Topic :topic-title="topic.title" />
+      </div>
+    </div>
+
     <a href=""><Button /></a>
   </div>
 </template>
 
 <script>
 import Button from "./Topics/Button.vue";
-import Basic from "./Topics/Basic.vue";
-import Advanced from "./Topics/Advanced.vue";
+import Topic from "./Topics/Basic.vue";
 export default {
   name: "Topics",
-  components: { Button, Basic, Advanced },
+  components: { Button, Topic },
+  data: () => ({
+    topics: [
+      { id: 0, title: "כדורגל בסיסי" },
+      { id: 1, title: "כדורגל מתקדם" },
+      { id: 2, title: "כדורגל בסיסי" },
+      { id: 3, title: "כדורגל מתקדם" },
+    ],
+  }),
 };
 </script>
 <style scoped>
@@ -103,13 +115,14 @@ p {
   right: -15em;
 }
 
-#topics {
+.topics {
   position: relative;
   left: 18em;
+  bottom: 5em;
   /* border: 1px solid red; */
   width: 65em;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   justify-content: space-between;
 }
 </style>

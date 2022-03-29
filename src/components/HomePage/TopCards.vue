@@ -16,7 +16,7 @@ div {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("./svg/Cards/football.svg");
+  background-image: url("../../../public/assets/images/svg/Cards/football.svg");
   width: 13em;
   height: 14em;
   border-radius: 14px;

@@ -1,37 +1,34 @@
 <template>
-  <div id="partners-all">
-    <span id="partners">חברות שותפות</span> <br />
-    <span id="partners-background">שותפות</span> <br />
+  <div class="partners-all">
+    <span class="partners">חברות שותפות</span> <br />
+    <span class="partners-background">שותפות</span> <br />
     <span></span>
-    <div id="content-divider"></div>
+    <div class="content-divider"></div>
     <br />
-    <div id="logos-main">
-      <div id="logos"><Garmin /> <Fifa /> <Nike />, <Adidas /></div>
+    <div class="logos-main">
+      <div class="logos"><allPartners /></div>
     </div>
-
-    <p>Lorem, ipsum dolor</p>
   </div>
-</template>
-
+</template>.
 <script>
-import Fifa from "../../components/HomePage/Logos/Fifa.vue";
-import Nike from "../../components/HomePage/Logos/Nike.vue";
-import Adidas from "../../components/HomePage/Logos/Adidas.vue";
-import Garmin from "../../components/HomePage/Logos/Garmin.vue";
+import allPartners from "../../components/HomePage/Logos/allPartners.vue";
 export default {
   name: "Partnership",
-  components: { Garmin, Fifa, Nike, Adidas },
+  components: { allPartners },
 };
 </script>
 <style scoped>
-#partners {
+.partners {
+  /* border: 1px solid red; */
   /* font-family: "Arimo"; */
   font-style: normal;
   font-weight: 600;
   font-size: 70px;
   line-height: 90px;
 }
-#partners-all {
+.partners-all {
+  /* border: 1px solid green; */
+
   /* Our Products */
 
   position: absolute;
@@ -49,7 +46,9 @@ export default {
   color: #31353d;
 }
 
-#partners-background {
+.partners-background {
+  /* border: 1px solid blue; */
+
   /* Our Products */
 
   position: absolute;
@@ -75,7 +74,7 @@ export default {
   opacity: 0.08;
 }
 
-#content-divider {
+.content-divider {
   background-color: #16588f;
   padding: 0.2rem;
   padding-left: 7em;
@@ -86,20 +85,21 @@ export default {
 
 p {
   font-style: normal;
-  font-size: 169.749px;
   line-height: 219px;
-  font-size: 1.5em;
+  font-size: 2em;
 }
 
-#logos {
+.logos {
   /* border: 1px solid red; */
+  position: relative;
+  right: 1.5em;
   display: flex;
   width: 55em;
   flex-direction: row-reverse;
   justify-content: space-around;
 }
 
-#logos-main {
+.logos-main {
   position: absolute;
   right: -15em;
 }

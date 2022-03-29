@@ -1,37 +1,30 @@
 <template>
-  <div id="partners-all">
-    <span id="partners">המאמנים שלנו</span> <br />
-    <span id="partners-background">המאמנים שלנו</span> <br />
-    <div id="content-divider"></div>
+  <div class="partners-all">
+    <span class="partners">המאמנים שלנו</span> <br />
+    <span class="partners-background">המאמנים שלנו</span> <br />
+    <div class="content-divider"></div>
 
-    <div id="coaches">
-      <Coach1 /><Coach2 /><Coach3 /><Coach4 /><Coach5 /><Coach6 /><Coach7 />
-    </div>
+    <div class="coaches"><Coach /></div>
   </div>
 </template>
 
 <script>
-import Coach1 from "./Coaches/Coach1.vue";
-import Coach2 from "./Coaches/Coach2.vue";
-import Coach3 from "./Coaches/Coach3.vue";
-import Coach4 from "./Coaches/Coach4.vue";
-import Coach5 from "./Coaches/Coach5.vue";
-import Coach6 from "./Coaches/Coach6.vue";
-import Coach7 from "./Coaches/Coach7.vue";
+import Coach from "./Coaches/Coach.vue";
+
 export default {
   name: "Topics",
-  components: { Coach1, Coach2, Coach3, Coach4, Coach5, Coach6, Coach7 },
+  components: { Coach },
 };
 </script>
 <style scoped>
-#partners {
+.partners {
   /* font-family: "Arimo"; */
   font-style: normal;
   font-weight: 600;
   font-size: 70px;
   line-height: 90px;
 }
-#partners-all {
+.partners-all {
   /* Our Products */
 
   position: absolute;
@@ -49,7 +42,7 @@ export default {
   color: #31353d;
 }
 
-#partners-background {
+.partners-background {
   /* Our Products */
 
   position: absolute;
@@ -75,7 +68,7 @@ export default {
   opacity: 0.08;
 }
 
-#content-divider {
+.content-divider {
   background-color: #16588f;
   padding: 0.2rem;
   padding-left: 7em;
@@ -93,7 +86,7 @@ p {
   bottom: 2em;
 }
 
-#logos {
+.logos {
   /* border: 1px solid red; */
   display: flex;
   width: 55em;
@@ -101,12 +94,12 @@ p {
   justify-content: space-around;
 }
 
-#logos-main {
+.logos-main {
   position: absolute;
   right: -15em;
 }
 
-#coaches {
+.coaches {
   position: relative;
   top: 8em;
   left: 55em;
