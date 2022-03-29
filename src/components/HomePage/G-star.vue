@@ -20,13 +20,13 @@ export default {
   position: absolute;
   width: 105em;
   height: 62rem;
-  left: -14em;
+  left: -6em;
   top: 0.3em;
 }
 
 .bottom-star {
   position: absolute;
-  top: 190em;
-  right: 35em;
+  top: 200em;
+  right: 42em;
 }
 </style>

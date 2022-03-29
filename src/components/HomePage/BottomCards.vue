@@ -56,8 +56,9 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  position: relative;
-  width: 150em;
+  position: absolute;
+  right: 5em;
+  width: 110em;
 }
 
 .headline {

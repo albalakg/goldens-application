@@ -28,20 +28,25 @@
       <div class="home_course_card">
         <course-card dark :course="courseCategories"> </course-card>
       </div>
-      <section>
-        <div class="partners"><Partnership /> <br /></div>
-      </section>
-      <section>
-        <div class="topics"><Topics /></div>
-      </section>
-      <section>
-        <div class="coaches"><Coaches /></div>
-      </section>
-      <section>
-        <div class="bottom-cards"><BottomCards /></div>
+      <section class="main-content">
+        <section>
+          <div class="partners"><Partnership /> <br /></div>
+        </section>
+        <section>
+          <div class="topics"><Topics /></div>
+        </section>
+        <section>
+          <div class="coaches"><Coaches /></div>
+        </section>
+        <section>
+          <div class="bottom-cards"><BottomCards /></div>
+        </section>
       </section>
       <section>
         <div class="about-us"><AboutUs /></div>
+      </section>
+      <section>
+        <div class="middle-background"></div>
       </section>
     </v-flex>
   </v-container>
@@ -121,11 +126,16 @@ export default {
   }
 }
 
+.main-content {
+  position: absolute;
+  right: 2em;
+}
+
 .kid-blue {
   position: absolute;
   width: 100em;
   height: 68rem;
-  left: -32em;
+  left: -19em;
   top: 9em;
 }
 
@@ -139,7 +149,7 @@ export default {
 .partners {
   position: absolute;
   right: 130em;
-  top: 10em;
+  top: 12em;
 }
 
 .topics {
@@ -150,7 +160,7 @@ export default {
 .coaches {
   position: absolute;
   top: 86em;
-  right: 121em;
+  right: 118.5em;
 }
 
 .bottom-cards {
@@ -160,7 +170,19 @@ export default {
 
 .about-us {
   position: absolute;
-  top: 155em;
+  top: 160em;
   left: 15em;
+}
+
+.middle-background {
+  position: absolute;
+  background-color: #1c3f64;
+  width: 119.5em;
+  height: 55em;
+  top: 270em;
+  right: -0em;
+  z-index: -10;
+  box-shadow: 0px 20px 48.5714px rgba(49, 54, 62, 0.1);
+  border-radius: 10px;
 }
 </style>
