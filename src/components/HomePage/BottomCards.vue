@@ -58,7 +58,7 @@ export default {
   flex-direction: row;
   justify-content: space-evenly;
 
-  width: 90%;
+  width: 100vw;
 }
 
 .headline {

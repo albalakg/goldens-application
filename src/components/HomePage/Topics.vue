@@ -59,7 +59,7 @@ export default {
   margin-right: auto;
   margin-left: auto;
 
-  width: 50%;
+  width: 60%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

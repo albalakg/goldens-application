@@ -1,6 +1,6 @@
 <template>
   <div class="coach-container">
-    <div v-for="coach in coaches" :key="coach.id">
+    <div>
       <div class="coach">
         <div><span id="coach-name">דניאל כהן</span></div>
         <div><span id="coach-specialty">כדורגל</span></div>
@@ -11,24 +11,14 @@
 <script>
 export default {
   name: "Coach",
-  data: () => ({
-    coaches: [
-      { id: 0, name: "דניאל כהן", specialty: "כדורגל" },
-      { id: 0, name: "דניאל כהן", specialty: "כדורגל" },
-      { id: 0, name: "דניאל כהן", specialty: "כדורגל" },
-      { id: 0, name: "דניאל כהן", specialty: "כדורגל" },
-      { id: 0, name: "דניאל כהן", specialty: "כדורגל" },
-    ],
-  }),
 };
 </script>
 <style scoped>
 #coach-name {
   position: relative;
   top: 6em;
-  margin-top: 9em;
   font-weight: 400;
-  font-size: 3.1em;
+  font-size: 3.1rem;
   white-space: nowrap;
   line-height: 90px;
 
@@ -53,19 +43,33 @@ export default {
 }
 
 .coach-container {
-  margin-top: 1em;
+  width: 20em;
+  height: 100%;
+
+  border: 1px solid rgb(30, 255, 0);
+
+  /* margin-top: -40em; */
   transition: 1s;
-  display: flex;
-  flex-direction: row;
+
+  margin-bottom: 3em;
 }
 
 .coach {
-  width: 315px;
-  height: 424px;
+  width: 100%;
+  height: 40vh;
   background-size: contain;
+  position: relative;
 
   background-image: url("./images/image1.png");
   display: flex;
   flex-direction: column;
+  transition: 450ms;
+}
+
+.coach:hover {
+  width: 324px;
+  height: 439px;
+
+  filter: drop-shadow(0px 4px 40px rgba(0, 0, 0, 0.25));
 }
 </style>

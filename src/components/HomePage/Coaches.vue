@@ -1,14 +1,17 @@
 <template>
-  <div>
+  <div class="container">
     <div class="partners-all">
       <span class="partners">המאמנים שלנו</span> <br />
-      <span class="partners-background">המאמנים שלנו</span> <br />
+      <span class="partners-background">המאמנים</span> <br />
       <div class="content-divider"></div>
 
       <p>Lorem, ipsum dolor</p>
     </div>
-    <div class="coaches"><Coach /></div>
-    <div class=""></div>
+    <div class="background"></div>
+
+    <div class="coaches">
+      <div v-for="coach in coaches" :key="coach.id"><Coach /></div>
+    </div>
   </div>
 </template>
 
@@ -17,26 +20,44 @@ import Coach from "../../components/HomePage/Coaches/Coach.vue";
 export default {
   name: "Coaches",
   components: { Coach },
-  data: () => ({}),
+  data: () => ({
+    coaches: [
+      { id: 0, name: "דניאל כהן", specialty: "כדורגל" },
+      { id: 1, name: "דניאל כהן", specialty: "כדורגל" },
+      { id: 2, name: "דניאל כהן", specialty: "כדורגל" },
+      { id: 3, name: "דניאל כהן", specialty: "כדורגל" },
+      { id: 4, name: "דניאל כהן", specialty: "כדורגל" },
+      { id: 5, name: "דניאל כהן", specialty: "כדורגל" },
+      { id: 5, name: "דניאל כהן", specialty: "כדורגל" },
+    ],
+  }),
 };
 </script>
 <style scoped>
 .coaches {
-  position: relative;
-  bottom: 8em;
-  border: 1px solid purple;
+  width: 150vw;
+  height: 48vh;
+  box-shadow: 0px 20px 48.5714px rgba(49, 54, 62, 0.1);
+  border-radius: 10px;
+  background-color: #1c3f64;
+
   display: flex;
+  margin-left: auto;
+  margin-right: -25vw;
   justify-content: center;
+  margin-bottom: 4em;
+  border: 10px solid olive;
 }
 
 .coaches-container {
-  margin-right: auto;
-  margin-left: auto;
+  /* margin-right: auto; */
+  /* margin-left: auto; */
 
   width: 60%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  /* display: flex; */
+  /* flex-direction: row; */
+  justify-content: space-around;
+  /* border: 2px solid magenta; */
 }
 
 .partners {
@@ -112,5 +133,23 @@ p {
   font-size: 1.5em;
   position: relative;
   bottom: 2em;
+}
+.container {
+  /* position: relative;
+  bottom:0em; */
+  width: 190em;
+  border: 10px solid rgb(110, 110, 53);
+}
+.background {
+  /* position: absolute; */
+  /* top: 17em;
+  right: -20em; */
+  /* z-index: -1; */
+  /* width: 100vw;
+  height: 30em;
+  background-color: #1c3f64;
+
+  box-shadow: 0px 20px 48.5714px rgba(49, 54, 62, 0.1);
+  border-radius: 10px; */
 }
 </style>

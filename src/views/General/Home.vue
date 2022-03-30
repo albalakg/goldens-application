@@ -11,8 +11,7 @@
       <div class="home_course_card">
         <course-card dark :course="courseCategories"> </course-card>
       </div>
-      <Star class="star" />
-      <KidBlue class="kid-blue" />
+
       <div class="main-content">
         <div class="headline">
           <div><h1 id="title-top" class="heading">כל האימונים</h1></div>
@@ -26,6 +25,11 @@
         </div>
       </div>
       <div>
+        <KidBlue class="kid-blue" />
+
+        <Star class="star" />
+      </div>
+      <div>
         <div class="partners"><Partnership /></div>
       </div>
       <div>
@@ -34,6 +38,7 @@
       </div>
       <div class="coaches"><Coaches /></div>
       <div class="bottom-cards"><BottomCards /></div>
+      <div class="about-us"><AboutUs /></div>
 
       <!--  <section>
           <div class="partners"><Partnership /> <br /></div>
@@ -74,10 +79,10 @@ import TopCards from "../../components/HomePage/TopCards.vue";
 import AboutUs from "../../components/HomePage/AbouUs.vue";
 
 export default {
+  name: "Home",
   components: {
     CourseCard,
     Star,
-    KidBlue,
     Partnership,
     Topics,
     Coaches,
@@ -114,12 +119,13 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Arimo&display=swap");
 
 .home_wrapper {
+  border: 5px solid green;
   h1,
   h2 {
     font-family: "Arimo";
     font-style: normal;
     font-weight: 700;
-    font-size: 92.0051px;
+    font-size: 4vw;
   }
 
   h2 {
@@ -131,11 +137,12 @@ export default {
     font-family: "Arimo";
     font-style: normal;
     font-weight: 700;
-    font-size: 92.0051px;
+    font-size: 4vw;
     color: rgb(230, 178, 96);
   }
 
   .headline {
+    border: 2px solid red;
     display: flex;
     flex-direction: column;
     margin-left: 60%;
@@ -165,45 +172,34 @@ export default {
 
 .main-content {
   // padding: 10em;
-  // background-color: red;
-  margin-bottom: 3em;
-}
-
-.kid-blue {
-  position: absolute;
-  width: 100em;
-  height: 68rem;
-  left: -25em;
-  top: 8.8em;
+  width: 70%;
+  background-color: red;
 }
 
 .partners {
-  // background-color: yellow;
+  background-color: yellow;
   // border: 2px solid yellow;
   margin-bottom: 7em;
-  margin-top: 35em;
+  margin-top: -8em;
 }
 
 .topics {
   margin-top: 3em;
-  // background-color: green;
+  margin-bottom: 20em;
+  background-color: green;
 }
 .coaches {
-  margin-top: -20em;
+  border: 2px solid gold;
+  margin-top: -15em;
   // position: absolute;
   // top: 86em;
   // right: 118.5em;
+  // background-color: purple;
 }
 
 .bottom-cards {
   position: relative;
-  bottom: 8em;
-}
-
-.about-us {
-  position: absolute;
-  top: 160em;
-  left: 15em;
+  bottom: 10em;
 }
 
 .middle-background {
@@ -219,14 +215,17 @@ export default {
 }
 
 .blue-background {
-  position: relative;
-  top: 25em;
-  width: 105.6em;
-  height: 20em;
-  background: #1c3f64;
+  // position: relative;
+  // top: 25em;
+  // width: 97em;
+  // height: 20em;
+  // background: #1c3f64;
   /* 1 */
+}
 
-  box-shadow: 0px 20px 48.5714px rgba(49, 54, 62, 0.1);
-  border-radius: 10px;
+.about-us {
+  width: 50%;
+  // background-color: red;
+  // margin-top: 20em;
 }
 </style>
