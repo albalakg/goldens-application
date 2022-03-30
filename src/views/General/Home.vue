@@ -137,7 +137,7 @@ export default {
 
   .star {
     margin-top: -30%;
-    margin-bottom: 90em;
+    margin-bottom: 70em;
   }
 
   #title-top {
