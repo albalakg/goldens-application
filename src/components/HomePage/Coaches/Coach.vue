@@ -2,8 +2,10 @@
   <div class="coach-container">
     <div>
       <div class="coach">
-        <div><span id="coach-name">דניאל כהן</span></div>
-        <div><span id="coach-specialty">כדורגל</span></div>
+        <div class="text">
+          <div><span id="coach-name">דניאל כהן</span></div>
+          <div><span id="coach-specialty">כדורגל</span></div>
+        </div>
       </div>
     </div>
   </div>
@@ -15,22 +17,24 @@ export default {
 </script>
 <style scoped>
 #coach-name {
-  position: relative;
+  /* position: absolute;
   top: 6em;
+  left: 1.4em; */
   font-weight: 400;
-  font-size: 3.1rem;
+  font-size: 4.7vh;
   white-space: nowrap;
-  line-height: 90px;
+  line-height: 55px;
 
   letter-spacing: -1px;
 
   color: white;
 }
 #coach-specialty {
-  position: relative;
-  top: 11em;
+  /* position: absolute;
+  top: 13em;
+  left: 5em; */
   font-weight: 400;
-  font-size: 1.5em;
+  font-size: 2.5vh;
   white-space: nowrap;
   line-height: 90px;
   /* or 210% */
@@ -39,14 +43,14 @@ export default {
 
   /* white */
 
-  color: #e6b260;
+  color: rgb(255, 89, 34);
 }
 
 .coach-container {
   width: 20em;
   height: 100%;
 
-  border: 1px solid rgb(30, 255, 0);
+  /* border: 1px solid rgb(30, 255, 0); */
 
   /* margin-top: -40em; */
   transition: 1s;
@@ -68,8 +72,14 @@ export default {
 
 .coach:hover {
   width: 324px;
-  height: 439px;
+  height: 459px;
+  margin-top: -1em;
+  z-index: 1;
 
   filter: drop-shadow(0px 4px 40px rgba(0, 0, 0, 0.25));
+}
+
+.text {
+  margin-top: 19em;
 }
 </style>

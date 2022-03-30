@@ -10,7 +10,9 @@
     <div class="background"></div>
 
     <div class="coaches">
-      <div v-for="coach in coaches" :key="coach.id"><Coach /></div>
+      <div v-for="coach in coaches" :key="coach.id" class="coach">
+        <Coach />
+      </div>
     </div>
   </div>
 </template>
@@ -28,25 +30,27 @@ export default {
       { id: 3, name: "דניאל כהן", specialty: "כדורגל" },
       { id: 4, name: "דניאל כהן", specialty: "כדורגל" },
       { id: 5, name: "דניאל כהן", specialty: "כדורגל" },
-      { id: 5, name: "דניאל כהן", specialty: "כדורגל" },
+      { id: 6, name: "דניאל כהן", specialty: "כדורגל" },
     ],
   }),
 };
 </script>
 <style scoped>
 .coaches {
-  width: 150vw;
+  width: 100%;
   height: 48vh;
   box-shadow: 0px 20px 48.5714px rgba(49, 54, 62, 0.1);
   border-radius: 10px;
   background-color: #1c3f64;
 
   display: flex;
+  flex: 1 1 auto;
+
   margin-left: auto;
-  margin-right: -25vw;
+  margin-right: auto;
   justify-content: center;
   margin-bottom: 4em;
-  border: 10px solid olive;
+  /* border: 10px solid rgb(255, 130, 213); */
 }
 
 .coaches-container {
@@ -138,7 +142,7 @@ p {
   /* position: relative;
   bottom:0em; */
   width: 190em;
-  border: 10px solid rgb(110, 110, 53);
+  /* border: 10px solid rgb(110, 110, 53); */
 }
 .background {
   /* position: absolute; */

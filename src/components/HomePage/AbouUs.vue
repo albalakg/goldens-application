@@ -31,7 +31,7 @@ export default {
 </script>
 <style scoped>
 .container {
-  border: 1px solid green;
+  /* border: 1px solid green; */
 }
 
 p {
@@ -48,7 +48,7 @@ p {
   line-height: 90px;
 }
 .partners-all {
-  border: 2px solid yellow;
+  /* border: 2px solid yellow; */
   display: flex;
   flex-direction: column;
   margin-left: 60%;

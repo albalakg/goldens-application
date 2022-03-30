@@ -39,30 +39,8 @@
       <div class="coaches"><Coaches /></div>
       <div class="bottom-cards"><BottomCards /></div>
       <div class="about-us"><AboutUs /></div>
-
-      <!--  <section>
-          <div class="partners"><Partnership /> <br /></div>
-        </section>
-
-        <section>
-          <div class="topics"><Topics /></div>
-        </section>
-
-        <section>
-          <div class="coaches"><Coaches /></div>
-        </section>
-
-        <section>
-          <div class="bottom-cards"><BottomCards /></div>
-        </section>
-      </div> -->
-
-      <!-- <section>
-        <div class="about-us"><AboutUs /></div>
-      </section>
-      <section>
-        <div class="middle-background"></div>
-      </section> -->
+      <div class="common-questions"><CommonQuestions /></div>
+      <div class="contact" xs11 mx-auto><SupportForm /></div>
     </v-flex>
   </v-container>
 </template>
@@ -77,7 +55,8 @@ import Coaches from "../../components/HomePage/Coaches.vue";
 import BottomCards from "../../components/HomePage/BottomCards.vue";
 import TopCards from "../../components/HomePage/TopCards.vue";
 import AboutUs from "../../components/HomePage/AbouUs.vue";
-
+import CommonQuestions from "../../components/HomePage/CommonQuestions.vue";
+import SupportForm from "../../components/Form/SupportForm.vue";
 export default {
   name: "Home",
   components: {
@@ -89,6 +68,8 @@ export default {
     TopCards,
     BottomCards,
     AboutUs,
+    CommonQuestions,
+    SupportForm,
   },
 
   created() {
@@ -119,7 +100,9 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Arimo&display=swap");
 
 .home_wrapper {
-  border: 5px solid green;
+  margin: 0;
+  padding: 0;
+  // border: 5px solid green;
   h1,
   h2 {
     font-family: "Arimo";
@@ -138,11 +121,11 @@ export default {
     font-style: normal;
     font-weight: 700;
     font-size: 4vw;
-    color: rgb(230, 178, 96);
+    color: rgb(255, 89, 34);
   }
 
   .headline {
-    border: 2px solid red;
+    // border: 2px solid red;
     display: flex;
     flex-direction: column;
     margin-left: 60%;
@@ -173,11 +156,11 @@ export default {
 .main-content {
   // padding: 10em;
   width: 70%;
-  background-color: red;
+  // background-color: red;
 }
 
 .partners {
-  background-color: yellow;
+  // background-color: yellow;
   // border: 2px solid yellow;
   margin-bottom: 7em;
   margin-top: -8em;
@@ -186,32 +169,16 @@ export default {
 .topics {
   margin-top: 3em;
   margin-bottom: 20em;
-  background-color: green;
+  // background-color: green;
 }
 .coaches {
-  border: 2px solid gold;
+  // border: 2px solid gold;
   margin-top: -15em;
-  // position: absolute;
-  // top: 86em;
-  // right: 118.5em;
-  // background-color: purple;
 }
 
 .bottom-cards {
   position: relative;
   bottom: 10em;
-}
-
-.middle-background {
-  position: absolute;
-  background-color: #1c3f64;
-  width: 119.5em;
-  height: 50em;
-  top: 270em;
-  right: -0em;
-  z-index: -10;
-  box-shadow: 0px 20px 48.5714px rgba(49, 54, 62, 0.1);
-  border-radius: 10px;
 }
 
 .blue-background {
@@ -225,7 +192,19 @@ export default {
 
 .about-us {
   width: 50%;
+  margin-bottom: 10em;
   // background-color: red;
   // margin-top: 20em;
+}
+
+.common-questions {
+  // border: 2px solid magenta;
+  margin-bottom: 20em;
+}
+
+.contact {
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
 }
 </style>

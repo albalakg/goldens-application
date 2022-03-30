@@ -53,7 +53,7 @@ export default {
 }
 
 .container {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -94,7 +94,7 @@ span {
 }
 
 .even {
-  color: #e6b260;
+  color: rgb(255, 89, 34);
   font-size: 160%;
 }
 
