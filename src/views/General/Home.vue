@@ -204,7 +204,7 @@ export default {
 
 .common-questions {
   // border: 2px solid magenta;
-  margin-bottom: 20em;
+  margin-bottom: 10em;
 }
 
 .contact {
