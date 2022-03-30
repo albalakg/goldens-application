@@ -24,8 +24,8 @@
           </p>
         </div>
       </div>
-      <div>
-        <KidBlue class="kid-blue" />
+      <div class="kid-blue">
+        <KidBlue />
 
         <Star class="star" />
       </div>
@@ -128,11 +128,16 @@ export default {
     // border: 2px solid red;
     display: flex;
     flex-direction: column;
-    margin-left: 60%;
+    margin-left: 30%;
   }
 
   .heading {
     margin-top: 0.4em;
+  }
+
+  .star {
+    margin-top: -30%;
+    margin-bottom: 90em;
   }
 
   #title-top {
@@ -140,7 +145,7 @@ export default {
   }
 
   p {
-    font-size: 1.2em;
+    font-size: 2vw;
     margin-top: 1.5em;
     margin-left: 1em;
     // position: relative;
@@ -192,7 +197,7 @@ export default {
 
 .about-us {
   width: 50%;
-  margin-bottom: 10em;
+  margin-bottom: 1em;
   // background-color: red;
   // margin-top: 20em;
 }

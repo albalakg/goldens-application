@@ -1,7 +1,21 @@
 <template>
   <div class="container">
-    <img class="g-star" src="../../../public/assets/images/svg/G-star.svg" />
-    <img class="kid-blue" src="../../../public/assets/images/svg/kidBlue.svg" />
+    <div class="g-star">
+      <img src="../../../public/assets/images/svg/G-star.svg" />
+      <div>
+        <img
+          class="kid-blue"
+          src="../../../public/assets/images/svg/kidBlue.svg"
+        />
+      </div>
+      <div class="bottom-star">
+        <img
+          class="star-img"
+          src="../../../public/assets/images/svg/G-star-bottom.svg"
+          alt=""
+        />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -15,21 +29,27 @@ export default {
 <style scoped>
 .g-star {
   border: 1px solid red;
-
   position: absolute;
   width: 75em;
   height: 62rem;
-  left: -6em;
+  left: -10%;
   top: 0.3em;
 }
-.kid-blue {
-  width: 35em;
-  margin-left: 100em;
 
-  border: 1px solid red;
+.kid-blue {
+  margin-top: -52em;
+  margin-right: 10em;
+}
+.bottom-star {
+  margin-top: 190%;
+  margin-right: -12%;
 }
 
+.star-img {
+  width: 95vw;
+  height: 95vh;
+}
 .container {
-  /* position: relative; */
+  position: relative;
 }
 </style>

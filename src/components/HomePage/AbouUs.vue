@@ -96,7 +96,7 @@ span:nth-of-type(2) {
   margin-top: -14em;
   margin-bottom: 2em;
   margin-left: auto;
-  margin-right: 18em;
+  margin-right: auto;
   padding-left: 10px;
   padding-left: 10px;
   width: 53px;
