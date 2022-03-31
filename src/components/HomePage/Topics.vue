@@ -49,20 +49,19 @@ export default {
 </script>
 <style scoped>
 .topics {
-  display: flex;
-  justify-content: center;
   position: relative;
   bottom: 8em;
+  margin-left: 2vw;
 }
 
 .topics-container {
-  margin-right: auto;
-  margin-left: auto;
+  border: 2px solid red;
 
-  width: 60%;
+  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
+  margin-left: 20px;
 }
 
 .partners {

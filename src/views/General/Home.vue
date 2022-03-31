@@ -22,6 +22,7 @@
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore,
             voluptatem numquam nostrum ducimus libero, distinctio vitae velit
           </p>
+          <TopCards />
         </div>
       </div>
       <div class="kid-blue">
@@ -40,7 +41,9 @@
       <div class="bottom-cards"><BottomCards /></div>
       <div class="about-us"><AboutUs /></div>
       <div class="common-questions"><CommonQuestions /></div>
+
       <div class="contact" xs11 mx-auto><SupportForm /></div>
+      <!-- <div class="experiences"><Experience /></div> -->
     </v-flex>
   </v-container>
 </template>
@@ -48,7 +51,7 @@
 <script>
 import CourseCard from "../../components/Cards/CourseCard.vue";
 import Star from "../../components/HomePage/G-star.vue";
-import KidBlue from "../../components/HomePage/KidBlue.vue";
+// import KidBlue from "../../components/HomePage/KidBlue.vue";
 import Partnership from "../../components/HomePage/Partnership.vue";
 import Topics from "../../components/HomePage/Topics.vue";
 import Coaches from "../../components/HomePage/Coaches.vue";
@@ -57,6 +60,7 @@ import TopCards from "../../components/HomePage/TopCards.vue";
 import AboutUs from "../../components/HomePage/AbouUs.vue";
 import CommonQuestions from "../../components/HomePage/CommonQuestions.vue";
 import SupportForm from "../../components/Form/SupportForm.vue";
+import Experience from "../../components/HomePage/Experiences/Experience.vue";
 export default {
   name: "Home",
   components: {
@@ -70,6 +74,7 @@ export default {
     AboutUs,
     CommonQuestions,
     SupportForm,
+    Experience,
   },
 
   created() {
@@ -148,6 +153,7 @@ export default {
     font-size: 2vw;
     margin-top: 1.5em;
     margin-left: 1em;
+
     // position: relative;
     // top: -20px;
   }
@@ -211,5 +217,8 @@ export default {
   margin-left: auto;
   margin-right: auto;
   width: 40%;
+}
+
+.experiences {
 }
 </style>

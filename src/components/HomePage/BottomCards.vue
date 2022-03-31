@@ -50,15 +50,16 @@ export default {
   background: #ffffff;
   box-shadow: 0px 20.5041px 49.7956px rgba(49, 54, 62, 0.1);
   border-radius: 20.5041px;
+  margin-left: 2vw;
 }
 
 .container {
   /* border: 1px solid red; */
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
 
-  width: 100vw;
+  width: 100%;
 }
 
 .headline {

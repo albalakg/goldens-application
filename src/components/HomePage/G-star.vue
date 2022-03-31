@@ -33,7 +33,7 @@ export default {
   width: 75em;
   height: 62rem;
   left: -10%;
-  top: 0.3em;
+  top: -14em;
 }
 
 .kid-blue {
@@ -41,13 +41,13 @@ export default {
   margin-right: 10em;
 }
 .bottom-star {
-  margin-top: 190%;
-  margin-right: -12%;
+  margin-top: 185%;
+  margin-right: -22%;
 }
 
 .star-img {
-  width: 95vw;
-  height: 95vh;
+  width: 99vw;
+  height: 99vh;
 }
 .container {
   position: relative;
