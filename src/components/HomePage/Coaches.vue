@@ -37,20 +37,26 @@ export default {
 </script>
 <style scoped>
 .coaches {
+  border: 1px solid red;
   width: 100%;
   height: 48vh;
   box-shadow: 0px 20px 48.5714px rgba(49, 54, 62, 0.1);
   border-radius: 10px;
   background-color: #1c3f64;
 
-  display: flex;
-  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; /* flex: 1 1 auto; */
+  grid-gap: 0;
+  justify-content: center;
 
   margin-left: auto;
   margin-right: auto;
-  justify-content: center;
+  /* justify-content: center; */
   margin-bottom: 4em;
   /* border: 10px solid rgb(255, 130, 213); */
+}
+
+.coach {
 }
 
 .coaches-container {

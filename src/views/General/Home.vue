@@ -35,15 +35,17 @@
       </div>
       <div>
         <div class="topics"><Topics /></div>
-        <div class="blue-background"></div>
       </div>
-      <div class="coaches"><Coaches /></div>
+      <div class="coaches">
+        <Coaches />
+        <!-- <div class="blue-background"></div> -->
+      </div>
       <div class="bottom-cards"><BottomCards /></div>
       <div class="about-us"><AboutUs /></div>
       <div class="common-questions"><CommonQuestions /></div>
 
       <div class="contact" xs11 mx-auto><SupportForm /></div>
-      <!-- <div class="experiences"><Experience /></div> -->
+      <footer><Footer /></footer>
     </v-flex>
   </v-container>
 </template>
@@ -60,7 +62,7 @@ import TopCards from "../../components/HomePage/TopCards.vue";
 import AboutUs from "../../components/HomePage/AbouUs.vue";
 import CommonQuestions from "../../components/HomePage/CommonQuestions.vue";
 import SupportForm from "../../components/Form/SupportForm.vue";
-import Experience from "../../components/HomePage/Experiences/Experience.vue";
+import Footer from "../../components/General/Footer.vue";
 export default {
   name: "Home",
   components: {
@@ -74,7 +76,7 @@ export default {
     AboutUs,
     CommonQuestions,
     SupportForm,
-    Experience,
+    Footer,
   },
 
   created() {
@@ -174,7 +176,7 @@ export default {
   // background-color: yellow;
   // border: 2px solid yellow;
   margin-bottom: 7em;
-  margin-top: -8em;
+  margin-top: -15em;
 }
 
 .topics {
@@ -193,12 +195,14 @@ export default {
 }
 
 .blue-background {
-  // position: relative;
-  // top: 25em;
-  // width: 97em;
-  // height: 20em;
-  // background: #1c3f64;
-  /* 1 */
+  width: 100vw;
+  height: 6em;
+  background-color: #1c3f64;
+  position: absolute;
+  bottom: 148.5em;
+  left: 0em;
+  // margin-bottom: -5%;
+  // z-index: -1;
 }
 
 .about-us {
@@ -217,8 +221,5 @@ export default {
   margin-left: auto;
   margin-right: auto;
   width: 40%;
-}
-
-.experiences {
 }
 </style>
