@@ -45,8 +45,7 @@
       <div class="common-questions">
         <CommonQuestions />
       </div>
-      <div class="experiences-container"><Quizdata /></div>
-
+      <div class="experiences-container"><Experiences /></div>
       <div class="contact" xs11 mx-auto><SupportForm /></div>
       <footer><Footer /></footer>
     </v-flex>
@@ -66,7 +65,7 @@ import AboutUs from "../../components/HomePage/AbouUs.vue";
 import CommonQuestions from "../../components/HomePage/CommonQuestions.vue";
 import SupportForm from "../../components/Form/SupportForm.vue";
 import Footer from "../../components/General/Footer.vue";
-import Quizdata from "../../components/HomePage/Experiences/Quizdata.vue";
+import Experiences from "../../components/HomePage/Experiences/Experiences.vue";
 export default {
   name: "Home",
   components: {
@@ -79,7 +78,7 @@ export default {
     BottomCards,
     AboutUs,
     CommonQuestions,
-    Quizdata,
+    Experiences,
     SupportForm,
     Footer,
   },
@@ -219,16 +218,14 @@ export default {
 
 .common-questions {
   // border: 2px solid magenta;
+  margin-bottom: 0em;
 }
 .experiences-container {
-  border: 3px solid green;
-  width: 100em;
-  height: 200vh;
   margin-left: auto;
   margin-right: auto;
 
   // background-color: green;
-  margin-bottom: 10em;
+  margin-bottom: 35em;
   // border: 3px solid red;
   display: flex;
   // flex-shrink: 1;
