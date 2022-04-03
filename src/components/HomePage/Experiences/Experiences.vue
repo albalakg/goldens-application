@@ -1,7 +1,7 @@
 <template>
   <div class="bg-img">
     <div class="image">
-      <!-- Assets must be in the assets folder of the project -->
+      <!-- Assets must be in the assets folder of the project(public -> assets -> images) -->
       <div class="img1">
         <img :src="imageLink[currentData]" class="img-w-0" alt="" />
       </div>

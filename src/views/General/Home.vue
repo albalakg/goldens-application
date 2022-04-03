@@ -37,6 +37,7 @@
         <div class="topics"><Topics /></div>
       </div>
       <div class="coaches">
+        <CoachesTitle />
         <Coaches />
         <!-- <div class="blue-background"></div> -->
       </div>
@@ -58,6 +59,7 @@ import Star from "../../components/HomePage/G-star.vue";
 // import KidBlue from "../../components/HomePage/KidBlue.vue";
 import Partnership from "../../components/HomePage/Partnership.vue";
 import Topics from "../../components/HomePage/Topics.vue";
+import CoachesTitle from "../../components/Titles/CoachesTitle.vue";
 import Coaches from "../../components/HomePage/Coaches.vue";
 import BottomCards from "../../components/HomePage/BottomCards.vue";
 import TopCards from "../../components/HomePage/TopCards.vue";
@@ -74,6 +76,7 @@ export default {
     Partnership,
     Topics,
     Coaches,
+    CoachesTitle,
     TopCards,
     BottomCards,
     AboutUs,
