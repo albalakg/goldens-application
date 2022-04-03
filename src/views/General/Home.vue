@@ -204,7 +204,6 @@ export default {
   background-color: #1c3f64;
   position: absolute;
   bottom: 148.5em;
-  left: 0em;
   // margin-bottom: -5%;
   // z-index: -1;
 }

@@ -9,6 +9,8 @@
       >
         <div class="question-item">
           <span>{{ question.text }}</span>
+
+          <span>לורם איפסום דולור?</span>
         </div>
       </div>
     </div>
