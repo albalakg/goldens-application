@@ -3,7 +3,7 @@
     <div class="error-content">
       <h1>אופס!</h1>
       <h2>העמוד שחיפשתם לא נמצא כאן</h2>
-      <button>חזרה לעמוד הבית</button>
+      <button><a href="/">חזרה לעמוד הבית</a></button>
       <img src="../../../public/assets/images/svg/404/Score404.svg" />
     </div>
   </main>
@@ -19,6 +19,11 @@ export default {
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Arimo&display=swap");
+
+a {
+  color: white;
+  text-decoration: none;
+}
 
 .main-content {
   border: 1px solid green;
