@@ -220,7 +220,7 @@ export default {
 
 .common-questions {
   // border: 2px solid magenta;
-  margin-bottom: 0em;
+  margin-bottom: 0.1em;
 }
 .experiences-container {
   margin-left: auto;

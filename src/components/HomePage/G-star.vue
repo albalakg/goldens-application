@@ -41,7 +41,7 @@ export default {
   margin-right: 10em;
 }
 .bottom-star {
-  margin-top: 185%;
+  margin-top: 95vw;
   margin-right: -22%;
 }
 

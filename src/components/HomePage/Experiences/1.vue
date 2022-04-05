@@ -1,7 +1,7 @@
 <template>
   <div class="bg-img">
     <div class="image">
-      <!-- Assets must be in the assets folder of the project -->
+      <!-- Assets must be in the assets folder of the project(public -> assets -> images) -->
       <div class="img1">
         <img :src="imageLink[currentData]" class="img-w-0" alt="" />
       </div>
@@ -94,10 +94,13 @@ export default {
   },
   computed: {},
   methods: {
+    //click will change between images
+    // increase = left
     increaseIndex() {
       this.currentData = (this.currentData + 1) % this.quizData.length;
-      console.log(this.imageLink[this.currentData]);
+      // console.log(this.imageLink[this.currentData]);
     },
+    // decrease = right
     decreaseIndex() {
       if (this.currentData == 0) {
         this.currentData = this.quizData.length - 1;
@@ -110,10 +113,32 @@ export default {
 </script>
 
 <style scoped>
+h2 {
+  color: white;
+}
+
+h3 {
+  font-family: "Arimo";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 28px;
+  /* or 175% */
+
+  text-align: center;
+
+  /* white */
+
+  color: #ffffff;
+
+  mix-blend-mode: normal;
+  opacity: 0.7;
+}
+
 .bg-img {
-  background-image: url("../../../../public/assets/images/Experiences/elipse.png");
-  width: 100vw;
-  height: calc(180px + ((1280px - 100vw) / 40));
+  background-image: url(../../../../public/assets/images/Experiences/elipse.png);
+  width: 100%;
+  height: calc(400px + ((1280px - 100vw) / 40));
   background-position: bottom center;
 }
 
@@ -122,57 +147,58 @@ img {
   border: 4px solid white;
   object-fit: cover;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  margin-bottom: 10em;
 }
 
 .img-w-0,
 .img-w-4 {
   width: calc(80px - ((1280px - 100vw) / 20));
   height: calc(80px - ((1280px - 100vw) / 20));
-  margin-left: 0.2em;
 }
 
 .img-w-1,
 .img-w-3 {
   width: calc(90px - ((1280px - 100vw) / 30));
   height: calc(90px - ((1280px - 100vw) / 30));
-  margin-left: 0.2em;
 }
 
 .img-w-2 {
   width: calc(110px - ((1280px - 100vw) / 40));
   height: calc(110px - ((1280px - 100vw) / 40));
-  margin-left: 0.2em;
 }
 
 .img1 {
-  /* left: 220px; */
-  margin-top: calc(170px + ((1280px - 100vw) / 6));
-  /* padding-left: 50px; */
+  left: 220px;
+  margin-top: calc(10vw + ((1280px - 100vw) / 6));
+  padding-left: 1em;
 }
 
 .img2 {
-  margin-top: calc(150px + ((1280px - 100vw) / 15));
-  /* left: 360px; */
+  margin-top: calc(8vw + ((1280px - 100vw) / 15));
+  left: 360px;
+  margin-left: 1em;
 }
 
 .img3 {
-  margin-top: calc(140px + ((1280px - 100vw) / 40));
+  margin-top: calc(7vw + ((1280px - 100vw) / 40));
 }
 
 .img4 {
-  margin-top: calc(150px + ((1280px - 100vw) / 15));
-  /* right: 360px; */
+  margin-top: calc(8vw + ((1280px - 100vw) / 15));
+  margin-right: 1em;
 }
 
 .img5 {
   right: 179px;
-  margin-top: calc(180px + ((1280px - 100vw) / 6));
-  /* padding-right: 50px; */
+  margin-top: calc(10vw + ((1280px - 100vw) / 6));
+  margin-right: -1em;
+  padding-right: 1em;
 }
 
 .image {
   display: flex;
   justify-content: center;
+  margin-top: 12em;
 }
 
 .a_text {
@@ -221,13 +247,8 @@ hr {
   width: 10%;
   border: none;
   height: 3px;
-  background-color: yellow;
+  background: #e6b260;
   margin: 0 auto;
-}
-
-h2,
-h3 {
-  color: white;
 }
 
 .fa:hover {
