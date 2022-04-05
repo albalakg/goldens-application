@@ -95,7 +95,7 @@ span {
 }
 
 .even {
-  color: rgb(255, 89, 34);
+  color: rgb(230, 179, 96);
   font-size: 160%;
 }
 

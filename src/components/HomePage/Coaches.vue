@@ -22,8 +22,6 @@ export default {
       { id: 2, name: "דניאל כהן", specialty: "כדורגל" },
       { id: 3, name: "דניאל כהן", specialty: "כדורגל" },
       { id: 4, name: "דניאל כהן", specialty: "כדורגל" },
-      { id: 5, name: "דניאל כהן", specialty: "כדורגל" },
-      { id: 6, name: "דניאל כהן", specialty: "כדורגל" },
     ],
   }),
 };
@@ -31,18 +29,24 @@ export default {
 <style scoped>
 .coaches {
   border: 1px solid red;
-  width: 101vw;
+  display: flex;
+  justify-content: flex-start;
+  height: 60vh;
+  background-color: #102a46;
+
+  /* width: 101vw;
   height: 48vh;
   box-shadow: 0px 20px 48.5714px rgba(49, 54, 62, 0.1);
   border-radius: 10px;
   background-color: #102a46;
 
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; /* flex: 1 1 auto; */
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 0;
   margin-right: -6em;
+  margin-bottom: 4em; */
   /* justify-content: center; */
-  margin-bottom: 4em;
+
   /* border: 10px solid rgb(255, 130, 213); */
 }
 
@@ -93,24 +97,5 @@ span:nth-of-type(2) {
   /* brand */
 
   background: #16588f;
-}
-
-.container {
-  /* position: relative;
-  bottom:0em; */
-  width: 190em;
-  /* border: 10px solid rgb(110, 110, 53); */
-}
-.background {
-  /* position: absolute; */
-  /* top: 17em;
-  right: -20em; */
-  /* z-index: -1; */
-  /* width: 100vw;
-  height: 30em;
-  background-color: #1c3f64;
-
-  box-shadow: 0px 20px 48.5714px rgba(49, 54, 62, 0.1);
-  border-radius: 10px; */
 }
 </style>

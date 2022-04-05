@@ -1,249 +1,249 @@
 <template>
-<div class="base_input_wrapper">
+  <div class="base_input_wrapper">
     <div v-show="title" class="mb-1">
-        <strong>
-            {{ title }}
-        </strong>
+      <strong>
+        {{ title }}
+      </strong>
     </div>
-    <div 
-        class="base_input_content"
-        :class="{
-            'base_input_outlined' : outlined,
-            'grey_bg_color' : dark,
-            'white_bg_color' : !dark,
-            'slim_input': slim
-        }"
+    <div
+      class="base_input_content"
+      :class="{
+        base_input_outlined: outlined,
+        grey_bg_color: dark,
+        white_bg_color: !dark,
+        slim_input: slim,
+      }"
     >
+      <div class="base_input_main_icon ml-3 pl-3" v-if="icon">
+        <v-icon>
+          {{ icon }}
+        </v-icon>
+      </div>
 
-        <div class="base_input_main_icon ml-3 pl-3" v-if="icon">
-            <v-icon>
-                {{ icon }}
-            </v-icon>
-        </div>
+      <slot name="content" />
 
-        <slot name="content" />
+      <input
+        class="pl-4"
+        ref="input"
+        :autocomplete="autocomplete"
+        v-model="value"
+        :type="type"
+        :placeholder="placeholder"
+        :maxlength="maxlength"
+        :readonly="readonly"
+      />
 
-        <input
-            class="pl-4"
-            ref="input"
-            :autocomplete="autocomplete"
-            v-model="value"
-            :type="type"
-            :placeholder="placeholder"
-            :maxlength="maxlength"
-            :readonly="readonly"
-        >
-
-        <div class="base_input_sub_icon mr-2 pointer" v-if="closeable && value" @click="close()">
-            <v-icon>
-                mdi-close
-            </v-icon>
-        </div>
-        <div class="base_input_sub_icon mr-2 pointer" v-else-if="subIcon" @click="subIconClicked()">
-            <v-icon>
-                {{ subIcon }}
-            </v-icon>
-        </div>
+      <div
+        class="base_input_sub_icon mr-2 pointer"
+        v-if="closeable && value"
+        @click="close()"
+      >
+        <v-icon> mdi-close </v-icon>
+      </div>
+      <div
+        class="base_input_sub_icon mr-2 pointer"
+        v-else-if="subIcon"
+        @click="subIconClicked()"
+      >
+        <v-icon>
+          {{ subIcon }}
+        </v-icon>
+      </div>
     </div>
-    <div 
-        class="base_input_error_wrapper" 
-        :class="{
-            'base_input_error_wrapper_visible' : !!errorMessage 
-        }"
+    <div
+      class="base_input_error_wrapper"
+      :class="{
+        base_input_error_wrapper_visible: !!errorMessage,
+      }"
     >
-        <small>
-            {{ errorMessage }}
-        </small>
+      <small>
+        {{ errorMessage }}
+      </small>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
 export default {
+  props: {
+    closeable: {
+      type: Boolean,
+    },
 
-    props: {
-        closeable: {
-            type: Boolean
-        },
+    outlined: {
+      type: Boolean,
+    },
 
-        outlined: {
-            type: Boolean
-        },
+    textarea: {
+      type: Boolean,
+    },
 
-        textarea: {
-            type: Boolean
-        },
+    readonly: {
+      type: Boolean,
+    },
 
-        readonly: {
-            type: Boolean
-        },
+    slim: {
+      type: Boolean,
+    },
 
-        slim: {
-            type: Boolean
-        },
+    dark: {
+      type: Boolean,
+    },
 
-        dark: {
-            type: Boolean
-        },
+    title: {
+      type: String,
+    },
 
-        title: {
-            type: String,
-        },
+    type: {
+      type: String,
+      default: "text",
+    },
 
-        type: {
-            type: String,
-            default: 'text'
-        },
+    placeholder: {
+      type: String,
+    },
 
-        placeholder: {
-            type: String
-        },
+    icon: {
+      type: String,
+    },
 
-        icon: {
-            type: String
-        },
+    subIcon: {
+      type: String,
+    },
 
-        subIcon: {
-            type: String
-        },
+    autocomplete: {
+      type: String,
+      default: "",
+    },
 
-        autocomplete: {
-            type: String,
-            default: ''
-        },
+    maxlength: {
+      type: Number,
+      default: 1000,
+    },
 
-        maxlength: {
-            type: Number,
-            default: 1000
-        },
+    rules: {
+      type: Array,
+    },
+  },
 
-        rules: {
-            type: Array,
+  data() {
+    return {
+      value: "",
+      errorMessage: "",
+    };
+  },
+
+  mounted() {
+    this.focusInput();
+  },
+
+  watch: {
+    value() {
+      this.value = this.value;
+      this.$emit("onChange", this.value);
+      if (this.errorMessage) {
+        this.validate();
+      }
+    },
+  },
+
+  methods: {
+    validate() {
+      this.errorMessage = "";
+
+      if (this.rules) {
+        this.valdiateRules();
+        return !this.errorMessage;
+      }
+
+      return !this.errorMessage;
+    },
+
+    valdiateRules() {
+      this.rules.forEach((item) => {
+        if (this.errorMessage) {
+          return;
         }
-    },
-    
-    data() {
-        return {
-            value: '',
-            errorMessage: ''
+
+        if (item.value) {
+          if (item.value !== this.value.trim()) {
+            this.errorMessage = item.message;
+          }
         }
+
+        if (item.rule) {
+          if (!new RegExp(item.rule).test(this.value.trim())) {
+            this.errorMessage = item.message;
+          }
+        }
+      });
     },
 
-    mounted() {
-        this.focusInput();
+    subIconClicked() {
+      this.$emit("subIconClicked");
     },
 
-    watch: {
-        value() {
-            this.value = this.value;
-            this.$emit('onChange', this.value);
-            if(this.errorMessage) {
-                this.validate();
-            }
-        }   
+    close() {
+      this.value = "";
+      this.focusInput();
     },
 
-    methods: {
-        validate() {
-            this.errorMessage = '';
-            
-            if(this.rules) {
-                this.valdiateRules();
-                return !this.errorMessage;
-            }
+    focusInput() {
+      this.$refs.input.focus();
+    },
 
-            return !this.errorMessage;
-        },
-
-        valdiateRules() {
-            this.rules.forEach(item => {
-                if(this.errorMessage) {
-                    return;
-                }
-                
-                if(item.value) {
-                    if(item.value !== this.value.trim()) {
-                        this.errorMessage = item.message;
-                    }
-                }
-                
-                if(item.rule) {
-                    if(!new RegExp(item.rule).test(this.value.trim())) {
-                        this.errorMessage = item.message;
-                    }
-                }
-            })
-        },
-
-        subIconClicked() {
-            this.$emit('subIconClicked')
-        },
-
-        close() {
-            this.value = '';
-            this.focusInput();
-        },
-
-        focusInput() {
-            this.$refs.input.focus();
-        },
-
-        setValue(value) {
-            this.value = value;
-        },
-    }
-}
+    setValue(value) {
+      this.value = value;
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
+.base_input_wrapper {
+  .base_input_content {
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-weight: 100;
+    display: flex;
+    position: relative;
 
-    .base_input_wrapper {
-
-        .base_input_content {
-            border-radius: 8px;
-            padding: 10px 15px;
-            font-weight: 100;
-            display: flex;
-            position: relative;
-    
-            input {
-                outline: none;
-                width: 100%;
-            }
-        }
-
-        .slim_input {
-            padding: 5px 15px;
-        }
-    
-        .base_input_main_icon {
-            border-left: 1px solid #DDD;
-        }
-
-        .base_input_sub_icon {
-            position: absolute;
-            left: 10px;
-            z-index: 2;
-        }
-    
-        .base_input_outlined {
-            border: 1px solid #CCC;
-        }
-
-        .base_input_error_wrapper {
-            position: absolute;
-            opacity: 0;
-            transition: .3s opacity linear;
-
-            small {
-                color: red;
-            }
-        }
-
-        .base_input_error_wrapper_visible {
-            opacity: 1;
-        }
+    input {
+      outline: none;
+      width: 100%;
     }
+  }
 
+  .slim_input {
+    padding: 5px 15px;
+  }
 
+  .base_input_main_icon {
+    border-left: 1px solid #ddd;
+  }
+
+  .base_input_sub_icon {
+    position: absolute;
+    left: 10px;
+    z-index: 2;
+  }
+
+  .base_input_outlined {
+    border: 1px solid #ccc;
+  }
+
+  .base_input_error_wrapper {
+    position: absolute;
+    opacity: 0;
+    transition: 0.3s opacity linear;
+
+    small {
+      color: red;
+    }
+  }
+
+  .base_input_error_wrapper_visible {
+    opacity: 1;
+  }
+}
 </style>

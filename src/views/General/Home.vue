@@ -135,7 +135,7 @@ export default {
     font-style: normal;
     font-weight: 700;
     font-size: 4vw;
-    color: rgb(255, 89, 34);
+    color: rgb(230, 179, 96);
   }
 
   .headline {

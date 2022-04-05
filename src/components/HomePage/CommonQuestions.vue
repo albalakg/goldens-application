@@ -64,13 +64,7 @@ span {
   justify-content: center;
 }
 
-.template {
-  border: 12px solid blueviolet;
-}
-
 .questions-container {
-  border: 1px solid purple;
-  background-color: purple;
   width: 70vw;
   display: flex;
   justify-content: center;

@@ -62,6 +62,11 @@ const routes = [
     name: 'Support',
     component: () => import('../views/General/Support.vue')
   },
+  {
+    path: '/contact-us',
+    name: 'Contact',
+    component: () => import('../views/General/Contact.vue')
+  },
   // ***** GENERAL PAGES END *****
 
 
@@ -104,7 +109,7 @@ const routes = [
     ]
   },
   // ***** PROFILE END *****
-  
+
 
   // ***** COURSES START *****
   {

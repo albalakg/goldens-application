@@ -43,7 +43,7 @@ export default {
 
   /* white */
 
-  color: rgb(255, 89, 34);
+  color: rgb(230, 179, 96);
 }
 
 .coach-container {
@@ -60,10 +60,8 @@ export default {
 
 .coach {
   width: 100%;
-  height: 40vh;
+  height: 50vh;
   background-size: contain;
-  position: relative;
-
   background-image: url("./images/image1.png");
   display: flex;
   flex-direction: column;
