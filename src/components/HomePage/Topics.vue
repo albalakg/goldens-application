@@ -69,17 +69,18 @@ export default {
   /* font-family: "Arimo"; */
   font-style: normal;
   font-weight: 600;
-  font-size: 65px;
+  font-size: 3em;
   line-height: 90px;
 }
 
 span:nth-of-type(2) {
   position: relative;
-  bottom: 0.9em;
+  bottom: 1.9em;
   font-family: "Arimo";
   font-style: normal;
   font-weight: 700;
-  font-size: 169.749px;
+  font-size: 5em;
+  white-space: nowrap;
   line-height: 219px;
   /* or 129% */
 

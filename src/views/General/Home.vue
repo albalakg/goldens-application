@@ -18,37 +18,45 @@
           <div>
             <h1 class="heading">במקום <span>אחד</span></h1>
           </div>
-          <p>
+          <p class="p-text">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore,
             voluptatem numquam nostrum ducimus libero, distinctio vitae velit
           </p>
-          <TopCards />
+        </div>
+        <div class="top-star"><Star class="star" /></div>
+        <div>
+          <div class="partners"><Partnership /></div>
+          <div>
+            <div class="topics"><Topics /></div>
+          </div>
+          <div><Carousel /></div>
+          <div>
+            <div class="bottom-cards"><BottomCards /></div>
+          </div>
+          <div>
+            <div class="about-us"><AboutUs /></div>
+          </div>
+          <div>
+            <div class="common-questions">
+              <CommonQuestions />
+            </div>
+            <div>
+              <div class="experiences-container"><Experiences /></div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="kid-blue">
+      <!-- <div class="kid-blue">
         <KidBlue />
 
-        <Star class="star" />
+       
       </div>
-      <div>
-        <div class="partners"><Partnership /></div>
-      </div>
-      <div>
-        <div class="topics"><Topics /></div>
-      </div>
-      <div class="coaches">
-        <CoachesTitle />
-        <Coaches />
-        <!-- <div class="blue-background"></div> -->
-      </div>
-      <div class="bottom-cards"><BottomCards /></div>
-      <div class="about-us"><AboutUs /></div>
-      <div class="common-questions">
-        <CommonQuestions />
-      </div>
-      <div class="experiences-container"><Experiences /></div>
+     
+     
+  
+    
       <div class="contact" xs11 mx-auto><SupportForm /></div>
-      <footer><Footer /></footer>
+      <footer><Footer /></footer> -->
     </v-flex>
   </v-container>
 </template>
@@ -61,6 +69,7 @@ import Partnership from "../../components/HomePage/Partnership.vue";
 import Topics from "../../components/HomePage/Topics.vue";
 import CoachesTitle from "../../components/Titles/CoachesTitle.vue";
 import Coaches from "../../components/HomePage/Coaches.vue";
+import Carousel from "../../components/HomePage/Carousel.vue";
 import BottomCards from "../../components/HomePage/BottomCards.vue";
 import TopCards from "../../components/HomePage/TopCards.vue";
 import AboutUs from "../../components/HomePage/AbouUs.vue";
@@ -76,6 +85,7 @@ export default {
     Partnership,
     Topics,
     Coaches,
+    Carousel,
     CoachesTitle,
     TopCards,
     BottomCards,
@@ -112,6 +122,118 @@ export default {
 
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Arimo&display=swap");
+
+h1,
+h2 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12vw;
+  line-height: 0.4em;
+
+  /* or 86% */
+  text-align: center;
+  letter-spacing: -3px;
+
+  /* 0001 */
+  color: #1c3f64;
+}
+.main-content {
+  display: flex;
+  flex-direction: column;
+}
+span {
+  font-family: "Arimo";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12vw;
+  color: rgb(230, 179, 96);
+}
+
+.p-text {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 21px;
+
+  /* or 131% */
+  text-align: center;
+
+  /* brand */
+  color: #16588f;
+  margin-top: 3em;
+}
+
+.headline {
+  // border: 2px solid red;
+  display: flex;
+  flex-direction: column;
+  margin-left: 0%;
+}
+
+.heading {
+  margin-top: 0.4em;
+}
+
+@media (max-width: 800px) {
+  h1,
+  h2 {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12vw;
+    line-height: 0.4em;
+
+    /* or 86% */
+    text-align: center;
+    letter-spacing: -3px;
+
+    /* 0001 */
+    color: #1c3f64;
+  }
+
+  h2 {
+    position: relative;
+
+    top: -30px;
+  }
+
+  span {
+    font-family: "Arimo";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12vw;
+    color: rgb(230, 179, 96);
+  }
+
+  .p-text {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+
+    /* or 131% */
+    text-align: center;
+
+    /* brand */
+    color: #16588f;
+    margin-top: 3em;
+  }
+
+  .headline {
+    // border: 2px solid red;
+    display: flex;
+    flex-direction: column;
+    margin-left: 0%;
+  }
+
+  .heading {
+    margin-top: 0.4em;
+  }
+}
+
+.partners {
+  margin-bottom: 5em;
+}
+</style>
 
 .home_wrapper {
   margin: 0;
@@ -238,4 +360,3 @@ export default {
   margin-right: auto;
   width: 40%;
 }
-</style>

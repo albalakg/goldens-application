@@ -44,7 +44,9 @@ export default {
 </script>
 <style scoped>
 .sub-topic {
-  width: 18em;
+  display: flex;
+  flex-direction: column;
+  width: 15vw;
   height: 12em;
   /* white */
   background: #ffffff;
@@ -58,24 +60,17 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: center;
-
-  width: 100%;
 }
 
 .headline {
-  position: relative;
-  /* right: 2em; */
-  top: 2em;
-
   font-family: "Arimo";
   font-style: normal;
   font-weight: 400;
   line-height: 111px;
+  position: relative;
+  top: 1em;
   /* or 251% */
 
-  display: flex;
-  align-items: center;
-  text-align: center;
   letter-spacing: -2.46049px;
 
   /* gray */
@@ -87,7 +82,7 @@ span {
   font-family: "Arimo";
   font-style: normal;
   color: #31353d;
-  font-size: 140%;
+  font-size: 2vw;
 }
 
 .odd {
@@ -96,7 +91,7 @@ span {
 
 .even {
   color: rgb(230, 179, 96);
-  font-size: 160%;
+  font-size: 2vw;
 }
 
 p {
