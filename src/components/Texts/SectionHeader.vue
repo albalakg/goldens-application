@@ -98,7 +98,7 @@ export default {
 
         .line {
             height: 3px;
-            width: 12%;
+            width: 30px;
             margin: auto;
         }
 

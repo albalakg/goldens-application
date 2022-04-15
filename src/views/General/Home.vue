@@ -25,19 +25,38 @@
             <star-logo class="star_logo_wrapper" />
         </v-flex>
     </v-flex>
+
+    <br>
+    <br>
+
+    <v-flex>
+        
+        <section-header :title="'חברות משותפות'" :backgroundTitle="'שותפות'" :subtitle="`םודנדא דרפנומ סרולוק תילא גניסיפידא ררוטקסנוק ,טמא טיס רולוד םוספיא םרול
+רילק ץפונומ קיטסאלב ופידוא .ףודומ ףילחמע .חשגרמו ישגרמ ,ףוקליס`">
+        </section-header>
+
+        <v-flex lg6 mx-auto>
+            <partners />
+        </v-flex>
+
+    </v-flex>
 </div>
 </template>
 
 <script>
 import CourseCard from '../../components/Cards/CourseCard.vue'
+import Partners from '../../components/Cards/Partners.vue'
 import Logo from '../../components/General/Logo.vue'
 import StarLogo from '../../components/General/StarLogo.vue'
+import SectionHeader from '../../components/Texts/SectionHeader.vue'
 
 export default {
     components: {
         Logo,
         StarLogo,
         CourseCard,
+        Partners,
+        SectionHeader,
     },
 
     data() {

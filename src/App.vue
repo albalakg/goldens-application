@@ -17,6 +17,11 @@
       </transition>
     </v-main>
 
+    <div v-if="isMobile">
+      <br>
+      <br>
+    </div>
+
     <MobileMenu v-if="isMobile" />
     <Footer v-else/>
   </v-app>
