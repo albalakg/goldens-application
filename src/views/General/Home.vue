@@ -2,7 +2,7 @@
 <div class="home_wrapper">
     <v-flex d-flex flex-wrap>
         <v-flex xs12 lg6 mx-auto class="text-center" d-flex justify-end>
-            <v-flex xs12 lg9 class="text-right">
+            <v-flex xs12 lg9 class="text-center text-lg-right">
                 <!-- <Logo /> -->
 
                 <h1>
@@ -13,20 +13,16 @@
                     במקום <span class="sub_text_color">אחד</span>
                 </h2>
 
-                <p>
-                    משהו משהו סתם טקסט שאני מכניס פה כדי למלא תוכן. <br> איך אין פה שום דבר רלוונטי. אם הגעת עד לכאן אז שאפו.
-                </p>
-
-                <br>
-
-                <div class="home_course_card">
-                    <course-card dark :course="courseCategories">
-                    </course-card>
-                </div>
+                <v-flex xs12 lg7 class="mx-5 mx-lg-0">
+                    <div class="home_course_card">
+                        <course-card dark :course="courseCategories">
+                        </course-card>
+                    </div>
+                </v-flex>
             </v-flex>
         </v-flex>
-        <v-flex xs12 lg6 class="text-left">
-            <star-logo class="star_logo_wrapper" :opacity=".2" />
+        <v-flex xs12 lg6 class="text-center text-lg-left mt-8 mt-lg-0">
+            <star-logo class="star_logo_wrapper" />
         </v-flex>
     </v-flex>
 </div>
@@ -42,6 +38,12 @@ export default {
         Logo,
         StarLogo,
         CourseCard,
+    },
+
+    data() {
+        return {
+            
+        }
     },
     
     created() {
@@ -74,7 +76,7 @@ export default {
         padding-top: 5%;
     
         h1, h2 {
-            font-size: 4em;
+            font-size: 4.5em;
         }
     
         h2 {
@@ -90,7 +92,6 @@ export default {
     
         .home_course_card {
             height: 150px;
-            width: 60%;
         }
 
         .star_logo_wrapper {
