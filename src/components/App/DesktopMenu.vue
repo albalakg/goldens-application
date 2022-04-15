@@ -6,7 +6,6 @@
             <div class="logo_wrapper">
                 <Logo :dark="!isLightMode"/>
             </div>
-            <!-- <Logo /> -->
             <v-flex d-flex align-center justify-space-between class="mr-5">
                 <template v-if="isLogged">
                     <v-flex d-flex align-center>

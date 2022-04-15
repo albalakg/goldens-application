@@ -1,6 +1,7 @@
 <template>
   <v-app id="app">
     <DesktopMenu v-if="showMenu"/>
+    <MobileTopMenu v-if="isMobile" />
     <MessageCard />
 
     <v-main>
@@ -23,6 +24,7 @@
 
 <script>
 import DesktopMenu from './components/App/DesktopMenu.vue'
+import MobileTopMenu from './components/App/MobileTopMenu.vue'
 import Footer from './components/App/Footer.vue'
 import AppLoader from './components/App/AppLoader.vue'
 import MobileMenu from './components/App/MobileMenu.vue'
@@ -31,6 +33,7 @@ import MessageCard from './components/Cards/MessageCard';
 export default {
   components: {
     DesktopMenu,
+    MobileTopMenu,
     Footer,
     AppLoader,
     MobileMenu,

@@ -2,6 +2,10 @@
   background-color: #16588F;
 }
 
+.sub_bg_color {
+  background-color: #E6B260;
+}
+
 .dark_bg_color {
   background-color: rgb(49, 53, 61);
 }
@@ -20,6 +24,10 @@
   color: #16588F !important;
 }
 
+.sub_text_color {
+  color: #E6B260 !important;
+}
+
 .dark_text_color {
   color: rgb(49, 53, 61);
 }
@@ -32,6 +40,10 @@
 
 .main_button_shadow {
   box-shadow: 0 0 15px 4px #16588F88;
+}
+
+.sub_button_shadow {
+  box-shadow: 0 0 15px 4px #E6B26088;
 }
 
 .dark_shadow {
