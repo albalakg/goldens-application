@@ -1,11 +1,13 @@
 <template>
 <div class="desktop_menu_wrapper">
 
-    <div class="desktop_menu_content">
+    <div class="desktop_menu_content"  :class="isLightMode ? 'desktop_menu_content_light' : 'desktop_menu_content_dark'">
         <v-flex d-flex align-center class="h100" xs9 mx-auto>
-            <Logo dark/>
+            <div class="logo_wrapper">
+                <Logo :dark="!isLightMode"/>
+            </div>
             <!-- <Logo /> -->
-            <v-flex d-flex align-center justify-space-between>
+            <v-flex d-flex align-center justify-space-between class="mr-5">
                 <template v-if="isLogged">
                     <v-flex d-flex align-center>
                         <search-input
@@ -20,9 +22,7 @@
                                 <div>
                                     <v-icon color="white">mdi-heart-outline</v-icon>
                                     <br>
-                                    <span>
-                                        הרשימה שלי
-                                    </span>
+                                    <span>הרשימה שלי</span>
                                 </div>
                             </v-flex>
                         </router-link>
@@ -30,9 +30,9 @@
                 </template>
                 <template v-else>
                     <v-flex d-flex>
-                        <div v-for="(link, index) in loggedLinks" :key="index">
-                            <router-link class="simple_link" :to="`/${link.url}`">
-                                <span>
+                        <div v-for="(link, index) in loggedLinks" :key="index" class="px-3">
+                            <router-link class="simple_link main_text_color" :to="`/${link.url}`">
+                                <span class="main_text_color">
                                     {{link.text}}
                                 </span>
                             </router-link>
@@ -42,12 +42,12 @@
                 <div class="account_wrapper">
                     <template v-if="isLogged">
                         <router-link class="simple_link" to="/user">
-                            <v-icon color="white">mdi-account-circle</v-icon>
+                            <v-icon :class="isLightMode ? 'main_text_color' : 'white_text_color'">mdi-account-circle</v-icon>
                         </router-link>
                     </template>
                     <template v-else>
                         <router-link class="simple_link" to="/signin">
-                            <v-icon color="white">mdi-account-circle-outline</v-icon>
+                            <v-icon :class="isLightMode ? 'main_text_color' : 'white_text_color'">mdi-account-circle-outline</v-icon>
                         </router-link>
                     </template>
                 </div>
@@ -56,7 +56,7 @@
         </v-flex>
     </div>
 
-    <div class="desktop_menu_filler"></div>
+    <!-- <div class="desktop_menu_filler"></div> -->
 
 </div>
 </template>
@@ -64,6 +64,9 @@
 <script>
 import SearchInput from '../Form/Inputs/SearchInput.vue';
 import Logo from './../General/Logo.vue'
+
+const LIGHT_MODE    = 'light';
+const DARK_MODE     = 'dark';
 
 export default {
     components: {
@@ -90,7 +93,9 @@ export default {
                     text: 'תמיכה',
                     url: 'support'
                 }
-            ]
+            ],
+            mode: LIGHT_MODE,
+            whiteModePagesList: ['/']
         }
     },
 
@@ -98,6 +103,16 @@ export default {
         isLogged() {
             return this.$store.getters['AuthState/isLogged'];
         },
+
+        isLightMode() {
+            return this.mode === LIGHT_MODE;
+        }
+    },
+
+    watch: {
+        $route(to, from) {
+            this.setMode();
+        }
     },
 
     methods: {
@@ -109,6 +124,11 @@ export default {
             if(action) {
                 this[action]();
             }
+        },
+
+        setMode() {
+            const route = this.$route.fullPath;
+            this.mode = this.whiteModePagesList.includes(route) ? LIGHT_MODE : DARK_MODE;
         }
     }
 }
@@ -117,18 +137,26 @@ export default {
 <style scoped lang="scss">
 
     .desktop_menu_wrapper {
+        position: fixed;
+        top: 0;
+        right: 0;
         width: 100vw;
         height: 80px;
         z-index: 10;
     }
 
     .desktop_menu_content {
-        position: fixed;
-        top: 0;
-        right: 0;
+        height: 100%;
         width: 100%;
-        height: 80px;
-        background-color: #31353d;
+        transition: .5s background-color;
+    }
+
+    .desktop_menu_content_light {
+        background-color: #fff;
+        color: #31353d;
+    }
+
+    .desktop_menu_content_dark {
         color: #fff;
     }
 
@@ -145,4 +173,7 @@ export default {
         padding: 20px 25px;
     }
 
+    .logo_wrapper {
+        width: 15%;
+    }
 </style>

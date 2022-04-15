@@ -1,10 +1,7 @@
 <template>
-  <router-link :class="{
-    'dark_mode': dark
-  }" to="/">
-    <h1>
-      GOLDENS
-    </h1>
+  <router-link to="/">
+      <img v-if="dark" src="./../../../public/assets/images/general/dark_logo.svg" alt="">
+      <img v-else src="./../../../public/assets/images/general/light_logo.svg" alt="">
   </router-link>
 </template>
 
@@ -15,24 +12,16 @@ export default {
     dark: {
       type: Boolean
     }
-  }
+  },
 
 }
 </script>
 
 <style scoped lang="scss">
 
-  a {
-    text-decoration: none;
-    margin-left: 20px;
-  }
-
-  .dark_mode {
-    letter-spacing: 1px;
-  
-    h1 {
-      color: #fff;
-    }
+  img {
+    height: 100%;
+    width: 100%;
   }
 
 </style>

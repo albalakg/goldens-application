@@ -1,5 +1,5 @@
 .main_bg_color {
-  background-color: rgb(255, 89, 34);
+  background-color: #16588F;
 }
 
 .dark_bg_color {
@@ -17,7 +17,7 @@
 
 
 .main_text_color {
-  color: rgb(255, 89, 34);
+  color: #16588F !important;
 }
 
 .dark_text_color {
@@ -25,13 +25,13 @@
 }
 
 .white_text_color {
-  color: rgb(255, 255, 255);
+  color: #fff !important;
 }
 
 
 
 .main_button_shadow {
-  box-shadow: 0 0 15px 4px rgb(255 89 34 / 0.3);
+  box-shadow: 0 0 15px 4px #16588F88;
 }
 
 .dark_shadow {

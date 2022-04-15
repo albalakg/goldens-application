@@ -1,7 +1,7 @@
 <template>
 <v-container fluid class="home_wrapper">
     <v-flex xs11 mx-auto class="text-center">
-        <Logo />
+        <!-- <Logo /> -->
 
         <h1>
             כל האימונים
