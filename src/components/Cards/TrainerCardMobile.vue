@@ -3,16 +3,24 @@
   <div class="trainer_card_wrapper" :class="{'rounded': rounded}">
     <img :src="trainer.image" alt="trainer image" loading="lazy" :class="{'rounded': rounded}">
     <div class="trainer_card_darkner" :class="{'rounded': rounded}"></div>
-    <h3>
-      {{
-        trainer.name
-      }}
-    </h3>
-    <p class="sub_text_color">
-      {{
-        trainer.title
-      }}
-    </p>
+    <div class="trainer_details" :class="{'rounded': rounded}">
+      <h3>
+        {{
+          trainer.name
+        }}
+      </h3>
+      <v-flex class="trainer_description sub_border_right pr-2">
+        <p class="white_text_color">
+          {{
+            trainer.title
+          }}
+        </p>
+        <small class="white_text_color">
+                      םודנדא דרפנומ סרולוק תילא גניסיפידא ררוטקסנוק ,טמא טיס רולוד םוספיא םרול
+  רילק ץפונומ קיטסאלב ופידוא .ףודומ ףילחמע .חשגרמו ישגרמ ,ףוקליס
+        </small>
+      </v-flex>
+    </div>
   </div>
 </template>
 
@@ -26,7 +34,8 @@ export default {
     },
 
     rounded: {
-      type: Boolean
+      type: Boolean,
+      default: true
     }
   },
 
@@ -45,12 +54,27 @@ export default {
     width: 100%;
     height: 100%;
     position: relative;
+    display: flex;
+    align-items: flex-end;
 
     .trainer_card_darkner {
       width: 100%;
       height: 100%;
       position: absolute;
       background: linear-gradient(transparent, #00000088);
+    }
+
+    .trainer_details {
+      text-align: right;
+      position: relative;
+      height: 50%;
+      width: 100%;
+      padding: 20px;
+      background: linear-gradient(#0000 10%, #000c);
+
+      small {
+        opacity: .7;
+      }
     }
 
     img {
@@ -62,10 +86,6 @@ export default {
 
     h3, p {
       z-index: 2;
-      position: absolute;
-      left: 0;
-      right: 0;
-      text-align: center;
     }
 
     h3 {

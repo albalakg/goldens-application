@@ -5,6 +5,7 @@
         :dark="dark" 
         :icon="icon" 
         :left="left" 
+        @submit="submit()"
     />
 </template>
 

@@ -41,7 +41,6 @@ export default {
   .lesson_card_wrapper {
     height: 100%;
     width: 100%;
-    min-width: 200px;
     position: relative;
     border-radius: 8px;
 
