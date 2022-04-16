@@ -1,16 +1,18 @@
 
 <template>
-  <div class="lesson_card_wrapper rounded">
-    <img class="rounded" :src="lesson.image" alt="lesson image" loading="lazy">
-    <div class="lesson_card_darkner"></div>
-    <div class="lesson_card_details">
-      <p>{{ lesson.name }}</p>
-      <divider />
-      <small>
-        {{lesson.description}}
-      </small>
+  <v-flex xs10 lg12 mx-auto class="h100 px-3">
+    <div class="lesson_card_wrapper rounded pointer">
+      <img :src="lesson.image" alt="lesson image" loading="lazy">
+      <div class="lesson_card_darkner"></div>
+      <div class="lesson_card_details text-center">
+        <h2 class="white_text_color">{{ lesson.name }}</h2>
+        <div class="line main_bg_color"></div>
+        <small class="white_text_color">
+          {{lesson.description}}
+        </small>
+      </div>
     </div>
-  </div>
+  </v-flex>
 </template>
 
 <script>
@@ -37,9 +39,11 @@ export default {
 <style scoped lang="scss">
 
   .lesson_card_wrapper {
-    width: 100%;
     height: 100%;
+    width: 100%;
+    min-width: 200px;
     position: relative;
+    border-radius: 8px;
 
     img {
       position: absolute;
@@ -47,13 +51,28 @@ export default {
       height: 100%;
       left: 0;
       top: 0;
+      border-radius: 8px;
     }
 
     .lesson_card_details {
       z-index: 3;
+      width: 100%;
       position: absolute;
       bottom: 5%;
-      text-align: center;
+
+      h2 {
+        font-weight: 100;
+      }
+    
+      .line {
+          height: 3px;
+          width: 10%;
+          margin: auto;
+      }
+
+      small {
+        font-size: .7em;
+      }
     }
 
     .lesson_card_darkner {
@@ -61,7 +80,8 @@ export default {
       position: absolute;
       height: 100%;
       width: 100%;
-      background: linear-gradient(#0000, #0008);
+      background: linear-gradient(#0000 50%, #000a);
+      border-radius: 8px;
     }
   }
 

@@ -1,15 +1,22 @@
 <template>
 <div 
-    class="icon_chip_wrapper main_bg_color"
+    class="icon_chip_wrapper"
     :class="{
         'icon_chip_shadow': shadow && !dark,
         'icon_chip_dark_shadow': shadow && dark,
         'icon_chip_dark dark_bg_color': dark,
+        'white_bg_color': !dark,
         'pointer': pointer,
     }"
     @click="submit()"
 >
-    <v-icon dark>
+    <v-icon 
+        :class="{
+            'icon_transform_direction': left
+        }" 
+        :dark="dark" 
+        :size="30"
+    >
         {{icon}}
     </v-icon>
 </div>
@@ -25,6 +32,11 @@ export default {
 
         shadow: {
             type: Boolean
+        },
+
+        left: {
+            type: Boolean,
+            default: true
         },
 
         pointer: {
@@ -49,14 +61,18 @@ export default {
 
     .icon_chip_wrapper {
         border-radius: 50%;
-        padding: 10px;
+        padding: 3px;
     }
 
     .icon_chip_shadow {
-        box-shadow: 0 0 15px 4px rgb(255 89 34 / 0.3);
+        box-shadow: 0 0 15px 4px rgb(0, 0, 0, .3);
     }
 
     .icon_chip_dark_shadow {
         box-shadow: 0 0 15px 4px rgb(49, 53, 61, 0.3);
+    }
+
+    .icon_transform_direction {
+        transform: rotate(180deg);
     }
 </style>

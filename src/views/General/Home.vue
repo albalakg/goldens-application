@@ -50,9 +50,13 @@
 רילק ץפונומ קיטסאלב ופידוא .ףודומ ףילחמע .חשגרמו ישגרמ ,ףוקליס`">
         </section-header>
 
-        <v-flex lg6 mx-auto>
-            <lesson-card v-for="(lesson, index) in lessons" :key="index" />
-        </v-flex>
+        <div class="lessons_wrapper_carousel">
+            <!-- <arrow-chip class="lesson_wrapper_right_icon" /> -->
+            <v-flex lg6 mx-auto class="lessons_wrapper px-5 mr-auto">
+                <lesson-card v-for="(lesson, index) in lessons" :lesson="lesson" :key="index" />
+            </v-flex>
+            <!-- <arrow-chip :left="false" class="lesson_wrapper_left_icon" /> -->
+        </div>
 
     </v-flex>
 </div>
@@ -62,6 +66,7 @@
 import CourseCard from '../../components/Cards/CourseCard.vue'
 import LessonCard from '../../components/Cards/LessonCard.vue'
 import Partners from '../../components/Cards/Partners.vue'
+import ArrowChip from '../../components/Chips/arrowChip.vue'
 import Logo from '../../components/General/Logo.vue'
 import StarLogo from '../../components/General/StarLogo.vue'
 import SectionHeader from '../../components/Texts/SectionHeader.vue'
@@ -74,6 +79,7 @@ export default {
         Partners,
         SectionHeader,
         LessonCard,
+        ArrowChip,
     },
 
     data() {
@@ -100,23 +106,23 @@ export default {
             return [
                 {
                     name: 'שיעור ראשון',
-                    name: 'שיעור ראשון תיאור מעניין',
-                    image: require()
+                    description: 'שיעור ראשון תיאור מעניין',
+                    image: require('../../../public/assets/images/lessons/lesson1.png')
                 },
                 {
-                    name: 'שיעור ראשון',
-                    name: 'שיעור ראשון תיאור מעניין',
-                    image: require()
+                    name: 'שיעור שני',
+                    description: 'שיעור שני תיאור מעניין',
+                    image: require('../../../public/assets/images/lessons/lesson1.png')
                 },
                 {
-                    name: 'שיעור ראשון',
-                    name: 'שיעור ראשון תיאור מעניין',
-                    image: require()
+                    name: 'שיעור שלישי',
+                    description: 'שיעור שלישי תיאור מעניין',
+                    image: require('../../../public/assets/images/lessons/lesson1.png')
                 },
                 {
-                    name: 'שיעור ראשון',
-                    name: 'שיעור ראשון תיאור מעניין',
-                    image: require()
+                    name: 'שיעור רביעי',
+                    description: 'שיעור רביעי תיאור מעניין',
+                    image: require('../../../public/assets/images/lessons/lesson1.png')
                 },
             ];
         }
@@ -161,6 +167,38 @@ export default {
             width: 90%;
             top: -10%;
         }
+
+        .lessons_wrapper_carousel {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+
+            .lessons_wrapper {
+                height: 20vh;
+                min-height: 325px;
+                max-height: 400px;
+                display: flex;
+                overflow-x: auto;
+    
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+            }
+
+            .lesson_wrapper_right_icon {
+                position: absolute;
+                right: 15px;
+                z-index: 5;                
+            }
+
+            .lesson_wrapper_left_icon {
+                position: absolute;
+                left: 15px;
+                z-index: 5;                
+            }
+        }
+
     }
 
 </style>
