@@ -40,11 +40,27 @@
         </v-flex>
 
     </v-flex>
+
+    <br>
+    <br>
+
+    <v-flex>
+        
+        <section-header :title="'שיעורי לימוד'" :backgroundTitle="'שיעורים'" :subtitle="`םודנדא דרפנומ סרולוק תילא גניסיפידא ררוטקסנוק ,טמא טיס רולוד םוספיא םרול
+רילק ץפונומ קיטסאלב ופידוא .ףודומ ףילחמע .חשגרמו ישגרמ ,ףוקליס`">
+        </section-header>
+
+        <v-flex lg6 mx-auto>
+            <lesson-card v-for="(lesson, index) in lessons" :key="index" />
+        </v-flex>
+
+    </v-flex>
 </div>
 </template>
 
 <script>
 import CourseCard from '../../components/Cards/CourseCard.vue'
+import LessonCard from '../../components/Cards/LessonCard.vue'
 import Partners from '../../components/Cards/Partners.vue'
 import Logo from '../../components/General/Logo.vue'
 import StarLogo from '../../components/General/StarLogo.vue'
@@ -57,6 +73,7 @@ export default {
         CourseCard,
         Partners,
         SectionHeader,
+        LessonCard,
     },
 
     data() {
@@ -77,6 +94,31 @@ export default {
             }
 
             return {};
+        },
+
+        lessons() {
+            return [
+                {
+                    name: 'שיעור ראשון',
+                    name: 'שיעור ראשון תיאור מעניין',
+                    image: require()
+                },
+                {
+                    name: 'שיעור ראשון',
+                    name: 'שיעור ראשון תיאור מעניין',
+                    image: require()
+                },
+                {
+                    name: 'שיעור ראשון',
+                    name: 'שיעור ראשון תיאור מעניין',
+                    image: require()
+                },
+                {
+                    name: 'שיעור ראשון',
+                    name: 'שיעור ראשון תיאור מעניין',
+                    image: require()
+                },
+            ];
         }
     },
 
