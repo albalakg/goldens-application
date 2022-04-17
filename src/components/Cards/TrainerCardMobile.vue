@@ -9,7 +9,7 @@
           trainer.name
         }}
       </h3>
-      <v-flex class="trainer_description sub_border_right pr-2">
+      <v-flex class="trainer_description sub_border_right pr-2 mt-5">
         <p class="white_text_color">
           {{
             trainer.title

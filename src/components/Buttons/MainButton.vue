@@ -3,7 +3,7 @@
     class="main_button_wrapper main_bg_color"
     @click="submit()"
     :class="{
-        'main_button_shadow':               shadow && !dark,
+        'main_shadow':               shadow && !dark,
         'main_button_dark_shadow':          shadow && dark,
         'main_button_dark dark_bg_color':   dark,
         'main_button_slim':                 slim,
@@ -90,10 +90,6 @@ export default {
         &:hover {
             transform: scale(1.05);
         }
-    }
-
-    .main_button_shadow {
-        box-shadow: 0 0 15px 4px rgb(255 89 34 / 0.3);
     }
 
     .main_button_dark_shadow {

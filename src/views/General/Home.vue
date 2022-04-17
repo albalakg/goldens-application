@@ -55,11 +55,9 @@
         </section-header>
 
         <div class="lessons_wrapper_carousel">
-            <!-- <arrow-chip class="lesson_wrapper_right_icon" /> -->
-            <v-flex lg6 mx-auto class="lessons_wrapper px-5 mr-auto">
+            <v-flex md7 xl6 mx-auto class="lessons_wrapper px-5 mr-auto">
                 <lesson-card v-for="(lesson, index) in lessons" :lesson="lesson" :key="index" />
             </v-flex>
-            <!-- <arrow-chip :left="false" class="lesson_wrapper_left_icon" /> -->
         </div>
 
     </section>
@@ -73,8 +71,8 @@
 רילק ץפונומ קיטסאלב ופידוא .ףודומ ףילחמע .חשגרמו ישגרמ ,ףוקליס`">
         </section-header>
 
-        <v-flex lg10 mx-auto>
-            <v-flex class="trainers_desktop_wrapper main_dark_bg_color mt-10" d-none d-md-block>
+        <v-flex lg10 xl9 mx-auto>
+            <v-flex class="trainers_desktop_wrapper mt-10" d-none d-md-block>
                 <v-flex class="trainers_wrapper mr-auto">
                     <trainer-card v-for="(trainer, index) in trainers" :trainer="trainer" :key="index" />
                 </v-flex>
@@ -95,19 +93,90 @@
 
     </section>
 
-    <br>
-    <br>
+    <div class="spacer"></div>
+
+    <!-- About -->
+    <section>
+        
+        <v-flex class="about_wrapper" d-flex justify-space-between flex-wrap>
+
+            <v-flex md1></v-flex>
+            
+            <v-flex xs12 md6 class="about_right_side_wrapper mb-10 mb-md-0 px-5 px-md-0">
+                <section-header right :title="'קצת עלינו'" :backgroundTitle="'עלינו'" />
+                <br>
+                <br>
+                <v-flex md6>
+                    <small>
+                            םודנדא דרפנומ סרולוק תילא גניסיפידא ררוטקסנוק ,טמא טיס רולוד םוספיא םרול
+        רילק ץפונומ קיטסאלב ופידוא .ףודומ ףילחמע .חשגרמו ישגרמ ,ףוקליס    
+                        <br>
+                        םודנדא דרפנומ סרולוק תיאלב ופידוא .ףודומ ףילחמע .חשגרמו ישגרמ ,ףוקליס   
+                        <br>
+                        םודנדא דרפנומ סרולוק תיאלב ופידוא .ףודומ ףילחמע .חשגרמו ישגרמ ,ףוקליס   
+                    </small>    
+                </v-flex>    
+
+                <v-flex class="pl-8 mt-10 about_button_wrapper">
+                    <router-link to="/about">
+                        <main-button
+                            shadow
+                            :styleConfig="{
+                                padding: '2px 0',
+                                borderRadius: '30',
+                            }"
+                        >
+                            <template slot="content">
+                                <strong class="white--text">
+                                    קרא עוד
+                                </strong>
+                                <v-icon color="white" class="mr-1">mdi-chevron-left</v-icon>
+                            </template>
+                        </main-button>
+                    </router-link>
+                </v-flex>
+
+            </v-flex>
+
+            <v-flex xs12 md4 class="about_left_side_wrapper mt-10 mt-md-0">
+                <star-logo :gstar="false" class="about_star_decorator" />
+                <img class="mt-10 mt-md-0" :src="aboutPlayerSrc" alt="">
+            </v-flex>
+            
+        </v-flex>
+
+        <v-flex class="about_arrow_decorator" d-none d-md-block>
+            <arrow-decorator />
+        </v-flex>
+
+    </section>
+
+    <!-- Questiosn -->
+    <section>
+        <v-flex class="questions_wrapper">
+            
+            <arrows-decorator class="arrows" />
+            <v-flex md8 lg6 mx-auto class="questions_content">
+                
+            </v-flex>
+        </v-flex>
+    </section>
+
+    <div class="spacer"></div>
 
 </div>
 </template>
 
 <script>
+import MainButton from '../../components/Buttons/MainButton.vue'
 import CourseCard from '../../components/Cards/CourseCard.vue'
 import LessonCard from '../../components/Cards/LessonCard.vue'
 import Partners from '../../components/Cards/Partners.vue'
 import TrainerCard from '../../components/Cards/TrainerCard.vue'
 import TrainerCardMobile from '../../components/Cards/TrainerCardMobile.vue'
 import ArrowChip from '../../components/Chips/arrowChip.vue'
+import ArrowDecorator from '../../components/Decorators/ArrowDecorator.vue'
+import ArrowsDecorator from '../../components/Decorators/ArrowsDecorator.vue'
 import Logo from '../../components/General/Logo.vue'
 import StarLogo from '../../components/General/StarLogo.vue'
 import SectionHeader from '../../components/Texts/SectionHeader.vue'
@@ -123,11 +192,15 @@ export default {
         ArrowChip,
         TrainerCard,
         TrainerCardMobile,
+        MainButton,
+        ArrowDecorator,
+        ArrowsDecorator,
     },
 
     data() {
         return {
-            focusedTrainerIndex: 0 
+            focusedTrainerIndex: 0,
+            aboutPlayerSrc: require('../../../public/assets/images/general/about_player.png')
         }
     },
     
@@ -315,7 +388,7 @@ export default {
 
             .trainers_wrapper {
                 scroll-behavior: smooth;
-                height: 90%;
+                height: 100%;
                 width: 100%;
                 display: flex;
                 overflow-x: auto;
@@ -372,6 +445,74 @@ export default {
             width: 100%;
         }
 
+        .about_wrapper {
+            height: 80vh;
+            max-height: 800px;
+            position: relative;
+            
+            small {
+                font-weight: bold;
+            }
+
+            img {
+                position: absolute;
+                top: -10vh;
+                left: 3vh;
+                width: 35%;
+                min-width: 300px;
+            }
+
+            .about_button_wrapper {
+                width: 160px;
+            }
+
+            .about_left_side_wrapper {
+                position: relative;
+            }
+            
+            .about_right_side_wrapper {
+                z-index: 2;
+            }
+        }
+
     }
+
+    div.about_arrow_decorator {
+        width: 50vw;
+        z-index: 2;
+        position: absolute;
+    }
+
+    ::v-deep .about_arrow_decorator img {
+        position: relative;
+        top: -30vh;
+        right: -13vw;
+    }
+
+    .about_wrapper ::v-deep .about_star_decorator img {
+        position: relative;
+        top: -20vh;
+        left: -3vw;
+        z-index: 2;
+    }
+
+    .questions_wrapper {
+        background-color: #102A46;
+        height: 70vh;
+        max-height: 800px;
+        min-height: 400px;
+        width: 100%;
+        position: relative;
+
+        .arrows {
+            position: relative;
+            left: 30%;
+        }
+    }
+
+    .questions_content {
+
+    }
+
 
 </style>
