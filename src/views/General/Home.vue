@@ -151,6 +151,11 @@
 
     </section>
 
+    <template v-if="$vuetify.breakpoint.smAndDown">
+        <div class="spacer"></div>
+        <div class="spacer"></div>
+    </template>
+
     <!-- Questiosn -->
     <section>
         <v-flex class="questions_wrapper">
@@ -480,6 +485,8 @@ export default {
 
             .about_button_wrapper {
                 width: 160px;
+                z-index: 3;
+                position: relative;
             }
 
             .about_left_side_wrapper {
@@ -501,7 +508,7 @@ export default {
 
     ::v-deep .about_arrow_decorator img {
         position: relative;
-        top: -30vh;
+        top: -25vh;
         right: -13vw;
     }
 
