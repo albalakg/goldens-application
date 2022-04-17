@@ -156,8 +156,13 @@
         <v-flex class="questions_wrapper">
             
             <arrows-decorator class="arrows" />
-            <v-flex md8 lg6 mx-auto class="questions_content">
-                
+            <v-flex md8 lg6 mx-auto class="questions_content text-center h100" d-flex align-center justify-center>
+                <h3>
+                   <span class="white_text_color">שאלות</span>
+                   &nbsp;
+                   <span class="sub_text_color">נפוצות</span> 
+                </h3>
+                <!-- TODO -->
             </v-flex>
         </v-flex>
     </section>
@@ -324,6 +329,10 @@ export default {
             position: relative;
             top: -30px;
         }
+
+        h3 {
+            font-size: 2em;
+        }
     
         p {
             font-size: 1.2em;
@@ -384,23 +393,29 @@ export default {
             height: 35vh;
             min-height: 400px;
             max-height: 450px;
-            box-shadow: 0 10px 15px 2px #0005;
 
             .trainers_wrapper {
                 scroll-behavior: smooth;
                 height: 100%;
                 width: 100%;
                 display: flex;
-                overflow-x: auto;
-                
+                box-shadow: 0 10px 15px 2px #0008;
+
                 &::-webkit-scrollbar {
                     display: none;
                 }
                 
                 & > div {
+                    transition: .3s transform;
                     min-width: 250px;
                 }
+
+                & > div:hover {
+                    transform: scale(1.2);
+                    z-index: 2;
+                }
             }
+
         }
 
         .trainers_mobile_wrapper {
@@ -446,7 +461,7 @@ export default {
         }
 
         .about_wrapper {
-            height: 80vh;
+            height: 60vh;
             max-height: 800px;
             position: relative;
             
@@ -457,9 +472,10 @@ export default {
             img {
                 position: absolute;
                 top: -10vh;
-                left: 3vh;
+                left: 20%;
                 width: 35%;
                 min-width: 300px;
+                z-index: 2;
             }
 
             .about_button_wrapper {
@@ -492,8 +508,9 @@ export default {
     .about_wrapper ::v-deep .about_star_decorator img {
         position: relative;
         top: -20vh;
-        left: -3vw;
+        left: -30%;
         z-index: 2;
+        width: 70%;
     }
 
     .questions_wrapper {
@@ -505,7 +522,7 @@ export default {
         position: relative;
 
         .arrows {
-            position: relative;
+            position: absolute;
             left: 30%;
         }
     }
