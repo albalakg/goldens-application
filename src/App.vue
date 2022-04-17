@@ -137,4 +137,8 @@ export default {
   #app {
     overflow-x: hidden;
   }
+
+  .app_content {
+    padding-top: 5%;
+  }
 </style>

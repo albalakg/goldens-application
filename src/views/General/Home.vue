@@ -321,8 +321,6 @@ export default {
 
     .home_wrapper {
 
-        padding-top: 5%;
-    
         h1, h2 {
             font-size: 4.5em;
         }

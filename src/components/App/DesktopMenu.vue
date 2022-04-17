@@ -106,7 +106,7 @@ export default {
                 }
             ],
             mode: LIGHT_MODE,
-            whiteModePagesList: ['/']
+            darkModePagesList: []
         }
     },
 
@@ -139,7 +139,7 @@ export default {
 
         setMode() {
             const route = this.$route.fullPath;
-            this.mode = this.whiteModePagesList.includes(route) ? LIGHT_MODE : DARK_MODE;
+            this.mode = this.darkModePagesList.includes(route) ? DARK_MODE : LIGHT_MODE;
         }
     }
 }
