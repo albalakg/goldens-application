@@ -130,8 +130,10 @@ export default {
     data() {
         return {
             form: {
-                email: '',
-                password: '',
+                email:      '',
+                password:   '',
+                first_name: '',
+                last_name:  '',
             },
             loading: false
         }
@@ -146,14 +148,10 @@ export default {
 
             this.preSendActions();
 
-            axios.post('auth/login', this.form)
+            axios.post('auth/signup', this.form)
                 .then(res => {
-                    
-                    this.$store.dispatch('MessageState/addMessage', {message: 'התחברת בהצלחה, ברוך הבא!'});
-                    Auth.login(res.data.data);
-                    this.loggedSuccessfully(res.data.data);
-                    this.$store.dispatch('AuthState/setLogStatus', true);
-
+                    this.$router.push('/signin');
+                    this.$store.dispatch('MessageState/addMessage', {message: 'נרשמת בהצלחה למערכת, ברוך הבא!'})
                 }).catch(err => {
                     this.$store.dispatch('MessageState/addErrorMessage', { message: 'האימייל או הסיסמא אינם תקינים' })
                 }).finally(() => {
@@ -166,22 +164,13 @@ export default {
             this.loading    = true;
         },
 
-        loggedSuccessfully(data) {
-            try {
-                this.$store.dispatch('UserState/setCourses', data.courses);
-                this.$store.dispatch('UserState/goToLastActiveCourse', this.$route.path);
-            } catch(err) {
-                error(err);
-            }
-
-            this.$router.push('/')
-        },
-
         validate() {
             const isEmailValid      = this.$refs.email.validate();
             const isPasswordValid   = this.$refs.password.validate();
+            const isFirstNameValid   = this.$refs.firstName.validate();
+            const isLastNameValid   = this.$refs.lastName.validate();
 
-            return isEmailValid && isPasswordValid;
+            return isEmailValid && isPasswordValid && isFirstNameValid && isLastNameValid;
         },
 
         setEmail(email) {
@@ -190,6 +179,14 @@ export default {
         
         setPassword(password) {
             this.form.password = password;
+        },
+
+        setFirstName(firstName) {
+            this.form.first_name = firstName;
+        },
+
+        setLastName(lastName) {
+            this.form.last_name = lastName;
         }
     }
 }

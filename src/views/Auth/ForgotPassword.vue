@@ -24,7 +24,7 @@
                             
                             <Divider :space="8" />
 
-                            <v-flex d-md-flex align-center justify-space-between class="text-center text-md-right">
+                            <v-flex d-md-flex align-center justify-space-between class="text-center text-md-right pt-10 pt-md-0">
                                 <v-flex md5 mb-5 mb-md-0 v-if="$vuetify.breakpoint.mdAndUp">
                                     <router-link to="/signin">
                                         <span class="link">
@@ -96,8 +96,8 @@ export default {
         return {
             form: {
                 email: '',
-                password: '',
             },
+            error: '',
             loading: false
         }
     },
@@ -111,16 +111,12 @@ export default {
 
             this.preSendActions();
 
-            axios.post('auth/login', this.form)
+            axios.post('auth/forgot-password', this.form)
                 .then(res => {
-                    
-                    this.$store.dispatch('MessageState/addMessage', {message: 'התחברת בהצלחה, ברוך הבא!'});
-                    Auth.login(res.data.data);
-                    this.loggedSuccessfully(res.data.data);
-                    this.$store.dispatch('AuthState/setLogStatus', true);
-
+                    this.$store.dispatch('MessageState/addMessage', {message: 'נשלחה בקשת איפוס סיסמא בהצלחה'})
+                    this.$router.push('/signin');
                 }).catch(err => {
-                    this.$store.dispatch('MessageState/addErrorMessage', { message: 'האימייל או הסיסמא אינם תקינים' })
+                    this.error = err?.response?.data?.message;
                 }).finally(() => {
                     this.loading = false;
                 })
@@ -129,33 +125,18 @@ export default {
 
         preSendActions() {
             this.loading    = true;
-        },
-
-        loggedSuccessfully(data) {
-            try {
-                this.$store.dispatch('UserState/setCourses', data.courses);
-                this.$store.dispatch('UserState/goToLastActiveCourse', this.$route.path);
-            } catch(err) {
-                error(err);
-            }
-
-            this.$router.push('/')
+            this.error      = '';
         },
 
         validate() {
-            const isEmailValid      = this.$refs.email.validate();
-            const isPasswordValid   = this.$refs.password.validate();
+            const isEmailValid = this.$refs.email.validate();
 
-            return isEmailValid && isPasswordValid;
+            return isEmailValid;
         },
 
         setEmail(email) {
             this.form.email = email;
         },
-        
-        setPassword(password) {
-            this.form.password = password;
-        }
     }
 }
 </script>
