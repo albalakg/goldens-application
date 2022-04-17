@@ -1,13 +1,9 @@
 <template>
-    <div>
-        <header>
-            <Logo />
-        </header>
-            
-        <main class="auth_form_top_margin">
+    <div class="signin_wrapper pb-10">
+        <main class="auth_form_top_margin w100">
             <v-flex d-flex flex-wrap>
                 <v-flex xs12 md6 lg7 xl8>
-                    image
+                    <star-logo colored class="star_image" />
                 </v-flex>
                 <v-flex xs12 md6 lg5 xl4 px-5 px-md-0>
                     <v-flex md8>
@@ -39,7 +35,7 @@
                             
                             <Divider :space="8" />
 
-                            <v-flex d-md-flex align-center justify-space-between>
+                            <v-flex d-md-flex align-center justify-space-between class="text-center text-md-right">
                                 <v-flex md5 mb-5 mb-md-0>
                                     <router-link to="/forgot-password">
                                         <span class="link">
@@ -79,7 +75,7 @@
                         </v-form>
                         <router-link to="/signup">
                             <MainButton
-                                dark
+                                subColor
                                 shadow
                                 text="הרשמה"
                                 :styleConfig="{
@@ -93,7 +89,6 @@
                 </v-flex>
             </v-flex>
         </main>
-
     </div>
 </template>
 
@@ -104,6 +99,7 @@ import EmailInput from '../../components/Form/Inputs/EmailInput.vue'
 import MainButton from '../../components/Buttons/MainButton.vue'
 import CenterLineText from '../../components/Texts/CenterLineText.vue'
 import Divider from '../../components/General/Divider.vue'
+import StarLogo from '../../components/General/StarLogo.vue'
 
 export default {
     components: {
@@ -114,6 +110,7 @@ export default {
         MainButton,
         CenterLineText,
         Divider,
+        StarLogo,
     },
     
     data() {
@@ -185,5 +182,24 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+    .star_image {
+        width: 60%;
+        position: relative;
+        top: -10%;
+    }
+
+    .signin_wrapper {
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+    }
+    
+    @media only screen and (max-width: 600px) {
+        .star_image {
+            display: none;
+        }
+    }
 
 </style>

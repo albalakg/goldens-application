@@ -68,7 +68,7 @@ export default {
     }
 
     .mobile_top_menu_filler {
-        height: 25px;
+        height: 65px;
         width: 100vw;
     }
 

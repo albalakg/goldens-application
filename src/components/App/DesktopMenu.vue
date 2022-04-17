@@ -1,62 +1,67 @@
 <template>
-<div class="desktop_menu_wrapper">
+<div>
+    <div class="desktop_menu_wrapper">
 
-    <div class="desktop_menu_content"  :class="isLightMode ? 'desktop_menu_content_light' : 'desktop_menu_content_dark'">
-        <v-flex d-flex align-center class="h100" xs9 mx-auto>
-            <div class="logo_wrapper">
-                <Logo :dark="!isLightMode"/>
-            </div>
-            <v-flex d-flex align-center justify-space-between class="mr-5">
-                <template v-if="isLogged">
-                    <v-flex d-flex align-center>
-                        <search-input
-                            ref="search"
-                            outlined
-                            icon
-                            slim
-                        >
-                        </search-input>
-                        <router-link class="simple_link text-center" to="/user/favorites">
-                            <v-flex d-flex align-center justify-center>
-                                <div>
-                                    <v-icon color="white">mdi-heart-outline</v-icon>
-                                    <br>
-                                    <span>הרשימה שלי</span>
-                                </div>
-                            </v-flex>
-                        </router-link>
-                    </v-flex>
-                </template>
-                <template v-else>
-                    <v-flex d-flex>
-                        <div v-for="(link, index) in loggedLinks" :key="index" class="px-3">
-                            <router-link class="simple_link main_text_color" :to="`/${link.url}`">
-                                <span class="main_text_color">
-                                    {{link.text}}
-                                </span>
-                            </router-link>
-                        </div>
-                    </v-flex>
-                </template>
-                <div class="account_wrapper">
+        <div v-if="showMenu" class="desktop_menu_content"  :class="isLightMode ? 'desktop_menu_content_light' : 'desktop_menu_content_dark'">
+            <v-flex d-flex align-center class="h100" xs9 mx-auto>
+                <div class="logo_wrapper">
+                    <Logo :dark="!isLightMode"/>
+                </div>
+                <v-flex d-flex align-center justify-space-between class="mr-5">
                     <template v-if="isLogged">
-                        <router-link class="simple_link" to="/user">
-                            <v-icon :class="isLightMode ? 'main_text_color' : 'white_text_color'">mdi-account-circle</v-icon>
-                        </router-link>
+                        <v-flex d-flex align-center>
+                            <search-input
+                                ref="search"
+                                outlined
+                                icon
+                                slim
+                            >
+                            </search-input>
+                            <router-link class="simple_link text-center" to="/user/favorites">
+                                <v-flex d-flex align-center justify-center>
+                                    <div>
+                                        <v-icon color="white">mdi-heart-outline</v-icon>
+                                        <br>
+                                        <span>הרשימה שלי</span>
+                                    </div>
+                                </v-flex>
+                            </router-link>
+                        </v-flex>
                     </template>
                     <template v-else>
-                        <router-link class="simple_link" to="/signin">
-                            <v-icon :class="isLightMode ? 'main_text_color' : 'white_text_color'">mdi-account-circle-outline</v-icon>
-                        </router-link>
+                        <v-flex d-flex>
+                            <div v-for="(link, index) in loggedLinks" :key="index" class="px-3">
+                                <router-link class="simple_link main_text_color" :to="`/${link.url}`">
+                                    <span class="main_text_color">
+                                        {{link.text}}
+                                    </span>
+                                </router-link>
+                            </div>
+                        </v-flex>
                     </template>
-                </div>
+                    <div class="account_wrapper">
+                        <template v-if="isLogged">
+                            <router-link class="simple_link" to="/user">
+                                <v-icon :class="isLightMode ? 'main_text_color' : 'white_text_color'">mdi-account-circle</v-icon>
+                            </router-link>
+                        </template>
+                        <template v-else>
+                            <router-link class="simple_link" to="/signin">
+                                <v-icon :class="isLightMode ? 'main_text_color' : 'white_text_color'">mdi-account-circle-outline</v-icon>
+                            </router-link>
+                        </template>
+                    </div>
+                </v-flex>
+            
             </v-flex>
-         
+        </div>
+
+        <v-flex v-else xs12 md3 lg2 xl1 justify-center d-flex align-center class="h100 pr-md-5">
+            <logo />
         </v-flex>
     </div>
 
-    <!-- <div class="desktop_menu_filler"></div> -->
-
+    <div v-if="!showMenu" class="mobile_menu_filler"></div>
 </div>
 </template>
 
@@ -71,6 +76,13 @@ export default {
     components: {
         Logo,
         SearchInput,
+    },
+
+    props: {
+        showMenu: {
+            type: Boolean,
+            default: true
+        }
     },
 
     data() {
@@ -174,5 +186,10 @@ export default {
 
     .logo_wrapper {
         width: 15%;
+    }
+
+    .mobile_menu_filler {
+        height: 65px;
+        width: 100%;
     }
 </style>

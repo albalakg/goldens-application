@@ -3,9 +3,11 @@
     class="main_button_wrapper main_bg_color"
     @click="submit()"
     :class="{
-        'main_shadow':               shadow && !dark,
+        'main_shadow':                      shadow && !dark,
         'main_button_dark_shadow':          shadow && dark,
         'main_button_dark dark_bg_color':   dark,
+        'sub_bg_color':                     subColor,
+        'dark_shadow':                      subColor && shadow,
         'main_button_slim':                 slim,
         'main_button_loading':              loading
     }"
@@ -39,6 +41,10 @@ export default {
         },
 
         dark: {
+            type: Boolean
+        },
+
+        subColor: {
             type: Boolean
         },
 

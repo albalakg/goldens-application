@@ -1,7 +1,7 @@
 <template>
   <v-app id="app">
-    <DesktopMenu v-if="showMenu"/>
-    <MobileTopMenu v-if="isMobile" />
+    <DesktopMenu :showMenu="showMenu"/>
+    <MobileTopMenu v-if="isMobile && showMenu" />
     <MessageCard />
 
     <v-main>
@@ -23,7 +23,7 @@
     </div>
 
     <MobileMenu v-if="isMobile" />
-    <Footer/>
+    <Footer v-else/>
   </v-app>
 </template>
 

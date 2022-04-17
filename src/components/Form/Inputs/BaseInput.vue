@@ -201,7 +201,7 @@ export default {
 
         .base_input_content {
             border-radius: 8px;
-            padding: 10px 15px;
+            padding: 15px 15px;
             font-weight: 100;
             display: flex;
             position: relative;

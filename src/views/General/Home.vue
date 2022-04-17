@@ -475,7 +475,7 @@ export default {
                 position: absolute;
                 top: -10vh;
                 left: 20%;
-                width: 35%;
+                width: 70%;
                 min-width: 300px;
                 z-index: 2;
             }
