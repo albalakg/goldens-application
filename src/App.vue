@@ -23,7 +23,7 @@
     </div>
 
     <MobileMenu v-if="isMobile" />
-    <Footer v-else/>
+    <Footer/>
   </v-app>
 </template>
 

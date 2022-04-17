@@ -1,7 +1,8 @@
 <template>
 <v-flex class="footer_wrapper second_dark_bg_color" d-flex align-center>
-    <v-flex md10 lg8 xl6 mx-auto d-flex justify-center class="footer_content">
-        <v-flex md4>
+    
+    <v-flex md10 lg8 xl6 mx-auto d-flex flex-wrap justify-center class="footer_content pa-5 pa-md-0">
+        <v-flex xs12 md4>
             <v-flex xs8>
                 <logo dark />
             </v-flex>
@@ -18,11 +19,11 @@
                         םודנדא דרפנומ סרולוק תיאלב ופידוא .ףודומ ףילחמע .חשגרמו ישגרמ ,ףוקליס   
             </p>
         </v-flex>
-        <v-flex md2>
-            
-        </v-flex>
-        <v-flex md6 d-flex>
-            <v-flex v-for="(tab, index) in tabs" :key="index" class="px-3">
+
+        <v-flex md2></v-flex>
+
+        <v-flex md6 d-flex flex-wrap>
+            <v-flex v-for="(tab, index) in tabs" :key="index" class="pl-3 pr-md-3 ml-10 mb-10 ml-md-0 mb-md-0">
                <h3 class="white_text_color">{{tab.title}}</h3> 
                <div class="line my-3 sub_bg_color"></div>
                <div>
@@ -136,6 +137,21 @@ export default {
         right: -35%;
         top: 10%;
         z-index: 1;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .footer_wrapper {
+            height: 80vh;
+            max-height: 1000px
+        }
+
+        .footer_content {
+            height: 90%;
+        }
+
+        ::v-deep .circle_decorator {
+            top: -40%;
+        }
     }
 
 </style>
