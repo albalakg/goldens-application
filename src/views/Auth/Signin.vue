@@ -36,7 +36,7 @@
                             <Divider :space="8" />
 
                             <v-flex d-md-flex align-center justify-space-between class="text-center text-md-right">
-                                <v-flex md5 mb-5 mb-md-0>
+                                <v-flex md5 mb-5 mb-md-0 v-if="$vuetify.breakpoint.mdAndUp">
                                     <router-link to="/forgot-password">
                                         <span class="link">
                                             שכחתי סיסמא
@@ -90,6 +90,15 @@
                             >
                             </MainButton>
                         </router-link>
+
+                
+                        <v-flex v-if="$vuetify.breakpoint.smAndDown" class="mt-5 text-center">
+                            <router-link to="/forgot-password">
+                                <span class="link">
+                                    שכחתי סיסמא
+                                </span>
+                            </router-link>
+                        </v-flex>
                     </v-flex>
                 </v-flex>
             </v-flex>

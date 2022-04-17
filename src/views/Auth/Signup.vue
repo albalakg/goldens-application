@@ -1,18 +1,14 @@
 <template>
-    <div>
-        <header>
-            <Logo />
-        </header>
-            
-        <main class="auth_form_top_margin">
+    <div class="signin_wrapper pb-10">
+        <main class="auth_form_top_margin w100">
             <v-flex d-flex flex-wrap>
                 <v-flex xs12 md6 lg7 xl8>
-                    image
+                    <star-logo colored class="star_image" />
                 </v-flex>
                 <v-flex xs12 md6 lg5 xl4 px-5 px-md-0>
                     <v-flex md8>
                         <v-form class="signin_form" ref="form" @submit.prevent="submit()">
-                            <h2 class="auth_form_title"><span class="main_text_color">התחברות</span> לאתר</h2>
+                            <h2 class="auth_form_title"><span class="main_text_color">הרשמה</span> לאתר</h2>
                             <h3 class="auth_form_subtitle">ברוך הבא לעולם הספורט</h3>
                             
                             <Divider :space="8" />
@@ -62,11 +58,11 @@
                             
                             <Divider :space="8" />
 
-                            <v-flex d-md-flex align-center justify-space-between>
-                                <v-flex md5 mb-5 mb-md-0>
+                            <v-flex d-md-flex align-center justify-space-between class="text-center text-md-right mt-5">
+                                <v-flex md5 mt-5 mt-md-0 v-if="$vuetify.breakpoint.mdAndUp">
                                     <router-link to="/signin">
                                         <span class="link">
-                                           התחברות 
+                                           רשומים? התחברו עכשיו 
                                         </span>
                                     </router-link>
                                 </v-flex>
@@ -88,13 +84,19 @@
                                         </template>
                                     </MainButton>
                                 </v-flex>
+                                <v-flex md5 mt-5 mt-md-0 v-if="$vuetify.breakpoint.smAndDown">
+                                    <router-link to="/signin">
+                                        <span class="link">
+                                           רשומים? התחברו עכשיו 
+                                        </span>
+                                    </router-link>
+                                </v-flex>
                             </v-flex>
                         </v-form>
                     </v-flex>
                 </v-flex>
             </v-flex>
         </main>
-
     </div>
 </template>
 
@@ -105,6 +107,8 @@ import EmailInput from '../../components/Form/Inputs/EmailInput.vue'
 import MainButton from '../../components/Buttons/MainButton.vue'
 import CenterLineText from '../../components/Texts/CenterLineText.vue'
 import Divider from '../../components/General/Divider.vue'
+import StarLogo from '../../components/General/StarLogo.vue'
+import PlayerIconDecorator from '../../components/Decorators/playerIconDecorator.vue'
 import FirstNameInput from '../../components/Form/Inputs/FirstNameInput.vue'
 import LastNameInput from '../../components/Form/Inputs/LastNameInput.vue'
 
@@ -117,6 +121,8 @@ export default {
         MainButton,
         CenterLineText,
         Divider,
+        StarLogo,
+        PlayerIconDecorator,
         FirstNameInput,
         LastNameInput,
     },
@@ -124,10 +130,8 @@ export default {
     data() {
         return {
             form: {
-                email:      '',
-                password:   '',
-                first_name: '',
-                last_name:  '',
+                email: '',
+                password: '',
             },
             loading: false
         }
@@ -142,10 +146,14 @@ export default {
 
             this.preSendActions();
 
-            axios.post('auth/signup', this.form)
+            axios.post('auth/login', this.form)
                 .then(res => {
-                    this.$router.push('/signin');
-                    this.$store.dispatch('MessageState/addMessage', {message: 'נרשמת בהצלחה למערכת, ברוך הבא!'})
+                    
+                    this.$store.dispatch('MessageState/addMessage', {message: 'התחברת בהצלחה, ברוך הבא!'});
+                    Auth.login(res.data.data);
+                    this.loggedSuccessfully(res.data.data);
+                    this.$store.dispatch('AuthState/setLogStatus', true);
+
                 }).catch(err => {
                     this.$store.dispatch('MessageState/addErrorMessage', { message: 'האימייל או הסיסמא אינם תקינים' })
                 }).finally(() => {
@@ -158,13 +166,22 @@ export default {
             this.loading    = true;
         },
 
+        loggedSuccessfully(data) {
+            try {
+                this.$store.dispatch('UserState/setCourses', data.courses);
+                this.$store.dispatch('UserState/goToLastActiveCourse', this.$route.path);
+            } catch(err) {
+                error(err);
+            }
+
+            this.$router.push('/')
+        },
+
         validate() {
             const isEmailValid      = this.$refs.email.validate();
             const isPasswordValid   = this.$refs.password.validate();
-            const isFirstNameValid   = this.$refs.firstName.validate();
-            const isLastNameValid   = this.$refs.lastName.validate();
 
-            return isEmailValid && isPasswordValid && isFirstNameValid && isLastNameValid;
+            return isEmailValid && isPasswordValid;
         },
 
         setEmail(email) {
@@ -173,19 +190,35 @@ export default {
         
         setPassword(password) {
             this.form.password = password;
-        },
-
-        setFirstName(firstName) {
-            this.form.first_name = firstName;
-        },
-
-        setLastName(lastName) {
-            this.form.last_name = lastName;
         }
     }
 }
 </script>
 
 <style scoped lang="scss">
+
+    .star_image {
+        width: 60%;
+        position: relative;
+        top: -10%;
+    }
+
+    .signin_wrapper {
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .player_icon {
+        height: 15px;
+        width: 15px;
+    }
+    
+    @media only screen and (max-width: 600px) {
+        .star_image {
+            display: none;
+        }
+    }
 
 </style>
