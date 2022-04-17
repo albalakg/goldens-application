@@ -6,25 +6,38 @@
             
         <main class="auth_form_top_margin">
             <v-flex d-flex flex-wrap>
-                <v-flex xs12 md6 lg7 xl8>
+                <v-flex xs12 md6 xl8>
                     image
                 </v-flex>
-                <v-flex xs12 md6 lg5 xl4 px-5 px-md-0>
+                <v-flex xs12 md6 xl4 px-5 px-md-0>
                     <v-flex md8>
                         <v-form class="signin_form" ref="form" @submit.prevent="submit()">
-                            <h2 class="auth_form_title"><span class="main_text_color">שכחתי</span> סיסמא</h2>
-                            <h3 class="auth_form_subtitle">טופס למקרה ששכחת את הסיסמא</h3>
+                            <h2 class="auth_form_title"><span class="main_text_color">איפוס</span> סיסמא</h2>
+                            <h3 class="auth_form_subtitle">טופס לאיפוס הסיסמא</h3>
                             
                             <Divider :space="8" />
                             
-                            <email-input
-                                ref="email"
+                            <password-input
+                                ref="password"
                                 outlined
                                 title
                                 icon
-                                @onChange="setEmail" 
+                                @onChange="setPassword" 
                             >
-                            </email-input>
+                            </password-input>
+                            
+                            <Divider :space="8" />
+                            
+                            <password-input
+                                ref="passwordConfirmation"
+                                outlined
+                                title
+                                icon
+                                confirmation
+                                :match="form.password"
+                                @onChange="setPasswordConfirmation" 
+                            >
+                            </password-input>
                             
                             <Divider :space="8" />
 
@@ -66,7 +79,7 @@
 
 <script>
 import Logo from './../../components/General/Logo.vue'
-import EmailInput from '../../components/Form/Inputs/EmailInput.vue'
+import PasswordInput from '../../components/Form/Inputs/PasswordInput.vue'
 import MainButton from '../../components/Buttons/MainButton.vue'
 import CenterLineText from '../../components/Texts/CenterLineText.vue'
 import Divider from '../../components/General/Divider.vue'
@@ -74,7 +87,7 @@ import Divider from '../../components/General/Divider.vue'
 export default {
     components: {
         Logo,
-        EmailInput,
+        PasswordInput,
         MainButton,
         CenterLineText,
         Divider,
@@ -83,32 +96,58 @@ export default {
     data() {
         return {
             form: {
-                email: '',
+                password: '',
+                passwordConfirmation: '',
             },
             error: '',
             loading: false
         }
     },
 
-    methods: {
-        submit() {
+    created() {
+        this.setURLParams();
+    },
 
-            if(!this.validate()) {
-                return;
-            }
+    methods: {
+        setURLParams() {
+            this.form.email = this.$route.query.email;
+            this.form.token = this.$route.query.token;
+        },
+
+        submit() {
+            this.error = '';
 
             this.preSendActions();
 
-            axios.post('auth/forgot-password', this.form)
+            if(!this.validate()) {
+                this.postSendActions();
+                return;
+            }
+
+            axios.post('auth/reset-password', this.form)
                 .then(res => {
                     this.$store.dispatch('MessageState/addMessage', {message: 'נשלחה בקשת איפוס סיסמא בהצלחה'})
                     this.$router.push('/signin');
                 }).catch(err => {
-                    this.error = err?.response?.data?.message;
+                    this.setError(err.response);
                 }).finally(() => {
-                    this.loading = false;
+                    this.postSendActions();
                 })
+        },
 
+        setError(error) {
+            let message = 'מצטערים, יש שגיאה בבקשה, תבדוק שכל המידע תקין';
+
+            try {
+                if(error.data.message === 'Can\'t update new password that matches the old password') {
+                    message = 'הסיסמה החדשה אינה יכולה להיות זהה להסיסמא הישנה';
+                }
+
+            } catch(err) {
+                error(err);
+            }
+            
+            this.$store.dispatch('MessageState/addErrorMessage', { message: message })
         },
 
         preSendActions() {
@@ -116,14 +155,32 @@ export default {
             this.error      = '';
         },
 
-        validate() {
-            const isEmailValid = this.$refs.email.validate();
-
-            return isEmailValid;
+        postSendActions() {
+            setTimeout(() => {
+                this.loading = false;
+            }, 500);
         },
 
-        setEmail(email) {
-            this.form.email = email;
+        validate() {
+            const isPasswordValid               = this.$refs.password.validate();
+            const isPasswordConfirmationValid   = this.$refs.passwordConfirmation.validate();
+            const isURLValid                    = this.form.email && this.form.token;
+
+            if(!isURLValid) {
+                this.$store.dispatch('MessageState/addErrorMessage', {message: 'הקישור אינו תקין'})
+            }
+
+            return  isPasswordValid && 
+                    isPasswordConfirmationValid &&
+                    isURLValid;
+        },
+
+        setPassword(password) {
+            this.form.password = password;
+        },
+
+        setPasswordConfirmation(passwordConfirmation) {
+            this.form.passwordConfirmation = passwordConfirmation;
         },
     }
 }
