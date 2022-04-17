@@ -52,12 +52,17 @@
                                         }"
                                     >
                                         <template slot="content">
-                                            <strong class="white--text" v-if="loading">
-                                                טוען...
-                                            </strong>
-                                            <strong class="white--text" v-else>
-                                                כניסה
-                                            </strong>
+                                            <v-flex d-flex align-center justify-center>
+                                                <strong class="white--text" v-if="loading">
+                                                    טוען...
+                                                </strong>
+                                                <template v-else>
+                                                    <strong class="white--text">
+                                                        כניסה
+                                                    </strong>
+                                                    <player-icon-decorator class="player_icon mr-3"/>
+                                                </template>
+                                            </v-flex>
                                         </template>
                                     </MainButton>
                                 </v-flex>
@@ -100,6 +105,7 @@ import MainButton from '../../components/Buttons/MainButton.vue'
 import CenterLineText from '../../components/Texts/CenterLineText.vue'
 import Divider from '../../components/General/Divider.vue'
 import StarLogo from '../../components/General/StarLogo.vue'
+import PlayerIconDecorator from '../../components/Decorators/playerIconDecorator.vue'
 
 export default {
     components: {
@@ -111,6 +117,7 @@ export default {
         CenterLineText,
         Divider,
         StarLogo,
+        PlayerIconDecorator,
     },
     
     data() {
@@ -194,6 +201,11 @@ export default {
         display: flex;
         align-items: center;
         overflow: hidden;
+    }
+
+    .player_icon {
+        height: 15px;
+        width: 15px;
     }
     
     @media only screen and (max-width: 600px) {
