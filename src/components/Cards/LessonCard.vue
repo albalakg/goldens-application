@@ -1,7 +1,7 @@
 
 <template>
   <v-flex xs10 lg12 mx-auto class="h100 px-3">
-    <div class="lesson_card_wrapper rounded pointer">
+    <div class="lesson_card_wrapper pointer">
       <img :src="lesson.image" alt="lesson image" loading="lazy">
       <div class="lesson_card_darkner"></div>
       <div class="lesson_card_details text-center">
@@ -44,6 +44,7 @@ export default {
     max-width: 225px;
     position: relative;
     border-radius: 8px;
+    transition: .3s box-shadow, .3s transform;
 
     img {
       position: absolute;
@@ -83,6 +84,11 @@ export default {
       background: linear-gradient(#0000 50%, #000a);
       border-radius: 8px;
     }
+  }
+
+  .lesson_card_wrapper:hover {
+    box-shadow: 0 0 10px 2px #0005;
+    transform: scale(1.05);
   }
 
 </style>

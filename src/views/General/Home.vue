@@ -55,7 +55,7 @@
         </section-header>
 
         <div class="lessons_wrapper_carousel">
-            <v-flex md7 xl6 mx-auto class="lessons_wrapper px-5 mr-auto">
+            <v-flex md7 xl6 mx-auto class="lessons_wrapper px-5 py-5 mr-auto">
                 <lesson-card v-for="(lesson, index) in lessons" :lesson="lesson" :key="index" />
             </v-flex>
         </div>
@@ -359,8 +359,8 @@ export default {
 
             .lessons_wrapper {
                 height: 30vh;
-                min-height: 325px;
-                max-height: 400px;
+                min-height: 375px;
+                max-height: 425px;
                 display: flex;
                 overflow-x: auto;
     
