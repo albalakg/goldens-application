@@ -169,6 +169,8 @@
 
     <div class="spacer"></div>
 
+    <div class="spacer"></div>
+
 </div>
 </template>
 
@@ -526,10 +528,4 @@ export default {
             left: 30%;
         }
     }
-
-    .questions_content {
-
-    }
-
-
 </style>

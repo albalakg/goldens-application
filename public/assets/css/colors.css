@@ -6,6 +6,10 @@
   background-color: #1C3F64;
 }
 
+.second_dark_bg_color {
+  background-color: #102a46;
+}
+
 .sub_bg_color {
   background-color: #E6B260;
 }
@@ -42,6 +46,10 @@
 
 .white_text_color {
   color: #fff !important;
+}
+
+.grey_text_color {
+  color: rgb(179, 179, 179) !important;
 }
 
 
