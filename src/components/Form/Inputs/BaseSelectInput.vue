@@ -1,0 +1,291 @@
+<template>
+<div class="base_input_wrapper">
+    <div v-show="title" class="mb-1">
+        <strong>
+            {{ title }}
+        </strong>
+    </div>
+    <div 
+        class="base_input_content"
+        ref="baseInputContent"
+        :class="{
+            'base_input_outlined' : outlined,
+            'grey_bg_color' : dark,
+            'white_bg_color' : !dark,
+            'slim_input': slim
+        }"
+    >
+
+        <v-flex d-flex class="base_input_main_icon ml-3 pl-3" v-if="icon">
+            <v-icon>
+                {{ icon }}
+            </v-icon>
+        </v-flex>
+
+        <slot name="content" />
+
+        <div @click="toggleList()">
+            <input
+                class="pl-4"
+                :class="{
+                    'autocomplete_input': autocomplete,
+                }"
+                ref="input"
+                autocomplete="new-password"
+                v-model="viewValue"
+                :type="type"
+                :placeholder="placeholder"
+                :maxlength="maxlength"
+                :readonly="!autocomplete"
+            >
+        </div>
+
+        <div class="base_input_sub_icon mr-2 pointer" @click="subIconClicked()">
+            <v-icon>
+                mdi-chevron-{{ arrowDirection }}
+            </v-icon>
+        </div>
+    </div>
+    
+    <v-flex 
+        v-click-outside="{ handler: closeList }"
+        v-if="showList && items.length" 
+        class="select_input_items_wrapper white_bg_color dark_shadow pa-1" 
+        :style="itemsListStyle"
+    >
+        <template v-for="(item, index) in items">
+            <div class="select_input_item pa-1 pointer" :class="{'mb-1': index !== items.length - 1}" :key="item.id + '-' + item.value" @click="pickItem(item)">
+                {{item.value}}
+            </div>
+        </template>
+    </v-flex>
+</div>
+</template>
+
+<script>
+const BORDER_SIZE = 2;
+
+export default {
+
+    props: {
+        closeable: {
+            type: Boolean
+        },
+
+        outlined: {
+            type: Boolean
+        },
+
+        textarea: {
+            type: Boolean
+        },
+
+        readonly: {
+            type: Boolean
+        },
+
+        slim: {
+            type: Boolean
+        },
+
+        dark: {
+            type: Boolean
+        },
+
+        title: {
+            type: String,
+        },
+
+        type: {
+            type: String,
+            default: 'text'
+        },
+
+        placeholder: {
+            type: String
+        },
+
+        icon: {
+            type: String
+        },
+
+        subIcon: {
+            type: String
+        },
+
+        autocomplete: {
+            type: Boolean,
+        },
+
+        multiple: {
+            type: Boolean,
+        },
+
+        maxlength: {
+            type: Number,
+            default: 1000
+        },
+
+        rules: {
+            type: Array,
+        },
+
+        items: {
+            type: Array,
+            required: true,
+            validator(value) {
+                if(value.length === 0) {
+                    return true;
+                }
+                
+                return -1 !== value.findIndex(item => {
+                    if(!item.id || item.value) {
+                        return item;
+                    }
+                })
+            }
+        }
+    },
+    
+    data() {
+        return {
+            values: [],
+            viewValue: '',
+            showList: false,
+            itemsListWidth: 0
+        }
+    },
+
+    watch: {
+        values() {
+            this.$emit('onChange', this.values);
+        }   
+    },
+
+    computed: {
+        itemsListStyle() {
+            return `width: ${this.itemsListWidth}px`
+        },
+
+        arrowDirection() {
+            return this.showList ? 'up' : 'down';
+        }
+    },
+
+    methods: {
+
+        subIconClicked() {
+            this.$emit('subIconClicked')
+        },
+
+        setValue(values) {
+            this.values = values;
+        },
+
+        toggleList() {
+            this.itemsListWidth = this.getItemsListWidth();
+            this.showList = !this.showList;
+            console.log('showList', this.showList);
+        },
+
+        closeList() {
+            setTimeout(() => {
+                this.showList = false;
+            }, 0);
+        },
+
+        getItemsListWidth() {
+            return this.$refs.baseInputContent.clientWidth + BORDER_SIZE;
+        },
+
+        pickItem(item) {
+            if(!this.multiple) {
+                this.cleanValues();
+            }
+
+            this.values.push(item.id);
+            this.setViewValues(item.value);
+        },
+
+        cleanValues() {
+            this.values.length = 0;
+        },
+
+        setViewValues(value) {
+            if(this.values.length === 1) {
+                this.viewValue = value;
+                return;
+            }
+
+            this.viewValue = `נבחרו ${this.values.length} פריטים`;
+        },
+    }
+}
+</script>
+
+<style scoped lang="scss">
+
+    .base_input_wrapper {
+
+        .base_input_content {
+            border-radius: 8px;
+            padding: 15px 15px;
+            font-weight: 100;
+            width: 100%;
+            display: flex;
+            position: relative;
+    
+            input {
+                outline: none;
+                width: 100%;
+                cursor: pointer;
+            }
+
+            input.autocomplete_input {
+                cursor: text;
+            }
+        }
+
+        .slim_input {
+            padding: 5px 15px;
+
+            i {
+                font-size: 1em;
+            }
+        }
+    
+        .base_input_main_icon {
+            border-left: 1px solid #DDD;
+        }
+
+        .base_input_sub_icon {
+            position: absolute;
+            left: 10px;
+            z-index: 2;
+        }
+    
+        .base_input_outlined {
+            border: 1px solid #CCC;
+        }
+    
+        .select_input_items_wrapper {
+            margin-top: 3px;
+            position: absolute;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            z-index: 10;
+            max-height: 150px;
+            overflow-y: auto;
+
+            .select_input_item {
+                border-radius: 4px;
+            }
+
+            .select_input_item:hover {
+                background-color: #16588F1a;
+            }
+        }
+    }
+
+</style>

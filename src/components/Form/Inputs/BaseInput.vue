@@ -15,11 +15,11 @@
         }"
     >
 
-        <div class="base_input_main_icon ml-3 pl-3" v-if="icon">
+        <v-flex d-flex class="base_input_main_icon ml-3 pl-3" v-if="icon">
             <v-icon>
                 {{ icon }}
             </v-icon>
-        </div>
+        </v-flex>
 
         <slot name="content" />
 
@@ -135,7 +135,6 @@ export default {
 
     watch: {
         value() {
-            this.value = this.value;
             this.$emit('onChange', this.value);
             if(this.errorMessage) {
                 this.validate();
@@ -214,6 +213,10 @@ export default {
 
         .slim_input {
             padding: 5px 15px;
+
+            i {
+                font-size: 1em;
+            }
         }
     
         .base_input_main_icon {

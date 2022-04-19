@@ -2,6 +2,10 @@
   background-color: #16588F;
 }
 
+.main_bright_bg_color {
+  background-color: #16588F55 !important;
+}
+
 .main_dark_bg_color {
   background-color: #1C3F64;
 }
