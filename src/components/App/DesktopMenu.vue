@@ -188,8 +188,10 @@ export default {
         width: 15%;
     }
 
-    .mobile_menu_filler {
-        height: 65px;
-        width: 100%;
+    @media only screen and (max-width: 600px) {
+        .mobile_menu_filler {
+            height: 65px;
+            width: 100%;
+        }
     }
 </style>

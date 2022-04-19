@@ -351,7 +351,7 @@ export default {
 
         .star_logo_wrapper {
             position: relative;
-            z-index: 10;
+            z-index: 8;
             width: 90%;
             top: -10%;
         }
@@ -494,7 +494,7 @@ export default {
             }
             
             .about_right_side_wrapper {
-                z-index: 2;
+                z-index: 4;
             }
         }
 
