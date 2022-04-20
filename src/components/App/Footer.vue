@@ -67,7 +67,7 @@ export default {
                     links: [
                         {
                             name: 'צור קשר',
-                            url: 'contact'
+                            url: 'contact-us'
                         },
                         {
                             name: 'בקשת תמיכה',

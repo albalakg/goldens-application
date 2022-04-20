@@ -2,7 +2,10 @@
 <div>
     <div class="desktop_menu_wrapper">
 
-        <div v-if="showMenu" class="desktop_menu_content"  :class="isLightMode ? 'desktop_menu_content_light' : 'desktop_menu_content_dark'">
+        <div v-if="showMenu" class="desktop_menu_content"  :class="{
+            'desktop_menu_content_light': isLightMode,
+            'desktop_menu_content_dark': !isLightMode,
+        }">
             <v-flex d-flex align-center class="h100" xs9 mx-auto>
                 <div class="logo_wrapper">
                     <Logo :dark="!isLightMode"/>
@@ -56,8 +59,10 @@
             </v-flex>
         </div>
 
-        <v-flex v-else xs12 md3 lg2 xl1 justify-center d-flex align-center class="h100 pr-md-5 white_bg_color">
-            <logo />
+        <v-flex v-else xs12 d-flex align-center class="h100 pr-md-5 white_bg_color">
+            <v-flex xs1>
+                <logo />
+            </v-flex>
         </v-flex>
     </div>
 
