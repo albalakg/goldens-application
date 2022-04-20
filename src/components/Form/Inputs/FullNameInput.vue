@@ -4,6 +4,7 @@
             ref="input"
             :outlined="outlined"
             :dark="dark"
+            :slim="slim"
             :placeholder="placeholder ? text : ''"
             :title="title ? text : ''"
             :icon="icon ? iconSrc : ''"
@@ -28,6 +29,10 @@ export default {
         },
 
         dark: {
+            type: Boolean
+        },
+
+        slim: {
             type: Boolean
         },
         

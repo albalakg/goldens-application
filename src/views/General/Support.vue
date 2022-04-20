@@ -1,82 +1,155 @@
 <template>
-  <v-flex class="px-2 px-md-0 text-center" md8 lg7 xl6 mx-auto d-flex justify-center>
-    <div>
-      <div>
+  <v-flex
+    class="support_wrapper px-2 px-md-0 text-center"
+    md5
+    lg4
+    xl3
+    mx-auto
+    d-flex
+    justify-center
+  >
+    <div class="w100">
+      <div class="w100">
         <h1>
           <span class="dark_text_color">בקשת </span>
-          <span class="main_text_color">תמיכה</span> 
+          <span class="main_text_color">תמיכה</span>
         </h1>
-        <p>
-          תרגישו חופשי לשלוח איזו בקשה שרוצים
-        </p>
+        <p>תרגישו חופשי לשלוח איזו בקשה שרוצים</p>
       </div>
 
-      <div class="text-right">
-        <base-select-input 
-          :title="'נושא הפנייה'"
-          :icon="'mdi-note-multiple'"
-          slim
+      <v-form class="text-right" @submit="submit()">
+        <support-category-select @onChange="setSupportCategory" ref="supportCategory" />
+
+        <div class="spacer"></div>
+
+        <full-name-input slim title outlined icon @onChange="setFullName" ref="fullName" />
+
+        <div class="spacer"></div>
+
+        <email-input slim title outlined icon @onChange="setEmail" ref="email" />
+
+        <div class="spacer"></div>
+
+        <base-text-area
           outlined
-          :items="categories"
+          slim
+          title="איך אפשר לעזור"
+          ref="description"
+          @onChange="setDescription"
         />
-      </div>
+
+        <div class="spacer"></div>
+
+        <v-flex d-flex md6 lg4 mr-auto>
+          <!-- button -->
+          <main-button text="שלח בקשה" :loading="loading"/>
+        </v-flex>
+
+        <div class="spacer"></div>
+      </v-form>
     </div>
   </v-flex>
 </template>
 
 <script>
-import BaseSelectInput from '../../components/Form/Inputs/BaseSelectInput.vue';
+import MainButton from "../../components/Buttons/MainButton.vue";
+import BaseTextArea from "../../components/Form/Inputs/BaseTextArea.vue";
+import EmailInput from "../../components/Form/Inputs/EmailInput.vue";
+import FullNameInput from "../../components/Form/Inputs/FullNameInput.vue";
+import SupportCategorySelect from "../../components/Form/Inputs/SupportCategorySelect.vue";
 export default {
-  components: { BaseSelectInput },
+  components: {
+    SupportCategorySelect,
+    FullNameInput,
+    EmailInput,
+    BaseTextArea,
+    MainButton,
+  },
 
   data() {
     return {
-      
+      form: {
+        support_category_id: "",
+        full_name: "",
+        email: "",
+        description: "",
+      },
+      loading: false,
     };
   },
 
-  computed: {
-    categories() {
-      return [
-        {
-          id: 1,
-          value: 'גשדדגגש'
-        },
-        {
-          id: 2,
-          value: 'בקגשדגכ'
-        },
-        {
-          id: 3,
-          value: 'גשדגשדגשגש'
-        },
-        {
-          id: 4,
-          value: 'בדגשקגכ'
-        },
-        {
-          id: 5,
-          value: 'גששדגדגש'
-        },
-        {
-          id: 6,
-          value: 'בקגשדגשדגגכ'
-        },
-        {
-          id: 7,
-          value: 'גשדגדגשדדגש'
-        },
-        {
-          id: 8,
-          value: 'בקגגשדגכ'
-        },
-      ];
-    }
-  }
+  created() {
+    this.$store.dispatch('SupportState/getSupportCategories');
+  },
 
-}
+  methods: {
+    setDescription(description) {
+      this.form.description = description;
+    },
+
+    setEmail(email) {
+      this.form.email = email;
+    },
+
+    setSupportCategory(support_category_id) {
+      this.form.support_category_id = support_category_id;
+    },
+
+    setFullName(full_name) {
+      this.form.full_name = full_name;
+    },
+
+    async submit() {
+      try {
+        if (!this.validate()) {
+          return;
+        }
+
+        this.loading = true;
+        await this.$store.dispatch('SupportState/createSupportTicket', this.form);
+
+        this.$store.dispatch('MessageState/addMessage', {
+          message: 'הבקשת תמיכה נשלחה בהצלחה'
+        });
+      } catch(err) {
+        this.$store.dispatch('MessageState/addMessage', {
+          message: 'מצטערים אבל נכשלה הבקשה ליצירת בקשה תמיכה חדשה',
+          type: 'error',
+        });
+      }
+
+      this.loading = false;
+    },
+
+    loggedSuccessfully(data) {
+      try {
+        this.$store.dispatch("UserState/setCourses", data.courses);
+        this.$store.dispatch(
+          "UserState/goToLastActiveCourse",
+          this.$route.path
+        );
+      } catch (err) {
+        error(err);
+      }
+
+      this.$router.push("/");
+    },
+
+    validate() {
+      const isSupportCategoryValid = this.$refs.supportCategory.validate();
+      const isFullNameValid = this.$refs.fullName.validate();
+      const isEmailValid = this.$refs.email.validate();
+      const isDescriptionValid = this.$refs.description.validate();
+
+      return isSupportCategoryValid && isFullNameValid && isEmailValid && isDescriptionValid;
+    },
+  },
+};
 </script>
 
 <style scoped>
-
+.spacer {
+  height: 30px;
+  width: 100%;
+}
 </style>

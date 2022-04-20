@@ -147,14 +147,14 @@ export default {
             this.errorMessage = '';
             
             if(this.rules) {
-                this.valdiateRules();
+                this.validateRules();
                 return !this.errorMessage;
             }
 
             return !this.errorMessage;
         },
 
-        valdiateRules() {
+        validateRules() {
             this.rules.forEach(item => {
                 if(this.errorMessage) {
                     return;
@@ -216,6 +216,10 @@ export default {
 
             i {
                 font-size: 1em;
+            }
+
+            input {
+                font-size: .8em;
             }
         }
     

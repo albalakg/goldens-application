@@ -80,7 +80,7 @@ const UserState = {
                 })
                 .catch(err => {
                     dispatch('MessageState/addMessage', {
-                        message: 'Failed to fetch your profile',
+                        message: 'מצטערים אבל נכשלה הבקשה למשיכת פרטי הפרופיל',
                         type: 'error',
                     }, {root:true});
                 })
@@ -93,7 +93,7 @@ const UserState = {
                 })
                 .catch(err => {
                     dispatch('MessageState/addMessage', {
-                        message: 'Failed to fetch your support tickets',
+                        message: 'מצטערים אבל נכשלה הבקשה למשיכת פרטי הבקשות תמיכה',
                         type: 'error',
                     }, {root:true});
                 })
@@ -106,7 +106,7 @@ const UserState = {
                 })
                 .catch(err => {
                     dispatch('MessageState/addMessage', {
-                        message: 'Failed to fetch your orders',
+                        message: 'מצטערים אבל נכשלה הבקשה למשיכת פרטי הסטוריית ההזמנות',
                         type: 'error',
                     }, {root:true});
                 })
@@ -119,7 +119,7 @@ const UserState = {
                 })
                 .catch(err => {
                     dispatch('MessageState/addMessage', {
-                        message: 'Failed to fetch your favorites',
+                        message: 'מצטערים אבל נכשלה הבקשה למשיכת השיעורים המועדפים',
                         type: 'error',
                     }, {root:true});
                 })
@@ -140,7 +140,7 @@ const UserState = {
                     })
                     .catch(err => {
                         dispatch('MessageState/addMessage', {
-                            message: 'Failed to fetch your progress',
+                            message: 'מצטערים אבל נכשלה הבקשה למשיכת פרטים על התקדמות הקורס',
                             type: 'error',
                         }, {root:true});
                     })

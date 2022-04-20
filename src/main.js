@@ -10,7 +10,9 @@ import AxiosHandler from './helpers/AxiosHandler'
 Vue.config.productionTip = false
 
 axios.defaults.baseURL = 'http://localhost:8000/api/';
-axios.defaults.headers.common["Authorization"] = `Bearer ${Auth.token()}`;
+if(Auth.token()) {
+  axios.defaults.headers.common["Authorization"] = `Bearer ${Auth.token()}`;
+}
 window.axios = axios;
 window.baseURL = 'http://localhost:8080/';
 

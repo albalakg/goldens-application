@@ -16,31 +16,30 @@
         }"
     >
 
-        <v-flex d-flex class="base_input_main_icon ml-3 pl-3" v-if="icon">
+        <div class="base_input_main_icon ml-3 pl-3 mb-1" v-if="icon">
             <v-icon>
                 {{ icon }}
             </v-icon>
-        </v-flex>
+        </div>
 
         <slot name="content" />
 
-        <div @click="toggleList()">
+        <v-flex @click="toggleList()">
             <input
                 class="pl-4"
                 :class="{
                     'autocomplete_input': autocomplete,
                 }"
                 ref="input"
-                autocomplete="new-password"
                 v-model="viewValue"
                 :type="type"
                 :placeholder="placeholder"
                 :maxlength="maxlength"
                 :readonly="!autocomplete"
             >
-        </div>
+        </v-flex>
 
-        <div class="base_input_sub_icon mr-2 pointer" @click="subIconClicked()">
+        <div class="base_input_sub_icon mr-2 pointer" @click="toggleList()">
             <v-icon>
                 mdi-chevron-{{ arrowDirection }}
             </v-icon>
@@ -59,6 +58,17 @@
             </div>
         </template>
     </v-flex>
+
+    <div 
+        class="base_input_error_wrapper" 
+        :class="{
+            'base_input_error_wrapper_visible' : !!errorMessage 
+        }"
+    >
+        <small>
+            {{ errorMessage }}
+        </small>
+    </div>
 </div>
 </template>
 
@@ -146,19 +156,29 @@ export default {
             }
         }
     },
+
+    mounted() {
+        this.itemsListWidth = this.getItemsListWidth();
+    },
     
     data() {
         return {
             values: [],
             viewValue: '',
             showList: false,
-            itemsListWidth: 0
+            itemsListWidth: 0,
+            errorMessage: ''
         }
     },
 
     watch: {
         values() {
-            this.$emit('onChange', this.values);
+            this.$emit('onChange', this.multiple ? this.values : this.values[0]);
+            if(this.errorMessage) {
+                this.validate();
+            }
+
+            this.showList = false;
         }   
     },
 
@@ -173,19 +193,43 @@ export default {
     },
 
     methods: {
+        validate() {
+            this.errorMessage = '';
+            
+            if(this.rules) {
+                this.validateRules();
+                return !this.errorMessage;
+            }
 
-        subIconClicked() {
-            this.$emit('subIconClicked')
+            return !this.errorMessage;
         },
 
+        validateRules() {
+            this.rules.forEach(item => {
+                if(this.errorMessage) {
+                    return;
+                }
+                
+                if(item.value) {
+                    if(item.value !== this.values) {
+                        this.errorMessage = item.message;
+                    }
+                }
+                
+                if(item.rule) {
+                    if(!new RegExp(item.rule).test(this.values)) {
+                        this.errorMessage = item.message;
+                    }
+                }
+            })
+        },
+        
         setValue(values) {
             this.values = values;
         },
 
         toggleList() {
-            this.itemsListWidth = this.getItemsListWidth();
             this.showList = !this.showList;
-            console.log('showList', this.showList);
         },
 
         closeList() {
@@ -247,10 +291,14 @@ export default {
         }
 
         .slim_input {
-            padding: 5px 15px;
+            padding: 1px 15px;
 
             i {
                 font-size: 1em;
+            }
+
+            input {
+                font-size: .8em;
             }
         }
     
@@ -285,6 +333,20 @@ export default {
             .select_input_item:hover {
                 background-color: #16588F1a;
             }
+        }
+
+        .base_input_error_wrapper {
+            position: absolute;
+            opacity: 0;
+            transition: .3s opacity linear;
+
+            small {
+                color: red;
+            }
+        }
+
+        .base_input_error_wrapper_visible {
+            opacity: 1;
         }
     }
 
