@@ -12,21 +12,21 @@
             :timeout="options.time"
             transition="slide-y-transition"
         >
-        <v-flex d-flex justify-space-between align-center>
-            <span>
-                {{options.message}}
-            </span>
-            <div 
-                v-show="messages_counter" 
-                class="message_counter pointer"
-                :title="`Close ${messages_counter} messages in queue`"
-                @click="truncateMessages()"
-            >
-                <span >
-                    {{messages_counter > 9 ? '9+' : messages_counter}}
+            <v-flex d-flex justify-space-between align-center>
+                <span>
+                    {{options.message}}
                 </span>
-            </div>
-        </v-flex>
+                <div 
+                    v-show="messages_counter" 
+                    class="message_counter pointer"
+                    :title="`Close ${messages_counter} messages in queue`"
+                    @click="truncateMessages()"
+                >
+                    <span >
+                        {{messages_counter > 9 ? '9+' : messages_counter}}
+                    </span>
+                </div>
+            </v-flex>
         </v-alert>
     </div>
 </template>
@@ -50,6 +50,14 @@ export default {
             return this.$store.getters['AppState/sidebarState'];
         },
     },
+
+    // created() {
+    //     setInterval(() => {
+    //         this.$store.dispatch('MessageState/addMessage', {
+    //             message: 'ההודעה נשלחה בהצלחה'
+    //         });
+    //     }, 1000);
+    // },
 
     methods: {
         truncateMessages() {
