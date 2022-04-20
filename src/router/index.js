@@ -67,6 +67,11 @@ const routes = [
     name: 'ContactUs',
     component: () => import('../views/General/ContactUs.vue')
   },
+  {
+    path: '/terms-and-conditions',
+    name: 'TermsAndConditions',
+    component: () => import('../views/General/TermsAndConditions.vue')
+  },
   // ***** GENERAL PAGES END *****
 
 

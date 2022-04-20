@@ -24,10 +24,10 @@
         <img class="contact_us_location_mark" :src="locationMarkImage" alt="location mark">
 
         <v-flex xs10 mx-auto class="text-center">
-          <h1>
+          <h2>
             <span class="dark_text_color">השאירו לנו </span>
             <span class="main_text_color">הודעה</span>
-          </h1>          
+          </h2>          
           <p>שלחו הודעה ונענה לכם בהקדם</p>
 
           <div class="spacer"></div>
