@@ -8,7 +8,7 @@
     d-flex
     justify-center
   >
-    <div class="w100">
+    <div class="w100 px-2 px-md-0">
       <div class="w100">
         <h1>
           <span class="dark_text_color">בקשת </span>
@@ -22,17 +22,16 @@
 
         <div class="spacer"></div>
 
-        <full-name-input slim title outlined icon @onChange="setFullName" ref="fullName" />
+        <full-name-input title outlined icon @onChange="setFullName" ref="fullName" />
 
         <div class="spacer"></div>
 
-        <email-input slim title outlined icon @onChange="setEmail" ref="email" />
+        <email-input title outlined icon @onChange="setEmail" ref="email" />
 
         <div class="spacer"></div>
 
         <base-text-area
           outlined
-          slim
           title="איך אפשר לעזור"
           ref="description"
           @onChange="setDescription"
@@ -42,7 +41,7 @@
 
         <v-flex d-flex md6 lg4 mr-auto>
           <!-- button -->
-          <main-button text="שלח בקשה" :loading="loading"/>
+          <main-button text="שליחה" :loading="loading"/>
         </v-flex>
 
         <div class="spacer"></div>
@@ -111,6 +110,8 @@ export default {
         this.$store.dispatch('MessageState/addMessage', {
           message: 'הבקשת תמיכה נשלחה בהצלחה'
         });
+
+        this.$router.push('/')
       } catch(err) {
         this.$store.dispatch('MessageState/addMessage', {
           message: 'מצטערים אבל נכשלה הבקשה ליצירת בקשה תמיכה חדשה',

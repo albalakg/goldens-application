@@ -24,8 +24,7 @@ export default {
 
   props: {
     slim: {
-      type: Boolean,
-      default: true
+      type: Boolean
     },
 
     outlined: {

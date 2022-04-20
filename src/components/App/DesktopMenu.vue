@@ -56,7 +56,7 @@
             </v-flex>
         </div>
 
-        <v-flex v-else xs12 md3 lg2 xl1 justify-center d-flex align-center class="h100 pr-md-5">
+        <v-flex v-else xs12 md3 lg2 xl1 justify-center d-flex align-center class="h100 pr-md-5 white_bg_color">
             <logo />
         </v-flex>
     </div>
@@ -192,6 +192,10 @@ export default {
         .mobile_menu_filler {
             height: 65px;
             width: 100%;
+        }
+
+        .desktop_menu_wrapper {
+            height: 65px;
         }
     }
 </style>
