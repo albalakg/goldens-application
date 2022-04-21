@@ -9,7 +9,7 @@ const UserState = {
         courses: null,
         supportTickets: [],
         profile: [],
-        lastActive: {},
+        lastActive: null,
         favorites: [],
         orders: [],
         courseAreas: [],
@@ -175,7 +175,6 @@ const UserState = {
         },
         
         async goToLastActiveCourse({ state, dispatch }, currentPath) {
-            const lastActiveLesson = await dispatch('getProgress');
             const lesson = state.lessons.find(lesson => lesson.id == lastActiveLesson.id);
             const route = lesson ? '/courses/' + lesson.course_id : '/'; 
 

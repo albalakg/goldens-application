@@ -153,7 +153,6 @@ export default {
                     
                     this.$store.dispatch('MessageState/addMessage', {message: 'התחברת בהצלחה, ברוך הבא!'});
                     Auth.login(res.data.data);
-                    this.loggedSuccessfully(res.data.data);
                     this.$store.dispatch('AuthState/setLogStatus', true);
 
                 }).catch(err => {
@@ -166,17 +165,6 @@ export default {
 
         preSendActions() {
             this.loading    = true;
-        },
-
-        loggedSuccessfully(data) {
-            try {
-                this.$store.dispatch('UserState/setCourses', data.courses);
-                this.$store.dispatch('UserState/goToLastActiveCourse', this.$route.path);
-            } catch(err) {
-                error(err);
-            }
-
-            this.$router.push('/')
         },
 
         validate() {
