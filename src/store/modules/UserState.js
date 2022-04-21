@@ -5,13 +5,13 @@ const UserState = {
     namespaced: true,
 
     state: {
+        progress: null,
+        courses: null,
         supportTickets: [],
         profile: [],
         lastActive: {},
-        progress: null,
         favorites: [],
         orders: [],
-        courses: [],
         courseAreas: [],
         lessons: [],
     },
@@ -128,7 +128,7 @@ const UserState = {
         getProgress({ state, commit }) {
             return new Promise((resolve, reject) => {
                 if(state.progress) {
-                    resolve(state.lastActive);
+                    resolve(state.courses);
                     return 
                 }
 
@@ -136,7 +136,7 @@ const UserState = {
                     .then(res => {
                         commit('SET_USER_PROGRESS', res.data.data.courses);
                         commit('SET_USER_LAST_ACTIVE', res.data.data.last_active_lesson);
-                        resolve(res.data.data.last_active_lesson);
+                        resolve(res.data.data.courses);
                     })
                     .catch(err => {
                         dispatch('MessageState/addMessage', {
@@ -147,13 +147,24 @@ const UserState = {
             })
         },
         
-        setCourses({ commit }, courses) {
-            commit('SET_USER_COURSES', courses);
-            courses.forEach(course => {
-                commit('SET_USER_COURSE_AREAS', course.full_course.active_areas_with_active_lessons);
-                course.full_course.active_areas_with_active_lessons.forEach(course_area => {
-                    commit('SET_USER_LESSONS', course_area.active_lessons);
-                })
+        getCourses({ commit, state }, courses) {
+            return new Promise((resolve, reject) => {
+                if(state.courses) {
+                    resolve(state.courses);
+                    return 
+                }
+
+                axios.get('profile/courses')
+                    .then(res => {
+                        commit('SET_USER_COURSES', res.data.data.courses);
+                        resolve(state.courses);
+                    })
+                    .catch(err => {
+                        dispatch('MessageState/addMessage', {
+                            message: 'מצטערים אבל נכשלה הבקשה למשיכת התכנים שלך',
+                            type: 'error',
+                        }, {root:true});
+                    })
             })
         },
         
