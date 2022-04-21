@@ -56,15 +56,6 @@ export default {
         },
     },
 
-    created() {
-        setInterval(() => {
-            this.$store.dispatch('MessageState/addMessage', {
-                message: 'ההודעה נשלחה בהצלחה',
-                time: 100000
-            });
-        }, 1000);
-    },
-
     methods: {
         truncateMessages() {
             this.$store.dispatch('MessageState/truncate');

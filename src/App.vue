@@ -42,7 +42,8 @@ export default {
 
   data() {
     return {
-      loading: false
+      loading: false,
+      showMessage: true
     }
   },
 
@@ -95,6 +96,11 @@ export default {
       this.$store.dispatch('UserState/setCourses', Auth.courses());
       this.$store.dispatch('UserState/setUserProfile', Auth.get());
     },
+
+    closeMessage() {
+      console.log('showMessage');
+      this.showMessage = false;
+    }
   }
 
 }

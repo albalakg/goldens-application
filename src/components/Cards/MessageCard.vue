@@ -1,6 +1,5 @@
 <template>
     <v-flex 
-        v-if="messageStatus"
         d-flex 
         justify-center 
         class="massage_card_wrapper"
@@ -8,32 +7,37 @@
             'message_card_top': top,
             'message_card_center': center,
             'message_card_bottom': bottom,
+            'message_card_persistent': persistent,
         }"
     >
         <v-flex
             mx-auto 
             d-flex 
-            justify-center 
-            class="message_card_content dark_shadow white_bg_color h100 text-center"
+            justify-center
+            v-click-outside="{ handler: closeMessageFromOutside }"
+            class="message_card_content px-10 dark_shadow white_bg_color h100 text-center"
             
         >
             <div>
-                <img :src="images[options.type]" alt="">
+                <img :src="images[type]" alt="">
                 
                 <br>
                 
                 <h2 class="main_text_color">
-                    {{options.title}}
+                    {{title}}
                 </h2>
 
-                <p v-html="options.message">
+                <p v-html="message">
                 </p>
 
-                <main-button
-                    class="message_card_button" 
-                    shadow
-                    :text="options.button"
-                />
+                <v-flex xs10 mx-auto>
+                    <main-button
+                        class="message_card_button" 
+                        shadow
+                        :text="buttonText"
+                        @submit="closeMessage"
+                    />
+                </v-flex>
             </div>
         </v-flex>
     </v-flex>
@@ -43,7 +47,49 @@
 import MainButton from '../Buttons/MainButton.vue'
 
 export default {
-  components: { MainButton },
+    components: { MainButton },
+
+    props: {
+        top: {
+            type: Boolean,
+        },
+        
+        center: {
+            type: Boolean,
+            default: true
+        },
+        
+        bottom: {
+            type: Boolean,
+        },
+        
+        persistent: {
+            type: Boolean,
+        },
+
+        type: {
+            type: String,
+            default: 'success',
+            validator(value) {
+                return ['success', 'error', 'warning'].includes(value);
+            }
+        },
+
+        title: {
+            type: String,
+            required: true,
+        },
+
+        message: {
+            type: String,
+            required: true
+        },
+
+        buttonText: {
+            type: String,
+            default: 'המשך'
+        },
+    },
 
     data() {
         return {
@@ -56,46 +102,30 @@ export default {
     },
 
     computed: {
-        messageStatus() {
-            return this.$store.getters['MessageState/status'];
-        },
+        position() {
+            if(this.center) {
+                return 'center';
+            }
 
-        options() {
-            return this.$store.getters['MessageState/options'];
-        },
+            if(this.top) {
+                return 'top';
+            }
 
-        messages_counter() {
-            return this.$store.getters['MessageState/messages_in_queue'].length
+            if(this.bottom) {
+                return 'bottom';
+            }
         },
-
-        top() {
-            return this.options.position === 'top';
-        },
-
-        center() {
-            return this.options.position === 'center' || 1;
-        },
-
-        bottom() {
-            return this.options.position === 'bottom';
-        },
-    },
-
-    created() {
-        setInterval(() => {
-            this.$store.dispatch('MessageState/addMessage', {
-                type: 'success',
-                title: 'אין עליכם!',
-                message: 'סיימתם את שיעור 4 בהצלחה. <br> תרצו להמשיך ללמוד או לקחת הפסקה?',
-                button: 'המשך',
-                time: 3000
-            });
-        }, 1000);
     },
 
     methods: {
-        truncateMessages() {
-            this.$store.dispatch('MessageState/truncate');
+        closeMessageFromOutside() {
+            if(!this.persistent) {
+                this.closeMessage()
+            }
+        },
+
+        closeMessage() {
+            this.$emit('closeMessage');
         }
     }
 }
@@ -110,8 +140,14 @@ export default {
         left: 0;
         right: 0;
         margin: auto;
+        z-index: 100;
     }
     
+    .message_card_persistent {
+        position: fixed;
+        background-color: #000b;
+    }
+
     .message_card_center {
         align-items: center;
     }
