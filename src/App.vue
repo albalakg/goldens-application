@@ -2,7 +2,7 @@
   <v-app id="app">
     <DesktopMenu :showMenu="showMenu"/>
     <MobileTopMenu v-if="isMobile && showMenu" />
-    <MessageCard />
+    <MessageAlert />
 
     <v-main>
       <app-loader v-if="loading">
@@ -28,7 +28,7 @@ import MobileTopMenu from './components/App/MobileTopMenu.vue'
 import Footer from './components/App/Footer.vue'
 import AppLoader from './components/App/AppLoader.vue'
 import MobileMenu from './components/App/MobileMenu.vue'
-import MessageCard from './components/Cards/MessageCard';
+import MessageAlert from './components/Cards/MessageAlert';
 
 export default {
   components: {
@@ -37,7 +37,7 @@ export default {
     Footer,
     AppLoader,
     MobileMenu,
-    MessageCard,
+    MessageAlert,
   },
 
   data() {

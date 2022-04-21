@@ -1,12 +1,12 @@
 const DEFAULT_MESSAGE_OPTIONS = {
     time: 5000,
-    color: 'teal',
-    message: 'Action finished successfully'
+    color: 'green',
+    message: 'הפעולה הסתיימה בהצלחה'
 };
 
 const COLORS = {
     error: 'red',
-    info: 'teal'
+    info: 'green'
 };
 
 let message_timeout = null;
