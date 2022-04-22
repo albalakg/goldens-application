@@ -44,12 +44,12 @@
                     <div class="account_wrapper">
                         <template v-if="isLogged">
                             <router-link class="simple_link" to="/user">
-                                <img :src="userDarkImage" alt="user">
+                                <img :src="userImage" alt="user">
                             </router-link>
                         </template>
                         <template v-else>
                             <router-link class="simple_link" to="/signin">
-                                <img :src="userLightImage" alt="user">
+                                <img :src="userImage" alt="user">
                             </router-link>
                         </template>
                     </div>
@@ -129,7 +129,7 @@ export default {
         },
 
         userImage() {
-            return this.isLightMode() ? this.userLightImage : this.userDarkImage
+            return this.isLightMode ? this.userDarkImage : this.userLightImage
         }
     },
 
