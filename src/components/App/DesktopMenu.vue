@@ -23,8 +23,7 @@
                             <router-link class="simple_link text-center" to="/user/favorites">
                                 <v-flex d-flex align-center justify-center>
                                     <div>
-                                        <v-icon color="white">mdi-heart-outline</v-icon>
-                                        <br>
+                                        <heart dark />
                                         <span>הרשימה שלי</span>
                                     </div>
                                 </v-flex>
@@ -45,12 +44,12 @@
                     <div class="account_wrapper">
                         <template v-if="isLogged">
                             <router-link class="simple_link" to="/user">
-                                <v-icon :class="isLightMode ? 'main_text_color' : 'white_text_color'">mdi-account-circle</v-icon>
+                                <img :src="userDarkImage" alt="user">
                             </router-link>
                         </template>
                         <template v-else>
                             <router-link class="simple_link" to="/signin">
-                                <v-icon :class="isLightMode ? 'main_text_color' : 'white_text_color'">mdi-account-circle-outline</v-icon>
+                                <img :src="userLightImage" alt="user">
                             </router-link>
                         </template>
                     </div>
@@ -72,6 +71,7 @@
 
 <script>
 import SearchInput from '../Form/Inputs/SearchInput.vue';
+import Heart from '../General/Heart.vue';
 import Logo from './../General/Logo.vue'
 
 const LIGHT_MODE    = 'light';
@@ -81,6 +81,7 @@ export default {
     components: {
         Logo,
         SearchInput,
+        Heart,
     },
 
     props: {
@@ -110,6 +111,9 @@ export default {
                     url: 'support'
                 }
             ],
+            userDarkImage:  require('../../../public/assets/images/general/userDark.svg'),
+            userLightImage: require('../../../public/assets/images/general/userLight.svg'),
+            heartImage:     require('../../../public/assets/images/general/heart.svg'),
             mode: LIGHT_MODE,
             darkModePagesList: []
         }
@@ -122,6 +126,10 @@ export default {
 
         isLightMode() {
             return this.mode === LIGHT_MODE;
+        },
+
+        userImage() {
+            return this.isLightMode() ? this.userLightImage : this.userDarkImage
         }
     },
 
@@ -191,5 +199,9 @@ export default {
 
     .logo_wrapper {
         width: 15%;
+    }
+
+    .account_wrapper img {
+        height: 35px;
     }
 </style>
