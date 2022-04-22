@@ -475,6 +475,7 @@ export default {
             }
 
             img {
+                object-fit: cover;
                 position: absolute;
                 top: -10vh;
                 left: 20%;
