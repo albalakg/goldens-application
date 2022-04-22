@@ -29,7 +29,7 @@
 
     <div class="settings_links">
 
-      <div v-for="(link, index) in links" :key="index" class="setting_row settings_link">
+      <div v-for="(link, index) in links" :key="index" class="setting_row mb-10 settings_link">
         <h3>
           <router-link class="simple_link grey_text_color" :to="'/' + link.url">
             {{
@@ -50,7 +50,6 @@ export default {
 
   data() {
     return {
-      backgroundImage:  require('../../../public/assets/images/general/setting_menu_background.png'),
       downloadIcon:     require('../../../public/assets/images/general/download.svg'),
       links: [
         {
@@ -67,7 +66,7 @@ export default {
         },
         {
           text: 'מועדפים',
-          url: 'profile/favorites'
+          url: 'user/favorites'
         },
         {
           text: 'יצירת קשר',

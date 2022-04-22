@@ -88,6 +88,12 @@ export default {
         }
     },
 
+    watch: {
+        $route() {
+            this.setCurrentTab();
+        }
+    },
+
     mounted() {
         setTimeout(() => {
             this.setCurrentTab();

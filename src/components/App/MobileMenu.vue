@@ -102,7 +102,7 @@ export default {
                     logged: true
                 },
                 {
-                    action: 'settings',
+                    action: 'toggleSettings',
                     text: 'הגדרות',
                     icon: 'mdi-cog',
                     logged: true
