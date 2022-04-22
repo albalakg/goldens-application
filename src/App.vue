@@ -1,7 +1,7 @@
 <template>
   <v-app id="app">
     <DesktopMenu v-if="!isMobile" :showFullMenu="showFullMenu"/>
-    <MobileTopMenu v-else :filler="mobileFiller" />
+    <MobileTopMenu v-else :filler="mobileFiller" :dark="darkMenu" />
     <MessageAlert />
 
     <v-main>
@@ -89,7 +89,12 @@ export default {
     mobileFiller() {
       const pages = [''];
       return pages.includes(this.$route.path.replace('/', '')); 
-    }
+    },
+
+    darkMenu() {
+      const pages = ['courses'];
+      return pages.includes(this.$route.path.replace('/', '')); 
+    },
   },
 
   methods: {
