@@ -4,6 +4,8 @@
             ref="input"
             :outlined="outlined"
             :dark="dark"
+            :slim="slim"
+            :rules="optional ? [] : rules"
             :readonly="readonly"
             :placeholder="placeholder ? text : ''"
             :title="title ? text : ''"
@@ -30,6 +32,14 @@ export default {
             type: Boolean
         },
 
+        slim: {
+            type: Boolean
+        },
+
+        optional: {
+            type: Boolean
+        },
+
         readonly: {
             type: Boolean
         },
@@ -51,13 +61,23 @@ export default {
     data() {
         return {
             text:       'טלפון',
-            iconSrc:    'mdi-phone'
+            iconSrc:    'mdi-phone',
+            rules: [
+                {
+                    rule: /^[\d\-\s]{7,15}$/,
+                    message: 'המספר טלפון חייב להיות תקני'
+                }
+            ]
         }
     },
 
     methods: {
         onChange(value) {
             this.$emit('onChange', value);
+        },
+        
+        validate() {
+            return this.$refs.input.validate();
         },
         
         setValue(value) {

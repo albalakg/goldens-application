@@ -101,7 +101,6 @@ export default {
     },
 
     closeMessage() {
-      console.log('showMessage');
       this.showMessage = false;
     }
   }

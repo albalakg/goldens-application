@@ -29,6 +29,7 @@
                 class="pl-4"
                 :class="{
                     'autocomplete_input': autocomplete,
+                    'pointer': !readonly,
                 }"
                 ref="input"
                 v-model="viewValue"
@@ -39,7 +40,13 @@
             >
         </v-flex>
 
-        <div class="base_input_sub_icon mr-2 pointer" @click="toggleList()">
+        <div 
+            class="base_input_sub_icon mr-2" 
+            @click="toggleList()"
+            :class="{
+                'pointer': !readonly
+            }" 
+        >
             <v-icon>
                 mdi-chevron-{{ arrowDirection }}
             </v-icon>
@@ -229,7 +236,9 @@ export default {
         },
 
         toggleList() {
-            this.showList = !this.showList;
+            if(!this.readonly) {
+                this.showList = !this.showList;
+            }
         },
 
         closeList() {
@@ -273,7 +282,7 @@ export default {
 
         .base_input_content {
             border-radius: 8px;
-            padding: 15px 15px;
+            padding: 12px 15px;
             font-weight: 100;
             width: 100%;
             display: flex;
@@ -282,7 +291,6 @@ export default {
             input {
                 outline: none;
                 width: 100%;
-                cursor: pointer;
             }
 
             input.autocomplete_input {

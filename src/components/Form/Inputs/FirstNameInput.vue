@@ -4,6 +4,7 @@
             ref="input"
             :outlined="outlined"
             :dark="dark"
+            :slim="slim"
             :readonly="readonly"
             :placeholder="placeholder ? text : ''"
             :title="title ? text : ''"
@@ -32,6 +33,10 @@ export default {
         },
 
         dark: {
+            type: Boolean
+        },
+
+        slim: {
             type: Boolean
         },
         

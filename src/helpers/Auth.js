@@ -74,7 +74,6 @@ class Auth {
 
     encrypt(data) {
         return btoa(unescape(encodeURIComponent(JSON.stringify(data))));;
-        return btoa(JSON.stringify(data));
     }
 
     decrypt() {
@@ -84,7 +83,6 @@ class Auth {
         } 
 
         return JSON.parse(decodeURIComponent(escape(atob(cookie))));
-        return JSON.parse(atob(this.getCookie()));
     }
 
     getCookie() {
