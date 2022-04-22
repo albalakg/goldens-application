@@ -93,7 +93,6 @@ export default {
     },
 
     async setLoggedUserData() {
-      
       await this.$store.dispatch('UserState/getCourses');
       await this.$store.dispatch('UserState/getProgress');
       await this.$store.dispatch('UserState/setUserProfile', Auth.get());

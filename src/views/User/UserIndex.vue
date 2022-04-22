@@ -1,55 +1,60 @@
 <template>
     <div class="user_header_wrapper">
-        
-        <div class="text-center">
-            <div class="user_profile_image mx-auto">
-                <profile-card
-                    editable
-                >
-                </profile-card>
-            </div>
-            <div class="text--center">
-                <h1>
-                    <span class="main_text_color">{{ firstName }}</span> <span>{{ lastName }}</span>
-                </h1>
-                <v-flex xs4 mx-auto>
-                    <router-link to="/signout">
-                        <main-button
-                            text="התנתק"
-                            shadow
-                            dark
-                            slim
-                        >
-                        </main-button>
-                    </router-link>
+        <colored-circle-decorator class="user_colored_circle" />
+        <div class="user_header_content">
+            <div class="text-center">
+                <div class="user_profile_image mx-auto">
+                    <profile-card
+                        editable
+                    >
+                    </profile-card>
+                </div>
+                <div class="text--center">
+                    <h1>
+                        <span class="main_text_color">{{ firstName }}</span> <span>{{ lastName }}</span>
+                    </h1>
+                    <v-flex xs4 mx-auto>
+                        <router-link to="/signout">
+                            <main-button
+                                text="התנתק"
+                                shadow
+                                dark
+                                slim
+                            >
+                            </main-button>
+                        </router-link>
+                    </v-flex>
+                </div>
+
+                <br>
+                <br>
+
+                <v-flex class="user_links_wrapper">
+                    <MainTabs
+                        :tabs="links"
+                        :activeTab="activeTab"
+                        @submit="setActiveTab"
+                    >
+                    </MainTabs>
                 </v-flex>
             </div>
 
-            <br>
-            <br>
-
-            <v-flex class="user_links_wrapper">
-                <MainTabs
-                    :tabs="links"
-                    :activeTab="activeTab"
-                    @submit="setActiveTab"
-                >
-                </MainTabs>
-            </v-flex>
+            <div class="mt-7">
+                <transition name="fade" mode="out-in">
+                    <router-view>
+                    </router-view>
+                </transition>
+            </div>
         </div>
 
-        <div class="user_content_wrapper mt-7">
-            <transition name="fade" mode="out-in">
-                <router-view>
-                </router-view>
-            </transition>
-        </div>
+        <br><br>
     </div>
 </template>
 
 <script>
 import MainButton   from '../../components/Buttons/MainButton.vue';
 import ProfileCard  from '../../components/Cards/ProfileCard.vue';
+import ColoredCircleDecorator from '../../components/Decorators/ColoredCircleDecorator.vue';
 import MainTabs     from '../../components/Tabs/MainTabs.vue';
 
 export default {
@@ -57,6 +62,7 @@ export default {
         ProfileCard,
         MainButton,
         MainTabs,
+        ColoredCircleDecorator,
     },
     
     data() {
@@ -140,10 +146,31 @@ export default {
 
     .user_header_wrapper {
 
+        .user_colored_circle {
+            transform: scale(1.5);
+            position: absolute;
+            top: -50%;
+            right: -55%;
+        }
+            
+        @media only screen and (max-width: 600px) {
+            
+            .user_colored_circle {
+                top: -60%;
+                right: -20%;
+            }
+            
+        }
+
+        .user_header_content {
+            position: relative;
+            z-index: 2;
+        }
+
         .user_profile_image {
             height: 250px;
             width: 250px;
-            margin-top: 100px;
+            margin-top: 50px;
         }
 
         h1 {

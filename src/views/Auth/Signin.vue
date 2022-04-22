@@ -154,7 +154,7 @@ export default {
                     this.$store.dispatch('MessageState/addMessage', {message: 'התחברת בהצלחה, ברוך הבא!'});
                     Auth.login(res.data.data);
                     this.$store.dispatch('AuthState/setLogStatus', true);
-
+                    
                 }).catch(err => {
                     this.$store.dispatch('MessageState/addErrorMessage', { message: 'האימייל או הסיסמא אינם תקינים' })
                 }).finally(() => {
