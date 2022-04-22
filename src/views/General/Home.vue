@@ -217,13 +217,13 @@ export default {
     },
     
     created() {
-        this.getCourseCategories();
+        this.getContent();
     },
 
     computed: {
         courseCategories() {
             const categories = this.$store.getters['CourseCategoryState/courseCategories'];
-            if(categories.length) {
+            if(categories && categories.length) {
                 return categories[0];
             }
 
@@ -231,28 +231,8 @@ export default {
         },
 
         lessons() {
-            return [
-                {
-                    name: 'שיעור ראשון',
-                    description: 'שיעור ראשון תיאור מעניין',
-                    image: require('../../../public/assets/images/lessons/lesson1.png')
-                },
-                {
-                    name: 'שיעור שני',
-                    description: 'שיעור שני תיאור מעניין',
-                    image: require('../../../public/assets/images/lessons/lesson1.png')
-                },
-                {
-                    name: 'שיעור שלישי',
-                    description: 'שיעור שלישי תיאור מעניין',
-                    image: require('../../../public/assets/images/lessons/lesson1.png')
-                },
-                {
-                    name: 'שיעור רביעי',
-                    description: 'שיעור רביעי תיאור מעניין',
-                    image: require('../../../public/assets/images/lessons/lesson1.png')
-                },
-            ];
+            const lessons = this.$store.getters['CourseLessonState/lessons'];
+            return lessons ? lessons : [];
         },
 
         trainers() {
@@ -295,8 +275,9 @@ export default {
     },
 
     methods: {
-        getCourseCategories() {
-            this.$store.dispatch('CourseCategoryState/getCourseCategories')
+        getContent() {
+            this.$store.dispatch('CourseCategoryState/getCourseCategories');
+            this.$store.dispatch('CourseLessonState/getCourseLessons');
         },
 
         goToLastTrainer() {

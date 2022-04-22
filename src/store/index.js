@@ -5,6 +5,7 @@ import UserState            from './modules/UserState'
 import AuthState            from './modules/AuthState'
 import SupportState         from './modules/SupportState'
 import CourseCategoryState  from './modules/CourseCategoryState'
+import CourseLessonState  from './modules/CourseLessonState'
 import MessageState         from './modules/MessageState'
 
 Vue.use(Vuex)
@@ -15,6 +16,7 @@ export default new Vuex.Store({
     AuthState,
     SupportState,
     CourseCategoryState,
+    CourseLessonState,
     MessageState,
   }
 })

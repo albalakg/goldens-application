@@ -2,7 +2,7 @@ const CourseCategoryState = {
     namespaced: true,
 
     state: {
-        courseCategories: false
+        courseCategories: null
     },
 
     getters: {
@@ -16,13 +16,13 @@ const CourseCategoryState = {
     },
 
     actions: {
-        getCourseCategories({ state, commit }, status) {
+        getCourseCategories({ state, commit }) {
             return new Promise((resolve, reject) => {
                 if(state.courseCategories) {
                     return resolve(state.courseCategories);
                 }
 
-                axios.get('course-categories')
+                axios.get('content/course-categories')
                     .then(res => {
                         commit('SET_COURSE_CATEGORIES', res.data.data);
                         return resolve(res.data.data);

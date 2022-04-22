@@ -2,14 +2,13 @@
 <template>
   <v-flex xs10 lg12 mx-auto class="h100 px-3">
     <div class="lesson_card_wrapper pointer">
-      <img :src="lesson.image" alt="lesson image" loading="lazy">
+      <img :src="lesson.imageSrc" alt="lesson image" loading="lazy">
       <div class="lesson_card_darkner"></div>
       <div class="lesson_card_details text-center">
         <h2 class="white_text_color">{{ lesson.name }}</h2>
         <div class="line main_bg_color"></div>
-        <small class="white_text_color">
-          {{lesson.description}}
-        </small>
+        <div class="lesson_card_content mt-1" v-html="lessonContent">
+        </div>
       </div>
     </div>
   </v-flex>
@@ -17,6 +16,9 @@
 
 <script>
 import Divider from '../General/Divider.vue';
+
+const MAX_LESSON_CONTENT_CHARS = 50;
+
 export default {
   components: { Divider },
 
@@ -31,6 +33,12 @@ export default {
     return {
       
     };
+  },
+
+  computed: {
+    lessonContent() {
+      return this.lesson.content.length < MAX_LESSON_CONTENT_CHARS ? this.lesson.content : this.lesson.content.slice(0, MAX_LESSON_CONTENT_CHARS) + '...';
+    }
   }
 
 }
@@ -47,6 +55,7 @@ export default {
     transition: .3s box-shadow, .3s transform;
 
     img {
+      object-fit: cover;
       position: absolute;
       width: 100%;
       height: 100%;
@@ -81,7 +90,7 @@ export default {
       position: absolute;
       height: 100%;
       width: 100%;
-      background: linear-gradient(#0000 50%, #000a);
+      background: linear-gradient(#0000 40%, #000d);
       border-radius: 8px;
     }
   }
@@ -91,4 +100,9 @@ export default {
     transform: scale(1.05);
   }
 
+  ::v-deep .lesson_card_content * {
+    color: #fff;
+    font-size: .9em;
+    font-weight: bold;
+  }
 </style>
