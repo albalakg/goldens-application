@@ -58,6 +58,8 @@
           </v-form>
         </v-flex>
       </v-flex>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
     </v-flex>
   </v-flex>
 </template>

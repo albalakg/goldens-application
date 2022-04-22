@@ -102,7 +102,7 @@ export default {
                     url: 'about'
                 },
                 {
-                    text: 'צרו קשר',
+                    text: 'יצירת קשר',
                     url: 'contact-us'
                 },
                 {

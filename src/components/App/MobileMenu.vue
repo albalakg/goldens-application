@@ -29,7 +29,9 @@
         />
 
         <div class="settings_wrapper" :class="{'settings_visible': showSettings}">
-            <settings>
+            <settings
+                @close="toggleSettings"
+            >
             </settings>
         </div>
     </div>
@@ -74,7 +76,7 @@ export default {
                     logged: false
                 },
                 {
-                    action: 'settings',
+                    action: 'toggleSettings',
                     text: 'הגדרות',
                     icon: 'mdi-cog',
                     logged: false
@@ -111,6 +113,12 @@ export default {
         }
     },
 
+    watch: {
+        $route(newval) {
+            this.showSettings = false;
+        }
+    },
+
     computed: {
         links() {
             return this.allLinks.filter(link => link.logged === this.$store.getters['AuthState/isLogged'])
@@ -142,7 +150,7 @@ export default {
             this.$store.dispatch('UserState/goToLastActiveCourse', this.$route.path);
         },
 
-        settings() {
+        toggleSettings() {
             this.showSettings = !this.showSettings;
         }
     }
@@ -172,11 +180,14 @@ export default {
         .settings_wrapper {
             position: absolute;
             right: -100vw;
-            transition: .5s right linear;
+            top: calc(-50vh + 30px);
+            transition: .3s right linear;
+            z-index: 100;
         }
 
         .settings_visible {
-
+            right: 100vw;
+            transition: .5s right linear;
         }
     }
 
