@@ -156,7 +156,7 @@ const UserState = {
 
                 axios.get('profile/courses')
                     .then(res => {
-                        commit('SET_USER_COURSES', res.data.data.courses);
+                        commit('SET_USER_COURSES', res.data.data);
                         resolve(state.courses);
                     })
                     .catch(err => {
@@ -175,14 +175,25 @@ const UserState = {
         },
         
         async goToLastActiveCourse({ state, dispatch }, currentPath) {
-            const lesson = state.lessons.find(lesson => lesson.id == lastActiveLesson.id);
-            const route = lesson ? '/courses/' + lesson.course_id : '/'; 
+            try {
+                const lesson    = state.lessons.find(lesson => lesson.id == lastActiveLesson.id);
+                const courses   = state.courses;
+                let route       = lesson ? '/courses/' + lesson.course_id : '/'; 
 
-            if(route === currentPath) {
-                return;
+                if(!lesson && courses) {
+                    route = '/courses/' + courses[0].id;
+                }
+
+                if(route === currentPath) {
+                    return;
+                }
+
+                router.push(route)
+            } catch(error) {
+                console.error(error);
+                
+                router.push('/');
             }
-
-            router.push(route)
         },
 
     }
