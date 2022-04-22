@@ -1,7 +1,8 @@
 <template>
   <div class="tab_icon_wrapper text-center py-2 px-3" @click="onClick()">
-    <v-icon :color="color">{{ icon }}</v-icon>
-    <p class="mb-0" :class="`${color}--text`">
+    <img :src="image" alt="menu link image">
+    <p class="tab_icon_placeholder"></p>
+    <p class="mb-0 tab_icon_text" :class="`${color}--text`">
       {{ text }}
     </p>
   </div>
@@ -16,7 +17,7 @@ export default {
       required: true
     },
     
-    icon: {
+    image: {
       type: String,
       required: true
     },
@@ -37,6 +38,18 @@ export default {
 </script>
 
 <style scoped>
+
+  .tab_icon_wrapper {
+    position: relative;
+  }
+
+  .tab_icon_text {
+    position: absolute;
+    top: 40px;
+    width: 100%;
+    right: 0px;
+    white-space: nowrap;
+  }
 
   p {
     font-weight: 100;

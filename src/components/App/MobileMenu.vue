@@ -6,17 +6,17 @@
             <template v-for="(link, index) in links">
                 <div v-if="link.url" :key="index">
                     <router-link class="simple_link" :to="link.url">
-                        <TabIcon
+                        <MobileMenuTab
                             :text="link.text" 
-                            :icon="link.icon" 
+                            :image="link.image" 
                             :key="index" 
                         />
                     </router-link>
                 </div>
-                <TabIcon
+                <MobileMenuTab
                     v-else
                     :text="link.text" 
-                    :icon="link.icon" 
+                    :image="link.image" 
                     :key="index"
                     @onClick="action(link.action)" 
                 />
@@ -44,11 +44,11 @@
 <script>
 import Settings from './Settings.vue';
 import SearchDialog from '../Dialogs/SearchDialog.vue';
-import TabIcon from './../../components/Tabs/TabIcon';
+import MobileMenuTab from './../../components/Tabs/MobileMenuTab';
 
 export default {
     components: {
-        TabIcon,
+        MobileMenuTab,
         SearchDialog,
         Settings,
     },
@@ -60,54 +60,60 @@ export default {
                 {
                     url: '/',
                     text: 'דף הבית',
-                    icon: 'mdi-home',
+                    image: require('../../../public/assets/images/general/home.svg'),
                     logged: false
                 },
                 {
                     url: '/signin',
                     text: 'התחבר',
-                    icon: 'mdi-key-outline',
+                    image: require('../../../public/assets/images/general/profile.svg'),
                     logged: false
                 },
                 {
                     url: '/about',
                     text: 'מי אנחנו',
-                    icon: 'mdi-account-group-outline',
+                    image: require('../../../public/assets/images/general/about.svg'),
                     logged: false
                 },
                 {
                     action: 'toggleSettings',
                     text: 'הגדרות',
-                    icon: 'mdi-cog',
+                    image: require('../../../public/assets/images/general/settings.svg'),
                     logged: false
                 },
 
                 // logged
                 {
+                    url: '/',
                     text: 'דף הבית',
-                    icon: 'mdi-home',
-                    action: 'home',
+                    image: require('../../../public/assets/images/general/home.svg'),
                     logged: true
                 },
                 {
                     url: '/user',
                     text: 'פרופיל',
-                    icon: 'mdi-account-circle',
+                    image: require('../../../public/assets/images/general/profile.svg'),
                     logged: true
                 },
                 {
                     action: 'search',
                     text: 'חיפוש',
-                    icon: 'mdi-magnify',
+                    image: require('../../../public/assets/images/general/search.svg'),
                     logged: true
                 },
                 {
                     action: 'toggleSettings',
                     text: 'הגדרות',
-                    icon: 'mdi-cog',
+                    image: require('../../../public/assets/images/general/settings.svg'),
                     logged: true
                 },
             ],
+            myCourseLink: {
+                text: 'הקורס שלי',
+                image: require('../../../public/assets/images/general/courses.svg'),
+                action: 'home',
+                logged: true
+            },
             showSearch: false,
             showSettings: false,
         }
@@ -121,7 +127,21 @@ export default {
 
     computed: {
         links() {
-            return this.allLinks.filter(link => link.logged === this.$store.getters['AuthState/isLogged'])
+            let links     = this.allLinks.filter(link => link.logged === this.$store.getters['AuthState/isLogged']);
+            let courses   = this.$store.getters['UserState/courses'];
+
+            if(courses && courses.length) {
+                links = links.map(link => {
+                    console.log('link.text', link.text);
+                    if(link.text === 'דף הבית') {
+                        return this.myCourseLink
+                    }
+
+                    return link;
+                })
+            }
+
+            return links;
         },
 
         courses() {
