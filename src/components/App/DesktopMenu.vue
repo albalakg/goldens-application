@@ -2,7 +2,7 @@
 <div>
     <div class="desktop_menu_wrapper">
 
-        <div v-if="showMenu" class="desktop_menu_content"  :class="{
+        <div v-if="showFullMenu" class="desktop_menu_content"  :class="{
             'desktop_menu_content_light': isLightMode,
             'desktop_menu_content_dark': !isLightMode,
         }">
@@ -66,7 +66,7 @@
         </v-flex>
     </div>
 
-    <div v-if="!showMenu" class="mobile_menu_filler"></div>
+    <div v-if="!showFullMenu" class="mobile_menu_filler"></div>
 </div>
 </template>
 
@@ -84,7 +84,7 @@ export default {
     },
 
     props: {
-        showMenu: {
+        showFullMenu: {
             type: Boolean,
             default: true
         }
@@ -191,16 +191,5 @@ export default {
 
     .logo_wrapper {
         width: 15%;
-    }
-
-    @media only screen and (max-width: 600px) {
-        .mobile_menu_filler {
-            height: 65px;
-            width: 100%;
-        }
-
-        .desktop_menu_wrapper {
-            height: 65px;
-        }
     }
 </style>

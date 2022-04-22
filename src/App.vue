@@ -1,7 +1,7 @@
 <template>
   <v-app id="app">
-    <DesktopMenu :showMenu="showMenu"/>
-    <MobileTopMenu v-if="isMobile && showMenu" />
+    <DesktopMenu v-if="!isMobile" :showFullMenu="showFullMenu"/>
+    <MobileTopMenu v-else :shadow="showFullMenu" />
     <MessageAlert />
 
     <v-main>
@@ -81,9 +81,9 @@ export default {
       return isMobile;
     },
 
-    showMenu() {
+    showFullMenu() {
       const pagesWithoutMenu = ['signin', 'signup', 'forgot-password', 'reset-password'];
-      return !this.isMobile && !pagesWithoutMenu.includes(this.$route.path.replace('/', ''));
+      return !pagesWithoutMenu.includes(this.$route.path.replace('/', ''));
     }
   },
 
@@ -97,7 +97,7 @@ export default {
       await this.$store.dispatch('UserState/getCourses');
       await this.$store.dispatch('UserState/getProgress');
       await this.$store.dispatch('UserState/setUserProfile', Auth.get());
-      
+
       this.$store.dispatch('UserState/goToLastActiveCourse', this.$route.path);
     },
 

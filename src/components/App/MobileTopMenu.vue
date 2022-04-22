@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div class="mobile_top_menu_wrapper">
+    <div class="mobile_top_menu_wrapper" :class="{'mobile_top_menu_shadow': shadow}">
         <v-flex xs6 mx-auto>
             <Logo />
         </v-flex>
@@ -19,6 +19,12 @@ const DARK_MODE     = 'dark';
 export default {
     components: {
         Logo,
+    },
+
+    props: {
+        shadow: {
+            type: Boolean
+        }
     },
 
     data() {
@@ -62,9 +68,12 @@ export default {
         width: 100vw;
         height: 50px;
         z-index: 10;
-        box-shadow: 0px 10px 10px 1px #0003;
         padding: 10px 0;
         background-color: #fff;
+    }
+
+    .mobile_top_menu_shadow{
+        box-shadow: 0px 10px 10px 1px #0003;
     }
 
     .mobile_top_menu_filler {
