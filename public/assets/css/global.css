@@ -4,6 +4,10 @@
     color: rgb(49, 53, 61);
 }
 
+.app_padding_top {
+    padding-top: 5%;
+}
+
 .font_title {
     font-family: 'Oswald', sans-serif;
 }

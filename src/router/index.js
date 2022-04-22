@@ -53,11 +53,6 @@ const routes = [
     component: () => import('../views/General/About.vue')
   },
   {
-    path: '/policies',
-    name: 'Policies',
-    component: () => import('../views/General/Policies.vue')
-  },
-  {
     path: '/support',
     name: 'Support',
     component: () => import('../views/General/Support.vue')
@@ -68,9 +63,9 @@ const routes = [
     component: () => import('../views/General/ContactUs.vue')
   },
   {
-    path: '/terms-and-conditions',
-    name: 'TermsAndConditions',
-    component: () => import('../views/General/TermsAndConditions.vue')
+    path: '/policies',
+    name: 'Policies',
+    component: () => import('../views/General/Policies.vue')
   },
   // ***** GENERAL PAGES END *****
 

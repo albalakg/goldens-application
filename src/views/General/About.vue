@@ -1,5 +1,5 @@
 <template>
-  <div class="about_wrapper dark_bg_color">
+  <div class="about_wrapper dark_bg_color app_padding_top">
     <v-flex>
       
       <v-flex xs11 mx-auto>

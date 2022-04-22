@@ -1,5 +1,5 @@
 <template>
-<div class="home_wrapper">
+<div class="home_wrapper app_padding_top">
 
     <!-- header -->
     <section>
@@ -282,11 +282,9 @@ export default {
 
         goToLastTrainer() {
             this.moveToTrainer(this.focusedTrainerIndex - 1)
-            console.log('goToLastTrainer');
         },
 
         goToNextTrainer() {
-            console.log('goToNextTrainer');
             this.moveToTrainer(this.focusedTrainerIndex + 1)
         },
 

@@ -1,5 +1,5 @@
 <template>
-    <v-flex d-flex justify-center xs10 md8 lg6 xl5 mx-auto class="page_not_found_wrapper">
+    <v-flex d-flex justify-center xs10 md8 lg6 xl5 mx-auto class="page_not_found_wrapper app_padding_top">
         <div class="text-center">
             <h1 class="sub_text_color">אופס!</h1>
             <h2>העמוד שחיפשתם לא נמצא...</h2>

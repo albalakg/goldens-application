@@ -132,7 +132,6 @@ export default {
 
             if(courses && courses.length) {
                 links = links.map(link => {
-                    console.log('link.text', link.text);
                     if(link.text === 'דף הבית') {
                         return this.myCourseLink
                     }

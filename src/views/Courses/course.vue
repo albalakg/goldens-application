@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="course_page_wrapper">
+    <img :src="course.imageSrc" alt="">
     course page:2
     <div>
-      {{ course }}
     </div>
   </div>
 </template>
@@ -13,7 +13,8 @@ export default {
   computed: {
     course() {
       const courses = this.$store.getters['UserState/courses'];
-      return courses.find(course => course.course_id == this.$route.params.course_id)
+      console.log('course', courses.find(course => course.id == this.$route.params.course_id));
+      return courses.find(course => course.id == this.$route.params.course_id)
     }
   }
 
@@ -21,5 +22,9 @@ export default {
 </script>
 
 <style scoped>
+
+  .course_page_wrapper {
+
+  }
 
 </style>

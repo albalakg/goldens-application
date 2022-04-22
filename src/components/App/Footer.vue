@@ -89,7 +89,7 @@ export default {
                     links: [
                         {
                             name: 'תנאי האתר',
-                            url: 'terms-and-conditions'
+                            url: 'policies'
                         }
                     ]
                 },

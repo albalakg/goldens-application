@@ -78,7 +78,7 @@ export default {
         },
         {
           text: 'תנאי האתר',
-          url: 'terms-and-conditions'
+          url: 'policies'
         },
       ],
 

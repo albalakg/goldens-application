@@ -49,7 +49,6 @@ const SupportState = {
         async createSupportTicket({ }, newSupportTicket) {
             try {
                 return new Promise((resolve, reject) => {
-                    console.log('newSupportTicket', newSupportTicket);
                     axios.post('support/create', newSupportTicket)
                         .then(res => {
                             resolve(res.data.data);
@@ -59,7 +58,7 @@ const SupportState = {
                         })
                 })
             } catch(err) {
-                console.log('erer', err);
+                console.log(err);
             }
         },
 

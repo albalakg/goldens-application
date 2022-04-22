@@ -6,7 +6,7 @@
         </v-flex>
     </div>
 
-    <div class="mobile_top_menu_filler"></div>
+    <div v-if="filler" class="mobile_top_menu_filler"></div>
 </div>
 </template>
 
@@ -22,9 +22,13 @@ export default {
     },
 
     props: {
+        filler: {
+            type: Boolean
+        },
+
         shadow: {
             type: Boolean
-        }
+        },
     },
 
     data() {
@@ -69,7 +73,6 @@ export default {
         height: 50px;
         z-index: 10;
         padding: 10px 0;
-        background-color: #fff;
     }
 
     .mobile_top_menu_shadow{

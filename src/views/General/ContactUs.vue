@@ -1,5 +1,5 @@
 <template>
-  <v-flex d-flex justify-center align-center class="contact_us_wrapper">
+  <v-flex d-flex justify-center align-center class="contact_us_wrapper app_padding_top">
     <img class="contact_us_background" :src="backgroundImage" alt="map">
     <v-flex d-flex flex-wrap align-center md8 lg7 xl6 class="contact_us_content h100">
       <v-flex xs10 mx-auto md4 class="contact_us_details_wrapper second_dark_bg_color py-10 mt-10 mt-md-0">

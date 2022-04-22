@@ -1,7 +1,7 @@
 <template>
   <v-app id="app">
     <DesktopMenu v-if="!isMobile" :showFullMenu="showFullMenu"/>
-    <MobileTopMenu v-else :shadow="showFullMenu" />
+    <MobileTopMenu v-else :filler="mobileFiller" />
     <MessageAlert />
 
     <v-main>
@@ -82,8 +82,13 @@ export default {
     },
 
     showFullMenu() {
-      const pagesWithoutMenu = ['signin', 'signup', 'forgot-password', 'reset-password'];
-      return !pagesWithoutMenu.includes(this.$route.path.replace('/', ''));
+      const pages = ['signin', 'signup', 'forgot-password', 'reset-password'];
+      return !pages.includes(this.$route.path.replace('/', ''));
+    },
+
+    mobileFiller() {
+      const pages = [''];
+      return pages.includes(this.$route.path.replace('/', '')); 
     }
   },
 
@@ -141,7 +146,4 @@ export default {
     overflow-x: hidden;
   }
 
-  .app_content {
-    padding-top: 5%;
-  }
 </style>
