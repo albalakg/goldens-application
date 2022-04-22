@@ -1,7 +1,7 @@
 <template>
     <div class="user_header_wrapper">
         <colored-circle-decorator class="user_colored_circle" />
-        <div class="user_header_content">
+        <v-flex class="user_header_content" v-if="$vuetify.breakpoint.smAndDown">
             <div class="text-center">
                 <div class="user_profile_image mx-auto">
                     <profile-card
@@ -45,7 +45,49 @@
                     </router-view>
                 </transition>
             </div>
-        </div>
+        </v-flex>
+
+        <v-flex v-if="$vuetify.breakpoint.mdAndUp" md10 mx-auto>
+            <v-flex d-flex align-end>
+                <v-flex xs2>
+                    <div class="user_profile_image mx-auto">
+                        <profile-card
+                            editable
+                        >
+                        </profile-card>
+                    </div>
+                </v-flex>
+                <v-flex xs8 mr-10>
+                    <v-flex>
+                        <h1>
+                            <span class="main_text_color">{{ firstName }}</span> <span>{{ lastName }}</span>
+                        </h1>
+                        <br>
+                        <v-flex class="user_links_wrapper">
+                            <MainTabs
+                                :tabs="links"
+                                :activeTab="activeTab"
+                                @submit="setActiveTab"
+                            >
+                            </MainTabs>
+                        </v-flex>
+                    </v-flex>
+                </v-flex>
+            </v-flex>
+            <v-flex d-flex>
+                <v-flex xs2>
+                    
+                </v-flex>
+                <v-flex xs8 mr-10>
+                    <div class="mt-7">
+                        <transition name="fade" mode="out-in">
+                            <router-view>
+                            </router-view>
+                        </transition>
+                    </div>
+                </v-flex>
+            </v-flex>
+        </v-flex>
 
         <br><br>
     </div>
@@ -145,12 +187,15 @@ export default {
 <style scoped lang="scss">
 
     .user_header_wrapper {
+        min-height: 80vh;
 
         .user_colored_circle {
+            height: 50vw;
+            width: 50vw;
             transform: scale(1.5);
             position: absolute;
-            top: -50%;
-            right: -55%;
+            top: -40%;
+            right: -40%;
         }
             
         @media only screen and (max-width: 600px) {
@@ -168,8 +213,8 @@ export default {
         }
 
         .user_profile_image {
-            height: 250px;
-            width: 250px;
+            height: 230px;
+            width: 230px;
             margin-top: 50px;
         }
 

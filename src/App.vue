@@ -97,7 +97,7 @@ export default {
       await this.$store.dispatch('UserState/getProgress');
       await this.$store.dispatch('UserState/setUserProfile', Auth.get());
 
-      this.$store.dispatch('UserState/goToLastActiveCourse', this.$route.path);
+      // this.$store.dispatch('UserState/goToLastActiveCourse', this.$route.path);
     },
 
     closeMessage() {

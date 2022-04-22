@@ -1,5 +1,5 @@
 <template>
-    <div class="user_profile_wrapper px-4">
+    <div class="user_profile_wrapper">
         
         <first-name-input
             ref="firstName"
@@ -10,6 +10,54 @@
             @onChange="setFirstName"
         >
         </first-name-input>
+
+        <br>
+
+        <last-name-input
+            ref="lastName"
+            outlined
+            title
+            icon
+            :readonly="!editMode"
+            @onChange="setLastName" 
+        >
+        </last-name-input>
+
+        <br>
+
+        <last-name-input
+            ref="lastName"
+            outlined
+            title
+            icon
+            :readonly="!editMode"
+            @onChange="setLastName" 
+        >
+        </last-name-input>
+
+        <br>
+
+        <last-name-input
+            ref="lastName"
+            outlined
+            title
+            icon
+            :readonly="!editMode"
+            @onChange="setLastName" 
+        >
+        </last-name-input>
+
+        <br>
+
+        <last-name-input
+            ref="lastName"
+            outlined
+            title
+            icon
+            :readonly="!editMode"
+            @onChange="setLastName" 
+        >
+        </last-name-input>
 
         <br>
 
