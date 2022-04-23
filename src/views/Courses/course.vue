@@ -17,9 +17,17 @@
       </v-flex>
     </v-flex>
 
+    <br>
+
     <main-tabs 
+      class="course_page_tabs"
       :tabs="tabs"
+      dark
+      :activeTab="activeTab"
+      @submit="setActiveTab"
     />
+
+
   </div>
 </template>
 
@@ -40,6 +48,7 @@ export default {
           title: 'שיעורים'
         },
       ],
+      activeTab: 0,
       actions: [
         {
           image: require('../../../public/assets/images/general/share.svg'),
@@ -63,6 +72,12 @@ export default {
       }
 
       return courses.find(course => course.id == this.$route.params.course_id)
+    }
+  },
+
+  methods: {
+    setActiveTab(activeTabIndex) {
+      this.activeTab = activeTabIndex;
     }
   }
 
@@ -117,6 +132,9 @@ export default {
       }
     }
 
+    .course_page_tabs {
+      text-align: center;
+    }
   }
 
 </style>

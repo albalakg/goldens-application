@@ -10,7 +10,7 @@
             :ref="`mainTab_${index}`"
             @click="submit(index)"
         >
-            <span class="pointer">
+            <span class="pointer" :class="{'white_text_color': dark}">
                 {{ tab.title }}
             </span>
         </v-flex>
@@ -25,7 +25,6 @@
 
 <script>
 const SPACE_BEHIND_THE_TAB  = 20;
-const TAB_WIDTH             = 6/12;
 
 export default {
     props: {
@@ -52,13 +51,36 @@ export default {
 
         routeable: {
             type: Boolean
+        },
+
+        dark: {
+            type: Boolean
+        },
+    },
+
+    data() {
+        return {
+            isMounted: false,
+            tabWidth: 0
         }
+    },
+
+    mounted() {
+        this.isMounted = true;
     },
 
     computed: {
         cssVars() {
+            this.isMounted;
+
+            const wrapper = document.querySelector('.main_tabs_wrapper');
+            if(!wrapper) {
+                return;
+            }
+            
+            this.tabWidth = wrapper.scrollWidth / this.tabs.length;
             return {
-                '--active-tab-width': 100 / (this.tabs.length + 3) + '%'
+                '--active-tab-width': this.tabWidth + 'px'
             }
         }
     },
@@ -89,18 +111,11 @@ export default {
                 return error('Failed to move the active line since one of the elements was not found');
             }
 
-            line.style.right = this.calcLinePosition(wrapper, activeTab, index) + 'px';
+            line.style.right = this.calcLinePosition(index) + 'px';
         },
 
-        calcLinePosition(wrapper, activeTab, activeTabIndex) {
-            let size = 0;
-            if(this.$vuetify.breakpoint.smAndDown) {
-                size = (wrapper.scrollWidth * (TAB_WIDTH)) - activeTab.offsetLeft - SPACE_BEHIND_THE_TAB;
-            } else {
-                size = wrapper.scrollWidth / this.tabs.length * activeTabIndex - (SPACE_BEHIND_THE_TAB * activeTabIndex);
-            }
-            
-            return size > 0 ? size : 0;
+        calcLinePosition(activeTabIndex) {
+            return (this.tabWidth * activeTabIndex);
         }
     }
 }
@@ -113,10 +128,8 @@ export default {
 
         .main_tab {
             padding: 0 5px;
-            width: 30%;
             border-bottom: 1px solid #CCC;
             padding-bottom: 20px;
-            max-width: 200px;
         }
 
         @media only screen and (max-width: 600px) {
@@ -144,7 +157,7 @@ export default {
             bottom: -2px;
             transition: .5s right ease-out;
             height: 4px;
-            width: 30%;
+            width: var(--active-tab-width);
             max-width: 200px;
         }
     }
