@@ -1,6 +1,6 @@
 
 <template>
-  <v-flex xs10 lg12 mx-auto class="h100 px-3">
+  <v-flex mx-auto class="h100 px-3">
     <div class="lesson_card_wrapper pointer">
       <img loading="lazy" :src="lesson.imageSrc" alt="lesson image">
       <div class="lesson_card_darkner"></div>
