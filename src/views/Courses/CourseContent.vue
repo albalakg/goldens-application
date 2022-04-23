@@ -44,7 +44,6 @@ export default {
 
   methods: {
     enterCourseArea(courseArea) {
-      console.log('enterCourseArea', courseArea);
       this.$router.push(`/courses/${courseArea.course_id}/lessons?courseArea=${courseArea.id}`)
     }
   }

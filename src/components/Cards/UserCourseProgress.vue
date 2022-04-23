@@ -103,15 +103,11 @@ export default {
         },
 
         totalCourseAreas() {
-            return this.course.active_areas_with_active_lessons.length;
+            return ContentService.countTotalCourseAreasByCourseId(this.course.id);
         },
 
         totalLessons() {
-            let totalLessons = 0;
-            this.course.active_areas_with_active_lessons.forEach(courseArea => {
-                totalLessons += courseArea.active_lessons.length;
-            });
-            return totalLessons;
+            return ContentService.countTotalLessonsByCourseId(this.course.id)
         },
 
         progress() {

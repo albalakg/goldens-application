@@ -6,6 +6,7 @@ import store from './store'
 import axios from "axios";
 import GlobalMethods from "./helpers/GlobalMethods";
 import AxiosHandler from './helpers/AxiosHandler'
+import ContentService from './helpers/ContentService'
 
 Vue.config.productionTip = false
 
@@ -15,7 +16,7 @@ if(Auth.token()) {
 }
 window.axios = axios;
 window.baseURL = 'http://localhost:8080/';
-
+window.ContentService = ContentService;
 window.FORM_DATA_CONFIG = {
   headers: {
       "Content-Type": "multipart/form-data",

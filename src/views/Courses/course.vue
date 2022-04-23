@@ -51,10 +51,13 @@
 
     <br>
 
-    <router-view :course="course" class="px-4">
-    </router-view>
+    <transition name="fade" mode="out-in">
+      <router-view :course="course" class="px-4">
+      </router-view>
+    </transition>
 
     <br>
+
   </div>
 </template>
 
@@ -98,14 +101,8 @@ export default {
   },
 
   mounted() {
-    const trailer = this.$refs.trailer;
-    if(!trailer) {
-      return;
-    }
-
-    trailer.addEventListener('fullscreenchange', event => { 
-      this.trailerFullScreen = document.fullscreenElement === trailer
-    });
+    this.listenToTrailerScreenMode();
+    this.setTabByRoute();
   },
 
   watch: {
@@ -132,14 +129,16 @@ export default {
   methods: {
     setActiveTab(activeTabIndex) {
       this.activeTab = activeTabIndex;
+
+      if(activeTabIndex === LESSONS_TAB_INDEX) {
+        return this.$router.push(`/courses/${this.course.id}/lessons`)
+      }
+
+      this.$router.push(`/courses/${this.course.id}`)
     },
 
     setTabByRoute() {
-      if(this.$route.path.includes('lessons')) {
-        return this.setActiveTab(LESSONS_TAB_INDEX);
-      }
-
-      this.setActiveTab(COURSE_AREAS_TAB_INDEX);
+      this.activeTab = this.$route.path.includes('lessons') ? LESSONS_TAB_INDEX : COURSE_AREAS_TAB_INDEX;
     },
 
     courseAction(action) {
@@ -177,8 +176,19 @@ export default {
       } else if (elem.msRequestFullscreen) { /* IE11 */
         elem.msRequestFullscreen();
       }
+    },
+
+    listenToTrailerScreenMode() {
+      const trailer = this.$refs.trailer;
+      if(!trailer) {
+        return;
+      }
+
+      trailer.addEventListener('fullscreenchange', event => { 
+        this.trailerFullScreen = document.fullscreenElement === trailer
+      });
     }
-  }
+  },
 
 }
 </script>
