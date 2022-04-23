@@ -96,6 +96,10 @@ export default {
 
   mounted() {
     const trailer = this.$refs.trailer;
+    if(!trailer) {
+      return;
+    }
+    
     trailer.addEventListener('fullscreenchange', event => { 
       this.trailerFullScreen = document.fullscreenElement === trailer
     });

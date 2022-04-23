@@ -74,6 +74,12 @@ const UserState = {
     },
 
     actions: {
+        async init({ dispatch }, userData) {
+            dispatch('getCourses');
+            dispatch('getProgress');
+            dispatch('setUserProfile', userData);      
+        },
+
         getProfile({ commit }) {
             axios.get('profile')
                 .then(res => {
@@ -175,7 +181,7 @@ const UserState = {
             commit('SET_USER_PROFILE', profile);
         },
         
-        async goToLastActiveCourse({ state, dispatch }, currentPath) {
+        async goToLastActiveCourse({ state }) {
             try {
                 const lesson    = state.lessons.find(lesson => lesson.id == lastActiveLesson.id);
                 const courses   = state.courses;
@@ -185,7 +191,7 @@ const UserState = {
                     route = '/courses/' + courses[0].id;
                 }
 
-                if(route === currentPath) {
+                if(route === window.location.hash) {
                     return;
                 }
 

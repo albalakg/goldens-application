@@ -55,7 +55,7 @@ export default {
     async isLogged() {
       if(this.isLogged) {
         this.loading = true;
-        await this.setLoggedUserData();
+        await this.$store.dispatch('UserState/init', Auth.get())
         this.loading = false;
       }
     }
@@ -96,7 +96,7 @@ export default {
       for(let index = 0; index < pages.length; index++) {
         const page  = pages[index];
         const route = this.$route.path.replace('/', '');
-        
+
         if(route.includes(page)) {
           return true;
         }
@@ -110,15 +110,7 @@ export default {
     setInitialSettings() {
       this.$store.dispatch('AuthState/setLogStatus', Auth.isLogged());
     },
-
-    async setLoggedUserData() {
-      await this.$store.dispatch('UserState/getCourses');
-      await this.$store.dispatch('UserState/getProgress');
-      await this.$store.dispatch('UserState/setUserProfile', Auth.get());
-
-      // this.$store.dispatch('UserState/goToLastActiveCourse', this.$route.path);
-    },
-
+    
     closeMessage() {
       this.showMessage = false;
     }
