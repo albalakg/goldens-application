@@ -1,6 +1,16 @@
 <template>
-    <div class="progress_bar_wrapper">
-        <div class="progress_bar_filler" :style="`width: ${progressWidth}`"></div>
+    <div 
+        class="progress_bar_wrapper"
+        :class="{
+            'dark_progress_bar': dark,
+            'slim_progress_bar': slim
+        }"
+    >
+        <div 
+            class="progress_bar_filler" 
+            :style="`width: ${progressWidth}`"
+        >
+        </div>
     </div>
 </template>
 
@@ -10,6 +20,14 @@ export default {
         progress: {
             type: Number,
             required: true
+        },
+
+        dark: {
+            type: Boolean
+        },
+
+        slim: {
+            type: Boolean 
         }
     },
 
@@ -44,6 +62,18 @@ export default {
         height: 100%;
         background-color: #31353d;
         transition: .3s width ease-in;
+    }
+
+    .dark_progress_bar {
+        background-color: #eee3;
+    }
+
+    .dark_progress_bar .progress_bar_filler{
+        background-color: #fff;
+    }
+
+    .slim_progress_bar {
+        height: 8px;
     }
 
 </style>

@@ -2,24 +2,44 @@
     <v-flex class="course_area_card_wrapper pointer" @click="submit()">
         <img :src="courseArea.imageSrc" alt="course area image">
         <div class="course_area_darkner"></div>
-        <v-flex xs8 class="course_area_detail h100" d-flex flex-column justify-space-between>
-            <div>
+        <v-flex class="course_area_detail h100" d-flex flex-column justify-space-between>
+            <v-flex xs10>
                 <h3 class="white_text_color">
                     {{ courseArea.name }}
                 </h3>
                 <p class="white_text_color">
                     {{ description }}
                 </p>
-            </div>
-            <div v-flex align-end class="h100">
-                8 ahgurho
-            </div>
+            </v-flex>
+            <v-flex d-flex align-end class="h100">
+                <div class="w100">
+                    <v-flex d-flex class="mb-2">
+                        <strong class="white_text_color">
+                            {{ totalLessons }} שיעורים
+                        </strong>
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <strong class="white_text_color">
+                            1:06 שעות
+                        </strong>
+                    </v-flex>
+                    <progress-bar
+                        dark
+                        slim
+                        :progress="progress"
+                    />
+                </div>
+            </v-flex>
         </v-flex>
     </v-flex>
 </template>
 
 <script>
+import ProgressBar from '../General/ProgressBar.vue';
 export default {
+  components: { ProgressBar },
+
     props: {
         courseArea: {
             type: Object,
@@ -29,8 +49,17 @@ export default {
 
     computed: {
         description() {
-            const dots = this.courseArea.description.length > 70 ? '...' : '';
-            return this.courseArea.description.substring(0, 70) + dots;
+            const dots = this.courseArea.description.length > 50 ? '...' : '';
+            return this.courseArea.description.substring(0, 50) + dots;
+        },
+
+        totalLessons() {
+            return this.courseArea.active_lessons.length;
+        },
+
+        progress() {
+            // TODO: calc progress
+            return 30;
         }
     },
 
@@ -46,9 +75,8 @@ export default {
 
     .course_area_card_wrapper {
         width: 100%;
-        height: 100%;
-        min-height: 175px;
-        border-radius: 8px;
+        height: 180px;
+        border-radius: 6px;
         position: relative;
         transition: .2s transform linear;
 
@@ -58,7 +86,7 @@ export default {
 
         img {
             object-fit: cover;
-            border-radius: 8px;
+            border-radius: 6px;
             position: absolute;
             left: 0;
             top: 0;
@@ -68,14 +96,14 @@ export default {
         }
 
         .course_area_darkner {
-            border-radius: 8px;
+            border-radius: 6px;
             position: absolute;
             left: 0;
             top: 0;
             height: 100%;
             width: 100%;
             z-index: 2;
-            background: linear-gradient(90deg, #0000, #000a);
+            background: linear-gradient(90deg, #0000, #000a 60%);
         }
 
         .course_area_detail {
