@@ -154,9 +154,9 @@ export default {
         .active_tab_line {
             position: absolute;
             right: 0;
-            bottom: -2px;
+            bottom: -1px;
             transition: .5s right ease-out;
-            height: 4px;
+            height: 3px;
             width: var(--active-tab-width);
             max-width: 200px;
         }
