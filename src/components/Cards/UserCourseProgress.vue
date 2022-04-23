@@ -7,7 +7,7 @@
             :rotate="-90"
             width="3"
         >
-            <img class="user_course_profile_image" :src="imageSrc" alt="image">
+            <img loading="lazy" class="user_course_profile_image" :src="imageSrc" alt="image">
         </v-progress-circular>
         <div class="user_course_content pa-6 pt-10">
             <star-logo class="user_course_star_image" :gstar="false" :opacity=".1" />
@@ -23,7 +23,7 @@
             <v-flex class="user_course_progress_row mt-5" d-flex justify-space-between>
                 <v-flex xs5 d-flex align-center>
                     <div class="ml-5 user_course_progress_row_image_box">
-                        <img :src="courseAreaImage" alt="course area image">
+                        <img loading="lazy" :src="courseAreaImage" alt="course area image">
                     </div>
                     <span>
                         תחומי קורס
@@ -39,7 +39,7 @@
             <v-flex class="user_course_progress_row mt-5" d-flex justify-space-between>
                 <v-flex xs5 d-flex align-center>
                     <div class="ml-5 user_course_progress_row_image_box">
-                        <img :src="lessonImage" alt="lesson image">
+                        <img loading="lazy" :src="lessonImage" alt="lesson image">
                     </div>
                     <span>
                         שיעורים

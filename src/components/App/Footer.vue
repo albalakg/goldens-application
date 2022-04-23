@@ -7,7 +7,7 @@
                 <logo dark />
             </v-flex>
             <v-flex d-flex class="mt-2">
-                <img v-for="(network, index) in networks" :key="index" :src="network.src" :alt="network.name" class="ml-10 pointer">
+                <img loading="lazy" v-for="(network, index) in networks" :key="index" :src="network.src" :alt="network.name" class="ml-10 pointer">
             </v-flex>
             <br>
             <p class="grey_text_color">

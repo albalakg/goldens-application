@@ -2,7 +2,7 @@
   <div class="course_page_wrapper" v-if="course">
 
     <v-flex class="course_page_image_wrapper mb-3">
-      <img class="course_image" :src="course.imageSrc" alt="">
+      <img loading="lazy" class="course_image" :src="course.imageSrc" alt="">
       <div class="course_page_image_darkner"></div>
       <div class="course_page_image_details">
         <div>
@@ -14,7 +14,7 @@
 
           <v-flex d-flex class="course_page_actions_wrapper w100 mt-5">
             <v-flex class="text-center pt-4" v-for="(action, index) in actions" :key="index" @click="courseAction(action.action)">
-              <img :src="action.image" alt="play button">
+              <img loading="lazy" :src="action.image" alt="play button">
               <p class="white_text_color mt-2">{{action.text}}</p>
               <div v-if="action.tooltip">
                 <v-tooltip

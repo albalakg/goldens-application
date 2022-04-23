@@ -140,7 +140,7 @@
 
             <v-flex xs12 md4 class="about_left_side_wrapper mt-10 mt-md-0">
                 <star-logo :gstar="false" class="about_star_decorator" />
-                <img class="mt-10 mt-md-0" :src="aboutPlayerSrc" alt="">
+                <img loading="lazy" class="mt-10 mt-md-0" :src="aboutPlayerSrc" alt="">
             </v-flex>
             
         </v-flex>

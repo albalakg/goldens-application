@@ -1,7 +1,7 @@
 
 <template>
     <div class="profile_card_wrapper">
-        <img :src="imageSrc" alt="">
+        <img loading="lazy" :src="imageSrc" alt="">
         <span class="profile_icon" v-if="editable">
             <IconChip 
                 shadow

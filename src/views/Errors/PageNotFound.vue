@@ -13,7 +13,7 @@
                 />
             </router-link>
 
-            <img class="mt-10" :src="image" alt="page not found">
+            <img loading="lazy" class="mt-10" :src="image" alt="page not found">
         </div>
     </v-flex>
 </template>

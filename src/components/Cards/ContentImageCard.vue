@@ -1,6 +1,6 @@
 <template>
 <div class="content_image_card" :style="cssVars">
-    <img :src="image" alt="">
+    <img loading="lazy" :src="image" alt="">
     <div class="content_image_details">
         <h2 class="mb-2">
            {{ name }} 

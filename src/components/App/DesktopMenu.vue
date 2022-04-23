@@ -44,12 +44,12 @@
                     <div class="account_wrapper">
                         <template v-if="isLogged">
                             <router-link class="simple_link" to="/user">
-                                <img :src="userImage" alt="user">
+                                <img loading="lazy" :src="userImage" alt="user">
                             </router-link>
                         </template>
                         <template v-else>
                             <router-link class="simple_link" to="/signin">
-                                <img :src="userImage" alt="user">
+                                <img loading="lazy" :src="userImage" alt="user">
                             </router-link>
                         </template>
                     </div>

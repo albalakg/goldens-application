@@ -1,7 +1,7 @@
 <template>
   <router-link to="/">
-      <img v-if="dark" src="./../../../public/assets/images/general/dark_logo.svg" alt="">
-      <img v-else src="./../../../public/assets/images/general/lightLogo.png" alt="">
+      <img loading="lazy" v-if="dark" src="./../../../public/assets/images/general/dark_logo.svg" alt="">
+      <img loading="lazy" v-else src="./../../../public/assets/images/general/lightLogo.png" alt="">
   </router-link>
 </template>
 

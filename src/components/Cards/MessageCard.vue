@@ -19,7 +19,7 @@
             
         >
             <div>
-                <img :src="images[type]" alt="">
+                <img loading="lazy" :src="images[type]" alt="">
                 
                 <br>
                 

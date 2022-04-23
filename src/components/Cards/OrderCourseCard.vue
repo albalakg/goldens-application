@@ -3,7 +3,7 @@
     <v-flex d-flex>
         <v-flex xs4 class="order_course_card_video_card">
             <video :src="course.trailer" controls controlsList="nodownload"></video>
-            <!-- <img :src="course.trailer" alt=""> -->
+            <!-- <img loading="lazy" :src="course.trailer" alt=""> -->
         </v-flex>
         <v-flex xs5 class="order_course_card_description_card my-5">
             <v-flex xs9 mx-auto>

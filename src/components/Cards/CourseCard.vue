@@ -1,7 +1,7 @@
 
 <template>
   <div class="course_card_wrapper text-right" :class="{'course_card_wrapper_dark': dark}" @click="click()" v-if="course.name">
-    <img :src="course.imageSrc" alt="course image" loading="lazy">
+    <img loading="lazy" :src="course.imageSrc" alt="course image">
     <h3>
       {{course.name}}
     </h3>

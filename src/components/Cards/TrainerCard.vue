@@ -1,7 +1,7 @@
 
 <template>
   <div class="trainer_card_wrapper" :class="{'rounded': rounded}">
-    <img :src="trainer.image" alt="trainer image" loading="lazy" :class="{'rounded': rounded}">
+    <img loading="lazy" :src="trainer.image" alt="trainer image" :class="{'rounded': rounded}">
     <div class="trainer_card_darkner" :class="{'rounded': rounded}"></div>
     <h3>
       {{

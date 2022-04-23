@@ -1,5 +1,5 @@
 <template>
-  <img :style="`opacity: ${opacity}`" src="./../../../public/assets/images/general/circle.svg" alt="">
+  <img loading="lazy" :style="`opacity: ${opacity}`" src="./../../../public/assets/images/general/circle.svg" alt="">
 </template>
 
 <script>

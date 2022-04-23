@@ -2,7 +2,7 @@
 <template>
   <v-flex xs10 lg12 mx-auto class="h100 px-3">
     <div class="lesson_card_wrapper pointer">
-      <img :src="lesson.imageSrc" alt="lesson image" loading="lazy">
+      <img loading="lazy" :src="lesson.imageSrc" alt="lesson image">
       <div class="lesson_card_darkner"></div>
       <div class="lesson_card_details text-center">
         <h2 class="white_text_color">{{ lesson.name }}</h2>

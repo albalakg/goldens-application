@@ -1,6 +1,6 @@
 <template>
   <v-flex d-flex justify-center align-center class="contact_us_wrapper app_padding_top">
-    <img class="contact_us_background" :src="backgroundImage" alt="map">
+    <img loading="lazy" class="contact_us_background" :src="backgroundImage" alt="map">
     <v-flex d-flex flex-wrap align-center md8 lg7 xl6 class="contact_us_content h100">
       <v-flex xs10 mx-auto md4 class="contact_us_details_wrapper second_dark_bg_color py-10 mt-10 mt-md-0">
 
@@ -12,7 +12,7 @@
 
         <v-flex class="pb-3 pb-md-6 pb-xl-10 pr-10" d-flex v-for="(item, index) in contactDetails" :key="index">
           <v-flex xs2>
-            <img :src="item.image" alt="">
+            <img loading="lazy" :src="item.image" alt="">
           </v-flex>
           <v-flex xs10>
             <a v-if="item.link" class="simple_link white_text_color" :href="item.link">{{item.text}}</a>
@@ -21,7 +21,7 @@
         </v-flex>
       </v-flex>
       <v-flex xs11 mx-auto md8 class="contact_us_form_wrapper white_bg_color dark_shadow">
-        <img class="contact_us_location_mark" :src="locationMarkImage" alt="location mark">
+        <img loading="lazy" class="contact_us_location_mark" :src="locationMarkImage" alt="location mark">
 
         <v-flex xs10 mx-auto class="text-center">
           <h2>

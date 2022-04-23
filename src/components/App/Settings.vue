@@ -21,7 +21,7 @@
             <span>
               שמירה על הטלפון
             </span>
-            <img :src="downloadIcon" alt="download icon">
+            <img loading="lazy" :src="downloadIcon" alt="download icon">
           </v-flex>
         </template>
       </main-button>

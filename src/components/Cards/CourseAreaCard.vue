@@ -1,6 +1,6 @@
 <template>
     <v-flex class="course_area_card_wrapper pointer" @click="submit()">
-        <img :src="courseArea.imageSrc" alt="course area image">
+        <img loading="lazy" :src="courseArea.imageSrc" alt="course area image">
         <div class="course_area_darkner"></div>
         <v-flex class="course_area_detail h100" d-flex flex-column justify-space-between>
             <v-flex xs10>

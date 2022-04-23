@@ -1,6 +1,6 @@
 <template>
   <v-flex d-flex flex-wrap align-center justify-space-between class="partners_wrapper">
-    <img v-for="(partner, index) in partners" :key="index" :src="partner.image" :alt="partner.name" class="mx-2" />
+    <img loading="lazy" v-for="(partner, index) in partners" :key="index" :src="partner.image" :alt="partner.name" class="mx-2" />
   </v-flex>
 </template>
 

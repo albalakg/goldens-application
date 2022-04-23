@@ -1,6 +1,6 @@
 <template>
   <div class="tab_icon_wrapper text-center py-2 px-3" @click="onClick()">
-    <img :src="image" alt="menu link image">
+    <img loading="lazy" :src="image" alt="menu link image">
     <p class="tab_icon_placeholder"></p>
     <p class="mb-0 tab_icon_text" :class="`${color}--text`">
       {{ text }}
