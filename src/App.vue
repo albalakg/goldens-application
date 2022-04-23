@@ -92,7 +92,7 @@ export default {
     },
 
     darkMenu() {
-      const pages = ['courses'];
+      const pages = ['courses', 'about'];
       return pages.includes(this.$route.path.replace('/', '')); 
     },
   },

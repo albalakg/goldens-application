@@ -1,5 +1,5 @@
 <template>
-    <div class="signin_wrapper pb-10">
+    <div class="signin_wrapper pb-10 auth_padding_top">
         <main class="auth_form_top_margin w100">
             <v-flex d-flex flex-wrap>
                 <v-flex xs12 md6 lg7 xl8>

@@ -5,7 +5,9 @@
     <br>
 
     <user-course-progress v-if="isLogged" :course="course" />
+    
     <br>
+
     <template v-for="(courseArea, index) in courseAreas">
       <course-area-card 
         class="mb-3"

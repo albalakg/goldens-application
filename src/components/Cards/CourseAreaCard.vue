@@ -1,15 +1,19 @@
-
 <template>
     <v-flex class="course_area_card_wrapper pointer" @click="submit()">
         <img :src="courseArea.imageSrc" alt="course area image">
         <div class="course_area_darkner"></div>
-        <v-flex xs8 class="course_area_detail">
-            <h3 class="white_text_color">
-                {{ courseArea.name }}
-            </h3>
-            <p class="white_text_color">
-                {{ description }}
-            </p>
+        <v-flex xs8 class="course_area_detail h100" d-flex flex-column justify-space-between>
+            <div>
+                <h3 class="white_text_color">
+                    {{ courseArea.name }}
+                </h3>
+                <p class="white_text_color">
+                    {{ description }}
+                </p>
+            </div>
+            <div v-flex align-end class="h100">
+                8 ahgurho
+            </div>
         </v-flex>
     </v-flex>
 </template>

@@ -3,7 +3,7 @@
     <div class="mobile_top_menu_wrapper" :class="{'mobile_top_menu_shadow': shadow}">
         <v-flex xs6 mx-auto>
             <Logo
-                dark 
+                :dark="dark" 
             />
         </v-flex>
     </div>
