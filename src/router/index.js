@@ -115,10 +115,16 @@ const routes = [
   {
     path: '/courses/:course_id',
     component: () => import('../views/Courses/Course.vue'),
-  },
-  {
-    path: '/courses/:course_id/:course_area_id',
-    component: () => import('../views/Courses/CourseArea.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('../views/Courses/CourseContent.vue'),
+      },
+      {
+        path: '/courses/:course_id/:course_area_id',
+        component: () => import('../views/Courses/CourseArea.vue'),
+      },
+    ]
   },
   {
     path: '/courses/:course_id/:course_area_id/:lesson_id',

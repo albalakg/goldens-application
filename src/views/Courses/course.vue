@@ -1,35 +1,41 @@
 <template>
-  <div class="course_page_wrapper second_dark_bg_color" v-if="course">
+  <div class="course_page_wrapper" v-if="course">
 
-    <v-flex class="course_page_image_wrapper">
-      <img :src="course.imageSrc" alt="">
-      <h1>
-        {{course.name}}
-      </h1>
-      <div class="divider"></div>
+    <v-flex class="course_page_image_wrapper mb-3">
+      <img class="course_image" :src="course.imageSrc" alt="">
       <div class="course_page_image_darkner"></div>
-    </v-flex>
+      <div class="course_page_image_details">
+        <div>
+          <h1>
+            {{course.name}}
+          </h1>
 
-    <v-flex d-flex class="course_page_actions_wrapper">
-      <v-flex class="text-center pt-4" v-for="(action, index) in actions" :key="index">
-        <img :src="action.image" alt="play button">
-        <p class="white_text_color mt-2">{{action.text}}</p>
-      </v-flex>
-    </v-flex>
+          <div class="divider"></div>
 
-    <br>
+          <v-flex d-flex class="course_page_actions_wrapper w100 mt-5">
+            <v-flex class="text-center pt-4" v-for="(action, index) in actions" :key="index">
+              <img :src="action.image" alt="play button">
+              <p class="white_text_color mt-2">{{action.text}}</p>
+            </v-flex>
+          </v-flex>
+        </div>
+      </div>
+    </v-flex>
 
     <main-tabs 
       class="course_page_tabs"
+      subColor
       :tabs="tabs"
-      dark
       :activeTab="activeTab"
       @submit="setActiveTab"
     />
 
     <br>
-    <br>
 
+    <router-view :course="course" class="px-4">
+    </router-view>
+
+    <br>
   </div>
 </template>
 
@@ -92,11 +98,11 @@ export default {
     
     .course_page_image_wrapper {
       position: relative;
-      height: 30vh;
+      height: 35vh;
       width: 100vw;
       text-align: center;
 
-      img {
+      img.course_image {
         position: absolute;
         height: 100%;
         width: 100%;
@@ -105,16 +111,29 @@ export default {
       }
 
       h1 {
-        position: absolute;
-        bottom: 40px;
-        left: 0;
-        right: 0;
+        position: relative;
         color: #fff;
         font-size: 3em;
         z-index: 3;
       }
 
+      .course_page_image_details {
+        position: relative;
+        z-index: 3;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: end;
+        justify-content: center;
+      }
+
+      .course_page_actions_wrapper {
+        position: relative;
+        z-index: 3;
+      }
+
       .course_page_image_darkner {
+        right: 0;
         position: absolute;
         height: 100%;
         width: 100%;
@@ -122,15 +141,12 @@ export default {
       }
 
       .divider {
-        height: 4px;
-        width: 20%;
-        position: absolute;
-        bottom: 30px;
-        left: 0;
-        right: 0;
+        height: 3px;
+        width: 30%;
+        position: relative;
         margin: auto;
         z-index: 3;
-        background-color: #16588F;
+        background-color: #E6B260;
       }
     }
 
@@ -138,5 +154,6 @@ export default {
       text-align: center;
     }
   }
+
 
 </style>

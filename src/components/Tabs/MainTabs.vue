@@ -18,6 +18,9 @@
 
     <div 
         class="active_tab_line main_bg_color"
+        :class="{
+            'sub_bg_color': subColor
+        }"
         ref="activeTabLine"
     ></div>
 </v-flex>
@@ -54,6 +57,10 @@ export default {
         },
 
         dark: {
+            type: Boolean
+        },
+
+        subColor: {
             type: Boolean
         },
     },
