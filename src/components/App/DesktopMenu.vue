@@ -88,6 +88,10 @@ export default {
         showFullMenu: {
             type: Boolean,
             default: true
+        },
+
+        dark: {
+            type: Boolean
         }
     },
 

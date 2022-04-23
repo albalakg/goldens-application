@@ -1,6 +1,6 @@
 <template>
   <v-app id="app">
-    <DesktopMenu v-if="!isMobile" :showFullMenu="showFullMenu"/>
+    <DesktopMenu v-if="!isMobile" :showFullMenu="showFullMenu" :dark="darkMenu"/>
     <MobileTopMenu v-else :filler="mobileFiller" :dark="darkMenu" />
     <MessageAlert />
 
