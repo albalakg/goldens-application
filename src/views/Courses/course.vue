@@ -39,6 +39,8 @@
       </div>
     </v-flex>
 
+    <video v-show="showTrailer" :src="course.trailerSrc" ref="trailer"></video>
+
     <main-tabs 
       class="course_page_tabs"
       subColor
@@ -75,6 +77,7 @@ export default {
       ],
       activeTab: 0,
       showShareTooltip: false,
+      trailerFullScreen: false,
       actions: [
         {
           image: require('../../../public/assets/images/general/share.svg'),
@@ -91,6 +94,13 @@ export default {
     }
   },
 
+  mounted() {
+    const trailer = this.$refs.trailer;
+    trailer.addEventListener('fullscreenchange', event => { 
+      this.trailerFullScreen = document.fullscreenElement === trailer
+    });
+  },
+
   computed: {
     course() {
       const courses = this.$store.getters['UserState/courses'];
@@ -99,6 +109,10 @@ export default {
       }
 
       return courses.find(course => course.id == this.$route.params.course_id)
+    },
+
+    showTrailer() {
+      return this.$vuetify.breakpoint.mdAndUp || this.trailerFullScreen;
     }
   },
 
@@ -130,8 +144,19 @@ export default {
     },
 
     openTrailer() {
-      console.log('openTrailer');
+      const trailer = this.$refs.trailer;
+      this.openFullscreen(trailer);
     },
+
+    openFullscreen(elem) {
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+      } else if (elem.webkitRequestFullscreen) { /* Safari */
+        elem.webkitRequestFullscreen();
+      } else if (elem.msRequestFullscreen) { /* IE11 */
+        elem.msRequestFullscreen();
+      }
+    }
   }
 
 }
