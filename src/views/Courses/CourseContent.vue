@@ -3,8 +3,8 @@
 
     <br>
     <br>
-    
-    <user-course-progress :course="course" />
+
+    <user-course-progress v-if="isLogged" :course="course" />
     <br>
     <template v-for="(courseArea, index) in courseAreas">
       <course-area-card 
@@ -32,7 +32,11 @@ export default {
   computed: {
     courseAreas() {
       return this.course?.active_areas_with_active_lessons;
-    }
+    },
+
+    isLogged() {
+      return this.$store.getters['AuthState/isLogged'];
+    },
   }
 
 }

@@ -22,12 +22,14 @@
 
             <v-flex class="user_course_progress_row mt-5" d-flex justify-space-between>
                 <v-flex xs5 d-flex align-center>
-                    <img class="ml-5" :src="lessonImage" alt="lesson image">
+                    <div class="ml-5 user_course_progress_row_image_box">
+                        <img :src="courseAreaImage" alt="course area image">
+                    </div>
                     <span>
                         תחומי קורס
                     </span>
                 </v-flex>
-                <v-flex xs5 class="text-left">
+                <v-flex xs5 d-flex align-center justify-end class="text-left">
                     <strong>
                         {{totalCourseAreas}}
                     </strong>
@@ -36,12 +38,14 @@
 
             <v-flex class="user_course_progress_row mt-5" d-flex justify-space-between>
                 <v-flex xs5 d-flex align-center>
-                    <img class="ml-5" :src="lessonImage" alt="lesson image">
+                    <div class="ml-5 user_course_progress_row_image_box">
+                        <img :src="lessonImage" alt="lesson image">
+                    </div>
                     <span>
                         שיעורים
                     </span>
                 </v-flex>
-                <v-flex xs5 class="text-left">
+                <v-flex xs5 d-flex align-center justify-end class="text-left">
                     <strong>
                         {{totalLessons}}
                     </strong>
@@ -146,6 +150,15 @@ export default {
                 top: -20%;
                 right: -40%;
             }
+        }
+
+        .user_course_progress_row_image_box {
+            background-color: #eee;
+            padding: 7px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
     }
