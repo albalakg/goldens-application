@@ -17,17 +17,29 @@
       </v-flex>
     </v-flex>
 
-    
+    <main-tabs 
+      :tabs="tabs"
+    />
   </div>
 </template>
 
 <script>
+import MainTabs from '../../components/Tabs/MainTabs.vue';
 export default {
+  components: {
+    MainTabs,
+  },
 
   data() {
     return {
-      playImage: require('../../../public/assets/images/general/play.svg'),
-      shareImage: require('../../../public/assets/images/general/share.svg'),
+      tabs: [
+        {
+          title: 'תחומים'
+        },
+        {
+          title: 'שיעורים'
+        },
+      ],
       actions: [
         {
           image: require('../../../public/assets/images/general/share.svg'),

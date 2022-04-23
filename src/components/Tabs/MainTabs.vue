@@ -31,7 +31,18 @@ export default {
     props: {
         tabs: {
             type: Array,
-            required: true
+            required: true,
+            validator(value) {
+                if(value.length === 0) {
+                    return true;
+                }
+             
+                return -1 !== value.findIndex(item => {
+                    if(item.title) {
+                        return item;
+                    }
+                })
+            }
         },
 
         activeTab: {
