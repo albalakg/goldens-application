@@ -1,9 +1,9 @@
 <template>
     <div class="user_profile_wrapper">
         
-        <v-form @submit="submit">
-            <v-flex d-flex>
-                <v-flex ml-2>
+        <v-form @submit="submit" class="px-5 px-md-0">
+            <v-flex d-flex flex-wrap>
+                <v-flex ml-md-2>
                     <first-name-input
                         ref="firstName"
                         outlined
@@ -14,7 +14,7 @@
                     </first-name-input>
                 </v-flex>
 
-                <v-flex mr-2>
+                <v-flex mr-md-2 mt-5 mt-md-0>
                     <last-name-input
                         ref="lastName"
                         outlined
@@ -26,10 +26,8 @@
                 </v-flex>
             </v-flex>
 
-            <br>
-
-            <v-flex d-flex>
-                <v-flex ml-2>
+            <v-flex d-flex flex-wrap mt-5>
+                <v-flex ml-md-2>
                     <phone-input
                         ref="phone"
                         outlined
@@ -40,7 +38,7 @@
                     >
                     </phone-input>
                 </v-flex>
-                <v-flex mr-2>
+                <v-flex mr-md-2 mt-5 mt-md-0>
                     <gender-select 
                         ref="gender"
                         title
@@ -49,8 +47,8 @@
                 </v-flex>
             </v-flex>
 
-            <v-flex d-flex justify-end class="mt-5">
-                <v-flex xs2>
+            <v-flex d-flex justify-end mt-10 mt-md-5>
+                <v-flex xs12 md4 lg2>
                     <main-button 
                         :text="'שלח'"
                         shadow

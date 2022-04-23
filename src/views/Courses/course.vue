@@ -1,28 +1,55 @@
 <template>
-  <div class="course_page_wrapper second_dark_bg_color">
+  <div class="course_page_wrapper second_dark_bg_color" v-if="course">
 
     <v-flex class="course_page_image_wrapper">
       <img :src="course.imageSrc" alt="">
       <h1>
         {{course.name}}
       </h1>
-      <div class="divider second_dark_bg_color"></div>
+      <div class="divider"></div>
       <div class="course_page_image_darkner"></div>
     </v-flex>
 
-    <div class="">
-      
-    </div>
+    <v-flex d-flex class="course_page_actions_wrapper">
+      <v-flex class="text-center pt-4" v-for="(action, index) in actions" :key="index">
+        <img :src="action.image" alt="play button">
+        <p class="white_text_color mt-2">{{action.text}}</p>
+      </v-flex>
+    </v-flex>
+
+    
   </div>
 </template>
 
 <script>
 export default {
 
+  data() {
+    return {
+      playImage: require('../../../public/assets/images/general/play.svg'),
+      shareImage: require('../../../public/assets/images/general/share.svg'),
+      actions: [
+        {
+          image: require('../../../public/assets/images/general/share.svg'),
+          text: 'שיתוף',
+          action: 'copyLink'
+        },
+        {
+          image: require('../../../public/assets/images/general/play.svg'),
+          text: 'טריילר',
+          action: 'openTrailer'
+        }
+      ]
+    }
+  },
+
   computed: {
     course() {
       const courses = this.$store.getters['UserState/courses'];
-      console.log('course', courses.find(course => course.id == this.$route.params.course_id));
+      if(!courses) {
+        return null;
+      }
+
       return courses.find(course => course.id == this.$route.params.course_id)
     }
   }
@@ -62,11 +89,11 @@ export default {
         position: absolute;
         height: 100%;
         width: 100%;
-        background: linear-gradient(#102a46, #0005)
+        background: linear-gradient(#102a46, #0006)
       }
 
       .divider {
-        height: 3px;
+        height: 4px;
         width: 20%;
         position: absolute;
         bottom: 30px;
