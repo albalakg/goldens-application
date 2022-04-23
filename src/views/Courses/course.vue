@@ -30,7 +30,7 @@
                     >
                     </span>
                   </template>
-                  <span class="white_text_color">קישור האתר הועתק</span>
+                  <span class="white_text_color">קישור לעמוד הקורס הועתק</span>
                 </v-tooltip>
               </div>
             </v-flex>
@@ -60,6 +60,9 @@
 
 <script>
 import MainTabs from '../../components/Tabs/MainTabs.vue';
+
+const COURSE_AREAS_TAB_INDEX  = 0;
+const LESSONS_TAB_INDEX       = 1;
 export default {
   components: {
     MainTabs,
@@ -99,10 +102,16 @@ export default {
     if(!trailer) {
       return;
     }
-    
+
     trailer.addEventListener('fullscreenchange', event => { 
       this.trailerFullScreen = document.fullscreenElement === trailer
     });
+  },
+
+  watch: {
+    $route() {
+      this.setTabByRoute();
+    }
   },
 
   computed: {
@@ -123,6 +132,14 @@ export default {
   methods: {
     setActiveTab(activeTabIndex) {
       this.activeTab = activeTabIndex;
+    },
+
+    setTabByRoute() {
+      if(this.$route.path.includes('lessons')) {
+        return this.setActiveTab(LESSONS_TAB_INDEX);
+      }
+
+      this.setActiveTab(COURSE_AREAS_TAB_INDEX);
     },
 
     courseAction(action) {

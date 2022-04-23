@@ -121,7 +121,7 @@ const routes = [
         component: () => import('../views/Courses/CourseContent.vue'),
       },
       {
-        path: '/courses/:course_id/:course_area_id',
+        path: '/courses/:course_id/lessons',
         component: () => import('../views/Courses/CourseArea.vue'),
       },
     ]

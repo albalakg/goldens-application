@@ -17,7 +17,7 @@
       </transition>
     </v-main>
 
-    <MobileMenu v-if="isMobile" />
+    <MobileMenu v-if="isMobile && !loading" />
     <Footer v-else/>
   </v-app>
 </template>
@@ -55,7 +55,9 @@ export default {
     async isLogged() {
       if(this.isLogged) {
         this.loading = true;
+        console.log(1);
         await this.$store.dispatch('UserState/init', Auth.get())
+        console.log(2);
         this.loading = false;
       }
     }

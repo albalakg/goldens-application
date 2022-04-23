@@ -13,6 +13,7 @@
         class="mb-3"
         :key="index"
         :courseArea="courseArea"
+        @submit="enterCourseArea"
       />
     </template>
   </v-flex>
@@ -39,6 +40,13 @@ export default {
     isLogged() {
       return this.$store.getters['AuthState/isLogged'];
     },
+  },
+
+  methods: {
+    enterCourseArea(courseArea) {
+      console.log('enterCourseArea', courseArea);
+      this.$router.push(`/courses/${courseArea.course_id}/lessons?courseArea=${courseArea.id}`)
+    }
   }
 
 }

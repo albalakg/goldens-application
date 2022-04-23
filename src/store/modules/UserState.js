@@ -75,8 +75,8 @@ const UserState = {
 
     actions: {
         async init({ dispatch }, userData) {
-            dispatch('getCourses');
-            dispatch('getProgress');
+            await dispatch('getCourses');
+            await dispatch('getProgress');
             dispatch('setUserProfile', userData);      
         },
 
@@ -191,7 +191,7 @@ const UserState = {
                     route = '/courses/' + courses[0].id;
                 }
 
-                if(route === window.location.hash) {
+                if(route === window.location.hash.replace('#', '')) {
                     return;
                 }
 
