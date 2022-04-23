@@ -13,9 +13,26 @@
           <div class="divider"></div>
 
           <v-flex d-flex class="course_page_actions_wrapper w100 mt-5">
-            <v-flex class="text-center pt-4" v-for="(action, index) in actions" :key="index">
+            <v-flex class="text-center pt-4" v-for="(action, index) in actions" :key="index" @click="courseAction(action.action)">
               <img :src="action.image" alt="play button">
               <p class="white_text_color mt-2">{{action.text}}</p>
+              <div v-if="action.tooltip">
+                <v-tooltip
+                  v-model="showShareTooltip"
+                  bottom
+                  color="black"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <span
+                      icon
+                      v-bind="attrs"
+                      v-on="on"
+                    >
+                    </span>
+                  </template>
+                  <span class="white_text_color">קישור האתר הועתק</span>
+                </v-tooltip>
+              </div>
             </v-flex>
           </v-flex>
         </div>
@@ -57,11 +74,13 @@ export default {
         },
       ],
       activeTab: 0,
+      showShareTooltip: false,
       actions: [
         {
           image: require('../../../public/assets/images/general/share.svg'),
           text: 'שיתוף',
-          action: 'copyLink'
+          action: 'copyLink',
+          tooltip: true
         },
         {
           image: require('../../../public/assets/images/general/play.svg'),
@@ -86,7 +105,33 @@ export default {
   methods: {
     setActiveTab(activeTabIndex) {
       this.activeTab = activeTabIndex;
-    }
+    },
+
+    courseAction(action) {
+      try {
+        this[action]();
+      } catch(err) {
+        console.warn(err);
+      }
+    },
+
+    copyLink() {
+      navigator.clipboard.writeText(window.location);
+      this.showToolTip();
+    },
+
+    showToolTip() {
+      this.showShareTooltip = true;
+      clearTimeout(this.copyLinkTier);
+
+      this.copyLinkTier = setTimeout(() => {
+        this.showShareTooltip = false;
+      }, 3000);
+    },
+
+    openTrailer() {
+      console.log('openTrailer');
+    },
   }
 
 }
