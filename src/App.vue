@@ -93,7 +93,16 @@ export default {
 
     darkMenu() {
       const pages = ['courses', 'about'];
-      return pages.includes(this.$route.path.replace('/', '')); 
+      for(let index = 0; index < pages.length; index++) {
+        const page  = pages[index];
+        const route = this.$route.path.replace('/', '');
+        
+        if(route.includes(page)) {
+          return true;
+        }
+      }
+
+      return false;
     },
   },
 
