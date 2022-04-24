@@ -1,10 +1,12 @@
 <template>
   <v-flex>
 
-    <br>
-    <br>
+    <template v-if="isLogged">
+      <br>
+      <br>
+      <user-course-progress :course="course" />
+    </template>
 
-    <user-course-progress v-if="isLogged" :course="course" />
     
     <br>
 

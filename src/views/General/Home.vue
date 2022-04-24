@@ -276,8 +276,8 @@ export default {
 
     methods: {
         getContent() {
-            this.$store.dispatch('CourseCategoryState/getCourseCategories');
-            this.$store.dispatch('CourseLessonState/getCourseLessons');
+            this.$store.dispatch('ContentState/getCategories');
+            this.$store.dispatch('ContentState/getLessons');
         },
 
         goToLastTrainer() {

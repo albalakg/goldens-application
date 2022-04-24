@@ -21,7 +21,7 @@
                         &nbsp;
                         &nbsp;
                         <strong class="white_text_color">
-                            1:06 שעות
+                            {{ totalDuration }}    
                         </strong>
                     </v-flex>
                     <progress-bar
@@ -55,6 +55,11 @@ export default {
 
         totalLessons() {
             return this.courseArea.active_lessons.length;
+        },
+
+        totalDuration() {
+            const seconds = ContentService.countTotalCourseAreaDuration(this.courseArea.id);
+            return ContentService.getTimeTextBySeconds(seconds);
         },
 
         progress() {

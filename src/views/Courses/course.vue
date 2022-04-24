@@ -100,25 +100,43 @@ export default {
     }
   },
 
+  created() {
+    if(!this.$store.getters['AuthState/isLogged']) {
+      this.$store.dispatch('ContentState/getCourse', this.$route.params.course_id)
+    }
+  },
+
   mounted() {
-    this.listenToTrailerScreenMode();
     this.setTabByRoute();
+    const trailer = this.$refs.trailer;
+    if(!trailer) {
+      return;
+    }
+
+    trailer.addEventListener('fullscreenchange', event => { 
+      this.trailerFullScreen = document.fullscreenElement === trailer
+    });
   },
 
   watch: {
     $route() {
       this.setTabByRoute();
-    }
+    },
   },
 
   computed: {
     course() {
-      const courses = this.$store.getters['UserState/courses'];
-      if(!courses) {
-        return null;
+      let courses = this.$store.getters['UserState/courses'];
+      if(courses) {
+        return courses.find(course => course.id == this.$route.params.course_id)
       }
 
-      return courses.find(course => course.id == this.$route.params.course_id)
+      courses = this.$store.getters['ContentState/courses'];
+      if(courses) {
+        return courses.find(course => course.id == this.$route.params.course_id)
+      }
+
+      return null;
     },
 
     showTrailer() {
@@ -179,14 +197,16 @@ export default {
     },
 
     listenToTrailerScreenMode() {
-      const trailer = this.$refs.trailer;
-      if(!trailer) {
-        return;
-      }
+      setTimeout(() => {
+        const trailer = this.$refs.trailer;
+        if(!trailer) {
+          return;
+        }
 
-      trailer.addEventListener('fullscreenchange', event => { 
-        this.trailerFullScreen = document.fullscreenElement === trailer
-      });
+        trailer.addEventListener('fullscreenchange', event => { 
+          this.trailerFullScreen = document.fullscreenElement === trailer
+        });
+      }, 0);
     }
   },
 
