@@ -52,6 +52,22 @@
                 </v-flex>
             </v-flex>
 
+            <v-flex class="user_course_progress_row mt-5" d-flex justify-space-between>
+                <v-flex xs5 d-flex align-center>
+                    <div class="ml-5 user_course_progress_row_image_box">
+                        <img loading="lazy" :src="lessonImage" alt="lesson image">
+                    </div>
+                    <span>
+                        זמן
+                    </span>
+                </v-flex>
+                <v-flex xs5 d-flex align-center justify-end class="text-left">
+                    <strong>
+                        {{totalDuration}}
+                    </strong>
+                </v-flex>
+            </v-flex>
+
             <div class="user_course_progress_bar mt-10">
                 <v-flex d-flex justify-space-between>
                     <strong>התקדמות בקורס</strong>
@@ -113,7 +129,12 @@ export default {
         progress() {
             // TODO: calc progress
             return 30;
-        }
+        },
+        
+        totalDuration() {
+            const seconds = ContentService.countTotalCourseDuration(this.course.id);
+            return ContentService.getTimeTextBySeconds(seconds);
+        },
     }
 }
 </script>

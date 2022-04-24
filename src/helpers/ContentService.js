@@ -140,15 +140,15 @@ class ContentService {
     }
   }
 
-  getTimeTextBySeconds(seconds) {
+  getTimeTextBySeconds(seconds, withText = true) {
     const minutes = Math.floor(seconds / 60);
     if(minutes < 1) {
-        return seconds + ' שניות';
+        return seconds + (withText ? ' שניות' : '');
     }
 
     const hours = Math.floor(minutes / 60);
     if(hours < 1) {
-        return minutes + ' דקות'
+        return minutes + (withText ? ' דקות' : '');
     }
 
     let leftMinutes = Math.floor(minutes - (hours * 60));
@@ -156,7 +156,7 @@ class ContentService {
         console.log('leftMinutes');
         leftMinutes = '0' + leftMinutes
     }
-    return `${hours}:${leftMinutes} שעות`;
+    return `${hours}:${leftMinutes}` +  (withText ? ' שעות' : '');
   }
 }
 
