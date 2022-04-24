@@ -127,8 +127,14 @@ export default {
         },
 
         progress() {
-            // TODO: calc progress
-            return 30;
+            try {
+                const userProgress = this.$store.getters['UserState/progress'];
+                const course = userProgress.find(userCourse => userCourse.course_id === this.course.id);
+                return course.progress;
+            } catch(err) {
+                console.warn(err);
+                return 0;
+            }
         },
         
         totalDuration() {
