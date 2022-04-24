@@ -55,9 +55,11 @@ export default {
     async isLogged() {
       if(this.isLogged) {
         this.loading = true;
-        console.log(1);
-        await this.$store.dispatch('UserState/init', Auth.get())
-        console.log(2);
+        try {
+          await this.$store.dispatch('UserState/init', Auth.get())
+        } catch(err) {
+          console.warn(err);
+        }
         this.loading = false;
       }
     }

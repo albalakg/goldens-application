@@ -18,7 +18,9 @@ class Auth {
     }
 
     logout() {
-        router.push('/logout')
+        if('/signout' !== window.location.hash.replace('#', '')) {
+            router.push('/signout')
+        }
     }
     
     get() {
