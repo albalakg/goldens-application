@@ -37,7 +37,8 @@
             </v-flex>
             <div class="text-left">
                 <heart
-                    
+                    :filled="isFavorite"
+                    @submit="toggleFavorite()"
                 />
             </div>
         </v-flex>
@@ -62,6 +63,12 @@ export default {
     }
   },
 
+  data() {
+    return {
+        loadingFavorite: false
+    }
+  },
+
   computed: {
     lessonContent() {
       return this.lesson.content.length < MAX_LESSON_CONTENT_CHARS ? this.lesson.content : this.lesson.content.slice(0, MAX_LESSON_CONTENT_CHARS) + '...';
@@ -81,6 +88,22 @@ export default {
 
     isCompleted() {
         return ContentService.isLessonCompleted(this.lesson.id);
+    },
+
+    isFavorite() {
+        return ContentService.isLessonFavorite(this.lesson.id);
+    },
+  },
+
+  methods: {
+    async toggleFavorite() {
+        if(this.loadingFavorite) {
+            return;
+        }
+
+        this.loadingFavorite = true;
+        await this.$store.dispatch('UserState/toggleFavorite', this.lesson.id)
+        this.loadingFavorite = false;
     }
   }
 

@@ -1,4 +1,5 @@
 import axios from "axios";
+import ContentService from "../../helpers/ContentService";
 import router from '../../router';
 
 const UserState = {
@@ -19,12 +20,12 @@ const UserState = {
     getters: {
         // unchecked
         supportTickets: state   => state.supportTickets,
-        progress:       state   => state.progress,
         favorites:      state   => state.favorites,
         orders:         state   => state.orders,
         profile:        state   => state.profile,
-
+        
         // checked
+        progress:       state   => state.progress,
         courses:        state   => state.courses,
         courseAreas:    state   => state.courseAreas,
         lessons:        state   => state.lessons,
@@ -71,6 +72,20 @@ const UserState = {
             state.lessons = lessons;
         },
 
+        ADD_CONTENT_IN_FAVORITES(state, newLesson) {
+            const contentIndex = state.favorites.findIndex(lesson => lesson.id === newLesson.id);
+            if(contentIndex === -1) {
+                state.favorites.push(newLesson)
+            }
+        },
+
+        REMOVE_CONTENT_IN_FAVORITES(state, lessonId) {
+            const contentIndex = state.favorites.findIndex(lesson => lesson.id === lessonId);
+            if(contentIndex !== -1) {
+                state.favorites.splice(contentIndex, 1);
+            }
+        },
+
     },
 
     actions: {
@@ -78,6 +93,7 @@ const UserState = {
             await dispatch('getCourses');
             await dispatch('getProgress');
             dispatch('setUserProfile', userData);      
+            dispatch('getFavorites');
         },
 
         getProfile({ commit }) {
@@ -179,6 +195,33 @@ const UserState = {
             delete profile.token;
             profile.full_name = profile.first_name + ' ' + profile.last_name;
             commit('SET_USER_PROFILE', profile);
+        },
+        
+        toggleFavorite({ commit }, lessonId) {
+            return new Promise((resolve, reject) => {
+                const action = ContentService.isLessonFavorite(lessonId) ? 'remove' : 'add';
+                const data = {
+                    lesson_id: lessonId
+                };
+
+                axios.post(`profile/favorites/${action}`, data)
+                        .then(res => {
+                            if(action === 'remove') {
+                                commit('REMOVE_CONTENT_IN_FAVORITES', lessonId)
+                            } else {
+                                commit('ADD_CONTENT_IN_FAVORITES', res.data.data)
+                            }
+                        })
+                        .catch(err => {
+                            dispatch('MessageState/addMessage', {
+                                message: 'מצטערים אבל נכשלה הבקשה לעדכן את המועדפים',
+                                type: 'error',
+                            }, {root:true});
+                        })
+                        .finally(() => {
+                            resolve()
+                        })
+            })
         },
         
         async goToLastActiveCourse({ state }) {

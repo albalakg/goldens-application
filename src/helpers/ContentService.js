@@ -154,7 +154,12 @@ class ContentService {
       }
     }
 
-    console.log('userCourses', userCourses);
+    return false;
+  }
+
+  isLessonFavorite(lessonId) {
+    const userFavoriteLessons = store.getters['UserState/favorites'];
+    return userFavoriteLessons.findIndex(lesson => lesson.id === lessonId) !== -1; 
   }
 
   getTimeTextBySeconds(seconds, withText = true) {
