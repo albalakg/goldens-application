@@ -140,23 +140,64 @@ class ContentService {
     }
   }
 
+  isLessonCompleted(lessonId) {
+    const userCourses = store.getters['UserState/progress'];
+
+    for(let courseIndex = 0; courseIndex < userCourses.length; courseIndex++) {
+      const userCourse = userCourses[courseIndex];
+
+      for(let lessonIndex = 0; lessonIndex < userCourse.lessons_progress.length; lessonIndex++) {
+        const userLesson = userCourse.lessons_progress[lessonIndex];
+        if(userLesson.course_lesson_id === lessonId) {
+          return userLesson.progress === 100;
+        }
+      }
+    }
+
+    console.log('userCourses', userCourses);
+  }
+
   getTimeTextBySeconds(seconds, withText = true) {
-    const minutes = Math.floor(seconds / 60);
-    if(minutes < 1) {
+    try {
+      const minutes = Math.floor(seconds / 60);
+      if(minutes < 1) {
         return seconds + (withText ? ' שניות' : '');
-    }
+      }
 
-    const hours = Math.floor(minutes / 60);
-    if(hours < 1) {
+      const hours = Math.floor(minutes / 60);
+      if(hours < 1) {
         return minutes + (withText ? ' דקות' : '');
-    }
+      }
 
-    let leftMinutes = Math.floor(minutes - (hours * 60));
-    if(String(leftMinutes).length === 1) {
-        console.log('leftMinutes');
+      let leftMinutes = Math.floor(minutes - (hours * 60));
+      if(String(leftMinutes).length === 1) {
         leftMinutes = '0' + leftMinutes
+      }
+      return `${hours}:${leftMinutes}` +  (withText ? ' שעות' : '');
+    } catch(err) {
+      console.warn(err);
+      return 0 + (withText ? ' שניות' : '');
     }
-    return `${hours}:${leftMinutes}` +  (withText ? ' שעות' : '');
+  }
+
+  getLessonTimeFormat(seconds) {
+    try {
+      let minutes     = Math.floor(seconds / 60);
+      let leftSeconds = Math.floor(seconds - (minutes * 60));
+
+      if(String(minutes).length === 1) {
+        minutes = '0' + minutes
+      }
+
+      if(String(leftSeconds).length === 1) {
+        leftSeconds = '0' + leftSeconds
+      }
+
+      return `${minutes}:${leftSeconds}`
+    } catch(err) {
+      console.warn(err);
+      return '00:00';
+    }
   }
 }
 

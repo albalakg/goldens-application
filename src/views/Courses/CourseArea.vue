@@ -1,10 +1,9 @@
 <template>
   <div>
       <template v-for="(lesson, index) in lessons">
-        <div class="lesson_card_wrapper" :key="index">
-          <lesson-card
+        <div class="lesson_card_wrapper mb-5" :key="index">
+          <detailed-lesson-card
             :lesson="lesson"
-            
           />
         </div>
       </template>
@@ -12,9 +11,9 @@
 </template>
 
 <script>
-import LessonCard from '../../components/Cards/LessonCard.vue';
+import DetailedLessonCard from '../../components/Cards/DetailedLessonCard.vue';
 export default {
-  components: { LessonCard },
+  components: { DetailedLessonCard },
   props: {
     course: {
       type: Object,
