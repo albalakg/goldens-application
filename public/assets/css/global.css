@@ -8,7 +8,7 @@
 }
 
 .auth_padding_top {
-    padding-top: 15%;
+    padding-top: 5%;
 }
 
 .font_title {
@@ -39,4 +39,12 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .auth_padding_top {
+        padding-top: 15%;
+    }
+    
 }

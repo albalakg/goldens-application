@@ -55,7 +55,7 @@
             <v-flex class="user_course_progress_row mt-5" d-flex justify-space-between>
                 <v-flex xs5 d-flex align-center>
                     <div class="ml-5 user_course_progress_row_image_box">
-                        <img loading="lazy" :src="lessonImage" alt="lesson image">
+                        <img loading="lazy" :src="timeImage" alt="lesson image">
                     </div>
                     <span>
                         זמן
@@ -101,6 +101,7 @@ export default {
         return {
             defaultImage:   FILES_PATH + 'default_profile.jpg',
             lessonImage: require('../../../public/assets/images/general/lesson.svg'),
+            timeImage: require('../../../public/assets/images/general/time.svg'),
             courseAreaImage: require('../../../public/assets/images/general/course_area.svg'),
         }
     },

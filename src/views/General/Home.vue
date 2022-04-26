@@ -222,7 +222,7 @@ export default {
 
     computed: {
         courseCategories() {
-            const categories = this.$store.getters['CourseCategoryState/courseCategories'];
+            const categories = this.$store.getters['ContentState/categories'];
             if(categories && categories.length) {
                 return categories[0];
             }
@@ -231,7 +231,8 @@ export default {
         },
 
         lessons() {
-            const lessons = this.$store.getters['CourseLessonState/lessons'];
+            const lessons = this.$store.getters['ContentState/lessons'];
+            console.log('lessons', lessons);
             return lessons ? lessons : [];
         },
 

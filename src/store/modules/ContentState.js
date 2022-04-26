@@ -23,8 +23,6 @@ const ContentState = {
                 return state.courses.push(course);
             }
             state.courses = [course];
-
-            console.log('state.courses', state.courses);
         },
 
         SET_CATEGORIES(state, categories) {
