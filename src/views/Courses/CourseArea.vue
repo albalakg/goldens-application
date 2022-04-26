@@ -2,9 +2,11 @@
   <div>
       <template v-for="(lesson, index) in lessons">
         <div class="lesson_card_wrapper mb-5" :key="index">
-          <detailed-lesson-card
-            :lesson="lesson"
-          />
+          <router-link :to="`/courses/${course.id}/lessons/${lesson.id}`">
+            <detailed-lesson-card
+              :lesson="lesson"
+            />
+          </router-link>
         </div>
       </template>
   </div>
