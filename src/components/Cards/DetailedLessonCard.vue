@@ -9,7 +9,7 @@
 
         <v-flex class="h100" d-flex flex-column justify-space-between>
             <v-flex d-flex class="lesson_card_header">
-                <v-flex xs4>
+                <v-flex xs3>
                     <div class="image_wrapper">
                         <img :src="lesson.imageSrc" alt="lesson image">
                         <time-chip 

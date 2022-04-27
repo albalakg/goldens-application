@@ -14,7 +14,7 @@
 
     <template v-else>
       <v-flex d-flex justify-center md10 xl9 mx-auto>
-        <v-flex md4 offset-md-1 class="desktop_lessons_list">
+        <v-flex md4 offset-md-1 class="desktop_lessons_list pl-5">
           <template v-for="(lesson, index) in lessons">
             <div class="lesson_card_wrapper mb-5" :key="index">
               <router-link :to="`/courses/${course.id}/lessons/${lesson.id}`" class="simple_link">
