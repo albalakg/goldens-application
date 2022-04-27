@@ -1,7 +1,7 @@
 <template>
   <div class="course_page_wrapper" v-if="course">
 
-    <v-flex class="course_page_image_wrapper mb-3">
+    <v-flex class="course_page_image_wrapper mb-3" ref="courseHeader">
       <img loading="lazy" class="course_image" :src="course.imageSrc" alt="">
       <div class="course_page_image_darkner"></div>
       <div class="course_page_image_details">
@@ -117,6 +117,8 @@ export default {
     trailer.addEventListener('fullscreenchange', event => { 
       this.trailerFullScreen = document.fullscreenElement === trailer
     });
+    
+    this.listenToScroll();
   },
 
   watch: {
@@ -208,6 +210,18 @@ export default {
           this.trailerFullScreen = document.fullscreenElement === trailer
         });
       }, 0);
+    },
+
+    listenToScroll() {
+      document.body.addEventListener('scroll', () => {
+        var element = document.querySelector('.course_page_image_wrapper');
+        var position = element.getBoundingClientRect();
+
+        if(position.height < (position.top * -1 + 100)) {
+          // change menu to dark
+          console.log('change menu to dark');
+        }
+      });
     }
   },
 
