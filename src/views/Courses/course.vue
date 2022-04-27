@@ -10,7 +10,7 @@
             {{course.name}}
           </h1>
 
-          <div class="divider"></div>
+          <div class="divider mt-md-7"></div>
 
           <v-flex d-flex class="course_page_actions_wrapper w100 mt-5">
             <v-flex class="text-center pt-4" v-for="(action, index) in actions" :key="index" @click="courseAction(action.action)">
@@ -39,20 +39,22 @@
       </div>
     </v-flex>
 
-    <video v-show="showTrailer" :src="course.trailerSrc" ref="trailer"></video>
+    <template v-if="$vuetify.breakpoint.smAndDown">
+      <video v-show="showTrailer" :src="course.trailerSrc" ref="trailer"></video>
 
-    <main-tabs 
-      class="course_page_tabs"
-      subColor
-      :tabs="tabs"
-      :activeTab="activeTab"
-      @submit="setActiveTab"
-    />
+      <main-tabs 
+        class="course_page_tabs"
+        subColor
+        :tabs="tabs"
+        :activeTab="activeTab"
+        @submit="setActiveTab"
+      />
+    </template>
 
     <br>
 
     <transition name="fade" mode="out-in">
-      <router-view :course="course" class="px-4">
+      <router-view :course="course" class="course_page_content px-4">
       </router-view>
     </transition>
 
@@ -163,7 +165,7 @@ export default {
       try {
         this[action]();
       } catch(err) {
-        console.warn(err);
+        error(err);
       }
     },
 
@@ -219,7 +221,7 @@ export default {
     
     .course_page_image_wrapper {
       position: relative;
-      height: 35vh;
+      height: 50vh;
       width: 100vw;
       text-align: center;
 
@@ -244,7 +246,7 @@ export default {
         height: 100%;
         width: 100%;
         display: flex;
-        align-items: end;
+        align-items: center;
         justify-content: center;
       }
 
@@ -258,7 +260,7 @@ export default {
         position: absolute;
         height: 100%;
         width: 100%;
-        background: linear-gradient(#102a46, #0006)
+        background: linear-gradient(90deg, #102a46, #0006)
       }
 
       .divider {
@@ -273,6 +275,21 @@ export default {
 
     .course_page_tabs {
       text-align: center;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+      
+    .course_page_image_wrapper {
+      height: 35vh !important;
+    }
+    
+    .course_page_image_darkner {
+      background: linear-gradient(#102a46, #0006) !important
+    }
+
+    .course_page_image_details {
+      align-items: end !important;
     }
   }
 

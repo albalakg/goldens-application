@@ -8,7 +8,9 @@
         }">
             <v-flex d-flex align-center class="h100" xs9 mx-auto>
                 <div class="logo_wrapper">
-                    <Logo :dark="!isLightMode"/>
+                    <Logo 
+                        :dark="!isLightMode"
+                    />
                 </div>
                 <v-flex d-flex align-center justify-space-between class="mr-5">
                     <template v-if="isLogged">
@@ -32,7 +34,7 @@
                     </template>
                     <template v-else>
                         <v-flex d-flex>
-                            <div v-for="(link, index) in loggedLinks" :key="index" class="px-3">
+                            <div v-for="(link, index) in links" :key="index" class="px-3">
                                 <router-link class="simple_link main_text_color" :to="`/${link.url}`">
                                     <span class="main_text_color">
                                         {{link.text}}
@@ -97,7 +99,7 @@ export default {
 
     data() {
         return {
-            loggedLinks: [
+            links: [
                 {
                     text: 'קורסים',
                     url: 'courses'
@@ -129,12 +131,12 @@ export default {
         },
 
         isLightMode() {
-            return this.mode === LIGHT_MODE;
+            return !this.dark;
         },
 
         userImage() {
             return this.isLightMode ? this.userDarkImage : this.userLightImage
-        }
+        },
     },
 
     watch: {
@@ -194,7 +196,7 @@ export default {
     }
 
     span {
-        color: rgb(174, 174, 174);
+        color: #fff;
     }
 
     .simple_link {

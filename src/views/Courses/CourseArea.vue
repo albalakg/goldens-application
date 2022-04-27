@@ -41,7 +41,7 @@ export default {
 
         return ContentService.getLessonsByCourseId(this.course.id)
       } catch(err) {
-        console.warn(err);
+        error(err);
         return [];
       }
     }

@@ -37,6 +37,7 @@
             </v-flex>
             <div class="text-left">
                 <heart
+                    dark
                     :filled="isFavorite"
                     @submit="toggleFavorite()"
                 />

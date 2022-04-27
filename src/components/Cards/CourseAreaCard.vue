@@ -83,10 +83,10 @@ export default {
         height: 180px;
         border-radius: 6px;
         position: relative;
-        transition: .2s transform linear;
+        transition: .2s box-shadow linear;
 
         &:hover {
-            transform: scale(1.05);
+            box-shadow: 0 0 10px 1px #0005;
         }
 
         img {

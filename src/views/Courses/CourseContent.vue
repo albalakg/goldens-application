@@ -1,22 +1,46 @@
 <template>
   <v-flex>
+    <template v-if="$vuetify.breakpoint.smAndDown">
+      <template v-if="isLogged">
+        <br>
+        <br>
+        <user-course-progress :course="course" />
+      </template>
 
-    <template v-if="isLogged">
+      
       <br>
-      <br>
-      <user-course-progress :course="course" />
+
+      <template v-for="(courseArea, index) in courseAreas">
+        <course-area-card 
+          class="mb-3"
+          :key="index"
+          :courseArea="courseArea"
+          @submit="enterCourseArea"
+        />
+      </template>
     </template>
-
     
-    <br>
-
-    <template v-for="(courseArea, index) in courseAreas">
-      <course-area-card 
-        class="mb-3"
-        :key="index"
-        :courseArea="courseArea"
-        @submit="enterCourseArea"
-      />
+    <template v-else>
+      <v-flex d-flex justify-center md9 mx-auto>
+        <v-flex xs4 offset-md-1>
+          <template v-for="(courseArea, index) in courseAreas">
+            <course-area-card 
+              class="mb-3"
+              :key="index"
+              :courseArea="courseArea"
+              @submit="enterCourseArea"
+            />
+          </template>
+        </v-flex>
+        <v-flex xs4>
+          <video :src="course.trailerSrc" ref="trailer" controls></video>
+          <br>
+          <br>
+          <br>
+          <br>
+          <user-course-progress :course="course" />
+        </v-flex>
+      </v-flex>
     </template>
   </v-flex>
 </template>
@@ -54,5 +78,8 @@ export default {
 </script>
 
 <style scoped>
-
+  video {
+    border-radius: 8px;
+    width: 100%;
+  }
 </style>

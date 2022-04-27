@@ -133,7 +133,7 @@ export default {
                 const course = userProgress.find(userCourse => userCourse.course_id === this.course.id);
                 return course.progress;
             } catch(err) {
-                console.warn(err);
+                error(err);
                 return 0;
             }
         },

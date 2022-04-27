@@ -1,6 +1,20 @@
 import store from '../store'
 
 class ContentService {
+
+  findMyActiveCourse() {
+    try {
+      const courses = store.state['UserState'].courses;
+      if(!courses) {
+        return null;
+      }
+      
+      return courses[0];
+    } catch(err) {
+      error(err);
+      return null;
+    }
+  }
   
   findCourseById(courseId) {
     try {
@@ -19,7 +33,7 @@ class ContentService {
 
       return null;
     } catch(err) {
-      console.warn(err);
+      error(err);
       return null;
     }
   }
@@ -36,7 +50,7 @@ class ContentService {
         return course.active_areas_with_active_lessons.find(courseArea => courseArea.id == courseAreaId);
       }
     } catch(err) {
-      console.warn(err);
+      error(err);
       return {};
     }
   }
@@ -57,7 +71,7 @@ class ContentService {
         }
       }
     } catch(err) {
-      console.warn(err);
+      error(err);
       return {};
     }
   }
@@ -67,7 +81,7 @@ class ContentService {
       const courseArea = this.findCourseAreaById(courseAreaId);
       return courseArea.active_lessons;
     } catch(err) {
-      console.warn(err);
+      error(err);
       return [];
     }
   }
@@ -82,7 +96,7 @@ class ContentService {
 
       return lessons;
     } catch(err) {
-      console.warn(err);
+      error(err);
       return [];
     }
   }
@@ -96,7 +110,7 @@ class ContentService {
         }, 0
       )
     } catch(err) {
-      console.warn(err);
+      error(err);
       return 0;
     }
   }
@@ -106,7 +120,7 @@ class ContentService {
       const course = this.findCourseById(courseId);
       return course.active_areas_with_active_lessons.length;
     } catch(err) {
-      console.warn(err);
+      error(err);
       return 0;
     }
   }
@@ -120,7 +134,7 @@ class ContentService {
         }, 0
       );
     } catch(err) {
-      console.warn(err);
+      error(err);
       return 0;
     }
   }
@@ -135,7 +149,7 @@ class ContentService {
 
       return totalDuration;
     } catch(err) {
-      console.warn(err);
+      error(err);
       return 0;
     }
   }
@@ -180,7 +194,7 @@ class ContentService {
       }
       return `${hours}:${leftMinutes}` +  (withText ? ' שעות' : '');
     } catch(err) {
-      console.warn(err);
+      error(err);
       return 0 + (withText ? ' שניות' : '');
     }
   }
@@ -200,7 +214,7 @@ class ContentService {
 
       return `${minutes}:${leftSeconds}`
     } catch(err) {
-      console.warn(err);
+      error(err);
       return '00:00';
     }
   }

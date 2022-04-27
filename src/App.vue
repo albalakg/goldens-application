@@ -58,7 +58,7 @@ export default {
         try {
           await this.$store.dispatch('UserState/init', Auth.get())
         } catch(err) {
-          console.warn(err);
+          error(err);
         }
         this.loading = false;
       }
