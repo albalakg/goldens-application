@@ -11,7 +11,7 @@ export default {
 
   props: {
     opacity: {
-      type: Number,
+      type: Number,                                                                                                                                                                                                       
       default: 1
     },
     

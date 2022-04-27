@@ -2,7 +2,7 @@
   <div>
       <template v-for="(lesson, index) in lessons">
         <div class="lesson_card_wrapper mb-5" :key="index">
-          <router-link :to="`/courses/${course.id}/lessons/${lesson.id}`">
+          <router-link :to="`/courses/${course.id}/lessons/${lesson.id}`" class="simple_link">
             <detailed-lesson-card
               :lesson="lesson"
             />
