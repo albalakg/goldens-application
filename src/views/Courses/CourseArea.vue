@@ -1,5 +1,6 @@
 <template>
   <div>
+    <template v-if="$vuetify.breakpoint.smAndDown">
       <template v-for="(lesson, index) in lessons">
         <div class="lesson_card_wrapper mb-5" :key="index">
           <router-link :to="`/courses/${course.id}/lessons/${lesson.id}`" class="simple_link">
@@ -9,13 +10,52 @@
           </router-link>
         </div>
       </template>
+    </template>
+
+    <template v-else>
+      <v-flex d-flex justify-center md10 xl9 mx-auto>
+        <v-flex md4 offset-md-1 class="desktop_lessons_list">
+          <template v-for="(lesson, index) in lessons">
+            <div class="lesson_card_wrapper mb-5" :key="index">
+              <router-link :to="`/courses/${course.id}/lessons/${lesson.id}`" class="simple_link">
+                <detailed-lesson-card
+                  :lesson="lesson"
+                />
+              </router-link>
+            </div>
+          </template>
+        </v-flex>
+        <v-flex md4>
+          <video :src="course.trailerSrc" ref="trailer" controls></video>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          
+          <template v-for="(courseArea, index) in courseAreas">
+            <course-area-card 
+              class="mb-3"
+              :class="{
+                'outlined': isActiveCourseArea(courseArea.id) 
+              }"
+              :key="index"
+              :courseArea="courseArea"
+              @submit="enterCourseArea"
+            />
+          </template>
+        </v-flex>
+      </v-flex>
+    </template>
   </div>
 </template>
 
 <script>
 import DetailedLessonCard from '../../components/Cards/DetailedLessonCard.vue';
+import CourseAreaCard from '../../components/Cards/CourseAreaCard.vue';
 export default {
-  components: { DetailedLessonCard },
+  components: { DetailedLessonCard, CourseAreaCard },
   props: {
     course: {
       type: Object,
@@ -33,6 +73,10 @@ export default {
       return ContentService.findCourseAreaById(courseAreaId);
     },
 
+    courseAreas() {
+      return this.course?.active_areas_with_active_lessons;
+    },
+
     lessons() {
       try {
         if(this.courseArea) {
@@ -45,6 +89,16 @@ export default {
         return [];
       }
     }
+  },
+
+  methods: {
+    isActiveCourseArea(courseAreaId) {
+      return courseAreaId == this.$route.query.courseArea;
+    },
+
+    enterCourseArea(courseArea) {
+      this.$router.push(`/courses/${courseArea.course_id}/lessons?courseArea=${courseArea.id}`)
+    }
   }
 
 }
@@ -54,5 +108,15 @@ export default {
   .lesson_card_wrapper {
     height: 200px;
     width: 100%;
+  }
+
+  video {
+    border-radius: 8px;
+    width: 100%;
+  }
+
+  .desktop_lessons_list {
+    max-height: 100vh;
+    overflow-y: auto;
   }
 </style>

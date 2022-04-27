@@ -13,7 +13,7 @@
           <div class="divider mt-md-7"></div>
 
           <v-flex d-flex class="course_page_actions_wrapper w100 mt-5">
-            <v-flex class="text-center pt-4" v-for="(action, index) in actions" :key="index" @click="courseAction(action.action)">
+            <v-flex class="text-center pt-4 pointer mx-3" v-for="(action, index) in actions" :key="index" @click="courseAction(action.action)">
               <img loading="lazy" :src="action.image" alt="play button">
               <p class="white_text_color mt-2">{{action.text}}</p>
               <div v-if="action.tooltip">
@@ -39,17 +39,16 @@
       </div>
     </v-flex>
 
-    <template v-if="$vuetify.breakpoint.smAndDown">
       <video v-show="showTrailer" :src="course.trailerSrc" ref="trailer"></video>
 
       <main-tabs 
+        v-if="$vuetify.breakpoint.smAndDown"
         class="course_page_tabs"
         subColor
         :tabs="tabs"
         :activeTab="activeTab"
         @submit="setActiveTab"
       />
-    </template>
 
     <br>
 
@@ -142,7 +141,7 @@ export default {
     },
 
     showTrailer() {
-      return this.$vuetify.breakpoint.mdAndUp || this.trailerFullScreen;
+      return this.trailerFullScreen;
     }
   },
 

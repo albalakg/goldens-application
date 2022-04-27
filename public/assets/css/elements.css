@@ -68,6 +68,10 @@
     margin-top: 5%;
 }
 
+.outlined {
+    outline: 2px solid #E6B260;
+}
+
 @media only screen and (max-width: 1900px) {
     
     .auth_form_top_margin {

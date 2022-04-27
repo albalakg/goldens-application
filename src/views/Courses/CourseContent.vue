@@ -21,8 +21,8 @@
     </template>
     
     <template v-else>
-      <v-flex d-flex justify-center md9 mx-auto>
-        <v-flex xs4 offset-md-1>
+      <v-flex d-flex justify-center md10 xl9 mx-auto>
+        <v-flex md4 offset-md-1>
           <template v-for="(courseArea, index) in courseAreas">
             <course-area-card 
               class="mb-3"
@@ -32,7 +32,7 @@
             />
           </template>
         </v-flex>
-        <v-flex xs4>
+        <v-flex md4>
           <video :src="course.trailerSrc" ref="trailer" controls></video>
           <br>
           <br>
