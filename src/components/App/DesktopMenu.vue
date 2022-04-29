@@ -35,8 +35,8 @@
                     <template v-else>
                         <v-flex d-flex>
                             <div v-for="(link, index) in links" :key="index" class="px-3">
-                                <router-link class="simple_link main_text_color" :to="`/${link.url}`">
-                                    <span class="main_text_color">
+                                <router-link class="simple_link" :to="`/${link.url}`">
+                                    <span :class="dark ? 'white_text_color' : 'main_text_color'">
                                         {{link.text}}
                                     </span>
                                 </router-link>

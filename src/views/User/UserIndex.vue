@@ -62,6 +62,17 @@
                         <h1>
                             <span class="main_text_color">{{ firstName }}</span> <span>{{ lastName }}</span>
                         </h1>
+                        <v-flex md2>
+                            <router-link to="/signout">
+                                <main-button
+                                    text="התנתק"
+                                    shadow
+                                    dark
+                                    slim
+                                >
+                                </main-button>
+                            </router-link>
+                        </v-flex>
                         <br>
                         <v-flex class="user_links_wrapper">
                             <MainTabs
