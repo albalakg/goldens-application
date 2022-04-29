@@ -232,7 +232,6 @@ export default {
 
         lessons() {
             const lessons = this.$store.getters['ContentState/lessons'];
-            console.log('lessons', lessons);
             return lessons ? lessons : [];
         },
 

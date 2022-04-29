@@ -33,8 +33,8 @@ const ContentState = {
     actions: {
         getCategories({ state, commit }) {
             return new Promise((resolve, reject) => {
-                if(state.courseCategories) {
-                    return resolve(state.courseCategories);
+                if(state.categories) {
+                    return resolve(state.categories);
                 }
 
                 axios.get('content/course-categories')

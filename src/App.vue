@@ -1,7 +1,7 @@
 <template>
   <v-app id="app">
-    <DesktopMenu v-if="!isMobile" :showFullMenu="showFullMenu" :dark="darkMenu"/>
-    <MobileTopMenu v-else :filler="mobileFiller" :dark="darkMenu" />
+    <DesktopMenu v-if="!isMobile" :showFullMenu="showFullMenu"/>
+    <MobileTopMenu v-else :filler="mobileFiller" />
     <MessageAlert />
 
     <v-main>
@@ -62,6 +62,10 @@ export default {
         }
         this.loading = false;
       }
+    },
+
+    $route() {
+      this.setMenuMode();
     }
   },
 
@@ -94,8 +98,18 @@ export default {
       const pages = [''];
       return pages.includes(this.$route.path.replace('/', '')); 
     },
+  },
 
-    darkMenu() {
+  methods: {
+    setInitialSettings() {
+      this.$store.dispatch('AuthState/setLogStatus', Auth.isLogged());
+    },
+    
+    closeMessage() {
+      this.showMessage = false;
+    },
+
+    setMenuMode() {
       const pages = ['courses/%course_id%', 'courses/%course_id%/lessons', 'about'];
       
       for(let index = 0; index < pages.length; index++) {
@@ -108,22 +122,12 @@ export default {
         }
 
         if(route === page) {
-          return true;
+          return this.$store.dispatch('AppState/setMenuMode', true);
         }
       }
 
-      return false;
+      this.$store.dispatch('AppState/setMenuMode', false);
     },
-  },
-
-  methods: {
-    setInitialSettings() {
-      this.$store.dispatch('AuthState/setLogStatus', Auth.isLogged());
-    },
-    
-    closeMessage() {
-      this.showMessage = false;
-    }
   }
 
 }

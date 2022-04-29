@@ -9,7 +9,7 @@
             <v-flex d-flex align-center class="h100" xs9 mx-auto>
                 <div class="logo_wrapper">
                     <Logo 
-                        :dark="!isLightMode"
+                        :isDark="!isLightMode"
                     />
                 </div>
                 <v-flex d-flex align-center justify-space-between class="mr-5">
@@ -25,7 +25,7 @@
                             <router-link class="simple_link text-center" to="/user/favorites">
                                 <v-flex d-flex align-center justify-center>
                                     <div>
-                                        <heart center dark />
+                                        <heart center isDark />
                                         <span>הרשימה שלי</span>
                                     </div>
                                 </v-flex>
@@ -36,7 +36,7 @@
                         <v-flex d-flex>
                             <div v-for="(link, index) in links" :key="index" class="px-3">
                                 <router-link class="simple_link" :to="`/${link.url}`">
-                                    <span :class="dark ? 'white_text_color' : 'main_text_color'">
+                                    <span :class="isDark ? 'white_text_color' : 'main_text_color'">
                                         {{link.text}}
                                     </span>
                                 </router-link>
@@ -91,10 +91,6 @@ export default {
             type: Boolean,
             default: true
         },
-
-        dark: {
-            type: Boolean
-        }
     },
 
     data() {
@@ -131,12 +127,16 @@ export default {
         },
 
         isLightMode() {
-            return !this.dark;
+            return !this.isDark;
         },
 
         userImage() {
             return this.isLightMode ? this.userDarkImage : this.userLightImage
         },
+
+        isDark() {
+            return this.$store.getters['AppState/isMenuDark']
+        }
     },
 
     watch: {
