@@ -120,6 +120,10 @@ export default {
     padding: 10px;
     position: relative;
 
+    &:hover {
+        box-shadow: 0 0 10px 1px #0005;
+    }
+
     * {
         color: #fff;
     }

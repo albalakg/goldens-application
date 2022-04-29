@@ -96,12 +96,18 @@ export default {
     },
 
     darkMenu() {
-      const pages = ['courses', 'about'];
+      const pages = ['courses/%course_id%', 'courses/%course_id%/lessons', 'about'];
+      
       for(let index = 0; index < pages.length; index++) {
-        const page  = pages[index];
-        const route = this.$route.path.replace('/', '');
+        let page      = pages[index];
+        const route   = this.$route.path.replace('/', '');
+        const params  = this.$route.params;
 
-        if(route.includes(page)) {
+        for (const property in params) {
+          page = page.replace(`%${property}%`, params[property])
+        }
+
+        if(route === page) {
           return true;
         }
       }
