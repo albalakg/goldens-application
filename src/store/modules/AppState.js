@@ -17,6 +17,7 @@ const AppState = {
 
     actions: {
         setMenuMode({ commit }, state) {
+            console.log('setMenuMode', state);
             commit('SET_MENU_DARK_MODE', state)
         },
 

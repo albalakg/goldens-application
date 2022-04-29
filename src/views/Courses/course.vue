@@ -144,6 +144,10 @@ export default {
 
     showTrailer() {
       return this.trailerFullScreen;
+    },
+
+    isDark() {
+        return this.$store.getters['AppState/isMenuDark']
     }
   },
 
@@ -218,8 +222,11 @@ export default {
         var position = element.getBoundingClientRect();
 
         if(position.height < (position.top * -1 + 100)) {
-          // change menu to dark
-          console.log('change menu to dark');
+          console.log('in');
+          return this.$store.dispatch('AppState/setMenuMode', false);
+        } else {
+          console.log('out');
+          return this.$store.dispatch('AppState/setMenuMode', true);
         }
       });
     }

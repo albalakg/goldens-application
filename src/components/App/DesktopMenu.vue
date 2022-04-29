@@ -3,13 +3,13 @@
     <div class="desktop_menu_wrapper">
 
         <div v-if="showFullMenu" class="desktop_menu_content"  :class="{
-            'desktop_menu_content_light': isLightMode,
-            'desktop_menu_content_dark': !isLightMode,
+            'desktop_menu_content_light': !isDark,
+            'desktop_menu_content_dark': isDark,
         }">
             <v-flex d-flex align-center class="h100" xs9 mx-auto>
                 <div class="logo_wrapper">
                     <Logo 
-                        :isDark="!isLightMode"
+                        :dark="isDark"
                     />
                 </div>
                 <v-flex d-flex align-center justify-space-between class="mr-5">
@@ -22,14 +22,7 @@
                                 slim
                             >
                             </search-input>
-                            <router-link class="simple_link text-center" to="/user/favorites">
-                                <v-flex d-flex align-center justify-center>
-                                    <div>
-                                        <heart center isDark />
-                                        <span>הרשימה שלי</span>
-                                    </div>
-                                </v-flex>
-                            </router-link>
+                            
                         </v-flex>
                     </template>
                     <template v-else>
@@ -45,9 +38,14 @@
                     </template>
                     <div class="account_wrapper">
                         <template v-if="isLogged">
-                            <router-link class="simple_link" to="/user">
-                                <img loading="lazy" :src="userImage" alt="user">
-                            </router-link>
+                            <v-flex d-flex align-center>
+                                <router-link title="מועדפים" class="simple_link text-center" to="/user/favorites">
+                                    <heart center :dark="isDark" @submit="enterFavorites()"/>
+                                </router-link>
+                                <router-link title="פרופיל" class="simple_link" to="/user">
+                                    <img loading="lazy" :src="userImage" alt="user">
+                                </router-link>
+                            </v-flex>
                         </template>
                         <template v-else>
                             <router-link class="simple_link" to="/signin">
@@ -75,9 +73,6 @@
 import SearchInput from '../Form/Inputs/SearchInput.vue';
 import Heart from '../General/Heart.vue';
 import Logo from './../General/Logo.vue'
-
-const LIGHT_MODE    = 'light';
-const DARK_MODE     = 'dark';
 
 export default {
     components: {
@@ -116,8 +111,6 @@ export default {
             userDarkImage:  require('../../../public/assets/images/general/userDark.svg'),
             userLightImage: require('../../../public/assets/images/general/userLight.svg'),
             heartImage:     require('../../../public/assets/images/general/heart.svg'),
-            mode: LIGHT_MODE,
-            darkModePagesList: []
         }
     },
 
@@ -126,22 +119,12 @@ export default {
             return this.$store.getters['AuthState/isLogged'];
         },
 
-        isLightMode() {
-            return !this.isDark;
-        },
-
         userImage() {
-            return this.isLightMode ? this.userDarkImage : this.userLightImage
+            return !this.isDark ? this.userDarkImage : this.userLightImage
         },
 
         isDark() {
             return this.$store.getters['AppState/isMenuDark']
-        }
-    },
-
-    watch: {
-        $route(to, from) {
-            this.setMode();
         }
     },
 
@@ -156,9 +139,8 @@ export default {
             }
         },
 
-        setMode() {
-            const route = this.$route.fullPath;
-            this.mode = this.darkModePagesList.includes(route) ? DARK_MODE : LIGHT_MODE;
+        enterFavorites() {
+            this.$router.push('/user/favorites')
         }
     }
 }
@@ -200,7 +182,7 @@ export default {
     }
 
     .simple_link {
-        padding: 20px 25px;
+        padding: 20px 15px;
     }
 
     .logo_wrapper {

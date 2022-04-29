@@ -45,7 +45,7 @@
 }
 
 .dark_text_color {
-  color: rgb(49, 53, 61);
+  color: rgb(49, 53, 61) !important;
 }
 
 .white_text_color {
