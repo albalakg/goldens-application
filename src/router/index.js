@@ -127,7 +127,7 @@ const routes = [
     ]
   },
   {
-    path: '/courses/:course_id/:course_area_id/:lesson_id',
+    path: '/courses/:course_id/lessons/:lesson_id',
     component: () => import('../views/Courses/Lesson.vue'),
   },
   // ***** COURSES END *****
