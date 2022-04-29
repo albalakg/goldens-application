@@ -63,6 +63,13 @@
         </v-flex>
       </div>
 
+      <br>
+
+      <p v-html="lesson.content">
+      </p>
+
+      <video class="w100" :src="lesson.video.videoSrc" controls></video>
+
     </v-flex>
   </div>
 </template>
@@ -158,6 +165,10 @@ export default {
     overflow-y: auto;
     border-radius: 8px;
     box-shadow: 0 0 10px #0003;
+  }
+
+  video {
+    border-radius: 15px;
   }
 
 </style>
