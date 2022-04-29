@@ -25,7 +25,7 @@
                             <router-link class="simple_link text-center" to="/user/favorites">
                                 <v-flex d-flex align-center justify-center>
                                     <div>
-                                        <heart dark />
+                                        <heart center dark />
                                         <span>הרשימה שלי</span>
                                     </div>
                                 </v-flex>

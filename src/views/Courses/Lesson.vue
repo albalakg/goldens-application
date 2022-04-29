@@ -49,10 +49,11 @@
                 mdi-chevron-{{ arrowDirection }}
               </v-icon>
             </div>
-            <div class="lessons_list mt-2 px-3 py-2" v-show="showList">
+            <div class="lessons_list white_bg_color mt-2 px-3 py-2" v-show="showList">
               <v-flex class="my-2 pointer" d-flex align-center justify-space-between v-for="(lesson, index) in lessons" :key="index" @click="enterLesson(lesson)">
                 <small :class="{
-                  'grey_text_color': lesson.isCompleted
+                  'sub_text_color' : lesson.id == lessonId,
+                  'grey_text_color': lesson.isCompleted,
                 }">
                   {{ lesson.name }}
                 </small>
@@ -91,6 +92,10 @@ export default {
   computed: {
     lesson() {
       return ContentService.findLessonById(this.$route.params.lesson_id)
+    },
+
+    lessonId() {
+      return this.$route.params.lesson_id
     },
     
     isCompleted() {
@@ -139,7 +144,10 @@ export default {
     },
 
     enterLesson(lesson) {
-      this.$router.push(`/courses/${lesson.course_id}/lessons/${lesson.id}`);
+      if(lesson.id !== this.lesson.id) {
+        this.$router.push(`/courses/${lesson.course_id}/lessons/${lesson.id}`);
+      }
+
       this.toggleList();
     }
   }
@@ -165,6 +173,7 @@ export default {
     overflow-y: auto;
     border-radius: 8px;
     box-shadow: 0 0 10px #0003;
+    z-index: 2;
   }
 
   video {
