@@ -5,7 +5,7 @@
     <v-flex md10 xl9 mx-auto class="about_background_content">
       <section class="about_header">
         <circle-decorator class="circle_decorator" />
-        <v-flex md4>
+        <v-flex xs10 md4 class="px-3 px-md-0 mt-10">
           <h1>
             <span class="white_text_color">
               מי
@@ -23,14 +23,14 @@
       <div class="spacer"></div>
 
       <section>
-        <v-flex md10 mx-auto>
+        <v-flex md10 mx-auto class="px-3 px-md-0">
           <video src="https://www.youtube.com/watch?v=0CUjzYtloe8" controls></video>
         </v-flex>
       </section>
 
       <div class="spacer"></div>
       
-      <section class="about_description_section">
+      <section class="about_description_section px-5 px-md-0">
         <star-logo :gstar="false" class="star_logo" />
         <v-flex md8 mx-auto>
           <p class="white_text_color">
@@ -47,7 +47,7 @@
 
     <div class="spacer"></div>
 
-    <section class="about_believe_section">
+    <section class="about_believe_section px-5 px-md-0">
       <div class="spacer"></div>
       <img :src="aboutBelieveBackgroundImage" alt="about believe background">
       <div class="about_background_darkner"></div>
@@ -55,7 +55,7 @@
       <div class="about_believe_content">
         <section-header 
           :title="'האני מאמין שלי'"
-          :backgroundTitle="'אני מאמין'"
+          :backgroundTitle="'מאמין'"
           :subtitle="'סתם בלה בלה בלה בלה שבא לי לכתוב כי אני רוצה לכתוב סתם דברים בלי סיבה בלה בלה בלה'"
           dark
 
@@ -205,6 +205,7 @@ export default {
   .about_background_image {
     object-fit: cover;
     max-height: 100vh;
+    height: 100%;
   }
 
   .about_background_darkner {
@@ -215,6 +216,11 @@ export default {
 
   .about_description_section {
     position: relative;
+
+    p {
+      z-index: 2;
+      position: relative;
+    }
     
     .star_logo {
       position: absolute;
@@ -270,4 +276,16 @@ export default {
     width: 100%;
   }
 }
+
+  @media only screen and (max-width: 600px) {
+    .about_description_section {
+      .star_logo {
+        opacity: .1;
+        width: 30%;
+        bottom: -30%;
+        left: 0% !important;
+      }
+    }
+  }
+
 </style>
