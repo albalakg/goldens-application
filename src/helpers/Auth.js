@@ -53,6 +53,10 @@ class Auth {
         return this.get() ? this.get().role : '';
     }
 
+    email() {
+        return this.get() ? this.get().email : '';
+    }
+
     image() {
         return this.get() && this.get().image ? this.get().image : '';
     }

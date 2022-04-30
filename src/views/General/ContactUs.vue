@@ -112,6 +112,10 @@ export default {
     this.$store.dispatch('SupportState/getSupportCategories');
   },
 
+  mounted() {
+    this.setInitEmail();
+  },
+
   computed: {
     categories() {
       return this.$store.getters['SupportState/supportCategories'];
@@ -176,6 +180,12 @@ export default {
 
       return isFullNameValid && isEmailValid && isDescriptionValid;
     },
+
+    setInitEmail() {
+      if(this.$refs.email) {
+        this.$refs.email.setValue(this.$store.getters['UserState/email']);
+      }
+    }
   },
 };
 </script>

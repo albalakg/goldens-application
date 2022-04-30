@@ -33,6 +33,7 @@ const UserState = {
         lastName:       state   => state.profile.last_name,
         fullName:       state   => state.profile.first_name + ' ' + state.profile.last_name,
         phone:          state   => state.profile.phone,
+        email:          state   => state.profile.email,
         lastActive:     state   => state.lastActive,
     },
 
