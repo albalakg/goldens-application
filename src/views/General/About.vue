@@ -5,6 +5,7 @@
     </div>
     <v-flex md10 xl9 mx-auto class="about_background_content">
       <section class="about_header">
+        <circle-decorator class="circle_decorator" />
         <v-flex md4>
           <h1>
             <span class="white_text_color">
@@ -30,7 +31,8 @@
 
       <div class="spacer"></div>
       
-      <section>
+      <section class="about_description_section">
+        <star-logo :gstar="false" class="star_logo" />
         <v-flex md8 mx-auto>
           <p class="white_text_color">
             {{content}}
@@ -49,8 +51,14 @@
 
 <script>
 import Trainers from '../../components/Content/Trainers.vue';
+import CircleDecorator from '../../components/Decorators/CircleDecorator.vue';
+import StarLogo from '../../components/General/StarLogo.vue';
 export default {
-  components: {Trainers},
+  components: { 
+    Trainers, 
+    StarLogo,
+    CircleDecorator
+  },
 
   data() {
     return {
@@ -138,11 +146,31 @@ export default {
 .about_wrapper {
   position: relative;
 
+  .about_header {
+    position: relative;
+
+    .circle_decorator {
+      position: absolute;
+      transform: scale(5);
+      right: -60%;
+    }
+  }
+
   .about_background_image, .about_background_darkner {
     position: absolute;
     top: 0;
     max-height: 100vh;
     width: 100%;
+  }
+
+  .about_description_section {
+    position: relative;
+    
+    .star_logo {
+      position: absolute;
+      left: -70%;
+      transform: scale(2);
+    }
   }
 
   .about_background_image {
