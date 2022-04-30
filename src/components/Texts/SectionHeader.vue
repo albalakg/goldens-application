@@ -8,7 +8,12 @@
         {{ backgroundTitle }}
     </h2>
 
-    <div class="line main_bg_color"></div>
+    <div 
+        class="line main_bg_color"
+        :class="{
+            'sub_bg_color': dark
+        }"
+    ></div>
 
     <p v-if="subtitle" class="mt-2">
         {{ subtitle }}

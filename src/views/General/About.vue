@@ -1,8 +1,7 @@
 <template>
   <div class="about_wrapper pb-10 second_dark_bg_color app_padding_top">
     <img class="about_background_image" :src="aboutBackgroundImage" alt="about background">
-    <div class="about_background_darkner">
-    </div>
+    <div class="about_background_darkner"></div>
     <v-flex md10 xl9 mx-auto class="about_background_content">
       <section class="about_header">
         <circle-decorator class="circle_decorator" />
@@ -42,10 +41,45 @@
 
       <div class="spacer"></div>
 
-
     </v-flex>
     
     <trainers full dark />
+
+    <div class="spacer"></div>
+
+    <section class="about_believe_section">
+      <div class="spacer"></div>
+      <img :src="aboutBelieveBackgroundImage" alt="about believe background">
+      <div class="about_background_darkner"></div>
+      <section-header 
+        :title="'האני מאמין שלי'"
+        :backgroundTitle="'אני מאמין'"
+        :subtitle="'סתם בלה בלה בלה בלה שבא לי לכתוב כי אני רוצה לכתוב סתם דברים בלי סיבה בלה בלה בלה'"
+        dark
+
+      />
+      
+      <v-flex d-flex>
+        <v-flex md5 xl6>
+          
+        </v-flex>
+        <v-flex md5 xl4> 
+          <div class="side_note white_border_right pr-3" v-for="(note, index) in sideNotes" :key="index">
+            <h2 class="sub_text_color">
+              {{note.title}}
+            </h2>
+            <p class="white_text_color">
+              {{
+                note.description
+              }}
+            </p>
+          </div>
+        </v-flex>
+      </v-flex>
+
+      <div class="spacer"></div>
+    </section>
+
   </div>
 </template>
 
@@ -53,16 +87,19 @@
 import Trainers from '../../components/Content/Trainers.vue';
 import CircleDecorator from '../../components/Decorators/CircleDecorator.vue';
 import StarLogo from '../../components/General/StarLogo.vue';
+import SectionHeader from '../../components/Texts/SectionHeader.vue';
 export default {
   components: { 
     Trainers, 
     StarLogo,
-    CircleDecorator
+    CircleDecorator,
+    SectionHeader
   },
 
   data() {
     return {
       aboutBackgroundImage: require("../../../public/assets/images/general/about_background.png"),
+      aboutBelieveBackgroundImage: require("../../../public/assets/images/general/about_believe_backgroun.png"),
       description:
         "סתם טקסט מטופש בלי שום משמעות. אין שום קשר למציאות אז בהצלחה בהמשך הקריאה של הדבר היפה הזה.",
       content: `,ופמיכל סא לקרמל ודנילב לפנטצת .קבולב ריטחס תילא גניסיפידא ררוטקסנוק ,טמא טיס רולוד םוספיא םרול
@@ -163,6 +200,16 @@ export default {
     width: 100%;
   }
 
+  .about_background_image {
+    object-fit: cover;
+  }
+
+  .about_background_darkner {
+    height: 100vh;
+    background: linear-gradient(#0000, #102a46);
+    z-index: 2;
+  }
+
   .about_description_section {
     position: relative;
     
@@ -173,14 +220,22 @@ export default {
     }
   }
 
-  .about_background_image {
-    object-fit: cover;
-  }
+  .about_believe_section {
+    position: relative;
 
-  .about_background_darkner {
-    height: 100vh;
-    background: linear-gradient(#0000, #102a46);
-    z-index: 2;
+    img {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .side_note {
+      margin: 60px 0;
+      z-index: 2;
+      position: relative;
+    }
   }
 
   .about_background_content {
