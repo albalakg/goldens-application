@@ -1,6 +1,6 @@
 
 <template>
-    <div v-if="firstName" class="text-right last_progress_card white_bg_color pa-5 pl-10">
+    <div v-if="firstName" class="text-right last_progress_card white_bg_color pa-5 pl-10 dark_shadow">
         <collapse class="collapse pointer" @submit="close()" />
         <strong>
         היי {{ firstName }},

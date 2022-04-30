@@ -258,7 +258,7 @@ export default {
       if(!this.$store.getters['ContentState/showLastActiveCard']) {
         return
       }
-      
+
       this.$store.dispatch('ContentState/setShowLastActiveCard', false);
       setTimeout(() => {
         this.toggleLastActiveCard();
@@ -281,8 +281,10 @@ export default {
       position: absolute;
       border-radius: 8px 0 0 8px;
       right: 0;
+      z-index: 10;
       transition: .7s right ease-out;
     }
+    
 
     .hide_last_progress_card {
       right: -500px;
@@ -359,6 +361,10 @@ export default {
 
     .course_page_image_details {
       align-items: end !important;
+    }
+
+    .last_progress_card {
+      top: 100px;
     }
   }
 
