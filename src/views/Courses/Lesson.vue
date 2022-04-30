@@ -77,7 +77,6 @@
         controls
         @playing="onVideoPlay"
         @pause="onVideoPaused"
-        @ended="onEnded"
       >
         <source :src="lesson.video.videoSrc" type="video/mp4" />
         Your browser does not support the video tag.
@@ -194,7 +193,7 @@ export default {
       this.updateLessonProgressInterval = setInterval(() => {
 
         this.videoProgress.end_time = videoElement.currentTime;
-        this.$store.dispatch('UserState/updateUserVideoProgress', this.videoProgress)
+        this.sendRequest();
         this.videoProgress.start_time = videoElement.currentTime;
 
       }, SPACE_BETWEEN_VIDEO_PROGRESS_UPDATE);
@@ -202,11 +201,9 @@ export default {
 
     onVideoPaused(video) {
       clearInterval(this.updateLessonProgressInterval);
-    },
-
-    onEnded(video) {
-      this.videoProgress.end_time = this.lesson.video.video_length;
-      this.$store.dispatch('UserState/updateUserVideoProgress', this.videoProgress)
+      const videoElement = document.getElementById("lessonVideo")
+      this.videoProgress.end_time = videoElement.currentTime;
+      this.sendRequest();
     },
 
     setVideoStartTime() {
@@ -214,6 +211,16 @@ export default {
       video.addEventListener('loadedmetadata', function () {
         this.currentTime = this.startTime;
       }.bind(this), false);
+    },
+
+    async sendRequest() {
+      if(this.videoProgressLoading) {
+        return;
+      }
+
+      this.videoProgressLoading = true;
+      await this.$store.dispatch('UserState/updateUserVideoProgress', this.videoProgress)
+      this.videoProgressLoading = false;
     }
 
   }

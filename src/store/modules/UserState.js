@@ -264,10 +264,14 @@ const UserState = {
         },
 
         updateUserVideoProgress({ commit }, data) {
-            axios.post(`profile/lesson/progress`, data)
-                .then(res => {
-                    commit('UPDATE_USER_PROGRESS', res.data.data);
-                });
+            return new Promise((resolve) => {
+                axios.post(`profile/lesson/progress`, data)
+                    .then(res => {
+                        commit('UPDATE_USER_PROGRESS', res.data.data);
+                    }).finally(() => {
+                        resolve()
+                    });
+            })
         }
 
     }
