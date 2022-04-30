@@ -6,7 +6,13 @@
       <div class="course_page_image_darkner"></div>
       <div class="course_page_image_details">
 
-        <last-active-lesson-card class="last_progress_card" />
+        <last-active-lesson-card 
+          class="last_progress_card"
+          :class="{
+            'hide_last_progress_card': !showLastActiveCard
+          }"
+          @close="toggleLastActiveCard()" 
+        />
 
         <div>
           <h1>
@@ -87,6 +93,7 @@ export default {
           title: 'שיעורים'
         },
       ],
+      showLastActiveCard: false,
       activeTab: 0,
       showShareTooltip: false,
       trailerFullScreen: false,
@@ -124,6 +131,7 @@ export default {
     });
     
     this.listenToScroll();
+    this.initLastActiveCard();
   },
 
   watch: {
@@ -240,6 +248,25 @@ export default {
           }
         }
       });
+    },
+
+    toggleLastActiveCard() {
+      this.showLastActiveCard = !this.showLastActiveCard;
+    },
+
+    initLastActiveCard() {
+      if(!this.$store.getters['ContentState/showLastActiveCard']) {
+        return
+      }
+      
+      this.$store.dispatch('ContentState/setShowLastActiveCard', false);
+      setTimeout(() => {
+        this.toggleLastActiveCard();
+      }, 1000);
+
+      setTimeout(() => {
+        this.showLastActiveCard = false;
+      }, 10000);
     }
   },
 
@@ -254,6 +281,11 @@ export default {
       position: absolute;
       border-radius: 8px 0 0 8px;
       right: 0;
+      transition: .7s right ease-out;
+    }
+
+    .hide_last_progress_card {
+      right: -500px;
     }
     
     .course_page_image_wrapper {

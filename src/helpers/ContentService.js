@@ -1,5 +1,7 @@
 import store from '../store'
 
+const MAX_LESSON_CONTENT_CHARS = 120;
+
 class ContentService {
 
   findMyActiveCourse() {
@@ -178,6 +180,10 @@ class ContentService {
       error(err);
       return 0;
     }
+  }
+
+  getLessonShortDescription(lesson, maxChars = MAX_LESSON_CONTENT_CHARS) {
+    return lesson.content.length < maxChars ? lesson.content : lesson.content.slice(0, maxChars) + '...';
   }
 
   isLessonCompleted(lessonId) {

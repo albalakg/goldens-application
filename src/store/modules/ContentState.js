@@ -5,10 +5,12 @@ const ContentState = {
         lessons: null,
         courses: null,
         categories: null,
+        showLastActiveCard: true
     },
 
     getters: {
         lessons: state => state.lessons,
+        showLastActiveCard: state => state.showLastActiveCard,
         courses: state => state.courses,
         categories: state => state.categories,
     },
@@ -16,6 +18,10 @@ const ContentState = {
     mutations: {
         SET_LESSONS(state, lessons) {
             state.lessons = lessons;
+        },
+
+        SET_SHOW_LAST_ACTIVE_CARD(state, status) {
+            state.showLastActiveCard = status;
         },
 
         ADD_COURSE(state, course) {
@@ -84,6 +90,10 @@ const ContentState = {
                     })
             })
        },
+
+       setShowLastActiveCard({ commit }, status) {
+           commit('SET_SHOW_LAST_ACTIVE_CARD', status);
+       }
     }
 };
 

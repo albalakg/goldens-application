@@ -52,8 +52,6 @@ import TimeChip from '../Chips/TimeChip.vue';
 import Divider from '../General/Divider.vue';
 import Heart from '../General/Heart.vue';
 
-const MAX_LESSON_CONTENT_CHARS = 120;
-
 export default {
   components: { Divider, TimeChip, Heart, CompletedChip },
 
@@ -71,10 +69,6 @@ export default {
   },
 
   computed: {
-    lessonContent() {
-      return this.lesson.content.length < MAX_LESSON_CONTENT_CHARS ? this.lesson.content : this.lesson.content.slice(0, MAX_LESSON_CONTENT_CHARS) + '...';
-    },
-
     seconds() {
         return this.lesson.video.video_length ?? 0;
     },
@@ -84,7 +78,7 @@ export default {
     },
 
     lessonContent() {
-        return this.lesson.content.length < MAX_LESSON_CONTENT_CHARS ? this.lesson.content : this.lesson.content.slice(0, MAX_LESSON_CONTENT_CHARS) + '...';
+        return ContentService.getLessonShortDescription(this.lesson);
     },
 
     isCompleted() {
