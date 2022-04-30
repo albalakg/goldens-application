@@ -25,6 +25,7 @@
                         </strong>
                     </v-flex>
                     <progress-bar
+                        v-if="isLogged"
                         dark
                         slim
                         :progress="progress"
@@ -60,6 +61,10 @@ export default {
         totalDuration() {
             const seconds = ContentService.countTotalCourseAreaDuration(this.courseArea.id);
             return ContentService.getTimeTextBySeconds(seconds);
+        },
+
+        isLogged() {
+            return this.$store.getters['AuthState/isLogged'];
         },
 
         progress() {

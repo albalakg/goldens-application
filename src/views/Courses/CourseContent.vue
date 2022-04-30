@@ -38,7 +38,7 @@
           <br>
           <br>
           <br>
-          <user-course-progress :course="course" />
+          <user-course-progress v-if="isLogged" :course="course" />
         </v-flex>
       </v-flex>
     </template>

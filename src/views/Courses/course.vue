@@ -5,6 +5,9 @@
       <img loading="lazy" class="course_image" :src="course.imageSrc" alt="">
       <div class="course_page_image_darkner"></div>
       <div class="course_page_image_details">
+
+        <last-active-lesson-card class="last_progress_card" />
+
         <div>
           <h1>
             {{course.name}}
@@ -63,6 +66,7 @@
 </template>
 
 <script>
+import LastActiveLessonCard from '../../components/Cards/LastActiveLessonCard.vue';
 import MainTabs from '../../components/Tabs/MainTabs.vue';
 
 const COURSE_AREAS_TAB_INDEX  = 0;
@@ -70,6 +74,7 @@ const LESSONS_TAB_INDEX       = 1;
 export default {
   components: {
     MainTabs,
+    LastActiveLessonCard,
   },
 
   data() {
@@ -148,7 +153,7 @@ export default {
 
     isDark() {
       return this.$store.getters['AppState/isMenuDark']
-    }
+    },
   },
 
   methods: {
@@ -244,6 +249,12 @@ export default {
 <style scoped lang="scss">
 
   .course_page_wrapper {
+
+    .last_progress_card {
+      position: absolute;
+      border-radius: 8px 0 0 8px;
+      right: 0;
+    }
     
     .course_page_image_wrapper {
       position: relative;

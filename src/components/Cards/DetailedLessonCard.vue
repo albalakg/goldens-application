@@ -35,7 +35,7 @@
                 <p class="grey_text_color" v-html="lessonContent">
                 </p>
             </v-flex>
-            <div class="text-left">
+            <div class="text-left" v-if="isLogged">
                 <heart
                     dark
                     :filled="isFavorite"
@@ -93,6 +93,10 @@ export default {
 
     isFavorite() {
         return ContentService.isLessonFavorite(this.lesson.id);
+    },
+    
+    isLogged() {
+      return this.$store.getters['AuthState/isLogged'];
     },
   },
 

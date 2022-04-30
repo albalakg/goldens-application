@@ -181,20 +181,25 @@ class ContentService {
   }
 
   isLessonCompleted(lessonId) {
-    const userCourses = store.getters['UserState/progress'];
+    try {
+      const userCourses = store.getters['UserState/progress'];
 
-    for(let courseIndex = 0; courseIndex < userCourses.length; courseIndex++) {
-      const userCourse = userCourses[courseIndex];
+      for(let courseIndex = 0; courseIndex < userCourses.length; courseIndex++) {
+        const userCourse = userCourses[courseIndex];
 
-      for(let lessonIndex = 0; lessonIndex < userCourse.lessons_progress.length; lessonIndex++) {
-        const userLesson = userCourse.lessons_progress[lessonIndex];
-        if(userLesson.course_lesson_id === lessonId) {
-          return userLesson.progress === 100;
+        for(let lessonIndex = 0; lessonIndex < userCourse.lessons_progress.length; lessonIndex++) {
+          const userLesson = userCourse.lessons_progress[lessonIndex];
+          if(userLesson.course_lesson_id === lessonId) {
+            return userLesson.progress === 100;
+          }
         }
       }
-    }
 
-    return false;
+      return false;
+    } catch(err) {
+      error(err);
+      return false;
+    }
   }
 
   isLessonFavorite(lessonId) {

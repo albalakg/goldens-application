@@ -49,6 +49,22 @@ const UserState = {
             state.progress = userProgress;
         },
 
+        UPDATE_USER_PROGRESS(state, data) {
+            try {
+                const courseIndex   = state.progress.findIndex(course => course.id === data.user_course_id);
+                const course        = state.progress[courseIndex];
+                const lessonIndex   = course.lessons_progress.findIndex(lesson => lesson.course_lesson_id === data.course_lesson_id);
+
+                if(lessonIndex !== -1) {
+                    state.progress[courseIndex].lessons_progress[lessonIndex] = data;
+                } else {
+                    state.progress[courseIndex].lessons_progress.push(data);
+                }
+            } catch(err) {
+                error(err)
+            }
+        },
+
         SET_USER_LAST_ACTIVE(state, lastActive) {
             state.lastActive = lastActive;
         },
@@ -187,7 +203,6 @@ const UserState = {
                             message: 'מצטערים אבל נכשלה הבקשה למשיכת התכנים שלך',
                             type: 'error',
                         }, {root:true});
-                        Auth.logout()
                     })
             })
         },
@@ -248,7 +263,10 @@ const UserState = {
         },
 
         updateUserVideoProgress({ commit }, data) {
-            axios.post(`profile/lesson/progress`, data);
+            axios.post(`profile/lesson/progress`, data)
+                .then(res => {
+                    commit('UPDATE_USER_PROGRESS', res.data.data);
+                });
         }
 
     }

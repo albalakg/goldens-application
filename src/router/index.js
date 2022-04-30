@@ -118,10 +118,12 @@ const routes = [
     children: [
       {
         path: '',
+        beforeEnter: Guard.user,
         component: () => import('../views/Courses/CourseContent.vue'),
       },
       {
         path: '/courses/:course_id/lessons',
+        beforeEnter: Guard.user,
         component: () => import('../views/Courses/CourseArea.vue'),
       },
     ]

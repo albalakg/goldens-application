@@ -39,7 +39,7 @@
                     <div class="account_wrapper">
                         <template v-if="isLogged">
                             <v-flex d-flex align-center>
-                                <router-link title="מועדפים" class="simple_link text-center" to="/user/favorites">
+                                <router-link title="מועדפים" class="simple_link text-center favorite_link" to="/user/favorites">
                                     <heart center :dark="isDark" @submit="enterFavorites()"/>
                                 </router-link>
                                 <router-link title="פרופיל" class="simple_link" to="/user">
@@ -191,5 +191,9 @@ export default {
 
     .account_wrapper img {
         height: 35px;
+    }
+
+    .favorite_link {
+        margin-bottom: 6px;
     }
 </style>
