@@ -97,7 +97,9 @@ export default {
     },
 
     enterCourseArea(courseArea) {
-      this.$router.push(`/courses/${courseArea.course_id}/lessons?courseArea=${courseArea.id}`)
+      if(this.$route.query.courseArea != courseArea.id) {
+        this.$router.push(`/courses/${courseArea.course_id}/lessons?courseArea=${courseArea.id}`)
+      }
     }
   }
 

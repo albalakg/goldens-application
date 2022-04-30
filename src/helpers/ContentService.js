@@ -77,7 +77,7 @@ class ContentService {
         }
       }
       
-      foundLesson.progress = this.getLessonProgressById(foundLesson.id)
+      foundLesson.progress = this.findLessonProgressById(foundLesson.id)
 
       return foundLesson;
     } catch(err) {
@@ -86,12 +86,12 @@ class ContentService {
     }
   }
 
-  getLessonProgressById(lessonId) {
+  findLessonProgressById(lessonId) {
     try {
       let userCourses = store.state['UserState'].progress;
       for(let courseIndex = 0; courseIndex < userCourses.length; courseIndex++) {
         const userCourse = userCourses[courseIndex];
-        return userCourse.lessons_progress.find(lesson => lesson.id == lessonId);
+        return userCourse.lessons_progress.find(lesson => lesson.course_lesson_id == lessonId);
       }
     } catch (err) {
       error(err);
@@ -102,7 +102,10 @@ class ContentService {
   getLessonsByCourseAreaId(courseAreaId) {
     try {
       const courseArea = this.findCourseAreaById(courseAreaId);
-      return courseArea.active_lessons;
+      courseArea.active_lessons.forEach(lesson => {
+        lesson.progress = this.findLessonProgressById(lesson.id)
+      });
+      return courseArea.active_lessons
     } catch(err) {
       error(err);
       return [];
