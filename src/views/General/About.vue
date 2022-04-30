@@ -51,31 +51,34 @@
       <div class="spacer"></div>
       <img :src="aboutBelieveBackgroundImage" alt="about believe background">
       <div class="about_background_darkner"></div>
-      <section-header 
-        :title="'האני מאמין שלי'"
-        :backgroundTitle="'אני מאמין'"
-        :subtitle="'סתם בלה בלה בלה בלה שבא לי לכתוב כי אני רוצה לכתוב סתם דברים בלי סיבה בלה בלה בלה'"
-        dark
-
-      />
       
-      <v-flex d-flex>
-        <v-flex md5 xl6>
-          
+      <div class="about_believe_content">
+        <section-header 
+          :title="'האני מאמין שלי'"
+          :backgroundTitle="'אני מאמין'"
+          :subtitle="'סתם בלה בלה בלה בלה שבא לי לכתוב כי אני רוצה לכתוב סתם דברים בלי סיבה בלה בלה בלה'"
+          dark
+
+        />
+        
+        <v-flex d-flex>
+          <v-flex md5 xl6>
+            
+          </v-flex>
+          <v-flex md5 xl4> 
+            <div class="side_note white_border_right pr-3" v-for="(note, index) in sideNotes" :key="index">
+              <h2 class="sub_text_color">
+                {{note.title}}
+              </h2>
+              <p class="white_text_color">
+                {{
+                  note.description
+                }}
+              </p>
+            </div>
+          </v-flex>
         </v-flex>
-        <v-flex md5 xl4> 
-          <div class="side_note white_border_right pr-3" v-for="(note, index) in sideNotes" :key="index">
-            <h2 class="sub_text_color">
-              {{note.title}}
-            </h2>
-            <p class="white_text_color">
-              {{
-                note.description
-              }}
-            </p>
-          </div>
-        </v-flex>
-      </v-flex>
+      </div>
 
       <div class="spacer"></div>
     </section>
@@ -196,12 +199,12 @@ export default {
   .about_background_image, .about_background_darkner {
     position: absolute;
     top: 0;
-    max-height: 100vh;
     width: 100%;
   }
 
   .about_background_image {
     object-fit: cover;
+    max-height: 100vh;
   }
 
   .about_background_darkner {
@@ -215,7 +218,7 @@ export default {
     
     .star_logo {
       position: absolute;
-      left: -70%;
+      left: -60%;
       transform: scale(2);
     }
   }
@@ -226,15 +229,25 @@ export default {
     img {
       position: absolute;
       top: 0;
-      height: 100vh;
+      height: 100%;
       width: 100%;
       object-fit: cover;
+    }
+
+    .about_believe_content {
+      position: relative;
+      z-index: 2;
     }
 
     .side_note {
       margin: 60px 0;
       z-index: 2;
       position: relative;
+    }
+
+    .about_background_darkner {
+      height: 100%;
+      background: linear-gradient(#102a46 1%, #0000, #102a46);
     }
   }
 
@@ -253,7 +266,7 @@ export default {
   }
 
   .spacer {
-    height: 50px;
+    height: 80px;
     width: 100%;
   }
 }

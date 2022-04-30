@@ -113,7 +113,7 @@
             </v-flex>
 
             <v-flex xs12 md4 class="about_left_side_wrapper mt-10 mt-md-0">
-                <star-logo :gstar="false" class="about_star_decorator" />
+                <star-logo class="about_star_decorator" />
                 <img loading="lazy" class="mt-10 mt-md-0" :src="aboutPlayerSrc" alt="">
             </v-flex>
             
@@ -343,7 +343,7 @@ export default {
         top: -20vh;
         left: -30%;
         z-index: 2;
-        width: 70%;
+        width: 180%;
     }
 
     .questions_wrapper {
