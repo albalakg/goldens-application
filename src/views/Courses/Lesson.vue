@@ -69,7 +69,19 @@
       <p v-html="lesson.content">
       </p>
 
-      <video class="w100" :src="lesson.video.videoSrc" controls></video>
+      <video 
+        controlsList="nodownload"
+        disablePictureInPicture
+        id="lessonVideo" 
+        class="w100" 
+        controls
+        @playing="onVideoPlay"
+        @pause="onVideoPaused"
+        @ended="onEnded"
+      >
+        <source :src="lesson.video.videoSrc" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
 
     </v-flex>
   </div>
@@ -80,13 +92,26 @@ import MainButton from '../../components/Buttons/MainButton.vue';
 import ProfileCard from '../../components/Cards/ProfileCard.vue';
 import Heart from '../../components/General/Heart.vue';
 import LessonCompleted from '../../components/General/LessonCompleted.vue';
+
+const SPACE_BETWEEN_VIDEO_PROGRESS_UPDATE = 3000;
+
 export default {
   components: { MainButton, Heart, ProfileCard, LessonCompleted },
 
   data() {
     return {
       showList: false,
+      updateLessonProgressInterval: null,
+      videoProgress: {
+        start_time:  0,
+        end_time:    0,
+        lesson_id: this.$route.params.lesson_id,
+      }
     }
+  },
+
+  mounted() {
+    this.setVideoStartTime();
   },
 
   computed: {
@@ -125,6 +150,14 @@ export default {
       })
 
       return lessons;
+    },
+
+    startTime() {
+      try {
+        return this.lesson.video.video_length * (this.lesson.progress.progress / 100)
+      } catch (err) {
+        return 0;
+      }
     }
   },
 
@@ -149,7 +182,40 @@ export default {
       }
 
       this.toggleList();
+    },
+
+    listenToVideoProgress(data) {
+      console.log('data',data);
+    },
+
+    onVideoPlay(video) {
+      const videoElement = document.getElementById("lessonVideo")
+      this.videoProgress.start_time = videoElement.currentTime;
+      this.updateLessonProgressInterval = setInterval(() => {
+
+        this.videoProgress.end_time = videoElement.currentTime;
+        this.$store.dispatch('UserState/updateUserVideoProgress', this.videoProgress)
+        this.videoProgress.start_time = videoElement.currentTime;
+
+      }, SPACE_BETWEEN_VIDEO_PROGRESS_UPDATE);
+    },
+
+    onVideoPaused(video) {
+      clearInterval(this.updateLessonProgressInterval);
+    },
+
+    onEnded(video) {
+      this.videoProgress.end_time = this.lesson.video.video_length;
+      this.$store.dispatch('UserState/updateUserVideoProgress', this.videoProgress)
+    },
+
+    setVideoStartTime() {
+      const video = document.getElementById("lessonVideo")
+      video.addEventListener('loadedmetadata', function () {
+        this.currentTime = this.startTime;
+      }.bind(this), false);
     }
+
   }
 
 }

@@ -20,11 +20,11 @@ const UserState = {
     getters: {
         // unchecked
         supportTickets: state   => state.supportTickets,
-        favorites:      state   => state.favorites,
         orders:         state   => state.orders,
         profile:        state   => state.profile,
         
         // checked
+        favorites:      state   => state.favorites,
         progress:       state   => state.progress,
         courses:        state   => state.courses,
         courseAreas:    state   => state.courseAreas,
@@ -109,7 +109,7 @@ const UserState = {
                 })
         },
         
-        getSupportTickets({ commit }) {
+        getSupportTickets({ commit, dispatch }) {
             axios.get('profile/support-tickets')
                 .then(res => {
                     commit('SET_USER_SUPPORT_TICKETS', res.data.data);
@@ -122,7 +122,7 @@ const UserState = {
                 })
         },
         
-        getOrders({ commit }) {
+        getOrders({ commit, dispatch }) {
             axios.get('profile/orders')
                 .then(res => {
                     commit('SET_USER_ORDERS', res.data.data);
@@ -135,7 +135,7 @@ const UserState = {
                 })
         },
         
-        getFavorites({ commit }) {
+        getFavorites({ commit, dispatch }) {
             axios.get('profile/favorites')
                 .then(res => {
                     commit('SET_USER_FAVORITES', res.data.data);
@@ -148,7 +148,7 @@ const UserState = {
                 })
         },
         
-        getProgress({ state, commit }) {
+        getProgress({ state, commit, dispatch }) {
             return new Promise((resolve, reject) => {
                 if(state.progress) {
                     resolve(state.courses);
@@ -170,7 +170,7 @@ const UserState = {
             })
         },
         
-        getCourses({ commit, state }, courses) {
+        getCourses({ commit, state, dispatch }) {
             return new Promise((resolve, reject) => {
                 if(state.courses) {
                     resolve(state.courses);
@@ -187,11 +187,12 @@ const UserState = {
                             message: 'מצטערים אבל נכשלה הבקשה למשיכת התכנים שלך',
                             type: 'error',
                         }, {root:true});
+                        Auth.logout()
                     })
             })
         },
         
-        setUserProfile({ commit }, profile) {
+        setUserProfile({ commit, dispatch }, profile) {
             delete profile.token;
             profile.full_name = profile.first_name + ' ' + profile.last_name;
             commit('SET_USER_PROFILE', profile);
@@ -205,27 +206,26 @@ const UserState = {
                 };
 
                 axios.post(`profile/favorites/${action}`, data)
-                        .then(res => {
-                            if(action === 'remove') {
-                                commit('REMOVE_CONTENT_IN_FAVORITES', lessonId)
-                            } else {
-                                commit('ADD_CONTENT_IN_FAVORITES', res.data.data)
-                            }
-                        })
-                        .catch(err => {
-                            dispatch('MessageState/addMessage', {
-                                message: 'מצטערים אבל נכשלה הבקשה לעדכן את המועדפים',
-                                type: 'error',
-                            }, {root:true});
-                        })
-                        .finally(() => {
-                            resolve()
-                        })
+                    .then(res => {
+                        if(action === 'remove') {
+                            commit('REMOVE_CONTENT_IN_FAVORITES', lessonId)
+                        } else {
+                            commit('ADD_CONTENT_IN_FAVORITES', res.data.data)
+                        }
+                    })
+                    .catch(err => {
+                        dispatch('MessageState/addMessage', {
+                            message: 'מצטערים אבל נכשלה הבקשה לעדכן את המועדפים',
+                            type: 'error',
+                        }, {root:true});
+                    })
+                    .finally(() => {
+                        resolve()
+                    })
             })
         },
         
         async goToLastActiveCourse({ state }) {
-            console.log('goToLastActiveCourse');
             try {
                 const lesson    = state.lessons.find(lesson => lesson.id == lastActiveLesson.id);
                 const courses   = state.courses;
@@ -238,7 +238,7 @@ const UserState = {
                 if(route === window.location.hash.replace('#', '')) {
                     return;
                 }
-                console.log('route', route);
+
                 router.push(route)
             } catch(error) {
                 console.error(error);
@@ -246,6 +246,10 @@ const UserState = {
                 router.push('/');
             }
         },
+
+        updateUserVideoProgress({ commit }, data) {
+            axios.post(`profile/lesson/progress`, data);
+        }
 
     }
 };

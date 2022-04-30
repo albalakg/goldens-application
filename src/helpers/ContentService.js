@@ -58,6 +58,8 @@ class ContentService {
   findLessonById(lessonId) {
     try {
       let courses = store.state['UserState'].courses;
+      let foundLesson  = null;
+
       if(!courses) {
         courses = store.state['ContentState'].courses;
       }
@@ -66,13 +68,34 @@ class ContentService {
         const course = courses[courseIndex];
   
         for(let courseAreaIndex = 0; courseAreaIndex < course.active_areas_with_active_lessons.length; courseAreaIndex++) {
+          if(foundLesson) {
+            break;
+          }
+
           const courseArea = course.active_areas_with_active_lessons[courseAreaIndex];
-          return courseArea.active_lessons.find(lesson => lesson.id == lessonId);
+          foundLesson = courseArea.active_lessons.find(lesson => lesson.id == lessonId);
         }
       }
+      
+      foundLesson.progress = this.getLessonProgressById(foundLesson.id)
+
+      return foundLesson;
     } catch(err) {
       error(err);
-      return {};
+      return null;
+    }
+  }
+
+  getLessonProgressById(lessonId) {
+    try {
+      let userCourses = store.state['UserState'].progress;
+      for(let courseIndex = 0; courseIndex < userCourses.length; courseIndex++) {
+        const userCourse = userCourses[courseIndex];
+        return userCourse.lessons_progress.find(lesson => lesson.id == lessonId);
+      }
+    } catch (err) {
+      error(err);
+      return null;
     }
   }
 
