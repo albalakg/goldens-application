@@ -226,7 +226,7 @@ export default {
     img {
       position: absolute;
       top: 0;
-      height: 100%;
+      height: 100vh;
       width: 100%;
       object-fit: cover;
     }
