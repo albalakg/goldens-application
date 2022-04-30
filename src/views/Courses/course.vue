@@ -147,7 +147,7 @@ export default {
     },
 
     isDark() {
-        return this.$store.getters['AppState/isMenuDark']
+      return this.$store.getters['AppState/isMenuDark']
     }
   },
 
@@ -222,11 +222,13 @@ export default {
         var position = element.getBoundingClientRect();
 
         if(position.height < (position.top * -1 + 100)) {
-          console.log('in');
-          return this.$store.dispatch('AppState/setMenuMode', false);
+          if(!this.isDark) {
+            return this.$store.dispatch('AppState/setMenuMode', false);
+          }
         } else {
-          console.log('out');
-          return this.$store.dispatch('AppState/setMenuMode', true);
+          if(this.isDark) {
+            return this.$store.dispatch('AppState/setMenuMode', true);
+          }
         }
       });
     }

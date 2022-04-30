@@ -225,6 +225,7 @@ const UserState = {
         },
         
         async goToLastActiveCourse({ state }) {
+            console.log('goToLastActiveCourse');
             try {
                 const lesson    = state.lessons.find(lesson => lesson.id == lastActiveLesson.id);
                 const courses   = state.courses;
@@ -237,7 +238,7 @@ const UserState = {
                 if(route === window.location.hash.replace('#', '')) {
                     return;
                 }
-
+                console.log('route', route);
                 router.push(route)
             } catch(error) {
                 console.error(error);

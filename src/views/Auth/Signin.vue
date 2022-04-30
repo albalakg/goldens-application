@@ -165,7 +165,7 @@ export default {
 
         async loggedSuccessfullyActions(){
             this.$store.dispatch('AuthState/setLogStatus', true);
-            this.$store.dispatch('UserState/init', Auth.get())
+            await this.$store.dispatch('UserState/init', Auth.get())
             this.$store.dispatch('UserState/goToLastActiveCourse')
         },
 

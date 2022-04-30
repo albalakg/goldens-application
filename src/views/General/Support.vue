@@ -122,20 +122,6 @@ export default {
       this.loading = false;
     },
 
-    loggedSuccessfully(data) {
-      try {
-        this.$store.dispatch("UserState/setCourses", data.courses);
-        this.$store.dispatch(
-          "UserState/goToLastActiveCourse",
-          this.$route.path
-        );
-      } catch (err) {
-        error(err);
-      }
-
-      this.$router.push("/");
-    },
-
     validate() {
       const isSupportCategoryValid = this.$refs.supportCategory.validate();
       const isFullNameValid = this.$refs.fullName.validate();
