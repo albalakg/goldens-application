@@ -10,7 +10,7 @@
 export default {
     props: {
         seconds: {
-            type: Number,
+            type: String,
             required: true
         }
     },

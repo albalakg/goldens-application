@@ -282,6 +282,7 @@ export default {
       border-radius: 8px 0 0 8px;
       right: 0;
       z-index: 10;
+      width: 300px;
       transition: .7s right ease-out;
     }
     

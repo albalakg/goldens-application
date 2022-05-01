@@ -60,6 +60,7 @@ export default {
 
         totalDuration() {
             const seconds = ContentService.countTotalCourseAreaDuration(this.courseArea.id);
+            console.log('seconds', seconds);
             return ContentService.getTimeTextBySeconds(seconds);
         },
 

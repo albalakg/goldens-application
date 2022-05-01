@@ -11,15 +11,7 @@
         {{ lesson.name }}
         </strong>
         <br>
-        <div class="video_wrapper pointer" @click="enterLesson()">
-            <play class="play_button" />
-            <video 
-                class="mt-3 w100"
-            >
-                <source :src="lesson.video.videoSrc" type="video/mp4" />
-                Your browser does not support the video tag.
-            </video>
-        </div>
+        <video-card :video="lesson.video.videoSrc" @playClicked="enterLesson()" />
         <p v-html="lessonContent">
         </p>
     </div>
@@ -27,19 +19,13 @@
 
 <script>
 import Collapse from '../General/Collapse.vue';
-import Play from '../General/Play.vue';
+import VideoCard from './VideoCard.vue';
 export default {
     components: {
-        Play,
         Collapse,
+        VideoCard,
     },
-
-    data() {
-        return {
-
-        }
-    },
-
+    
     computed: {
         firstName() {
             return this.$store.getters['UserState/firstName'];
@@ -51,7 +37,7 @@ export default {
         },
 
         lessonContent() {
-            return ContentService.getLessonShortDescription(this.lesson);
+            return ContentService.getLessonShortDescription(this.lesson, 80);
         },
     },
 

@@ -1,6 +1,6 @@
 <template>
   <div class="auth_padding_top">
-    <v-flex md10 xl8 mx-auto v-if="lesson">
+    <v-flex md7 xl6 mx-auto v-if="lesson" class="mt-5 mb-10">
       
       <v-flex d-flex align-center justify-space-between>
         <h1 class="mb-0">
@@ -181,10 +181,6 @@ export default {
       }
 
       this.toggleList();
-    },
-
-    listenToVideoProgress(data) {
-      console.log('data',data);
     },
 
     onVideoPlay(video) {

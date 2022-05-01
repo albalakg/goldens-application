@@ -158,7 +158,7 @@ class ContentService {
       const courseArea = this.findCourseAreaById(courseAreaId);
       return courseArea.active_lessons.reduce(
         (previousValue, currentValue) => {
-          return previousValue + currentValue.video.video_length;
+          return Number(previousValue) + Number(currentValue.video.video_length);
         }, 0
       );
     } catch(err) {
@@ -215,9 +215,10 @@ class ContentService {
 
   getTimeTextBySeconds(seconds, withText = true) {
     try {
+      seconds = Number(seconds);
       const minutes = Math.floor(seconds / 60);
       if(minutes < 1) {
-        return seconds + (withText ? ' שניות' : '');
+        return Math.floor(seconds) + (withText ? ' שניות' : '');
       }
 
       const hours = Math.floor(minutes / 60);
@@ -238,6 +239,7 @@ class ContentService {
 
   getLessonTimeFormat(seconds) {
     try {
+      seconds = Number(seconds);
       let minutes     = Math.floor(seconds / 60);
       let leftSeconds = Math.floor(seconds - (minutes * 60));
 
