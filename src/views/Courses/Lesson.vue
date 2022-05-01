@@ -69,7 +69,14 @@
       <p v-html="lesson.content">
       </p>
 
-      <video 
+      <video-card 
+        ref="video"
+        :src="lesson.video.videoSrc"
+        @playClicked="playVideo()"
+        @onVideoPlay="onVideoPlay"
+        @onVideoPaused="onVideoPaused"
+      />
+      <!-- <video 
         controlsList="nodownload"
         disablePictureInPicture
         id="lessonVideo" 
@@ -80,7 +87,7 @@
       >
         <source :src="lesson.video.videoSrc" type="video/mp4" />
         Your browser does not support the video tag.
-      </video>
+      </video> -->
 
     </v-flex>
   </div>
@@ -89,13 +96,14 @@
 <script>
 import MainButton from '../../components/Buttons/MainButton.vue';
 import ProfileCard from '../../components/Cards/ProfileCard.vue';
+import VideoCard from '../../components/Cards/VideoCard.vue';
 import Heart from '../../components/General/Heart.vue';
 import LessonCompleted from '../../components/General/LessonCompleted.vue';
 
 const SPACE_BETWEEN_VIDEO_PROGRESS_UPDATE = 3000;
 
 export default {
-  components: { MainButton, Heart, ProfileCard, LessonCompleted },
+  components: { MainButton, Heart, ProfileCard, LessonCompleted, VideoCard },
 
   data() {
     return {
@@ -184,7 +192,7 @@ export default {
     },
 
     onVideoPlay(video) {
-      const videoElement = document.getElementById("lessonVideo")
+      const videoElement = video.target
       this.videoProgress.start_time = videoElement.currentTime;
       this.updateLessonProgressInterval = setInterval(() => {
 
@@ -197,16 +205,13 @@ export default {
 
     onVideoPaused(video) {
       clearInterval(this.updateLessonProgressInterval);
-      const videoElement = document.getElementById("lessonVideo")
+      const videoElement = video.target
       this.videoProgress.end_time = videoElement.currentTime;
       this.sendRequest();
     },
 
     setVideoStartTime() {
-      const video = document.getElementById("lessonVideo")
-      video.addEventListener('loadedmetadata', function () {
-        this.currentTime = this.startTime;
-      }.bind(this), false);
+      this.$refs.video.setStartTime(this.startTime)
     },
 
     async sendRequest() {
@@ -217,9 +222,12 @@ export default {
       this.videoProgressLoading = true;
       await this.$store.dispatch('UserState/updateUserVideoProgress', this.videoProgress)
       this.videoProgressLoading = false;
-    }
+    },
 
-  }
+    playVideo() {
+      this.$refs.video.playVideo();
+    }
+  },
 
 }
 </script>

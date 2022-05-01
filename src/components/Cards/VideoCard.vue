@@ -1,7 +1,7 @@
 
 <template>
     <div class="video_wrapper pointer" @click="submit()">
-        <play v-if="!playing" class="play_button" @submit="playClicked()" />
+        <play v-if="!playing" class="play_button"/>
         <video 
             ref="video"
             class="mt-3 w100"
@@ -11,7 +11,7 @@
             controlsList="nodownload"
             :disablePictureInPicture="disablePictureInPicture"
         >
-            <source :src="video" type="video/mp4" />
+            <source :src="src" type="video/mp4" />
             Your browser does not support the video tag.
         </video>
     </div>
@@ -26,7 +26,7 @@ export default {
     },
     
     props: {
-        video: {
+        src: {
             type: String,
             required: true
         },
@@ -36,7 +36,8 @@ export default {
         },
 
         disablePictureInPicture: {
-            type: Boolean
+            type: Boolean,
+            default: true
         },
     },
 
@@ -46,13 +47,11 @@ export default {
         }
     },
 
-    computed: {
-
-    },
-
     methods: {
         submit() {
-            this.$emit('submit')
+            if(!this.playing) {
+                this.$emit('playClicked')
+            }
         },
 
         onVideoPlay(video) {
@@ -69,9 +68,16 @@ export default {
             this.$emit('playClicked')
         },
 
-        startVideo() {
+        playVideo() {
             this.$refs.video.play();
         },
+
+        setStartTime(startTime) {
+            const video = this.$refs.video;
+            if(video) {
+                video.currentTime = startTime;
+            }
+        }
     }
 }
 </script>

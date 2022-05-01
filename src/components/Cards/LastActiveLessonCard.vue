@@ -11,7 +11,7 @@
         {{ lesson.name }}
         </strong>
         <br>
-        <video-card :video="lesson.video.videoSrc" @playClicked="enterLesson()" />
+        <video-card :src="lesson.video.videoSrc" @playClicked="enterLesson()" />
         <p v-html="lessonContent">
         </p>
     </div>
