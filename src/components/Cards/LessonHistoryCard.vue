@@ -44,7 +44,6 @@ export default {
     },
 
     lessonData() {
-      console.log(ContentService.findLessonById(this.lesson.course_lesson_id));
       return ContentService.findLessonById(this.lesson.course_lesson_id);
     },
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="user_header_wrapper app_padding_top">
+    <div class="user_header_wrapper auth_padding_top">
         <colored-circle-decorator class="user_colored_circle" />
         <v-flex class="user_header_content" v-if="$vuetify.breakpoint.smAndDown">
             <div class="text-center">
