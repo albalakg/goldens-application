@@ -1,5 +1,5 @@
 <template>
-    <v-flex d-flex justify-center class="pagination_wrapper">
+    <v-flex v-if="showPagination" d-flex justify-center class="pagination_wrapper">
         <div :class="{
             'hidden_chip': !showBackChip
         }" class="page_chip" @click="setPage(currentPage - 1)">
@@ -39,12 +39,16 @@ export default {
     },
 
     computed: {
+        showPagination() {
+            return this.totalPages > 1;
+        },
+
         showBackChip() {
-            return this.totalPages > 1 && this.currentPage > 1;
+            return this.totalPages > 5 && this.currentPage > 1;
         },
 
         showNextChip() {
-            return this.totalPages > 1 && this.currentPage !== this.totalPages;
+            return this.totalPages > 5 && this.currentPage !== this.totalPages;
         },
 
         totalChips() {

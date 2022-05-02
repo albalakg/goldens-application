@@ -1,8 +1,8 @@
 <template>
     <div class="user_history_wrapper" v-if="lessons && lessons.length">
         <v-flex d-flex flex-wrap>
-            <v-flex xs10 md3 mx-auto mx-md-0 v-for="lesson in lessons" :key="lesson.course_lesson_id" class="mb-10">
-                <lesson-history-card class="lesson_history_card" :lesson="lesson" />
+            <v-flex xs10 md3 mx-auto mx-md-0 v-for="lesson in viewLessons" :key="lesson.course_lesson_id" class="mb-10">
+                <lesson-history-card class="lesson_history_card" :lesson="lesson" @submit="enterLesson" />
             </v-flex>
         </v-flex>
 
@@ -38,18 +38,28 @@ export default {
             courses.forEach(course => {
                 lessons = lessons.concat(course.lessons_progress)
             });
+
             return lessons;
         },
 
+        viewLessons() {
+            const startIndex    = (this.page - 1) * this.totalLessonsPerPage;
+            const endIndex      = startIndex + this.totalLessonsPerPage;
+            return this.lessons.slice(startIndex, endIndex)
+        },
+
         totalPages() {
-            return 11
-            return Math.ceil(this.lessons.length / 8);
+            return Math.ceil(this.lessons.length / this.totalLessonsPerPage);
         }
     },
 
     methods: {
         setPage(page) {
             this.page = page;
+        },
+
+        enterLesson(lesson) {
+            this.$router.push(`/courses/${lesson.course_id}/lessons/${lesson.id}`)
         }
     }
 }
