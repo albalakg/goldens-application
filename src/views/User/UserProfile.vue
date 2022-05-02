@@ -127,18 +127,7 @@ export default {
             }
 
             this.loading = true;
-            axios.post('profile/update', this.form)
-                .then(res => {
-                    
-                    this.$store.dispatch('MessageState/addMessage', {message: 'פרטי המשתמש עודכנו בהצלחה'});
-                    Auth.login(res.data.data);
-                    this.$store.dispatch('AuthState/setLogStatus', true);
-                    
-                }).catch(err => {
-                    this.$store.dispatch('MessageState/addErrorMessage', { message: 'מצטערים אך לא הצלחנו לעדכן את פרטי המשתמש' })
-                }).finally(() => {
-                    this.loading = false;
-                })
+            this.$store.dispatch('UserState/updateProfile', this.form)
 
         },
         

@@ -74,6 +74,10 @@ export default {
             type: Boolean
         },
 
+        optional: {
+            type: Boolean
+        },
+
         readonly: {
             type: Boolean
         },
@@ -145,6 +149,10 @@ export default {
     methods: {
         validate() {
             this.errorMessage = '';
+
+            if(this.optional && !this.value.trim()) {
+                return true;
+            }
             
             if(this.rules) {
                 this.validateRules();

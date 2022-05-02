@@ -42,6 +42,13 @@ const UserState = {
             state.profile = userProfile;
         },
         
+        SET_USER_DETAILS(state, userDetails) {
+            state.profile.first_name    = userDetails.first_name;
+            state.profile.last_name     = userDetails.last_name;
+            state.profile.gender        = userDetails.gender;
+            state.profile.phone         = userDetails.phone;
+        },
+        
         SET_USER_SUPPORT_TICKETS(state, userSupportTickets) {
             state.supportTickets = userSupportTickets;
         },
@@ -109,8 +116,25 @@ const UserState = {
         async init({ dispatch }, userData) {
             await dispatch('getCourses');
             await dispatch('getProgress');
+            await dispatch('getProfile');
             dispatch('setUserProfile', userData);      
             dispatch('getFavorites');
+        },
+
+        updateProfile({ commit, dispatch }, data) {
+            axios.post('profile/update', data)
+                .then(res => {
+                    commit('SET_USER_DETAILS', res.data.data);
+                    dispatch('MessageState/addMessage', {message: 'פרטי המשתמש עודכנו בהצלחה'}, {root:true});
+                    
+                }).catch(err => {
+                    dispatch('MessageState/addMessage', {
+                        message: 'מצטערים אך לא הצלחנו לעדכן את פרטי המשתמש',
+                        type: 'error',
+                    }, {root:true});
+                }).finally(() => {
+                    this.loading = false;
+                })
         },
 
         getProfile({ commit }) {

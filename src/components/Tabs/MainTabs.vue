@@ -2,7 +2,7 @@
 <v-flex d-flex class="main_tabs_wrapper" :style="cssVars">
     <template v-for="(tab, index) in tabs">
         <v-flex
-            class="main_tab"
+            class="main_tab pointer"
             :key="index" 
             :class="{
                 'active_tab': activeTab === index,
@@ -10,7 +10,7 @@
             :ref="`mainTab_${index}`"
             @click="submit(index)"
         >
-            <span class="pointer" :class="{'white_text_color': dark}">
+            <span :class="{'white_text_color': dark}">
                 {{ tab.title }}
             </span>
         </v-flex>
@@ -151,7 +151,7 @@ export default {
         }
 
         .main_tab span:hover {
-            font-weight: bold;
+            text-shadow: 0 0 #000;
         }
 
         .active_tab {
