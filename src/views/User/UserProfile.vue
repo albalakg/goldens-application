@@ -97,6 +97,12 @@ export default {
         }
     },
 
+    mounted() {
+        if(this.firstName) {
+            this.setInitialData();
+        }
+    },
+
     computed: {
         firstName() {
             return this.$store.getters['UserState/firstName']
