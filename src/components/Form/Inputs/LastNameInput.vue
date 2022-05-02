@@ -9,6 +9,7 @@
             :title="title ? text : ''"
             :icon="icon ? iconSrc : ''"
             :rules="rules"
+            :loading="loading"
             :readonly="readonly"
             @onChange="onChange"
         />
@@ -40,6 +41,10 @@ export default {
             type: Boolean
         },
         
+        loading: {
+            type: Boolean
+        },
+
         icon: {
             type: Boolean
         },

@@ -33,6 +33,7 @@ const UserState = {
         lastName:       state   => state.profile.last_name,
         fullName:       state   => state.profile.first_name + ' ' + state.profile.last_name,
         phone:          state   => state.profile.phone,
+        gender:          state   => state.profile.gender,
         email:          state   => state.profile.email,
         lastActive:     state   => state.lastActive,
     },
@@ -113,11 +114,10 @@ const UserState = {
     },
 
     actions: {
-        async init({ dispatch }, userData) {
+        async init({ dispatch }) {
             await dispatch('getCourses');
             await dispatch('getProgress');
             await dispatch('getProfile');
-            dispatch('setUserProfile', userData);      
             dispatch('getFavorites');
         },
 
@@ -140,7 +140,9 @@ const UserState = {
         getProfile({ commit }) {
             axios.get('profile')
                 .then(res => {
-                    commit('SET_USER_PROFILE', res.data.data);
+                    const details = res.data.data.details;
+                    details.email = res.data.data.email;
+                    commit('SET_USER_PROFILE', details);
                 })
                 .catch(err => {
                     dispatch('MessageState/addMessage', {
@@ -230,12 +232,6 @@ const UserState = {
                         }, {root:true});
                     })
             })
-        },
-        
-        setUserProfile({ commit, dispatch }, profile) {
-            delete profile.token;
-            profile.full_name = profile.first_name + ' ' + profile.last_name;
-            commit('SET_USER_PROFILE', profile);
         },
         
         toggleFavorite({ commit }, lessonId) {

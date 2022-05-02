@@ -11,7 +11,8 @@
             'base_input_outlined' : outlined,
             'grey_bg_color' : dark,
             'white_bg_color' : !dark,
-            'slim_input': slim
+            'slim_input': slim,
+            'loading_input': loading,
         }"
     >
 
@@ -31,7 +32,7 @@
             :type="type"
             :placeholder="placeholder"
             :maxlength="maxlength"
-            :readonly="readonly"
+            :readonly="readonly || loading"
         >
 
         <div class="base_input_sub_icon mr-2 pointer" v-if="closeable && value" @click="close()">
@@ -83,6 +84,10 @@ export default {
         },
 
         slim: {
+            type: Boolean
+        },
+
+        loading: {
             type: Boolean
         },
 
@@ -243,6 +248,10 @@ export default {
     
         .base_input_outlined {
             border: 1px solid #CCC;
+        }
+
+        .loading_input {
+            opacity: .5;
         }
 
         .base_input_error_wrapper {

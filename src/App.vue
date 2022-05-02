@@ -56,7 +56,7 @@ export default {
       if(this.isLogged) {
         this.loading = true;
         try {
-          await this.$store.dispatch('UserState/init', Auth.get())
+          await this.$store.dispatch('UserState/init')
         } catch(err) {
           error(err);
         }

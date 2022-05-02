@@ -7,6 +7,7 @@
       :items="genders"
       :title="title ? text : ''"
       :rules="rules"
+      :loading="loading"
       :readonly="readonly"
       :icon="iconSrc"
       @onChange="onChange"
@@ -28,6 +29,10 @@ export default {
       type: Boolean
     },
 
+    loading: {
+      type: Boolean
+    },
+    
     outlined: {
       type: Boolean,
       default: true

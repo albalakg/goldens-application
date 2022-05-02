@@ -12,7 +12,8 @@
             'base_input_outlined' : outlined,
             'grey_bg_color' : dark,
             'white_bg_color' : !dark,
-            'slim_input': slim
+            'slim_input': slim,
+            'loading_input': loading,
         }"
     >
 
@@ -29,14 +30,14 @@
                 class="pl-4"
                 :class="{
                     'autocomplete_input': autocomplete,
-                    'pointer': !readonly,
+                    'pointer': !readonly && !loading,
                 }"
                 ref="input"
                 v-model="viewValue"
                 :type="type"
                 :placeholder="placeholder"
                 :maxlength="maxlength"
-                :readonly="!autocomplete"
+                :readonly="!autocomplete || loading"
             >
         </v-flex>
 
@@ -106,6 +107,10 @@ export default {
         },
 
         dark: {
+            type: Boolean
+        },
+
+        loading: {
             type: Boolean
         },
 
@@ -231,12 +236,15 @@ export default {
             })
         },
         
-        setValue(values) {
-            this.values = values;
+        setValue(value) {
+            this.values = [value];
+            const viewValue = this.items.find(item => item.id === value)
+            console.log(viewValue);
+            this.setViewValues(viewValue.value)
         },
 
         toggleList() {
-            if(!this.readonly) {
+            if(!this.readonly && !this.loading) {
                 this.showList = !this.showList;
             }
         },
@@ -322,6 +330,10 @@ export default {
     
         .base_input_outlined {
             border: 1px solid #CCC;
+        }
+
+        .loading_input {
+            opacity: .5;
         }
     
         .select_input_items_wrapper {

@@ -6,6 +6,7 @@
                 <v-flex ml-md-2>
                     <first-name-input
                         ref="firstName"
+                        :loading="loading"
                         outlined
                         title
                         icon
@@ -17,6 +18,7 @@
                 <v-flex mr-md-2 mt-5 mt-md-0>
                     <last-name-input
                         ref="lastName"
+                        :loading="loading"
                         outlined
                         title
                         icon
@@ -30,6 +32,7 @@
                 <v-flex ml-md-2>
                     <phone-input
                         ref="phone"
+                        :loading="loading"
                         outlined
                         title
                         icon
@@ -42,6 +45,7 @@
                     <gender-select 
                         ref="gender"
                         title
+                        :loading="loading"
                         @onChange="setGender" 
                     />
                 </v-flex>
@@ -83,26 +87,35 @@ export default {
                 phone: '',
                 gender: '',
             },
-            editMode: false,
+            loading: true,
         }
     },
 
-    mounted() {
-        this.setInitialData();
+    watch: {
+        firstName() {
+            this.setInitialData();
+        }
+    },
+
+    computed: {
+        firstName() {
+            return this.$store.getters['UserState/firstName']
+        }
     },
 
     methods: {
         setInitialData() {
             this.$refs.firstName.setValue(this.$store.getters['UserState/firstName']);
             this.$refs.lastName.setValue(this.$store.getters['UserState/lastName']);
-            
-            if(this.$store.getters['UserState/gender']) {
+            if(this.$store.getters['UserState/phone']) {
                 this.$refs.phone.setValue(this.$store.getters['UserState/phone']);
             }
 
             if(this.$store.getters['UserState/gender']) {
                 this.$refs.gender.setValue(this.$store.getters['UserState/gender']);
             }
+
+            this.loading = false;
         },
 
         setFirstName(value) {
@@ -121,14 +134,14 @@ export default {
             this.form.phone = value;
         },
 
-        submit() {
+        async submit() {
             if(!this.validate()) {
                 return;
             }
 
             this.loading = true;
-            this.$store.dispatch('UserState/updateProfile', this.form)
-
+            await this.$store.dispatch('UserState/updateProfile', this.form)
+            this.loading = false;
         },
         
         validate() {

@@ -8,6 +8,7 @@
             :rules="rules"
             :optional="optional"
             :readonly="readonly"
+            :loading="loading"
             :placeholder="placeholder ? text : ''"
             :title="title ? text : ''"
             :icon="icon ? iconSrc : ''"
@@ -45,6 +46,10 @@ export default {
             type: Boolean
         },
         
+        loading: {
+            type: Boolean
+        },
+
         icon: {
             type: Boolean
         },
