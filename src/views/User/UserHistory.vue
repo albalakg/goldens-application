@@ -1,29 +1,37 @@
 <template>
-    <div class="user_history_wrapper" v-if="lessons && lessons.length">
-        <v-flex d-flex flex-wrap v-if="$vuetify.breakpoint.mdAndUp">
-            <v-flex md3 v-for="lesson in viewLessons" :key="lesson.course_lesson_id" class="mb-10">
-                <lesson-history-card class="lesson_history_card" :lesson="lesson" @submit="enterLesson" />
-            </v-flex>
-        </v-flex>
-
-        <v-flex v-else class="user_history_mobile">
-            <v-flex d-flex class="use_history_lessons_wrapper pr-10">
-                <v-flex v-for="lesson in viewLessons" :key="lesson.course_lesson_id">
-                    <lesson-history-card class="lesson_history_card my-10" :lesson="lesson" @submit="enterLesson" :ref="`lesson-${index}`" />
+    <div class="user_history_wrapper">
+        <div v-if="lessons && lessons.length">
+            <v-flex d-flex flex-wrap v-if="$vuetify.breakpoint.mdAndUp">
+                <v-flex md3 v-for="lesson in viewLessons" :key="lesson.course_lesson_id" class="mb-10 pl-3">
+                    <lesson-history-card class="lesson_history_card" :lesson="lesson" @submit="enterLesson" />
                 </v-flex>
             </v-flex>
-        </v-flex>
 
-        <br>
-        <br>
+            <v-flex v-else class="user_history_mobile">
+                <v-flex d-flex class="use_history_lessons_wrapper pr-10">
+                    <v-flex v-for="lesson in viewLessons" :key="lesson.course_lesson_id">
+                        <lesson-history-card class="lesson_history_card my-10" :lesson="lesson" @submit="enterLesson" />
+                    </v-flex>
+                </v-flex>
+            </v-flex>
 
-        <v-flex md6 mx-auto>
-            <pagination 
-                :totalPages="totalPages"
-                :currentPage="page"
-                @setPage="setPage"
-            />
-        </v-flex>
+            <br>
+            <br>
+
+            <v-flex md6 mx-auto>
+                <pagination 
+                    :totalPages="totalPages"
+                    :currentPage="page"
+                    @setPage="setPage"
+                />
+            </v-flex>
+        </div>
+
+        <div v-else>
+            <h1 class="text-center">
+                לא נמצאו שיעורים
+            </h1>
+        </div>
     </div>
 </template>
 

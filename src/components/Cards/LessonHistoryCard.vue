@@ -4,7 +4,7 @@
     <div class="lesson_card_wrapper pointer">
       <img loading="lazy" :src="lessonData.imageSrc" alt="lesson image">
       <div class="lesson_card_darkner"></div>
-      <div class="lesson_card_details text-center">
+      <div class="lesson_card_details px-1 text-center">
         <h2 class="white_text_color">{{ lessonData.name }}</h2>
         <div class="line main_bg_color"></div>
         <div class="lesson_card_content mt-1" v-html="lessonContent">

@@ -1,6 +1,9 @@
 <template>
-<div class="unfavorite_chip_wrapper dark_bg_color">
-    <v-icon color="rgb(255, 89, 34)">
+<div class="unfavorite_chip_wrapper dark_bg_color pointer" @click.stop="submit()">
+    <span class="white_text_color" v-if="loading">
+        ...
+    </span>
+    <v-icon v-else color="rgb(255, 89, 34)">
         mdi-heart-remove
     </v-icon>
 </div>
@@ -8,9 +11,15 @@
 
 <script>
 export default {
-    data() {
-        return {
+    props: {
+        loading: {
+            type: Boolean
+        }
+    },
 
+    methods: {
+        submit() {
+            this.$emit('submit')
         }
     }
 }

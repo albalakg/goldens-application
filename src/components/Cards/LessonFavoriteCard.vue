@@ -1,11 +1,12 @@
 
 <template>
-  <v-flex mx-auto class="h100 px-3">
+  <v-flex mx-auto class="h100" v-if="lessonData" @click="enterLessons()">
     <div class="lesson_card_wrapper pointer">
-      <img loading="lazy" :src="lesson.imageSrc" alt="lesson image">
+      <unfavorite-chip :loading="loading" class="unfavorite_chip" @submit="unfavorite()" />
+      <img loading="lazy" :src="lessonData.imageSrc" alt="lesson image">
       <div class="lesson_card_darkner"></div>
       <div class="lesson_card_details px-1 text-center">
-        <h2 class="white_text_color">{{ lesson.name }}</h2>
+        <h2 class="white_text_color">{{ lessonData.name }}</h2>
         <div class="line main_bg_color"></div>
         <div class="lesson_card_content mt-1" v-html="lessonContent">
         </div>
@@ -15,12 +16,13 @@
 </template>
 
 <script>
+import UnfavoriteChip from '../Chips/UnfavoriteChip.vue';
 import Divider from '../General/Divider.vue';
 
 const MAX_LESSON_CONTENT_CHARS = 50;
 
 export default {
-  components: { Divider },
+  components: { Divider, UnfavoriteChip },
 
   props: {
     lesson: {
@@ -31,13 +33,29 @@ export default {
 
   data() {
     return {
-      
-    };
+      loading: false
+    }
   },
 
   computed: {
     lessonContent() {
-      return this.lesson.content.length < MAX_LESSON_CONTENT_CHARS ? this.lesson.content : this.lesson.content.slice(0, MAX_LESSON_CONTENT_CHARS) + '...';
+      return this.lessonData.content.length < MAX_LESSON_CONTENT_CHARS ? this.lessonData.content : this.lessonData.content.slice(0, MAX_LESSON_CONTENT_CHARS) + '...';
+    },
+
+    lessonData() {
+      return ContentService.findLessonById(this.lesson.id);
+    },
+  },
+
+  methods: {
+    async unfavorite() {
+      this.loading = true;
+      await this.$store.dispatch('UserState/toggleFavorite', this.lesson.id)
+      this.loading = false;
+    },
+
+    enterLessons() {
+      this.$emit('submit', this.lessonData)
     }
   }
 
@@ -85,6 +103,13 @@ export default {
       }
     }
 
+    .unfavorite_chip {
+      position: absolute;
+      right: -3px;
+      top: 30px;
+      z-index: 10;
+    }
+
     .lesson_card_darkner {
       z-index: 2;
       position: absolute;
@@ -92,6 +117,23 @@ export default {
       width: 100%;
       background: linear-gradient(#0000 40%, #000d);
       border-radius: 8px;
+    }
+
+    .lesson_card_date {
+      position: absolute;
+      z-index: 2;
+      bottom: -15px;
+      height: 30px;
+
+      .lesson_date_chip {
+        border-radius: 20px;
+        border: 2px solid #fff;
+
+        small {
+          position: relative;
+          top: -1px;
+        }
+      }
     }
   }
 
