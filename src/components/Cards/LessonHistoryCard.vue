@@ -1,6 +1,6 @@
 
 <template>
-  <v-flex mx-auto class="h100 px-3" v-if="lessonData" @click="submit()">
+  <v-flex mx-auto class="h100" v-if="lessonData" @click="submit()">
     <div class="lesson_card_wrapper pointer">
       <img loading="lazy" :src="lessonData.imageSrc" alt="lesson image">
       <div class="lesson_card_darkner"></div>
