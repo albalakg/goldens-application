@@ -137,6 +137,20 @@ const UserState = {
                 })
         },
 
+        updateEmail({ dispatch }, data) {
+            axios.post('profile/email', data)
+                .then(res => {
+                    dispatch('MessageState/addMessage', {message: 'נשלח מייל לאישור בקשת עדכון המייל'}, {root:true});
+                }).catch(err => {
+                    dispatch('MessageState/addMessage', {
+                        message: 'מצטערים אך לא הצלחנו לעדכן את המייל',
+                        type: 'error',
+                    }, {root:true});
+                }).finally(() => {
+                    this.loading = false;
+                })
+        },
+
         getProfile({ commit }) {
             axios.get('profile')
                 .then(res => {

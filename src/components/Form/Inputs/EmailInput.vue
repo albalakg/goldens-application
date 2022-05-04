@@ -5,6 +5,7 @@
             :outlined="outlined"
             :dark="dark"
             :slim="slim"
+            :loading="loading"
             :placeholder="placeholder ? text : ''"
             :title="title ? text : ''"
             :icon="icon ? iconSrc : ''"
@@ -32,6 +33,10 @@ export default {
         },
 
         dark: {
+            type: Boolean
+        },
+
+        loading: {
             type: Boolean
         },
         

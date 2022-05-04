@@ -239,7 +239,6 @@ export default {
         setValue(value) {
             this.values = [value];
             const viewValue = this.items.find(item => item.id === value)
-            console.log(viewValue);
             this.setViewValues(viewValue.value)
         },
 
