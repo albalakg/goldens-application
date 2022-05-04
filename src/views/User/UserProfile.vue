@@ -11,7 +11,6 @@
 
         <br>
         <br>
-        <br>
 
         <user-update-password-form />
     </div>

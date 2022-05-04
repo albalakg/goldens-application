@@ -3,6 +3,7 @@
         <v-flex d-flex flex-wrap>
             <v-flex ml-md-2>
                 <first-name-input
+                    autofocus
                     ref="firstName"
                     :loading="loading"
                     outlined
@@ -117,6 +118,7 @@ export default {
                 this.$refs.gender.setValue(this.$store.getters['UserState/gender']);
             }
 
+            this.$refs.firstName.$el.focus();
             this.loading = false;
         },
 

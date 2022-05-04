@@ -3,7 +3,6 @@
     <password-input 
         ref="oldPassword"
         text="סיסמא נוכחית"
-        :loading="loading"
         outlined
         title
         icon
@@ -12,7 +11,6 @@
     <br>
     <password-input 
         ref="password"
-        :loading="loading"
         outlined
         title
         icon
@@ -45,12 +43,10 @@ export default {
             form: {
                 password: '',
             },
-            loading: true,
         }
     },
 
     methods: {
-
         setPassword(value) {
             this.form.password = value;
         },
