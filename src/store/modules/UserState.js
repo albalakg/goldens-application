@@ -151,6 +151,20 @@ const UserState = {
                 })
         },
 
+        updatePassword({ dispatch }, data) {
+            axios.post('profile/change-password', data)
+                .then(res => {
+                    dispatch('MessageState/addMessage', {message: 'הסיסמא עודכנה בהצלחה'}, {root:true});
+                }).catch(err => {
+                    dispatch('MessageState/addMessage', {
+                        message: 'מצטערים אך לא הצלחנו לעדכן את הסיסמא',
+                        type: 'error',
+                    }, {root:true});
+                }).finally(() => {
+                    this.loading = false;
+                })
+        },
+
         getProfile({ commit }) {
             axios.get('profile')
                 .then(res => {

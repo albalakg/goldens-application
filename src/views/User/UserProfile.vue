@@ -1,13 +1,15 @@
 <template>
-    <div class="user_profile_wrapper">
+    <div class="user_profile_wrapper px-5 px-md-0">
         
         <user-profile-form />
 
         <br>
         <br>
+        <br>
 
         <user-update-email-form />
 
+        <br>
         <br>
         <br>
 

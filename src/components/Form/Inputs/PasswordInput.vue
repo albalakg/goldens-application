@@ -5,8 +5,8 @@
             :outlined="outlined"
             :dark="dark"
             :type="type"
-            :placeholder="placeholder ? text : ''"
-            :title="title ? text : ''"
+            :placeholder="placeholder ? viewText : ''"
+            :title="title ? viewText : ''"
             :icon="iconSrc"
             :subIcon="subIconSrc"
             :rules="rules"
@@ -26,6 +26,11 @@ export default {
     },
 
     props: {
+        text: {
+            type: String,
+            default: 'סיסמא',
+        },
+
         outlined: {
             type: Boolean
         },
@@ -84,8 +89,8 @@ export default {
             return this.isTextVisible ? 'text' : 'password';
         },
 
-        text() {
-            return this.confirmation ? 'אימות סיסמא' : 'סיסמא'
+        viewText() {
+            return this.confirmation ? 'אימות סיסמא' : this.text
         },
         
         rules() {

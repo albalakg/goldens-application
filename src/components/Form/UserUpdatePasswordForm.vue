@@ -1,6 +1,16 @@
 <template>
 <v-form @submit="submit()">
     <password-input 
+        ref="oldPassword"
+        text="סיסמא נוכחית"
+        :loading="loading"
+        outlined
+        title
+        icon
+        @onChange="setOldPassword" 
+    />
+    <br>
+    <password-input 
         ref="password"
         :loading="loading"
         outlined
@@ -45,14 +55,24 @@ export default {
             this.form.password = value;
         },
 
+        setOldPassword(value) {
+            this.form.old_password = value;
+        },
+
         async submit() {
             if(!this.validate()) {
                 return;
             }
 
             this.loading = true;
-            await this.$store.dispatch('UserState/updatePassword', this.form)
+            await this.$store.dispatch('UserState/updatePassword', this.form);
+            this.clearForm();
             this.loading = false;
+        },
+
+        clearForm() {
+            this.$refs.oldPassword.setValue('')
+            this.$refs.password.setValue('')
         },
 
         validate() {

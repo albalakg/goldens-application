@@ -1,5 +1,5 @@
 <template>
-    <v-form @submit="submit()" class="px-5 px-md-0">
+    <v-form @submit="submit()">
         <v-flex d-flex flex-wrap>
             <v-flex ml-md-2>
                 <first-name-input
