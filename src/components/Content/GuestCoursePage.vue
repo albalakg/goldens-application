@@ -2,7 +2,7 @@
   <v-flex>
     <template v-if="$vuetify.breakpoint.smAndDown">
       <template v-for="(courseArea, index) in courseAreas">
-        <course-area-card 
+        <course-area-card
           class="mb-3"
           :key="index"
           :courseArea="courseArea"
@@ -10,12 +10,18 @@
         />
       </template>
     </template>
-    
+
     <template v-else>
       <v-flex d-flex justify-center md10 xl9 mx-auto>
         <v-flex md4 offset-md-1>
+            <p class="white_text_color mb-1">
+                <strong>
+                    תחומי הקורס
+                </strong>
+            </p>
           <template v-for="(courseArea, index) in courseAreas">
-            <course-area-card 
+            <course-area-card
+              guest
               class="mb-3"
               :key="index"
               :courseArea="courseArea"
@@ -23,24 +29,22 @@
             />
           </template>
         </v-flex>
-        <v-flex md4>
-          
-        </v-flex>
+        <v-flex md4> </v-flex>
       </v-flex>
     </template>
   </v-flex>
 </template>
 
 <script>
-import CourseAreaCard from '../../components/Cards/CourseAreaCard.vue';
+import CourseAreaCard from "../../components/Cards/CourseAreaCard.vue";
 export default {
   components: { CourseAreaCard },
 
   props: {
     course: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
 
   computed: {
@@ -49,22 +53,23 @@ export default {
     },
 
     hasActiveCourse() {
-      return this.$store.getters['UserState/hasActiveCourse'];
+      return this.$store.getters["UserState/hasActiveCourse"];
     },
   },
 
   methods: {
     enterCourseArea(courseArea) {
-      this.$router.push(`/courses/${courseArea.course_id}/lessons?courseArea=${courseArea.id}`)
-    }
-  }
-
-}
+      this.$router.push(
+        `/courses/${courseArea.course_id}/lessons?courseArea=${courseArea.id}`
+      );
+    },
+  },
+};
 </script>
 
 <style scoped>
-  video {
-    border-radius: 8px;
-    width: 100%;
-  }
+video {
+  border-radius: 8px;
+  width: 100%;
+}
 </style>

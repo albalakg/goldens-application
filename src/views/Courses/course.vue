@@ -166,13 +166,12 @@ export default {
         }
         
         var position = element.getBoundingClientRect();
-
         if(position.height < (position.top * -1 + 100)) {
-          if(!this.isDark) {
+          if(this.isDark) {
             return this.$store.dispatch('AppState/setMenuMode', false);
           }
         } else {
-          if(this.isDark) {
+          if(!this.isDark) {
             return this.$store.dispatch('AppState/setMenuMode', true);
           }
         }

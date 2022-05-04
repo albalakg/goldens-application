@@ -25,7 +25,7 @@
                         </strong>
                     </v-flex>
                     <progress-bar
-                        v-if="isLogged"
+                        v-if="showProgress"
                         dark
                         slim
                         :progress="progress"
@@ -91,6 +91,10 @@ export default {
                 error(err);
                 return 0;
             }
+        },
+
+        showProgress() {
+            return this.isLogged && !this.guest;
         }
     },
 

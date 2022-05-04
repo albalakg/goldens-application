@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="course_content_wrapper">
 
   <active-course-page :course="course" v-if="hasActiveCourse" />
   <guest-course-page :course="course" v-else />
@@ -26,4 +26,10 @@ export default {
 </script>
 
 <style scoped>
+
+  .course_content_wrapper {
+    position: relative;
+    top: -100px;
+  }
+
 </style>
