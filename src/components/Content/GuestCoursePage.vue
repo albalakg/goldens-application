@@ -25,11 +25,17 @@
               class="mb-3"
               :key="index"
               :courseArea="courseArea"
-              @submit="enterCourseArea"
             />
           </template>
         </v-flex>
-        <v-flex md4> </v-flex>
+        <v-flex md2>
+            
+        </v-flex>
+        <v-flex md3 d-flex justify-end>
+            <detailed-course-card 
+                :course="course"
+            />
+        </v-flex>
       </v-flex>
     </template>
   </v-flex>
@@ -37,8 +43,9 @@
 
 <script>
 import CourseAreaCard from "../../components/Cards/CourseAreaCard.vue";
+import DetailedCourseCard from '../Cards/DetailedCourseCard.vue';
 export default {
-  components: { CourseAreaCard },
+  components: { CourseAreaCard, DetailedCourseCard },
 
   props: {
     course: {
@@ -57,13 +64,6 @@ export default {
     },
   },
 
-  methods: {
-    enterCourseArea(courseArea) {
-      this.$router.push(
-        `/courses/${courseArea.course_id}/lessons?courseArea=${courseArea.id}`
-      );
-    },
-  },
 };
 </script>
 

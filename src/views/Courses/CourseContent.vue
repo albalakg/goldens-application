@@ -30,6 +30,7 @@ export default {
   .course_content_wrapper {
     position: relative;
     top: -100px;
+    z-index: 3;
   }
 
 </style>
