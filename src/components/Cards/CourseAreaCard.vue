@@ -45,6 +45,10 @@ export default {
         courseArea: {
             type: Object,
             required: true
+        },
+
+        guest: {
+            type: Boolean,
         }
     },
 
@@ -55,7 +59,12 @@ export default {
         },
 
         totalLessons() {
-            return this.courseArea.active_lessons.length;
+            try {
+                return this.courseArea.active_lessons.length;
+            } catch(err) {
+                error(err);
+                return 0
+            }
         },
 
         totalDuration() {

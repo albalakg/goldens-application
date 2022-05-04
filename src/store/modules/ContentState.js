@@ -90,7 +90,26 @@ const ContentState = {
 
                 axios.get('content/courses')
                     .then(res => {
-                        commit('ADD_COURSES', res.data.data);
+                        const courses = res.data.data.map(course => {
+                            course.active_areas_with_active_lessons = course.guest_active_areas_with_active_lessons;
+                            delete course.guest_active_areas_with_active_lessons;
+
+                            course.active_areas_with_active_lessons = course.active_areas_with_active_lessons.map(courseArea => {
+                                courseArea.active_lessons = courseArea.guest_active_lessons;
+                                delete courseArea.guest_active_lessons;
+
+                                courseArea.active_lessons = courseArea.active_lessons.map(lesson => {
+                                    lesson.video = lesson.guest_video;
+                                    delete lesson.guest_video;
+                                    return lesson
+                                })
+                                
+                                return courseArea
+                            })
+
+                            return course
+                        })
+                        commit('ADD_COURSES', courses);
                         return resolve(res.data.data);
                     })
                     .catch(err => {

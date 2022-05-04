@@ -43,9 +43,11 @@ class ContentService {
   findCourseAreaById(courseAreaId) {
     try {
       let courses = store.state['UserState'].courses;
-      if(!courses) {
+      if(!courses || !courses.length) {
         courses = store.state['ContentState'].courses;
       }
+
+      console.log(courses);
 
       for(let index = 0; index < courses.length; index++) {
         const course = courses[index];
