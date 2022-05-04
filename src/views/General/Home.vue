@@ -18,7 +18,7 @@
 
                     <v-flex xs12 lg7 class="mx-5 mx-lg-0">
                         <div class="home_course_card">
-                            <course-card dark :course="courseCategories">
+                            <course-card class="mb-3" v-for="(course, index) in courses" :key="index" dark :course="course" @submit="enterCourse(course)">
                             </course-card>
                         </div>
                     </v-flex>
@@ -192,13 +192,9 @@ export default {
     },
 
     computed: {
-        courseCategories() {
-            const categories = this.$store.getters['ContentState/categories'];
-            if(categories && categories.length) {
-                return categories[0];
-            }
-
-            return {};
+        courses() {
+            const courses = this.$store.getters['ContentState/courses'];
+            return courses
         },
 
         lessons() {
@@ -212,6 +208,10 @@ export default {
             this.$store.dispatch('ContentState/getCategories');
             this.$store.dispatch('ContentState/getLessons');
         },
+
+        enterCourse(course) {
+            this.$router.push('/courses/' + course.id)
+        }
     },
 }
 </script>

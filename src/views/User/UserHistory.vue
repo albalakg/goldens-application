@@ -56,7 +56,6 @@ export default {
             courses.forEach(course => {
                 lessons = lessons.concat(course.lessons_progress)
             });
-
             return lessons;
         },
 

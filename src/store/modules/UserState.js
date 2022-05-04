@@ -26,6 +26,7 @@ const UserState = {
         // checked
         favorites:      state   => state.favorites,
         progress:       state   => state.progress,
+        hasActiveCourse:state   => state.courses && state.courses.length,
         courses:        state   => state.courses,
         courseAreas:    state   => state.courseAreas,
         lessons:        state   => state.lessons,
@@ -251,6 +252,9 @@ const UserState = {
                 axios.get('profile/courses')
                     .then(res => {
                         commit('SET_USER_COURSES', res.data.data);
+                        if(!res.data.data.length) {
+                            dispatch('ContentState/getActiveCourses', {}, {root:true});
+                        }
                         resolve(state.courses);
                     })
                     .catch(err => {

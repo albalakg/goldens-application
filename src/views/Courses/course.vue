@@ -3,10 +3,11 @@
 
     <v-flex class="course_page_image_wrapper mb-3" ref="courseHeader">
       <img loading="lazy" class="course_image" :src="course.imageSrc" alt="">
-      <div class="course_page_image_darkner"></div>
+      <div class="course_page_image_darkner" :class="hasActiveCourse ? 'course_page_image_darkner_left_to_right' : 'course_page_image_darkner_right_to_left'"></div>
       <div class="course_page_image_details">
 
         <last-active-lesson-card 
+          v-if="hasActiveCourse"
           class="last_progress_card"
           :class="{
             'hide_last_progress_card': !showLastActiveCard
@@ -14,37 +15,8 @@
           @close="toggleLastActiveCard()" 
         />
 
-        <div>
-          <h1>
-            {{course.name}}
-          </h1>
-
-          <div class="divider mt-md-7"></div>
-
-          <v-flex d-flex class="course_page_actions_wrapper w100 mt-5">
-            <v-flex class="text-center pt-4 pointer mx-3" v-for="(action, index) in actions" :key="index" @click="courseAction(action.action)">
-              <img loading="lazy" :src="action.image" alt="play button">
-              <p class="white_text_color mt-2">{{action.text}}</p>
-              <div v-if="action.tooltip">
-                <v-tooltip
-                  v-model="showShareTooltip"
-                  bottom
-                  color="black"
-                >
-                  <template v-slot:activator="{ on, attrs }">
-                    <span
-                      icon
-                      v-bind="attrs"
-                      v-on="on"
-                    >
-                    </span>
-                  </template>
-                  <span class="white_text_color">קישור לעמוד הקורס הועתק</span>
-                </v-tooltip>
-              </div>
-            </v-flex>
-          </v-flex>
-        </div>
+        <course-header :course="course" @openTrailer="openTrailer" />
+      
       </div>
     </v-flex>
 
@@ -73,6 +45,7 @@
 
 <script>
 import LastActiveLessonCard from '../../components/Cards/LastActiveLessonCard.vue';
+import CourseHeader from '../../components/Content/CourseHeader.vue';
 import MainTabs from '../../components/Tabs/MainTabs.vue';
 
 const COURSE_AREAS_TAB_INDEX  = 0;
@@ -81,6 +54,7 @@ export default {
   components: {
     MainTabs,
     LastActiveLessonCard,
+    CourseHeader,
   },
 
   data() {
@@ -95,21 +69,7 @@ export default {
       ],
       showLastActiveCard: false,
       activeTab: 0,
-      showShareTooltip: false,
       trailerFullScreen: false,
-      actions: [
-        {
-          image: require('../../../public/assets/images/general/share.svg'),
-          text: 'שיתוף',
-          action: 'copyLink',
-          tooltip: true
-        },
-        {
-          image: require('../../../public/assets/images/general/play.svg'),
-          text: 'טריילר',
-          action: 'openTrailer'
-        }
-      ]
     }
   },
 
@@ -143,12 +103,12 @@ export default {
   computed: {
     course() {
       let courses = this.$store.getters['UserState/courses'];
-      if(courses) {
+      if(courses && courses.length) {
         return courses.find(course => course.id == this.$route.params.course_id)
       }
 
       courses = this.$store.getters['ContentState/courses'];
-      if(courses) {
+      if(courses && courses.length) {
         return courses.find(course => course.id == this.$route.params.course_id)
       }
 
@@ -157,6 +117,10 @@ export default {
 
     showTrailer() {
       return this.trailerFullScreen;
+    },
+
+    hasActiveCourse() {
+      return this.$store.getters['UserState/hasActiveCourse']
     },
 
     isDark() {
@@ -179,28 +143,6 @@ export default {
       this.activeTab = this.$route.path.includes('lessons') ? LESSONS_TAB_INDEX : COURSE_AREAS_TAB_INDEX;
     },
 
-    courseAction(action) {
-      try {
-        this[action]();
-      } catch(err) {
-        error(err);
-      }
-    },
-
-    copyLink() {
-      navigator.clipboard.writeText(window.location);
-      this.showToolTip();
-    },
-
-    showToolTip() {
-      this.showShareTooltip = true;
-      clearTimeout(this.copyLinkTier);
-
-      this.copyLinkTier = setTimeout(() => {
-        this.showShareTooltip = false;
-      }, 3000);
-    },
-
     openTrailer() {
       const trailer = this.$refs.trailer;
       this.openFullscreen(trailer);
@@ -214,19 +156,6 @@ export default {
       } else if (elem.msRequestFullscreen) { /* IE11 */
         elem.msRequestFullscreen();
       }
-    },
-
-    listenToTrailerScreenMode() {
-      setTimeout(() => {
-        const trailer = this.$refs.trailer;
-        if(!trailer) {
-          return;
-        }
-
-        trailer.addEventListener('fullscreenchange', event => { 
-          this.trailerFullScreen = document.fullscreenElement === trailer
-        });
-      }, 0);
     },
 
     listenToScroll() {
@@ -285,7 +214,6 @@ export default {
       width: 300px;
       transition: .7s right ease-out;
     }
-    
 
     .hide_last_progress_card {
       right: -500px;
@@ -332,7 +260,14 @@ export default {
         position: absolute;
         height: 100%;
         width: 100%;
-        background: linear-gradient(90deg, #102a46, #0006)
+      }
+
+      .course_page_image_darkner_left_to_right {
+        background: linear-gradient(90deg, #0006, #102a46)
+      }
+
+      .course_page_image_darkner_right_to_left {
+        background: linear-gradient(90deg, #0006, #102a46)
       }
 
       .divider {

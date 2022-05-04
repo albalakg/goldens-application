@@ -31,6 +31,14 @@ const ContentState = {
             state.courses = [course];
         },
 
+        ADD_COURSES(state, courses) {
+            if(state.courses) {
+                return state.courses = state.courses.concat(courses);
+            }
+
+            state.courses = courses;
+        },
+
         SET_CATEGORIES(state, categories) {
             state.categories = categories;
         }
@@ -71,6 +79,26 @@ const ContentState = {
             })
        },
 
+        getActiveCourses({ state, commit }) {
+            return new Promise((resolve, reject) => {
+                if(state.courses) {
+                    const course = state.courses.find(course => course.id === courseId);
+                    if(course) {
+                        return resolve(course);
+                    }
+                }
+
+                axios.get('content/courses')
+                    .then(res => {
+                        commit('ADD_COURSES', res.data.data);
+                        return resolve(res.data.data);
+                    })
+                    .catch(err => {
+                        warning(err);
+                    })
+            })
+       },
+
         getCourse({ state, commit }, courseId) {
             return new Promise((resolve, reject) => {
                 if(state.courses) {
@@ -80,7 +108,7 @@ const ContentState = {
                     }
                 }
 
-                axios.get('content/course/' + courseId)
+                axios.get('content/courses/' + courseId)
                     .then(res => {
                         commit('ADD_COURSE', res.data.data);
                         return resolve(res.data.data);

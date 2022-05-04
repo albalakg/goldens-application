@@ -1,6 +1,6 @@
 
 <template>
-  <div class="course_card_wrapper text-right" :class="{'course_card_wrapper_dark': dark}" @click="click()" v-if="course.name">
+  <div class="course_card_wrapper text-right" :class="{'course_card_wrapper_dark': dark}" @click="submit()" v-if="course.name">
     <img loading="lazy" :src="course.imageSrc" alt="course image">
     <h3>
       {{course.name}}
@@ -22,8 +22,8 @@ export default {
   },
 
   methods: {
-    click() {
-      this.$emit('onClick');
+    submit() {
+      this.$emit('submit');
     }
   }
 

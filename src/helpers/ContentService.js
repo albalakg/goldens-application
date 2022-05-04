@@ -79,7 +79,10 @@ class ContentService {
         }
       }
       
-      foundLesson.progress = this.findLessonProgressById(foundLesson.id)
+      
+      if(foundLesson) {
+        foundLesson.progress = this.findLessonProgressById(foundLesson.id)
+      }
 
       return foundLesson;
     } catch(err) {
