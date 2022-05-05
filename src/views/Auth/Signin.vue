@@ -44,7 +44,7 @@
                                     </router-link>
                                 </v-flex>
                                 <v-flex md5>
-                                    <MainButton
+                                    <main-button
                                         :loading="loading"
                                         :styleConfig="{
                                             padding: '10px 25px',
@@ -64,7 +64,7 @@
                                                 </template>
                                             </v-flex>
                                         </template>
-                                    </MainButton>
+                                    </main-button>
                                 </v-flex>
                             </v-flex>
 
@@ -79,7 +79,7 @@
 
                         </v-form>
                         <router-link to="/signup">
-                            <MainButton
+                            <main-button
                                 subColor
                                 shadow
                                 text="הרשמה"
@@ -88,7 +88,7 @@
                                     borderRadius: '30',
                                 }"
                             >
-                            </MainButton>
+                            </main-button>
                         </router-link>
 
                 

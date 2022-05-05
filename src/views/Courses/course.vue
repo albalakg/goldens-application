@@ -220,7 +220,7 @@ export default {
     
     .course_page_image_wrapper {
       position: relative;
-      height: 50vh;
+      height: 55vh;
       width: 100vw;
       text-align: center;
 

@@ -13,8 +13,8 @@
 
     <template v-else>
       <v-flex d-flex justify-center md10 xl9 mx-auto>
-        <v-flex md4 offset-md-1>
-            <p class="white_text_color mb-1">
+        <v-flex md4 offset-md-1 class="course_areas_wrapper">
+            <p class="course_areas_title white_text_color mb-1">
                 <strong>
                     תחומי הקורס
                 </strong>
@@ -68,8 +68,14 @@ export default {
 </script>
 
 <style scoped>
-video {
-  border-radius: 8px;
-  width: 100%;
-}
+    video {
+        border-radius: 8px;
+        width: 100%;
+    }
+
+    .course_areas_title {
+        position: absolute;
+        top: -30px;
+    }
+
 </style>

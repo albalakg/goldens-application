@@ -3,6 +3,7 @@
     word-wrap: break-word;
 }
 
+
 .app_padding_top {
     padding-top: 10%;
 }
@@ -26,7 +27,7 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: #fff;
+    background: transparent !important;
 }
 
 /* Handle */
