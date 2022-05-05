@@ -58,7 +58,7 @@
                     לכם מזה
                 </h2>
 
-                <v-flex d-flex class="mt-5">
+                <v-flex d-flex class="mt-10">
                     <v-flex 
                         :class="{
                             'course_benefit_padding_right': index > 0,
@@ -67,8 +67,13 @@
                         xs4 
                         v-for="(item, index) in items" 
                         :key="index"
+                        d-flex
+                        flex-column
+                        justify-end
+                        class="course_benefit_item"
                     >
                         <img :src="item.icon" :alt="`course ${item.title}`">
+                        <div class="circle"></div>
                         <h3 class="white_text_color">
                             {{ item.title }}
                         </h3>
@@ -86,6 +91,7 @@
             />
         </div>
         
+        <br>
         <br>
         <br>
         <br>
@@ -202,7 +208,15 @@ export default {
 
         .course_benefits_content {
             overflow: hidden;
-            padding-top: 120px;
+            padding-top: 40px;
+
+            img {
+                height: 25%;
+                width: 25%;
+                margin-bottom: 10px;
+                position: relative;
+                z-index: 2;
+            }
 
             h2 {
                 font-size: 1.7em;
@@ -215,6 +229,19 @@ export default {
                 right: -50%;
                 top: -50%;
                 transform: rotate(-90deg);
+            }
+
+            .course_benefit_item {
+                position: relative;
+
+                .circle {
+                    height: 30px;
+                    width: 30px;
+                    position: absolute;
+                    background-color: #8885;
+                    border-radius: 50%;
+                    top: 40%;
+                }
             }
 
             .course_benefit_padding_right {

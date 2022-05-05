@@ -122,9 +122,8 @@ export default {
 
         .course_plan_course_area_active {
             transform: scale(1.05);
+            font-weight: bold;
         }
-
-        
 
         .course_plan_lesson:hover {
             transform: scale(1.05);
