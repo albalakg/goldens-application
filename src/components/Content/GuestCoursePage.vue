@@ -12,29 +12,73 @@
     </template>
 
     <template v-else>
-      <v-flex d-flex justify-center md10 xl9 mx-auto>
-        <v-flex md4 offset-md-1 class="course_areas_wrapper">
-            <p class="course_areas_title white_text_color mb-1">
-                <strong>
-                    תחומי הקורס
-                </strong>
-            </p>
-          <template v-for="(courseArea, index) in courseAreas">
-            <course-area-card
-              guest
-              class="mb-3"
-              :key="index"
-              :courseArea="courseArea"
-            />
-          </template>
+      <v-flex md10 xl9 mx-auto>
+        <v-flex d-flex justify-center>
+            <v-flex md4 offset-md-1 class="course_areas_wrapper">
+                <p class="course_areas_title white_text_color mb-1">
+                    <strong>
+                        תחומי הקורס
+                    </strong>
+                </p>
+            <template v-for="(courseArea, index) in courseAreas">
+                <course-area-card
+                guest
+                class="mb-3"
+                :key="index"
+                :courseArea="courseArea"
+                />
+            </template>
+            </v-flex>
+            <v-flex md2>
+                
+            </v-flex>
+            <v-flex md3 d-flex justify-end class="guest_detailed_card">
+                <detailed-course-card
+                    :course="course"
+                />
+            </v-flex>
         </v-flex>
-        <v-flex md2>
-            
-        </v-flex>
-        <v-flex md3 d-flex justify-end>
-            <detailed-course-card 
-                :course="course"
-            />
+
+        <v-flex class="course_benefits_wrapper w100 pa-10 second_dark_bg_color rounded">
+
+            <!-- <v-flex d-flex class="course_lessons_wrapper">
+                <v-flex xs3 v-for="(lesson, index) in lessons" :key="index" class="course_lesson_card">
+                    <lesson-card 
+                        :lesson="lesson"
+                    />
+                </v-flex>
+            </v-flex> -->
+
+            <div class="course_benefits_content h100 w100 pb-5">
+                <circle-decorator class="circle_decorator"/>
+                <h2 class="white_text_color">
+                    <span class="sub_text_color">
+                        מה יצא 
+                    </span>
+                    לכם מזה
+                </h2>
+
+                <v-flex d-flex class="mt-5">
+                    <v-flex 
+                        :class="{
+                            'course_benefit_padding_right': index > 0,
+                            'course_benefit_padding_left': index + 1 < items.length
+                        }" 
+                        xs4 
+                        v-for="(item, index) in items" 
+                        :key="index"
+                    >
+                        <img :src="item.icon" :alt="`course ${item.title}`">
+                        <h3 class="white_text_color">
+                            {{ item.title }}
+                        </h3>
+                        <p class="grey_text_color">
+                            {{ item.content }}
+                        </p>
+                    </v-flex>
+                </v-flex>
+            </div>
+
         </v-flex>
       </v-flex>
     </template>
@@ -44,8 +88,10 @@
 <script>
 import CourseAreaCard from "../../components/Cards/CourseAreaCard.vue";
 import DetailedCourseCard from '../Cards/DetailedCourseCard.vue';
+import LessonCard from '../Cards/LessonCard.vue';
+import CircleDecorator from '../Decorators/CircleDecorator.vue';
 export default {
-  components: { CourseAreaCard, DetailedCourseCard },
+  components: { CourseAreaCard, DetailedCourseCard, CircleDecorator, LessonCard },
 
   props: {
     course: {
@@ -62,12 +108,54 @@ export default {
     hasActiveCourse() {
       return this.$store.getters["UserState/hasActiveCourse"];
     },
+
+    items() {
+        return [
+            {
+                icon: require('../../../public/assets/images/general/application.svg'),
+                title: 'נושא חדש',
+                content: `ררוטקסנוק ,טמא טיס רולוד םוספיא םרול
+                    םודנדא דרפנומ סרולוק תילא גניסיפידא
+                    .ףודומ ףילחמע .חשגרמו ישגרמ ,ףוקליס
+                    רילק ץפונומ קיטסאלב ופידוא`
+            },
+            {
+                icon: require('../../../public/assets/images/general/whistle.svg'),
+                title: 'אימון מקצועי',
+                content: `ררוטקסנוק ,טמא טיס רולוד םוספיא םרול
+                    םודנדא דרפנומ סרולוק תילא גניסיפידא
+                    .ףודומ ףילחמע .חשגרמו ישגרמ ,ףוקליס
+                    רילק ץפונומ קיטסאלב ופידוא`
+            },
+            {
+                icon: require('../../../public/assets/images/general/walker.svg'),
+                title: 'שיפור מהיר3',
+                content: `ררוטקסנוק ,טמא טיס רולוד םוספיא םרול
+                    םודנדא דרפנומ סרולוק תילא גניסיפידא
+                    .ףודומ ףילחמע .חשגרמו ישגרמ ,ףוקליס
+                    רילק ץפונומ קיטסאלב ופידוא`
+            },
+        ];
+    },
+
+    lessons() {
+        const lessons = ContentService.getLessonsByCourseId(this.course.id);
+        const randomLessons = [];
+
+        for(let index = 0; index < 4; index++ ) {
+            const randomIndex   = Math.floor(Math.random()*lessons.length);
+            randomLessons.push(lessons[randomIndex]);
+            lessons.slice(randomIndex, 1);
+        }
+
+        return randomLessons
+    }
   },
 
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     video {
         border-radius: 8px;
         width: 100%;
@@ -76,6 +164,62 @@ export default {
     .course_areas_title {
         position: absolute;
         top: -30px;
+    }
+
+    .guest_detailed_card {
+        height: 505px;
+    }
+
+    .course_benefits_wrapper {
+        margin-top: 250px;
+        position: relative;
+
+        .course_benefits_content {
+            overflow: hidden;
+            padding-top: 120px;
+
+            h2 {
+                font-size: 1.7em;
+            }
+
+            .circle_decorator {
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                right: -50%;
+                top: -50%;
+                transform: rotate(-90deg);
+            }
+
+            .course_benefit_padding_right {
+                padding-right: 6%;
+            }
+
+            .course_benefit_padding_left {
+                padding-left: 6%;
+            }
+
+
+            h3 {
+                font-size: 1em;
+            }
+            
+            p {
+                font-size: .8em;
+            }
+        }
+
+        .course_lessons_wrapper {
+            position: absolute;
+            width: 100%;
+            top: -200px;
+            
+            .course_lesson_card {
+                height: 400px;
+                min-height: 20vh;
+                max-height: 70vh;
+            }
+        }
     }
 
 </style>
