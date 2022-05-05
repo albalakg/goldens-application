@@ -47,8 +47,6 @@ class ContentService {
         courses = store.state['ContentState'].courses;
       }
 
-      console.log(courses);
-
       for(let index = 0; index < courses.length; index++) {
         const course = courses[index];
         return course.active_areas_with_active_lessons.find(courseArea => courseArea.id == courseAreaId);
@@ -105,6 +103,17 @@ class ContentService {
       return null;
     }
   }
+
+  getCourseAreasByCourseId(courseId) {
+    try {
+      const course = this.findCourseById(courseId);
+      return course.active_areas_with_active_lessons;
+    } catch(err) {
+      error(err);
+      return [];
+    }
+  }
+  
 
   getLessonsByCourseAreaId(courseAreaId) {
     try {

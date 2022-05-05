@@ -12,8 +12,8 @@
     </template>
 
     <template v-else>
-      <v-flex md10 xl9 mx-auto>
-        <v-flex d-flex justify-center>
+      <v-flex>
+        <v-flex md10 xl9 mx-auto d-flex justify-center>
             <v-flex md4 offset-md-1 class="course_areas_wrapper">
                 <p class="course_areas_title white_text_color mb-1">
                     <strong>
@@ -22,10 +22,10 @@
                 </p>
             <template v-for="(courseArea, index) in courseAreas">
                 <course-area-card
-                guest
-                class="mb-3"
-                :key="index"
-                :courseArea="courseArea"
+                    guest
+                    class="mb-3"
+                    :key="index"
+                    :courseArea="courseArea"
                 />
             </template>
             </v-flex>
@@ -39,7 +39,7 @@
             </v-flex>
         </v-flex>
 
-        <v-flex class="course_benefits_wrapper w100 pa-10 second_dark_bg_color rounded">
+        <v-flex md10 xl9 mx-auto class="course_benefits_wrapper w100 pa-10 second_dark_bg_color rounded">
 
             <!-- <v-flex d-flex class="course_lessons_wrapper">
                 <v-flex xs3 v-for="(lesson, index) in lessons" :key="index" class="course_lesson_card">
@@ -78,8 +78,20 @@
                     </v-flex>
                 </v-flex>
             </div>
-
         </v-flex>
+
+        <div class="star_logo">
+            <star-logo 
+                gstar
+            />
+        </div>
+        
+        <br>
+        <br>
+        <br>
+
+        <guest-course-plan :course="course" />
+
       </v-flex>
     </template>
   </v-flex>
@@ -90,8 +102,11 @@ import CourseAreaCard from "../../components/Cards/CourseAreaCard.vue";
 import DetailedCourseCard from '../Cards/DetailedCourseCard.vue';
 import LessonCard from '../Cards/LessonCard.vue';
 import CircleDecorator from '../Decorators/CircleDecorator.vue';
+import StarLogo from '../General/StarLogo.vue';
+import SectionHeader from '../Texts/SectionHeader.vue';
+import GuestCoursePlan from './GuestCoursePlan.vue';
 export default {
-  components: { CourseAreaCard, DetailedCourseCard, CircleDecorator, LessonCard },
+  components: { CourseAreaCard, DetailedCourseCard, CircleDecorator, LessonCard, SectionHeader, GuestCoursePlan, StarLogo },
 
   props: {
     course: {
@@ -149,7 +164,7 @@ export default {
         }
 
         return randomLessons
-    }
+    },
   },
 
 };
@@ -168,11 +183,22 @@ export default {
 
     .guest_detailed_card {
         height: 505px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .star_logo {
+        position: absolute;
+        width: 50vw;
+        height: 50vw;
+        top: 35vh;
+        left: -15vw;
     }
 
     .course_benefits_wrapper {
-        margin-top: 250px;
+        margin-top: 10vh;
         position: relative;
+        z-index: 2;
 
         .course_benefits_content {
             overflow: hidden;
