@@ -118,7 +118,6 @@ const routes = [
     children: [
       {
         path: '',
-        beforeEnter: Guard.user,
         component: () => import('../views/Courses/CourseContent.vue'),
       },
       {

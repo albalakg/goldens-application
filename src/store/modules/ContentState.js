@@ -81,6 +81,7 @@ const ContentState = {
 
         getActiveCourses({ state, commit }) {
             return new Promise((resolve, reject) => {
+                console.log('getActiveCourses');
                 if(state.courses) {
                     const course = state.courses.find(course => course.id === courseId);
                     if(course) {

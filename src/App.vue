@@ -48,7 +48,7 @@ export default {
   },
 
   created() {
-    this.setInitialSettings()
+    this.setInitialSettings();
   },
 
   watch: {
@@ -101,8 +101,15 @@ export default {
   },
 
   methods: {
-    setInitialSettings() {
-      this.$store.dispatch('AuthState/setLogStatus', Auth.isLogged());
+    async loadCourses() {
+      this.loading = true;
+      await this.$store.dispatch('ContentState/getActiveCourses');
+      this.loading = false;
+    },
+
+    async setInitialSettings() {
+      await this.$store.dispatch('AuthState/setLogStatus', Auth.isLogged());
+      this.loadCourses();
     },
     
     closeMessage() {
