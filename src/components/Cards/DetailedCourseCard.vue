@@ -66,26 +66,27 @@
             </v-flex>
 
             <v-flex md8 mx-auto class="buy_button">
-                <main-button
-                    @submit="orderCourse()"
-                    shadow
-                    :styleConfig="{
-                        padding: '10px 25px',
-                        borderRadius: '30',
-                    }"
-                >
-                    <template slot="content">
-                        <v-flex d-flex align-center justify-center>
-                            <template>
-                                <strong class="white--text ml-3">
-                                    בואו ללמוד
-                                </strong>
-                                <arrow />
+                <router-link :to="`/orders?courseId=${course.id}`">
+                    <main-button
+                        shadow
+                        :styleConfig="{
+                            padding: '10px 25px',
+                            borderRadius: '30',
+                        }"
+                    >
+                        <template slot="content">
+                            <v-flex d-flex align-center justify-center>
+                                <template>
+                                    <strong class="white--text ml-3">
+                                        לרכישה    
+                                    </strong>
+                                    <arrow />
 
-                            </template>
-                        </v-flex>
-                    </template>
-                </main-button>
+                                </template>
+                            </v-flex>
+                        </template>
+                    </main-button>
+                </router-link>
             </v-flex>
         </div>
     </div>
@@ -151,10 +152,6 @@ export default {
     },
 
     methods: {
-        orderCourse() {
-            console.log(123);
-        },
-
         startTrailer() {
             this.$refs.video.playVideo()
         }

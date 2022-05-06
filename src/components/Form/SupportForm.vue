@@ -82,7 +82,6 @@ export default {
     methods: {
         submit() {
             if(!this.validate()) {
-                console.log('not valid');
                 return
             }
 

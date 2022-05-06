@@ -4,6 +4,7 @@
         :pointer="pointer" 
         :dark="dark" 
         :icon="icon" 
+        :disabled="disabled" 
         :left="left" 
         @submit="submit()"
     />
@@ -32,7 +33,10 @@ export default {
 
         dark: {
             type: Boolean,
-            default: false
+        },
+
+        disabled: {
+            type: Boolean,
         },
     },
 

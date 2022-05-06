@@ -75,6 +75,10 @@
   border-right: 2px solid #E6B260;
 }
 
+.main_border_right {
+  border-right: 2px solid #16588F;
+}
+
 .white_border_right {
   border-right: 2px solid #fff;
 }

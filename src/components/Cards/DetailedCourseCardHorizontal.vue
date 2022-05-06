@@ -1,0 +1,170 @@
+<template>
+    <v-flex d-flex class="detailed_course_card_horizontal dark_shadow px-4 pb-2 pt-1">
+        <v-flex md4>
+            <video-card 
+                ref="video"
+                :src="course.trailerSrc"
+                @playClicked="startTrailer()"
+            />
+        </v-flex>
+        <v-flex md4 class="pa-5">
+            <strong>
+                {{ course.name }}
+            </strong>
+            <br>
+            <small v-html="course.description">
+            </small>
+        </v-flex>
+        <v-flex md4 d-flex flex-column class="ma-10 px-10 detailed_course_card_actions main_border_right">
+            <v-flex xs6 class="detailed_course_card_pricing">
+                 <strong>
+                    <small>
+                        סה"כ מחיר
+                    </small>
+                </strong>
+                <br>
+                <h2>
+                    {{ price }}
+                </h2>
+            </v-flex>
+            <v-flex xs6 class="detailed_course_card_expiration">
+                <strong>
+                    <small>
+                        תקף עד
+                    </small>
+                </strong>
+                <br>
+                <h2>
+                    {{ expiredAt }}
+                </h2>
+            </v-flex>
+        </v-flex>
+
+        <div class="buy_button">
+            <router-link :to="`/orders?courseId=${course.id}`">
+                <main-button
+                    shadow
+                    :styleConfig="{
+                        padding: '10px 25px',
+                        borderRadius: '30',
+                    }"
+                >
+                    <template slot="content">
+                        <v-flex d-flex align-center justify-center>
+                            <template>
+                                <strong class="white--text ml-3">
+                                    לרכישה    
+                                </strong>
+                                <arrow />
+
+                            </template>
+                        </v-flex>
+                    </template>
+                </main-button>
+            </router-link>
+        </div>
+    </v-flex>
+</template>
+
+<script>
+import MainButton from '../Buttons/MainButton.vue';
+import Arrow from '../General/Arrow.vue';
+import VideoCard from "./VideoCard.vue"
+
+export default {
+    components: { VideoCard, MainButton, Arrow },
+
+    props: {
+        course: {
+            type: Object,
+            required: true
+        }
+    },
+
+    data() {
+        return {
+            lessonImage: require('../../../public/assets/images/general/lesson.svg'),
+            timeImage: require('../../../public/assets/images/general/time.svg'),
+            courseAreaImage: require('../../../public/assets/images/general/course_area.svg'),
+        }
+    },
+
+    computed: {
+        totalCourseAreas() {
+            return ContentService.countTotalCourseAreasByCourseId(this.course.id);
+        },
+
+        totalDuration() {
+            const seconds = ContentService.countTotalCourseDuration(this.course.id);
+            return ContentService.getTimeTextBySeconds(seconds);
+        },
+        
+        totalLessons() {
+            return ContentService.countTotalLessonsByCourseId(this.course.id)
+        },
+
+        price() {
+            return  '₪' + Math.floor(this.course.price);
+        },
+
+        expiredAt() {
+            const yearFromNow   = new Date(new Date().setFullYear(new Date().getFullYear() + 1));
+            let year            = String(yearFromNow.getFullYear()).substring(2, 4);
+            let month           = String(yearFromNow.getMonth());
+            let day             = String(yearFromNow.getDay());
+            
+            if(day.length === 1) {
+                day = `0${day}`;
+            }
+
+            if(month.length === 1) {
+                month = `0${month}`;
+            }
+
+            return `${day}.${month}.${year}`;
+        }
+    },
+
+    methods: {
+        startTrailer() {
+            this.$refs.video.playVideo()
+        }
+    }
+}
+</script>
+
+<style scoped lang="scss">
+
+    .detailed_course_card_horizontal {
+        min-width: 100%;
+        border-radius: 12px;
+        position: relative;
+
+        .detailed_course_card_actions {
+
+            .detailed_course_card_pricing {
+                border-bottom: 2px solid #ccc;
+                padding-bottom: 10px;
+            }
+    
+            .detailed_course_card_expiration {
+                margin-top: 15px;
+            }
+
+            strong {
+                color: #555
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+        }
+
+        .buy_button {
+            position: absolute;
+            bottom: 30px;
+            left: -50px;
+        }
+    }
+
+</style>

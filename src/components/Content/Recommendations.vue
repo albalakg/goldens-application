@@ -9,13 +9,13 @@
         <br>
 
         <v-flex md9 xl8 mx-auto class="recommendations_list">
-            <arrow-chip class="arrow_chip left_arrow" @submit="moveLeft()" />
+            <arrow-chip v-show="!isLeftArrowDisabled" class="arrow_chip left_arrow" @submit="moveLeft()" />
             <carousel ref="carousel" :perPage="perPage" :value="currentPage" v-model="currentPage">
                 <slide v-for="(item, index) in items" :key="index + item.name" class="pa-4">
                     <recommendation-card :data="item" :index="index" />
                 </slide>
             </carousel>
-            <arrow-chip :left="false" class="arrow_chip right_arrow" @submit="moveRight()" />
+            <arrow-chip v-show="!isRightArrowDisabled" :left="false" class="arrow_chip right_arrow" @submit="moveRight()" />
         </v-flex>
     </div>
 </template>
@@ -64,9 +64,19 @@ export default {
         }
     },
 
+    computed: {
+        isLeftArrowDisabled() {
+            return !this.currentPage
+        },
+
+        isRightArrowDisabled() {
+            return this.currentPage + 1 === this.items.length / this.perPage
+        }
+    },
+
     methods: {
         moveLeft () {
-            if(!this.currentPage) {
+            if(this.isLeftArrowDisabled) {
                 return;
             }
 
@@ -74,7 +84,7 @@ export default {
         },
 
         moveRight () {
-            if(this.currentPage + 1 === this.items.length / this.perPage) {
+            if(this.isRightArrowDisabled) {
                 return;
             }
 

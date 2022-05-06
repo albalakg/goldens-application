@@ -58,7 +58,7 @@ const SupportState = {
                         })
                 })
             } catch(err) {
-                console.log(err);
+                error(err);
             }
         },
 

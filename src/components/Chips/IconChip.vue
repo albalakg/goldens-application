@@ -7,6 +7,7 @@
         'icon_chip_dark dark_bg_color': dark,
         'white_bg_color': !dark,
         'pointer': pointer,
+        'disabled': disabled,
     }"
     @click="submit()"
 >
@@ -47,6 +48,10 @@ export default {
         dark: {
             type: Boolean
         },
+
+        disabled: {
+            type: Boolean
+        },
     },
 
     methods: {
@@ -74,5 +79,10 @@ export default {
 
     .icon_transform_direction {
         transform: rotate(180deg);
+    }
+
+    .disabled {
+        pointer-events: none;
+        opacity: .8;
     }
 </style>

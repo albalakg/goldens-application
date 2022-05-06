@@ -66,7 +66,6 @@ export default {
         },
 
         validate() {
-            console.log('validate description');
             return this.$refs.textarea.validate();
         }
     }

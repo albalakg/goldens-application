@@ -40,7 +40,8 @@
         </v-flex>
 
         <v-flex md10 xl9 mx-auto class="course_benefits_wrapper w100 pa-10 second_dark_bg_color rounded">
-
+            
+            <!-- TODO: Not in use yet -->
             <!-- <v-flex d-flex class="course_lessons_wrapper">
                 <v-flex xs3 v-for="(lesson, index) in lessons" :key="index" class="course_lesson_card">
                     <lesson-card 
@@ -105,6 +106,21 @@
 
         <recommendations :items="recommendations" />
 
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <v-flex md9 xl8 mx-auto>
+            <h2 class="text-center">
+                רכישת <span class="main_text_color">הקורס</span>
+            </h2>
+            <br>
+            <detailed-course-card-horizontal
+                :course="course"
+            />
+        </v-flex>
+
       </v-flex>
     </template>
   </v-flex>
@@ -113,6 +129,7 @@
 <script>
 import CourseAreaCard from "../../components/Cards/CourseAreaCard.vue";
 import DetailedCourseCard from '../Cards/DetailedCourseCard.vue';
+import DetailedCourseCardHorizontal from '../Cards/DetailedCourseCardHorizontal.vue';
 import LessonCard from '../Cards/LessonCard.vue';
 import CircleDecorator from '../Decorators/CircleDecorator.vue';
 import StarLogo from '../General/StarLogo.vue';
@@ -120,7 +137,7 @@ import SectionHeader from '../Texts/SectionHeader.vue';
 import GuestCoursePlan from './GuestCoursePlan.vue';
 import Recommendations from './Recommendations.vue';
 export default {
-  components: { CourseAreaCard, DetailedCourseCard, CircleDecorator, LessonCard, SectionHeader, GuestCoursePlan, StarLogo, Recommendations },
+  components: { CourseAreaCard, DetailedCourseCard, CircleDecorator, LessonCard, SectionHeader, GuestCoursePlan, StarLogo, Recommendations, DetailedCourseCardHorizontal },
 
   props: {
     course: {
@@ -209,6 +226,7 @@ export default {
     },
 
     lessons() {
+        // TODO: Not in use yet
         const lessons = ContentService.getLessonsByCourseId(this.course.id);
         const randomLessons = [];
 
@@ -248,6 +266,11 @@ export default {
         height: 50vw;
         top: 35vh;
         left: -15vw;
+    }
+
+    .course_areas_wrapper {
+        position: relative;
+        z-index: 3;
     }
 
     .course_benefits_wrapper {
