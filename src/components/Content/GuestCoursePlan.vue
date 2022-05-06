@@ -128,6 +128,7 @@ export default {
         .course_plan_lesson:hover {
             transform: scale(1.05);
             background-color: #E6B260;
+            font-weight: bold;
         }
     }
 
