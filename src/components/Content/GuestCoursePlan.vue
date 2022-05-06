@@ -6,8 +6,12 @@
             backgroundTitle="תוכנית"
         />
 
-        <v-flex d-flex md-10 mx-auto class="main_dark_bg_color w100 mt-10">
-            <v-flex md6 d-flex>
+        <v-flex d-flex md-10 mx-auto class="main_dark_bg_color w100 mt-10" :class="{
+            'flex-wrap': $vuetify.breakpoint.smAndDown
+        }">
+            <v-flex d-flex xs12 md6 :class="{
+                'flex-wrap': $vuetify.breakpoint.smAndDown,
+            }">
                 <v-flex md6 d-flex flex-column>
                     <div 
                         class="course_plan_course_area pr-10 pointer py-8" 
@@ -37,8 +41,19 @@
                     </small>
                 </v-flex>
             </v-flex>
-            <v-flex md6 d-flex>
-                <v-flex v-for="(lessonList, index) in viewLessons" :key="index" xs3 d-flex flex-column flex-wrap>
+            <v-flex d-flex>
+                <v-flex v-if="$vuetify.breakpoint.smAndDown">
+                    <div class="course_plan_lesson pa-4" v-for="(lesson, index) in activeLessons" :key="index">
+                        <span class="white_text_color">
+                            <strong>
+                                {{index + 1}}
+                            </strong> 
+                            &nbsp; 
+                            {{ lesson.name }}
+                        </span>
+                    </div>
+                </v-flex>
+                <v-flex v-else v-for="(lessonList, index) in viewLessons" :key="index" xs3 d-flex flex-column flex-wrap>
                     <div class="course_plan_lesson pa-8" v-for="(lesson, index) in lessonList" :key="index">
                         <span class="white_text_color">
                             <strong>

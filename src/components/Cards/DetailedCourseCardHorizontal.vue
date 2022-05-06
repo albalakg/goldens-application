@@ -1,5 +1,7 @@
 <template>
-    <v-flex d-flex class="detailed_course_card_horizontal dark_shadow px-4 pb-2 pt-1">
+    <v-flex d-flex class="detailed_course_card_horizontal dark_shadow px-4 pb-2 pt-1" :class="{
+        'flex-wrap': $vuetify.breakpoint.smAndDown
+    }">
         <v-flex md4>
             <video-card 
                 ref="video"
@@ -7,7 +9,7 @@
                 @playClicked="startTrailer()"
             />
         </v-flex>
-        <v-flex md4 class="pa-5">
+        <v-flex xs12 md4 class="pa-5">
             <strong>
                 {{ course.name }}
             </strong>
@@ -15,8 +17,10 @@
             <small v-html="course.description">
             </small>
         </v-flex>
-        <v-flex md4 d-flex flex-column class="ma-10 px-10 detailed_course_card_actions main_border_right">
-            <v-flex xs6 class="detailed_course_card_pricing">
+        <v-flex xs12 md4 d-flex class="ma-md-10 px-10 pb-10 pb-md-0 detailed_course_card_actions" :class="{
+            'flex-column main_border_right': $vuetify.breakpoint.mdAndUp
+        }">
+            <v-flex md6 class="detailed_course_card_pricing">
                  <strong>
                     <small>
                         סה"כ מחיר
@@ -27,7 +31,7 @@
                     {{ price }}
                 </h2>
             </v-flex>
-            <v-flex xs6 class="detailed_course_card_expiration">
+            <v-flex md6 class="detailed_course_card_expiration mr-10 mr-md-0">
                 <strong>
                     <small>
                         תקף עד
@@ -142,15 +146,6 @@ export default {
 
         .detailed_course_card_actions {
 
-            .detailed_course_card_pricing {
-                border-bottom: 2px solid #ccc;
-                padding-bottom: 10px;
-            }
-    
-            .detailed_course_card_expiration {
-                margin-top: 15px;
-            }
-
             strong {
                 color: #555
             }
@@ -160,10 +155,34 @@ export default {
             }
         }
 
+    }
+
+    .buy_button {
+        position: absolute;
+        bottom: -25px;
+        left: 0;
+        right: 0;
+        width: 90%;
+        margin: auto;
+    }
+
+    @media only screen and (min-width: 601px) {
+        .detailed_course_card_pricing {
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+        }
+    
+        .detailed_course_card_expiration {
+            margin-top: 15px;
+        }
+
         .buy_button {
             position: absolute;
             bottom: 30px;
             left: -50px;
+            width: 15%;
+            right: unset;
+            margin: unset;
         }
     }
 

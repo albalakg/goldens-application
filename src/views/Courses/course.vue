@@ -23,7 +23,7 @@
       <video v-show="showTrailer" :src="course.trailerSrc" ref="trailer"></video>
 
       <main-tabs 
-        v-if="$vuetify.breakpoint.smAndDown"
+        v-if="showCourseTabs"
         class="course_page_tabs"
         subColor
         :tabs="tabs"
@@ -126,6 +126,10 @@ export default {
     isDark() {
       return this.$store.getters['AppState/isMenuDark']
     },
+
+    showCourseTabs() {
+      return !this.$vuetify.breakpoint.smAndDown && this.hasActiveCourse
+    }
   },
 
   methods: {
@@ -295,7 +299,8 @@ export default {
     }
 
     .course_page_image_details {
-      align-items: end !important;
+      padding-right: 30px;
+      // align-items: end !important;
     }
 
     .last_progress_card {

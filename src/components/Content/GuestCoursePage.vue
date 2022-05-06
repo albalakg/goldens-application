@@ -1,21 +1,16 @@
 <template>
-  <v-flex>
-    <template v-if="$vuetify.breakpoint.smAndDown">
-      <template v-for="(courseArea, index) in courseAreas">
-        <course-area-card
-          class="mb-3"
-          :key="index"
-          :courseArea="courseArea"
-          @submit="enterCourseArea"
-        />
-      </template>
-    </template>
-
-    <template v-else>
-      <v-flex>
-        <v-flex md10 xl9 mx-auto d-flex justify-center>
-            <v-flex md4 offset-md-1 class="course_areas_wrapper">
-                <p class="course_areas_title white_text_color mb-1">
+    <v-flex>
+        <v-flex md10 xl9 mx-auto d-flex justify-center :class="{
+            'flex-wrap': $vuetify.breakpoint.smAndDown
+        }">
+            <v-flex md3 d-flex justify-end class="guest_detailed_card" v-if="$vuetify.breakpoint.smAndDown">
+                <detailed-course-card
+                    :course="course"
+                />
+            </v-flex>
+            
+            <v-flex x12 md4 offset-md-1 class="course_areas_wrapper mt-sm-0 mt-10 pt-sm-0 pt-10">
+                <p class="course_areas_title white_text_color mb-1" v-if="$vuetify.breakpoint.mdAndUp">
                     <strong>
                         תחומי הקורס
                     </strong>
@@ -29,18 +24,20 @@
                 />
             </template>
             </v-flex>
-            <v-flex md2>
+
+            <v-flex md2 v-if="$vuetify.breakpoint.mdAndUp">
                 
             </v-flex>
-            <v-flex md3 d-flex justify-end class="guest_detailed_card">
+
+            <v-flex md3 d-flex justify-end class="guest_detailed_card" v-if="$vuetify.breakpoint.mdAndUp">
                 <detailed-course-card
                     :course="course"
                 />
             </v-flex>
         </v-flex>
 
-        <v-flex md10 xl9 mx-auto class="course_benefits_wrapper w100 pa-10 second_dark_bg_color rounded">
-            
+        <v-flex md10 xl9 mx-auto>
+            <course-benefits :items="items" />
             <!-- TODO: Not in use yet -->
             <!-- <v-flex d-flex class="course_lessons_wrapper">
                 <v-flex xs3 v-for="(lesson, index) in lessons" :key="index" class="course_lesson_card">
@@ -50,43 +47,10 @@
                 </v-flex>
             </v-flex> -->
 
-            <div class="course_benefits_content h100 w100 pb-5">
-                <circle-decorator class="circle_decorator"/>
-                <h2 class="white_text_color">
-                    <span class="sub_text_color">
-                        מה יצא 
-                    </span>
-                    לכם מזה
-                </h2>
-
-                <v-flex d-flex class="mt-10">
-                    <v-flex 
-                        :class="{
-                            'course_benefit_padding_right': index > 0,
-                            'course_benefit_padding_left': index + 1 < items.length
-                        }" 
-                        xs4 
-                        v-for="(item, index) in items" 
-                        :key="index"
-                        d-flex
-                        flex-column
-                        justify-end
-                        class="course_benefit_item"
-                    >
-                        <img :src="item.icon" :alt="`course ${item.title}`">
-                        <div class="circle"></div>
-                        <h3 class="white_text_color">
-                            {{ item.title }}
-                        </h3>
-                        <p class="grey_text_color">
-                            {{ item.content }}
-                        </p>
-                    </v-flex>
-                </v-flex>
-            </div>
+            
         </v-flex>
 
-        <div class="star_logo">
+        <div class="star_logo" v-if="$vuetify.breakpoint.mdAndUp">
             <star-logo 
                 gstar
             />
@@ -104,7 +68,7 @@
         <br>
         <br>
 
-        <recommendations :items="recommendations" />
+        <recommendations :items="recommendations" :perPage="recommendationPerPage" />
 
         <br>
         <br>
@@ -121,9 +85,7 @@
             />
         </v-flex>
 
-      </v-flex>
-    </template>
-  </v-flex>
+    </v-flex>
 </template>
 
 <script>
@@ -134,17 +96,29 @@ import LessonCard from '../Cards/LessonCard.vue';
 import CircleDecorator from '../Decorators/CircleDecorator.vue';
 import StarLogo from '../General/StarLogo.vue';
 import SectionHeader from '../Texts/SectionHeader.vue';
+import CourseBenefits from './CourseBenefits.vue';
 import GuestCoursePlan from './GuestCoursePlan.vue';
 import Recommendations from './Recommendations.vue';
 export default {
-  components: { CourseAreaCard, DetailedCourseCard, CircleDecorator, LessonCard, SectionHeader, GuestCoursePlan, StarLogo, Recommendations, DetailedCourseCardHorizontal },
-
-  props: {
-    course: {
-      type: Object,
-      required: true,
+    components: { 
+        CourseAreaCard, 
+        DetailedCourseCard, 
+        CircleDecorator, 
+        LessonCard, 
+        SectionHeader, 
+        GuestCoursePlan, 
+        StarLogo, 
+        Recommendations, 
+        DetailedCourseCardHorizontal, 
+        CourseBenefits 
     },
-  },
+
+    props: {
+        course: {
+            type: Object,
+            required: true,
+        },
+    },
 
   computed: {
     courseAreas() {
@@ -175,13 +149,17 @@ export default {
             },
             {
                 icon: require('../../../public/assets/images/general/walker.svg'),
-                title: 'שיפור מהיר3',
+                title: 'שיפור מהיר',
                 content: `ררוטקסנוק ,טמא טיס רולוד םוספיא םרול
                     םודנדא דרפנומ סרולוק תילא גניסיפידא
                     .ףודומ ףילחמע .חשגרמו ישגרמ ,ףוקליס
                     רילק ץפונומ קיטסאלב ופידוא`
             },
         ];
+    },
+
+    recommendationPerPage() {
+        return this.$vuetify.breakpoint.mdAndUp ? 3 : 1
     },
 
     recommendations() {
@@ -273,78 +251,5 @@ export default {
         z-index: 3;
     }
 
-    .course_benefits_wrapper {
-        margin-top: 10vh;
-        position: relative;
-        z-index: 2;
-
-        .course_benefits_content {
-            overflow: hidden;
-            padding-top: 40px;
-
-            img {
-                height: 25%;
-                width: 25%;
-                margin-bottom: 10px;
-                position: relative;
-                z-index: 2;
-            }
-
-            h2 {
-                font-size: 1.7em;
-            }
-
-            .circle_decorator {
-                position: absolute;
-                height: 100%;
-                width: 100%;
-                right: -50%;
-                top: -50%;
-                transform: rotate(-90deg);
-            }
-
-            .course_benefit_item {
-                position: relative;
-
-                .circle {
-                    height: 30px;
-                    width: 30px;
-                    position: absolute;
-                    background-color: #8885;
-                    border-radius: 50%;
-                    top: 40%;
-                }
-            }
-
-            .course_benefit_padding_right {
-                padding-right: 6%;
-            }
-
-            .course_benefit_padding_left {
-                padding-left: 6%;
-            }
-
-
-            h3 {
-                font-size: 1em;
-            }
-            
-            p {
-                font-size: .8em;
-            }
-        }
-
-        .course_lessons_wrapper {
-            position: absolute;
-            width: 100%;
-            top: -200px;
-            
-            .course_lesson_card {
-                height: 400px;
-                min-height: 20vh;
-                max-height: 70vh;
-            }
-        }
-    }
 
 </style>
