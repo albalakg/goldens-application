@@ -3,7 +3,7 @@
     <div class="mobile_top_menu_wrapper" :class="{'mobile_top_menu_shadow': shadow}">
         <v-flex xs6 mx-auto>
             <Logo
-                :dark="dark" 
+                :dark="isDark" 
             />
         </v-flex>
     </div>
@@ -14,9 +14,6 @@
 
 <script>
 import Logo from '../General/Logo.vue'
-
-const LIGHT_MODE    = 'light';
-const DARK_MODE     = 'dark';
 
 export default {
     components: {
@@ -31,17 +28,6 @@ export default {
         shadow: {
             type: Boolean
         },
-
-        dark: {
-            type: Boolean
-        },
-    },
-
-    data() {
-        return {
-            mode: LIGHT_MODE,
-            whiteModePagesList: ['/']
-        }
     },
 
     computed: {
@@ -49,23 +35,10 @@ export default {
             return this.$store.getters['AuthState/isLogged'];
         },
 
-        isLightMode() {
-            return this.mode === LIGHT_MODE;
+        isDark() {
+            return this.$store.getters['AppState/isMenuDark']
         }
     },
-
-    watch: {
-        $route(to, from) {
-            this.setMode();
-        }
-    },
-
-    methods: {
-        setMode() {
-            const route = this.$route.fullPath;
-            this.mode = this.whiteModePagesList.includes(route) ? LIGHT_MODE : DARK_MODE;
-        }
-    }
 }
 </script>
 
