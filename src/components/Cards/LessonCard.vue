@@ -1,7 +1,7 @@
 
 <template>
   <v-flex mx-auto class="h100 px-3">
-    <div class="lesson_card_wrapper pointer">
+    <div class="lesson_card_wrapper">
       <img loading="lazy" :src="lesson.imageSrc" alt="lesson image">
       <div class="lesson_card_darkner"></div>
       <div class="lesson_card_details px-1 text-center">
@@ -27,12 +27,6 @@ export default {
       type: Object,
       required: true
     }
-  },
-
-  data() {
-    return {
-      
-    };
   },
 
   computed: {

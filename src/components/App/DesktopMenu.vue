@@ -13,7 +13,7 @@
                     />
                 </div>
                 <v-flex d-flex align-center justify-space-between class="mr-5">
-                    <template v-if="isLogged">
+                    <template v-if="hasActiveCourse">
                         <v-flex d-flex align-center>
                             <search-input
                                 ref="search"
@@ -37,7 +37,7 @@
                         </v-flex>
                     </template>
                     <div class="account_wrapper">
-                        <template v-if="isLogged">
+                        <template v-if="hasActiveCourse">
                             <v-flex d-flex align-center>
                                 <router-link title="מועדפים" class="simple_link text-center favorite_link" to="/user/favorites">
                                     <heart center :dark="isDark" @submit="enterFavorites()"/>
@@ -115,8 +115,8 @@ export default {
     },
 
     computed: {
-        isLogged() {
-            return this.$store.getters['AuthState/isLogged'];
+        hasActiveCourse() {
+            return this.$store.getters['UserState/hasActiveCourse']
         },
 
         userImage() {
