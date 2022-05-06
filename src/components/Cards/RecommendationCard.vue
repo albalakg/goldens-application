@@ -1,5 +1,5 @@
 <template>
-  <div class="recommendation_card pa-5 text-center white_text_color" :class="index % 2 === 0 ? 'second_dark_bg_color' : 'main_dark_bg_color'">
+  <div class="recommendation_card px-5 py-8 text-center white_text_color" :class="index % 2 === 0 ? 'second_dark_bg_color' : 'main_dark_bg_color'">
     <h3>
       {{ data.name }}
     </h3>
@@ -45,7 +45,7 @@ export default {
 
   .divider {
     background-color: #E6B260;
-    width: 15%;
+    width: 10%;
     margin: auto;
   }
 

@@ -97,7 +97,7 @@ export default {
         width: 36px;
         position: absolute;
         z-index: 2;
-        top: 30%;
+        top: 33%;
     }
 
     .right_arrow {
