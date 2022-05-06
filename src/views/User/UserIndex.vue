@@ -4,10 +4,10 @@
         <v-flex class="user_header_content" v-if="$vuetify.breakpoint.smAndDown">
             <div class="text-center">
                 <div class="user_profile_image mx-auto">
-                    <profile-card
+                    <!-- <profile-card
                         editable
                     >
-                    </profile-card>
+                    </profile-card> -->
                 </div>
                 <div class="text--center">
                     <h1>
@@ -51,27 +51,29 @@
             <v-flex d-flex align-end>
                 <v-flex xs2>
                     <div class="user_profile_image mx-auto">
-                        <profile-card
+                        <!-- <profile-card
                             editable
                         >
-                        </profile-card>
+                        </profile-card> -->
                     </div>
                 </v-flex>
                 <v-flex xs8 mr-10>
                     <v-flex>
-                        <h1>
-                            <span class="main_text_color">{{ firstName }}</span> <span>{{ lastName }}</span>
-                        </h1>
-                        <v-flex md2>
-                            <router-link to="/signout">
-                                <main-button
-                                    text="התנתק"
-                                    shadow
-                                    dark
-                                    slim
-                                >
-                                </main-button>
-                            </router-link>
+                        <v-flex d-flex justify-space-between align-center>
+                            <h1>
+                                <span class="main_text_color">{{ firstName }}</span> <span>{{ lastName }}</span>
+                            </h1>
+                            <v-flex md2>
+                                <router-link to="/signout">
+                                    <main-button
+                                        text="התנתק"
+                                        shadow
+                                        dark
+                                        slim
+                                    >
+                                    </main-button>
+                                </router-link>
+                            </v-flex>
                         </v-flex>
                         <br>
                         <v-flex class="user_links_wrapper">

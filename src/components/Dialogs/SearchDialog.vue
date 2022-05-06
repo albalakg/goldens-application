@@ -14,7 +14,6 @@
           ref="search"
           outlined
           icon
-          slim
           @onChange="onChange"
         >
         </search-input>
