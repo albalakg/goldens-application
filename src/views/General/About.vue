@@ -182,6 +182,10 @@ export default {
         },
       ];
     },
+
+    isDark() {
+      return this.$store.getters['AppState/isMenuDark']
+    }
   },
 
   methods: {
@@ -194,11 +198,11 @@ export default {
 
         let position = element.getBoundingClientRect();
         if (position.top > -200) {
-          if (this.isDark) {
+          if (!this.isDark) {
             return this.$store.dispatch("AppState/setMenuMode", true);
           }
         } else {
-          if (!this.isDark) {
+          if (this.isDark) {
             return this.$store.dispatch("AppState/setMenuMode", false);
           }
         }
