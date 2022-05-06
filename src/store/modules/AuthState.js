@@ -16,12 +16,9 @@ const AuthState = {
     },
 
     actions: {
-       setLogStatus({ commit }, status) {
-            return new Promise((resolve) => {
-                commit('SET_LOG_STATUS', status);
-                resolve();
-            })
-       }
+        setLogStatus({ commit }, status) {
+            commit('SET_LOG_STATUS', status);
+        }
     }
 };
 

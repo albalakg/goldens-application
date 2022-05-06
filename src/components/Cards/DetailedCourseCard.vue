@@ -201,7 +201,7 @@ export default {
 
     .buy_button {
         position: relative;
-        top: 35px;
+        top: 55px;
     }
 
 </style>

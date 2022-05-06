@@ -81,14 +81,6 @@ const ContentState = {
 
         getActiveCourses({ state, commit }) {
             return new Promise((resolve, reject) => {
-                console.log('getActiveCourses');
-                if(state.courses) {
-                    const course = state.courses.find(course => course.id === courseId);
-                    if(course) {
-                        return resolve(course);
-                    }
-                }
-
                 axios.get('content/courses')
                     .then(res => {
                         const courses = res.data.data.map(course => {
@@ -122,7 +114,7 @@ const ContentState = {
         getCourse({ state, commit }, courseId) {
             return new Promise((resolve, reject) => {
                 if(state.courses) {
-                    const course = state.courses.find(course => course.id === courseId);
+                    const course = state.courses.find(course => course.id == courseId);
                     if(course) {
                         return resolve(course);
                     }

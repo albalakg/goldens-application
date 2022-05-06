@@ -61,7 +61,7 @@
         :style="itemsListStyle"
     >
         <template v-for="(item, index) in items">
-            <div class="select_input_item pa-1 pointer" :class="{'mb-1': index !== items.length - 1}" :key="item.id + '-' + item.value" @click="pickItem(item)">
+            <div class="select_input_item pa-2 pointer" :class="{'mb-1': index !== items.length - 1}" :key="item.id + '-' + item.value" @click="pickItem(item)">
                 {{item.value}}
             </div>
         </template>

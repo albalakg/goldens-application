@@ -108,8 +108,10 @@ export default {
     },
 
     async setInitialSettings() {
-      await this.$store.dispatch('AuthState/setLogStatus', Auth.isLogged());
-      this.loadCourses();
+      this.$store.dispatch('AuthState/setLogStatus', Auth.isLogged());
+      if(!Auth.isLogged()) {
+        this.loadCourses();
+      }
     },
     
     closeMessage() {
