@@ -134,6 +134,14 @@ const routes = [
   // ***** COURSES END *****
 
 
+  // ***** ORDERS START *****
+  {
+    path: '/orders',
+    component: () => import('../views/Orders/Order.vue'),
+  },
+  // ***** ORDERS END *****
+
+
   {
     path: '*',
     name: 'PageNotFound',
