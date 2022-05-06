@@ -1,18 +1,18 @@
 <template>
   <div class="about_wrapper pb-10 second_dark_bg_color app_padding_top">
-    <img class="about_background_image" :src="aboutBackgroundImage" alt="about background">
+    <img
+      class="about_background_image"
+      :src="aboutBackgroundImage"
+      alt="about background"
+    />
     <div class="about_background_darkner"></div>
     <v-flex md10 xl9 mx-auto class="about_background_content">
       <section class="about_header">
         <circle-decorator class="circle_decorator" />
         <v-flex xs10 md4 class="px-3 px-md-0 mt-10">
           <h1>
-            <span class="white_text_color">
-              מי
-            </span>
-            <span class="sub_text_color">
-              אנחנו
-            </span>
+            <span class="white_text_color"> מי </span>
+            <span class="sub_text_color"> אנחנו </span>
           </h1>
           <p class="white_text_color mt-2 pr-3 sub_border_right">
             {{ description }}
@@ -24,56 +24,57 @@
 
       <section>
         <v-flex md10 mx-auto class="px-3 px-md-0">
-          <video src="https://www.youtube.com/watch?v=0CUjzYtloe8" controls></video>
+          <video
+            src="https://www.youtube.com/watch?v=0CUjzYtloe8"
+            controls
+          ></video>
         </v-flex>
       </section>
 
       <div class="spacer"></div>
-      
+
       <section class="about_description_section px-5 px-md-0">
         <star-logo :gstar="false" class="star_logo" />
         <v-flex md8 mx-auto>
           <p class="white_text_color">
-            {{content}}
+            {{ content }}
           </p>
         </v-flex>
       </section>
 
       <div class="spacer"></div>
-
     </v-flex>
-    
+
     <trainers full dark />
 
     <div class="spacer"></div>
 
     <section class="about_believe_section px-5 px-md-0">
       <div class="spacer"></div>
-      <img :src="aboutBelieveBackgroundImage" alt="about believe background">
+      <img :src="aboutBelieveBackgroundImage" alt="about believe background" />
       <div class="about_background_darkner"></div>
-      
+
       <div class="about_believe_content">
-        <section-header 
+        <section-header
           :title="'האני מאמין שלי'"
           :backgroundTitle="'מאמין'"
           :subtitle="'סתם בלה בלה בלה בלה שבא לי לכתוב כי אני רוצה לכתוב סתם דברים בלי סיבה בלה בלה בלה'"
           dark
-
         />
-        
+
         <v-flex d-flex>
-          <v-flex md5 xl6>
-            
-          </v-flex>
-          <v-flex md5 xl4> 
-            <div class="side_note white_border_right pr-3" v-for="(note, index) in sideNotes" :key="index">
+          <v-flex md5 xl6> </v-flex>
+          <v-flex md5 xl4>
+            <div
+              class="side_note white_border_right pr-3"
+              v-for="(note, index) in sideNotes"
+              :key="index"
+            >
               <h2 class="sub_text_color">
-                {{note.title}}
+                {{ note.title }}
               </h2>
               <p class="white_text_color">
-                {{
-                  note.description
-                }}
+                {{ note.description }}
               </p>
             </div>
           </v-flex>
@@ -82,21 +83,20 @@
 
       <div class="spacer"></div>
     </section>
-
   </div>
 </template>
 
 <script>
-import Trainers from '../../components/Content/Trainers.vue';
-import CircleDecorator from '../../components/Decorators/CircleDecorator.vue';
-import StarLogo from '../../components/General/StarLogo.vue';
-import SectionHeader from '../../components/Texts/SectionHeader.vue';
+import Trainers from "../../components/Content/Trainers.vue";
+import CircleDecorator from "../../components/Decorators/CircleDecorator.vue";
+import StarLogo from "../../components/General/StarLogo.vue";
+import SectionHeader from "../../components/Texts/SectionHeader.vue";
 export default {
-  components: { 
-    Trainers, 
+  components: {
+    Trainers,
     StarLogo,
     CircleDecorator,
-    SectionHeader
+    SectionHeader,
   },
 
   data() {
@@ -148,6 +148,10 @@ export default {
     };
   },
 
+  mounted() {
+    this.listenToScroll();
+  },
+  
   computed: {
     trainers() {
       return [
@@ -179,6 +183,28 @@ export default {
       ];
     },
   },
+
+  methods: {
+    listenToScroll() {
+      document.body.addEventListener("scroll", () => {
+        let element = document.querySelector(".about_background_image");
+        if (!element) {
+          return;
+        }
+
+        let position = element.getBoundingClientRect();
+        if (position.top > -200) {
+          if (this.isDark) {
+            return this.$store.dispatch("AppState/setMenuMode", true);
+          }
+        } else {
+          if (!this.isDark) {
+            return this.$store.dispatch("AppState/setMenuMode", false);
+          }
+        }
+      });
+    },
+  },
 };
 </script>
 
@@ -196,7 +222,8 @@ export default {
     }
   }
 
-  .about_background_image, .about_background_darkner {
+  .about_background_image,
+  .about_background_darkner {
     position: absolute;
     top: 0;
     width: 100%;
@@ -221,7 +248,7 @@ export default {
       z-index: 2;
       position: relative;
     }
-    
+
     .star_logo {
       position: absolute;
       left: -60%;
@@ -277,15 +304,14 @@ export default {
   }
 }
 
-  @media only screen and (max-width: 600px) {
-    .about_description_section {
-      .star_logo {
-        opacity: .1;
-        width: 30%;
-        bottom: -30%;
-        left: 0% !important;
-      }
+@media only screen and (max-width: 600px) {
+  .about_description_section {
+    .star_logo {
+      opacity: 0.1;
+      width: 30%;
+      bottom: -30%;
+      left: 0% !important;
     }
   }
-
+}
 </style>

@@ -3,7 +3,7 @@
     <div class="desktop_menu_wrapper">
 
         <div v-if="showFullMenu" class="desktop_menu_content"  :class="{
-            'desktop_menu_content_light': !isDark,
+            'desktop_menu_content_light dark_shadow': !isDark,
             'desktop_menu_content_dark': isDark,
         }">
             <v-flex d-flex align-center class="h100" xs9 mx-auto>
@@ -91,10 +91,10 @@ export default {
     data() {
         return {
             links: [
-                {
-                    text: 'קורסים',
-                    url: 'courses'
-                },
+                // {
+                //     text: 'קורסים',
+                //     url: 'courses'
+                // },
                 {
                     text: 'מי אנחנו',
                     url: 'about'
@@ -164,6 +164,7 @@ export default {
     }
 
     .desktop_menu_content_light {
+        border-top: 2px solid #E6B260;
         background-color: #fff;
         color: #31353d;
     }

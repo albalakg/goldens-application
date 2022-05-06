@@ -164,12 +164,12 @@ export default {
 
     listenToScroll() {
       document.body.addEventListener('scroll', () => {
-        var element = document.querySelector('.course_page_image_wrapper');
+        let element = document.querySelector('.course_page_image_wrapper');
         if(!element) {
           return;
         }
         
-        var position = element.getBoundingClientRect();
+        let position = element.getBoundingClientRect();
         if(position.height < (position.top * -1 + 100)) {
           if(this.isDark) {
             return this.$store.dispatch('AppState/setMenuMode', false);
