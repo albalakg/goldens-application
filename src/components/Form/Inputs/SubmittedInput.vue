@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import MainButton from './../../Buttons/MainButton.vue';
+import MainButton from '../../Buttons/MainButton.vue';
 
 export default {
     components: {
