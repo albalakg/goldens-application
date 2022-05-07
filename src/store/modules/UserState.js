@@ -293,7 +293,7 @@ const UserState = {
             })
         },
         
-        async goToLastActiveCourse({ state }) {
+        goToLastActiveCourse({ state }) {
             try {
                 if(!state.hasActiveCourse) {
                     return router.push('/');

@@ -32,6 +32,7 @@
                     :name="course.name"
                     :price="price"
                     :discount="discount"
+                    @submit="submitOrder()"
                 />
             </v-flex>
         </v-flex>
@@ -99,7 +100,7 @@ export default {
             }
 
             this.loading = true;
-            this.coupon = await this.$store.dispatch('ContentState/getCoupon', this.form.coupon); 
+            this.coupon = await this.$store.dispatch('OrderState/getCoupon', this.form.coupon); 
             this.loading = false;
 
             if(!this.coupon) {
@@ -107,6 +108,15 @@ export default {
             }
 
             this.coupon.code = this.form.coupon;
+        },
+
+        async submitOrder() {
+            this.loading = true;
+            await this.$store.dispatch('OrderState/submitOrder', {
+                content_id: this.course.id,
+                coupon_code: this.form.coupon
+            }); 
+            this.loading = false;
         },
 
         isTheSameValue() {

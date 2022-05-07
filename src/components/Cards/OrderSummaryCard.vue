@@ -31,6 +31,7 @@
                 borderRadius: '30',
             }"
             text="תשלום"
+            @submit="submit()"
         >
         </main-button>
     </div>
@@ -73,6 +74,12 @@ export default {
 
         totalPrice() {
             return this.price - this.discount + this.taxPrice;
+        }
+    },
+
+    methods: {
+        submit() {
+            this.$emit('submit')
         }
     }
 }
