@@ -19,8 +19,8 @@
                         <coupon-input 
                             ref="coupon"
                             dark
+                            :loading="loading"
                             @onChange="setCoupon"
-                            @submit="submitCoupon()"
                         />
                     </v-form>
                 </v-flex>
@@ -31,6 +31,7 @@
                 <order-summary-card 
                     :name="course.name"
                     :price="price"
+                    :discount="discount"
                 />
             </v-flex>
         </v-flex>
@@ -48,8 +49,11 @@ export default {
     data() {
         return {
             form: {
+                couponId: '',
                 coupon: ''
-            }
+            },
+            coupon: null,
+            loading: false
         }
     },
 
@@ -60,6 +64,19 @@ export default {
 
         price() {
             return Math.floor(this.course.price);
+        },
+
+        discount() {
+            if(!this.coupon) {
+                return 0;
+            }
+
+            if(this.coupon.type === '%') {
+                return this.price / this.coupon.value;
+            }
+
+
+            return 0;
         }
     },
 
@@ -68,12 +85,32 @@ export default {
             this.form.coupon = coupon;
         },
 
-        submitCoupon() {
+        async submitCoupon() {       
+            if(this.loading) {
+                return;
+            }     
+
             if(!this.validate()) {
                 return;
             }
-            
-            console.log(this.form);
+
+            if(this.isTheSameValue()) {
+                return;
+            }
+
+            this.loading = true;
+            this.coupon = await this.$store.dispatch('ContentState/getCoupon', this.form.coupon); 
+            this.loading = false;
+
+            if(!this.coupon) {
+                return this.$refs.coupon.setErrorMessage('מצטערים, לא מצאנו את הקופון שחיפשת')
+            }
+
+            this.coupon.code = this.form.coupon;
+        },
+
+        isTheSameValue() {
+            return this.coupon && this.form.coupon === this.coupon.code
         },
 
         validate() {

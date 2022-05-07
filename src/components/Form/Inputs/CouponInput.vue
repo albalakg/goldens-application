@@ -4,9 +4,11 @@
             ref="input"
             :outlined="outlined"
             :dark="dark"
+            :loading="loading"
             :type="type"
             :placeholder="placeholder ? text : ''"
             :title="text"
+            :buttonText="buttonText"
             :icon="iconSrc"
             :rules="rules"
             :autocomplete="autocomplete"
@@ -36,6 +38,10 @@ export default {
 
         dark: {
             type: Boolean
+        },
+        
+        loading: {
+            type: Boolean,
         },
         
         icon: {
@@ -79,6 +85,10 @@ export default {
             ];
 
             return rules;
+        },
+
+        buttonText() {
+            return this.loading ? 'טוען...' : 'שלח'
         }
     },
 
@@ -93,6 +103,10 @@ export default {
         
         validate() {
             return this.$refs.input.validate();
+        },
+        
+        setErrorMessage(error) {
+            return this.$refs.input.setErrorMessage(error);
         },
     }
 }

@@ -131,6 +131,19 @@ const ContentState = {
             })
        },
 
+       getCoupon({}, code) {
+            return new Promise((resolve, reject) => {
+                axios.get('content/coupon?code=' + code)
+                    .then(res => {
+                        return resolve(res.data.data);
+                    })
+                    .catch(err => {
+                        warning(err);
+                        resolve(null);
+                    })
+            })
+       },
+
        setShowLastActiveCard({ commit }, status) {
            commit('SET_SHOW_LAST_ACTIVE_CARD', status);
        }

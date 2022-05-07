@@ -37,7 +37,7 @@
                         </v-flex>
                     </template>
                     <div class="account_wrapper">
-                        <template v-if="hasActiveCourse">
+                        <template v-if="isLogged">
                             <v-flex d-flex align-center>
                                 <router-link title="מועדפים" class="simple_link text-center favorite_link" to="/user/favorites">
                                     <heart center :dark="isDark" @submit="enterFavorites()"/>
@@ -125,6 +125,10 @@ export default {
 
         isDark() {
             return this.$store.getters['AppState/isMenuDark']
+        },
+
+        isLogged() {
+            return this.$store.getters['AuthState/isLogged'];
         }
     },
 

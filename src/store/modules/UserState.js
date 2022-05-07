@@ -295,8 +295,11 @@ const UserState = {
         
         async goToLastActiveCourse({ state }) {
             try {
+                if(!state.hasActiveCourse) {
+                    return router.push('/');
+                }
+
                 const lesson    = state.lessons.find(lesson => lesson.id == lastActiveLesson.id);
-                const courses   = state.courses;
                 let route       = lesson ? '/courses/' + lesson.course_id : '/'; 
 
                 if(!lesson && courses) {

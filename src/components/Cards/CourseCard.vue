@@ -18,7 +18,9 @@ export default {
       required: true
     },
 
-    dark: Boolean
+    dark: {
+      type: Boolean
+    },
   },
 
   methods: {

@@ -271,6 +271,23 @@ class ContentService {
       return '00:00';
     }
   }
+
+  getExpiredDate() {
+    const yearFromNow   = new Date(new Date().setFullYear(new Date().getFullYear() + 1));
+    let year            = String(yearFromNow.getFullYear()).substring(2, 4);
+    let month           = String(yearFromNow.getMonth());
+    let day             = String(yearFromNow.getDate());
+    
+    if(day.length === 1) {
+        day = `0${day}`;
+    }
+
+    if(month.length === 1) {
+        month = `0${month}`;
+    }
+
+    return `${day}.${month}.${year}`;
+  }
 }
 
 export default new ContentService();
