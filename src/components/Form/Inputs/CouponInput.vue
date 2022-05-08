@@ -5,6 +5,7 @@
             :outlined="outlined"
             :dark="dark"
             :loading="loading"
+            :readonly="readonly"
             :type="type"
             :placeholder="placeholder ? text : ''"
             :title="text"
@@ -41,6 +42,10 @@ export default {
         },
         
         loading: {
+            type: Boolean,
+        },
+        
+        readonly: {
             type: Boolean,
         },
         

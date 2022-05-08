@@ -1,5 +1,6 @@
 <template>
     <div class="user_header_wrapper auth_padding_top">
+        <div class="itemToScrollTo" ref="itemToScrollTo"></div>
         <colored-circle-decorator class="user_colored_circle" />
         <v-flex class="user_header_content" v-if="$vuetify.breakpoint.smAndDown">
             <div class="text-center">
@@ -10,7 +11,7 @@
                     </profile-card> -->
                 </div>
                 <div class="text--center">
-                    <h1>
+                    <h1 ref="userName">
                         <span class="main_text_color">{{ firstName }}</span> <span>{{ lastName }}</span>
                     </h1>
                     <v-flex xs4 mx-auto>
@@ -60,7 +61,7 @@
                 <v-flex xs8 mr-10>
                     <v-flex>
                         <v-flex d-flex justify-space-between align-center>
-                            <h1>
+                            <h1 ref="userName">
                                 <span class="main_text_color">{{ firstName }}</span> <span>{{ lastName }}</span>
                             </h1>
                             <v-flex md2>
@@ -158,6 +159,7 @@ export default {
     mounted() {
         setTimeout(() => {
             this.setCurrentTab();
+            this.$refs.itemToScrollTo.scrollIntoView()
         }, 0);
     },
 
@@ -245,6 +247,13 @@ export default {
                 display: none; // Safari and Chrome
             }
         }
+    }
+
+    .itemToScrollTo {
+        height: 1px;
+        width: 1px;
+        position: relative;
+        top: -100px;
     }
 
 </style>

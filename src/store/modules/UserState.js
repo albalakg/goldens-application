@@ -12,7 +12,7 @@ const UserState = {
         profile: [],
         lastActive: null,
         favorites: [],
-        orders: [],
+        orders: null,
         courseAreas: [],
         lessons: [],
     },
@@ -295,7 +295,9 @@ const UserState = {
         
         goToLastActiveCourse({ state }) {
             try {
-                if(!state.hasActiveCourse) {
+                const courses = state.courses;
+
+                if(!courses || !courses.length) {
                     return router.push('/');
                 }
 

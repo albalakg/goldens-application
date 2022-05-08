@@ -30,13 +30,14 @@ const OrderState = {
         },
 
         submitOrder({ commit }, data) {
-            return new Promise((resolve) => {
+            return new Promise((resolve, reject) => {
                 axios.post('orders', data)
                     .then(res => {
                         commit('SET_ORDER', res.data.data);
-                    }).finally(() => {
                         resolve()
-                    });
+                    }).catch(err => {   
+                        reject()
+                    })
             })
         },
 

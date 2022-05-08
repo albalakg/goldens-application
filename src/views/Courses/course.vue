@@ -213,7 +213,7 @@ export default {
       position: absolute;
       border-radius: 8px 0 0 8px;
       right: 0;
-      z-index: 10;
+      z-index: 15;
       width: 300px;
       transition: .7s right ease-out;
     }

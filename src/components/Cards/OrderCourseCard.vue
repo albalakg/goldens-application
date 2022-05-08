@@ -9,7 +9,7 @@
     <v-flex xs12 md4>
       <img class="course_image" :src="course.imageSrc" alt="course image" />
     </v-flex>
-    <v-flex xs12 md8 d-flex flex-column class="px-5">
+    <v-flex xs12 md8 d-flex flex-column class="px-md-5 pt-3 pt-md-0">
       <div>
         <strong>
           {{ course.name }}
@@ -18,8 +18,8 @@
         <small v-html="course.description"> </small>
       </div>
 
-      <v-flex d-flex align-end class="detailed_course_card_actions">
-        <v-flex md4 class="detailed_course_card_pricing">
+      <v-flex d-flex flex-wrap align-end class="detailed_course_card_actions mt-5 mt-md-0">
+        <v-flex xs6 md4 class="detailed_course_card_pricing">
           <strong>
             <small> סה"כ מחיר </small>
           </strong>
@@ -28,8 +28,8 @@
             {{ price }}
           </h2>
         </v-flex>
-        <div class="seperator"></div>
-        <v-flex md4 class="detailed_course_card_expiration mr-10 mr-md-0">
+        <div class="separator"></div>
+        <v-flex xs6 md4 class="detailed_course_card_expiration pr-10 pr-md-0">
           <strong>
             <small> תקף עד </small>
           </strong>
@@ -38,7 +38,7 @@
             {{ expiredAt }}
           </h2>
         </v-flex>
-        <v-flex md4>
+        <v-flex xs12 md4 class="mt-5 mt-md-0">
           <v-flex d-flex justify-space-between align-center>
             <v-flex d-flex>
               <img
@@ -154,7 +154,7 @@ export default {
   .detailed_course_card_actions {
     position: relative;
 
-    .seperator {
+    .separator {
       position: absolute;
       width: 2px;
       height: 35%;
@@ -177,5 +177,15 @@ export default {
   background-color: #ccc;
   height: 1px;
   margin: 15px 0;
+}
+
+
+@media only screen and (max-width: 600px) {
+.detailed_course_card_horizontal
+.detailed_course_card_actions
+.separator {
+    bottom: 65%;
+    left: 50%;
+  }
 }
 </style>

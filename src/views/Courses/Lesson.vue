@@ -19,7 +19,7 @@
             >
                 <template slot="content">
                     <v-flex d-flex align-center justify-center>
-                      <strong class="white--text ml-3">
+                      <strong class="white--text ml-3" v-if="$vuetify.breakpoint.mdAndUp">
                         {{ favoriteButtonText }}
                       </strong>
                       <heart 

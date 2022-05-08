@@ -2,17 +2,17 @@
 <template>
     <div v-if="firstName" class="text-right last_progress_card white_bg_color pa-5 pl-10 dark_shadow">
         <collapse class="collapse pointer" @submit="close()" />
-        <strong>
+        <strong @click="enterLesson()">
         היי {{ firstName }},
         המשך מאיפה שעצרת:
         </strong>
         <br>
-        <strong class="main_text_color">
+        <strong @click="enterLesson()" class="main_text_color">
         {{ lesson.name }}
         </strong>
         <br>
-        <video-card :src="lesson.video.videoSrc" @playClicked="enterLesson()" />
-        <p v-html="lessonContent">
+        <video-card v-if="$vuetify.breakpoint.mdAndUp" :src="lesson.video.videoSrc" @playClicked="enterLesson()" />
+        <p @click="enterLesson()" v-html="lessonContent">
         </p>
     </div>
 </template>

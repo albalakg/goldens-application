@@ -1,8 +1,18 @@
 <template>
     <div>
-        <h1>
-            User orders
-        </h1>
+        <div v-if="orders">
+            <div v-if="orders.length">
+                {{ orders }}
+            </div>
+            <div v-else>
+                לא נמצאו הזמנות
+            </div>
+        </div>
+        <div v-else>
+            <h1 class="text-center">
+                טוען...
+            </h1>
+        </div>
     </div>
 </template>
 
@@ -11,6 +21,16 @@ export default {
     data() {
         return {
 
+        }
+    },
+
+    created() {
+        this.$store.dispatch('UserState/getOrders');
+    },
+
+    computed: {
+        orders() {
+            return this.$store.getters['UserState/orders']
         }
     }
 }

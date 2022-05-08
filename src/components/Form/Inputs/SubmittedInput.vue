@@ -21,14 +21,14 @@
         :type="type"
         :placeholder="placeholder"
         :maxlength="maxlength"
-        :readonly="loading"
+        :readonly="loading || readonly"
         :class="{
             'loading_input': loading,
         }"
       />
 
       <div class="submited_input_button" :class="{
-            'loading_input': loading,
+            'loading_input': loading || readonly,
         }">
         <MainButton dark shadow :text="buttonText" @submit="submit()" />
       </div>
@@ -73,6 +73,10 @@ export default {
     },
 
     dark: {
+      type: Boolean,
+    },
+
+    readonly: {
       type: Boolean,
     },
 
