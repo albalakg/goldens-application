@@ -32,6 +32,11 @@ class ContentService {
       if(courses) {
         return courses.find(course => course.id == courseId);
       }
+         
+      const orders = store.state['UserState'].orders;
+      if(orders) {
+        return orders.find(order => order.content_id === courseId);
+      }
 
       return null;
     } catch(err) {

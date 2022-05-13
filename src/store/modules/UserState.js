@@ -20,10 +20,10 @@ const UserState = {
     getters: {
         // unchecked
         supportTickets: state   => state.supportTickets,
-        orders:         state   => state.orders,
-        profile:        state   => state.profile,
         
         // checked
+        profile:        state   => state.profile,
+        orders:         state   => state.orders,
         favorites:      state   => state.favorites,
         progress:       state   => state.progress,
         hasActiveCourse:state   => state.courses && state.courses.length,

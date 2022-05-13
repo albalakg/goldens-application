@@ -2,7 +2,7 @@
     <div>
         <div v-if="orders">
             <div v-if="orders.length">
-                {{ orders }}
+                <order-course-card class="user_order mb-5" :course="order" v-for="(order, index) in orders" :key="index" />
             </div>
             <div v-else>
                 לא נמצאו הזמנות
@@ -17,7 +17,9 @@
 </template>
 
 <script>
+import OrderCourseCard from '../../components/Cards/OrderCourseCard.vue';
 export default {
+  components: { OrderCourseCard },
     data() {
         return {
 
@@ -30,11 +32,25 @@ export default {
 
     computed: {
         orders() {
-            return this.$store.getters['UserState/orders']
+            let orders  = this.$store.getters['UserState/orders']
+            if(!orders || !orders.length) {
+                return [];
+            }
+            return orders.map((order) => {
+                return {
+                    ...order.course,
+                    price: order.price
+                }
+            })
         }
     }
 }
 </script>
 
 <style scoped>
+
+    .user_order {
+        height: 250px;
+    }
+
 </style>
