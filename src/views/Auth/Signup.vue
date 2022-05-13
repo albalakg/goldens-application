@@ -22,7 +22,7 @@
                             >
                             </email-input>
                             
-                            <Divider :space="8" />
+                            <div class="spacer"></div>
 
                             <password-input
                                 ref="password"
@@ -34,7 +34,7 @@
                             >
                             </password-input>
                             
-                            <Divider :space="8" />
+                            <div class="spacer"></div>
 
                             <first-name-input
                                 ref="firstName"
@@ -45,7 +45,7 @@
                             >
                             </first-name-input>
 
-                            <Divider :space="8" />
+                            <div class="spacer"></div>
 
                             <last-name-input
                                 ref="lastName"
@@ -56,7 +56,7 @@
                             >
                             </last-name-input>
                             
-                            <Divider :space="8" />
+                            <div class="spacer"></div>
 
                             <v-flex d-md-flex align-center justify-space-between class="text-center text-md-right mt-5">
                                 <v-flex md5 mt-5 mt-md-0 v-if="$vuetify.breakpoint.mdAndUp">
@@ -211,11 +211,21 @@ export default {
         height: 15px;
         width: 15px;
     }
+
+    .spacer {
+        height: 20px;
+        width: 100%;
+    }
     
     @media only screen and (max-width: 600px) {
         .star_image {
             display: none;
         }
+
+        .spacer {
+            height: 40px;
+        }
     }
+
 
 </style>

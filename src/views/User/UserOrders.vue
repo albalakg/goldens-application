@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="orders">
-            <div v-if="orders.length">
+            <div v-if="orders.length" class="px-3 px-md-0">
                 <order-course-card class="user_order mb-5" :course="order" v-for="(order, index) in orders" :key="index" />
             </div>
             <div v-else>
@@ -49,8 +49,10 @@ export default {
 
 <style scoped>
 
-    .user_order {
-        height: 250px;
+    @media only screen and (min-width: 601px) {
+        .user_order {
+            height: 250px;
+        }
     }
 
 </style>

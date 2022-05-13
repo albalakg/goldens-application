@@ -14,7 +14,7 @@
                     <h1 ref="userName">
                         <span class="main_text_color">{{ firstName }}</span> <span>{{ lastName }}</span>
                     </h1>
-                    <v-flex xs4 mx-auto>
+                    <v-flex xs4 mx-auto v-if="$vuetify.breakpoint.mdAndUp">
                         <router-link to="/signout">
                             <main-button
                                 text="התנתק"
@@ -227,11 +227,11 @@ export default {
             z-index: 2;
         }
 
-        .user_profile_image {
-            height: 230px;
-            width: 230px;
-            margin-top: 50px;
-        }
+        // .user_profile_image {
+        //     height: 230px;
+        //     width: 230px;
+        //     margin-top: 50px;
+        // }
 
         h1 {
             font-size: 2em;

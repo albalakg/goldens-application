@@ -43,7 +43,7 @@
                                         </span>
                                     </router-link>
                                 </v-flex>
-                                <v-flex md5>
+                                <v-flex md5 class="signin_button">
                                     <main-button
                                         :loading="loading"
                                         :styleConfig="{
@@ -78,7 +78,8 @@
                             <Divider :space="8" />
 
                         </v-form>
-                        <router-link to="/signup">
+
+                        <router-link class="mt-5" to="/signup">
                             <main-button
                                 subColor
                                 shadow
@@ -90,7 +91,6 @@
                             >
                             </main-button>
                         </router-link>
-
                 
                         <v-flex v-if="$vuetify.breakpoint.smAndDown" class="mt-5 text-center">
                             <router-link to="/forgot-password">
@@ -212,6 +212,10 @@ export default {
     }
     
     @media only screen and (max-width: 600px) {
+        .signin_button {
+            margin-top: 50px;
+        }
+
         .star_image {
             display: none;
         }
