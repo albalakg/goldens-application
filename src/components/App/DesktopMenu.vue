@@ -90,24 +90,6 @@ export default {
 
     data() {
         return {
-            links: [
-                // {
-                //     text: 'קורסים',
-                //     url: 'courses'
-                // },
-                {
-                    text: 'מי אנחנו',
-                    url: 'about'
-                },
-                {
-                    text: 'יצירת קשר',
-                    url: 'contact-us'
-                },
-                {
-                    text: 'תמיכה',
-                    url: 'support'
-                }
-            ],
             userDarkImage:  require('../../../public/assets/images/general/userDark.svg'),
             userLightImage: require('../../../public/assets/images/general/userLight.svg'),
             heartImage:     require('../../../public/assets/images/general/heart.svg'),
@@ -129,6 +111,34 @@ export default {
 
         isLogged() {
             return this.$store.getters['AuthState/isLogged'];
+        },
+        
+        links() {
+            const courses   = this.$store.getters['ContentState/courses'];
+            const links     = [
+                {
+                    text: 'מי אנחנו',
+                    url: 'about'
+                },
+                {
+                    text: 'יצירת קשר',
+                    url: 'contact-us'
+                },
+                {
+                    text: 'תמיכה',
+                    url: 'support'
+                }
+            ]
+
+            try {
+                links.unshift({
+                    text: 'הקורס שלנו',
+                    url: 'courses/' + courses[0].id
+                })
+            } catch(err) {
+            }
+            
+            return links;
         }
     },
 

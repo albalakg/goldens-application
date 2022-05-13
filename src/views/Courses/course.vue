@@ -128,7 +128,7 @@ export default {
     },
 
     showCourseTabs() {
-      return !this.$vuetify.breakpoint.smAndDown && this.hasActiveCourse
+      return this.$vuetify.breakpoint.smAndDown && this.hasActiveCourse
     }
   },
 

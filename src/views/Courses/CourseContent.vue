@@ -27,10 +27,12 @@ export default {
 
 <style scoped>
 
-  .course_content_wrapper {
-    position: relative;
-    top: -100px;
-    z-index: 3;
+  @media only screen and (min-width: 600px) {
+    .course_content_wrapper {
+      position: relative;
+      top: -100px;
+      z-index: 3;
+    }
   }
 
 </style>

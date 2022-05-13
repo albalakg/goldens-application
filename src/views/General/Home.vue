@@ -55,7 +55,7 @@
         </section-header>
 
         <div class="lessons_wrapper_carousel">
-            <v-flex md7 xl6 mx-auto class="lessons_wrapper px-5 py-5 mr-auto">
+            <v-flex xl8 md7 mx-auto class="lessons_wrapper px-5 py-5 mr-auto">
                 <lesson-card v-for="(lesson, index) in lessons" :lesson="lesson" :key="index" />
             </v-flex>
         </div>
@@ -268,7 +268,7 @@ export default {
                 }
 
                 & > div {
-                    min-width: 200px;
+                    min-width: 220px;
                 }
             }
 
