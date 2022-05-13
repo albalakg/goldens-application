@@ -1,5 +1,5 @@
 <template>
-    <div class="course_benefits_wrapper w100 pa-10 second_dark_bg_color rounded">
+    <div class="course_benefits_wrapper w100 pa-10 second_dark_bg_color" :class="{'rounded': $vuetify.breakpoint.mdAndUp}">
         <div class="course_benefits_content h100 w100 pb-5">
             <circle-decorator class="circle_decorator"/>
             <h2 class="white_text_color">

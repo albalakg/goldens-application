@@ -3,7 +3,7 @@
         <v-flex md10 xl9 mx-auto d-flex justify-center :class="{
             'flex-wrap': $vuetify.breakpoint.smAndDown
         }">
-            <v-flex md3 d-flex justify-end class="guest_detailed_card" v-if="$vuetify.breakpoint.smAndDown">
+            <v-flex md3 d-flex justify-end class="guest_detailed_card mx-4" v-if="$vuetify.breakpoint.smAndDown">
                 <detailed-course-card
                     :course="course"
                 />
@@ -19,6 +19,7 @@
                 <course-area-card
                     guest
                     class="mb-3"
+                    :rounded="false"
                     :key="index"
                     :courseArea="courseArea"
                 />
@@ -75,7 +76,7 @@
         <br>
         <br>
 
-        <v-flex md9 xl8 mx-auto>
+        <v-flex md9 xl8 mx-auto class="px-4 pb-10 pb-md-0">
             <h2 class="text-center">
                 רכישת <span class="main_text_color">הקורס</span>
             </h2>
