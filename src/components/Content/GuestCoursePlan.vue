@@ -26,12 +26,7 @@
                     </div>
                 </v-flex>
                 <v-flex md6 class="dark_bg_color px-5 pb-5 pt-1 w100">
-                    <video-card
-                        :key="activeCourseAreaIndex" 
-                        ref="video"
-                        :src="activeCourseArea.trailerSrc"
-                        @playClicked="playVideo()"
-                    />
+                    <img :src="activeCourseArea.imageSrc" />
 
                     <p class="sub_text_color mt-2 mb-0">
                         {{ activeCourseArea.name }}
@@ -71,10 +66,9 @@
 </template>
 
 <script>
-import VideoCard from '../Cards/VideoCard.vue';
 import SectionHeader from '../Texts/SectionHeader.vue';
 export default {
-  components: { SectionHeader, VideoCard },
+  components: { SectionHeader },
 
   props: {
     course: {
@@ -130,6 +124,14 @@ export default {
     .course_plan_wrapper {
         position: relative;
         z-index: 2;
+
+        img {
+            width: 100%;
+            max-height: 200px;
+            margin-top: 12px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
 
         .course_plan_course_area, .course_plan_lesson {
             transition: .2s transform ease-out, .2s background-color ease-out;

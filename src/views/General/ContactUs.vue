@@ -28,7 +28,7 @@
             <span class="dark_text_color">השאירו לנו </span>
             <span class="main_text_color">הודעה</span>
           </h2>          
-          <p>שלחו הודעה ונענה לכם בהקדם</p>
+          <p>תכתבו מה שבא לכם ואנחנו נענה</p>
 
           <div class="spacer"></div>
 

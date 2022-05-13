@@ -56,7 +56,7 @@
 
       <div class="about_believe_content">
         <section-header
-          :title="'האני מאמין שלי'"
+          :title="'האני מאמין'"
           :backgroundTitle="'מאמין'"
           :subtitle="'סתם בלה בלה בלה בלה שבא לי לכתוב כי אני רוצה לכתוב סתם דברים בלי סיבה בלה בלה בלה'"
           dark
