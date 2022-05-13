@@ -4,7 +4,7 @@
       <template v-if="hasActiveCourse">
         <br>
         <br>
-        <user-course-progress :course="course" />
+        <user-course-progress :course="course" class="mx-4" />
       </template>
 
       
@@ -14,6 +14,7 @@
         <course-area-card 
           class="mb-3"
           :key="index"
+          :rounded="false"
           :courseArea="courseArea"
           @submit="enterCourseArea"
         />

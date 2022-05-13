@@ -34,7 +34,7 @@
     <br>
 
     <transition name="fade" mode="out-in">
-      <router-view :course="course" class="course_page_content px-4">
+      <router-view :course="course" class="course_page_content px-md-4">
       </router-view>
     </transition>
 

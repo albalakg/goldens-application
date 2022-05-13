@@ -1,5 +1,5 @@
 <template>
-    <v-flex class="course_area_card_wrapper" :class="{'pointer': !guest}" @click="submit()">
+    <v-flex class="course_area_card_wrapper" :class="{'pointer': !guest, 'rounded_course_area_card': rounded}" @click="submit()">
         <img loading="lazy" :src="courseArea.imageSrc" alt="course area image">
         <div class="course_area_darkner"></div>
         <v-flex class="course_area_detail h100" d-flex flex-column justify-space-between>
@@ -49,6 +49,11 @@ export default {
 
         guest: {
             type: Boolean,
+        },
+
+        rounded: {
+            type: Boolean,
+            default: true
         }
     },
 
@@ -108,12 +113,24 @@ export default {
 
 <style scoped lang="scss">
 
+    .rounded_course_area_card {
+        border-radius: 6px;
+
+        img {
+            border-radius: 6px;
+        }
+
+        .course_area_darkner {
+            border-radius: 6px;
+        }
+    }
+
     .course_area_card_wrapper {
         width: 100%;
         height: 180px;
-        border-radius: 6px;
         position: relative;
         transition: .2s box-shadow linear;
+
 
         &:hover {
             box-shadow: 0 0 10px 1px #0005;
@@ -121,7 +138,6 @@ export default {
 
         img {
             object-fit: cover;
-            border-radius: 6px;
             position: absolute;
             left: 0;
             top: 0;
@@ -131,7 +147,6 @@ export default {
         }
 
         .course_area_darkner {
-            border-radius: 6px;
             position: absolute;
             left: 0;
             top: 0;

@@ -20,12 +20,6 @@
 import OrderCourseCard from '../../components/Cards/OrderCourseCard.vue';
 export default {
   components: { OrderCourseCard },
-    data() {
-        return {
-
-        }
-    },
-
     created() {
         this.$store.dispatch('UserState/getOrders');
     },

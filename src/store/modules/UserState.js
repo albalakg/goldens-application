@@ -6,15 +6,15 @@ const UserState = {
     namespaced: true,
 
     state: {
-        progress: null,
-        courses: null,
+        progress:       null,
+        courses:        null,
+        lastActive:     null,
+        orders:         null,
+        profile:        {},
         supportTickets: [],
-        profile: [],
-        lastActive: null,
-        favorites: [],
-        orders: null,
-        courseAreas: [],
-        lessons: [],
+        favorites:      [],
+        courseAreas:    [],
+        lessons:        [],
     },
 
     getters: {
@@ -120,6 +120,13 @@ const UserState = {
             await dispatch('getProgress');
             await dispatch('getProfile');
             dispatch('getFavorites');
+        },
+
+        clearUserState({ commit }) {
+            commit('SET_USER_PROFILE', {});
+            commit('SET_USER_PROGRESS', null);
+            commit('SET_USER_LAST_ACTIVE', null);
+            commit('SET_USER_COURSES', null);
         },
 
         updateProfile({ commit, dispatch }, data) {
