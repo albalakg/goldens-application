@@ -36,7 +36,7 @@ export default {
 
     props: {
         lesson: {
-            type: [Object, null],
+            type: Object,
             required: true
         }
     },

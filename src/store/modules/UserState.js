@@ -22,21 +22,21 @@ const UserState = {
         supportTickets: state   => state.supportTickets,
         
         // checked
-        profile:        state   => state.profile,
-        orders:         state   => state.orders,
-        favorites:      state   => state.favorites,
-        progress:       state   => state.progress,
-        hasActiveCourse:state   => state.courses && state.courses.length,
-        courses:        state   => state.courses,
-        courseAreas:    state   => state.courseAreas,
-        lessons:        state   => state.lessons,
-        firstName:      state   => state.profile.first_name,
-        lastName:       state   => state.profile.last_name,
-        fullName:       state   => state.profile.first_name + ' ' + state.profile.last_name,
-        phone:          state   => state.profile.phone,
-        gender:          state   => state.profile.gender,
-        email:          state   => state.profile.email,
-        lastActive:     state   => state.lastActive,
+        profile:            state   => state.profile,
+        orders:             state   => state.orders,
+        favorites:          state   => state.favorites,
+        progress:           state   => state.progress,
+        hasActiveCourse:    state   => state.courses && state.courses.length,
+        courses:            state   => state.courses,
+        courseAreas:        state   => state.courseAreas,
+        lessons:            state   => state.lessons,
+        firstName:          state   => state.profile.first_name,
+        lastName:           state   => state.profile.last_name,
+        fullName:           state   => state.profile.first_name + ' ' + state.profile.last_name,
+        phone:              state   => state.profile.phone,
+        gender:             state   => state.profile.gender,
+        email:              state   => state.profile.email,
+        lastActive:         state   => state.lastActive,
     },
 
     mutations: {
@@ -95,8 +95,13 @@ const UserState = {
             state.courseAreas = courseAreas;
         },
 
-        SET_USER_LESSONS(state, lessons) {
-            state.lessons = lessons;
+        SET_USER_LESSONS(state, courses) {
+            courses.forEach(course => {
+                course.active_areas_with_active_lessons.forEach(courseArea => {
+                    state.lessons = state.lessons.concat(courseArea.active_lessons);
+                })
+            })
+            console.log('state.lessons', state.lessons);
         },
 
         ADD_CONTENT_IN_FAVORITES(state, newLesson) {
@@ -128,6 +133,7 @@ const UserState = {
             commit('SET_USER_PROGRESS', null);
             commit('SET_USER_LAST_ACTIVE', null);
             commit('SET_USER_COURSES', null);
+            commit('SET_USER_LESSONS', []);
         },
 
         updateProfile({ commit, dispatch }, data) {
@@ -260,6 +266,7 @@ const UserState = {
                 axios.get('profile/courses')
                     .then(res => {
                         commit('SET_USER_COURSES', res.data.data);
+                        commit('SET_USER_LESSONS', res.data.data);
                         if(!res.data.data.length) {
                             dispatch('ContentState/getActiveCourses', {}, {root:true});
                         }

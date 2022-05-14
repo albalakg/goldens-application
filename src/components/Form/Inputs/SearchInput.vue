@@ -53,7 +53,7 @@ export default {
 
     data() {
         return {
-            text:       'חיפוש',
+            text:       'חפש שיעור',
             iconSrc:    'mdi-magnify',
             rules:      []
         }

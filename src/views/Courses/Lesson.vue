@@ -2,7 +2,7 @@
   <div class="auth_padding_top" :key="lesson.id">
     <v-flex md7 xl6 mx-auto v-if="lesson" class="mt-5 mb-10">
       
-      <v-flex d-flex align-center justify-space-between>
+      <v-flex d-flex align-center justify-space-between class="px-2 px-md-0">
         <h1 class="mb-0">
           {{ lesson.name }}
         </h1>
@@ -33,7 +33,7 @@
         </div>
       </v-flex>
 
-      <div class="mt-2">
+      <div class="mt-2 px-2 px-md-0">
         <v-flex d-flex class="lesson_trainer_details">
           <profile-card class="lesson_trainer_card" />
           <div class="mr-3">
@@ -66,8 +66,10 @@
 
       <br>
 
-      <small v-html="lesson.content">
-      </small>
+      <div class="px-2 px-md-0s">
+        <small v-html="lesson.content">
+        </small>
+      </div>
 
       <div class="lesson_video_wrapper">
         <video-card 
