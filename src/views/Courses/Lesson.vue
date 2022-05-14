@@ -229,6 +229,10 @@ export default {
     }
   },
 
+  beforeDestroy() {
+    clearInterval(this.updateLessonProgressInterval);
+  }
+
 }
 </script>
 

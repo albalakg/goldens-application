@@ -114,7 +114,6 @@ export default {
   .detailed_lesson_card_wrapper {
     height: 100%;
     width: 100%;
-    border-radius: 8px;
     padding: 10px;
     position: relative;
 
@@ -161,5 +160,11 @@ export default {
         }
     }
 
+  }
+
+  @media only screen and (min-width: 601px) {
+    .detailed_lesson_card_wrapper {
+        border-radius: 8px;
+    }
   }
 </style>

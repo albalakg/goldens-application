@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="course_area_wrapper">
     <template v-if="$vuetify.breakpoint.smAndDown">
       <template v-for="(lesson, index) in lessons">
         <div class="lesson_card_wrapper mb-5" :key="index">
@@ -26,14 +26,6 @@
           </template>
         </v-flex>
         <v-flex md4>
-          <video :src="course.trailerSrc" ref="trailer" controls></video>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          
           <template v-for="(courseArea, index) in courseAreas">
             <course-area-card 
               class="mb-3"
@@ -121,4 +113,13 @@ export default {
     max-height: 100vh;
     overflow-y: auto;
   }
+
+  @media only screen and (min-width: 600px) {
+    .course_area_wrapper {
+      position: relative;
+      top: -100px;
+      z-index: 3;
+    }
+  }
+
 </style>
