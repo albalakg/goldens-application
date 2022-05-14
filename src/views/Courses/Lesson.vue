@@ -1,5 +1,5 @@
 <template>
-  <div class="auth_padding_top">
+  <div class="auth_padding_top" :key="lesson.id">
     <v-flex md7 xl6 mx-auto v-if="lesson" class="mt-5 mb-10">
       
       <v-flex d-flex align-center justify-space-between>
@@ -69,25 +69,24 @@
       <p v-html="lesson.content">
       </p>
 
-      <video-card 
-        ref="video"
-        :src="lesson.video.videoSrc"
-        @playClicked="playVideo()"
-        @onVideoPlay="onVideoPlay"
-        @onVideoPaused="onVideoPaused"
-      />
-      <!-- <video 
-        controlsList="nodownload"
-        disablePictureInPicture
-        id="lessonVideo" 
-        class="w100" 
-        controls
-        @playing="onVideoPlay"
-        @pause="onVideoPaused"
-      >
-        <source :src="lesson.video.videoSrc" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video> -->
+      <div class="lesson_video_wrapper">
+        <video-card 
+          ref="video"
+          :src="lesson.video.videoSrc"
+          @playClicked="playVideo()"
+          @onVideoPlay="onVideoPlay"
+          @onVideoPaused="onVideoPaused"
+          @onVideoEnd="onVideoEnd"
+        />
+
+        <lesson-video-end-screen 
+          v-if="showEndLessonScreen && nextLesson"
+          :lesson="nextLesson" 
+          class="video_end_screen" 
+          @nextLesson="playNextLesson"
+          @closeEndScreen="closeEndScreen"
+        />
+      </div>
 
     </v-flex>
   </div>
@@ -97,13 +96,14 @@
 import MainButton from '../../components/Buttons/MainButton.vue';
 import ProfileCard from '../../components/Cards/ProfileCard.vue';
 import VideoCard from '../../components/Cards/VideoCard.vue';
+import LessonVideoEndScreen from '../../components/Content/LessonVideoEndScreen.vue';
 import Heart from '../../components/General/Heart.vue';
 import LessonCompleted from '../../components/General/LessonCompleted.vue';
 
 const SPACE_BETWEEN_VIDEO_PROGRESS_UPDATE = 3000;
 
 export default {
-  components: { MainButton, Heart, ProfileCard, LessonCompleted, VideoCard },
+  components: { MainButton, Heart, ProfileCard, LessonCompleted, VideoCard, LessonVideoEndScreen },
 
   data() {
     return {
@@ -113,7 +113,8 @@ export default {
         start_time:  0,
         end_time:    0,
         lesson_id: this.$route.params.lesson_id,
-      }
+      },
+      showEndLessonScreen: false
     }
   },
 
@@ -165,6 +166,11 @@ export default {
       } catch (err) {
         return 0;
       }
+    },
+
+    nextLesson() {
+      const currentLessonIndex = this.lessons.findIndex(lesson => lesson.id === this.lesson.id);
+      return this.lessons[currentLessonIndex + 1]; 
     }
   },
 
@@ -210,6 +216,10 @@ export default {
       this.sendRequest();
     },
 
+    onVideoEnd() {
+      this.showEndLessonScreen = true;
+    },
+
     setVideoStartTime() {
       this.$refs.video.setStartTime(this.startTime)
     },
@@ -226,6 +236,18 @@ export default {
 
     playVideo() {
       this.$refs.video.playVideo();
+    },
+
+    playNextLesson(lesson) {
+      if(lesson.id !== this.lesson.id) {
+        this.$router.push(`/courses/${lesson.course_id}/lessons/${lesson.id}`);
+      }
+
+      this.closeEndScreen()
+    },
+
+    closeEndScreen() {
+      this.showEndLessonScreen = false;
     }
   },
 
@@ -254,10 +276,27 @@ export default {
     overflow-y: auto;
     border-radius: 8px;
     box-shadow: 0 0 10px #0003;
+    z-index: 3;
+  }
+
+  .lesson_video_wrapper {
+    position: relative;
+  }
+
+  .video_end_screen {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    width: 100%;
     z-index: 2;
+    background-color: #111d;
+    border-radius: 12px;
   }
 
   video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
     border-radius: 15px;
   }
 

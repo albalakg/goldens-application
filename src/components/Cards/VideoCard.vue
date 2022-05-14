@@ -4,9 +4,10 @@
         <play v-if="!playing" class="play_button"/>
         <video 
             ref="video"
-            class="mt-3 w100"
+            class="w100"
             @playing="onVideoPlay"
             @pause="onVideoPaused"
+            @ended="onVideoEnd"
             :controls="controls || playing"
             controlsList="nodownload"
             :disablePictureInPicture="disablePictureInPicture"
@@ -62,6 +63,10 @@ export default {
         onVideoPaused(video) {
             this.playing = false;
             this.$emit('onVideoPaused', video)
+        },
+
+        onVideoEnd(video) {
+            this.$emit('onVideoEnd', video)
         },
 
         playClicked() {
