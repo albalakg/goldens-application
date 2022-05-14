@@ -64,6 +64,7 @@ const UserState = {
                 const courseIndex   = state.progress.findIndex(course => course.id === data.user_course_id);
                 const course        = state.progress[courseIndex];
                 const lessonIndex   = course.lessons_progress.findIndex(lesson => lesson.course_lesson_id === data.course_lesson_id);
+                course.progress     = Math.floor(data.course_progress);
 
                 if(lessonIndex !== -1) {
                     state.progress[courseIndex].lessons_progress[lessonIndex] = data;
