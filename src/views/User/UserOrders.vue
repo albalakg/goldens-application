@@ -4,7 +4,7 @@
             <div v-if="orders.length" class="px-3 px-md-0">
                 <order-course-card class="user_order mb-5" :course="order" v-for="(order, index) in orders" :key="index" />
             </div>
-            <div v-else>
+            <div v-else class="text-center">
                 לא נמצאו הזמנות
             </div>
         </div>
@@ -28,8 +28,9 @@ export default {
         orders() {
             let orders  = this.$store.getters['UserState/orders']
             if(!orders || !orders.length) {
-                return [];
+                return null;
             }
+
             return orders.map((order) => {
                 return {
                     ...order.course,

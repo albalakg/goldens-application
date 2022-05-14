@@ -36,7 +36,7 @@
         >
 
         <div class="base_input_sub_icon mr-2 pointer" v-if="closeable && value" @click="close()">
-            <v-icon>
+            <v-icon class="close_icon">
                 mdi-close
             </v-icon>
         </div>
@@ -233,6 +233,11 @@ export default {
 
             input {
                 font-size: .8em;
+            }
+
+            .close_icon {
+                position: relative;
+                top: -3px;
             }
         }
     

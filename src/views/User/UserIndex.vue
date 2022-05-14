@@ -1,5 +1,5 @@
 <template>
-    <div class="user_header_wrapper auth_padding_top">
+    <div class="user_header_wrapper app_padding_top mt-10 mt-md-0">
         <div class="itemToScrollTo" ref="itemToScrollTo"></div>
         <colored-circle-decorator class="user_colored_circle" />
         <v-flex class="user_header_content" v-if="$vuetify.breakpoint.smAndDown">
@@ -208,7 +208,7 @@ export default {
             height: 50vw;
             width: 50vw;
             transform: scale(1.5);
-            position: absolute;
+            position: fixed;
             top: -40%;
             right: -40%;
         }

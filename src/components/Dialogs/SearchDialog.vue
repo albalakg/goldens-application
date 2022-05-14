@@ -19,17 +19,16 @@
         </search-input>
 
         <div class="lessons_found_wrapper" v-if="search">
-          <small>נמצאו {{ lessonsFound.length }} שיעורים</small>
-          <br>
-          <div class="lesson_found_box" v-for="(lesson, index) in lessonsFound" :key="index" @click="close()">
-            <router-link class="simple_link dark_text_color" :to="`/courses/${lesson.course_id}/lessons/${lesson.id}`">
-              <strong>
-                {{lesson.name}}
-              </strong>
-            </router-link>
+            <small>נמצאו {{ lessonsFound.length }} שיעורים</small>
+            <br>
+            <div class="lesson_found_box" v-for="(lesson, index) in lessonsFound" :key="index" @click="close()">
+              <router-link class="simple_link dark_text_color" :to="`/courses/${lesson.course_id}/lessons/${lesson.id}`">
+                <strong>
+                  {{lesson.name}}
+                </strong>
+              </router-link>
+            </div>
           </div>
-        </div>
-        </div>
       </div>
     </template>
   </base-dialog>

@@ -18,7 +18,7 @@
             <br>
             <br>
 
-            <v-flex md6 mx-auto>
+            <v-flex md6 mx-auto v-if="$vuetify.breakpoint.mdAndUp">
                 <pagination 
                     :totalPages="totalPages"
                     :currentPage="page"
@@ -60,6 +60,11 @@ export default {
         },
 
         viewLessons() {
+            console.log(this.$vuetify.breakpoint.smAndDown);
+            if(this.$vuetify.breakpoint.smAndDown) {
+                return this.lessons;
+            }
+
             const startIndex    = (this.page - 1) * this.totalLessonsPerPage;
             const endIndex      = startIndex + this.totalLessonsPerPage;
             return this.lessons.slice(startIndex, endIndex)
