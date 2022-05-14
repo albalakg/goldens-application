@@ -5,6 +5,7 @@
             :outlined="outlined"
             :dark="dark"
             :slim="slim"
+            :type="type"
             :rules="rules"
             :optional="optional"
             :readonly="readonly"
@@ -67,6 +68,7 @@ export default {
     data() {
         return {
             text:       'טלפון',
+            type:       'tel',
             iconSrc:    'mdi-phone',
             rules: [
                 {

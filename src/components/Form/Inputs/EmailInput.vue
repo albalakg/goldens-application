@@ -57,6 +57,7 @@ export default {
     data() {
         return {
             text:       'אימייל',
+            type:       'email',
             iconSrc:    'mdi-email',
             rules:      [
                 {
