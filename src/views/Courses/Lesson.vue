@@ -66,11 +66,12 @@
 
       <br>
 
-      <p v-html="lesson.content">
-      </p>
+      <small v-html="lesson.content">
+      </small>
 
       <div class="lesson_video_wrapper">
         <video-card 
+          :rounded="$vuetify.breakpoint.mdAndUp"
           ref="video"
           :src="lesson.video.videoSrc"
           @playClicked="playVideo()"
@@ -195,6 +196,7 @@ export default {
       }
 
       this.toggleList();
+      this.showEndLessonScreen = false;
     },
 
     onVideoPlay(video) {

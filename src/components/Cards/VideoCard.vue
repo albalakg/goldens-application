@@ -1,8 +1,9 @@
 
 <template>
-    <div class="video_wrapper pointer" @click="submit()">
+    <div class="video_wrapper pointer"@click="submit()">
         <play v-if="!playing" class="play_button"/>
         <video 
+            :class="{'video_wrapper_rounded': rounded}" 
             ref="video"
             class="w100"
             @playing="onVideoPlay"
@@ -40,6 +41,11 @@ export default {
             type: Boolean,
             default: true
         },
+
+        rounded: {
+            type: Boolean,
+            default: true
+        }
     },
 
     data() {
@@ -94,7 +100,7 @@ export default {
         position: relative;
     }
 
-    video {
+    .video_wrapper_rounded {
         border-radius: 8px;
     }
 
