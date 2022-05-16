@@ -24,7 +24,12 @@ export default {
         UserProfileForm,
         UserUpdateEmailForm,
         UserUpdatePasswordForm,
-    }
+    },
+    
+
+    created() {
+
+    },
 }
 </script>
 

@@ -44,7 +44,7 @@ export default {
   }
 
   .divider {
-    background-color: #E6B260;
+    background-color: #d5b26e;
     width: 10%;
     margin: auto;
   }

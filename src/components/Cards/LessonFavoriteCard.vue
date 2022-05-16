@@ -107,7 +107,7 @@ export default {
       position: absolute;
       right: -3px;
       top: 30px;
-      z-index: 10;
+      z-index: 9;
     }
 
     .lesson_card_darkner {

@@ -3,7 +3,7 @@
         <v-progress-circular
             :size="93"
             :value="progress"
-            color="#E6B260"
+            color="#d5b26e"
             :rotate="-90"
             width="3"
         >

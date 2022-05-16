@@ -137,7 +137,7 @@ h1 {
   position: relative;
   margin: auto;
   z-index: 3;
-  background-color: #e6b260;
+  background-color: #d5b26e;
 }
 
 @media only screen and (max-width: 600px) {

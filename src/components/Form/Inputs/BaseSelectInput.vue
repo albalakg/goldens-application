@@ -350,7 +350,7 @@ export default {
             }
 
             .select_input_item:hover {
-                background-color: #16588F1a;
+                background-color: #0e35561a;
             }
         }
 

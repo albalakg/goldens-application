@@ -20,7 +20,7 @@ export default {
 <style scoped lang="scss">
 
   .dark_heart path{
-    stroke: #16588F;
+    stroke: #0e3556;
   }
 
   .filled_heart {

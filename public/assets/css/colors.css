@@ -1,9 +1,9 @@
 .main_bg_color {
-  background-color: #16588F;
+  background-color: #0e3556;
 }
 
 .main_bright_bg_color {
-  background-color: #16588F55 !important;
+  background-color: #0e355655 !important;
 }
 
 .main_dark_bg_color {
@@ -15,7 +15,7 @@
 }
 
 .sub_bg_color {
-  background-color: #E6B260;
+  background-color: #d5b26e;
 }
 
 .dark_bg_color {
@@ -33,7 +33,7 @@
 
 
 .main_text_color {
-  color: #16588F !important;
+  color: #0e3556 !important;
 }
 
 .main_dark_text_color {
@@ -41,7 +41,7 @@
 }
 
 .sub_text_color {
-  color: #E6B260 !important;
+  color: #d5b26e !important;
 }
 
 .dark_text_color {
@@ -59,11 +59,11 @@
 
 
 .main_shadow {
-  box-shadow: 0 0 15px 4px #16588F88;
+  box-shadow: 0 0 15px 4px #0e355688;
 }
 
 .sub_shadow {
-  box-shadow: 0 0 15px 4px #E6B26088;
+  box-shadow: 0 0 15px 4px #d5b26e88;
 }
 
 .dark_shadow {
@@ -72,11 +72,11 @@
 
 
 .sub_border_right {
-  border-right: 2px solid #E6B260;
+  border-right: 2px solid #d5b26e;
 }
 
 .main_border_right {
-  border-right: 2px solid #16588F;
+  border-right: 2px solid #0e3556;
 }
 
 .white_border_right {

@@ -10,8 +10,8 @@ const UserState = {
         courses:        null,
         lastActive:     null,
         orders:         null,
+        supportTickets: null,
         profile:        {},
-        supportTickets: [],
         favorites:      [],
         courseAreas:    [],
         lessons:        [],
@@ -195,7 +195,11 @@ const UserState = {
                 })
         },
         
-        getSupportTickets({ commit, dispatch }) {
+        getSupportTickets({ state, commit, dispatch }) {
+            if(state.supportTickets) {
+                return;
+            }
+
             axios.get('profile/support-tickets')
                 .then(res => {
                     commit('SET_USER_SUPPORT_TICKETS', res.data.data);
@@ -208,7 +212,11 @@ const UserState = {
                 })
         },
         
-        getOrders({ commit, dispatch }) {
+        getOrders({ state, commit, dispatch }) {
+            if(state.orders) {
+                return;
+            }
+            
             axios.get('profile/orders')
                 .then(res => {
                     commit('SET_USER_ORDERS', res.data.data);

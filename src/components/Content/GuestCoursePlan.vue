@@ -144,7 +144,7 @@ export default {
 
         .course_plan_lesson:hover {
             transform: scale(1.05);
-            background-color: #E6B260;
+            background-color: #d5b26e;
             font-weight: bold;
         }
     }

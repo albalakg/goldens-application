@@ -22,13 +22,15 @@
 
         <div class="spacer"></div>
 
-        <full-name-input title outlined icon @onChange="setFullName" ref="fullName" />
+        <template v-if="!isLogged">
+          <full-name-input title outlined icon @onChange="setFullName" ref="fullName" />
 
-        <div class="spacer"></div>
+          <div class="spacer"></div>
 
-        <email-input title outlined icon @onChange="setEmail" ref="email" />
+          <email-input title outlined icon @onChange="setEmail" ref="email" />
 
-        <div class="spacer"></div>
+          <div class="spacer"></div>
+        </template>
 
         <base-text-area
           outlined
@@ -81,6 +83,12 @@ export default {
     this.$store.dispatch('SupportState/getSupportCategories');
   },
 
+  computed: {
+    isLogged() {
+      return this.$store.getters['AuthState/isLogged'];
+    }
+  },
+
   methods: {
     setDescription(description) {
       this.form.description = description;
@@ -124,8 +132,8 @@ export default {
 
     validate() {
       const isSupportCategoryValid = this.$refs.supportCategory.validate();
-      const isFullNameValid = this.$refs.fullName.validate();
-      const isEmailValid = this.$refs.email.validate();
+      const isFullNameValid = this.isLogged ? true : this.$refs.fullName.validate();
+      const isEmailValid = this.isLogged ? true : this.$refs.email.validate();
       const isDescriptionValid = this.$refs.description.validate();
 
       return isSupportCategoryValid && isFullNameValid && isEmailValid && isDescriptionValid;

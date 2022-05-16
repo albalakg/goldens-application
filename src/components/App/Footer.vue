@@ -78,9 +78,13 @@ export default {
                     title: 'מידע',
                     links: [
                         {
+                            name: 'הבית',
+                            url: ''
+                        },
+                        {
                             name: 'מי אנחנו',
                             url: 'about'
-                        }
+                        },
                     ]
                 },
                 {

@@ -178,7 +178,7 @@ export default {
     }
 
     .desktop_menu_content_light {
-        border-top: 2px solid #E6B260;
+        border-top: 2px solid #d5b26e;
         background-color: #fff;
         color: #31353d;
     }

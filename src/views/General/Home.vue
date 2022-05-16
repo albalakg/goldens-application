@@ -256,12 +256,18 @@ export default {
             display: flex;
             align-items: center;
 
+
+            @media only screen and (max-width: 600px) {
+                .lessons_wrapper {
+                    overflow-x: auto;
+                }
+            }
+
             .lessons_wrapper {
                 height: 30vh;
                 min-height: 375px;
                 max-height: 425px;
                 display: flex;
-                overflow-x: auto;
     
                 &::-webkit-scrollbar {
                     display: none;

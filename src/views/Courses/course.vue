@@ -279,7 +279,7 @@ export default {
         position: relative;
         margin: auto;
         z-index: 3;
-        background-color: #E6B260;
+        background-color: #d5b26e;
       }
     }
 

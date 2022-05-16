@@ -103,7 +103,7 @@ export default {
     }
 
     .active_page {
-        background-color: #16588F;
+        background-color: #0e3556;
         color: #fff;
     }
 
