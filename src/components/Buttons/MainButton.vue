@@ -9,7 +9,8 @@
         'sub_bg_color':                     subColor,
         'dark_shadow':                      subColor && shadow,
         'main_button_slim':                 slim,
-        'main_button_loading':              loading
+        'main_button_loading':              loading,
+        'main_button_readonly':              readonly,
     }"
     :style="cssVars"
 >
@@ -53,12 +54,16 @@ export default {
         },
 
         styleConfig: {
-            type: Object
+            type: Object,
         },
 
         loading: {
             type: Boolean
-        }
+        },
+
+        readonly: {
+            type: Boolean
+        },
     },
 
     computed: {
@@ -111,4 +116,9 @@ export default {
         pointer-events: none;
         opacity: 0.7;
     }
+
+    .main_button_readonly {
+        pointer-events: none;
+    }
+
 </style>

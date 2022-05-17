@@ -44,6 +44,7 @@ export default {
             form: {
                 password: '',
             },
+            loading: false
         }
     },
 

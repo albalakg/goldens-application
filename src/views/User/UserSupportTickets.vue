@@ -2,17 +2,6 @@
     <div class="user_support_tickets_wrapper">
         <div v-if="tickets && tickets.length">
             <support-ticket-card v-for="(ticket, index) in tickets" :key="index" :ticket="ticket" />
-
-            <br>
-            <br>
-
-            <v-flex md6 mx-auto>
-                <pagination 
-                    :totalPages="totalPages"
-                    :currentPage="page"
-                    @setPage="setPage"
-                />
-            </v-flex>
         </div>
 
         <div v-else>
@@ -30,11 +19,6 @@ import ArrowChip from '../../components/Chips/arrowChip.vue';
 import Pagination from '../../components/General/Pagination.vue';
 export default {
   components: { LessonFavoriteCard, Pagination, ArrowChip, SupportTicketCard },
-    data() {
-        return {
-        }
-    },
-
     created() {
         this.$store.dispatch('UserState/getSupportTickets');
     },

@@ -7,17 +7,20 @@ import axios from "axios";
 import GlobalMethods from "./helpers/GlobalMethods";
 import AxiosHandler from './helpers/AxiosHandler'
 import ContentService from './helpers/ContentService'
+import TimeService from './helpers/TimeService'
+import StatusService from './helpers/StatusService'
 
-Vue.config.productionTip = false
-
-axios.defaults.baseURL = 'http://localhost:8000/api/';
+Vue.config.productionTip  = false
+axios.defaults.baseURL    = 'http://localhost:8000/api/';
 if(Auth.token()) {
   axios.defaults.headers.common["Authorization"] = `Bearer ${Auth.token()}`;
 }
-window.axios = axios;
-window.baseURL = 'http://localhost:8080/';
-window.ContentService = ContentService;
-window.FORM_DATA_CONFIG = {
+window.axios              = axios;
+window.baseURL            = 'http://localhost:8080/';
+window.ContentService     = ContentService;
+window.TimeService        = TimeService;
+window.StatusService      = StatusService;
+window.FORM_DATA_CONFIG   = {
   headers: {
       "Content-Type": "multipart/form-data",
   }
