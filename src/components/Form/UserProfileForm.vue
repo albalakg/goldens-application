@@ -55,6 +55,7 @@
                 <team-input 
                     ref="team"
                     title
+                    icon
                     outlined
                     optional
                     :loading="loading"
@@ -66,6 +67,7 @@
                     ref="city"
                     optional
                     title
+                    icon
                     outlined
                     :loading="loading"
                     @onChange="setCity" 

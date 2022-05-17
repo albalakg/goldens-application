@@ -67,7 +67,7 @@ export default {
     data() {
         return {
             text:       'שם העיר',
-            iconSrc:    'mdi-account-circle',
+            iconSrc:    'mdi-city-variant-outline',
             rules: [
                 {
                     rule: /^.{2,100}$/,
