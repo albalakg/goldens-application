@@ -36,12 +36,16 @@ const UserState = {
         phone:              state   => state.profile.phone,
         gender:             state   => state.profile.gender,
         email:              state   => state.profile.email,
+        team:               state   => state.profile.team,
+        city:               state   => state.profile.city,
         lastActive:         state   => state.lastActive,
     },
 
     mutations: {
         SET_USER_PROFILE(state, userProfile) {
-            state.profile = userProfile;
+            state.profile       = userProfile;
+            state.profile.team  = userProfile.team?.name
+            state.profile.city  = userProfile.city?.name
         },
         
         SET_USER_DETAILS(state, userDetails) {
@@ -49,6 +53,8 @@ const UserState = {
             state.profile.last_name     = userDetails.last_name;
             state.profile.gender        = userDetails.gender;
             state.profile.phone         = userDetails.phone;
+            state.profile.city          = userDetails.city;
+            state.profile.team          = userDetails.team;
         },
         
         SET_USER_SUPPORT_TICKETS(state, userSupportTickets) {
@@ -101,7 +107,6 @@ const UserState = {
                     state.lessons = state.lessons.concat(courseArea.active_lessons);
                 })
             })
-            console.log('state.lessons', state.lessons);
         },
 
         ADD_CONTENT_IN_FAVORITES(state, newLesson) {
@@ -137,46 +142,53 @@ const UserState = {
         },
 
         updateProfile({ commit, dispatch }, data) {
-            axios.post('profile/update', data)
-                .then(res => {
-                    commit('SET_USER_DETAILS', res.data.data);
-                    dispatch('MessageState/addMessage', {message: 'פרטי המשתמש עודכנו בהצלחה'}, {root:true});
-                    
-                }).catch(err => {
-                    dispatch('MessageState/addMessage', {
-                        message: 'מצטערים אך לא הצלחנו לעדכן את פרטי המשתמש',
-                        type: 'error',
-                    }, {root:true});
-                }).finally(() => {
-                    this.loading = false;
-                })
+            return new Promise((resolve, reject) => {
+                axios.post('profile/update', data)
+                    .then(res => {
+                        commit('SET_USER_DETAILS', res.data.data);
+                        dispatch('MessageState/addMessage', {message: 'פרטי המשתמש עודכנו בהצלחה'}, {root:true});
+                    }).catch(err => {
+                        dispatch('MessageState/addMessage', {
+                            message: 'מצטערים אך לא הצלחנו לעדכן את פרטי המשתמש',
+                            type: 'error',
+                        }, {root:true});
+                    }).finally(() => {
+                        resolve()
+                    })
+            })
         },
 
         updateEmail({ dispatch }, data) {
-            axios.post('profile/email', data)
-                .then(res => {
-                    dispatch('MessageState/addMessage', {message: 'נשלח מייל לאישור בקשת עדכון המייל'}, {root:true});
-                }).catch(err => {
-                    dispatch('MessageState/addMessage', {
-                        message: 'מצטערים אך לא הצלחנו לעדכן את המייל',
-                        type: 'error',
-                    }, {root:true});
-                }).finally(() => {
-                    this.loading = false;
+            return new Promise((resolve, reject) => {
+                axios.post('profile/email', data)
+                    .then(res => {
+                        console.log(1);
+                        dispatch('MessageState/addMessage', {message: 'נשלח מייל לאישור בקשת עדכון המייל'}, {root:true});
+                    }).catch(err => {
+                        console.log(2);
+                        dispatch('MessageState/addMessage', {
+                            message: 'מצטערים אך לא הצלחנו לעדכן את המייל',
+                            type: 'error',
+                        }, {root:true});
+                    }).finally(() => {
+                        resolve()
+                    })
                 })
         },
 
         updatePassword({ dispatch }, data) {
-            axios.post('profile/change-password', data)
-                .then(res => {
-                    dispatch('MessageState/addMessage', {message: 'הסיסמא עודכנה בהצלחה'}, {root:true});
-                }).catch(err => {
-                    dispatch('MessageState/addMessage', {
-                        message: 'מצטערים אך לא הצלחנו לעדכן את הסיסמא',
-                        type: 'error',
-                    }, {root:true});
-                }).finally(() => {
-                    this.loading = false;
+            return new Promise((resolve, reject) => {
+                axios.post('profile/change-password', data)
+                    .then(res => {
+                        dispatch('MessageState/addMessage', {message: 'הסיסמא עודכנה בהצלחה'}, {root:true});
+                    }).catch(err => {
+                        dispatch('MessageState/addMessage', {
+                            message: 'מצטערים אך לא הצלחנו לעדכן את הסיסמא',
+                            type: 'error',
+                        }, {root:true});
+                    }).finally(() => {
+                        resolve()
+                    })
                 })
         },
 

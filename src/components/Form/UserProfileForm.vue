@@ -50,11 +50,35 @@
             </v-flex>
         </v-flex>
 
+        <v-flex d-flex flex-wrap mt-5>
+            <v-flex ml-md-2>
+                <team-input 
+                    ref="team"
+                    title
+                    outlined
+                    optional
+                    :loading="loading"
+                    @onChange="setTeam" 
+                />
+            </v-flex>
+            <v-flex mr-md-2 mt-5 mt-md-0>
+                <city-input 
+                    ref="city"
+                    optional
+                    title
+                    outlined
+                    :loading="loading"
+                    @onChange="setCity" 
+                />
+            </v-flex>
+        </v-flex>
+
         <v-flex d-flex justify-end mt-10 mt-md-5>
             <v-flex xs12 md4 lg2>
                 <main-button 
                     :text="'עדכן פרטים'"
                     shadow
+                    :loading="loading"
                 />
             </v-flex>
         </v-flex>
@@ -67,6 +91,8 @@ import FirstNameInput from '../../components/Form/Inputs/FirstNameInput.vue'
 import GenderSelect from '../../components/Form/Inputs/GenderSelect.vue'
 import LastNameInput from '../../components/Form/Inputs/LastNameInput.vue'
 import PhoneInput from '../../components/Form/Inputs/PhoneInput.vue'
+import CityInput from './Inputs/CityInput.vue'
+import TeamInput from './Inputs/TeamInput.vue'
 export default {
     components: { 
         FirstNameInput, 
@@ -74,6 +100,8 @@ export default {
         PhoneInput,
         GenderSelect,
         MainButton,
+        CityInput,
+        TeamInput,
     },
 
     data() {
@@ -118,6 +146,14 @@ export default {
                 this.$refs.gender.setValue(this.$store.getters['UserState/gender']);
             }
 
+            if(this.$store.getters['UserState/team']) {
+                this.$refs.team.setValue(this.$store.getters['UserState/team']);
+            }
+
+            if(this.$store.getters['UserState/city']) {
+                this.$refs.city.setValue(this.$store.getters['UserState/city']);
+            }
+
             this.$refs.firstName.$el.focus();
             this.loading = false;
         },
@@ -134,12 +170,20 @@ export default {
             this.form.gender = value;
         },
 
+        setTeam(value) {
+            this.form.team = value;
+        },
+
+        setCity(value) {
+            this.form.city = value;
+        },
+
         setPhone(value) {
             this.form.phone = value;
         },
 
         async submit() {
-            if(!this.validate()) {
+            if(this.loading || !this.validate()) {
                 return;
             }
 
@@ -153,8 +197,10 @@ export default {
             const isLastNameValid       = this.$refs.lastName.validate();
             const isPhoneValid          = this.$refs.phone.validate();
             const isGenderValid         = this.$refs.gender.validate();
+            const isTeamValid           = this.$refs.team.validate();
+            const isCityValid           = this.$refs.city.validate();
 
-            return isFirstNameValid && isGenderValid && isLastNameValid && isPhoneValid;
+            return isFirstNameValid && isGenderValid && isLastNameValid && isPhoneValid && isTeamValid && isCityValid;
         },
     }
 }

@@ -14,6 +14,7 @@
             <main-button 
                 :text="'עדכן אימייל'"
                 shadow
+                :loading="loading"
             />
         </v-flex>
     </v-flex>
@@ -68,12 +69,13 @@ export default {
         },
 
         async submit() {
-            if(!this.validate()) {
+            if(this.loading || !this.validate()) {
                 return;
             }
 
             if(this.isSameEmail()) {
                 this.$store.dispatch('MessageState/addErrorMessage', { message: 'הכותבת מייל אינה יכולה להיות זהה' })
+                return;
             }
 
             this.loading = true;

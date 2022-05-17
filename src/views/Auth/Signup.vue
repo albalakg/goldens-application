@@ -57,6 +57,28 @@
                             </last-name-input>
                             
                             <div class="spacer"></div>
+                            
+                            <team-input 
+                                ref="team"
+                                outlined
+                                title
+                                optional
+                                icon
+                                @onChange="setTeam" 
+                            />
+
+                            <div class="spacer"></div>
+
+                            <city-input 
+                                ref="city"
+                                outlined
+                                title
+                                optional
+                                icon
+                                @onChange="setCity" 
+                            />
+                            
+                            <div class="spacer"></div>
 
                             <v-flex d-md-flex align-center justify-space-between class="text-center text-md-right mt-5">
                                 <v-flex md5 mt-5 mt-md-0 v-if="$vuetify.breakpoint.mdAndUp">
@@ -111,6 +133,8 @@ import StarLogo from '../../components/General/StarLogo.vue'
 import PlayerIconDecorator from '../../components/Decorators/playerIconDecorator.vue'
 import FirstNameInput from '../../components/Form/Inputs/FirstNameInput.vue'
 import LastNameInput from '../../components/Form/Inputs/LastNameInput.vue'
+import TeamInput from '../../components/Form/Inputs/TeamInput.vue'
+import CityInput from '../../components/Form/Inputs/CityInput.vue'
 
 export default {
     components: {
@@ -125,6 +149,8 @@ export default {
         PlayerIconDecorator,
         FirstNameInput,
         LastNameInput,
+        TeamInput,
+        CityInput,
     },
     
     data() {
@@ -134,6 +160,8 @@ export default {
                 password:   '',
                 first_name: '',
                 last_name:  '',
+                team:       '',
+                city:       '',
             },
             loading: false
         }
@@ -167,10 +195,12 @@ export default {
         validate() {
             const isEmailValid      = this.$refs.email.validate();
             const isPasswordValid   = this.$refs.password.validate();
-            const isFirstNameValid   = this.$refs.firstName.validate();
+            const isFirstNameValid  = this.$refs.firstName.validate();
             const isLastNameValid   = this.$refs.lastName.validate();
+            const isTeamValid       = this.$refs.team.validate();
+            const isCityValid       = this.$refs.city.validate();
 
-            return isEmailValid && isPasswordValid && isFirstNameValid && isLastNameValid;
+            return isEmailValid && isPasswordValid && isFirstNameValid && isLastNameValid && isTeamValid && isCityValid;
         },
 
         setEmail(email) {
@@ -187,7 +217,15 @@ export default {
 
         setLastName(lastName) {
             this.form.last_name = lastName;
-        }
+        },
+
+        setTeam(team) {
+            this.form.team = team;
+        },
+
+        setCity(city) {
+            this.form.city = city;
+        },
     }
 }
 </script>

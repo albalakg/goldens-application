@@ -22,6 +22,7 @@
             <main-button 
                 :text="'עדכן סיסמא'"
                 shadow
+                :loading="loading"
             />
         </v-flex>
     </v-flex>
@@ -56,7 +57,7 @@ export default {
         },
 
         async submit() {
-            if(!this.validate()) {
+            if(this.loading || !this.validate()) {
                 return;
             }
 
