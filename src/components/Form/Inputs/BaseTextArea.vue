@@ -113,7 +113,7 @@ export default {
     data() {
         return {
             value:          '',
-            errorMessage:   ''
+            errorMessage:   '',
         }
     },
 
@@ -129,8 +129,7 @@ export default {
                 if(this.errorMessage) {
                     return;
                 }
-                
-                if(!new RegExp(item.rule).test(this.value)) {
+                if(!new RegExp(item.rule).test(this.value.trim())) {
                     this.errorMessage = item.message;
                 }
             })

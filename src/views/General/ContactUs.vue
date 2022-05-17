@@ -41,11 +41,11 @@
 
             <div class="spacer"></div>
 
-            <base-text-area
+            <contact-description-area
               dark
               ref="description"
               @onChange="setDescription"
-            />
+             />
 
             <div class="spacer"></div>
 
@@ -67,6 +67,7 @@
 <script>
 import MainButton from "../../components/Buttons/MainButton.vue";
 import BaseTextArea from "../../components/Form/Inputs/BaseTextArea.vue";
+import ContactDescriptionArea from '../../components/Form/Inputs/ContactDescriptionArea.vue';
 import EmailInput from "../../components/Form/Inputs/EmailInput.vue";
 import FullNameInput from "../../components/Form/Inputs/FullNameInput.vue";
 export default {
@@ -75,6 +76,7 @@ export default {
     EmailInput,
     BaseTextArea,
     MainButton,
+    ContactDescriptionArea,
   },
 
   data() {
@@ -182,8 +184,9 @@ export default {
     },
 
     setInitEmail() {
-      if(this.$refs.email) {
-        this.$refs.email.setValue(this.$store.getters['UserState/email']);
+      const email = this.$store.getters['UserState/email'];
+      if(email) {
+        this.$refs.email.setValue(email);
       }
     }
   },

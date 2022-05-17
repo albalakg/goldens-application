@@ -23,7 +23,7 @@
                             >
                             </password-input>
                             
-                            <Divider :space="8" />
+                            <div class="spacer"></div>
                             
                             <password-input
                                 ref="passwordConfirmation"
@@ -204,7 +204,17 @@ export default {
         width: 15px;
     }
     
+    .spacer {
+        height: 30px;
+        width: 100%;
+    }
+    
     @media only screen and (max-width: 600px) {
+        
+        .spacer {
+            height: 50px;
+        }
+
         .star_image {
             display: none;
         }

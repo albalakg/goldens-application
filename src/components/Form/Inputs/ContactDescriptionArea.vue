@@ -46,15 +46,15 @@ export default {
 
     data() {
         return {
-            text:       'תיאור',
+            text:       '',
             rules:      [
                 {
                     rule: /^.+$/ms,
-                    message: 'חובה למלא את התיאור'
+                    message: 'חובה למלא את ההודעה'
                 },
                 {
                     rule: /^.{2,1000}$/ms,
-                    message: 'התיאור חייב להיות 2-1000 תווים'
+                    message: 'ההודעה חייבת להיות 2-1000 תווים'
                 },
             ]
         }

@@ -158,10 +158,10 @@ export default {
         validate() {
             this.errorMessage = '';
 
-            if(this.optional && !this.value.trim()) {
+            if(this.optional) {
                 return true;
             }
-            
+
             if(this.rules) {
                 this.validateRules();
                 return !this.errorMessage;
@@ -172,7 +172,7 @@ export default {
 
         validateRules() {
             this.rules.forEach(item => {
-                if(this.errorMessage) {
+                if(this.errorMessage || (this.optional && !this.value)) {
                     return;
                 }
                 
