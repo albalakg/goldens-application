@@ -67,11 +67,11 @@ export default {
     data() {
         return {
             text:       'שם הקבוצה',
-            iconSrc:    'mdi-account-supervisor-circle',
+            iconSrc:    'mdi-account-circle',
             rules: [
                 {
                     rule: /^.{2,100}$/,
-                    message: 'שם הקבוצה חייב להכיל בין 2-100 תווים'
+                    message: 'השם הקבוצה חייב להכיל בין 2-100 תווים'
                 }
             ]
         }

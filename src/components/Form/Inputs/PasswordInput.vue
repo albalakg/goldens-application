@@ -10,6 +10,7 @@
             :icon="iconSrc"
             :subIcon="subIconSrc"
             :rules="rules"
+            :slim="slim"
             :autocomplete="autocomplete"
             @onChange="onChange"
             @subIconClicked="subIconClicked"
@@ -36,6 +37,10 @@ export default {
         },
 
         dark: {
+            type: Boolean
+        },
+
+        slim: {
             type: Boolean
         },
         

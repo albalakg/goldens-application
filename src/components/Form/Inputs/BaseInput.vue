@@ -4,6 +4,9 @@
         <strong>
             {{ title }}
         </strong>
+        <small class="grey_text_color" v-if="optional">
+            (לא חובה)
+        </small>
     </div>
     <div 
         class="base_input_content"
@@ -238,6 +241,10 @@ export default {
             .close_icon {
                 position: relative;
                 top: -3px;
+            }
+
+            .base_input_sub_icon {
+                top: 0;
             }
         }
     
