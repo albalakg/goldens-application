@@ -12,9 +12,9 @@
                         כל האימונים
                         <br>
                     </h1>
-                    <h2>
+                    <h1>
                         במקום <span class="sub_text_color">אחד</span>
-                    </h2>
+                    </h1>
 
                     <v-flex xs12 lg7 class="mx-5 mx-lg-0">
                         <div class="home_course_card">
@@ -220,15 +220,25 @@ export default {
 
     .home_wrapper {
 
-        h1, h2 {
-            font-size: 4.5em;
+        h1 {
+            font-size: 6em;
         }
-    
-        h2 {
+        
+        h1:nth-of-type(2) {
             position: relative;
-            top: -30px;
+            top: -50px;
         }
 
+        @media only screen and (max-width: 600px) {
+            h1 {
+                font-size: 4em;
+            }
+
+            h1:nth-of-type(2) {
+                position: relative;
+                top: -30px;
+            }
+        }
         h3 {
             font-size: 2em;
         }
@@ -365,4 +375,5 @@ export default {
             left: 30%;
         }
     }
+
 </style>

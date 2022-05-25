@@ -137,6 +137,7 @@ const routes = [
   // ***** ORDERS START *****
   {
     path: '/orders',
+    beforeEnter: Guard.user,
     component: () => import('../views/Orders/Order.vue'),
   },
   // ***** ORDERS END *****

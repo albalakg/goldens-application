@@ -70,6 +70,10 @@ export default {
         }
     },
 
+    created() {
+        this.saveMarketingToken();
+    },
+
     computed: {
         course() {
             return ContentService.findCourseById(this.$route.query.courseId)
@@ -126,8 +130,9 @@ export default {
             this.loading = true;
             try {
                 this.orderToken = await this.$store.dispatch('OrderState/submitOrder', {
-                    content_id: this.course.id,
-                    coupon_code: this.form.coupon
+                    content_id:         this.course.id,
+                    coupon_code:        this.form.coupon,
+                    marketing_token:    this.form.marketing_token
                 })
 
                 this.orderToken = 'asd';
@@ -146,7 +151,11 @@ export default {
 
         validate() {
             return this.$refs.coupon.validate();
-        }
+        },
+
+        saveMarketingToken() {
+            this.form.marketing_token = this.$route.query.token;
+        },
     }
 }
 </script>
