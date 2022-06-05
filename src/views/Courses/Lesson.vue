@@ -92,34 +92,7 @@
       </div>
 
       <v-flex d-flex class="lesson_content_wrapper mt-10">
-        <v-flex d-flex xs12 md8 justify-space-between class="grey_bg_color lesson_practice_wrapper">
-          <v-flex md10 lg9 d-flex justify-space-between align-center class="lesson_practice_list pa-5">
-            <div>
-              <document />
-              <strong>
-                {{ lesson.rehearsals}}
-                חזרות
-              </strong>
-            </div>
-            <div>
-              <clock />
-              <strong>
-                {{ activityTimeText }}
-              </strong>
-            </div>
-            <div>
-              <calendar />
-              <strong>
-                {{ activityPeriodText }}
-              </strong>
-            </div>
-          </v-flex>
-          <v-flex md4 d-flex justify-end>
-            <div class="badge main_dark_bg_color ml-4">
-              <settings-mark />
-            </div>
-          </v-flex>
-        </v-flex>
+        <lesson-practice-card :lesson="lesson" />
       </v-flex>
     </v-flex>
 
@@ -130,18 +103,15 @@
 import MainButton from '../../components/Buttons/MainButton.vue';
 import ProfileCard from '../../components/Cards/ProfileCard.vue';
 import VideoCard from '../../components/Cards/VideoCard.vue';
+import LessonPracticeCard from '../../components/Content/LessonPracticeCard.vue';
 import LessonVideoEndScreen from '../../components/Content/LessonVideoEndScreen.vue';
-import Calendar from '../../components/General/Calendar.vue';
-import Clock from '../../components/General/Clock.vue';
-import Document from '../../components/General/Document.vue';
 import Heart from '../../components/General/Heart.vue';
 import LessonCompleted from '../../components/General/LessonCompleted.vue';
-import SettingsMark from '../../components/General/SettingsMark.vue';
 
 const SPACE_BETWEEN_VIDEO_PROGRESS_UPDATE = 3000;
 
 export default {
-  components: { MainButton, Heart, ProfileCard, LessonCompleted, VideoCard, LessonVideoEndScreen, Document, Clock, Calendar, SettingsMark },
+  components: { MainButton, Heart, ProfileCard, LessonCompleted, VideoCard, LessonVideoEndScreen, LessonPracticeCard },
 
   data() {
     return {
@@ -209,56 +179,6 @@ export default {
     nextLesson() {
       const currentLessonIndex = this.lessons.findIndex(lesson => lesson.id === this.lesson.id);
       return this.lessons[currentLessonIndex + 1]; 
-    },
-
-    // the data is in hours
-    activityPeriodText() {
-      let type = 'שעות';
-      let time = this.lesson.activity_period;
-
-      if(!time) {
-        time = 48;
-      }
-      
-      if(time === 1) {
-        return 'שעה אחת'
-      }
-      // there are 168 hours in a week
-      else if(time >= 168) {
-        type = 'שבועות';
-        time = Math.floor(time / 168);
-      }
-      else if(time >= 48) {
-        type = 'ימים';
-        time = Math.floor(time / 24);
-      }
-
-      return time + ' ' + type;
-    },
-
-    // the data is in hours
-    activityTimeText() {
-      let type = 'שעות';
-      let time = this.lesson.activity_time;
-
-      if(!time) {
-        time = 48;
-      }
-      
-      if(time === 1) {
-        return 'שעה אחת'
-      }
-      // there are 168 hours in a week
-      else if(time >= 168) {
-        type = 'שבועות';
-        time = Math.floor(time / 168);
-      }
-      else if(time >= 48) {
-        type = 'ימים';
-        time = Math.floor(time / 24);
-      }
-
-      return time + ' ' + type;
     },
   },
 
