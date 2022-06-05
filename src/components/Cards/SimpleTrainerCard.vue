@@ -1,6 +1,6 @@
 
 <template>
-  <div class="simple_trainer_card_wrapper text-center" :class="{'rounded': rounded}">
+  <div class="simple_trainer_card_wrapper text-center white_bg_color" :class="{'rounded': rounded}">
     <div class="simple_trainer_content pa-5">
       <img loading="lazy" :src="trainer.imageSrc" alt="trainer image" :class="{'rounded': rounded}">
       <h3 class="main_text_color">

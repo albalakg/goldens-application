@@ -1,6 +1,6 @@
 <template>
   <div class="auth_padding_top" :key="lesson.id">
-    <v-flex md7 xl6 mx-auto v-if="lesson" class="mt-5 mb-10">
+    <v-flex md7 xl6 mx-auto v-if="lesson" class="lesson_page_content mt-5 mb-10">
       
       <v-flex d-flex align-center justify-space-between class="px-2 px-md-0">
         <h1 class="mb-0">
@@ -91,6 +91,8 @@
         />
       </div>
 
+      <circle-decorator class="circle_decorator" :dark="false" />
+      
       <section class="lesson_content_wrapper">
 
         <v-flex d-flex class="mt-10">
@@ -126,6 +128,7 @@
       </section>
     </v-flex>
 
+    <star-logo class="logo_decorator" :opacity=".5" />
   </div>
 </template>
 
@@ -137,13 +140,15 @@ import SimpleTrainerCard from '../../components/Cards/SimpleTrainerCard.vue';
 import VideoCard from '../../components/Cards/VideoCard.vue';
 import LessonPracticeCard from '../../components/Content/LessonPracticeCard.vue';
 import LessonVideoEndScreen from '../../components/Content/LessonVideoEndScreen.vue';
+import CircleDecorator from '../../components/Decorators/CircleDecorator.vue';
 import Heart from '../../components/General/Heart.vue';
 import LessonCompleted from '../../components/General/LessonCompleted.vue';
+import StarLogo from '../../components/General/StarLogo.vue';
 
 const SPACE_BETWEEN_VIDEO_PROGRESS_UPDATE = 3000;
 
 export default {
-  components: { MainButton, Heart, ProfileCard, LessonCompleted, VideoCard, LessonVideoEndScreen, LessonPracticeCard, SimpleTrainerCard, CourseAreaCard },
+  components: { MainButton, Heart, ProfileCard, LessonCompleted, VideoCard, LessonVideoEndScreen, LessonPracticeCard, SimpleTrainerCard, CourseAreaCard, StarLogo, CircleDecorator },
 
   data() {
     return {
@@ -319,6 +324,11 @@ export default {
     width: 50px;
   }
 
+  .lesson_page_content {
+    position: relative;
+    z-index: 2;
+  }
+
   .lessons_list_wrapper {
     position: relative;
   }
@@ -335,6 +345,7 @@ export default {
 
   .lesson_video_wrapper {
     position: relative;
+    z-index: 2;
   }
 
   .video_end_screen {
@@ -379,6 +390,28 @@ export default {
 
   h2 {
     font-size: 2em;
+  }
+
+  .logo_decorator {
+    position: fixed;
+    height: 50vw;
+    width: 50vw;
+    top: 0vw;
+    right: -10vw;
+  }
+
+  .circle_decorator {
+    position: absolute;
+    height: 50vw;
+    width: 50vw;
+    left: -25vw;
+    top: 20vh;
+    z-index: 0;
+  }
+
+  .lesson_content_wrapper {
+    z-index: 2;
+    position: relative;
   }
 
 </style>

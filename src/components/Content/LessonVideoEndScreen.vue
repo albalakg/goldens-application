@@ -18,6 +18,7 @@
                     @submit="closeEndScreen()"
                 />
                 <main-button 
+                    ref="nextButton"
                     slim
                     class="mr-3"
                     text="הפעלה"
@@ -52,6 +53,10 @@ export default {
         this.startTimer();
     },
 
+    mounted() {
+        this.focusNextButton();
+    },
+
     methods: {
         startTimer() {
             this.timerInterval = setInterval(() => {
@@ -65,6 +70,11 @@ export default {
 
         closeTimer() {
             clearInterval(this.timerInterval);
+        },
+
+        focusNextButton() {
+            console.log('this.$refs.nextButton', this.$refs.nextButton, this.$refs.nextButton.$el);
+            this.$refs.nextButton.$el.focus()
         },
 
         moveToNextLesson() {

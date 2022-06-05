@@ -1,5 +1,13 @@
 <template>
-  <img loading="lazy" :style="`opacity: ${opacity}`" src="./../../../public/assets/images/general/circle.svg" alt="">
+  <svg :style="`opacity: ${opacity}`" width="515" height="489" viewBox="0 0 515 489" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g opacity="0.3">
+    <circle opacity="0.5" r="204.233" transform="matrix(-0.999106 -0.0422753 -0.0422753 0.999106 257.336 257.336)" :stroke="dark ? 'white' : 'black'"/>
+    <circle opacity="0.5" r="246.11" transform="matrix(-0.999106 -0.0422753 -0.0422753 0.999106 257.336 257.335)" :stroke="dark ? 'white' : 'black'"/>
+    <circle r="9.30603" transform="matrix(-0.999106 -0.0422753 -0.0422753 0.999106 105.362 62.7559)" fill="#0e3556"/>
+    <circle r="9.30603" transform="matrix(-0.999106 -0.0422753 -0.0422753 0.999106 67.9202 331.287)" fill="white"/>
+    <circle r="9.30603" transform="matrix(-0.999106 -0.0422753 -0.0422753 0.999106 469.094 381.795)" fill="#0e3556"/>
+    </g>
+  </svg>
 </template>
 
 <script>
@@ -9,6 +17,11 @@ export default {
     opacity: {
       type: Number,
       default: 1
+    },
+
+    dark: {
+      type: Boolean,
+      default: true
     }
   }
 
@@ -21,5 +34,6 @@ export default {
     height: 100%;
     width: 100%;
   }
+
 
 </style>
