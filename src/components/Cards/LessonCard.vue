@@ -7,7 +7,7 @@
       <div class="lesson_card_details px-1 text-center">
         <h2 class="white_text_color">{{ lesson.name }}</h2>
         <div class="line main_bg_color"></div>
-        <div class="lesson_card_content mt-1 white_text_color" v-html="lessonContent">
+        <div class="lesson_card_content mt-1 white_text_color" v-html="lessonDescription">
         </div>
       </div>
     </div>
@@ -30,8 +30,8 @@ export default {
   },
 
   computed: {
-    lessonContent() {
-      return this.lesson.content.length < MAX_LESSON_CONTENT_CHARS ? this.lesson.content : this.lesson.content.slice(0, MAX_LESSON_CONTENT_CHARS) + '...';
+    lessonDescription() {
+      return this.lesson.description.length < MAX_LESSON_CONTENT_CHARS ? this.lesson.description : this.lesson.description.slice(0, MAX_LESSON_CONTENT_CHARS) + '...';
     }
   }
 

@@ -70,6 +70,9 @@
   box-shadow: 0 0 15px 4px rgb(49, 53, 61, 0.3);
 }
 
+.sub_border {
+  border: 2px solid #d5b26e;
+}
 
 .sub_border_right {
   border-right: 2px solid #d5b26e;

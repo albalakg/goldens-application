@@ -1,32 +1,30 @@
 <template>
-    <v-flex d-flex xs12 md8 justify-space-between class="grey_bg_color lesson_practice_wrapper">
-        <v-flex md10 lg9 d-flex justify-space-between align-center class="lesson_practice_list pa-5">
-            <div>
-                <document />
-                <strong>
-                {{ lesson.rehearsals}}
-                חזרות
-                </strong>
-            </div>
-            <div>
-                <clock />
-                <strong>
-                {{ activityTimeText }}
-                </strong>
-            </div>
-            <div>
-                <calendar />
-                <strong>
-                {{ activityPeriodText }}
-                </strong>
-            </div>
-            </v-flex>
-            <v-flex md4 d-flex justify-end>
-            <div class="badge main_dark_bg_color ml-4">
-                <settings-mark />
-            </div>
-        </v-flex>
+  <v-flex d-flex justify-space-between align-center class="grey_bg_color lesson_practice_list">
+    <div class="pa-5">
+      <document />
+      <strong>
+      {{ lesson.rehearsals}}
+      חזרות
+      </strong>
+    </div>
+    <div class="pa-5">
+      <clock />
+      <strong>
+      {{ activityTimeText }}
+      </strong>
+    </div>
+    <div class="pa-5">
+      <calendar />
+      <strong>
+      {{ activityPeriodText }}
+      </strong>
+    </div>
+    <v-flex md2 d-flex justify-end>
+      <div class="badge main_dark_bg_color ml-4">
+        <settings-mark />
+      </div>
     </v-flex>
+  </v-flex>
 </template>
 
 <script>
@@ -120,12 +118,14 @@ export default {
 
   .badge {
     border-radius: 0 0 20px 20px;
-    height: 70%;
+    height: 50px;
     width: 36px;
     display: flex;
     justify-content: center;
     align-items: flex-end;
     padding-bottom: 5px;
+    position: relative;
+    top: -12px;
   }
 
 </style>

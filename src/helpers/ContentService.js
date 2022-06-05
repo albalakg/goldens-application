@@ -62,6 +62,16 @@ class ContentService {
     }
   }
 
+  findTrainerByCourseAreaId(courseAreaId) {
+    try {
+      const courseArea = this.findCourseAreaById(courseAreaId);
+      return courseArea.trainer;
+    } catch(err) {
+      error(err);
+      return {};
+    }
+  }
+
   findLessonById(lessonId) {
     try {
       let courses = store.state['UserState'].courses;
@@ -202,7 +212,12 @@ class ContentService {
   }
 
   getLessonShortDescription(lesson, maxChars = MAX_LESSON_CONTENT_CHARS) {
-    return lesson.content.length < maxChars ? lesson.content : lesson.content.slice(0, maxChars) + '...';
+    try {
+      return lesson.description.length < maxChars ? lesson.description : lesson.description.slice(0, maxChars) + '...';
+    } catch(err) {
+      error(err);
+      return '';
+    }
   }
 
   isLessonCompleted(lessonId) {

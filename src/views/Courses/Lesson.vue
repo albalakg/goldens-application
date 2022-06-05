@@ -67,7 +67,7 @@
       <br>
 
       <div class="px-2 px-md-0s">
-        <small v-html="lesson.content">
+        <small v-html="lesson.description">
         </small>
       </div>
 
@@ -91,9 +91,39 @@
         />
       </div>
 
-      <v-flex d-flex class="lesson_content_wrapper mt-10">
-        <lesson-practice-card :lesson="lesson" />
-      </v-flex>
+      <section class="lesson_content_wrapper">
+
+        <v-flex d-flex class="mt-10">
+          <v-flex align-self-start md7 class="lesson_practice_wrapper">
+            <lesson-practice-card :lesson="lesson" />
+            <br>
+            <h2>
+              <span class="main_text_color"> מה </span>
+              <span class="dark_text_color"> נלמד </span>
+            </h2>
+            <p v-html="lesson.content">
+            </p>
+          </v-flex>
+          <v-flex align-self-start md5 class="pr-5">
+            <simple-trainer-card :trainer="trainer" />
+            <br>
+            <course-area-card 
+              class="mb-3" 
+              :class="{
+                'sub_border': courseArea.id === lesson.course_area_id
+              }"
+              v-for="(courseArea, index) in courseAreas" 
+              :key="index" 
+              rounded
+              :courseArea="courseArea" 
+              @submit="enterCourseArea"
+            />
+          </v-flex>
+        </v-flex>
+
+        <br>
+  
+      </section>
     </v-flex>
 
   </div>
@@ -101,7 +131,9 @@
 
 <script>
 import MainButton from '../../components/Buttons/MainButton.vue';
+import CourseAreaCard from '../../components/Cards/CourseAreaCard.vue';
 import ProfileCard from '../../components/Cards/ProfileCard.vue';
+import SimpleTrainerCard from '../../components/Cards/SimpleTrainerCard.vue';
 import VideoCard from '../../components/Cards/VideoCard.vue';
 import LessonPracticeCard from '../../components/Content/LessonPracticeCard.vue';
 import LessonVideoEndScreen from '../../components/Content/LessonVideoEndScreen.vue';
@@ -111,7 +143,7 @@ import LessonCompleted from '../../components/General/LessonCompleted.vue';
 const SPACE_BETWEEN_VIDEO_PROGRESS_UPDATE = 3000;
 
 export default {
-  components: { MainButton, Heart, ProfileCard, LessonCompleted, VideoCard, LessonVideoEndScreen, LessonPracticeCard },
+  components: { MainButton, Heart, ProfileCard, LessonCompleted, VideoCard, LessonVideoEndScreen, LessonPracticeCard, SimpleTrainerCard, CourseAreaCard },
 
   data() {
     return {
@@ -152,7 +184,7 @@ export default {
     },
 
     trainerName() {
-      return 'רונית לוי'
+      return this.trainer ? this.trainer.name : '';
     },
 
     arrowDirection() {
@@ -180,6 +212,15 @@ export default {
       const currentLessonIndex = this.lessons.findIndex(lesson => lesson.id === this.lesson.id);
       return this.lessons[currentLessonIndex + 1]; 
     },
+
+    trainer() {
+      return ContentService.findTrainerByCourseAreaId(this.lesson.course_area_id);
+    },
+
+    courseAreas() {
+      console.log(ContentService.getCourseAreasByCourseId(this.lesson.course_id));
+      return ContentService.getCourseAreasByCourseId(this.lesson.course_id)
+    }
   },
 
   methods: {
@@ -257,6 +298,10 @@ export default {
 
     closeEndScreen() {
       this.showEndLessonScreen = false;
+    },
+
+    enterCourseArea(courseArea) {
+      this.$router.push(`/courses/${courseArea.course_id}/lessons?courseArea=${courseArea.id}`)
     }
   },
 
@@ -330,6 +375,10 @@ export default {
     justify-content: center;
     align-items: flex-end;
     padding-bottom: 5px;
+  }
+
+  h2 {
+    font-size: 2em;
   }
 
 </style>

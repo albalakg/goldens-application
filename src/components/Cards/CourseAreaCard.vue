@@ -54,7 +54,7 @@ export default {
         rounded: {
             type: Boolean,
             default: true
-        }
+        },
     },
 
     computed: {
