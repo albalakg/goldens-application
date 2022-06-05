@@ -39,6 +39,7 @@
                     <order-summary-card 
                         :name="course.name"
                         :price="price"
+                        :loading="loading"
                         :discount="discount"
                         @submit="submitOrder()"
                     />

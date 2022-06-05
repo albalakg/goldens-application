@@ -51,7 +51,7 @@
             </div>
             <div class="lessons_list white_bg_color mt-2 px-3 py-2" v-show="showList">
               <v-flex class="my-2 pointer" d-flex align-center justify-space-between v-for="(lesson, index) in lessons" :key="index" @click="enterLesson(lesson)">
-                <small :class="{
+                <small class="ml-1" :class="{
                   'sub_text_color' : lesson.id == lessonId,
                   'grey_text_color': lesson.isCompleted,
                 }">
@@ -91,7 +91,38 @@
         />
       </div>
 
+      <v-flex d-flex class="lesson_content_wrapper mt-10">
+        <v-flex d-flex xs12 md8 justify-space-between class="grey_bg_color lesson_practice_wrapper">
+          <v-flex md10 lg9 d-flex justify-space-between align-center class="lesson_practice_list pa-5">
+            <div>
+              <document />
+              <strong>
+                {{ lesson.rehearsals}}
+                חזרות
+              </strong>
+            </div>
+            <div>
+              <clock />
+              <strong>
+                {{ activityTimeText }}
+              </strong>
+            </div>
+            <div>
+              <calendar />
+              <strong>
+                {{ activityPeriodText }}
+              </strong>
+            </div>
+          </v-flex>
+          <v-flex md4 d-flex justify-end>
+            <div class="badge main_dark_bg_color ml-4">
+              <settings-mark />
+            </div>
+          </v-flex>
+        </v-flex>
+      </v-flex>
     </v-flex>
+
   </div>
 </template>
 
@@ -100,13 +131,17 @@ import MainButton from '../../components/Buttons/MainButton.vue';
 import ProfileCard from '../../components/Cards/ProfileCard.vue';
 import VideoCard from '../../components/Cards/VideoCard.vue';
 import LessonVideoEndScreen from '../../components/Content/LessonVideoEndScreen.vue';
+import Calendar from '../../components/General/Calendar.vue';
+import Clock from '../../components/General/Clock.vue';
+import Document from '../../components/General/Document.vue';
 import Heart from '../../components/General/Heart.vue';
 import LessonCompleted from '../../components/General/LessonCompleted.vue';
+import SettingsMark from '../../components/General/SettingsMark.vue';
 
 const SPACE_BETWEEN_VIDEO_PROGRESS_UPDATE = 3000;
 
 export default {
-  components: { MainButton, Heart, ProfileCard, LessonCompleted, VideoCard, LessonVideoEndScreen },
+  components: { MainButton, Heart, ProfileCard, LessonCompleted, VideoCard, LessonVideoEndScreen, Document, Clock, Calendar, SettingsMark },
 
   data() {
     return {
@@ -174,7 +209,57 @@ export default {
     nextLesson() {
       const currentLessonIndex = this.lessons.findIndex(lesson => lesson.id === this.lesson.id);
       return this.lessons[currentLessonIndex + 1]; 
-    }
+    },
+
+    // the data is in hours
+    activityPeriodText() {
+      let type = 'שעות';
+      let time = this.lesson.activity_period;
+
+      if(!time) {
+        time = 48;
+      }
+      
+      if(time === 1) {
+        return 'שעה אחת'
+      }
+      // there are 168 hours in a week
+      else if(time >= 168) {
+        type = 'שבועות';
+        time = Math.floor(time / 168);
+      }
+      else if(time >= 48) {
+        type = 'ימים';
+        time = Math.floor(time / 24);
+      }
+
+      return time + ' ' + type;
+    },
+
+    // the data is in hours
+    activityTimeText() {
+      let type = 'שעות';
+      let time = this.lesson.activity_time;
+
+      if(!time) {
+        time = 48;
+      }
+      
+      if(time === 1) {
+        return 'שעה אחת'
+      }
+      // there are 168 hours in a week
+      else if(time >= 168) {
+        type = 'שבועות';
+        time = Math.floor(time / 168);
+      }
+      else if(time >= 48) {
+        type = 'ימים';
+        time = Math.floor(time / 24);
+      }
+
+      return time + ' ' + type;
+    },
   },
 
   methods: {
@@ -302,6 +387,29 @@ export default {
     width: 100%;
     height: 100%;
     border-radius: 15px;
+  }
+
+  .lesson_practice_wrapper {
+    border-radius: 4px;
+  }
+
+  .lesson_practice_list > div {
+    display: flex;
+    align-items: center;
+  }
+
+  .lesson_practice_list strong {
+    margin-right: 10px;
+  }
+
+  .badge {
+    border-radius: 0 0 20px 20px;
+    height: 70%;
+    width: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 5px;
   }
 
 </style>

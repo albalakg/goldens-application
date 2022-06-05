@@ -2,7 +2,7 @@
     <v-flex d-flex justify-center class="lesson_video_end_screen_wrapper w100 h100 text-right white_text_color">
         <v-flex md4 mx-auto class="h100">
             <h3>
-                השיעור הבא יתחיל בעוד <span class="main_text_color">{{timer}} שניות</span>
+                השיעור הבא יתחיל בעוד <span class="timer_text">{{timer}} שניות</span>
             </h3>
             <img class="mt-2" :src="lesson.imageSrc" alt="lesson image">
             <small>
@@ -94,6 +94,10 @@ export default {
 
     .lesson_video_end_screen_wrapper > div{
         transform: translate(0, 25%);
+    }
+
+    .timer_text {
+        color: #346b9b;
     }
 
 </style>

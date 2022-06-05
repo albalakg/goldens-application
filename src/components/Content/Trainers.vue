@@ -10,7 +10,7 @@
         }" mx-auto>
             <v-flex class="trainers_desktop_wrapper mt-10" d-none d-md-block>
                 <v-flex class="trainers_wrapper mr-auto">
-                    <trainer-card v-for="(trainer, index) in trainers" :trainer="trainer" :key="index" />
+                    <trainer-card v-for="(trainer, index) in viewTrainers" :trainer="trainer" :key="index" />
                 </v-flex>
             </v-flex>
             
@@ -52,6 +52,11 @@ export default {
 
         full: {
             type: Boolean
+        },
+
+        trainers: {
+            type: Boolean,
+            required: true
         }
     },
 
@@ -62,34 +67,21 @@ export default {
     },
     
     computed: {
-        trainers() {
-            return [
-                {
-                    name: 'דניאל כהן',
-                    title: 'מאמן כדורגל',
-                    image: require('../../../public/assets/images/trainers/ront-levi-personal-trainer.png')
-                },
-                {
-                    name: 'דנה ברגר',
-                    title: 'מאמנת כושר',
-                    image: require('../../../public/assets/images/trainers/dana-personal-trainer.png')
-                },
-                {
-                    name: 'דניאל כהן',
-                    title: 'מאמן כדורגל',
-                    image: require('../../../public/assets/images/trainers/ront-levi-personal-trainer.png')
-                },
-                {
-                    name: 'דנה ברגר',
-                    title: 'מאמנת כושר',
-                    image: require('../../../public/assets/images/trainers/dana-personal-trainer.png')
-                },
-                {
-                    name: 'דניאל כהן',
-                    title: 'מאמן כדורגל',
-                    image: require('../../../public/assets/images/trainers/ront-levi-personal-trainer.png')
-                },
-            ]
+        viewTrainers() {
+            const trainers = this.trainers.slice();
+            const maxTrainers  = 5;
+            const viewTrainers = [];
+
+            for(let index = 0; index < maxTrainers; index++) {
+                const randomIndex = Math.floor(Math.random() * trainers.length);
+                viewTrainers.push(trainers[randomIndex])
+                trainers.splice(randomIndex, 1);
+
+                if(!trainers.length) {
+                    break;
+                }
+            }
+            return viewTrainers;
         },
 
         showNextTrainerArrow() {

@@ -65,7 +65,7 @@
     <div class="spacer"></div>
 
     <!-- Coaches -->
-    <trainers />
+    <trainers :trainers="trainers" />
 
     <div class="spacer"></div>
 
@@ -158,23 +158,19 @@ import MainButton from '../../components/Buttons/MainButton.vue'
 import CourseCard from '../../components/Cards/CourseCard.vue'
 import LessonCard from '../../components/Cards/LessonCard.vue'
 import Partners from '../../components/Cards/Partners.vue'
-import ArrowChip from '../../components/Chips/arrowChip.vue'
 import Trainers from '../../components/Content/Trainers.vue'
 import ArrowDecorator from '../../components/Decorators/ArrowDecorator.vue'
 import ArrowsDecorator from '../../components/Decorators/ArrowsDecorator.vue'
-import Logo from '../../components/General/Logo.vue'
 import StarLogo from '../../components/General/StarLogo.vue'
 import SectionHeader from '../../components/Texts/SectionHeader.vue'
 
 export default {
     components: {
-        Logo,
         StarLogo,
         CourseCard,
         Partners,
         SectionHeader,
         LessonCard,
-        ArrowChip,
         MainButton,
         ArrowDecorator,
         ArrowsDecorator,
@@ -183,6 +179,7 @@ export default {
 
     data() {
         return {
+            loading: true,
             aboutPlayerSrc: require('../../../public/assets/images/general/about_player.png')
         }
     },
@@ -194,19 +191,28 @@ export default {
     computed: {
         courses() {
             const courses = this.$store.getters['ContentState/courses'];
-            return courses
+            return courses ? courses : [];
         },
 
         lessons() {
             const lessons = this.$store.getters['ContentState/lessons'];
             return lessons ? lessons : [];
         },
+
+        trainers() {
+            const trainers = this.$store.getters['ContentState/trainers'];
+            return trainers ? trainers : [];
+        },
     },
 
     methods: {
-        getContent() {
-            this.$store.dispatch('ContentState/getCategories');
-            this.$store.dispatch('ContentState/getLessons');
+        async getContent() {
+            await Promise.allSettled([
+                this.$store.dispatch('ContentState/getCategories'),
+                this.$store.dispatch('ContentState/getLessons'),
+                this.$store.dispatch('ContentState/getTrainers'),
+            ])
+            this.loading = false;
         },
 
         enterCourse(course) {

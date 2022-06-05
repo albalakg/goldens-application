@@ -2,14 +2,16 @@ const ContentState = {
     namespaced: true,
 
     state: {
-        lessons: null,
-        courses: null,
-        categories: null,
+        lessons:            null,
+        trainers:           null,
+        courses:            null,
+        categories:         null,
         showLastActiveCard: true
     },
 
     getters: {
         lessons: state => state.lessons,
+        trainers: state => state.trainers,
         showLastActiveCard: state => state.showLastActiveCard,
         courses: state => state.courses,
         categories: state => state.categories,
@@ -18,6 +20,10 @@ const ContentState = {
     mutations: {
         SET_LESSONS(state, lessons) {
             state.lessons = lessons;
+        },
+
+        SET_TRAINERS(state, trainers) {
+            state.trainers = trainers;
         },
 
         SET_SHOW_LAST_ACTIVE_CARD(state, status) {
@@ -71,6 +77,22 @@ const ContentState = {
                 axios.get('content/lessons')
                     .then(res => {
                         commit('SET_LESSONS', res.data.data);
+                        return resolve(res.data.data);
+                    })
+                    .catch(err => {
+                        warning(err);
+                    })
+            })
+       },
+        getTrainers({ state, commit }) {
+            return new Promise((resolve, reject) => {
+                if(state.trainers) {
+                    return resolve(state.trainers);
+                }
+
+                axios.get('content/trainers')
+                    .then(res => {
+                        commit('SET_TRAINERS', res.data.data);
                         return resolve(res.data.data);
                     })
                     .catch(err => {

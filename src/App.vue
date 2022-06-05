@@ -101,16 +101,19 @@ export default {
   },
 
   methods: {
-    async loadCourses() {
+    async loadInitialData() {
       this.loading = true;
-      await this.$store.dispatch('ContentState/getActiveCourses');
+      await Promise.allSettled([
+        this.$store.dispatch('ContentState/getActiveCourses'),
+        this.$store.dispatch('TrainerState/getActiveTrainers'),
+      ])
       this.loading = false;
     },
 
     async setInitialSettings() {
       this.$store.dispatch('AuthState/setLogStatus', Auth.isLogged());
       if(!Auth.isLogged()) {
-        this.loadCourses();
+        this.loadInitialData();
       }
     },
     

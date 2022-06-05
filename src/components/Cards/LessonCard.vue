@@ -7,7 +7,7 @@
       <div class="lesson_card_details px-1 text-center">
         <h2 class="white_text_color">{{ lesson.name }}</h2>
         <div class="line main_bg_color"></div>
-        <div class="lesson_card_content mt-1" v-html="lessonContent">
+        <div class="lesson_card_content mt-1 white_text_color" v-html="lessonContent">
         </div>
       </div>
     </div>

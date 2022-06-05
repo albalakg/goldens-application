@@ -26,6 +26,7 @@
         <main-button
             class="order_button"
             shadow
+            :loading="loading"
             :styleConfig="{
                 padding: '7px 25px',
                 borderRadius: '30',
@@ -56,6 +57,10 @@ export default {
         discount: {
             type: Number,
             default: 0
+        },
+
+        loading: {
+            type: Boolean
         },
     },
 
