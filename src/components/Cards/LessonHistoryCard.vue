@@ -6,8 +6,8 @@
       <div class="lesson_card_darkner"></div>
       <div class="lesson_card_details px-1 text-center">
         <h2 class="white_text_color">{{ lessonData.name }}</h2>
-        <div class="line main_bg_color"></div>
-        <div class="lesson_card_content mt-1" v-html="lessonContent">
+        <div class="line sub_bg_color"></div>
+        <div class="lesson_card_content mt-1 white_text_color" v-html="lessonContent">
         </div>
       </div>
       <v-flex d-flex justify-center class="lesson_card_date w100">
@@ -107,7 +107,7 @@ export default {
       position: absolute;
       height: 100%;
       width: 100%;
-      background: linear-gradient(#0000 40%, #000d);
+      background: linear-gradient(#0000 40%, #000f);
       border-radius: 8px;
     }
 

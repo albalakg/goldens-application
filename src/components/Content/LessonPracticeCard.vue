@@ -1,5 +1,5 @@
 <template>
-  <v-flex d-flex justify-space-between align-center class="grey_bg_color lesson_practice_list">
+  <v-flex d-flex justify-space-between align-center class="main_bg_color lesson_practice_list">
     <div class="pa-5">
       <document />
       <strong>
@@ -19,8 +19,8 @@
       {{ activityPeriodText }}
       </strong>
     </div>
-    <v-flex md2 d-flex justify-end>
-      <div class="badge main_dark_bg_color ml-4">
+    <v-flex md2 d-flex justify-end align-self-start class="badge_wrapper">
+      <div class="badge sub_bg_color ml-4">
         <settings-mark />
       </div>
     </v-flex>
@@ -116,6 +116,10 @@ export default {
     margin-right: 10px;
   }
 
+  strong {
+    color: #fff;
+  }
+
   .badge {
     border-radius: 0 0 20px 20px;
     height: 50px;
@@ -125,7 +129,18 @@ export default {
     align-items: flex-end;
     padding-bottom: 5px;
     position: relative;
-    top: -12px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .badge_wrapper {
+      position: absolute;
+      left: -3px;
+    }
+
+    .lesson_practice_list {
+      height: 100px;
+      align-items: flex-end !important;
+    }
   }
 
 </style>

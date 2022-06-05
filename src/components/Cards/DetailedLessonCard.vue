@@ -32,7 +32,7 @@
                 </v-flex>
             </v-flex>
             <v-flex class="mt-3">
-                <p class="grey_text_color" v-html="lessonContent">
+                <p class="grey_text_color" v-html="lessonDescription">
                 </p>
             </v-flex>
             <div class="text-left" v-if="isLogged">
@@ -77,7 +77,7 @@ export default {
         return ContentService.findCourseAreaById(this.lesson.course_area_id)?.name
     },
 
-    lessonContent() {
+    lessonDescription() {
         return ContentService.getLessonShortDescription(this.lesson);
     },
 

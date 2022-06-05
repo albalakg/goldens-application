@@ -298,11 +298,6 @@ export default {
       background: linear-gradient(#102a46, #0006) !important
     }
 
-    .course_page_image_details {
-      padding-right: 30px;
-      // align-items: end !important;
-    }
-
     .last_progress_card {
       top: 100px;
     }

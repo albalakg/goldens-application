@@ -2,12 +2,12 @@
   <div class="auth_padding_top" :key="lesson.id">
     <v-flex md7 xl6 mx-auto v-if="lesson" class="lesson_page_content mt-5 mb-10">
       
-      <v-flex d-flex align-center justify-space-between class="px-2 px-md-0">
+      <v-flex d-flex align-center flex-wrap justify-space-between class="px-2 px-md-0">
         <h1 class="mb-0">
           {{ lesson.name }}
         </h1>
 
-        <div md4>
+        <div md4 v-if="$vuetify.breakpoint.mdAndUp">
           <div>
             <main-button
               shadow
@@ -30,6 +30,14 @@
                 </template>
             </main-button>
           </div>
+        </div>
+
+        <div class="heart_badge main_bg_color" v-else @submit="toggleFavorite()">
+          <heart 
+            @submit="toggleFavorite()"
+            dark
+            :filled="isFavorite"
+          />
         </div>
       </v-flex>
 
@@ -71,9 +79,8 @@
         </small>
       </div>
 
-      <div class="lesson_video_wrapper">
+      <div class="lesson_video_wrapper pa-3 pa-md-0">
         <video-card 
-          :rounded="$vuetify.breakpoint.mdAndUp"
           ref="video"
           :src="lesson.video.videoSrc"
           @playClicked="playVideo()"
@@ -95,18 +102,20 @@
       
       <section class="lesson_content_wrapper">
 
-        <v-flex d-flex class="mt-10">
+        <v-flex d-flex flex-wrap class="mt-2 mt-md-10">
           <v-flex align-self-start md7 class="lesson_practice_wrapper">
             <lesson-practice-card :lesson="lesson" />
             <br>
-            <h2>
-              <span class="main_text_color"> מה </span>
-              <span class="dark_text_color"> נלמד </span>
-            </h2>
-            <p v-html="lesson.content">
-            </p>
+            <div class="px-5 px-md-0">
+              <h2>
+                <span class="main_text_color"> מה </span>
+                <span class="dark_text_color"> נלמד </span>
+              </h2>
+              <p v-html="lesson.content">
+              </p>
+            </div>
           </v-flex>
-          <v-flex align-self-start md5 class="pr-5">
+          <v-flex align-self-start md5 class="px-3 pl-md-0 pr-md-5 mt-8 mt-md-0">
             <simple-trainer-card :trainer="trainer" />
             <br>
             <course-area-card 
@@ -223,7 +232,6 @@ export default {
     },
 
     courseAreas() {
-      console.log(ContentService.getCourseAreasByCourseId(this.lesson.course_id));
       return ContentService.getCourseAreasByCourseId(this.lesson.course_id)
     }
   },
@@ -398,12 +406,16 @@ export default {
     width: 50vw;
     top: 0vw;
     right: -10vw;
+    min-width: 350px;
+    min-height: 350px;
   }
 
   .circle_decorator {
     position: absolute;
     height: 50vw;
     width: 50vw;
+    min-width: 250px;
+    min-height: 250px;
     left: -25vw;
     top: 20vh;
     z-index: 0;
@@ -412,6 +424,19 @@ export default {
   .lesson_content_wrapper {
     z-index: 2;
     position: relative;
+  }
+
+
+  .heart_badge {
+    z-index: 100;
+    position: absolute;
+    left: 0;
+    top: -30px;
+    width: 45px;
+    border-radius: 0 25px 25px 0;
+    padding: 5px;
+    display: flex;
+    justify-content: flex-end;
   }
 
 </style>
