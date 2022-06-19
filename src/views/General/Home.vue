@@ -55,7 +55,7 @@
         </section-header>
 
         <div class="lessons_wrapper_carousel">
-            <v-flex xl8 md7 mx-auto class="lessons_wrapper px-5 py-5 mr-auto">
+            <v-flex v-if="lessons.length" xl8 md7 mx-auto class="lessons_wrapper px-5 py-5 mr-auto">
                 <lesson-card v-for="(lesson, index) in lessons" :lesson="lesson" :key="index" />
             </v-flex>
         </div>
@@ -65,7 +65,7 @@
     <div class="spacer"></div>
 
     <!-- Coaches -->
-    <trainers :trainers="trainers" />
+    <trainers v-if="trainers.length" :trainers="trainers" />
 
     <div class="spacer"></div>
 

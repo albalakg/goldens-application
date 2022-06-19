@@ -25,7 +25,7 @@
             </div>
           </template>
         </v-flex>
-        <v-flex md4>
+        <v-flex md5>
           <template v-for="(courseArea, index) in courseAreas">
             <course-area-card 
               class="mb-3"

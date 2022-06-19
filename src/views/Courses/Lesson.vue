@@ -416,7 +416,7 @@ export default {
     width: 50vw;
     min-width: 250px;
     min-height: 250px;
-    left: -25vw;
+    left: -55vw;
     top: 20vh;
     z-index: 0;
   }
