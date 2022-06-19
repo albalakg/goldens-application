@@ -12,7 +12,7 @@
             {{ subtitle }}
         </p>
     </div>
-    <div class="content_image_bottom_darknesss"></div>
+    <div class="content_image_bottom_darkness"></div>
 </div>
 </template>
 
@@ -68,7 +68,7 @@ export default {
             border-radius: 12px;
         }
 
-        .content_image_bottom_darknesss {
+        .content_image_bottom_darkness {
             border-radius: 12px;
             width: 100%;
             height: 40%;

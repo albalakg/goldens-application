@@ -135,12 +135,24 @@
         <v-flex class="questions_wrapper">
             
             <arrows-decorator class="arrows" />
-            <v-flex md8 lg6 mx-auto class="questions_content text-center h100" d-flex align-center justify-center>
-                <h3>
-                   <span class="white_text_color">שאלות</span>
-                   &nbsp;
-                   <span class="sub_text_color">נפוצות</span> 
-                </h3>
+            <v-flex xs10 lg5 xl4 mx-auto class="questions_content text-center h100" d-flex align-center justify-center>
+                <v-flex>
+                    <v-flex>
+                        <h3>
+                        <span class="white_text_color">שאלות</span>
+                        &nbsp;
+                        <span class="sub_text_color">נפוצות</span> 
+                        </h3>
+
+                        <br>
+
+                    </v-flex>
+                    <v-flex v-for="(question, index) in questions" :key="index" class="mb-5">
+                        <question-card 
+                            :question="question"
+                        />
+                    </v-flex>
+                </v-flex>
                 <!-- TODO -->
             </v-flex>
         </v-flex>
@@ -158,6 +170,7 @@ import MainButton from '../../components/Buttons/MainButton.vue'
 import CourseCard from '../../components/Cards/CourseCard.vue'
 import LessonCard from '../../components/Cards/LessonCard.vue'
 import Partners from '../../components/Cards/Partners.vue'
+import QuestionCard from '../../components/Cards/QuestionCard.vue'
 import Trainers from '../../components/Content/Trainers.vue'
 import ArrowDecorator from '../../components/Decorators/ArrowDecorator.vue'
 import ArrowsDecorator from '../../components/Decorators/ArrowsDecorator.vue'
@@ -175,6 +188,7 @@ export default {
         ArrowDecorator,
         ArrowsDecorator,
         Trainers,
+        QuestionCard,
     },
 
     data() {
@@ -203,6 +217,19 @@ export default {
             const trainers = this.$store.getters['ContentState/trainers'];
             return trainers ? trainers : [];
         },
+
+        questions() {
+            return [
+                {
+                    title: 'סתם משהו ראשון',
+                    content: 'סתם תוכן לא קשור לכלום רק בשביל למלא את המקום הזה כדי שאוכל לבדוק'
+                },
+                {
+                    title: 'סתם משהו שני',
+                    content: 'סתם תוכן לא קשור לכלום רק בשביל למלא את המקום הזה כדי שאוכל לבדוק, סתם תוכן לא קשור לכלום רק בשביל למלא את המקום הזה כדי שאוכל לבדוק'
+                },
+            ];
+        }
     },
 
     methods: {
@@ -375,6 +402,11 @@ export default {
         min-height: 400px;
         width: 100%;
         position: relative;
+
+        .questions_content {
+            z-index: 3;
+            position: relative;
+        }
 
         .arrows {
             position: absolute;
