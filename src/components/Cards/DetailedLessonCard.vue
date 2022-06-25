@@ -116,6 +116,7 @@ export default {
     width: 100%;
     padding: 10px;
     position: relative;
+    border-radius: 8px;
 
     &:hover {
         box-shadow: 0 0 10px 1px #0005;
