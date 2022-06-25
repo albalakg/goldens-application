@@ -404,7 +404,7 @@ export default {
         position: relative;
 
         .questions_content {
-            z-index: 3;
+            z-index: 5;
             position: relative;
         }
 

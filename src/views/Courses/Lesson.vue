@@ -117,18 +117,6 @@
           </v-flex>
           <v-flex align-self-start md5 class="px-3 pl-md-0 pr-md-5 mt-8 mt-md-0">
             <simple-trainer-card :trainer="trainer" />
-            <br>
-            <course-area-card 
-              class="mb-3" 
-              :class="{
-                'sub_border': courseArea.id === lesson.course_area_id
-              }"
-              v-for="(courseArea, index) in courseAreas" 
-              :key="index" 
-              rounded
-              :courseArea="courseArea" 
-              @submit="enterCourseArea"
-            />
           </v-flex>
         </v-flex>
 
