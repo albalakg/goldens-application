@@ -8,6 +8,7 @@ import SupportState         from './modules/SupportState'
 import ContentState         from './modules/ContentState'
 import MessageState         from './modules/MessageState'
 import OrderState         from './modules/OrderState'
+import PoliciesState         from './modules/PoliciesState'
 
 Vue.use(Vuex)
 
@@ -20,5 +21,6 @@ export default new Vuex.Store({
     ContentState,
     MessageState,
     OrderState,
+    PoliciesState,
   }
 })
