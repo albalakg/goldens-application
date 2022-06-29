@@ -80,6 +80,22 @@
                             
                             <div class="spacer"></div>
 
+                            <div>
+                                <small>
+                                    בהתחברות אני מסכים/מה 
+                                    <router-link to="/policies" target="_blank">
+                                        <span class="link">
+                                            לתנאי השימוש
+                                        </span>
+                                    </router-link>
+                                    <router-link to="/policies" target="_blank">
+                                        <span class="link">
+                                            ומדיניות הפרטיות
+                                        </span>
+                                    </router-link>
+                                </small>
+                            </div>
+
                             <v-flex d-md-flex align-center justify-space-between class="text-center text-md-right mt-5">
                                 <v-flex md5 mt-5 mt-md-0 v-if="$vuetify.breakpoint.mdAndUp">
                                     <router-link to="/signin">
