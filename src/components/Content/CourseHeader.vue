@@ -9,6 +9,12 @@
 
       <div class="divider mt-md-7"></div>
 
+      <div v-if="showTrainerIcon && $vuetify.breakpoint.smAndDown" class="trainer_icon" @click="toggleTrainerDialog()">
+        <img :src="trainer.imageSrc">
+      </div>
+
+      <trainer-dialog :show="showTrainerDialog" :trainer="trainer" @closed="toggleTrainerDialog()" />
+
       <v-flex d-flex class="course_page_actions_wrapper w100 mt-5">
 
         <v-flex
@@ -37,7 +43,6 @@
                 {{ course.name }}
             </h1>
             <p class="grey_text_color sub_border_right pr-3 mt-3" v-html="course.description">
-                
             </p>
         </v-flex>
     </v-flex>
@@ -45,7 +50,9 @@
 </template>
 
 <script>
+import TrainerDialog from '../Dialogs/TrainerDialog.vue';
 export default {
+  components: { TrainerDialog },
   props: {
     course: {
       type: Object,
@@ -57,6 +64,7 @@ export default {
     return {
       showShareTooltip: false,
       trailerFullScreen: false,
+      showTrainerDialog: false,
       actions: [
         {
           image: require("../../../public/assets/images/general/share.svg"),
@@ -78,6 +86,16 @@ export default {
     hasActiveCourse() {
       return this.$store.getters['UserState/hasActiveCourse']
     },
+
+    showTrainerIcon() {
+      return Boolean(this.$route.query.courseArea)
+    },
+
+    trainer() {
+      const courseAreaId  = this.$route.query.courseArea;
+      const trainer       = ContentService.findTrainerByCourseAreaId(courseAreaId);
+      return trainer;
+    }
   },
 
   methods: {
@@ -105,6 +123,10 @@ export default {
 
     openTrailer() {
       this.$emit('openTrailer')
+    },
+    
+    toggleTrainerDialog() {
+      this.showTrainerDialog = !this.showTrainerDialog;
     },
   },
 };
@@ -140,6 +162,24 @@ h1 {
   margin: auto;
   z-index: 3;
   background-color: #d5b26e;
+}
+
+.trainer_icon {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: #fff;
+  position: absolute;
+  padding: 2px;
+  left: 3%;
+  bottom: 20%;
+
+  img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
 }
 
 @media only screen and (max-width: 600px) {

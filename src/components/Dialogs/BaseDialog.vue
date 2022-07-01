@@ -3,10 +3,11 @@
     v-model="show"
     :persistent="persistent"
     :overlay="overlay"
+    :maxWidth="maxWidth"
     transition="dialog-transition"
     @click:outside="close()"
   >
-    <v-card class="base_dialog_wrapper pa-3">
+    <v-card class="base_dialog_wrapper">
       <slot name="content" />
     </v-card>
   </v-dialog>
@@ -45,9 +46,5 @@ export default {
 </script>
 
 <style scoped>
-
-  .base_dialog_wrapper {
-    
-  }
 
 </style>
