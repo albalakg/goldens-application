@@ -13,6 +13,28 @@
             :subIcon="''"
             @onChange="onChange"
         />
+
+        <v-flex class="search_list" v-show="searchValue">
+            <template v-if="result.length">
+                <v-flex d-flex v-for="(lesson, index) in result" :key="index" class="search_list_item">
+                    <v-flex xs4>
+                        <img :src="lesson.imageSrc" alt="lesson">
+                    </v-flex>
+                    <v-flex xs8 class="pa-2">
+                        <strong>
+                            <small>
+                                {{ lesson.name }}
+                            </small>
+                        </strong>
+                    </v-flex>
+                </v-flex>
+            </template>
+            <template>
+                <small class="mr-2">
+                    לא נמצאו שיעורים...
+                </small>
+            </template>
+        </v-flex>
     </div>
 </template>
 
@@ -53,15 +75,40 @@ export default {
 
     data() {
         return {
-            text:       'חפש שיעור',
-            iconSrc:    'mdi-magnify',
-            rules:      []
+            text:           'חפש שיעור',
+            iconSrc:        'mdi-magnify',
+            rules:          [],
+            searchValue:    '',
+        }
+    },
+
+    computed: {
+        result() {
+            let lessons = this.$store.getters['UserState/lessons'];
+            console.log('lessons ==> ', lessons);
+            if(!lessons) {
+                return [];
+            }
+
+            lessons = lessons.filter(lesson => {
+                if(
+                    lesson.name.toLowerCase().includes(this.searchValue.toLowerCase()) ||
+                    lesson.description.toLowerCase().includes(this.searchValue.toLowerCase())
+                ) {
+                    return lesson;
+                }
+            })
+
+            console.log('lessons 2 ==> ', lessons);
+
+            return lessons;
         }
     },
 
     methods: {
         onChange(value) {
             this.$emit('onChange', value);
+            this.searchValue = value;
         },
 
         validate() {
@@ -71,5 +118,39 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+
+    .search_input_wrapper {
+        position: relative;
+        color: #000;
+    
+        .search_list {
+            padding: 5px;
+            border-radius: 4px;
+            background-color: #fff;
+            margin-top: 2px;
+            position: absolute;
+            width: 100%;
+            height: fit-content;
+            max-height: 250px;
+            overflow-y: auto;
+
+            .search_list_item {
+                cursor: pointer;
+                margin-bottom: 8px;
+                box-shadow: 0 0 3px 2px #aaa8;
+                border-radius: 4px;
+
+                img {
+                    border-radius: 0 4px 4px 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+
+            }
+
+        }
+    }
+
 </style>
