@@ -2,7 +2,7 @@
   <div :class="{
       'w100': !hasActiveCourse
   }">
-    <div v-if="hasActiveCourse">
+    <div v-if="hasActiveCourse" class="mt-5">
       <h1>
         {{ course.name }}
       </h1>
@@ -10,6 +10,7 @@
       <div class="divider mt-md-7"></div>
 
       <v-flex d-flex class="course_page_actions_wrapper w100 mt-5">
+
         <v-flex
           class="text-center pt-4 pointer mx-3"
           v-for="(action, index) in actions"
@@ -68,6 +69,7 @@ export default {
           text: "טריילר",
           action: "openTrailer",
         },
+       
       ],
     };
   },
@@ -108,7 +110,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 h1 {
   position: relative;
   color: #fff;

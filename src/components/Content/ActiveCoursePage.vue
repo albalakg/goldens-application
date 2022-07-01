@@ -1,5 +1,6 @@
 <template>
   <v-flex>
+    <!-- small screen -->
     <template v-if="$vuetify.breakpoint.smAndDown">
       <template v-if="hasActiveCourse">
         <br>
@@ -7,9 +8,8 @@
         <user-course-progress :course="course" class="mx-4" />
       </template>
 
-      
       <br>
-
+      
       <template v-for="(courseArea, index) in courseAreas">
         <course-area-card 
           class="mb-3"
@@ -21,9 +21,11 @@
       </template>
     </template>
     
+    <!-- big screen -->
     <template v-else>
       <v-flex d-flex justify-center md10 xl9 mx-auto>
         <v-flex md4 offset-md-1>
+          
           <template v-for="(courseArea, index) in courseAreas">
             <course-area-card 
               class="mb-3"
@@ -67,6 +69,7 @@ export default {
     hasActiveCourse() {
       return this.$store.getters['UserState/hasActiveCourse'];
     },
+    
   },
 
   methods: {
