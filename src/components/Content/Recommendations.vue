@@ -11,7 +11,7 @@
         <v-flex md9 xl8 mx-auto class="recommendations_list">
             <arrow-chip v-show="!isLeftArrowDisabled" class="arrow_chip left_arrow" @submit="moveLeft()" />
             <carousel ref="carousel" :perPage="perPage" :value="currentPage" v-model="currentPage">
-                <slide v-for="(item, index) in items" :key="index + item.name" class="pa-4">
+                <slide v-for="(item, index) in items" :key="index + item.name" class="py-8 px-4">
                     <recommendation-card :data="item" :index="index" />
                 </slide>
             </carousel>

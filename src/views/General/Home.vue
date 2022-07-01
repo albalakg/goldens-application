@@ -160,6 +160,11 @@
 
     <div class="spacer"></div>
 
+    <v-flex xs11 lg12 mx-auto>
+        <recommendations :items="recommendations" :perPage="recommendationPerPage" />
+    </v-flex>
+
+
     <div class="spacer"></div>
 
 </div>
@@ -171,6 +176,7 @@ import CourseCard from '../../components/Cards/CourseCard.vue'
 import LessonCard from '../../components/Cards/LessonCard.vue'
 import Partners from '../../components/Cards/Partners.vue'
 import QuestionCard from '../../components/Cards/QuestionCard.vue'
+import Recommendations from '../../components/Content/Recommendations.vue'
 import Trainers from '../../components/Content/Trainers.vue'
 import ArrowDecorator from '../../components/Decorators/ArrowDecorator.vue'
 import ArrowsDecorator from '../../components/Decorators/ArrowsDecorator.vue'
@@ -189,6 +195,7 @@ export default {
         ArrowsDecorator,
         Trainers,
         QuestionCard,
+        Recommendations,
     },
 
     data() {
@@ -229,7 +236,58 @@ export default {
                     content: 'סתם תוכן לא קשור לכלום רק בשביל למלא את המקום הזה כדי שאוכל לבדוק, סתם תוכן לא קשור לכלום רק בשביל למלא את המקום הזה כדי שאוכל לבדוק'
                 },
             ];
-        }
+        },
+
+        recommendations() {
+            return [
+                {
+                    image: 'https://static.bangkokpost.com/media/content/20200619/c1_1937552_200619122619.jpg',
+                    name: 'שחר פאר',
+                    content: `מונפרד אדנדום לורם איפסום דולור סיט אמט, קונסקטורר
+                            מרגשי ומרגשח. עמחליף מודוף. אדיפיסינג אלית קולורס
+                            אודיפו בלאסטיק מונופץ קליר סילקוף,`
+                },
+                {
+                    image: 'https://static.bangkokpost.com/media/content/20200619/c1_1937552_200619122619.jpg',
+                    name: 'קלארק קנט',
+                    content: `מונפרד אדנדום לורם איפסום דולור סיט אמט, קונסקטורר
+                            מרגשי ומרגשח. עמחליף מודוף. אדיפיסינג אלית קולורס
+                            אודיפו בלאסטיק מונופץ קליר סילקוף,`
+                },
+                {
+                    image: 'https://static.bangkokpost.com/media/content/20200619/c1_1937552_200619122619.jpg',
+                    name: 'אסף לוץ',
+                    content: `מונפרד אדנדום לורם איפסום דולור סיט אמט, קונסקטורר
+                            מרגשי ומרגשח. עמחליף מודוף. אדיפיסינג אלית קולורס
+                            אודיפו בלאסטיק מונופץ קליר סילקוף,`
+                },
+                {
+                    image: 'https://static.bangkokpost.com/media/content/20200619/c1_1937552_200619122619.jpg',
+                    name: 'פינוקיו',
+                    content: `מונפרד אדנדום לורם איפסום דולור סיט אמט, קונסקטורר
+                            מרגשי ומרגשח. עמחליף מודוף. אדיפיסינג אלית קולורס
+                            אודיפו בלאסטיק מונופץ קליר סילקוף,`
+                },
+                {
+                    image: 'https://static.bangkokpost.com/media/content/20200619/c1_1937552_200619122619.jpg',
+                    name: 'ספיידרמן',
+                    content: `מונפרד אדנדום לורם איפסום דולור סיט אמט, קונסקטורר
+                            מרגשי ומרגשח. עמחליף מודוף. אדיפיסינג אלית קולורס
+                            אודיפו בלאסטיק מונופץ קליר סילקוף,`
+                },
+                {
+                    image: 'https://static.bangkokpost.com/media/content/20200619/c1_1937552_200619122619.jpg',
+                    name: 'איירון מן',
+                    content: `מונפרד אדנדום לורם איפסום דולור סיט אמט, קונסקטורר
+                            מרגשי ומרגשח. עמחליף מודוף. אדיפיסינג אלית קולורס
+                            אודיפו בלאסטיק מונופץ קליר סילקוף,`
+                },
+            ];
+        },
+            
+        recommendationPerPage() {
+            return this.$vuetify.breakpoint.mdAndUp ? 3 : 1
+        },
     },
 
     methods: {
