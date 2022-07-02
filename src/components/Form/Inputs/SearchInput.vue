@@ -16,7 +16,7 @@
 
         <v-flex class="search_list" v-show="searchValue">
             <template v-if="result.length">
-                <v-flex d-flex v-for="(lesson, index) in result" :key="index" class="search_list_item">
+                <v-flex d-flex v-for="(lesson, index) in result" :key="index" class="search_list_item" @click="enterLesson(lesson)">
                     <v-flex xs4>
                         <img :src="lesson.imageSrc" alt="lesson">
                     </v-flex>
@@ -29,7 +29,7 @@
                     </v-flex>
                 </v-flex>
             </template>
-            <template>
+            <template v-else>
                 <small class="mr-2">
                     לא נמצאו שיעורים...
                 </small>
@@ -85,7 +85,6 @@ export default {
     computed: {
         result() {
             let lessons = this.$store.getters['UserState/lessons'];
-            console.log('lessons ==> ', lessons);
             if(!lessons) {
                 return [];
             }
@@ -99,8 +98,6 @@ export default {
                 }
             })
 
-            console.log('lessons 2 ==> ', lessons);
-
             return lessons;
         }
     },
@@ -111,8 +108,10 @@ export default {
             this.searchValue = value;
         },
 
-        validate() {
-            return this.$refs.input.validate();
+        enterLesson(lesson) {
+            this.$router.push('/courses/' + lesson.course_id + '/lessons/' + lesson.id);
+            this.searchValue = '';
+            this.$emit('close');
         }
     }
 }
@@ -134,6 +133,7 @@ export default {
             height: fit-content;
             max-height: 250px;
             overflow-y: auto;
+            box-shadow: 0 0 3px #3338;
 
             .search_list_item {
                 cursor: pointer;

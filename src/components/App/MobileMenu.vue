@@ -24,7 +24,7 @@
         </v-flex>
         <search-dialog 
             :show="showSearch"
-            :minHeight="300"
+            :minHeight="350"
             @close="close()"
         />
 
