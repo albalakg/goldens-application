@@ -16,9 +16,9 @@
 
         <v-flex class="search_list" v-show="searchValue">
             <template v-if="result.length">
-                <v-flex d-flex v-for="(lesson, index) in result" :key="index" class="search_list_item" @click="enterLesson(lesson)">
+                <v-flex d-flex v-for="(lesson, index) in result" :key="index" class="search_list_item" :class="{'mb-2': index != result.length -1}" @click="enterLesson(lesson)">
                     <v-flex xs4>
-                        <img :src="lesson.imageSrc" alt="lesson">
+                        <img loading="lazy" :src="lesson.imageSrc" alt="lesson">
                     </v-flex>
                     <v-flex xs8 class="pa-2">
                         <strong>
@@ -138,7 +138,6 @@ export default {
 
             .search_list_item {
                 cursor: pointer;
-                margin-bottom: 8px;
                 box-shadow: 0 0 3px 2px #aaa8;
                 border-radius: 4px;
 

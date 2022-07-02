@@ -6,7 +6,7 @@
       transition="dialog-transition"
     >
       <div class="trainer_dialog_wrapper">
-        <img :src="trainer.imageSrc" alt="trainer" />
+        <img loading="lazy" :src="trainer.imageSrc" alt="trainer" />
 
         <div class="trainer_darkner"></div>
 

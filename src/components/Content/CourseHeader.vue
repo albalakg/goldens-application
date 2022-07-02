@@ -10,7 +10,7 @@
       <div class="divider mt-md-7"></div>
 
       <div v-if="showTrainerIcon && $vuetify.breakpoint.smAndDown" class="trainer_icon" @click="toggleTrainerDialog()">
-        <img :src="trainer.imageSrc">
+        <img loading="lazy" :src="trainer.imageSrc">
       </div>
 
       <trainer-dialog :show="showTrainerDialog" :trainer="trainer" @closed="toggleTrainerDialog()" />

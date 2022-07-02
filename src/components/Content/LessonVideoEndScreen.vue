@@ -4,7 +4,7 @@
             <h3>
                 השיעור הבא יתחיל בעוד <span class="timer_text">{{timer}} שניות</span>
             </h3>
-            <img class="mt-2" :src="lesson.imageSrc" alt="lesson image">
+            <img loading="lazy" class="mt-2" :src="lesson.imageSrc" alt="lesson image">
             <small>
                 {{lesson.name}}
             </small>

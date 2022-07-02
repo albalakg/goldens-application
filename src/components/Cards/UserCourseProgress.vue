@@ -21,7 +21,7 @@
             </h3>
 
             <v-flex class="user_course_progress_row mt-5" d-flex justify-space-between>
-                <v-flex xs5 d-flex align-center>
+                <v-flex xs7 d-flex align-center>
                     <div class="ml-5 user_course_progress_row_image_box">
                         <img loading="lazy" :src="courseAreaImage" alt="course area image">
                     </div>
@@ -37,7 +37,7 @@
             </v-flex>
 
             <v-flex class="user_course_progress_row mt-5" d-flex justify-space-between>
-                <v-flex xs5 d-flex align-center>
+                <v-flex xs7 d-flex align-center>
                     <div class="ml-5 user_course_progress_row_image_box">
                         <img loading="lazy" :src="lessonImage" alt="lesson image">
                     </div>
@@ -53,7 +53,7 @@
             </v-flex>
 
             <v-flex class="user_course_progress_row mt-5" d-flex justify-space-between>
-                <v-flex xs5 d-flex align-center>
+                <v-flex xs7 d-flex align-center>
                     <div class="ml-5 user_course_progress_row_image_box">
                         <img loading="lazy" :src="timeImage" alt="lesson image">
                     </div>

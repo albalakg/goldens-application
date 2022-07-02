@@ -26,7 +26,7 @@
                     </div>
                 </v-flex>
                 <v-flex md6 class="dark_bg_color px-5 pb-5 pt-1 w100">
-                    <img :src="activeCourseArea.imageSrc" />
+                    <img loading="lazy" :src="activeCourseArea.imageSrc" />
 
                     <p class="sub_text_color mt-2 mb-0">
                         {{ activeCourseArea.name }}

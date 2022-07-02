@@ -51,7 +51,7 @@
 
     <section class="about_believe_section px-5 px-md-0">
       <div class="spacer"></div>
-      <img :src="aboutBelieveBackgroundImage" alt="about believe background" />
+      <img loading="lazy" :src="aboutBelieveBackgroundImage" alt="about believe background" />
       <div class="about_background_darkner"></div>
 
       <div class="about_believe_content">

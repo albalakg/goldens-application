@@ -1,6 +1,5 @@
 <template>
 <div class="arrow_button_wrapper" :style="cssVars" @click="submit()">
-    <!-- <img loading="lazy"  :src="" alt=""> -->
     <div :class="direction">
         >
     </div>

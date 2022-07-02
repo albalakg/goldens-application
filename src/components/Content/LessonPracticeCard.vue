@@ -7,7 +7,7 @@
       חזרות
       </strong>
     </div>
-    <div class="pa-5">
+    <div class="pa-5 activity_time_wrapper">
       <clock />
       <strong>
       {{ activityTimeText }}
@@ -140,6 +140,11 @@ export default {
     .lesson_practice_list {
       height: 100px;
       align-items: flex-end !important;
+    }
+
+    .activity_time_wrapper {
+      position: relative;
+      top: 3px;
     }
   }
 

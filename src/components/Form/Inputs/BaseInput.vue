@@ -281,5 +281,11 @@ export default {
         }
     }
 
+    @media only screen and (min-width: 601px) {
+        .mdi-close {
+            margin-top: 11px;
+        }
+    }
+
 
 </style>

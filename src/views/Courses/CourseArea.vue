@@ -32,7 +32,7 @@
         <v-flex md5 class="relative">
           <div v-if="showTrainerIcon" class="trainer_icon_wrapper">
             <div class="trainer_image_wrapper" @click="toggleTrainerDialog()">
-              <img :src="trainer.imageSrc" />
+              <img loading="lazy" :src="trainer.imageSrc" />
             </div>
             <br />
             <span class="sub_text_color">
