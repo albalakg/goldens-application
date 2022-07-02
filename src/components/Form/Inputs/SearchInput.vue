@@ -111,6 +111,7 @@ export default {
         enterLesson(lesson) {
             this.$router.push('/courses/' + lesson.course_id + '/lessons/' + lesson.id);
             this.searchValue = '';
+            this.$refs.input.setValue('');
             this.$emit('close');
         }
     }
