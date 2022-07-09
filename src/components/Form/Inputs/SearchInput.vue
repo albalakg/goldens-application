@@ -26,6 +26,10 @@
                                 {{ lesson.name }}
                             </small>
                         </strong>
+                        <br>
+                        <small class="lesson_description">
+                            {{ lesson.description }}
+                        </small>
                     </v-flex>
                 </v-flex>
             </template>
@@ -140,6 +144,14 @@ export default {
                 cursor: pointer;
                 box-shadow: 0 0 3px 2px #aaa8;
                 border-radius: 4px;
+                
+                & > div {
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    position: relative;
+                    top: -6px;
+                }
 
                 img {
                     border-radius: 0 4px 4px 0;
@@ -148,6 +160,14 @@ export default {
                     object-fit: cover;
                 }
 
+                strong {
+                    position: relative;
+                    top: 6px;
+                }
+
+                .lesson_description {
+                    font-size: .7em;
+                }
             }
 
         }
