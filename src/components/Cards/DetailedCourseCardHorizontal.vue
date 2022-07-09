@@ -1,5 +1,5 @@
 <template>
-    <v-flex d-flex class="detailed_course_card_horizontal dark_shadow px-4 pb-2 pt-1" :class="{
+    <v-flex d-flex class="detailed_course_card_horizontal dark_shadow px-4 pb-1 pt-6" :class="{
         'flex-wrap': $vuetify.breakpoint.smAndDown
     }">
         <v-flex md4>

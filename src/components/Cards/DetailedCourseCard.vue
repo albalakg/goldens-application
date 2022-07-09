@@ -1,5 +1,5 @@
 <template>
-    <div class="detailed_course_card dark_shadow w100 white_bg_color px-3 pb-3">
+    <div class="detailed_course_card dark_shadow w100 white_bg_color px-3 py-3">
         <video-card 
             ref="video"
             :src="course.trailerSrc"

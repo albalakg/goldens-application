@@ -48,13 +48,9 @@
                         </span>
                     </div>
                 </v-flex>
-                <v-flex v-else v-for="(lessonList, index) in viewLessons" :key="index" xs3 d-flex flex-column flex-wrap>
-                    <div class="course_plan_lesson pa-8" v-for="(lesson, index) in lessonList" :key="index">
+                <v-flex v-else v-for="(lessonList, columnIndex) in viewLessons" :key="columnIndex" xs3 d-flex flex-column flex-wrap>
+                    <div class="course_plan_lesson pa-8" v-for="(lesson, itemIndex) in lessonList" :key="itemIndex">
                         <span class="white_text_color">
-                            <strong>
-                                {{index + 1}}
-                            </strong> 
-                            &nbsp; 
                             {{ lesson.name }}
                         </span>
                     </div>
