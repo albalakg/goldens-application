@@ -79,7 +79,7 @@
         </small>
       </div>
 
-      <div class="lesson_video_wrapper pa-3 pa-md-0">
+      <div class="lesson_video_wrapper ma-3 pa-md-0">
         <video-card 
           ref="video"
           :src="lesson.video.videoSrc"
@@ -346,12 +346,22 @@ export default {
 
   .video_end_screen {
     position: absolute;
-    height: 100%;
+    height: 98%;
     top: 0;
     width: 100%;
     z-index: 2;
     background-color: #111d;
     border-radius: 12px;
+
+
+    /* position: absolute;
+    height: calc(100% - 29px);
+    top: 12px;
+    right: 12px;
+    width: calc(100% - 24px);
+    z-index: 2;
+    background-color: #111d;
+    border-radius: 12px; */
   }
 
   video {

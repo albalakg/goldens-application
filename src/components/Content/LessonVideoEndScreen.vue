@@ -1,6 +1,6 @@
 <template>
-    <v-flex d-flex justify-center class="lesson_video_end_screen_wrapper w100 h100 text-right white_text_color">
-        <v-flex md4 mx-auto class="h100">
+    <v-flex d-flex justify-center align-center class="lesson_video_end_screen_wrapper w100 h100 text-right white_text_color">
+        <v-flex md4 lg5 mx-auto v-if="$vuetify.breakpoint.mdAndUp">
             <h3>
                 השיעור הבא יתחיל בעוד <span class="timer_text">{{timer}} שניות</span>
             </h3>
@@ -19,7 +19,35 @@
                 />
                 <main-button 
                     ref="nextButton"
+                    slim    
+                    class="mr-3"
+                    text="הפעלה"
+                    @submit="moveToNextLesson()"
+                />
+            </v-flex>
+        </v-flex>
+
+        <v-flex v-else class="pa-3">
+            <h3>
+                השיעור הבא יתחיל בעוד <span class="timer_text">{{timer}} שניות</span>
+            </h3>
+            <small>
+                {{lesson.name}}
+            </small>
+            <v-flex xs5>
+                <img loading="lazy" class="mt-2" :src="lesson.imageSrc" alt="lesson image">
+            </v-flex>
+            <v-flex d-flex class="mt-1">
+                <main-button 
                     slim
+                    dark
+                    text="ביטול"
+                    class="ml-3"
+                    @submit="closeEndScreen()"
+                />
+                <main-button 
+                    ref="nextButton"
+                    slim    
                     class="mr-3"
                     text="הפעלה"
                     @submit="moveToNextLesson()"
@@ -100,10 +128,6 @@ export default {
         width: 100%;
         border-radius: 12px;
         object-fit: cover;
-    }
-
-    .lesson_video_end_screen_wrapper > div{
-        transform: translate(0, 25%);
     }
 
     .timer_text {
