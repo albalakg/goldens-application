@@ -361,6 +361,10 @@ const UserState = {
                         resolve()
                     });
             })
+        },
+
+        saveUserLandedOnPageNotFound({}, path) {
+            axios.get('profile/landed-on-page-not-found?path=' + encodeURIComponent(path))
         }
 
     }

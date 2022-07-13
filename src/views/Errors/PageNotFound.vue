@@ -36,7 +36,7 @@ export default {
 
     methods: {
         saveLandOnPageNotFound() {
-            // TODO: send a request to server to notify that someone reached that page
+            this.$store.dispatch('UserState/saveUserLandedOnPageNotFound', this.$route.fullPath)
         }
     }
 }
