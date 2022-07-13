@@ -177,12 +177,14 @@ const UserState = {
             return new Promise((resolve, reject) => {
                 axios.post('profile/change-password', data)
                     .then(res => {
-                        dispatch('MessageState/addMessage', {message: 'הסיסמא עודכנה בהצלחה'}, {root:true});
+                        dispatch('MessageState/addMessage', {message: 'הסיסמה עודכנה בהצלחה'}, {root:true});
+                        resolve(res.data)
                     }).catch(err => {
                         dispatch('MessageState/addMessage', {
-                            message: 'מצטערים אך לא הצלחנו לעדכן את הסיסמא',
+                            message: 'מצטערים אך לא הצלחנו לעדכן את הסיסמה',
                             type: 'error',
                         }, {root:true});
+                        resolve(err.response.data)
                     }).finally(() => {
                         resolve()
                     })

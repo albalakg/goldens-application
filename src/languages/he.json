@@ -1,0 +1,6 @@
+{
+    "ERRORS": {
+        "SAME_PASSWORD_ERROR": "הסיסמה החדשה לא יכולה להיות זהה לנוכחית",
+        "DEFAULT_UPDATE_PASSWORD_ERROR": "מצטערים אך לא הצלחנו לעדכן את הסיסמה"
+    }
+}

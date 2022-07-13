@@ -8,8 +8,8 @@
                 <v-flex xs12 md6 lg5 xl4 px-5 px-md-0>
                     <v-flex md8>
                         <v-form class="signin_form" ref="form" @submit.prevent="submit()">
-                            <h2 class="auth_form_title"><span class="main_text_color">איפוס סיסמא</span> לאתר</h2>
-                            <h3 class="auth_form_subtitle">חשוב לבחור סיסמא חזקה כדי לאבטח על המשתמש</h3>
+                            <h2 class="auth_form_title"><span class="main_text_color">איפוס סיסמה</span> לאתר</h2>
+                            <h3 class="auth_form_subtitle">חשוב לבחור סיסמה חזקה כדי לאבטח על המשתמש</h3>
                             
                             <Divider :space="8" />
                             
@@ -54,7 +54,7 @@
                                                 </strong>
                                                 <template v-else>
                                                     <strong class="white--text">
-                                                        אפס סיסמא
+                                                        אפס סיסמה
                                                     </strong>
                                                 </template>
                                             </v-flex>
@@ -124,7 +124,7 @@ export default {
 
             axios.post('auth/reset-password', this.form)
                 .then(res => {
-                    this.$store.dispatch('MessageState/addMessage', {message: 'נשלחה בקשת איפוס סיסמא בהצלחה'})
+                    this.$store.dispatch('MessageState/addMessage', {message: 'נשלחה בקשת איפוס סיסמה בהצלחה'})
                     this.$router.push('/signin');
                 }).catch(err => {
                     this.setError(err.response);
@@ -138,7 +138,7 @@ export default {
 
             try {
                 if(error.data.message === 'Can\'t update new password that matches the old password') {
-                    message = 'הסיסמה החדשה אינה יכולה להיות זהה להסיסמא הישנה';
+                    message = 'הסיסמה החדשה אינה יכולה להיות זהה להסיסמה הישנה';
                 }
 
             } catch(err) {

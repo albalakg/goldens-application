@@ -8,8 +8,8 @@
                 <v-flex xs12 md6 lg5 xl4 px-5 px-md-0>
                     <v-flex md8>
                         <v-form class="signin_form" ref="form" @submit.prevent="submit()">
-                            <h2 class="auth_form_title"><span class="main_text_color">שכחתי סיסמא</span> לאתר</h2>
-                            <h3 class="auth_form_subtitle">לא באמת שכחתי, סתם בא לי לעדכן את הסיסמא...</h3>
+                            <h2 class="auth_form_title"><span class="main_text_color">שכחתי סיסמה</span> לאתר</h2>
+                            <h3 class="auth_form_subtitle">לא באמת שכחתי, סתם בא לי לעדכן את הסיסמה...</h3>
                             
                             <Divider :space="8" />
                             
@@ -113,7 +113,7 @@ export default {
 
             axios.post('auth/forgot-password', this.form)
                 .then(res => {
-                    this.$store.dispatch('MessageState/addMessage', {message: 'נשלחה בקשת איפוס סיסמא בהצלחה'})
+                    this.$store.dispatch('MessageState/addMessage', {message: 'נשלחה בקשת איפוס סיסמה בהצלחה'})
                     this.$router.push('/signin');
                 }).catch(err => {
                     this.error = err?.response?.data?.message;

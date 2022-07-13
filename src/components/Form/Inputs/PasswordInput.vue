@@ -29,7 +29,7 @@ export default {
     props: {
         text: {
             type: String,
-            default: 'סיסמא',
+            default: 'סיסמה',
         },
 
         outlined: {
@@ -95,21 +95,21 @@ export default {
         },
 
         viewText() {
-            return this.confirmation ? 'אימות סיסמא' : this.text
+            return this.confirmation ? 'אימות סיסמה' : this.text
         },
         
         rules() {
             const rules = [
                 {
                     rule: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d#$@!%&*\^?]{8,40}$/,
-                    message: 'הסיסמא חייבת להכיל לפחות אות קטנה, אות גדולה ומספר ולהיות בין 8-40 תויים'
+                    message: 'הסיסמה חייבת להכיל לפחות אות קטנה, אות גדולה ומספר ולהיות בין 8-40 תויים'
                 }
             ];
 
             if(this.match) {
                 rules.push({
                     value: this.match,
-                    message: 'הסיסמאות לא זהות'
+                    message: 'הסיסמהות לא זהות'
                 })
             }
 
@@ -128,6 +128,10 @@ export default {
         
         validate() {
             return this.$refs.input.validate();
+        },
+        
+        setValue(value) {
+            this.value = value;
         },
     }
 }

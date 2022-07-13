@@ -1,32 +1,40 @@
 <template>
-<v-form @submit="submit()">
-    <password-input 
-        ref="oldPassword"
-        text="סיסמא נוכחית"
-        outlined
-        title
-        icon
-        @onChange="setOldPassword" 
-    />
-    <br>
-    <password-input 
-        ref="password"
-        outlined
-        title
-        icon
-        @onChange="setPassword" 
-    />
+<div>
+    <v-form @submit="submit()" v-if="showPasswordForm">
+        <password-input 
+            ref="oldPassword"
+            text="סיסמה נוכחית"
+            outlined
+            title
+            icon
+            @onChange="setOldPassword" 
+        />
+        <br>
+        <password-input 
+            ref="password"
+            outlined
+            title
+            icon
+            @onChange="setPassword" 
+        />
 
-    <v-flex d-flex justify-end mt-10 mt-md-5>
-        <v-flex xs12 md4 lg2>
-            <main-button 
-                :text="'עדכן סיסמא'"
-                shadow
-                :loading="loading"
-            />
+        <v-flex d-flex justify-end mt-10 mt-md-5>
+            <v-flex xs12 md4 lg2>
+                <main-button 
+                    :text="'עדכן סיסמה'"
+                    shadow
+                    :loading="loading"
+                />
+            </v-flex>
         </v-flex>
+    </v-form>
+    <v-flex md2 v-else>
+        <main-button 
+            text="עדכן סיסמה"
+            @submit="toggleShowPasswordForm()"
+        />
     </v-flex>
-</v-form>
+</div>
 </template>
 
 <script>
@@ -44,7 +52,8 @@ export default {
             form: {
                 password: '',
             },
-            loading: false
+            loading: false,
+            showPasswordForm: false
         }
     },
 
@@ -76,6 +85,10 @@ export default {
         validate() {
             return this.$refs.password.validate();
         },
+
+        toggleShowPasswordForm() {
+            this.showPasswordForm = !this.showPasswordForm;
+        }
     }
 }
 </script>

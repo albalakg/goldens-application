@@ -39,7 +39,7 @@
                                 <v-flex md5 mb-5 mb-md-0 v-if="$vuetify.breakpoint.mdAndUp">
                                     <router-link to="/forgot-password">
                                         <span class="link">
-                                            שכחתי סיסמא
+                                            שכחתי סיסמה
                                         </span>
                                     </router-link>
                                 </v-flex>
@@ -95,7 +95,7 @@
                         <v-flex v-if="$vuetify.breakpoint.smAndDown" class="mt-5 text-center">
                             <router-link to="/forgot-password">
                                 <span class="link">
-                                    שכחתי סיסמא
+                                    שכחתי סיסמה
                                 </span>
                             </router-link>
                         </v-flex>
@@ -156,7 +156,7 @@ export default {
                     this.loggedSuccessfullyActions();
                     
                 }).catch(err => {
-                    this.$store.dispatch('MessageState/addErrorMessage', { message: 'האימייל או הסיסמא אינם תקינים' })
+                    this.$store.dispatch('MessageState/addErrorMessage', { message: 'האימייל או הסיסמה אינם תקינים' })
                 }).finally(() => {
                     this.loading = false;
                 })

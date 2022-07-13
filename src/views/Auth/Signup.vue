@@ -197,7 +197,7 @@ export default {
                     this.$router.push('/signin');
                     this.$store.dispatch('MessageState/addMessage', {message: 'נרשמת בהצלחה למערכת, ברוך הבא!'})
                 }).catch(err => {
-                    this.$store.dispatch('MessageState/addErrorMessage', { message: 'האימייל או הסיסמא אינם תקינים' })
+                    this.$store.dispatch('MessageState/addErrorMessage', { message: 'האימייל או הסיסמה אינם תקינים' })
                 }).finally(() => {
                     this.loading = false;
                 })
