@@ -1,5 +1,15 @@
 <template>
-    <div 
+    <div>
+        <message-card 
+            v-if="messageStatus"
+            top
+            small
+            :type="options.type"
+            :message="options.message"
+            :title="options.title ? options.title : 'בדיקה'"
+        />
+    </div>
+    <!-- <div 
         class="primary_message"
     >
         <v-alert 
@@ -26,11 +36,13 @@
                 </div>
             </v-flex>
         </v-alert>
-    </div>
+    </div> -->
 </template>
 
 <script>
+import MessageCard from './MessageCard.vue';
 export default {
+  components: { MessageCard },
 
     data() {
         return {

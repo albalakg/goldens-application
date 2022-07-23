@@ -5,9 +5,10 @@
         class="massage_card_wrapper"
         :class="{
             'message_card_top': top,
-            'message_card_center': center,
             'message_card_bottom': bottom,
+            'message_card_center': center,
             'message_card_persistent': persistent,
+            'message_card_small': small,
         }"
     >
         <v-flex
@@ -27,7 +28,8 @@
                     {{title}}
                 </h2>
 
-                <p v-html="message">
+                <p>
+                    {{ message }}
                 </p>
 
                 <v-flex xs10 mx-auto>
@@ -50,6 +52,7 @@ export default {
     components: { MainButton },
 
     props: {
+        // Positions
         top: {
             type: Boolean,
         },
@@ -62,7 +65,18 @@ export default {
         bottom: {
             type: Boolean,
         },
+
+        // Sizes
+        small: {
+            type: Boolean,
+        },
+
+        normal: {
+            type: Boolean,
+            default: true
+        },
         
+        // Options
         persistent: {
             type: Boolean,
         },
@@ -75,6 +89,7 @@ export default {
             }
         },
 
+        // Content
         title: {
             type: String,
             required: true,
@@ -101,22 +116,6 @@ export default {
         }
     },
 
-    computed: {
-        position() {
-            if(this.center) {
-                return 'center';
-            }
-
-            if(this.top) {
-                return 'top';
-            }
-
-            if(this.bottom) {
-                return 'bottom';
-            }
-        },
-    },
-
     methods: {
         closeMessageFromOutside() {
             if(!this.persistent) {
@@ -131,7 +130,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
     .massage_card_wrapper {
         position: absolute;
@@ -170,6 +169,23 @@ export default {
 
     h2 {
         font-size: 2em;
+    }
+
+    .message_card_top {
+        align-items: flex-start;
+        margin-top: 30px;
+    }
+
+    .message_card_small {
+        
+        .message_card_content {
+            min-height: 200px;
+            max-height: 275px;
+        }
+
+        .message_card_button {
+            top: 25px;
+        }
     }
 
 </style>

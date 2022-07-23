@@ -30,8 +30,10 @@ const MessageState = {
     mutations: {
         ADD_MESSAGE(state, options) {
             state.messages_queue.push({
-                time:       options && options.time        ? options.time          : DEFAULT_MESSAGE_OPTIONS.time,
+                time: 100000,
+                // time:       options && options.time        ? options.time          : DEFAULT_MESSAGE_OPTIONS.time,
                 color:      options && options.type        ? COLORS[options.type]  : DEFAULT_MESSAGE_OPTIONS.color,
+                type:       options && options.type        ? COLORS[options.type]  : DEFAULT_MESSAGE_OPTIONS.error,
                 message:    options && options.message     ? options.message       : DEFAULT_MESSAGE_OPTIONS.message,
             });
         },

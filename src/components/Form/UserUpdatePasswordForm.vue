@@ -12,6 +12,7 @@
         <br>
         <password-input 
             ref="password"
+            text="סיסמה חדשה"
             outlined
             title
             icon
