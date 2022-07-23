@@ -1,7 +1,7 @@
 
 <template>
-    <div class="profile_card_wrapper" :style="cssVars">
-        <img :src="imageSrc" alt="">
+    <div class="profile_card_wrapper">
+        <img loading="lazy" :src="imageSrc" alt="">
         <span class="profile_icon" v-if="editable">
             <IconChip 
                 shadow
@@ -20,11 +20,6 @@ export default {
     },
     
     props: {
-        size: {
-            type: Number,
-            default: 100
-        },
-
         editable: {
             type: Boolean
         }
@@ -38,12 +33,6 @@ export default {
     },
 
     computed: {
-        cssVars() {
-            return {
-                '--size': this.size + 'px'
-            }
-        },
-
         imageSrc() {
             return this.userImage ? userImage : this.defaultImage
         }
@@ -56,8 +45,10 @@ export default {
     .profile_card_wrapper {
         border-radius: 50%;
         border: 2px solid #FFF;
-        height: var(--size);
-        width: var(--size);
+        min-height: 10px;
+        min-width: 10px;
+        height: 100%;
+        width: 100%;
         box-shadow: 0 5px 15px 7px #00000022;
         position: relative;
 
@@ -70,8 +61,8 @@ export default {
 
         .profile_icon {
             position: absolute;
-            left: 0;
-            bottom: 0;
+            left: 10px;
+            bottom: 10px;
         }
     }
 

@@ -52,3 +52,44 @@
     height: 3px;
     background-color: #DDD;
 }
+
+/* Auth Start */
+
+.auth_form_title {
+    font-size: 2em;
+}
+
+.auth_form_subtitle {
+    font-weight: 300;
+    font-size: .9em;
+}
+
+.auth_form_top_margin {
+    margin-top: 5%;
+}
+
+.outlined {
+    outline: 2px solid #d5b26e;
+}
+
+@media only screen and (max-width: 1900px) {
+    
+    .auth_form_top_margin {
+        margin-top: 2%;
+    }
+    
+}
+
+/* Auth End */
+
+.link {
+    color: #000;
+}
+
+.simple_link {
+    text-decoration: none;
+}
+
+.v-application a {
+    text-decoration-color: #000;
+}

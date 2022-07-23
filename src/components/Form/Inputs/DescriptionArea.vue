@@ -49,11 +49,11 @@ export default {
             text:       'תיאור',
             rules:      [
                 {
-                    rule: /^.+$/,
+                    rule: /^.+$/ms,
                     message: 'חובה למלא את התיאור'
                 },
                 {
-                    rule: /^.{2,1000}$/,
+                    rule: /^.{2,1000}$/ms,
                     message: 'התיאור חייב להיות 2-1000 תווים'
                 },
             ]
@@ -66,7 +66,6 @@ export default {
         },
 
         validate() {
-            console.log('validate description');
             return this.$refs.textarea.validate();
         }
     }

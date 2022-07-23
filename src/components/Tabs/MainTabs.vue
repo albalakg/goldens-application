@@ -1,16 +1,16 @@
 <template>
-<v-flex d-flex class="main_tabs_wrapper pr-3" :style="cssVars">
+<v-flex d-flex class="main_tabs_wrapper" :style="cssVars">
     <template v-for="(tab, index) in tabs">
         <v-flex
-            xs2
-            class="main_tab"
+            class="main_tab pointer"
             :key="index" 
             :class="{
                 'active_tab': activeTab === index,
             }"
             :ref="`mainTab_${index}`"
+            @click="submit(index)"
         >
-            <span class="pointer" @click="submit(index)">
+            <span :class="{'white_text_color': dark}">
                 {{ tab.title }}
             </span>
         </v-flex>
@@ -18,20 +18,33 @@
 
     <div 
         class="active_tab_line main_bg_color"
+        :class="{
+            'sub_bg_color': subColor
+        }"
         ref="activeTabLine"
     ></div>
 </v-flex>
 </template>
 
 <script>
-const SPACE_BEHIND_THE_TAB  = 10;
-const TAB_WIDTH             = 10/12;
+const SPACE_BEHIND_THE_TAB  = 20;
 
 export default {
     props: {
         tabs: {
             type: Array,
-            required: true
+            required: true,
+            validator(value) {
+                if(value.length === 0) {
+                    return true;
+                }
+             
+                return -1 !== value.findIndex(item => {
+                    if(item.title) {
+                        return item;
+                    }
+                })
+            }
         },
 
         activeTab: {
@@ -41,14 +54,49 @@ export default {
 
         routeable: {
             type: Boolean
+        },
+
+        dark: {
+            type: Boolean
+        },
+
+        subColor: {
+            type: Boolean
+        },
+    },
+
+    data() {
+        return {
+            isMounted: false,
+            tabWidth: 0
         }
+    },
+
+    mounted() {
+        this.isMounted = true;
     },
 
     computed: {
         cssVars() {
-            return {
-                '--active-tab-width': 100 / (this.tabs.length + 3) + '%'
+            this.isMounted;
+
+            const wrapper = document.querySelector('.main_tabs_wrapper');
+            if(!wrapper) {
+                return;
             }
+            
+            this.tabWidth = wrapper.scrollWidth / this.tabs.length;
+            return {
+                '--active-tab-width': this.tabWidth + 'px'
+            }
+        }
+    },
+
+    watch: {
+        activeTab() {
+            setTimeout(() => {
+                this.moveActiveTabLine(this.activeTab)
+            }, 0);
         }
     },
 
@@ -59,26 +107,22 @@ export default {
             if(this.routeable) {
                 this.$router.push(this.tabs[index].url)
             }
-
-            setTimeout(() => {
-                this.moveActiveTabLine(index);
-            }, 100);
         },
 
         moveActiveTabLine(index) {
             const line      = this.$refs.activeTabLine;
             const activeTab = document.querySelector('.active_tab');
-            const wrapper   = document.querySelector('.main_tabs_wrapper')
-            
+            const wrapper   = document.querySelector('.main_tabs_wrapper');
+
             if(!line || !activeTab || !wrapper) {
                 return error('Failed to move the active line since one of the elements was not found');
             }
 
-            line.style.right = this.calcLinePosition(wrapper, activeTab) + 'px'
+            line.style.right = this.calcLinePosition(index) + 'px';
         },
 
-        calcLinePosition(wrapper, activeTab) {
-            return (wrapper.clientWidth * (TAB_WIDTH)) - activeTab.offsetLeft - SPACE_BEHIND_THE_TAB;
+        calcLinePosition(activeTabIndex) {
+            return (this.tabWidth * activeTabIndex);
         }
     }
 }
@@ -87,26 +131,41 @@ export default {
 <style scoped lang="scss">
 
     .main_tabs_wrapper {
-        border-bottom: 1px solid #CCC;
-        padding-bottom: 20px;
         position: relative;
 
+        .main_tab {
+            padding: 0 5px;
+            border-bottom: 1px solid #CCC;
+            padding-bottom: 20px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            
+            .main_tab {
+                padding: 0 5px;
+                min-width: 30%;
+                border-bottom: 1px solid #CCC;
+                padding-bottom: 20px;
+            }
+            
+        }
 
         .main_tab span:hover {
-            font-weight: bold;
+            text-shadow: 0 0 #000;
         }
 
         .active_tab {
-            font-weight: bold;
+            text-shadow: 0px 0px black;
         }
 
         .active_tab_line {
             position: absolute;
             right: 0;
-            bottom: -2px;
+            bottom: -1px;
             transition: .5s right ease-out;
-            height: 4px;
+            height: 3px;
             width: var(--active-tab-width);
+            max-width: 200px;
         }
     }
 

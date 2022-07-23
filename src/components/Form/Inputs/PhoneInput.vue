@@ -1,8 +1,15 @@
 <template>
     <div class="phone_input_wrapper">
         <BaseInput 
+            ref="input"
             :outlined="outlined"
             :dark="dark"
+            :slim="slim"
+            :type="type"
+            :rules="rules"
+            :optional="optional"
+            :readonly="readonly"
+            :loading="loading"
             :placeholder="placeholder ? text : ''"
             :title="title ? text : ''"
             :icon="icon ? iconSrc : ''"
@@ -27,7 +34,23 @@ export default {
         dark: {
             type: Boolean
         },
+
+        slim: {
+            type: Boolean
+        },
+
+        optional: {
+            type: Boolean
+        },
+
+        readonly: {
+            type: Boolean
+        },
         
+        loading: {
+            type: Boolean
+        },
+
         icon: {
             type: Boolean
         },
@@ -45,14 +68,29 @@ export default {
     data() {
         return {
             text:       'טלפון',
-            iconSrc:    'mdi-phone'
+            type:       'tel',
+            iconSrc:    'mdi-phone',
+            rules: [
+                {
+                    rule: /^[\d\-\s]{7,15}$/,
+                    message: 'המספר טלפון חייב להיות תקני'
+                }
+            ]
         }
     },
 
     methods: {
         onChange(value) {
             this.$emit('onChange', value);
-        }
+        },
+        
+        validate() {
+            return this.$refs.input.validate();
+        },
+        
+        setValue(value) {
+            return this.$refs.input.setValue(value);
+        },
     }
 }
 </script>

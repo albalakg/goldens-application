@@ -9,6 +9,7 @@
         class="base_textarea_content"
         :class="{
             'base_textarea_outlined' : outlined,
+            'base_textarea_slim' : slim,
             'grey_bg_color' : dark,
             'white_bg_color' : !dark,
         }"
@@ -30,6 +31,7 @@
                 'resizeable' : resize
             }"
         />
+        
         <div 
             class="base_textarea_error_wrapper" 
             :class="{
@@ -62,6 +64,10 @@ export default {
 
         title: {
             type: String,
+        },
+
+        slim: {
+            type: Boolean,
         },
 
         type: {
@@ -97,7 +103,6 @@ export default {
 
     watch: {
         value() {
-            this.value = this.value.trim();
             this.$emit('onChange', this.value);
             if(this.errorMessage) {
                 this.validate();
@@ -108,7 +113,7 @@ export default {
     data() {
         return {
             value:          '',
-            errorMessage:   ''
+            errorMessage:   '',
         }
     },
 
@@ -124,8 +129,7 @@ export default {
                 if(this.errorMessage) {
                     return;
                 }
-                
-                if(!new RegExp(item.rule).test(this.value)) {
+                if(!new RegExp(item.rule).test(this.value.trim())) {
                     this.errorMessage = item.message;
                 }
             })
@@ -165,6 +169,12 @@ export default {
     
         .base_textarea_outlined {
             border: 1px solid #CCC;
+        }
+
+        .base_textarea_slim {
+            textarea {
+                font-size: .8em;
+            }
         }
 
         .base_textarea_error_wrapper {

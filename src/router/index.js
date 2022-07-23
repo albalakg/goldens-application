@@ -11,30 +11,30 @@ const routes = [
     path: '/signin',
     name: 'Login',
     beforeEnter: Guard.guest,
-    component: () => import('../views/Auth/Signin.vue')
+    component: () => import('../views/Auth/Signin.vue'),
   },
   {
     path: '/signup',
     name: 'Signup',
     beforeEnter: Guard.guest,
-    component: () => import('../views/Auth/Signup.vue')
+    component: () => import('../views/Auth/Signup.vue'),
   },
   {
     path: '/signout',
     name: 'Signout',
-    beforeEnter: Guard.admin,
+    beforeEnter: Guard.user,
     component: () => import('../views/Auth/Signout.vue')
   },
   {
     path: '/forgot-password',
     name: 'ForgotPassword',
-    beforeEnter: Guard.admin,
+    beforeEnter: Guard.guest,
     component: () => import('../views/Auth/ForgotPassword.vue')
   },
   {
     path: '/reset-password',
     name: 'ResetPassword',
-    beforeEnter: Guard.admin,
+    beforeEnter: Guard.guest,
     component: () => import('../views/Auth/ResetPassword.vue')
   },
   // ***** AUTH END *****
@@ -45,26 +45,27 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    beforeEnter: Guard.admin,
     component: () => import('../views/General/Home.vue')
   },
   {
     path: '/about',
     name: 'About',
-    beforeEnter: Guard.admin,
     component: () => import('../views/General/About.vue')
-  },
-  {
-    path: '/policies',
-    name: 'Policies',
-    beforeEnter: Guard.admin,
-    component: () => import('../views/General/Policies.vue')
   },
   {
     path: '/support',
     name: 'Support',
-    beforeEnter: Guard.admin,
     component: () => import('../views/General/Support.vue')
+  },
+  {
+    path: '/contact-us',
+    name: 'ContactUs',
+    component: () => import('../views/General/ContactUs.vue')
+  },
+  {
+    path: '/policies',
+    name: 'Policies',
+    component: () => import('../views/General/Policies.vue')
   },
   // ***** GENERAL PAGES END *****
 
@@ -72,38 +73,37 @@ const routes = [
   // ***** PROFILE START *****
   {
     path: '/user',
-    name: 'User',
-    beforeEnter: Guard.admin,
+    beforeEnter: Guard.user,
     component: () => import('../views/User/UserIndex.vue'),
     children: [
       {
-        path: '/',
+        path: '',
         name: 'UserProfile',
-        beforeEnter: Guard.admin,
+        beforeEnter: Guard.user,
         component: () => import('../views/User/UserProfile.vue')
       },
       {
-        path: '/favorites',
+        path: 'favorites',
         name: 'UserFavorites',
-        beforeEnter: Guard.admin,
+        beforeEnter: Guard.user,
         component: () => import('../views/User/UserFavorites.vue')
       },
       {
-        path: '/history',
+        path: 'history',
         name: 'UserHistory',
-        beforeEnter: Guard.admin,
+        beforeEnter: Guard.user,
         component: () => import('../views/User/UserHistory.vue')
       },
       {
-        path: '/orders',
+        path: 'orders',
         name: 'UserOrders',
-        beforeEnter: Guard.admin,
+        beforeEnter: Guard.user,
         component: () => import('../views/User/UserOrders.vue')
       },
       {
-        path: '/support',
+        path: 'support',
         name: 'UserSupportTickets',
-        beforeEnter: Guard.admin,
+        beforeEnter: Guard.user,
         component: () => import('../views/User/UserSupportTickets.vue')
       },
     ]
@@ -111,10 +111,41 @@ const routes = [
   // ***** PROFILE END *****
   
 
+  // ***** COURSES START *****
+  {
+    path: '/courses/:course_id',
+    component: () => import('../views/Courses/Course.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('../views/Courses/CourseContent.vue'),
+      },
+      {
+        path: '/courses/:course_id/lessons',
+        beforeEnter: Guard.user,
+        component: () => import('../views/Courses/CourseArea.vue'),
+      },
+    ]
+  },
+  {
+    path: '/courses/:course_id/lessons/:lesson_id',
+    component: () => import('../views/Courses/Lesson.vue'),
+  },
+  // ***** COURSES END *****
+
+
+  // ***** ORDERS START *****
+  {
+    path: '/orders',
+    beforeEnter: Guard.user,
+    component: () => import('../views/Orders/Order.vue'),
+  },
+  // ***** ORDERS END *****
+
+
   {
     path: '*',
     name: 'PageNotFound',
-    beforeEnter: Guard.admin,
     component: () => import('../views/Errors/PageNotFound.vue')
   },
 ]

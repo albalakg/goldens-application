@@ -1,13 +1,19 @@
 <template>
     <div class="password_input_wrapper">
         <BaseInput 
+            ref="input"
             :outlined="outlined"
             :dark="dark"
             :type="type"
-            :placeholder="placeholder ? text : ''"
-            :title="title ? text : ''"
-            :icon="icon ? iconSrc : ''"
+            :placeholder="placeholder ? viewText : ''"
+            :title="title ? viewText : ''"
+            :icon="iconSrc"
+            :subIcon="subIconSrc"
+            :rules="rules"
+            :slim="slim"
+            :autocomplete="autocomplete"
             @onChange="onChange"
+            @subIconClicked="subIconClicked"
         />
     </div>
 </template>
@@ -21,6 +27,11 @@ export default {
     },
 
     props: {
+        text: {
+            type: String,
+            default: 'סיסמה',
+        },
+
         outlined: {
             type: Boolean
         },
@@ -28,9 +39,17 @@ export default {
         dark: {
             type: Boolean
         },
+
+        slim: {
+            type: Boolean
+        },
         
         icon: {
-            type: Boolean
+            type: Boolean,
+        },
+        
+        subIcon: {
+            type: Boolean,
         },
         
         placeholder: {
@@ -43,22 +62,77 @@ export default {
         },
         
         autocomplete: {
-            type: Boolean,
+            type: String,
+        },
+        
+        confirmation: {
+            type: Boolean
+        },
+        
+        match: {
+            type: String,
         },
     },
 
     data() {
         return {
-            text:       'סיסמא',
-            type:       'password',
-            iconSrc:    'mdi-account-circle'
+            isTextVisible: false,
+        }
+    },
+
+    computed: {
+        iconSrc() {
+            return this.icon ? 'mdi-account-circle' : '';
+        },
+
+        subIconSrc() {
+            const src = this.isTextVisible ? 'mdi-eye-off' : 'mdi-eye';
+            return this.icon ? src : '';
+        },
+
+        type() {
+            return this.isTextVisible ? 'text' : 'password';
+        },
+
+        viewText() {
+            return this.confirmation ? 'אימות סיסמה' : this.text
+        },
+        
+        rules() {
+            const rules = [
+                {
+                    rule: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d#$@!%&*\^?]{8,40}$/,
+                    message: 'הסיסמה חייבת להכיל לפחות אות קטנה, אות גדולה ומספר ולהיות בין 8-40 תויים'
+                }
+            ];
+
+            if(this.match) {
+                rules.push({
+                    value: this.match,
+                    message: 'הסיסמהות לא זהות'
+                })
+            }
+
+            return rules;
         }
     },
 
     methods: {
         onChange(value) {
             this.$emit('onChange', value);
-        }
+        },
+
+        subIconClicked() {
+            this.isTextVisible = !this.isTextVisible;
+        },
+        
+        validate() {
+            return this.$refs.input.validate();
+        },
+        
+        setValue(value) {
+            this.value = value;
+        },
     }
 }
 </script>

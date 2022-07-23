@@ -18,7 +18,9 @@ class Auth {
     }
 
     logout() {
-        router.push('/logout')
+        if('/signout' !== window.location.hash.replace('#', '')) {
+            router.push('/signout')
+        }
     }
     
     get() {
@@ -51,8 +53,16 @@ class Auth {
         return this.get() ? this.get().role : '';
     }
 
+    email() {
+        return this.get() ? this.get().email : '';
+    }
+
     image() {
         return this.get() && this.get().image ? this.get().image : '';
+    }
+
+    courses() {
+        return this.get() && this.get().courses ? this.get().courses : '';
     }
 
     fullName() {
@@ -69,7 +79,7 @@ class Auth {
     }
 
     encrypt(data) {
-        return btoa(JSON.stringify(data));
+        return btoa(unescape(encodeURIComponent(JSON.stringify(data))));;
     }
 
     decrypt() {
@@ -78,7 +88,7 @@ class Auth {
             return null;
         } 
 
-        return JSON.parse(atob(this.getCookie()));
+        return JSON.parse(decodeURIComponent(escape(atob(cookie))));
     }
 
     getCookie() {

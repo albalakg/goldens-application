@@ -1,4 +1,4 @@
-# cms
+# Goldens
 
 ## Project setup
 ```

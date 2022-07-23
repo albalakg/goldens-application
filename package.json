@@ -1,5 +1,5 @@
 {
-  "name": "cms",
+  "name": "Goldens",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -12,6 +12,7 @@
     "jwt-decode": "^3.1.2",
     "object-to-formdata": "^4.1.0",
     "vue": "^2.6.11",
+    "vue-carousel": "^0.18.0",
     "vue-router": "^3.2.0",
     "vue2-editor": "^2.10.3",
     "vuetify": "^2.4.0",

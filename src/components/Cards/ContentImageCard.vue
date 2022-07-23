@@ -1,6 +1,6 @@
 <template>
 <div class="content_image_card" :style="cssVars">
-    <img :src="image" alt="">
+    <img loading="lazy" :src="image" alt="">
     <div class="content_image_details">
         <h2 class="mb-2">
            {{ name }} 
@@ -12,7 +12,7 @@
             {{ subtitle }}
         </p>
     </div>
-    <div class="content_image_bottom_darknesss"></div>
+    <div class="content_image_bottom_darkness"></div>
 </div>
 </template>
 
@@ -68,7 +68,7 @@ export default {
             border-radius: 12px;
         }
 
-        .content_image_bottom_darknesss {
+        .content_image_bottom_darkness {
             border-radius: 12px;
             width: 100%;
             height: 40%;

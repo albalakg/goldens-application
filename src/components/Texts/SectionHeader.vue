@@ -1,14 +1,19 @@
 <template>
 <div class="section_header_wrapper" :class="`section_header_${align}`" :style="`text-align: ${align}`">
-    <h1 class="mb-3">
+    <h1 class="mb-3" :class="{'section_header_dark': dark}">
         {{ title }}
     </h1>
 
-    <h2 v-if="backgroundTitle">
+    <h2 v-if="backgroundTitle" :class="{'section_header_dark': dark}">
         {{ backgroundTitle }}
     </h2>
 
-    <div class="line main_bg_color"></div>
+    <div 
+        class="line main_bg_color"
+        :class="{
+            'sub_bg_color': dark
+        }"
+    ></div>
 
     <p v-if="subtitle" class="mt-2">
         {{ subtitle }}
@@ -41,6 +46,10 @@ export default {
         },
 
         left: {
+            type: Boolean
+        },
+
+        dark: {
             type: Boolean
         },
     },
@@ -94,8 +103,12 @@ export default {
 
         .line {
             height: 3px;
-            width: 7%;
+            width: 30px;
             margin: auto;
+        }
+
+        h1.section_header_dark {
+            color: #fff;
         }
     }
 
@@ -111,6 +124,18 @@ export default {
             margin-right: auto !important;
             margin: unset;
         }   
+    }
+
+    @media only screen and (max-width: 600px) {
+
+        .section_header_wrapper h1 {
+            font-size: 2.5em;
+        }
+
+        .section_header_wrapper h2 {
+            font-size: 5.8em;
+            top: -45px;
+        }
     }
 
 </style>

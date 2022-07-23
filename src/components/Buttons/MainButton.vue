@@ -3,14 +3,24 @@
     class="main_button_wrapper main_bg_color"
     @click="submit()"
     :class="{
-        'main_button_shadow': shadow && !dark,
-        'main_button_dark_shadow': shadow && dark,
-        'main_button_dark dark_bg_color': dark,
+        'main_shadow':                      shadow && !dark,
+        'main_button_dark_shadow':          shadow && dark,
+        'main_button_dark dark_bg_color':   dark,
+        'sub_bg_color':                     subColor,
+        'dark_shadow':                      subColor && shadow,
+        'main_button_slim':                 slim,
+        'main_button_loading':              loading,
+        'main_button_readonly':              readonly,
     }"
     :style="cssVars"
 >
-    <span>
-        {{ text }}
+    <span v-if="text">
+        <span v-if="loading">
+            טוען...
+        </span>
+        <span v-else>
+            {{ text }}
+        </span>
     </span>
 
     <slot name="content">
@@ -35,8 +45,24 @@ export default {
             type: Boolean
         },
 
+        subColor: {
+            type: Boolean
+        },
+
+        slim: {
+            type: Boolean
+        },
+
         styleConfig: {
-            type: Object
+            type: Object,
+        },
+
+        loading: {
+            type: Boolean
+        },
+
+        readonly: {
+            type: Boolean
         },
     },
 
@@ -77,11 +103,22 @@ export default {
         }
     }
 
-    .main_button_shadow {
-        box-shadow: 0 0 15px 4px rgb(255 89 34 / 0.3);
-    }
-
     .main_button_dark_shadow {
+        border: 2px solid rgb(49, 53, 61);
         box-shadow: 0 0 15px 4px rgb(49, 53, 61, 0.3);
     }
+
+    .main_button_slim {
+        padding: 3px 25px;
+    }
+
+    .main_button_loading {
+        pointer-events: none;
+        opacity: 0.7;
+    }
+
+    .main_button_readonly {
+        pointer-events: none;
+    }
+
 </style>

@@ -1,5 +1,33 @@
+:root {
+  --mainColor: #0e3556;
+  --mainColorWithHardOpacity: #0e355655;
+  --mainColorWithOpacity: #0e3556aa;
+  --mainDarkColor: #1C3F64;
+  --mainDarkColorWithOpacity: #1C3F64aa;
+  --mainSecondDarkColor: #1C3F64;
+  --mainSecondDarkColorWithOpacity: #1C3F64aa;
+  --subColor: #d5b26e;
+  --subColorWithOpacity: #d5b26e88;
+}
+
 .main_bg_color {
-  background-color: rgb(255, 89, 34);
+  background-color: var(--mainColor);
+}
+
+.main_bright_bg_color {
+  background-color: var(--mainColorWithHardOpacity) !important;
+}
+
+.main_dark_bg_color {
+  background-color: var(--mainDarkColor);
+}
+
+.second_dark_bg_color {
+  background-color: var(--mainSecondDarkColor);
+}
+
+.sub_bg_color {
+  background-color: var(--subColor);
 }
 
 .dark_bg_color {
@@ -17,19 +45,55 @@
 
 
 .main_text_color {
-  color: rgb(255, 89, 34);
+  color: var(--mainColor) !important;
+}
+
+.main_dark_text_color {
+  color: var(--mainDarkColor) !important;
+}
+
+.sub_text_color {
+  color: var(--subColor) !important;
 }
 
 .dark_text_color {
-  color: rgb(49, 53, 61);
+  color: rgb(49, 53, 61) !important;
+}
+
+.white_text_color {
+  color: #fff !important;
+}
+
+.grey_text_color {
+  color: rgb(179, 179, 179) !important;
 }
 
 
 
-.main_button_shadow {
-  box-shadow: 0 0 15px 4px rgb(255 89 34 / 0.3);
+.main_shadow {
+  box-shadow: 0 0 15px 4px var(--mainColorWithOpacity);
+}
+
+.sub_shadow {
+  box-shadow: 0 0 15px 4px var(--subColorWithOpacity);
 }
 
 .dark_shadow {
   box-shadow: 0 0 15px 4px rgb(49, 53, 61, 0.3);
+}
+
+.sub_border {
+  border: 2px solid var(--subColor);
+}
+
+.sub_border_right {
+  border-right: 2px solid var(--subColor);
+}
+
+.main_border_right {
+  border-right: 2px solid var(--mainColor);
+}
+
+.white_border_right {
+  border-right: 2px solid #fff;
 }

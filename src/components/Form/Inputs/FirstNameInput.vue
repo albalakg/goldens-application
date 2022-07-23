@@ -1,11 +1,16 @@
 <template>
     <div class="first_name_input_wrapper">
         <BaseInput 
+            ref="input"
             :outlined="outlined"
             :dark="dark"
+            :slim="slim"
+            :readonly="readonly"
+            :loading="loading"
             :placeholder="placeholder ? text : ''"
             :title="title ? text : ''"
             :icon="icon ? iconSrc : ''"
+            :rules="rules"
             @onChange="onChange"
         />
     </div>
@@ -24,7 +29,19 @@ export default {
             type: Boolean
         },
 
+        readonly: {
+            type: Boolean
+        },
+
         dark: {
+            type: Boolean
+        },
+
+        slim: {
+            type: Boolean
+        },
+
+        loading: {
             type: Boolean
         },
         
@@ -45,13 +62,27 @@ export default {
     data() {
         return {
             text:       'שם פרטי',
-            iconSrc:    'mdi-account-circle'
+            iconSrc:    'mdi-account-circle',
+            rules: [
+                {
+                    rule: /^.{2,30}$/,
+                    message: 'השם פרטי חייב להכיל בין 2-30 תווים'
+                }
+            ]
         }
     },
 
     methods: {
         onChange(value) {
             this.$emit('onChange', value);
+        },
+
+        validate() {
+            return this.$refs.input.validate();
+        },
+
+        setValue(value) {
+            return this.$refs.input.setValue(value);
         }
     }
 }
