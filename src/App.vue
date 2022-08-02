@@ -105,7 +105,7 @@ export default {
       this.loading = true;
       await Promise.allSettled([
         this.$store.dispatch('ContentState/getActiveCourses'),
-        this.$store.dispatch('TrainerState/getActiveTrainers'),
+        // this.$store.dispatch('TrainerState/getActiveTrainers'),
       ])
       this.loading = false;
     },
