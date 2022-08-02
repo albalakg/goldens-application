@@ -29,7 +29,7 @@ const SupportState = {
     },
 
     actions: {
-        getSupportCategories({ state, commit }) {
+        getSupportCategories({ state, commit, dispatch }) {
             if(state.getSupportCategories) {
                 return state.getSupportCategories;
             }
@@ -38,7 +38,7 @@ const SupportState = {
                 .then(res => {
                     commit("SET_SUPPORT_CATEGORIES", res.data.data)
                 })
-                .catch(err => {
+                .catch(() => {
                     dispatch('MessageState/addMessage', {
                         message: 'מצטערים אבל נכשלה הבקשה למשיכת קטגוריות הקורסים',
                         type: 'error',
@@ -46,6 +46,7 @@ const SupportState = {
                 })
         },
 
+        // eslint-disable-next-line no-empty-pattern
         async createSupportTicket({ }, newSupportTicket) {
             try {
                 return new Promise((resolve, reject) => {
@@ -53,21 +54,21 @@ const SupportState = {
                         .then(res => {
                             resolve(res.data.data);
                         })
-                        .catch(err => {
+                        .catch(() => {
                             reject();
                         })
                 })
             } catch(err) {
-                error(err);
+                console.error(err);
             }
         },
 
-        createSupportTicketMessage({ commit }) {
+        createSupportTicketMessage({ dispatch }) {
             axios.post('support/message/create')
-                .then(res => {
+                .then(() => {
 
                 })
-                .catch(err => {
+                .catch(() => {
                     dispatch('MessageState/addMessage', {
                         message: 'מצטערים אבל נכשלה הבקשה ליצירת הודעה על בקשת תמיכה',
                         type: 'error',

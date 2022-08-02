@@ -86,7 +86,7 @@ export default {
       return;
     }
 
-    trailer.addEventListener('fullscreenchange', event => { 
+    trailer.addEventListener('fullscreenchange', () => { 
       this.trailerFullScreen = document.fullscreenElement === trailer
     });
     

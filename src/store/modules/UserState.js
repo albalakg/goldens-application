@@ -75,7 +75,7 @@ const UserState = {
                     state.progress[courseIndex].lessons_progress.push(data);
                 }
             } catch(err) {
-                error(err)
+                console.error(err)
             }
         },
 
@@ -139,12 +139,12 @@ const UserState = {
         },
 
         updateProfile({ commit, dispatch }, data) {
-            return new Promise((resolve, reject) => {
+            return new Promise((resolve) => {
                 axios.post('profile/update', data)
                     .then(res => {
                         commit('SET_USER_DETAILS', res.data.data);
                         dispatch('MessageState/addMessage', {message: 'פרטי המשתמש עודכנו בהצלחה'}, {root:true});
-                    }).catch(err => {
+                    }).catch(() => {
                         dispatch('MessageState/addMessage', {
                             message: 'מצטערים אך לא הצלחנו לעדכן את פרטי המשתמש',
                             type: 'error',
@@ -156,12 +156,11 @@ const UserState = {
         },
 
         updateEmail({ dispatch }, data) {
-            return new Promise((resolve, reject) => {
+            return new Promise((resolve) => {
                 axios.post('profile/email', data)
-                    .then(res => {
-                        console.log(1);
+                    .then(() => {
                         dispatch('MessageState/addMessage', {message: 'נשלח מייל לאישור בקשת עדכון המייל'}, {root:true});
-                    }).catch(err => {
+                    }).catch(() => {
                         console.log(2);
                         dispatch('MessageState/addMessage', {
                             message: 'מצטערים אך לא הצלחנו לעדכן את המייל',
@@ -174,7 +173,7 @@ const UserState = {
         },
 
         updatePassword({ dispatch }, data) {
-            return new Promise((resolve, reject) => {
+            return new Promise((resolve) => {
                 axios.post('profile/change-password', data)
                     .then(res => {
                         dispatch('MessageState/addMessage', {message: 'הסיסמה עודכנה בהצלחה'}, {root:true});
@@ -191,14 +190,14 @@ const UserState = {
                 })
         },
 
-        getProfile({ commit }) {
+        getProfile({ commit, dispatch}) {
             axios.get('profile')
                 .then(res => {
                     const details = res.data.data.details;
                     details.email = res.data.data.email;
                     commit('SET_USER_PROFILE', details);
                 })
-                .catch(err => {
+                .catch(() => {
                     dispatch('MessageState/addMessage', {
                         message: 'מצטערים אבל נכשלה הבקשה למשיכת פרטי הפרופיל',
                         type: 'error',
@@ -215,7 +214,7 @@ const UserState = {
                 .then(res => {
                     commit('SET_USER_SUPPORT_TICKETS', res.data.data);
                 })
-                .catch(err => {
+                .catch(() => {
                     dispatch('MessageState/addMessage', {
                         message: 'מצטערים אבל נכשלה הבקשה למשיכת פרטי הבקשות תמיכה',
                         type: 'error',
@@ -232,7 +231,7 @@ const UserState = {
                 .then(res => {
                     commit('SET_USER_ORDERS', res.data.data);
                 })
-                .catch(err => {
+                .catch(() => {
                     dispatch('MessageState/addMessage', {
                         message: 'מצטערים אבל נכשלה הבקשה למשיכת פרטי הסטוריית ההזמנות',
                         type: 'error',
@@ -245,7 +244,7 @@ const UserState = {
                 .then(res => {
                     commit('SET_USER_FAVORITES', res.data.data);
                 })
-                .catch(err => {
+                .catch(() => {
                     dispatch('MessageState/addMessage', {
                         message: 'מצטערים אבל נכשלה הבקשה למשיכת השיעורים המועדפים',
                         type: 'error',
@@ -254,7 +253,7 @@ const UserState = {
         },
         
         getProgress({ state, commit, dispatch }) {
-            return new Promise((resolve, reject) => {
+            return new Promise((resolve) => {
                 if(state.progress) {
                     resolve(state.courses);
                     return 
@@ -266,7 +265,7 @@ const UserState = {
                         commit('SET_USER_LAST_ACTIVE', res.data.data.last_active_lesson);
                         resolve(res.data.data.courses);
                     })
-                    .catch(err => {
+                    .catch(() => {
                         dispatch('MessageState/addMessage', {
                             message: 'מצטערים אבל נכשלה הבקשה למשיכת פרטים על התקדמות הקורס',
                             type: 'error',
@@ -276,7 +275,7 @@ const UserState = {
         },
         
         getCourses({ commit, state, dispatch }) {
-            return new Promise((resolve, reject) => {
+            return new Promise((resolve) => {
                 if(state.courses) {
                     resolve(state.courses);
                     return 
@@ -291,7 +290,7 @@ const UserState = {
                         }
                         resolve(state.courses);
                     })
-                    .catch(err => {
+                    .catch(() => {
                         dispatch('MessageState/addMessage', {
                             message: 'מצטערים אבל נכשלה הבקשה למשיכת התכנים שלך',
                             type: 'error',
@@ -300,8 +299,8 @@ const UserState = {
             })
         },
         
-        toggleFavorite({ commit }, lessonId) {
-            return new Promise((resolve, reject) => {
+        toggleFavorite({ commit, dispatch }, lessonId) {
+            return new Promise((resolve) => {
                 const action = ContentService.isLessonFavorite(lessonId) ? 'remove' : 'add';
                 const data = {
                     lesson_id: lessonId
@@ -315,7 +314,7 @@ const UserState = {
                             commit('ADD_CONTENT_IN_FAVORITES', res.data.data)
                         }
                     })
-                    .catch(err => {
+                    .catch(() => {
                         dispatch('MessageState/addMessage', {
                             message: 'מצטערים אבל נכשלה הבקשה לעדכן את המועדפים',
                             type: 'error',
@@ -365,6 +364,7 @@ const UserState = {
             })
         },
 
+        // eslint-disable-next-line no-empty-pattern
         saveUserLandedOnPageNotFound({}, path) {
             axios.get('profile/landed-on-page-not-found?path=' + encodeURIComponent(path))
         }
