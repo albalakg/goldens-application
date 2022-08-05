@@ -139,14 +139,11 @@
 </template>
 
 <script>
-import Logo from './../../components/General/Logo.vue'
 import PasswordInput from '../../components/Form/Inputs/PasswordInput.vue'
 import EmailInput from '../../components/Form/Inputs/EmailInput.vue'
 import MainButton from '../../components/Buttons/MainButton.vue'
-import CenterLineText from '../../components/Texts/CenterLineText.vue'
 import Divider from '../../components/General/Divider.vue'
 import StarLogo from '../../components/General/StarLogo.vue'
-import PlayerIconDecorator from '../../components/Decorators/playerIconDecorator.vue'
 import FirstNameInput from '../../components/Form/Inputs/FirstNameInput.vue'
 import LastNameInput from '../../components/Form/Inputs/LastNameInput.vue'
 import TeamInput from '../../components/Form/Inputs/TeamInput.vue'
@@ -154,15 +151,11 @@ import CityInput from '../../components/Form/Inputs/CityInput.vue'
 
 export default {
     components: {
-        Logo,
         EmailInput,
         PasswordInput,
-        EmailInput,
         MainButton,
-        CenterLineText,
         Divider,
         StarLogo,
-        PlayerIconDecorator,
         FirstNameInput,
         LastNameInput,
         TeamInput,
@@ -193,10 +186,10 @@ export default {
             this.preSendActions();
 
             axios.post('auth/signup', this.form)
-                .then(res => {
+                .then(() => {
                     this.$router.push('/signin');
                     this.$store.dispatch('MessageState/addMessage', {message: 'נרשמת בהצלחה למערכת, ברוך הבא!'})
-                }).catch(err => {
+                }).catch(() => {
                     this.$store.dispatch('MessageState/addErrorMessage', { message: 'האימייל או הסיסמה אינם תקינים' })
                 }).finally(() => {
                     this.loading = false;

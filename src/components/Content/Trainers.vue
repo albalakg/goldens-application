@@ -55,7 +55,7 @@ export default {
         },
 
         trainers: {
-            type: Boolean,
+            type: Array,
             required: true
         }
     },

@@ -1,5 +1,7 @@
 <template>
-    
+    <span>
+        <!-- None Needed -->
+    </span>
 </template>
 
 <script>

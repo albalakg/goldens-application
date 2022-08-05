@@ -107,7 +107,6 @@
 </template>
 
 <script>
-import Logo from './../../components/General/Logo.vue'
 import PasswordInput from '../../components/Form/Inputs/PasswordInput.vue'
 import EmailInput from '../../components/Form/Inputs/EmailInput.vue'
 import MainButton from '../../components/Buttons/MainButton.vue'
@@ -118,10 +117,8 @@ import PlayerIconDecorator from '../../components/Decorators/playerIconDecorator
 
 export default {
     components: {
-        Logo,
         EmailInput,
         PasswordInput,
-        EmailInput,
         MainButton,
         CenterLineText,
         Divider,

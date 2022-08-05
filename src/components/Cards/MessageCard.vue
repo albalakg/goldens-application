@@ -32,7 +32,7 @@
                     {{ message }}
                 </p>
 
-                <v-flex xs10 mx-auto>
+                <v-flex mx-auto>
                     <main-button
                         class="message_card_button" 
                         shadow
@@ -85,7 +85,7 @@ export default {
             type: String,
             default: 'success',
             validator(value) {
-                return ['success', 'error', 'warning'].includes(value);
+                return ['red', 'green'].includes(value);
             }
         },
 

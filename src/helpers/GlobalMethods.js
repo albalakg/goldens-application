@@ -7,7 +7,7 @@
  * The application error message with a prefix message for recognize
  * @param {String} message 
 */
-window.error = (message) => {
+export const error = (message) => {
     // add validation to show only in envs that aren't production
     console.error('Application Error: ' + message);
 }
@@ -16,7 +16,7 @@ window.error = (message) => {
  * The application warning message with a prefix message for recognize
  * @param {String} message 
 */
-window.warning = (message) => {
+export const warning = (message) => {
     // add validation to show only in envs that aren't production
     console.warn('Application Warning: ' + message);
 }

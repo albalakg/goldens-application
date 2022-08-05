@@ -18,7 +18,7 @@ const PoliciesState = {
     },
 
     actions: {
-        getTermsAndConditions({ state, commit }) {
+        getTermsAndConditions({ state, commit, dispatch }) {
             if(state.getTermsAndConditions) {
                 return state.getTermsAndConditions;
             }
@@ -27,7 +27,7 @@ const PoliciesState = {
                 .then(res => {
                     commit("SET_TERMS_AND_CONDITIONS", res.data.data)
                 })
-                .catch(err => {
+                .catch(() => {
                     dispatch('MessageState/addMessage', {
                         message: 'מצטערים אבל נכשלה הבקשה למשיכת תנאי האתר',
                         type: 'error',

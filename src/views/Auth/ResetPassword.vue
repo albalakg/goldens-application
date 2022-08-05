@@ -71,22 +71,15 @@
 </template>
 
 <script>
-import Logo from './../../components/General/Logo.vue'
 import PasswordInput from '../../components/Form/Inputs/PasswordInput.vue'
-import EmailInput from '../../components/Form/Inputs/EmailInput.vue'
 import MainButton from '../../components/Buttons/MainButton.vue'
-import CenterLineText from '../../components/Texts/CenterLineText.vue'
 import Divider from '../../components/General/Divider.vue'
 import StarLogo from '../../components/General/StarLogo.vue'
 
 export default {
     components: {
-        Logo,
-        EmailInput,
         PasswordInput,
-        EmailInput,
         MainButton,
-        CenterLineText,
         Divider,
         StarLogo,
     },
