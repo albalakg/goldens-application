@@ -24,13 +24,15 @@
                 
                 <br>
                 
-                <h2 class="main_text_color">
-                    {{title}}
-                </h2>
+                <div class="message_card_details px-10">
+                    <h2 class="main_text_color">
+                        {{title}}
+                    </h2>
 
-                <p>
-                    {{ message }}
-                </p>
+                    <p>
+                        {{ message }}
+                    </p>
+                </div>
 
                 <v-flex mx-auto>
                     <main-button
@@ -79,13 +81,14 @@ export default {
         // Options
         persistent: {
             type: Boolean,
+            default: true
         },
 
         type: {
             type: String,
             default: 'success',
             validator(value) {
-                return ['red', 'green'].includes(value);
+                return ['error', 'success', 'warning', 'info'].includes(value);
             }
         },
 
@@ -110,6 +113,7 @@ export default {
         return {
             images: {
                 success: require('../../../public/assets/images/messages/success.svg'),
+                info: require('../../../public/assets/images/messages/success.svg'),
                 error: require('../../../public/assets/images/messages/error.svg'),
                 warning: require('../../../public/assets/images/messages/warning.svg'),
             }
@@ -144,7 +148,6 @@ export default {
     
     .message_card_persistent {
         position: fixed;
-        background-color: #000b;
     }
 
     .message_card_center {
@@ -160,11 +163,19 @@ export default {
         width: 350px;
         max-width: 80%;
         background-color: #fff;
+
+        .message_card_details {
+            position: absolute;
+            width: 100%;
+            right: 0;
+        }
     }
 
     .message_card_button {
         position: relative;
-        top: 75px;
+        bottom: -115px;
+        width: 140%;
+        right: -20%;
     }
 
     h2 {
@@ -181,10 +192,6 @@ export default {
         .message_card_content {
             min-height: 200px;
             max-height: 275px;
-        }
-
-        .message_card_button {
-            top: 25px;
         }
     }
 

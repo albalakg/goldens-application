@@ -10,7 +10,7 @@
     />
 
     <v-flex d-flex justify-end mt-10 mt-md-5>
-        <v-flex xs12 md4 lg2>
+        <v-flex xs12 md4>
             <main-button 
                 :text="'עדכן אימייל'"
                 shadow
@@ -74,7 +74,7 @@ export default {
             }
 
             if(this.isSameEmail()) {
-                this.$store.dispatch('MessageState/addErrorMessage', { message: 'הכותבת מייל אינה יכולה להיות זהה' })
+                this.$store.dispatch('MessageState/addErrorMessage', { message: 'הכותבת מייל אינה יכולה להיות זהה לכתובת הנוכחית' })
                 return;
             }
 

@@ -20,7 +20,7 @@
         />
 
         <v-flex d-flex justify-end mt-10 mt-md-5>
-            <v-flex xs12 md4 lg2>
+            <v-flex xs12 md4 mt-4>
                 <main-button 
                     :text="'עדכן סיסמה'"
                     shadow
@@ -29,9 +29,9 @@
             </v-flex>
         </v-flex>
     </v-form>
-    <v-flex md2 v-else>
+    <v-flex md4 v-else>
         <main-button 
-            text="עדכן סיסמה"
+            text="החלף סיסמה"
             @submit="toggleShowPasswordForm()"
         />
     </v-flex>
@@ -72,6 +72,10 @@ export default {
                 return;
             }
 
+            if(this.isTheSamePassword()) {
+                return this.$store.dispatch('MessageState/addErrorMessage', { message: 'הסיסמה החדשה צריכה להיות שונה מהסיסמה הנוכחית' });
+            }
+
             this.loading = true;
             await this.$store.dispatch('UserState/updatePassword', this.form);
             this.clearForm();
@@ -85,6 +89,10 @@ export default {
 
         validate() {
             return this.$refs.password.validate();
+        },
+
+        isTheSamePassword() {
+            return this.form.password === this.form.old_password;
         },
 
         toggleShowPasswordForm() {

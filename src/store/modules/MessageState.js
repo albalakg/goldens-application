@@ -1,13 +1,10 @@
 const DEFAULT_MESSAGE_OPTIONS = {
-    time: 5000,
+    time: 3000,
     color: 'green',
-    message: 'הפעולה הסתיימה בהצלחה'
+    message: 'הפעולה הסתיימה בהצלחה',
+    type: 'success'
 };
 
-const COLORS = {
-    error: 'red',
-    info: 'green'
-};
 
 let message_timeout = null;
 let show_messages_interval = null;
@@ -30,11 +27,10 @@ const MessageState = {
     mutations: {
         ADD_MESSAGE(state, options) {
             state.messages_queue.push({
-                time: 100000,
-                // time:       options && options.time        ? options.time          : DEFAULT_MESSAGE_OPTIONS.time,
-                color:      options && options.type        ? COLORS[options.type]  : DEFAULT_MESSAGE_OPTIONS.color,
-                type:       options && options.type        ? COLORS[options.type]  : DEFAULT_MESSAGE_OPTIONS.error,
-                message:    options && options.message     ? options.message       : DEFAULT_MESSAGE_OPTIONS.message,
+                time:       options && options.time         ? options.time          : DEFAULT_MESSAGE_OPTIONS.time,
+                type:       options && options.type         ? options.type          : DEFAULT_MESSAGE_OPTIONS.type,
+                message:    options && options.message      ? options.message       : DEFAULT_MESSAGE_OPTIONS.message,
+                title:      options && options.title        ? options.title         : DEFAULT_MESSAGE_OPTIONS.title,
             });
         },
 

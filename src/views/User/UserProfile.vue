@@ -6,12 +6,16 @@
         <br>
         <br>
 
-        <user-update-email-form />
+        <v-flex lg6>
+            <user-update-email-form />
+        </v-flex>
 
         <br>
         <br>
-
-        <user-update-password-form />
+        
+        <v-flex lg6>
+            <user-update-password-form />
+        </v-flex>
     </div>
 </template>
 

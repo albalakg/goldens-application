@@ -1,16 +1,14 @@
 <template>
     <div>
-        <transition name="fade" mode="out-in">
-            <message-card 
-                v-show="messageStatus"
-                top
-                small
-                :type="options.type"
-                :message="options.message"
-                :title="options.title ? options.title : 'בדיקה'"
-                @closeMessage="closeMessage()"
-            />
-        </transition>
+        <message-card 
+            v-if="messageStatus"
+            top
+            small
+            :type="options.type"
+            :message="options.message"
+            :title="options.title ? options.title : ''"
+            @closeMessage="closeMessage()"
+        />
     </div>
     <!-- <div 
         class="primary_message"
@@ -107,15 +105,4 @@ export default {
         justify-content: center;
     }
     
-    .fade-enter-active,
-    .fade-leave-active {
-        transition-duration: 0.3s;
-        transition-property: opacity;
-        transition-timing-function: ease;
-    }
-
-    .fade-enter,
-    .fade-leave-active {
-        opacity: 0;
-    }
 </style>

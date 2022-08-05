@@ -148,8 +148,8 @@ export default {
             axios.post('auth/login', this.form)
                 .then(res => {
                     
-                    this.$store.dispatch('MessageState/addMessage', {message: 'התחברת בהצלחה, ברוך הבא!'});
                     Auth.login(res.data.data);
+                    this.$store.dispatch('MessageState/addMessage', {title: 'ברוך הבא', message: 'התחברת בהצלחה ' + Auth.firstName()});
                     this.loggedSuccessfullyActions();
                     
                 }).catch(() => {
@@ -162,8 +162,6 @@ export default {
 
         async loggedSuccessfullyActions(){
             this.$store.dispatch('AuthState/setLogStatus', true);
-            await this.$store.dispatch('UserState/init', Auth.get())
-            this.$store.dispatch('UserState/goToLastActiveCourse')
         },
 
         preSendActions() {

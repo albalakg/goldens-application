@@ -329,9 +329,12 @@ const UserState = {
         goToLastActiveCourse({ state }) {
             try {
                 const courses = state.courses;
-
                 if(!courses || !courses.length) {
-                    return router.push('/');
+                    if('/signin' === window.location.hash.replace('#', '')) {
+                        return router.push('/');
+                    }
+
+                    return;
                 }
 
                 const lesson    = state.lessons.find(lesson => lesson.id == state.lastActive.id);
@@ -340,7 +343,7 @@ const UserState = {
                 if(!lesson && courses) {
                     route = '/courses/' + courses[0].id;
                 }
-
+                
                 if(route === window.location.hash.replace('#', '')) {
                     return;
                 }
