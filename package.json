@@ -48,7 +48,19 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {},
+    "globals": {
+      "axios":            true,
+      "Auth":             true,
+      "error":            true,
+      "warning":          true,
+      "baseURL":          true,
+      "ContentService":   true,
+      "TimeService":      true,
+      "StatusService":    true,
+      "FILES_PATH":       true,
+      "FORM_DATA_CONFIG": true
+    }
   },
   "browserslist": [
     "> 1%",

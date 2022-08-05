@@ -152,7 +152,7 @@ export default {
                     Auth.login(res.data.data);
                     this.loggedSuccessfullyActions();
                     
-                }).catch(err => {
+                }).catch(() => {
                     this.$store.dispatch('MessageState/addErrorMessage', { message: 'האימייל או הסיסמה אינם תקינים' })
                 }).finally(() => {
                     this.loading = false;

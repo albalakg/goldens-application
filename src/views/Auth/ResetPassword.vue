@@ -116,7 +116,7 @@ export default {
             }
 
             axios.post('auth/reset-password', this.form)
-                .then(res => {
+                .then(() => {
                     this.$store.dispatch('MessageState/addMessage', {message: 'נשלחה בקשת איפוס סיסמה בהצלחה'})
                     this.$router.push('/signin');
                 }).catch(err => {
