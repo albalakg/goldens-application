@@ -1,5 +1,5 @@
 <template>
-  <div class="about_wrapper pb-10 second_dark_bg_color app_padding_top">
+  <div class="about_wrapper second_dark_bg_color app_padding_top">
     <img
       class="about_background_image"
       :src="aboutBackgroundImage"
@@ -45,16 +45,14 @@
       <div class="spacer"></div>
     </v-flex>
 
-    <trainers full dark />
+    <trainers v-if="trainers.length" full dark :trainers="trainers" />
 
-    <div class="spacer"></div>
-
-    <section class="about_believe_section px-5 px-md-0">
+    <section class="about_believe_section px-lg-5 px-md-0">
       <div class="spacer"></div>
       <img loading="lazy" :src="aboutBelieveBackgroundImage" alt="about believe background" />
       <div class="about_background_darkner"></div>
 
-      <div class="about_believe_content">
+      <div class="about_believe_content px-3">
         <section-header
           :title="'האני מאמין'"
           :backgroundTitle="'מאמין'"
@@ -80,8 +78,6 @@
           </v-flex>
         </v-flex>
       </div>
-
-      <div class="spacer"></div>
     </section>
   </div>
 </template>
@@ -91,6 +87,7 @@ import Trainers from "../../components/Content/Trainers.vue";
 import CircleDecorator from "../../components/Decorators/CircleDecorator.vue";
 import StarLogo from "../../components/General/StarLogo.vue";
 import SectionHeader from "../../components/Texts/SectionHeader.vue";
+
 export default {
   components: {
     Trainers,
@@ -148,39 +145,18 @@ export default {
     };
   },
 
+  created() {
+    this.$store.dispatch('ContentState/getTrainers')
+  },
+
   mounted() {
     this.listenToScroll();
   },
   
   computed: {
     trainers() {
-      return [
-        {
-          name: "דניאל כהן",
-          title: "מאמן כדורגל",
-          image: require("../../../public/assets/images/trainers/ront-levi-personal-trainer.png"),
-        },
-        {
-          name: "דנה ברגר",
-          title: "מאמנת כושר",
-          image: require("../../../public/assets/images/trainers/dana-personal-trainer.png"),
-        },
-        {
-          name: "דניאל כהן",
-          title: "מאמן כדורגל",
-          image: require("../../../public/assets/images/trainers/ront-levi-personal-trainer.png"),
-        },
-        {
-          name: "דנה ברגר",
-          title: "מאמנת כושר",
-          image: require("../../../public/assets/images/trainers/dana-personal-trainer.png"),
-        },
-        {
-          name: "דניאל כהן",
-          title: "מאמן כדורגל",
-          image: require("../../../public/assets/images/trainers/ront-levi-personal-trainer.png"),
-        },
-      ];
+      const trainers = this.$store.getters['ContentState/trainers'];
+      return trainers ? trainers : [];
     },
 
     isDark() {
@@ -269,7 +245,12 @@ export default {
       height: 100%;
       width: 100%;
       object-fit: cover;
+      
+      @media only screen and (max-width: 600px) {
+        object-position: right;
+      }
     }
+
 
     .about_believe_content {
       position: relative;
