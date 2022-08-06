@@ -143,6 +143,12 @@ import LessonCompleted from '../../components/General/LessonCompleted.vue';
 import StarLogo from '../../components/General/StarLogo.vue';
 
 const SPACE_BETWEEN_VIDEO_PROGRESS_UPDATE = 3000;
+const FINISHED_LESSON_TITLES = [
+  'כל הכבוד',
+  'מצויין',
+  'זו הדרך',
+  'תמשיך ככה',
+];
 
 export default {
   components: { MainButton, Heart, ProfileCard, LessonCompleted, VideoCard, LessonVideoEndScreen, LessonPracticeCard, SimpleTrainerCard, CourseAreaCard, StarLogo, CircleDecorator },
@@ -269,6 +275,11 @@ export default {
 
     onVideoEnd() {
       this.showEndLessonScreen = true;
+      this.$store.dispatch('MessageState/addSuccessMessage', {title: this.getRandomTitle(), message: `סיימת את שיעור ${this.lesson.name}`})
+    },
+    
+    getRandomTitle() {
+      return FINISHED_LESSON_TITLES[Math.floor(Math.random() * FINISHED_LESSON_TITLES.length)];
     },
 
     setVideoStartTime() {
