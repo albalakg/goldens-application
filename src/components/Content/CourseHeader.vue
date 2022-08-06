@@ -139,17 +139,6 @@ h1 {
   font-size: 3em;
   z-index: 3;
 }
-
-.course_page_image_details {
-  position: relative;
-  z-index: 3;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .course_page_actions_wrapper {
   position: relative;
   z-index: 3;
@@ -179,12 +168,6 @@ h1 {
     width: 100%;
     border-radius: 50%;
     object-fit: cover;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .course_page_image_details {
-    align-items: end !important;
   }
 }
 </style>

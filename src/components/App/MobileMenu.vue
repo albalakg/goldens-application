@@ -96,9 +96,9 @@ export default {
                     logged: true
                 },
                 {
-                    action: 'search',
-                    text: 'חיפוש',
-                    image: require('../../../public/assets/images/general/search.svg'),
+                    url: '/about',
+                    text: 'מי אנחנו',
+                    image: require('../../../public/assets/images/general/about.svg'),
                     logged: true
                 },
                 {
@@ -108,32 +108,44 @@ export default {
                     logged: true
                 },
             ],
+
             myCourseLink: {
+                action: 'home',
                 text: 'הקורס שלי',
                 image: require('../../../public/assets/images/general/courses.svg'),
-                action: 'home',
                 logged: true
             },
+            searchLink: {
+                action: 'search',
+                text: 'חיפוש',
+                image: require('../../../public/assets/images/general/search.svg'),
+                logged: true
+            },
+
             showSearch: false,
             showSettings: false,
         }
     },
 
     watch: {
-        $route(newval) {
+        $route() {
             this.showSettings = false;
         }
     },
 
     computed: {
         links() {
-            let links     = this.allLinks.filter(link => link.logged === this.$store.getters['AuthState/isLogged']);
-            let courses   = this.$store.getters['UserState/courses'];
+            let links               = this.allLinks.filter(link => link.logged === this.$store.getters['AuthState/isLogged']);
+            const hasActiveCourse   = this.$store.getters['UserState/hasActiveCourse'];
 
-            if(courses && courses.length) {
+            if(hasActiveCourse) {
                 links = links.map(link => {
                     if(link.text === 'דף הבית') {
                         return this.myCourseLink
+                    }
+
+                    if(link.text === 'מי אנחנו') {
+                        return this.searchLink;
                     }
 
                     return link;
@@ -143,8 +155,8 @@ export default {
             return links;
         },
 
-        courses() {
-            return this.$store.getters['UserState/courses'];
+        hasActiveCourse() {
+            return this.$store.getters['UserState/hasActiveCourse'];
         }
     },
 

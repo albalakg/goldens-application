@@ -52,7 +52,7 @@ const ContentState = {
 
     actions: {
         getCategories({ state, commit }) {
-            return new Promise((resolve, reject) => {
+            return new Promise((resolve) => {
                 if(state.categories) {
                     return resolve(state.categories);
                 }
@@ -69,7 +69,7 @@ const ContentState = {
        },
 
         getLessons({ state, commit }) {
-            return new Promise((resolve, reject) => {
+            return new Promise((resolve) => {
                 if(state.lessons) {
                     return resolve(state.lessons);
                 }
@@ -85,7 +85,7 @@ const ContentState = {
             })
        },
         getTrainers({ state, commit }) {
-            return new Promise((resolve, reject) => {
+            return new Promise((resolve) => {
                 if(state.trainers) {
                     return resolve(state.trainers);
                 }
@@ -101,8 +101,8 @@ const ContentState = {
             })
        },
 
-        getActiveCourses({ state, commit }) {
-            return new Promise((resolve, reject) => {
+        getActiveCourses({ commit }) {
+            return new Promise((resolve) => {
                 axios.get('content/courses')
                     .then(res => {
                         const courses = res.data.data.map(course => {
@@ -134,7 +134,7 @@ const ContentState = {
        },
 
         getCourse({ state, commit }, courseId) {
-            return new Promise((resolve, reject) => {
+            return new Promise((resolve) => {
                 if(state.courses) {
                     const course = state.courses.find(course => course.id == courseId);
                     if(course) {

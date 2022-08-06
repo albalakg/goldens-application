@@ -4,7 +4,7 @@
     <v-flex class="course_page_image_wrapper mb-3" ref="courseHeader">
       <img loading="lazy" class="course_image" :src="course.imageSrc" alt="">
       <div class="course_page_image_darkner" :class="hasActiveCourse ? 'course_page_image_darkner_left_to_right' : 'course_page_image_darkner_right_to_left'"></div>
-      <div class="course_page_image_details">
+      <div class="course_page_image_details" :class="{'pr-5 pr-md-0': !hasActiveCourse}">
 
         <last-active-lesson-card 
           v-if="hasActiveCourse"
