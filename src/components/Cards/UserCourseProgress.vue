@@ -130,6 +130,10 @@ export default {
         progress() {
             try {
                 const userProgress = this.$store.getters['UserState/progress'];
+                if(!userProgress) {
+                    return 0;
+                }
+                
                 const course = userProgress.find(userCourse => userCourse.course_id === this.course.id);
                 return course.progress;
             } catch(err) {

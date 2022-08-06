@@ -127,6 +127,7 @@ const UserState = {
             await dispatch('getCourses');
             await dispatch('getProgress');
             await dispatch('getProfile');
+            await dispatch('goToLastActiveCourse')
             dispatch('getFavorites');
         },
 
@@ -337,7 +338,7 @@ const UserState = {
                     return;
                 }
 
-                const lesson    = state.lessons.find(lesson => lesson.id == state.lastActive.id);
+                let lesson = state.lastActive ? state.lessons.find(lesson => lesson.id == state.lastActive.id) : null;
                 let route       = lesson ? '/courses/' + lesson.course_id : '/'; 
 
                 if(!lesson && courses) {
@@ -351,7 +352,6 @@ const UserState = {
                 router.push(route)
             } catch(error) {
                 console.error(error);
-                
                 router.push('/');
             }
         },

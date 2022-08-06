@@ -1,6 +1,6 @@
 
 <template>
-    <div v-if="firstName" class="text-right last_progress_card white_bg_color pa-5 pl-10 dark_shadow">
+    <div v-if="firstName && lesson" class="text-right last_progress_card white_bg_color pa-5 pl-10 dark_shadow">
         <collapse class="collapse pointer" @submit="close()" />
         <strong @click="enterLesson()">
         היי {{ firstName }},
@@ -33,6 +33,10 @@ export default {
 
         lesson() {
             const lastActiveLesson = this.$store.getters['UserState/lastActive'];
+            if(!lastActiveLesson) {
+                return null;
+            }
+
             return ContentService.findLessonById(lastActiveLesson.course_lesson_id)
         },
 

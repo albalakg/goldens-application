@@ -1,6 +1,6 @@
 
 <template>
-    <div class="video_wrapper pointer"@click="submit()">
+    <div class="video_wrapper pointer" @click="submit()">
         <play v-if="!playing" class="play_button"/>
         <video 
             :class="{'video_wrapper_rounded': rounded}" 

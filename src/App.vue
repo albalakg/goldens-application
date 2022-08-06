@@ -56,8 +56,7 @@ export default {
       if(this.isLogged) {
         this.loading = true;
         try {
-          await this.$store.dispatch('UserState/init');
-          this.$store.dispatch('UserState/goToLastActiveCourse')
+          this.$store.dispatch('UserState/init');
         } catch(err) {
           error(err);
         }
