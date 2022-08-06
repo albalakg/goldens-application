@@ -26,8 +26,7 @@ const MessageState = {
     mutations: {
         ADD_MESSAGE(state, options) {
             state.messages_queue.push({
-                time: 1000000,
-                // time:       options && options.time         ? options.time          : DEFAULT_MESSAGE_OPTIONS.time,
+                time:       options && options.time         ? options.time          : DEFAULT_MESSAGE_OPTIONS.time,
                 type:       options && options.type         ? options.type          : DEFAULT_MESSAGE_OPTIONS.type,
                 message:    options && options.message      ? options.message       : DEFAULT_MESSAGE_OPTIONS.message,
                 title:      options && options.title        ? options.title         : DEFAULT_MESSAGE_OPTIONS.title,
