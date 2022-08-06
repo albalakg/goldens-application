@@ -115,13 +115,13 @@ export default {
         this.loading = true;
         await this.$store.dispatch('SupportState/createSupportTicket', this.form);
 
-        this.$store.dispatch('MessageState/addMessage', {
+        this.$store.dispatch('MessageState/addInfoMessage', {
           message: 'הבקשת תמיכה נשלחה בהצלחה'
         });
 
         this.$router.push('/')
       } catch(err) {
-        this.$store.dispatch('MessageState/addMessage', {
+        this.$store.dispatch('MessageState/addInfoMessage', {
           message: 'מצטערים אבל נכשלה הבקשה ליצירת בקשה תמיכה חדשה',
           type: 'error',
         });

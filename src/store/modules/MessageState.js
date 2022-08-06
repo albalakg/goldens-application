@@ -1,8 +1,7 @@
 const DEFAULT_MESSAGE_OPTIONS = {
     time: 3000,
-    color: 'green',
     message: 'הפעולה הסתיימה בהצלחה',
-    type: 'success'
+    type: 'info'
 };
 
 
@@ -27,7 +26,8 @@ const MessageState = {
     mutations: {
         ADD_MESSAGE(state, options) {
             state.messages_queue.push({
-                time:       options && options.time         ? options.time          : DEFAULT_MESSAGE_OPTIONS.time,
+                time: 1000000,
+                // time:       options && options.time         ? options.time          : DEFAULT_MESSAGE_OPTIONS.time,
                 type:       options && options.type         ? options.type          : DEFAULT_MESSAGE_OPTIONS.type,
                 message:    options && options.message      ? options.message       : DEFAULT_MESSAGE_OPTIONS.message,
                 title:      options && options.title        ? options.title         : DEFAULT_MESSAGE_OPTIONS.title,
@@ -60,7 +60,14 @@ const MessageState = {
     },
 
     actions: {
-        addMessage({ commit, dispatch }, options) {
+        addInfoMessage({ commit, dispatch }, options) {
+            options.type = 'info';
+            dispatch('messageQueueWorker');
+            commit('ADD_MESSAGE', options)
+        },
+
+        addSuccessMessage({ commit, dispatch }, options) {
+            options.type = 'success';
             dispatch('messageQueueWorker');
             commit('ADD_MESSAGE', options)
         },

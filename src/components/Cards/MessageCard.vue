@@ -20,7 +20,9 @@
             
         >
             <div>
-                <img loading="lazy" :src="images[type]" alt="">
+                <div :class="`message_card_type_${type}`" class="message_card_top_box" :style="`background-color: ${color}`">
+                    <img loading="lazy" :src="images[type]" alt="">
+                </div>
                 
                 <br>
                 
@@ -113,10 +115,23 @@ export default {
         return {
             images: {
                 success: require('../../../public/assets/images/messages/success.svg'),
-                info: require('../../../public/assets/images/messages/success.svg'),
+                info: require('../../../public/assets/images/messages/info.svg'),
                 error: require('../../../public/assets/images/messages/error.svg'),
                 warning: require('../../../public/assets/images/messages/warning.svg'),
-            }
+            },
+
+            colors: {
+                success: '#23B920',
+                info: '#16588f',
+                error: '#FF2E00',
+                warning: '#FFC700',
+            },
+        }
+    },
+
+    computed: {
+        color() {
+            return this.colors[this.type];
         }
     },
 
@@ -190,9 +205,19 @@ export default {
     .message_card_small {
         
         .message_card_content {
-            min-height: 200px;
+            min-height: 150px;
             max-height: 275px;
         }
+    }
+
+    .message_card_top_box {
+        border-radius: 0 0 8px 8px;
+        padding: 10px;
+    }
+
+    .message_card_type_info img {
+        position: relative;
+        left: 10px;
     }
 
 </style>

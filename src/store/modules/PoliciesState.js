@@ -28,7 +28,7 @@ const PoliciesState = {
                     commit("SET_TERMS_AND_CONDITIONS", res.data.data)
                 })
                 .catch(() => {
-                    dispatch('MessageState/addMessage', {
+                    dispatch('MessageState/addInfoMessage', {
                         message: 'מצטערים אבל נכשלה הבקשה למשיכת תנאי האתר',
                         type: 'error',
                     }, {root:true});

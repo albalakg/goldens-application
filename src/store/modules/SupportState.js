@@ -39,7 +39,7 @@ const SupportState = {
                     commit("SET_SUPPORT_CATEGORIES", res.data.data)
                 })
                 .catch(() => {
-                    dispatch('MessageState/addMessage', {
+                    dispatch('MessageState/addInfoMessage', {
                         message: 'מצטערים אבל נכשלה הבקשה למשיכת קטגוריות הקורסים',
                         type: 'error',
                     }, {root:true});
@@ -69,7 +69,7 @@ const SupportState = {
 
                 })
                 .catch(() => {
-                    dispatch('MessageState/addMessage', {
+                    dispatch('MessageState/addInfoMessage', {
                         message: 'מצטערים אבל נכשלה הבקשה ליצירת הודעה על בקשת תמיכה',
                         type: 'error',
                     }, {root:true});

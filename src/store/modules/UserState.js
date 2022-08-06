@@ -143,9 +143,9 @@ const UserState = {
                 axios.post('profile/update', data)
                     .then(res => {
                         commit('SET_USER_DETAILS', res.data.data);
-                        dispatch('MessageState/addMessage', {message: 'פרטי המשתמש עודכנו בהצלחה'}, {root:true});
+                        dispatch('MessageState/addInfoMessage', {message: 'פרטי המשתמש עודכנו בהצלחה'}, {root:true});
                     }).catch(() => {
-                        dispatch('MessageState/addMessage', {
+                        dispatch('MessageState/addInfoMessage', {
                             message: 'מצטערים אך לא הצלחנו לעדכן את פרטי המשתמש',
                             type: 'error',
                         }, {root:true});
@@ -159,10 +159,10 @@ const UserState = {
             return new Promise((resolve) => {
                 axios.post('profile/email', data)
                     .then(() => {
-                        dispatch('MessageState/addMessage', {message: 'נשלח מייל לאישור בקשת עדכון המייל'}, {root:true});
+                        dispatch('MessageState/addInfoMessage', {message: 'נשלח מייל לאישור בקשת עדכון המייל'}, {root:true});
                     }).catch(() => {
                         console.log(2);
-                        dispatch('MessageState/addMessage', {
+                        dispatch('MessageState/addInfoMessage', {
                             message: 'מצטערים אך לא הצלחנו לעדכן את המייל',
                             type: 'error',
                         }, {root:true});
@@ -176,10 +176,10 @@ const UserState = {
             return new Promise((resolve) => {
                 axios.post('profile/change-password', data)
                     .then(res => {
-                        dispatch('MessageState/addMessage', {message: 'הסיסמה עודכנה בהצלחה'}, {root:true});
+                        dispatch('MessageState/addInfoMessage', {message: 'הסיסמה עודכנה בהצלחה'}, {root:true});
                         resolve(res.data)
                     }).catch(err => {
-                        dispatch('MessageState/addMessage', {
+                        dispatch('MessageState/addInfoMessage', {
                             message: 'מצטערים אך לא הצלחנו לעדכן את הסיסמה',
                             type: 'error',
                         }, {root:true});
@@ -198,7 +198,7 @@ const UserState = {
                     commit('SET_USER_PROFILE', details);
                 })
                 .catch(() => {
-                    dispatch('MessageState/addMessage', {
+                    dispatch('MessageState/addInfoMessage', {
                         message: 'מצטערים אבל נכשלה הבקשה למשיכת פרטי הפרופיל',
                         type: 'error',
                     }, {root:true});
@@ -215,7 +215,7 @@ const UserState = {
                     commit('SET_USER_SUPPORT_TICKETS', res.data.data);
                 })
                 .catch(() => {
-                    dispatch('MessageState/addMessage', {
+                    dispatch('MessageState/addInfoMessage', {
                         message: 'מצטערים אבל נכשלה הבקשה למשיכת פרטי הבקשות תמיכה',
                         type: 'error',
                     }, {root:true});
@@ -232,7 +232,7 @@ const UserState = {
                     commit('SET_USER_ORDERS', res.data.data);
                 })
                 .catch(() => {
-                    dispatch('MessageState/addMessage', {
+                    dispatch('MessageState/addInfoMessage', {
                         message: 'מצטערים אבל נכשלה הבקשה למשיכת פרטי הסטוריית ההזמנות',
                         type: 'error',
                     }, {root:true});
@@ -245,7 +245,7 @@ const UserState = {
                     commit('SET_USER_FAVORITES', res.data.data);
                 })
                 .catch(() => {
-                    dispatch('MessageState/addMessage', {
+                    dispatch('MessageState/addInfoMessage', {
                         message: 'מצטערים אבל נכשלה הבקשה למשיכת השיעורים המועדפים',
                         type: 'error',
                     }, {root:true});
@@ -266,7 +266,7 @@ const UserState = {
                         resolve(res.data.data.courses);
                     })
                     .catch(() => {
-                        dispatch('MessageState/addMessage', {
+                        dispatch('MessageState/addInfoMessage', {
                             message: 'מצטערים אבל נכשלה הבקשה למשיכת פרטים על התקדמות הקורס',
                             type: 'error',
                         }, {root:true});
@@ -291,7 +291,7 @@ const UserState = {
                         resolve(state.courses);
                     })
                     .catch(() => {
-                        dispatch('MessageState/addMessage', {
+                        dispatch('MessageState/addInfoMessage', {
                             message: 'מצטערים אבל נכשלה הבקשה למשיכת התכנים שלך',
                             type: 'error',
                         }, {root:true});
@@ -315,7 +315,7 @@ const UserState = {
                         }
                     })
                     .catch(() => {
-                        dispatch('MessageState/addMessage', {
+                        dispatch('MessageState/addInfoMessage', {
                             message: 'מצטערים אבל נכשלה הבקשה לעדכן את המועדפים',
                             type: 'error',
                         }, {root:true});

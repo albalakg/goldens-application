@@ -188,7 +188,7 @@ export default {
             axios.post('auth/signup', this.form)
                 .then(() => {
                     this.$router.push('/signin');
-                    this.$store.dispatch('MessageState/addMessage', {message: 'נרשמת בהצלחה למערכת, ברוך הבא!'})
+                    this.$store.dispatch('MessageState/addInfoMessage', {message: 'נרשמת בהצלחה למערכת, ברוך הבא!'})
                 }).catch(() => {
                     this.$store.dispatch('MessageState/addErrorMessage', { message: 'האימייל או הסיסמה אינם תקינים' })
                 }).finally(() => {

@@ -106,7 +106,7 @@ export default {
 
             axios.post('auth/forgot-password', this.form)
                 .then(() => {
-                    this.$store.dispatch('MessageState/addMessage', {message: 'נשלחה בקשת איפוס סיסמה בהצלחה'})
+                    this.$store.dispatch('MessageState/addInfoMessage', {message: 'נשלחה בקשת איפוס סיסמה בהצלחה'})
                     this.$router.push('/signin');
                 }).catch(err => {
                     this.error = err?.response?.data?.message;

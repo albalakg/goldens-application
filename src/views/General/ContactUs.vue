@@ -159,14 +159,14 @@ export default {
         this.loading = true;
         await this.$store.dispatch('SupportState/createSupportTicket', this.form);
 
-        this.$store.dispatch('MessageState/addMessage', {
+        this.$store.dispatch('MessageState/addInfoMessage', {
           message: 'ההודעה נשלחה בהצלחה'
         });
 
         this.$router.push('/')
       } catch(err) {
         console.error('err', err);
-        this.$store.dispatch('MessageState/addMessage', {
+        this.$store.dispatch('MessageState/addInfoMessage', {
           message: 'מצטערים אבל נכשלה הבקשה ליצירת קשר',
           type: 'error',
         });

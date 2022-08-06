@@ -149,7 +149,7 @@ export default {
                 .then(res => {
                     
                     Auth.login(res.data.data);
-                    this.$store.dispatch('MessageState/addMessage', {title: 'ברוך הבא', message: 'התחברת בהצלחה ' + Auth.firstName()});
+                    this.$store.dispatch('MessageState/addInfoMessage', {type: 'info', title: 'ברוך הבא', message: 'התחברת בהצלחה ' + Auth.firstName()});
                     this.loggedSuccessfullyActions();
                     
                 }).catch(() => {
