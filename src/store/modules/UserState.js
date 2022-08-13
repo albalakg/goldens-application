@@ -329,6 +329,10 @@ const UserState = {
         
         goToLastActiveCourse({ state }) {
             try {
+                if(!isMobile()) {
+                    return
+                }
+                
                 const courses = state.courses;
                 if(!courses || !courses.length) {
                     if('/signin' === window.location.hash.replace('#', '')) {

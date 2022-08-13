@@ -1,5 +1,5 @@
 <template>
-  <div class="auth_padding_top" :key="lesson.id">
+  <div v-if="Boolean(lesson)" class="auth_padding_top" :key="lesson.id">
     <v-flex md7 xl6 mx-auto v-if="lesson" class="lesson_page_content mt-5 mb-10">
       
       <v-flex d-flex align-center flex-wrap justify-space-between class="px-2 px-md-0">
@@ -162,12 +162,14 @@ export default {
         end_time:    0,
         lesson_id: this.$route.params.lesson_id,
       },
-      showEndLessonScreen: false
+      showEndLessonScreen: false,
+      alertedALessonHasSkipped: false,
     }
   },
 
   mounted() {
     this.setVideoStartTime();
+    this.alertIfSkippedLessons();
   },
 
   computed: {
@@ -200,12 +202,20 @@ export default {
     },
 
     lessons() {
+      if(!this.lesson) {
+        return null;
+      }
+
       const lessons = ContentService.getLessonsByCourseAreaId(this.lesson.course_area_id);
       lessons.forEach(lesson => {
         lesson.isCompleted = ContentService.isLessonCompleted(lesson.id);
       })
 
       return lessons;
+    },
+
+    progress() {
+      return this.$store.getters['UserState/progress'];
     },
 
     startTime() {
@@ -222,12 +232,22 @@ export default {
     },
 
     trainer() {
+      if(!this.lesson) {
+        return null;
+      }
+      
       return ContentService.findTrainerByCourseAreaId(this.lesson.course_area_id);
     },
+  },
 
-    courseAreas() {
-      return ContentService.getCourseAreasByCourseId(this.lesson.course_id)
-    }
+  watch: {
+    lessons() {
+      this.alertIfSkippedLessons();
+    },
+
+    progress() {
+      this.alertIfSkippedLessons();
+    },
   },
 
   methods: {
@@ -251,7 +271,9 @@ export default {
       }
 
       this.toggleList();
-      this.showEndLessonScreen = false;
+      this.showEndLessonScreen      = false;
+      this.alertedALessonHasSkipped = false;
+      this.alertIfSkippedLessons();
     },
 
     onVideoPlay(video) {
@@ -283,7 +305,9 @@ export default {
     },
 
     setVideoStartTime() {
-      this.$refs.video.setStartTime(this.startTime)
+      if(this.$refs.video) {
+        this.$refs.video.setStartTime(this.startTime)
+      }
     },
 
     async sendRequest() {
@@ -314,6 +338,31 @@ export default {
 
     enterCourseArea(courseArea) {
       this.$router.push(`/courses/${courseArea.course_id}/lessons?courseArea=${courseArea.id}`)
+    },
+
+    alertIfSkippedLessons() {
+      const lessons = this.lessons;
+      if(!lessons || this.alertedALessonHasSkipped || !this.progress) {
+        return;
+      }
+
+      for(let index = 0; index < lessons.length; index++) {
+        const lesson = lessons[index];
+        if(lesson.isCompleted === undefined) {
+          return;
+        }
+
+        if(lesson.id === this.lesson.id) {
+          this.alertedALessonHasSkipped = true;
+          return;
+        }
+
+        if(lesson.id !== this.lesson.id && !lesson.isCompleted) {
+          this.$store.dispatch('MessageState/addWarningMessage', { time: 5000, title: 'דילגת על שיעור',message: `דילגת על שיעור ${lesson.name}, אנחנו ממליצים לראות לפי הסדר` });
+          this.alertedALessonHasSkipped = true;
+          return;
+        }
+      }
     }
   },
 

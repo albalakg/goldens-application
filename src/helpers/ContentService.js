@@ -65,6 +65,10 @@ class ContentService {
   findTrainerByCourseAreaId(courseAreaId) {
     try {
       const courseArea = this.findCourseAreaById(courseAreaId);
+      if(!courseArea) {
+        return {};
+      }
+
       return courseArea.trainer;
     } catch(err) {
       error(err);
@@ -79,6 +83,10 @@ class ContentService {
 
       if(!courses) {
         courses = store.state['ContentState'].courses;
+      }
+
+      if(!courses) {
+        return null;
       }
 
       for(let courseIndex = 0; courseIndex < courses.length; courseIndex++) {
@@ -109,6 +117,10 @@ class ContentService {
   findLessonProgressById(lessonId) {
     try {
       let userCourses = store.state['UserState'].progress;
+      if(!userCourses) {
+        return null;
+      }
+
       for(let courseIndex = 0; courseIndex < userCourses.length; courseIndex++) {
         const userCourse = userCourses[courseIndex];
         return userCourse.lessons_progress.find(lesson => lesson.course_lesson_id == lessonId);
@@ -223,6 +235,10 @@ class ContentService {
   isLessonCompleted(lessonId) {
     try {
       const userCourses = store.getters['UserState/progress'];
+
+      if(!userCourses) {
+        return false;
+      }
 
       for(let courseIndex = 0; courseIndex < userCourses.length; courseIndex++) {
         const userCourse = userCourses[courseIndex];

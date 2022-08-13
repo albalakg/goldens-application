@@ -16,7 +16,7 @@
             d-flex 
             justify-center
             v-click-outside="{ handler: closeMessageFromOutside }"
-            class="message_card_content px-10 dark_shadow white_bg_color h100 text-center"
+            class="message_card_content px-5 dark_shadow white_bg_color h100 text-center"
             
         >
             <div>
@@ -26,7 +26,7 @@
                 
                 <br>
                 
-                <div class="message_card_details px-10">
+                <div class="message_card_details px-5">
                     <h2 class="main_text_color">
                         {{title}}
                     </h2>

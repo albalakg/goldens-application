@@ -59,7 +59,8 @@
       "TimeService":      true,
       "StatusService":    true,
       "FILES_PATH":       true,
-      "FORM_DATA_CONFIG": true
+      "FORM_DATA_CONFIG": true,
+      "isMobile":         true
     }
   },
   "browserslist": [

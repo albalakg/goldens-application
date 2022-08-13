@@ -70,6 +70,12 @@ const MessageState = {
             dispatch('messageQueueWorker');
             commit('ADD_MESSAGE', options)
         },
+
+        addWarningMessage({ commit, dispatch }, options) {
+            options.type = 'warning';
+            dispatch('messageQueueWorker');
+            commit('ADD_MESSAGE', options)
+        },
         
         addErrorMessage({ commit, dispatch }, options) {
             options.type = 'error';

@@ -18,6 +18,9 @@ export const SUPPORT_STATUSES = [
   'בטיפול',
 ];
 
+export const ACTIVE   = 1;
+export const INACTIVE = 0
+
 export const SUPPORT_STATUSES_ENUM = {
   [SUPPORT_STATUSES[0]]: 0,
   [SUPPORT_STATUSES[1]]: 1,
