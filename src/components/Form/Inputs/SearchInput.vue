@@ -145,7 +145,7 @@ export default {
                 box-shadow: 0 0 3px 2px #aaa8;
                 border-radius: 4px;
                 
-                & > div {
+                & > div:nth-child(2) {
                     text-overflow: ellipsis;
                     white-space: nowrap;
                     overflow: hidden;
