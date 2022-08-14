@@ -101,7 +101,6 @@ export default {
         },
 
         focusNextButton() {
-            console.log('this.$refs.nextButton', this.$refs.nextButton, this.$refs.nextButton.$el);
             this.$refs.nextButton.$el.focus()
         },
 

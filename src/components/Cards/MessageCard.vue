@@ -38,6 +38,7 @@
 
                 <v-flex mx-auto>
                     <main-button
+                        ref="messageCardButton"
                         class="message_card_button" 
                         shadow
                         :text="buttonText"
@@ -133,6 +134,10 @@ export default {
         color() {
             return this.colors[this.type];
         }
+    },
+
+    mounted() {
+        this.$refs.messageCardButton.$el.focus()
     },
 
     methods: {
