@@ -294,6 +294,7 @@ export default {
                 this.$store.dispatch('ContentState/getCategories'),
                 this.$store.dispatch('ContentState/getLessons'),
                 this.$store.dispatch('ContentState/getTrainers'),
+                this.$store.dispatch('ContentState/getActiveCourses')
             ])
             this.loading = false;
         },

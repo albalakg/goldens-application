@@ -158,8 +158,6 @@ export default {
 
     .massage_card_wrapper {
         position: absolute;
-        height: 100vh;
-        width: 100vw;
         left: 0;
         right: 0;
         margin: auto;

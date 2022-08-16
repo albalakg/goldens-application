@@ -6,6 +6,7 @@ const UserState = {
     namespaced: true,
 
     state: {
+        initiated:      false,
         progress:       null,
         courses:        null,
         lastActive:     null,
@@ -79,6 +80,10 @@ const UserState = {
             }
         },
 
+        SET_INITIATED(state, status) {
+            state.initiated = status;
+        },
+
         SET_USER_LAST_ACTIVE(state, lastActive) {
             state.lastActive = lastActive;
         },
@@ -123,12 +128,21 @@ const UserState = {
     },
 
     actions: {
-        async init({ dispatch }) {
-            await dispatch('getCourses');
-            await dispatch('getProgress');
-            await dispatch('getProfile');
-            await dispatch('goToLastActiveCourse')
-            dispatch('getFavorites');
+        async init({ state, commit, dispatch }) {
+            if(state.initiated) {
+                return;
+            }
+
+            commit('SET_INITIATED', true);
+
+            return await new Promise.allSettled(
+                [
+                    dispatch('getCourses'),
+                    dispatch('getProgress'),
+                    dispatch('getProfile'),
+                    dispatch('getFavorites'),
+                ]
+            )
         },
 
         clearUserState({ commit }) {
@@ -328,11 +342,7 @@ const UserState = {
         },
         
         goToLastActiveCourse({ state }) {
-            try {
-                if(!isMobile()) {
-                    return
-                }
-                
+            try {        
                 const courses = state.courses;
                 if(!courses || !courses.length) {
                     if('/signin' === window.location.hash.replace('#', '')) {

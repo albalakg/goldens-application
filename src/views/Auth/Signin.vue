@@ -153,7 +153,7 @@ export default {
                     this.loggedSuccessfullyActions();
                     
                 }).catch(() => {
-                    this.$store.dispatch('MessageState/addErrorMessage', { message: 'האימייל או הסיסמה אינם תקינים' })
+                    this.$store.dispatch('MessageState/addErrorMessage', {message: 'האימייל או הסיסמה אינם תקינים' })
                 }).finally(() => {
                     this.loading = false;
                 })
@@ -162,6 +162,8 @@ export default {
 
         async loggedSuccessfullyActions(){
             this.$store.dispatch('AuthState/setLogStatus', true);
+            this.$store.dispatch('UserState/init', true);
+            this.$store.dispatch('UserState/goToLastActiveCourse', true);
         },
 
         preSendActions() {

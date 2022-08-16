@@ -1,47 +1,43 @@
 
 <template>
-    <v-flex class="detailed_lesson_card_wrapper pointer second_dark_bg_color">
+    <v-flex class="detailed_lesson_card_wrapper pointer">
+        <img :src="lesson.imageSrc" alt="lesson image">
+        <div class="lesson_card_darkner"></div>
+        <time-chip 
+            class="time_chip"
+            :seconds="seconds"
+        />
 
         <completed-chip 
             v-if="isCompleted"
             class="completed_chip"
         />
 
-        <v-flex class="h100" d-flex flex-column justify-space-between>
-            <v-flex d-flex class="lesson_card_header">
-                <v-flex xs3>
-                    <div class="image_wrapper">
-                        <img :src="lesson.imageSrc" alt="lesson image">
-                        <time-chip 
-                            class="time_chip"
-                            :seconds="seconds"
-                        />
+        <div class="text-left favorite_chip" v-if="isLogged">
+            <heart
+                dark
+                :filled="isFavorite"
+                @submit="toggleFavorite()"
+            />
+        </div>
+
+        <v-flex class="h100 lesson_card_content pr-2">
+            <v-flex d-flex align-center>
+                    <div>
+                        <p class="mb-0 lesson_card_name">
+                            <strong>
+                                {{lesson.name}}
+                            </strong>
+                        </p>
+                        <small class="grey_text_color">
+                            {{courseAreaName}}
+                        </small>
                     </div>
-                </v-flex>
-                <v-flex xs7 d-flex align-center class="pr-3">
-                        <div>
-                            <p class="mb-0">
-                                <strong>
-                                    {{lesson.name}}
-                                </strong>
-                            </p>
-                            <small class="grey_text_color">
-                                {{courseAreaName}}
-                            </small>
-                        </div>
-                </v-flex>
             </v-flex>
-            <v-flex class="mt-3">
-                <p class="grey_text_color" v-html="lessonDescription">
+            <v-flex>
+                <p class="lesson_card_description" v-html="lessonDescription">
                 </p>
             </v-flex>
-            <div class="text-left" v-if="isLogged">
-                <heart
-                    dark
-                    :filled="isFavorite"
-                    @submit="toggleFavorite()"
-                />
-            </div>
         </v-flex>
     </v-flex>
 </template>
@@ -117,29 +113,76 @@ export default {
     padding: 10px;
     position: relative;
     border-radius: 8px;
+    box-shadow: 0 0 10px 1px #0005;
 
-    &:hover {
-        box-shadow: 0 0 10px 1px #0005;
+    img {
+        border-radius: 8px;
+        object-fit: cover;
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 1;
     }
 
-    * {
-        color: #fff;
+    .lesson_card_darkner {
+        border-radius: 8px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 2;
+        background: linear-gradient(90deg, #0005, #000b, #000e);
+    }
+
+    .time_chip {
+        border-radius: 8px;
+        position: absolute;
+        bottom: 5px;
+        left: 5px;
+        z-index: 3;
+        background-color: #222;
+        box-shadow: 0 0 10px 1px #000a;
+    }
+
+    .favorite_chip {
+        border-radius: 8px;
+        position: absolute;
+        bottom: 10px;
+        right: 15px;
+        z-index: 3;
     }
 
     .completed_chip {
         position: absolute;
         z-index: 2;
         left: -5px;
-        top: 15px;
+        top: 20px;
     }
 
-    .lesson_card_header {
-        height: 30%;
+    .lesson_card_content {
+        position: absolute;
+        z-index: 3;
+        width: 100%;
+
+        .lesson_card_name {
+            font-size: 2em;
+        }
+
+        .lesson_card_description {
+            color: #ddd;
+        }
+    
+        small {
+            position: relative;
+            top: -10px;
+        }
     }
 
-    small {
-        position: relative;
-        top: -7px;
+    * {
+        color: #fff;
     }
 
     .image_wrapper {
@@ -154,11 +197,7 @@ export default {
             object-fit: cover;
         }
 
-        .time_chip {
-            position: absolute;
-            bottom: 5px;
-            left: 5px;
-        }
+        
     }
 
   }

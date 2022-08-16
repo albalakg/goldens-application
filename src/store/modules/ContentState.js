@@ -107,7 +107,7 @@ const ContentState = {
                     resolve(state.courses);
                     return;
                 }
-
+                
                 axios.get('content/courses')
                     .then(res => {
                         const courses = res.data.data.map(course => {
