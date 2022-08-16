@@ -6,8 +6,6 @@
         <v-flex d-flex flex-wrap>
             <v-flex xs12 lg6 mx-auto class="text-center" d-flex justify-end>
                 <v-flex xs12 lg9 class="text-center text-lg-right">
-                    <!-- <Logo /> -->
-
                     <h1>
                         כל האימונים
                         <br>
@@ -16,7 +14,7 @@
                         במקום <span class="sub_text_color">אחד</span>
                     </h1>
 
-                    <v-flex xs12 lg7 class="mx-5 mx-lg-0">
+                    <v-flex v-if="courses && courses.length" xs12 lg7 class="mx-5 mx-lg-0">
                         <div class="home_course_card">
                             <course-card class="mb-3" v-for="(course, index) in courses" :key="index" dark :course="course" @submit="enterCourse(course)">
                             </course-card>

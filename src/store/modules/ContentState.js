@@ -101,8 +101,13 @@ const ContentState = {
             })
        },
 
-        getActiveCourses({ commit }) {
+        getActiveCourses({ state, commit }) {
             return new Promise((resolve) => {
+                if(state.courses) {
+                    resolve(state.courses);
+                    return;
+                }
+
                 axios.get('content/courses')
                     .then(res => {
                         const courses = res.data.data.map(course => {
