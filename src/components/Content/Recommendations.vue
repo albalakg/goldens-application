@@ -66,11 +66,19 @@ export default {
 
     computed: {
         isLeftArrowDisabled() {
-            return !this.currentPage
+            return !this.currentPage || !this.hasPages
         },
 
         isRightArrowDisabled() {
-            return this.currentPage + 1 === this.items.length / this.perPage
+            return this.currentPage + 1 === this.items.length / this.perPage || !this.hasPages
+        },
+
+        hasPages() {
+            if(isMobile()) {
+                return this.items.length > 1;
+            } else {
+                return this.items.length > 3;
+            }
         }
     },
 

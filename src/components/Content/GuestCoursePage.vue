@@ -95,31 +95,21 @@
 </template>
 
 <script>
-import CourseAreaCard from "../../components/Cards/CourseAreaCard.vue";
 import CourseAreaList from '../Cards/CourseAreaList.vue';
-import CourseAreaListItem from '../Cards/CourseAreaListItem.vue';
 import DetailedCourseCard from '../Cards/DetailedCourseCard.vue';
 import DetailedCourseCardHorizontal from '../Cards/DetailedCourseCardHorizontal.vue';
-import LessonCard from '../Cards/LessonCard.vue';
-import CircleDecorator from '../Decorators/CircleDecorator.vue';
 import StarLogo from '../General/StarLogo.vue';
-import SectionHeader from '../Texts/SectionHeader.vue';
 import CourseBenefits from './CourseBenefits.vue';
 import GuestCoursePlan from './GuestCoursePlan.vue';
 import Recommendations from './Recommendations.vue';
 export default {
     components: { 
-        CourseAreaCard, 
         DetailedCourseCard, 
-        CircleDecorator, 
-        LessonCard, 
-        SectionHeader, 
         GuestCoursePlan, 
         StarLogo, 
         Recommendations, 
         DetailedCourseCardHorizontal, 
         CourseBenefits,
-        CourseAreaListItem,
         CourseAreaList 
     },
 
@@ -173,44 +163,7 @@ export default {
     },
 
     recommendations() {
-        return [
-            {
-                name: 'שחר פאר',
-                content: `מונפרד אדנדום לורם איפסום דולור סיט אמט, קונסקטורר
-                        מרגשי ומרגשח. עמחליף מודוף. אדיפיסינג אלית קולורס
-                        אודיפו בלאסטיק מונופץ קליר סילקוף,`
-            },
-            {
-                name: 'קלארק קנט',
-                content: `מונפרד אדנדום לורם איפסום דולור סיט אמט, קונסקטורר
-                        מרגשי ומרגשח. עמחליף מודוף. אדיפיסינג אלית קולורס
-                        אודיפו בלאסטיק מונופץ קליר סילקוף,`
-            },
-            {
-                name: 'אסף לוץ',
-                content: `מונפרד אדנדום לורם איפסום דולור סיט אמט, קונסקטורר
-                        מרגשי ומרגשח. עמחליף מודוף. אדיפיסינג אלית קולורס
-                        אודיפו בלאסטיק מונופץ קליר סילקוף,`
-            },
-            {
-                name: 'פינוקיו',
-                content: `מונפרד אדנדום לורם איפסום דולור סיט אמט, קונסקטורר
-                        מרגשי ומרגשח. עמחליף מודוף. אדיפיסינג אלית קולורס
-                        אודיפו בלאסטיק מונופץ קליר סילקוף,`
-            },
-            {
-                name: 'ספיידרמן',
-                content: `מונפרד אדנדום לורם איפסום דולור סיט אמט, קונסקטורר
-                        מרגשי ומרגשח. עמחליף מודוף. אדיפיסינג אלית קולורס
-                        אודיפו בלאסטיק מונופץ קליר סילקוף,`
-            },
-            {
-                name: 'איירון מן',
-                content: `מונפרד אדנדום לורם איפסום דולור סיט אמט, קונסקטורר
-                        מרגשי ומרגשח. עמחליף מודוף. אדיפיסינג אלית קולורס
-                        אודיפו בלאסטיק מונופץ קליר סילקוף,`
-            },
-        ];
+        return this.course.recommendations
     },
 
     lessons() {
