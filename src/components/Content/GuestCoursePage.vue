@@ -15,7 +15,7 @@
                         תחומי הקורס
                     </strong>
                 </p>
-            <template v-for="(courseArea, index) in courseAreas">
+            <!-- <template v-for="(courseArea, index) in courseAreas">
                 <course-area-card
                     guest
                     class="mb-3"
@@ -23,7 +23,12 @@
                     :key="index"
                     :courseArea="courseArea"
                 />
-            </template>
+            </template> -->
+            <course-area-list
+                :courseAreas="courseAreas"
+                guest
+                separated
+             />
             </v-flex>
 
             <v-flex md2 v-if="$vuetify.breakpoint.mdAndUp">
@@ -91,6 +96,8 @@
 
 <script>
 import CourseAreaCard from "../../components/Cards/CourseAreaCard.vue";
+import CourseAreaList from '../Cards/CourseAreaList.vue';
+import CourseAreaListItem from '../Cards/CourseAreaListItem.vue';
 import DetailedCourseCard from '../Cards/DetailedCourseCard.vue';
 import DetailedCourseCardHorizontal from '../Cards/DetailedCourseCardHorizontal.vue';
 import LessonCard from '../Cards/LessonCard.vue';
@@ -111,7 +118,9 @@ export default {
         StarLogo, 
         Recommendations, 
         DetailedCourseCardHorizontal, 
-        CourseBenefits 
+        CourseBenefits,
+        CourseAreaListItem,
+        CourseAreaList 
     },
 
     props: {

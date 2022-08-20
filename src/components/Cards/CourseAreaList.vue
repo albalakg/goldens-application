@@ -1,8 +1,17 @@
 <template>
   <div class="course_areas_list">
-    <div v-for="(courseArea, index) in courseAreas" :key="index">
-        <course-area-list-item :courseArea="courseArea" :activeCourseId="activeCourseId" @submit="submit" />
-    </div>
+    <course-area-list-item 
+        v-for="(courseArea, index) in courseAreas" :key="index"
+        :guest="guest" 
+        :courseArea="courseArea" 
+        :activeCourseId="activeCourseId"
+        :class="{
+            'mb-2': separated && !index,
+            'my-2': separated && index,
+            'mb-0': separated && index === courseAreas.length -1
+        }" 
+        @submit="submit" 
+    />
   </div>
 </template>
 
@@ -19,7 +28,15 @@ export default {
         
         activeCourseId: {
             type: Number,
-        }
+        },
+
+        guest: {
+            type: Boolean,
+        },
+        
+        separated: {
+            type: Boolean,
+        },
     },
 
     methods: {

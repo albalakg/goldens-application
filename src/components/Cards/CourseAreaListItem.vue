@@ -2,7 +2,7 @@
     <div 
         class="course_area_item main_bg_color pointer pa-5 white_text_color" 
         :class="{
-            'active_course_area': courseArea.id === activeCourseId
+            'active_course_area': courseArea.id === activeCourseId,
         }"
         @click="submit()" 
     >
@@ -12,8 +12,8 @@
             {{ courseArea.name }}
         </strong>
 
-        <img class="play_button" loading="lazy" :src="playButtonImage" alt="play button" />
-        <div class="progress_wrapper">
+        <img v-if="!guest" class="play_button" loading="lazy" :src="playButtonImage" alt="play button" />
+        <div class="progress_wrapper" v-if="!guest">
             <progress-bar 
                 dark
                 verySlim
@@ -37,7 +37,11 @@ export default {
 
         activeCourseId: {
             type: Number,
-        }
+        },
+
+        guest: {
+            type: Boolean,
+        },
     },
 
     data() {
