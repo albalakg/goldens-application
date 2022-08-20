@@ -17,7 +17,24 @@
     <!-- big screen -->
     <template v-else>
       <v-flex d-flex justify-center md10 xl9 mx-auto>
-        <v-flex md6 offset-md-1 class="desktop_lessons_list pl-5">
+        <v-flex md4 offset-md-1 class="desktop_lessons_list">
+          <template v-for="(lesson, index) in lessons">
+            <div class="lesson_list_item main_bg_color" :key="index">
+              <router-link
+                :to="`/courses/${course.id}/lessons/${lesson.id}`"
+                class="simple_link"
+              >
+                <strong class="sub_text_color">
+                  {{ lesson.name }}
+                </strong>
+              </router-link>
+            </div>
+          </template>
+        </v-flex>
+        <v-flex md5>
+          
+        </v-flex>
+        <!-- <v-flex md4 offset-md-1 class="desktop_lessons_list pl-5">
           <template v-for="(lesson, index) in lessons">
             <div class="lesson_card_wrapper mb-5" :key="index">
               <router-link
@@ -29,7 +46,7 @@
             </div>
           </template>
         </v-flex>
-        <v-flex md3 class="relative">
+        <v-flex md5 class="relative">
           <div v-if="showTrainerIcon" class="trainer_icon_wrapper">
             <div class="trainer_image_wrapper" @click="toggleTrainerDialog()">
               <img loading="lazy" :src="trainer.imageSrc" />
@@ -39,8 +56,19 @@
               {{ trainer.name }}
             </span>
           </div>
-          <course-area-list :courseAreas="courseAreas" @submit="enterCourseArea" :activeCourseId="courseArea.id" />
-        </v-flex>
+
+          <template v-for="(courseArea, index) in courseAreas">
+            <course-area-card
+              class="mb-3"
+              :class="{
+                outlined: isActiveCourseArea(courseArea.id),
+              }"
+              :key="index"
+              :courseArea="courseArea"
+              @submit="enterCourseArea"
+            />
+          </template>
+        </v-flex> -->
       </v-flex>
     </template>
 
@@ -50,10 +78,10 @@
 
 <script>
 import DetailedLessonCard from "../../components/Cards/DetailedLessonCard.vue";
+import CourseAreaCard from "../../components/Cards/CourseAreaCard.vue";
 import TrainerDialog from '../../components/Dialogs/TrainerDialog.vue';
-import CourseAreaList from '../../components/Cards/CourseAreaList.vue';
 export default {
-  components: { DetailedLessonCard, TrainerDialog, CourseAreaList },
+  components: { DetailedLessonCard, CourseAreaCard, TrainerDialog },
   props: {
     course: {
       type: Object,
@@ -111,7 +139,6 @@ export default {
     },
 
     enterCourseArea(courseArea) {
-      console.log('courseArea', courseArea);
       if (this.$route.query.courseArea != courseArea.id) {
         this.$router.push(
           `/courses/${courseArea.course_id}/lessons?courseArea=${courseArea.id}`
@@ -132,14 +159,27 @@ export default {
   width: 100%;
 }
 
+.desktop_lessons_list {
+  max-height: 50vh;
+  overflow-y: auto;
+  border-radius: 8px;
+}
+
+.lesson_list_item {
+  height: 50px;
+  width: 100%;
+  text-align: right;
+  // background-color: #222;
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+  border-bottom: 3px solid #000;
+  cursor: pointer;
+}
+
 video {
   border-radius: 8px;
   width: 100%;
-}
-
-.desktop_lessons_list {
-  max-height: 100vh;
-  overflow-y: auto;
 }
 
 @media only screen and (min-width: 600px) {

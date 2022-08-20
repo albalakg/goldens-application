@@ -104,7 +104,7 @@ class ContentService {
       
       
       if(foundLesson) {
-        foundLesson.progress = this.findLessonProgressById(foundLesson.id)
+        foundLesson.progress = this.getLessonProgressById(foundLesson.id)
       }
 
       return foundLesson;
@@ -114,7 +114,7 @@ class ContentService {
     }
   }
 
-  findLessonProgressById(lessonId) {
+  getLessonProgressById(lessonId) {
     try {
       let userCourses = store.state['UserState'].progress;
       if(!userCourses) {
@@ -128,6 +128,23 @@ class ContentService {
     } catch (err) {
       error(err);
       return null;
+    }
+  }
+
+  getCourseAreaProgressById(courseAreaId) {
+    try {
+      const lessons = this.getLessonsByCourseAreaId(courseAreaId);
+        let totalSecondsWatched = 0;
+        let totalSeconds = this.countTotalCourseAreaDuration(courseAreaId);
+        lessons.forEach(lesson => {
+            const progress      = lesson.progress ? lesson.progress.progress : 0;
+            const totalLength   = lesson.video.video_length;
+            totalSecondsWatched += progress / 100 * totalLength
+        });
+        return totalSecondsWatched * 100 / totalSeconds;
+    } catch (err) {
+        error(err);
+        return 0;
     }
   }
 
@@ -146,7 +163,7 @@ class ContentService {
     try {
       const courseArea = this.findCourseAreaById(courseAreaId);
       courseArea.active_lessons.forEach(lesson => {
-        lesson.progress = this.findLessonProgressById(lesson.id)
+        lesson.progress = this.getLessonProgressById(lesson.id)
       });
       return courseArea.active_lessons
     } catch(err) {

@@ -248,6 +248,14 @@ export default {
     progress() {
       this.alertIfSkippedLessons();
     },
+
+    lesson: {
+      deep: true,
+      handler() {
+        this.alertedALessonHasSkipped = false;
+        this.alertIfSkippedLessons();
+      }
+    }
   },
 
   methods: {
@@ -273,7 +281,6 @@ export default {
       this.toggleList();
       this.showEndLessonScreen      = false;
       this.alertedALessonHasSkipped = false;
-      this.alertIfSkippedLessons();
     },
 
     onVideoPlay(video) {
@@ -343,6 +350,7 @@ export default {
     alertIfSkippedLessons() {
       const lessons = this.lessons;
       if(!lessons || this.alertedALessonHasSkipped || !this.progress) {
+        console.log('disabled');
         return;
       }
 

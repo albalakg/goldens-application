@@ -3,12 +3,17 @@
         class="progress_bar_wrapper"
         :class="{
             'dark_progress_bar': dark,
-            'slim_progress_bar': slim
+            'slim_progress_bar': slim,
+            'very_slim_progress_bar': verySlim,
+            'rounded': rounded
         }"
     >
         <div 
             class="progress_bar_filler" 
             :style="`width: ${progressWidth}`"
+            :class="{
+                'rounded': rounded
+            }"
         >
         </div>
     </div>
@@ -28,6 +33,15 @@ export default {
 
         slim: {
             type: Boolean 
+        },
+
+        verySlim: {
+            type: Boolean 
+        },
+
+        rounded: {
+            type: Boolean,
+            default: true
         }
     },
 
@@ -51,14 +65,12 @@ export default {
 <style scoped>
 
     .progress_bar_wrapper {
-        border-radius: 8px;
         width: 100%;
         height: 12px;
         background-color: #eee;
     }
 
     .progress_bar_filler {
-        border-radius: 8px;
         height: 100%;
         background-color: #31353d;
         transition: .3s width ease-in;
@@ -74,6 +86,10 @@ export default {
 
     .slim_progress_bar {
         height: 8px;
+    }
+
+    .very_slim_progress_bar {
+        height: 4px;
     }
 
 </style>

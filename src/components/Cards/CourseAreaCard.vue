@@ -82,20 +82,7 @@ export default {
         },
 
         progress() {
-            try {
-                const lessons = ContentService.getLessonsByCourseAreaId(this.courseArea.id);
-                let totalSecondsWatched = 0;
-                let totalSeconds = ContentService.countTotalCourseAreaDuration(this.courseArea.id);
-                lessons.forEach(lesson => {
-                    const progress      = lesson.progress ? lesson.progress.progress : 0;
-                    const totalLength   = lesson.video.video_length;
-                    totalSecondsWatched += progress / 100 * totalLength
-                });
-                return totalSecondsWatched * 100 / totalSeconds;
-            } catch (err) {
-                error(err);
-                return 0;
-            }
+            return ContentService.getCourseAreaProgressById(this.courseArea.id);
         },
 
         showProgress() {
