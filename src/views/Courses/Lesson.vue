@@ -169,7 +169,6 @@ export default {
 
   mounted() {
     this.setVideoStartTime();
-    this.alertIfSkippedLessons();
   },
 
   computed: {
@@ -241,14 +240,6 @@ export default {
   },
 
   watch: {
-    lessons() {
-      this.alertIfSkippedLessons();
-    },
-
-    progress() {
-      this.alertIfSkippedLessons();
-    },
-
     lesson: {
       deep: true,
       handler() {
