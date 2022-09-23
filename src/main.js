@@ -10,21 +10,24 @@ import AxiosHandler from './helpers/AxiosHandler'
 import ContentService from './helpers/ContentService'
 import TimeService from './helpers/TimeService'
 import StatusService from './helpers/StatusService'
+import { LOCAL, PROD } from './helpers/EnvService'
 import Auth from "./helpers/Auth";
 
 Vue.config.productionTip  = false
 axios.defaults.baseURL    = process.env.VUE_APP_BASE_URL + '/api/';
 
-window.error = error;
-window.warning = warning;
-window.isMobile = isMobile;
-window.Auth = Auth;
+window.error              = error;
+window.warning            = warning;
+window.isMobile           = isMobile;
+window.Auth               = Auth;
 window.axios              = axios;
 window.baseURL            = window.location.origin + '/';
 window.ContentService     = ContentService;
 window.TimeService        = TimeService;
 window.StatusService      = StatusService;
-window.FILES_PATH = window.location.origin + "/assets/files/";
+window.FILES_PATH         = window.location.origin + "/assets/files/";
+window.isLocal            = process.env.VUE_APP_ENV === LOCAL;
+window.isProd             = process.env.VUE_APP_ENV === PROD;
 window.FORM_DATA_CONFIG   = {
   headers: {
       "Content-Type": "multipart/form-data",

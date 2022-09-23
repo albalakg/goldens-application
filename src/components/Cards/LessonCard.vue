@@ -1,7 +1,9 @@
 
 <template>
   <v-flex mx-auto class="h100 px-3">
-    <div class="lesson_card_wrapper">
+    <div class="lesson_card_wrapper" :class="{
+      'shadow': shadow
+    }">
       <img loading="lazy" :src="lesson.imageSrc" alt="lesson image">
       <div class="lesson_card_darkner"></div>
       <div class="lesson_card_details px-1 text-center">
@@ -15,23 +17,25 @@
 </template>
 
 <script>
-import Divider from '../General/Divider.vue';
-
 const MAX_LESSON_CONTENT_CHARS = 50;
 
 export default {
-  components: { Divider },
 
   props: {
     lesson: {
       type: Object,
       required: true
+    },
+
+    shadow: {
+      type: Boolean,
     }
   },
 
   computed: {
     lessonDescription() {
-      return this.lesson.description.length < MAX_LESSON_CONTENT_CHARS ? this.lesson.description : this.lesson.description.slice(0, MAX_LESSON_CONTENT_CHARS) + '...';
+      const textKey = this.lesson.description ? 'description' : 'content';
+      return this.lesson[textKey].length < MAX_LESSON_CONTENT_CHARS ? this.lesson[textKey] : this.lesson[textKey].slice(0, MAX_LESSON_CONTENT_CHARS) + '...';
     }
   }
 
@@ -39,6 +43,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+  .shadow {
+    box-shadow: 0 10px 12px 1px #000b;
+  }
 
   .lesson_card_wrapper {
     height: 100%;

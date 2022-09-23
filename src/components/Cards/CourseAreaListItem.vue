@@ -3,6 +3,7 @@
         class="course_area_item main_bg_color pointer pa-5 white_text_color" 
         :class="{
             'active_course_area': courseArea.id === activeCourseId,
+            'course_area_item_separated': separated
         }"
         @click="submit()" 
     >
@@ -42,6 +43,11 @@ export default {
         guest: {
             type: Boolean,
         },
+
+        separated: {
+            type: Boolean,
+        },
+        
     },
 
     data() {
@@ -126,5 +132,10 @@ export default {
         transform: scale(1.05);
         z-index: 3;
         box-shadow: 0 0 5px 1px #000;
+    }
+
+    .course_area_item_separated {
+        border-bottom: 2px solid var(--subColor);
+        border-top: 2px solid var(--subColor);
     }
 </style>

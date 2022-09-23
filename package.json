@@ -60,6 +60,8 @@
       "StatusService":    true,
       "FILES_PATH":       true,
       "FORM_DATA_CONFIG": true,
+      "isLocal":          true,
+      "isProd":           true,
       "isMobile":         true
     }
   },

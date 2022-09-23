@@ -3,6 +3,7 @@
     <course-area-list-item 
         v-for="(courseArea, index) in courseAreas" :key="index"
         :guest="guest" 
+        :separated="separated" 
         :courseArea="courseArea" 
         :activeCourseId="activeCourseId"
         :class="{

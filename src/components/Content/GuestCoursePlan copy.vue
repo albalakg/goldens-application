@@ -6,27 +6,7 @@
             backgroundTitle="תוכנית"
         />
 
-        <v-flex md6 mx-auto mt-10 class="lessons_links_wrapper">
-            <DesignedTabs
-                :tabs="courseAreas"
-                :activeTab="activeTab"
-                @submit="setActiveTab"
-            >
-            </DesignedTabs>
-        </v-flex>
-
-        <v-flex d-flex md-10 justify-center class="w100 pa-10 lessons_list">
-            <arrow-chip v-show="!isLeftArrowDisabled" v-if="!isCarouselHidden" class="arrow_chip left_arrow" @submit="moveLeft()" />
-            <transition name="fade" mode="out-in">
-                <carousel v-if="activeLessons && activeLessons.length && !isCarouselHidden" ref="carousel" :perPage="perPage" :value="currentPage" v-model="currentPage">
-                    <slide v-for="(item, index) in activeLessons" :key="`${index}` + item.name" class="py-8 px-4">
-                        <lesson-card shadow class="lesson_card" :lesson="item" />
-                    </slide>
-                </carousel>
-            </transition>
-            <arrow-chip v-show="!isRightArrowDisabled" v-if="!isCarouselHidden" :left="false" class="arrow_chip right_arrow" @submit="moveRight()" />
-        </v-flex>
-        <!-- <v-flex d-flex md-10 mx-auto class="main_dark_bg_color w100 mt-10" :class="{
+        <v-flex d-flex md-10 mx-auto class="main_dark_bg_color w100 mt-10" :class="{
             'flex-wrap': $vuetify.breakpoint.smAndDown
         }">
             <v-flex d-flex xs12 md6 :class="{
@@ -76,67 +56,32 @@
                     </div>
                 </v-flex>
             </v-flex>
-        </v-flex> -->
+        </v-flex>
     </div>
   </v-flex>
 </template>
 
 <script>
 import SectionHeader from '../Texts/SectionHeader.vue';
-import { Carousel, Slide } from 'vue-carousel';
-import LessonCard from '../Cards/LessonCard.vue';
-import ArrowChip from '../Chips/arrowChip.vue';
-import DesignedTabs     from '../../components/Tabs/DesignedTabs.vue';
-
 export default {
-    components: { 
-        SectionHeader,
-        Carousel,
-        Slide,
-        LessonCard,
-        DesignedTabs,
-        ArrowChip
-    },
+  components: { SectionHeader },
 
-    props: {
-        course: {
-            type: Object,
-            required: true,
-        },
-        
-        perPage: {
-            type: Number,
-            default: 3
-        },
+  props: {
+    course: {
+      type: Object,
+      required: true,
     },
-
-    data() {
-        return {
-            activeCourseAreaIndex: 0,
-            currentPage: 0,
-            activeTab: 0,
-            isCarouselHidden: false
-    }
   },
 
-  watch: {
-    perPage() {
-        console.log('perPage', this.perPage);
-    },
-
-    currentPage() {
-        console.log('currentPage', this.currentPage);
-    },
+  data() {
+    return {
+        activeCourseAreaIndex: 0
+    }
   },
 
   computed: {
     courseAreas() {
-      return this.course?.active_areas_with_active_lessons.map(courseArea => {
-        return {
-            ...courseArea,
-            title: courseArea.name
-        }
-      });
+      return this.course?.active_areas_with_active_lessons;
     },
 
     activeCourseArea() {
@@ -154,21 +99,6 @@ export default {
             this.activeLessons.slice(10, 15),
             this.activeLessons.slice(15, 20),
         ];
-    },
-    isLeftArrowDisabled() {
-        return !this.currentPage || !this.hasPages
-    },
-
-    isRightArrowDisabled() {
-        return this.currentPage > this.perPage || !this.hasPages
-    },
-    
-    hasPages() {
-        if(isMobile()) {
-            return this.activeLessons.length > 1;
-        } else {
-            return this.activeLessons.length > 3;
-        }
     }
   },
 
@@ -179,39 +109,6 @@ export default {
     
     playVideo() {
         this.$refs.video.playVideo()
-    },
-    
-    moveLeft () {
-        if(this.isLeftArrowDisabled) {
-            return;
-        }
-
-        this.currentPage--
-    },
-
-    moveRight () {
-        if(this.isRightArrowDisabled) {
-            return;
-        }
-
-        this.currentPage++
-    },
-
-    setActiveTab(activeTab) {
-        if(this.isCarouselHidden || this.activeTab === activeTab) {
-            return;
-        }
-
-        this.activeTab = activeTab;
-        this.setActiveCourseArea(activeTab);
-        this.resetCarousel();
-    },
-
-    resetCarousel() {
-        this.isCarouselHidden = true;
-        setTimeout(() => {
-            this.isCarouselHidden = false;
-        }, 500);
     }
   }
 
@@ -246,44 +143,6 @@ export default {
             background-color: #d5b26e;
             font-weight: bold;
         }
-
-        .lesson_card {
-            height: 360px;
-        }
-    }
-
-    .lessons_list {
-        direction: ltr;
-        position: relative;
-        min-height: 500px;
-    }
-
-    .arrow_chip {
-        height: 36px;
-        width: 36px;
-        position: relative;
-        z-index: 2;
-        top: 200px;
-    }
-
-    .right_arrow {
-        right: -3px;
-    }
-
-    .left_arrow {
-        left: -3px;
-    }
-
-    .lessons_links_wrapper {
-        scroll-behavior: smooth;
-        
-        &::-webkit-scrollbar {
-            display: none; // Safari and Chrome
-        }
-    }
-
-    ::v-deep .VueCarousel {
-        width: 50%;
     }
 
 </style>

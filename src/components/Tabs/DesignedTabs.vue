@@ -17,7 +17,7 @@
     </template>
 
     <div 
-        class="active_tab_line main_bg_color"
+        class="active_tab_line second_dark_bg_color"
         :class="{
             'sub_bg_color': subColor
         }"
@@ -85,9 +85,9 @@ export default {
             }
             
             this.tabWidth = wrapper.scrollWidth / this.tabs.length;
-            
+
             return {
-                '--active-tab-width': this.tabWidth + 'px'
+                '--active-tab-width': this.tabWidth / 1.2 + 'px'
             }
         }
     },
@@ -122,7 +122,7 @@ export default {
         },
 
         calcLinePosition(activeTabIndex) {
-            return (this.tabWidth * activeTabIndex);
+            return (this.tabWidth * activeTabIndex) - 50;
         }
     }
 }
@@ -135,8 +135,10 @@ export default {
 
         .main_tab {
             padding: 0 5px;
-            border-bottom: 1px solid #CCC;
+            border-bottom: 1px solid var(--mainSecondDarkColorWithOpacity);
             padding-bottom: 20px;
+            z-index: 2;
+            transition-delay: .3s;
         }
 
         @media only screen and (max-width: 600px) {
@@ -156,16 +158,19 @@ export default {
 
         .active_tab {
             text-shadow: 0px 0px black;
+            color: #fff;
         }
 
         .active_tab_line {
             position: absolute;
-            right: 0;
-            bottom: -1px;
+            right: -50px;
+            bottom: 3px;
             transition: .5s right ease-out;
-            height: 3px;
+            height: 52px;
+            transform: skew(30deg);
             width: var(--active-tab-width);
             max-width: 200px;
+            box-shadow: 0 0 1px 1px var(--subColor), 0 0 1px 3px var(--mainSecondDarkColor);
         }
     }
 
