@@ -22,14 +22,16 @@
 
       <video v-show="showTrailer" :src="course.trailerSrc" ref="trailer"></video>
 
-      <main-tabs 
-        v-if="showCourseTabs"
-        class="course_page_tabs"
-        subColor
-        :tabs="tabs"
-        :activeTab="activeTab"
-        @submit="setActiveTab"
-      />
+      <v-flex md4 lg3 mx-auto>
+        <main-tabs 
+          v-if="showCourseTabs"
+          class="course_page_tabs"
+          subColor
+          :tabs="tabs"
+          :activeTab="activeTab"
+          @submit="setActiveTab"
+        />
+      </v-flex>
 
     <br>
 
@@ -128,7 +130,8 @@ export default {
     },
 
     showCourseTabs() {
-      return this.$vuetify.breakpoint.smAndDown && this.hasActiveCourse
+      // return this.$vuetify.breakpoint.smAndDown && this.hasActiveCourse
+      return this.hasActiveCourse
     }
   },
 
@@ -283,9 +286,14 @@ export default {
       }
     }
 
-    .course_page_tabs {
-      text-align: center;
-    }
+  }
+
+  .course_page_tabs {
+    text-align: center;
+    position: relative;
+    top: 0px;
+    font-weight: bold;
+    z-index: 5;
   }
 
   @media only screen and (max-width: 600px) {
@@ -300,6 +308,13 @@ export default {
 
     .last_progress_card {
       top: 100px;
+    }
+  }
+
+  @media only screen and (min-width: 600px) {
+    .course_page_tabs {
+      top: -120px;
+      color: #fff;
     }
   }
 

@@ -43,7 +43,7 @@
 
       <div class="mt-2 px-2 px-md-0">
         <v-flex d-flex class="lesson_trainer_details">
-          <profile-card :image="trainer.imageSrc" class="lesson_trainer_card" />
+          <profile-card class="lesson_trainer_card" />
           <div class="mr-3">
             <strong>
               {{ trainerName }}
@@ -99,11 +99,49 @@
       </div>
 
       <circle-decorator class="circle_decorator" :dark="false" />
-     
-      <lesson-details-section 
-        :lesson="lesson"
-        :trainer="trainer"
-      />
+      
+      <section class="lesson_content_wrapper mx-md-3">
+
+        <v-flex d-flex flex-wrap class="mt-2 mt-md-10">
+          <v-flex align-self-start md7 class="lesson_practice_wrapper">
+            <lesson-practice-card :lesson="lesson" />
+            <br>
+            <v-flex d-flex flex-wrap>
+              <div class="lesson_badge_v2">
+                <img src="http://localhost:8000/files/content/trainers/lcTguKZtRv03T7QvxsqFph7SQUJiQGBMZgZyH2z7.jpg" alt="">
+                <div class="lesson_badge_darker"></div>
+                <span>
+                  כדרור
+                </span>
+              </div>
+            </v-flex>
+            <br>
+            <v-flex d-flex flex-wrap>
+              <div class="lesson_badge">
+                <img src="http://localhost:8000/files/content/trainers/lcTguKZtRv03T7QvxsqFph7SQUJiQGBMZgZyH2z7.jpg" alt="">
+                <span>
+                  כדרור
+                </span>
+              </div>
+            </v-flex>
+            <br>
+            <div class="px-5 px-md-0">
+              <h2>
+                <span class="main_text_color"> מה </span>
+                <span class="dark_text_color"> נלמד </span>
+              </h2>
+              <p v-html="lesson.content">
+              </p>
+            </div>
+          </v-flex>
+          <v-flex align-self-start md5 class="px-3 pl-md-0 pr-md-5 mt-8 mt-md-0">
+            <simple-trainer-card :trainer="trainer" />
+          </v-flex>
+        </v-flex>
+
+        <br>
+  
+      </section>
     </v-flex>
 
     <star-logo class="logo_decorator" :opacity=".5" />
@@ -112,9 +150,11 @@
 
 <script>
 import MainButton from '../../components/Buttons/MainButton.vue';
+import CourseAreaCard from '../../components/Cards/CourseAreaCard.vue';
 import ProfileCard from '../../components/Cards/ProfileCard.vue';
+import SimpleTrainerCard from '../../components/Cards/SimpleTrainerCard.vue';
 import VideoCard from '../../components/Cards/VideoCard.vue';
-import LessonDetailsSection from '../../components/Content/LessonDetailsSection.vue';
+import LessonPracticeCard from '../../components/Content/LessonPracticeCard.vue';
 import LessonVideoEndScreen from '../../components/Content/LessonVideoEndScreen.vue';
 import CircleDecorator from '../../components/Decorators/CircleDecorator.vue';
 import Heart from '../../components/General/Heart.vue';
@@ -130,7 +170,7 @@ const FINISHED_LESSON_TITLES = [
 ];
 
 export default {
-  components: { MainButton, Heart, ProfileCard, LessonCompleted, VideoCard, LessonVideoEndScreen, StarLogo, CircleDecorator, LessonDetailsSection },
+  components: { MainButton, Heart, ProfileCard, LessonCompleted, VideoCard, LessonVideoEndScreen, LessonPracticeCard, SimpleTrainerCard, CourseAreaCard, StarLogo, CircleDecorator },
 
   data() {
     return {
@@ -383,10 +423,6 @@ export default {
     z-index: 2;
   }
 
-  .lesson_section {
-    min-height: 160px;
-  }
-
   .video_end_screen {
     position: absolute;
     height: 98%;
@@ -395,6 +431,16 @@ export default {
     z-index: 2;
     background-color: #111d;
     border-radius: 12px;
+
+
+    /* position: absolute;
+    height: calc(100% - 29px);
+    top: 12px;
+    right: 12px;
+    width: calc(100% - 24px);
+    z-index: 2;
+    background-color: #111d;
+    border-radius: 12px; */
   }
 
   video {
@@ -402,6 +448,29 @@ export default {
     width: 100%;
     height: 100%;
     border-radius: 15px;
+  }
+
+  .lesson_practice_wrapper {
+    border-radius: 4px;
+  }
+
+  .lesson_practice_list > div {
+    display: flex;
+    align-items: center;
+  }
+
+  .lesson_practice_list strong {
+    margin-right: 10px;
+  }
+
+  .badge {
+    border-radius: 0 0 20px 20px;
+    height: 70%;
+    width: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 5px;
   }
 
   h2 {
@@ -427,6 +496,66 @@ export default {
     left: -55vw;
     top: 20vh;
     z-index: 0;
+  }
+
+  .lesson_content_wrapper {
+    z-index: 2;
+    position: relative;
+
+    .lesson_badge {
+      padding: 4px 4px 4px 6px;
+      display: flex;
+      align-items: center;
+      border-radius: 25px;
+      font-weight: bold;
+      box-shadow: 0 3px 4px 1px #0008;
+
+      img {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-inline-end: 5px;
+      }
+    }
+
+    .lesson_badge_v2 {
+      border-radius: 50%;
+      height: 60px;
+      width: 60px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      span {
+        position: absolute;
+        font-weight: bold;
+        top: 45%;
+        // color: var(--subColor);
+        color: #fff;
+        text-shadow: 0 0 1px #000, 0 0 3px var(--subColor), 0 0 5px var(--subColor);
+      }
+
+      .lesson_badge_darker {
+        position: absolute;
+        height: calc(100% - 4px);
+        width: calc(100% - 4px);
+        top: 0;
+        border-radius: 50%;
+        margin: 2px;
+        background: linear-gradient(transparent 15%, #000c);
+      }
+
+      img {
+        border: 2px solid #fff;
+        box-shadow: 0 3px 4px 1px #0008;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    }
   }
 
   .heart_badge {

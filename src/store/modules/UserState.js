@@ -135,7 +135,7 @@ const UserState = {
 
             commit('SET_INITIATED', true);
 
-            return await new Promise.allSettled(
+            return await Promise.allSettled(
                 [
                     dispatch('getCourses'),
                     dispatch('getProgress'),

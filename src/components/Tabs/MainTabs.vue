@@ -165,7 +165,6 @@ export default {
             transition: .5s right ease-out;
             height: 3px;
             width: var(--active-tab-width);
-            max-width: 200px;
         }
     }
 

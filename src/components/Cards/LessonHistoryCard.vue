@@ -24,13 +24,9 @@
 </template>
 
 <script>
-import Divider from '../General/Divider.vue';
-
 const MAX_LESSON_CONTENT_CHARS = 50;
 
 export default {
-  components: { Divider },
-
   props: {
     lesson: {
       type: Object,
@@ -66,7 +62,7 @@ export default {
   .lesson_card_wrapper {
     height: 100%;
     width: 100%;
-    max-width: 225px;
+    max-width: 250px;
     position: relative;
     border-radius: 8px;
     transition: .3s box-shadow, .3s transform;

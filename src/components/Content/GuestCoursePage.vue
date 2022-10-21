@@ -15,20 +15,13 @@
                         תחומי הקורס
                     </strong>
                 </p>
-            <!-- <template v-for="(courseArea, index) in courseAreas">
-                <course-area-card
+            
+                <course-area-list
+                    :courseAreas="courseAreas"
                     guest
-                    class="mb-3"
-                    :rounded="false"
-                    :key="index"
-                    :courseArea="courseArea"
+                    separated
+                    @submit="clickOnCourseArea"
                 />
-            </template> -->
-            <course-area-list
-                :courseAreas="courseAreas"
-                guest
-                separated
-             />
             </v-flex>
 
             <v-flex md2 v-if="$vuetify.breakpoint.mdAndUp">
@@ -67,7 +60,7 @@
         <br>
         <br>
 
-        <guest-course-plan :course="course" />
+        <guest-course-plan ref="coursePlan" :course="course" />
 
         <br>
         <br>
@@ -180,6 +173,14 @@ export default {
         return randomLessons
     },
   },
+
+  methods: {
+    clickOnCourseArea(courseArea) {
+        const courseAreaIndex = this.courseAreas.findIndex(item => item.id === courseArea.id);
+        this.$refs.coursePlan.setActiveCourseArea(courseAreaIndex);
+        this.$refs.coursePlan.$el.scrollIntoView({behavior: "smooth", block: "center", inline: "center"})
+    }
+  }
 
 };
 </script>

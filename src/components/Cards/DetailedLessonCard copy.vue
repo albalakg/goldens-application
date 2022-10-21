@@ -49,11 +49,10 @@
 <script>
 import CompletedChip from '../Chips/CompletedChip.vue';
 import TimeChip from '../Chips/TimeChip.vue';
-import Divider from '../General/Divider.vue';
 import Heart from '../General/Heart.vue';
 
 export default {
-  components: { Divider, TimeChip, Heart, CompletedChip },
+  components: { TimeChip, Heart, CompletedChip },
 
   props: {
     lesson: {

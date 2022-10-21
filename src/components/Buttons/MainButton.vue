@@ -96,6 +96,7 @@ export default {
         
         span {
             color: #fff;
+            letter-spacing: 2px;
         }
 
         &:hover {

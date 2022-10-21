@@ -22,6 +22,10 @@ export default {
     props: {
         editable: {
             type: Boolean
+        },
+
+        image: {
+            type: String
         }
     },
 
@@ -34,7 +38,15 @@ export default {
 
     computed: {
         imageSrc() {
-            return this.userImage ? userImage : this.defaultImage
+            if(this.image) {
+                return this.image;
+            }
+
+            if(this.userImage) {
+                return this.userImage;
+            }
+
+            return this.defaultImage;
         }
     }
 }

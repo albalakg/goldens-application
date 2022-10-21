@@ -73,19 +73,11 @@ export default {
 
     mounted() {
         this.isMounted = true;
+        this.setTabWidth();
     },
 
     computed: {
         cssVars() {
-            this.isMounted;
-
-            const wrapper = document.querySelector('.main_tabs_wrapper');
-            if(!wrapper) {
-                return;
-            }
-            
-            this.tabWidth = wrapper.scrollWidth / this.tabs.length;
-
             return {
                 '--active-tab-width': this.tabWidth / 1.2 + 'px'
             }
@@ -95,12 +87,21 @@ export default {
     watch: {
         activeTab() {
             setTimeout(() => {
-                this.moveActiveTabLine(this.activeTab)
+                this.moveActiveTabLine()
             }, 0);
-        }
+        },
     },
 
     methods: {
+        setTabWidth() {
+            const wrapper = document.querySelector('.main_tabs_wrapper');
+            if(!wrapper) {
+                return;
+            }
+            
+            this.tabWidth = wrapper.scrollWidth / this.tabs.length;
+        },
+        
         submit(index) {
             this.$emit('submit', index);
 
@@ -109,7 +110,7 @@ export default {
             }
         },
 
-        moveActiveTabLine(index) {
+        moveActiveTabLine() {
             const line      = this.$refs.activeTabLine;
             const activeTab = document.querySelector('.active_tab');
             const wrapper   = document.querySelector('.main_tabs_wrapper');
@@ -118,11 +119,11 @@ export default {
                 return error('Failed to move the active line since one of the elements was not found');
             }
 
-            line.style.right = this.calcLinePosition(index) + 'px';
+            line.style.right = this.calcLinePosition(wrapper, activeTab) + 'px';
         },
 
-        calcLinePosition(activeTabIndex) {
-            return (this.tabWidth * activeTabIndex) - 50;
+        calcLinePosition(wrapper, activeTab) {
+            return wrapper.clientWidth - activeTab.offsetLeft - activeTab.clientWidth * 1.25;
         }
     }
 }
@@ -136,7 +137,7 @@ export default {
         .main_tab {
             padding: 0 5px;
             border-bottom: 1px solid var(--mainSecondDarkColorWithOpacity);
-            padding-bottom: 20px;
+            padding-bottom: 10px;
             z-index: 2;
             transition-delay: .3s;
         }
@@ -159,6 +160,7 @@ export default {
         .active_tab {
             text-shadow: 0px 0px black;
             color: #fff;
+            font-weight: bold;
         }
 
         .active_tab_line {
@@ -166,8 +168,8 @@ export default {
             right: -50px;
             bottom: 3px;
             transition: .5s right ease-out;
-            height: 52px;
-            transform: skew(30deg);
+            height: 37px;
+            transform: skew(-30deg);
             width: var(--active-tab-width);
             max-width: 200px;
             box-shadow: 0 0 1px 1px var(--subColor), 0 0 1px 3px var(--mainSecondDarkColor);

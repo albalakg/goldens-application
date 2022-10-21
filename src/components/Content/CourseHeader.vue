@@ -17,7 +17,7 @@
 
       <v-flex d-flex class="course_page_actions_wrapper w100 mt-5">
 
-        <v-flex
+        <!-- <v-flex
           class="text-center pt-4 pointer mx-3"
           v-for="(action, index) in actions"
           :key="index"
@@ -33,7 +33,7 @@
               <span class="white_text_color">קישור לעמוד הקורס הועתק</span>
             </v-tooltip>
           </div>
-        </v-flex>
+        </v-flex> -->
       </v-flex>
     </div>
 

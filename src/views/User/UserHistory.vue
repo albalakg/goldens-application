@@ -56,11 +56,10 @@ export default {
             courses.forEach(course => {
                 lessons = lessons.concat(course.lessons_progress)
             });
-            return lessons;
+            return lessons.filter(lesson => lesson.finished_at);
         },
 
         viewLessons() {
-            console.log(this.$vuetify.breakpoint.smAndDown);
             if(this.$vuetify.breakpoint.smAndDown) {
                 return this.lessons;
             }

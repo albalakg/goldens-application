@@ -1,5 +1,6 @@
 * {
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Karantina', sans-serif;
+    letter-spacing: 1px;
     word-wrap: break-word;
 }
 
@@ -10,10 +11,6 @@
 
 .auth_padding_top {
     padding-top: 5%;
-}
-
-.font_title {
-    font-family: 'Oswald', sans-serif;
 }
 
 .app_animation {

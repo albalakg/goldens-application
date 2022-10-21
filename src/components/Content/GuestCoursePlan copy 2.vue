@@ -15,12 +15,16 @@
             </DesignedTabs>
         </v-flex>
 
-        <v-flex d-flex md7 mx-auto flex-wrap justify-end class="w100 pa-10 lessons_list">
-            <v-flex xs6 md2 d-flex align-center justify-center class="lesson_card main_bg_color mx-2 mb-5" v-for="(lesson, index) in activeLessons" :key="index">
-                <span class="white_text_color bold">
-                    {{lesson.name}}
-                </span>
-            </v-flex>
+        <v-flex d-flex md-10 justify-center class="w100 pa-10 lessons_list">
+            <arrow-chip v-show="!isLeftArrowDisabled || isCarouselHidden" class="arrow_chip left_arrow" @submit="moveLeft()" />
+            <transition name="fade" mode="out-in">
+                <carousel v-if="activeLessons && activeLessons.length && !isCarouselHidden" ref="carousel" :perPage="perPage" :value="currentPage" v-model="currentPage">
+                    <slide v-for="(item, index) in activeLessons" :key="`${index}` + item.name" class="py-8 px-4">
+                        <lesson-card shadow class="lesson_card" :lesson="item" />
+                    </slide>
+                </carousel>
+            </transition>
+            <arrow-chip v-show="!isRightArrowDisabled || isCarouselHidden" :left="false" class="arrow_chip right_arrow" @submit="moveRight()" />
         </v-flex>
     </div>
   </v-flex>
@@ -28,12 +32,19 @@
 
 <script>
 import SectionHeader from '../Texts/SectionHeader.vue';
+import { Carousel, Slide } from 'vue-carousel';
+import LessonCard from '../Cards/LessonCard.vue';
+import ArrowChip from '../Chips/arrowChip.vue';
 import DesignedTabs     from '../../components/Tabs/DesignedTabs.vue';
 
 export default {
     components: { 
         SectionHeader,
+        Carousel,
+        Slide,
+        LessonCard,
         DesignedTabs,
+        ArrowChip
     },
 
     props: {
@@ -144,27 +155,39 @@ export default {
     .course_plan_wrapper {
         position: relative;
         z-index: 2;
-        min-height: 500px;
+
+        img {
+            width: 100%;
+            max-height: 200px;
+            margin-top: 12px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .course_plan_course_area, .course_plan_lesson {
+            transition: .2s transform ease-out, .2s background-color ease-out;
+        }
+
+        .course_plan_course_area_active {
+            transform: scale(1.05);
+            font-weight: bold;
+        }
+
+        .course_plan_lesson:hover {
+            transform: scale(1.05);
+            background-color: #d5b26e;
+            font-weight: bold;
+        }
 
         .lesson_card {
-            height: 40px;
-            width: 120px;
-            transform: skew(-30deg);
-            box-shadow: 5px 3px 5px 3px #0007;
-            border-right: 3px solid var(--subColor);
-            border-left: 3px solid var(--subColor);
-            cursor: pointer;
-            transition: .3s all linear;
-
-            &:hover {
-                transform: scale(1.1) skew(-30deg) translateX(-10px) translateY(5px);
-            }
+            height: 360px;
         }
     }
 
     .lessons_list {
         direction: ltr;
         position: relative;
+        min-height: 500px;
     }
 
     .arrow_chip {
