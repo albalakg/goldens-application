@@ -163,7 +163,12 @@ export default {
         async loggedSuccessfullyActions(){
             this.$store.dispatch('AuthState/setLogStatus', true);
             this.$store.dispatch('UserState/init', true);
-            this.$store.dispatch('UserState/goToLastActiveCourse', true);
+
+            if(this.$route.query.redirect) {
+                this.redirectToPage();
+            } else {
+                this.$store.dispatch('UserState/goToLastActiveCourse', true);
+            }
         },
 
         preSendActions() {
@@ -183,6 +188,10 @@ export default {
         
         setPassword(password) {
             this.form.password = password;
+        },
+
+        redirectToPage() {
+            this.$router.push(this.$route.query.redirect)
         }
     }
 }

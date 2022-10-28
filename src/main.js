@@ -8,6 +8,7 @@ import axios from "axios";
 // eslint-disable-next-line no-unused-vars
 import AxiosHandler from './helpers/AxiosHandler'
 import ContentService from './helpers/ContentService'
+import CookieService from './helpers/CookieService'
 import TimeService from './helpers/TimeService'
 import StatusService from './helpers/StatusService'
 import { LOCAL, PROD } from './helpers/EnvService'
@@ -23,6 +24,7 @@ window.Auth               = Auth;
 window.axios              = axios;
 window.baseURL            = window.location.origin + '/';
 window.ContentService     = ContentService;
+window.CookieService     = CookieService;
 window.TimeService        = TimeService;
 window.StatusService      = StatusService;
 window.FILES_PATH         = window.location.origin + "/assets/files/";

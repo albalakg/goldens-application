@@ -10,7 +10,16 @@
 
       <br>
     
-      <div class="tnc_content" v-html="terms.content"></div>
+      <div class="tnc_content" v-if="terms && terms.content" v-html="terms.content"></div>
+      <div class="tnc_content" v-else>
+        <p>
+          מצטערים אך קרתה תקלה ולא הצלחנו למשוך את תנאי האתר.
+          <br>
+          נשמח אם תוכלו להעדכן אותנו בהקדם.
+          <br>
+          תודה
+        </p>
+      </div>
 
       <br>
     </v-flex>

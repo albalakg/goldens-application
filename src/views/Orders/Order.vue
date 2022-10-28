@@ -1,5 +1,5 @@
 <template>
-    <v-flex md10 xl9 mx-auto class="auth_padding_top px-5 px-md-0">
+    <v-flex md10 xl9 mx-auto class="auth_padding_top px-5 px-md-0" v-if="course">
         <colored-circle-decorator class="user_colored_circle" />
         <div v-if="orderToken" class="payment_card">
             מסך תשלום צד שלישי   
@@ -52,13 +52,12 @@
 </template>
 
 <script>
-import MainButton from '../../components/Buttons/MainButton.vue'
 import OrderCourseCard from '../../components/Cards/OrderCourseCard.vue'
 import OrderSummaryCard from '../../components/Cards/OrderSummaryCard.vue'
 import ColoredCircleDecorator from '../../components/Decorators/ColoredCircleDecorator.vue'
 import CouponInput from '../../components/Form/Inputs/CouponInput.vue'
 export default {
-  components: { OrderCourseCard, CouponInput, OrderSummaryCard, ColoredCircleDecorator, MainButton, },
+  components: { OrderCourseCard, CouponInput, OrderSummaryCard, ColoredCircleDecorator},
     data() {
         return {
             form: {
@@ -72,6 +71,7 @@ export default {
     },
 
     created() {
+        this.redirectIfHasActiveCourse()
         this.saveMarketingToken();
     },
 
@@ -95,10 +95,30 @@ export default {
 
 
             return 0;
+        },
+
+        courses() {
+            console.log('courses');
+            return this.$store.getters['UserState/courses'];
+        }
+    },
+
+    watch: {
+        courses() {
+            console.log('this.courses', this.courses);
         }
     },
 
     methods: {
+        redirectIfHasActiveCourse() {
+            console.log('hasActiveCourse', this.$store.getters['UserState/hasActiveCourse']);
+            setTimeout(() => {
+                if(this.$store.getters['UserState/hasActiveCourse']) {
+                    this.$store.dispatch('UserState/goToLastActiveCourse')
+                }
+            }, 1000);
+        },
+
         setCoupon(coupon) {
             this.form.coupon = coupon;
         },
@@ -155,7 +175,7 @@ export default {
         },
 
         saveMarketingToken() {
-            this.form.marketing_token = this.$route.query.token;
+            this.form.marketing_token = CookieService.get('marketingToken');
         },
     }
 }

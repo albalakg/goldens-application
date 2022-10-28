@@ -51,6 +51,12 @@ export default {
     this.setInitialSettings();
   },
 
+  mounted() {
+    setTimeout(() => {
+      this.checkForMarketingToken();
+    }, 100);
+  },
+
   watch: {
     async isLogged() {
       if(this.isLogged) {
@@ -135,6 +141,10 @@ export default {
 
       this.$store.dispatch('AppState/setMenuMode', false);
     },
+
+    checkForMarketingToken() {
+      CookieService.set('marketingToken', this.$route.query.token, 24);
+    }
   }
 
 }
