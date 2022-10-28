@@ -1,8 +1,6 @@
 <template>
     <div class="term_chip pointer" @click="submit()">
-        <span>
-            {{ text }}
-        </span>
+        {{ text }}
     </div>
 </template>
 
@@ -14,7 +12,7 @@ export default {
             required: true
         }
     },
-
+    
     methods: {
         submit() {
             this.$emit('submit');
@@ -28,6 +26,7 @@ export default {
     .term_chip {
         box-shadow: 0 2px 3px 1px #888;
         border-radius: 4px;
+        border: 2px solid var(--mainColor);
         padding: 0px 10px;
         min-width: 75px;
         text-align: center;

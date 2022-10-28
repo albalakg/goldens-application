@@ -1,6 +1,8 @@
 <template>
     <div class="skill_chip">
-        {{ text }}
+        <span>
+            {{ text }}
+        </span>
     </div>
 </template>
 
@@ -20,7 +22,6 @@ export default {
     .skill_chip {
         box-shadow: 0 2px 3px 1px #888;
         border-radius: 4px;
-        border: 2px solid var(--mainColor);
         padding: 0px 10px;
         min-width: 75px;
         text-align: center;

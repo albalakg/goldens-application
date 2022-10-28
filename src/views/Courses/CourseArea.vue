@@ -55,8 +55,7 @@
               :seconds="seconds"
             />
             <v-flex d-flex align-center justify-space-between>
-              <small>
-                {{ activeLessonDescription }}
+              <small v-html="activeLessonDescription">
               </small>
               <v-flex md4>
                 <main-button 
@@ -213,7 +212,7 @@ export default {
 @media only screen and (min-width: 600px) {
   .course_area_wrapper {
     position: relative;
-    top: -100px;
+    top: -50px;
     z-index: 3;
   }
 }

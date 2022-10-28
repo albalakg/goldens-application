@@ -71,7 +71,6 @@ export default {
     },
 
     created() {
-        this.redirectIfHasActiveCourse()
         this.saveMarketingToken();
     },
 
@@ -98,25 +97,35 @@ export default {
         },
 
         courses() {
-            console.log('courses');
             return this.$store.getters['UserState/courses'];
+        },
+
+        hasActiveCourse() {
+            return this.$store.getters['UserState/hasActiveCourse'];
         }
     },
 
     watch: {
-        courses() {
-            console.log('this.courses', this.courses);
-        }
+        courses: {
+            immediate: true,
+            handler() {
+                this.redirectIfHasActiveCourse();
+            }
+        },
+
+        hasActiveCourse: {
+            immediate: true,
+            handler() {
+                this.redirectIfHasActiveCourse();
+            }
+        },
     },
 
     methods: {
         redirectIfHasActiveCourse() {
-            console.log('hasActiveCourse', this.$store.getters['UserState/hasActiveCourse']);
-            setTimeout(() => {
-                if(this.$store.getters['UserState/hasActiveCourse']) {
-                    this.$store.dispatch('UserState/goToLastActiveCourse')
-                }
-            }, 1000);
+            if(this.hasActiveCourse) {
+                this.$store.dispatch('UserState/goToLastActiveCourse')
+            }
         },
 
         setCoupon(coupon) {

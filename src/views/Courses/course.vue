@@ -311,12 +311,12 @@ export default {
     }
   }
 
-  @media only screen and (min-width: 600px) {
-    .course_page_tabs {
-      top: -120px;
-      color: #fff;
-    }
-  }
+  // @media only screen and (min-width: 600px) {
+  //   .course_page_tabs {
+  //     top: -120px;
+  //     color: #fff;
+  //   }
+  // }
 
 
 </style>
