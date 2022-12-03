@@ -14,12 +14,20 @@
                 </div>
                 <v-flex d-flex align-center justify-space-between class="mr-5">
                     <template v-if="hasActiveCourse">
-                        <v-flex d-flex align-center>
+                        <v-flex 
+                            d-flex 
+                            align-center 
+                            class="search_input_wrapper"
+                            :class="{
+                                'search_input_wrapper_focused': isSearchFocused
+                            }"
+                        >
                             <search-input
                                 ref="search"
                                 outlined
                                 icon
                                 slim
+                                @onFocus="onFocus"
                             >
                             </search-input>
                             
@@ -93,6 +101,7 @@ export default {
             userDarkImage:  require('../../../public/assets/images/general/userDark.svg'),
             userLightImage: require('../../../public/assets/images/general/userLight.svg'),
             heartImage:     require('../../../public/assets/images/general/heart.svg'),
+            isSearchFocused: false
         }
     },
 
@@ -136,6 +145,7 @@ export default {
                     url: 'courses/' + courses[0].id
                 })
             } catch(err) {
+                console.warn(err);
             }
             
             return links;
@@ -155,7 +165,11 @@ export default {
 
         enterFavorites() {
             this.$router.push('/user/favorites')
-        }
+        },
+        
+        onFocus(value) {
+            this.isSearchFocused = value;
+        },
     }
 }
 </script>
@@ -210,5 +224,14 @@ export default {
 
     .favorite_link {
         margin-bottom: 6px;
+    }
+
+    .search_input_wrapper {
+        width: 15%;
+        transition: .2s width ease-out;
+    }
+
+    .search_input_wrapper_focused > div{
+        width: 25%;
     }
 </style>

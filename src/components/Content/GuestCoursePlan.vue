@@ -1,27 +1,62 @@
 <template>
-  <v-flex class="course_plan_wrapper">
+  <v-flex class="course_plan_wrapper" ref="coursePlanWrapper">
     <div>
-        <section-header 
+        <section-header
             title="תוכנית הקורס"
             backgroundTitle="תוכנית"
         />
 
         <v-flex md6 mx-auto mt-10 class="lessons_links_wrapper">
-            <DesignedTabs
+            <main-tabs 
+                :tabs="courseAreas"
+                :activeTab="activeTab"
+                @submit="setActiveTab"
+            />
+            <!-- <DesignedTabs
                 :tabs="courseAreas"
                 :activeTab="activeTab"
                 @submit="setActiveTab"
             >
-            </DesignedTabs>
+            </DesignedTabs> -->
         </v-flex>
 
-        <v-flex d-flex md7 mx-auto flex-wrap justify-end class="w100 pa-10 lessons_list">
+        <v-flex lg8 xl6 mx-auto>
+            <v-timeline
+                :reverse="!$vuetify.breakpoint.smAndDown"
+                :class="{
+                    'ltr pr-4': $vuetify.breakpoint.smAndDown 
+                }"
+                :dense="$vuetify.breakpoint.smAndDown"
+            >
+                <v-timeline-item
+                    v-for="(lesson, index) in activeLessons" 
+                    :key="index"
+                    color="var(--subColor)"
+                >
+                    <v-card class="elevation-2 rtl">
+                    <h2 class="pr-4 mb-0 pt-2">
+                        {{lesson.name}}
+                    </h2>
+                    <v-card-text v-html="lesson.content">
+                    </v-card-text>
+                    </v-card>
+                </v-timeline-item>
+            </v-timeline>
+            <v-flex mx-auto xs10 md6 lg2 xl1>
+                <main-button 
+                    text="חזרה למעלה"
+                    shadow
+                    @submit="scrollToTimelineTop()"
+                />
+            </v-flex>
+        </v-flex>
+        <!-- <v-flex d-flex md7 mx-auto flex-wrap justify-end class="w100 pa-10 lessons_list">
             <v-flex xs6 md2 d-flex align-center justify-center class="lesson_card main_bg_color mx-2 mb-5" v-for="(lesson, index) in activeLessons" :key="index">
                 <span class="white_text_color bold">
                     {{lesson.name}}
                 </span>
             </v-flex>
-        </v-flex>
+        </v-flex> -->
     </div>
   </v-flex>
 </template>
@@ -29,11 +64,15 @@
 <script>
 import SectionHeader from '../Texts/SectionHeader.vue';
 import DesignedTabs     from '../../components/Tabs/DesignedTabs.vue';
+import MainButton from '../Buttons/MainButton.vue';
+import MainTabs from '../Tabs/MainTabs.vue';
 
 export default {
     components: { 
         SectionHeader,
         DesignedTabs,
+        MainButton,
+        MainTabs,
     },
 
     props: {
@@ -133,6 +172,12 @@ export default {
         setTimeout(() => {
             this.isCarouselHidden = false;
         }, 250);
+    },
+
+    scrollToTimelineTop() {
+        this.$refs.coursePlanWrapper.scrollIntoView(
+            {behavior: "smooth", block: "start", inline: "center"}
+        )
     }
   }
 
@@ -144,6 +189,7 @@ export default {
     .course_plan_wrapper {
         position: relative;
         z-index: 2;
+        padding-top: 100px;
         min-height: 500px;
 
         .lesson_card {
@@ -193,6 +239,12 @@ export default {
 
     ::v-deep .VueCarousel {
         width: 50%;
+    }
+
+    @media only screen and (max-width: 600px) {
+         .course_plan_wrapper {
+            padding-top: 20px;
+         }
     }
 
 </style>

@@ -9,7 +9,7 @@
 
             <v-flex v-else class="user_history_mobile">
                 <v-flex d-flex class="use_history_lessons_wrapper pr-10">
-                    <v-flex v-for="lesson in viewLessons" :key="lesson.course_lesson_id">
+                    <v-flex v-for="lesson in viewLessons" :key="lesson.course_lesson_id" class=" pl-3">
                         <lesson-history-card class="lesson_history_card my-10" :lesson="lesson" @submit="enterLesson" />
                     </v-flex>
                 </v-flex>
@@ -37,10 +37,9 @@
 
 <script>
 import LessonHistoryCard from '../../components/Cards/LessonHistoryCard.vue';
-import ArrowChip from '../../components/Chips/arrowChip.vue';
 import Pagination from '../../components/General/Pagination.vue';
 export default {
-  components: { LessonHistoryCard, Pagination, ArrowChip },
+  components: { LessonHistoryCard, Pagination },
     data() {
         return {
             page: 1,

@@ -12,6 +12,7 @@
             :closeable="true"
             :subIcon="''"
             @onChange="onChange"
+            @onFocus="onFocus"
         />
 
         <v-flex class="search_list" v-show="searchValue">
@@ -27,8 +28,7 @@
                             </small>
                         </strong>
                         <br>
-                        <small class="lesson_description">
-                            {{ lesson.description }}
+                        <small class="lesson_description" v-html="lesson.description">
                         </small>
                     </v-flex>
                 </v-flex>
@@ -110,6 +110,10 @@ export default {
         onChange(value) {
             this.$emit('onChange', value);
             this.searchValue = value;
+        },
+
+        onFocus(value) {
+            this.$emit('onFocus', value);
         },
 
         enterLesson(lesson) {

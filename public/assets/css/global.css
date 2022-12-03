@@ -17,6 +17,14 @@
     transition: .2s all linear;
 }
 
+.ltr {
+    direction: ltr;
+}
+
+.rtl {
+    direction: rtl;
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
     width: 5px;

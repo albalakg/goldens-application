@@ -36,6 +36,8 @@
             :placeholder="placeholder"
             :maxlength="maxlength"
             :readonly="readonly || loading"
+            @focus="focusIn"
+            @blur="focusOut"
         >
 
         <div class="base_input_sub_icon mr-2 pointer" v-if="closeable && value" @click="close()">
@@ -205,6 +207,14 @@ export default {
 
         setValue(value) {
             this.value = value;
+        },
+        
+        focusIn() {
+            this.$emit('onFocus', true);
+        },
+        
+        focusOut() {
+            this.$emit('onFocus', false);
         },
     }
 }

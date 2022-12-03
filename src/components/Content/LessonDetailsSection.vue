@@ -1,7 +1,7 @@
 <template>
   <section class="lesson_content_wrapper mx-3">
     <v-flex d-flex flex-wrap class="mt-2 mt-md-10">
-      <v-flex order-1 order-md-0 md7 class="mt-5 mt-md-0">
+      <v-flex order-1 order-md-0 md7 class="mt-5 mt-md-0" v-if="lesson.skills.length">
         <lesson-details-card
           class="lesson_section"
           title="יכולות"
@@ -21,9 +21,9 @@
         </lesson-details-card>
       </v-flex>
 
-      <v-flex order-0 order-md-1 align-self-start md5 class="pr-md-5">
+      <v-flex order-0 order-md-1 align-self-start md5 class="pr-md-5" v-if="lesson.training_options.length">
         <v-flex class="lesson_times_section" d-flex flex-wrap>
-          <v-flex xs6 d-flex justify-center pa-2 v-for="(item, index) in lessonReps" :key="index">
+          <v-flex xs6 d-flex justify-center pa-2 v-for="(item, index) in lesson.training_options" :key="index">
             <v-flex
               class="lesson_time_box text-center"
               d-flex
@@ -36,7 +36,7 @@
                 </strong>
                 <br />
                 <span> 
-                  {{ item.text }}  
+                  {{ item.name }}  
                 </span>
               </div>
             </v-flex>
@@ -44,7 +44,7 @@
         </v-flex>
       </v-flex>
 
-      <v-flex order-2 order-md-3 md7 class="mt-5">
+      <v-flex order-2 order-md-3 md7 class="mt-5" v-if="lesson.terms.length">
         <lesson-details-card
           class="lesson_section"
           title="מונחים"
@@ -70,7 +70,7 @@
         </lesson-details-card>
       </v-flex>
 
-      <v-flex order-3 order-md-4 md5 class="pr-md-5 mt-5">
+      <v-flex order-3 order-md-4 md5 class="pr-md-5 mt-5" v-if="lesson.equipment.length">
         <lesson-details-card
           class="lesson_section"
           title="ציוד"
@@ -143,29 +143,6 @@ export default {
     return {
       termDialog: false,
       activeTerm: {}
-    }
-  },
-
-  computed: {
-    lessonReps() {
-      return [
-        {
-          text: 'חזרות',
-          value: this.lesson.rehearsals ?? 1
-        },
-        {
-          text: 'דקות כל חזרה',
-          value: this.lesson.activity_time ?? 1
-        },
-        {
-          text: 'דקות מנוחה',
-          value: this.lesson.rest_time ?? 1
-        },
-        {
-          text: 'אימונים',
-          value: this.lesson.activity_period ?? 1
-        },
-      ];
     }
   },
 
