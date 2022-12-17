@@ -12,12 +12,6 @@
                 :activeTab="activeTab"
                 @submit="setActiveTab"
             />
-            <!-- <DesignedTabs
-                :tabs="courseAreas"
-                :activeTab="activeTab"
-                @submit="setActiveTab"
-            >
-            </DesignedTabs> -->
         </v-flex>
 
         <v-flex lg8 xl6 mx-auto>
@@ -42,7 +36,7 @@
                     </v-card>
                 </v-timeline-item>
             </v-timeline>
-            <v-flex mx-auto xs10 md6 lg2 xl1>
+            <v-flex mx-auto xs10 md6 lg2>
                 <main-button 
                     text="חזרה למעלה"
                     shadow
@@ -50,27 +44,18 @@
                 />
             </v-flex>
         </v-flex>
-        <!-- <v-flex d-flex md7 mx-auto flex-wrap justify-end class="w100 pa-10 lessons_list">
-            <v-flex xs6 md2 d-flex align-center justify-center class="lesson_card main_bg_color mx-2 mb-5" v-for="(lesson, index) in activeLessons" :key="index">
-                <span class="white_text_color bold">
-                    {{lesson.name}}
-                </span>
-            </v-flex>
-        </v-flex> -->
     </div>
   </v-flex>
 </template>
 
 <script>
 import SectionHeader from '../Texts/SectionHeader.vue';
-import DesignedTabs     from '../../components/Tabs/DesignedTabs.vue';
 import MainButton from '../Buttons/MainButton.vue';
 import MainTabs from '../Tabs/MainTabs.vue';
 
 export default {
     components: { 
         SectionHeader,
-        DesignedTabs,
         MainButton,
         MainTabs,
     },
@@ -91,7 +76,6 @@ export default {
         return {
             activeTab: 0,
             currentPage: 0,
-            activeTab: 0,
             isCarouselHidden: false
     }
   },

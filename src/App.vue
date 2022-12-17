@@ -5,7 +5,7 @@
     <MessageAlert />
 
     <v-main>
-      <app-loader v-if="loading">
+      <app-loader v-if="isLoading">
       </app-loader>
       <transition v-else name="fade" mode="out-in">
         <router-view
@@ -17,8 +17,8 @@
       </transition>
     </v-main>
 
-    <MobileMenu v-if="isMobile && !loading" />
-    <Footer v-else/>
+    <MobileMenu v-if="isMobile && !isLoading" />
+    <Footer v-else />
   </v-app>
 </template>
 
@@ -42,7 +42,6 @@ export default {
 
   data() {
     return {
-      loading: false,
       showMessage: true
     }
   },
@@ -60,16 +59,16 @@ export default {
   watch: {
     async isLogged() {
       if(this.isLogged) {
-        this.loading = true;
+        this.$store.dispatch('AppState/setIsLoadingState', true);
         try {
           await this.$store.dispatch('UserState/init');
-            if(isMobile()) {
-              this.$store.dispatch('UserState/goToLastActiveCourse');
-            }
+          if(isMobile()) {
+            this.$store.dispatch('UserState/goToLastActiveCourse');
+          }
         } catch(err) {
           error(err);
         }
-        this.loading = false;
+        this.$store.dispatch('AppState/setIsLoadingState', false);
       }
     },
 
@@ -81,6 +80,10 @@ export default {
   computed: {
     isLogged() {
       return this.$store.getters['AuthState/isLogged'];
+    },
+
+    isLoading() {
+      return this.$store.getters['AppState/isLoading'];
     },
 
     lessons() {

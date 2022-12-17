@@ -11,6 +11,7 @@ export default {
         this.$store.dispatch('AuthState/setLogStatus', false);
         this.$store.dispatch('UserState/clearUserState', false);
         this.$router.push('/signin');
+        console.log('finished!');
     }
 }
 </script>

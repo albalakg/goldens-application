@@ -1,5 +1,6 @@
 import router from '../router'
 import axios from "axios";
+import store from '../store'
 
 const COOKIE_NAME = 'GoldensToken';
 
@@ -21,6 +22,7 @@ class Auth {
         if('/signout' !== window.location.hash.replace('#', '')) {
             router.push('/signout')
         }
+        store.dispatch('AppState/setIsLoadingState', false)
     }
     
     get() {
