@@ -26,7 +26,6 @@ axios.interceptors.response.use(function (response) {
     });
 
 function logoutIfTokenExpired(response) {
-    console.log(response, response.status);
     if(response.status === 401 && response.data.message === 'Unauthenticated.') {
         Auth.logout()
     }
