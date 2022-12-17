@@ -57,6 +57,7 @@
       "baseURL":          true,
       "ContentService":   true,
       "CookieService":    true,
+      "ClientService":    true,
       "TimeService":      true,
       "StatusService":    true,
       "FILES_PATH":       true,
