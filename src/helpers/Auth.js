@@ -81,7 +81,7 @@ class Auth {
     }
 
     encrypt(data) {
-        return btoa(unescape(encodeURIComponent(JSON.stringify(data))));;
+        return btoa(unescape(encodeURIComponent(JSON.stringify(data))));
     }
 
     decrypt() {

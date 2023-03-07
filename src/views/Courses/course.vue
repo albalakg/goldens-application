@@ -63,10 +63,16 @@ export default {
     return {
       tabs: [
         {
-          title: 'תחומים'
+          title: 'תחומים',
+          url: ''
         },
         {
-          title: 'שיעורים'
+          title: 'שיעורים',
+          url: 'lessons'
+        },
+        {
+          title: 'לוח שנה',
+          url: 'schedule'
         },
       ],
       showLastActiveCard: false,
@@ -138,16 +144,19 @@ export default {
   methods: {
     setActiveTab(activeTabIndex) {
       this.activeTab = activeTabIndex;
-
-      if(activeTabIndex === LESSONS_TAB_INDEX) {
-        return this.$router.push(`/courses/${this.course.id}/lessons`)
+      const path = `/courses/${this.course.id}/${this.tabs[activeTabIndex].url}`;
+      if(this.$route.path === path) {
+        return;
       }
 
-      this.$router.push(`/courses/${this.course.id}`)
+      return this.$router.push(path)
     },
 
     setTabByRoute() {
-      this.activeTab = this.$route.path.includes('lessons') ? LESSONS_TAB_INDEX : COURSE_AREAS_TAB_INDEX;
+      const path      = this.$route.params.pathMatch ?? '';
+      const pathArray = this.$route.path.split('/');
+      this.activeTab = this.tabs.findIndex(tab => tab.url === pathArray[pathArray.length - 1]);
+      console.log('this.activeTab', this.activeTab, path);
     },
 
     openTrailer() {

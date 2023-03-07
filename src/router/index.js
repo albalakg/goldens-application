@@ -125,6 +125,11 @@ const routes = [
         beforeEnter: Guard.user,
         component: () => import('../views/Courses/CourseArea.vue'),
       },
+      {
+        path: '/courses/:course_id/schedule',
+        beforeEnter: Guard.user,
+        component: () => import('../views/Courses/CourseSchedule.vue'),
+      },
     ]
   },
   {

@@ -10,7 +10,8 @@
         'dark_shadow':                      subColor && shadow,
         'main_button_slim':                 slim,
         'main_button_loading':              loading,
-        'main_button_readonly':              readonly,
+        'main_button_disabled':             disabled,
+        'main_button_readonly':             readonly,
     }"
     :style="cssVars"
 >
@@ -58,6 +59,10 @@ export default {
         },
 
         loading: {
+            type: Boolean
+        },
+
+        disabled: {
             type: Boolean
         },
 
@@ -114,6 +119,11 @@ export default {
     }
 
     .main_button_loading {
+        pointer-events: none;
+        opacity: 0.7;
+    }
+
+    .main_button_disabled {
         pointer-events: none;
         opacity: 0.7;
     }
