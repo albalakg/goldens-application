@@ -160,7 +160,8 @@ const ContentState = {
 
        setShowLastActiveCard({ commit }, status) {
            commit('SET_SHOW_LAST_ACTIVE_CARD', status);
-       }
+       },
+
     }
 };
 

@@ -78,12 +78,12 @@
                 </v-date-picker>
                 <main-button
                   class="mt-3"
-                  text="הפעל שיעור"
+                  text="שמור שיעור"
                   shadow
                   :disabled="
                     isSameDay(selectedEvent.dateOnly, selectedEvent.start)
                   "
-                  @submit="saveDateFromCalendar(selectedEvent)"
+                  @submit="saveDateInCalendar(selectedEvent)"
                 />
               </v-card-text>
               <v-card-actions> </v-card-actions>
@@ -110,6 +110,7 @@ export default {
 
   data() {
     return {
+      refreshKey: 1,
       loading: false,
       filterByDate: "",
       focus: new Date("2023-01-01"),
@@ -153,11 +154,17 @@ export default {
     }, 1000);
   },
 
-  computed: {},
+  watch: {
+    course: {
+      deep: true,
+      handler() {
+        this.updateRange()
+      }
+    }
+  },
 
   methods: {
     updateRange() {
-      console.log('course', this.course);
       const events = [];
       
       let lessons = [];
@@ -171,9 +178,6 @@ export default {
 
       lessons.forEach((lesson) => {
         let date = lesson.schedule ? lesson.schedule.date : "";
-        if (lesson && lesson.tempDate) {
-          date = lesson.tempDate;
-        }
 
         if (!date) {
           return;
@@ -209,8 +213,8 @@ export default {
         id: lessons[0].course_id,
         lessonsId: lessons.map((lesson) => {
           return {
-            id: lesson.id,
-            date: lesson.tempDate ? lesson.tempDate : lesson.schedule?.date,
+            id:   lesson.id,
+            date: lesson.schedule?.date,
           };
         }),
       };
@@ -266,6 +270,17 @@ export default {
               firstDay.getMonth() === secondDay.getMonth() &&
               firstDay.getDate() === secondDay.getDate();
     },
+
+    saveDateInCalendar(lesson) {
+      this.$store.dispatch('UserState/saveLessonDateInCalendar', {
+        id:   lesson.lessonId,
+        date: lesson.dateOnly
+      });
+
+      this.selectedOpen = false;
+      this.refreshKey++;
+      this.$emit('refreshCourse');
+    }
   },
 };
 </script>

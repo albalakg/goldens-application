@@ -36,7 +36,7 @@
     <br>
 
     <transition name="fade" mode="out-in">
-      <router-view :course="course" class="course_page_content px-md-4">
+      <router-view :course="course" class="course_page_content px-md-4" @refreshCourse="refreshCourse()">
       </router-view>
     </transition>
 
@@ -78,6 +78,7 @@ export default {
       showLastActiveCard: false,
       activeTab: 0,
       trailerFullScreen: false,
+      refreshKey: 1
     }
   },
 
@@ -110,6 +111,7 @@ export default {
 
   computed: {
     course() {
+      this.refreshKey;
       let courses = this.$store.getters['UserState/courses'];
       if(courses && courses.length) {
         return courses.find(course => course.id == this.$route.params.course_id)
@@ -211,6 +213,10 @@ export default {
       setTimeout(() => {
         this.showLastActiveCard = false;
       }, 10000);
+    },
+
+    refreshCourse() {
+      this.refreshKey++;
     }
   },
 

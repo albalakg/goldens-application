@@ -63,6 +63,17 @@ const UserState = {
             state.progress = userProgress;
         },
 
+        UPDATE_LESSON_DATE(state, updatedLesson) {
+            state.courses.forEach(course => {
+                course.active_areas_with_active_lessons.forEach(courseArea => {
+                    const lessonIndex = courseArea.active_lessons.findIndex(lesson => lesson.id === updatedLesson.id);
+                    if(lessonIndex !== -1) {
+                        courseArea.active_lessons[lessonIndex].schedule.date = updatedLesson.date;
+                    }
+                })
+            });
+        },
+
         UPDATE_USER_PROGRESS(state, data) {
             try {
                 const courseIndex   = state.progress.findIndex(course => course.id === data.user_course_id);
@@ -390,7 +401,20 @@ const UserState = {
         // eslint-disable-next-line no-empty-pattern
         saveUserLandedOnPageNotFound({}, path) {
             axios.get('profile/landed-on-page-not-found?path=' + encodeURIComponent(path))
-        }
+        },
+        
+       saveLessonDateInCalendar({ commit }, lesson) {
+            return new Promise((resolve) => {
+                axios.post('profile/lesson/schedule', lesson)
+                    .then(res => {
+                        commit('UPDATE_LESSON_DATE', lesson);
+                        return resolve(res.data.data);
+                    })
+                    .catch(err => {
+                        warning(err);
+                    })
+            })
+       },
 
     }
 };
