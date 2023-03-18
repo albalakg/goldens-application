@@ -16,7 +16,7 @@ import { LOCAL, PROD } from './helpers/EnvService'
 import Auth from "./helpers/Auth";
 
 Vue.config.productionTip  = false
-axios.defaults.baseURL    = process.env.VUE_APP_BASE_URL + '/api/';
+axios.defaults.baseURL    = process.env.VUE_APP_SERVER_BASE_URL + '/api/';
 
 window.ClientService      = ClientService;
 window.isMobile           = ClientService.isMobile;
