@@ -223,6 +223,7 @@ export default {
       immediate: true,
       deep: true,
       handler() {
+        this.videoProgress.lesson_id = this.lesson.id;
         this.alertedALessonHasSkipped = false;
         this.alertIfSkippedLessons();
       }
