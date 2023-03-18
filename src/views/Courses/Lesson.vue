@@ -223,6 +223,7 @@ export default {
       immediate: true,
       deep: true,
       handler() {
+        this.stopUpdateProgress();
         this.videoProgress.lesson_id = this.lesson.id;
         this.alertedALessonHasSkipped = false;
         this.alertIfSkippedLessons();
@@ -259,7 +260,6 @@ export default {
       const videoElement = video.target
       this.videoProgress.start_time = videoElement.currentTime;
       this.updateLessonProgressInterval = setInterval(() => {
-
         this.videoProgress.end_time = videoElement.currentTime;
         this.sendRequest();
         this.videoProgress.start_time = videoElement.currentTime;
@@ -268,7 +268,7 @@ export default {
     },
 
     onVideoPaused(video) {
-      clearInterval(this.updateLessonProgressInterval);
+      this.stopUpdateProgress();
       const videoElement = video.target
       this.videoProgress.end_time = videoElement.currentTime;
       this.sendRequest();
@@ -343,11 +343,15 @@ export default {
           return;
         }
       }
+    },
+
+    stopUpdateProgress() {
+      clearInterval(this.updateLessonProgressInterval);
     }
   },
 
   beforeDestroy() {
-    clearInterval(this.updateLessonProgressInterval);
+    this.stopUpdateProgress();
   }
 
 }

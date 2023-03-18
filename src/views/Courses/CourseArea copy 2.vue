@@ -111,7 +111,6 @@ export default {
     },
 
     enterCourseArea(courseArea) {
-      console.log('courseArea', courseArea);
       if (this.$route.query.courseArea != courseArea.id) {
         this.$router.push(
           `/courses/${courseArea.course_id}/lessons?courseArea=${courseArea.id}`

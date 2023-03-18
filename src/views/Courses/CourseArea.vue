@@ -143,7 +143,6 @@ export default {
     },
 
     isFavorite() {
-      console.log(this.activeLesson.id, ContentService.isLessonFavorite(this.activeLesson.id));
       return ContentService.isLessonFavorite(this.activeLesson.id);
     },
 

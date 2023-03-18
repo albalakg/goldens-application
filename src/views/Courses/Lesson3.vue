@@ -361,7 +361,6 @@ export default {
     alertIfSkippedLessons() {
       const lessons = this.lessons;
       if(!lessons || this.alertedALessonHasSkipped || !this.progress) {
-        console.log('disabled');
         return;
       }
 

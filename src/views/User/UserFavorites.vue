@@ -56,7 +56,6 @@ export default {
 
     computed: {
         lessons() {
-            console.log(`this.$store.getters['UserState/favorites']`, this.$store.getters['UserState/favorites']);
             return this.$store.getters['UserState/favorites'];
         },
 

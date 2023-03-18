@@ -68,7 +68,6 @@ export default {
   watch: {
     show() {
       this.showDialog = this.show;
-      console.log('this.show', this.show, this.showDialog);
     },
 
     showDialog() {

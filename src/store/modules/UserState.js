@@ -187,7 +187,6 @@ const UserState = {
                     .then(() => {
                         dispatch('MessageState/addInfoMessage', {message: 'נשלח מייל לאישור בקשת עדכון המייל'}, {root:true});
                     }).catch(() => {
-                        console.log(2);
                         dispatch('MessageState/addInfoMessage', {
                             message: 'מצטערים אך לא הצלחנו לעדכן את המייל',
                             type: 'error',
@@ -357,29 +356,23 @@ const UserState = {
                 const courses = state.courses;
                 if(!courses || !courses.length) {
                     if('/signin' === window.location.hash.replace('#', '')) {
-                        console.log(1);
                         return router.push('/');
                     }
                     
-                    console.log(2);
                     return;
                 }
                 
-                console.log(3);
                 let lesson = state.lastActive ? state.lessons.find(lesson => lesson.id == state.lastActive.id) : null;
                 let route       = lesson ? '/courses/' + lesson.course_id : '/'; 
                 
                 if(!lesson && courses) {
-                    console.log(4);
                     route = '/courses/' + courses[0].id;
                 }
                 
                 if(route === window.location.hash.replace('#', '')) {
-                    console.log(5);
                     return;
                 }
                 
-                console.log(6, route);
                 router.push(route)
             } catch(error) {
                 console.error(error);

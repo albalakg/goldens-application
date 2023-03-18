@@ -33,7 +33,6 @@ export default {
     computed: {
         tickets() {
             const tickets = this.$store.getters['UserState/supportTickets'];
-            console.log(tickets);
             return tickets;
         },
     },
