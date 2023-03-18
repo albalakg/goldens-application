@@ -89,6 +89,9 @@ export default {
         strong {
             position: absolute;
             z-index: 2;
+            font-size: 1.9em;
+            letter-spacing: 0.3em;
+            font-style: italic;
         }
 
         img.course_image {

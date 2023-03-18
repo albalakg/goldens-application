@@ -10,7 +10,7 @@
         }" mx-auto>
             <v-flex class="trainers_desktop_wrapper mt-10" d-none d-md-block>
                 <v-flex class="trainers_wrapper mr-auto">
-                    <trainer-card v-for="(trainer, index) in viewTrainers" :trainer="trainer" :key="index" />
+                    <trainer-card class="ml-2" v-for="(trainer, index) in viewTrainers" :trainer="trainer" :key="index" />
                 </v-flex>
             </v-flex>
             
@@ -131,7 +131,6 @@ export default {
             height: 100%;
             width: 100%;
             display: flex;
-            box-shadow: 0 10px 15px 2px #0008;
 
             &::-webkit-scrollbar {
                 display: none;

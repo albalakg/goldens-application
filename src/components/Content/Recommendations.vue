@@ -1,8 +1,8 @@
 <template>
     <div>
         <section-header 
-            title="לקוחות מרוצים"
-            backgroundTitle="לקוחות"
+            title="המלצות"
+            backgroundTitle="המלצות חמות"
         />
 
         <br>

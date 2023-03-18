@@ -1,9 +1,6 @@
 <template>
   <div class="course_area_wrapper" v-if="course">
     <!-- small screen -->
-    <template v-if="$vuetify.breakpoint.smAndDown"> 123 </template>
-
-    <template v-else>
       <v-flex xl10 md11 mx-auto justify-center class="mt-10">
         <v-sheet height="64">
           <v-toolbar flat>
@@ -91,7 +88,6 @@
           </v-menu>
         </v-sheet>
       </v-flex>
-    </template>
   </div>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
   <router-link :to="link">
-      <img loading="lazy" v-if="dark" src="./../../../public/assets/images/general/dark_logo.svg" alt="">
-      <img loading="lazy" v-else src="./../../../public/assets/images/general/lightLogo.png" alt="">
+      <img :style="`width: ${width}`" loading="lazy" v-if="dark" src="./../../../public/assets/images/general/dark_logo.svg" alt="dark logo">
+      <img :style="`width: ${width}`" loading="lazy" v-else src="./../../../public/assets/images/general/lightLogo.png" alt="logo">
   </router-link>
 </template>
 
@@ -12,6 +12,11 @@ export default {
     dark: {
       type: Boolean
     },
+
+    width: {
+      type: String,
+      default: '100%'
+    }
   },
 
   computed: {

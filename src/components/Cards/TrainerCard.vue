@@ -51,6 +51,7 @@ export default {
       height: 100%;
       position: absolute;
       background: linear-gradient(transparent, #00000088);
+      border-radius: 8px;
     }
 
     img {
@@ -58,6 +59,8 @@ export default {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 4px 3px 0px #111;
     }
 
     h3, p {

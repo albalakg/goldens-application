@@ -1,474 +1,453 @@
 <template>
-<div class="home_wrapper app_padding_top">
-
-    <!-- header -->
-    <section>
-        <v-flex d-flex flex-wrap>
-            <v-flex xs12 lg6 mx-auto class="text-center" d-flex justify-end>
-                <v-flex xs12 lg9 class="text-center text-lg-right">
-                    <h1>
-                        כל האימונים
-                        <br>
-                    </h1>
-                    <h1>
-                        במקום <span class="sub_text_color">אחד</span>
-                    </h1>
-
-                    <v-flex v-if="courses && courses.length" xs12 lg7 class="mx-5 mx-lg-0">
-                        <div class="home_course_card">
-                            <course-card class="mb-3" v-for="(course, index) in courses" :key="index" dark :course="course" @submit="enterCourse(course)">
-                            </course-card>
-                        </div>
-                    </v-flex>
-                </v-flex>
-            </v-flex>
-            <v-flex xs12 lg6 class="text-center text-lg-left mt-8 mt-lg-0">
-                <star-logo class="star_logo_wrapper" />
-            </v-flex>
-        </v-flex>
-    </section>
-
-    <div class="spacer"></div>
-
-    <!-- partners -->
-    <section>
-        
-        <section-header :title="'חברות משותפות'" :backgroundTitle="'שותפות'" :subtitle="`םודנדא דרפנומ סרולוק תילא גניסיפידא ררוטקסנוק ,טמא טיס רולוד םוספיא םרול
-רילק ץפונומ קיטסאלב ופידוא .ףודומ ףילחמע .חשגרמו ישגרמ ,ףוקליס`">
-        </section-header>
-
-        <v-flex lg6 mx-auto>
-            <partners />
-        </v-flex>
-
-    </section>
-
-    <div class="spacer"></div>
-
-    <!-- Lessons -->
-    <section>
-        
-        <section-header :title="'שיעורי לימוד'" :backgroundTitle="'שיעורים'" :subtitle="`םודנדא דרפנומ סרולוק תילא גניסיפידא ררוטקסנוק ,טמא טיס רולוד םוספיא םרול
-רילק ץפונומ קיטסאלב ופידוא .ףודומ ףילחמע .חשגרמו ישגרמ ,ףוקליס`">
-        </section-header>
-
-        <div class="lessons_wrapper_carousel">
-            <v-flex v-if="lessons.length" xl8 md7 mx-auto class="lessons_wrapper px-5 py-5 mr-auto">
-                <lesson-card v-for="(lesson, index) in lessons" :lesson="lesson" :key="index" />
-            </v-flex>
+  <div v-if="course && !loading" class="app_padding_top">
+    <section class="course_header_section">
+      <v-flex class="course_page_image_wrapper" ref="courseHeader">
+        <img
+          loading="lazy"
+          class="course_image"
+          :src="course.imageSrc"
+          alt=""
+        />
+        <div
+          class="course_page_image_darkner"
+          :class="
+            hasActiveCourse
+              ? 'course_page_image_darkner_left_to_right'
+              : 'course_page_image_darkner_right_to_left'
+          "
+        ></div>
+        <div
+          class="course_page_image_details"
+          :class="{ 'pr-5 pr-md-0': !hasActiveCourse }"
+        >
+          <course-header :course="course">
+            <template slot="headerContent">
+              <buy-button @submit="scrollToBuySection()" />
+            </template>
+          </course-header>
         </div>
-
+      </v-flex>
     </section>
 
-    <div class="spacer"></div>
-
-    <!-- Coaches -->
-    <trainers v-if="trainers.length" :trainers="trainers" />
-
-    <div class="spacer"></div>
-
-    <!-- About -->
-    <section>
-        
-        <v-flex class="about_wrapper" d-flex justify-space-between flex-wrap>
-
-            <v-flex md1></v-flex>
-            
-            <v-flex xs12 md6 class="about_right_side_wrapper mb-10 mb-md-0 px-5 px-md-0">
-                <section-header right :title="'קצת עלינו'" :backgroundTitle="'עלינו'" />
-                <br>
-                <br>
-                <v-flex md6>
-                    <small>
-                            םודנדא דרפנומ סרולוק תילא גניסיפידא ררוטקסנוק ,טמא טיס רולוד םוספיא םרול
-        רילק ץפונומ קיטסאלב ופידוא .ףודומ ףילחמע .חשגרמו ישגרמ ,ףוקליס    
-                        <br>
-                        םודנדא דרפנומ סרולוק תיאלב ופידוא .ףודומ ףילחמע .חשגרמו ישגרמ ,ףוקליס   
-                        <br>
-                        םודנדא דרפנומ סרולוק תיאלב ופידוא .ףודומ ףילחמע .חשגרמו ישגרמ ,ףוקליס   
-                    </small>    
-                </v-flex>    
-
-                <v-flex class="pl-8 mt-10 about_button_wrapper">
-                    <router-link to="/about">
-                        <main-button
-                            shadow
-                            :styleConfig="{
-                                padding: '2px 0',
-                                borderRadius: '30',
-                            }"
-                        >
-                            <template slot="content">
-                                <strong class="white--text">
-                                    קרא עוד
-                                </strong>
-                                <v-icon color="white" class="mr-1">mdi-chevron-left</v-icon>
-                            </template>
-                        </main-button>
-                    </router-link>
-                </v-flex>
-
-            </v-flex>
-
-            <v-flex xs12 md4 class="about_left_side_wrapper mt-10 mt-md-0">
-                <star-logo class="about_star_decorator" />
-                <img loading="lazy" class="mt-10 mt-md-0" :src="aboutPlayerSrc" alt="">
-            </v-flex>
-            
-        </v-flex>
-
-        <v-flex class="about_arrow_decorator" d-none d-md-block>
-            <arrow-decorator />
-        </v-flex>
-
+    <section class="cooperation_section">
+      <cooperation-card />
     </section>
 
-    <template v-if="$vuetify.breakpoint.smAndDown">
-        <div class="spacer"></div>
-        <div class="spacer"></div>
-    </template>
+    <br />
+    <br />
+    <br />
 
-    <!-- Questiosn -->
-    <section>
-        <v-flex class="questions_wrapper">
-            
-            <arrows-decorator class="arrows" />
-            <v-flex xs10 lg5 xl4 mx-auto class="questions_content text-center h100" d-flex align-center justify-center>
-                <v-flex>
-                    <v-flex>
-                        <h3>
-                        <span class="white_text_color">שאלות</span>
-                        &nbsp;
-                        <span class="sub_text_color">נפוצות</span> 
-                        </h3>
-
-                        <br>
-
-                    </v-flex>
-                    <v-flex v-for="(question, index) in questions" :key="index" class="mb-5">
-                        <question-card 
-                            :question="question"
-                        />
-                    </v-flex>
-                </v-flex>
-                <!-- TODO -->
-            </v-flex>
+    <section class="course_areas_section">
+      <div class="course_area_background_effect"></div>
+      <v-flex xl8 lg9 md10 mx-auto class="course_area_content">
+        <section-header
+          class="mr-3 mr-md-0"
+          right
+          :title="'תחומי הקורס'"
+          :backgroundTitle="'תחומים'"
+        />
+        <v-flex d-flex flex-wrap justify-space-between class="mt-5">
+          <v-flex md5>
+            <course-area-list
+              v-if="courseAreas"
+              :courseAreas="courseAreas"
+              guest
+              separated
+              @submit="clickOnCourseArea"
+            />
+          </v-flex>
+          <v-flex md5 class="course_area_free_text mt-10 mt-md-0 mx-md-0 mx-5">
+            <p>
+              לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית לורם איפסום
+              דולור סיט אמט, קונסקטורר אדיפיסינג אלית. סת אלמנקום ניסי נון
+              ניבאה. דס איאקוליס וולופטה דיאם. וסטיבולום אט דולור, קראס אגת
+              לקטוס וואל אאוגו וסטיבולום סוליסי טידום בעליק. ושבעגט ליבם סולגק.
+              בראיט ולחת צורק מונחף, בגורמי מגמש. תרבנך וסתעד לכנו סתשם השמה -
+              לתכי מורגם בורק? לתיג ישבעס.
+            </p>
+          </v-flex>
         </v-flex>
+      </v-flex>
     </section>
 
-    <div class="spacer"></div>
+    <div class="separator"></div>
 
-    <v-flex xs11 lg12 mx-auto>
-        <recommendations :items="recommendations" :perPage="recommendationPerPage" />
-    </v-flex>
+    <section class="trainers_section">
+      <trainers v-if="trainers.length" :trainers="trainers" />
+    </section>
 
+    <div class="separator"></div>
 
-    <div class="spacer"></div>
+    <section class="benefits_section">
+      <star-logo class="benefits_background_effect" gstar />
+      <section-header
+        :title="'מה יצא לכם מזה'"
+        :backgroundTitle="'מידע כללי'"
+      />
+      <v-flex xl8 lg9 md10 mx-auto>
+        <course-benefits :items="items" />
+      </v-flex>
+    </section>
 
-</div>
+    <div class="separator"></div>
+
+    <section class="how_it_works_section pt-10">
+      <v-flex xl8 lg9 md10 mx-auto>
+        <section-header dark :title="'איך זה עובד'" :backgroundTitle="'שלבי המערכת'" />
+        <br />
+      </v-flex>
+    </section>
+
+    <div class="separator"></div>
+
+    <section class="recommendations_section">
+      <v-flex xl8 lg9 md10 mx-auto>
+        <recommendations :items="course.recommendations" :perPage="3" />
+      </v-flex>
+    </section>
+
+    <div class="separator"></div>
+
+    <section class="buy_section">
+      <section-header :title="'רכישה'" :backgroundTitle="'רכישת הקורס'" />
+      <br />
+      <v-flex xl8 lg9 md10 mx-auto>
+        <detailed-course-card-horizontal :course="course" />
+      </v-flex>
+    </section>
+
+    <br />
+    <br />
+  </div>
 </template>
 
 <script>
-import MainButton from '../../components/Buttons/MainButton.vue'
-import CourseCard from '../../components/Cards/CourseCard.vue'
-import LessonCard from '../../components/Cards/LessonCard.vue'
-import Partners from '../../components/Cards/Partners.vue'
-import QuestionCard from '../../components/Cards/QuestionCard.vue'
-import Recommendations from '../../components/Content/Recommendations.vue'
-import Trainers from '../../components/Content/Trainers.vue'
-import ArrowDecorator from '../../components/Decorators/ArrowDecorator.vue'
-import ArrowsDecorator from '../../components/Decorators/ArrowsDecorator.vue'
-import StarLogo from '../../components/General/StarLogo.vue'
-import SectionHeader from '../../components/Texts/SectionHeader.vue'
+import BuyButton from "../../components/Buttons/BuyButton.vue";
+import CooperationCard from "../../components/Cards/CooperationCard.vue";
+import CourseAreaList from "../../components/Cards/CourseAreaList.vue";
+import DetailedCourseCardHorizontal from "../../components/Cards/DetailedCourseCardHorizontal.vue";
+import CourseBenefits from "../../components/Content/CourseBenefits.vue";
+import CourseHeader from "../../components/Content/CourseHeader.vue";
+import Recommendations from '../../components/Content/Recommendations.vue';
+import Trainers from "../../components/Content/Trainers.vue";
+import StarLogo from '../../components/General/StarLogo.vue';
+import SectionHeader from "../../components/Texts/SectionHeader.vue";
 
 export default {
-    components: {
-        StarLogo,
-        CourseCard,
-        Partners,
-        SectionHeader,
-        LessonCard,
-        MainButton,
-        ArrowDecorator,
-        ArrowsDecorator,
-        Trainers,
-        QuestionCard,
-        Recommendations,
+  components: {
+    CourseHeader,
+    BuyButton,
+    CooperationCard,
+    SectionHeader,
+    DetailedCourseCardHorizontal,
+    CourseAreaList,
+    Trainers,
+    CourseBenefits,
+    StarLogo,
+    Recommendations,
+  },
+
+  data() {
+    return {
+      tabs: [
+        {
+          title: "תחומים",
+          url: "",
+        },
+        {
+          title: "שיעורים",
+          url: "lessons",
+        },
+        {
+          title: "לוח שנה",
+          url: "schedule",
+        },
+      ],
+      ourOnlyCourseId: 1,
+      activeTab: 0,
+      loading: true,
+      trailerFullScreen: false,
+      refreshKey: 1,
+    };
+  },
+
+  beforeCreate() {
+    if(Auth.isLogged()) {
+      this.$router.push('/courses/1');
+    }
+  },
+
+  created() {
+    this.getContent();
+    this.$store.dispatch("ContentState/getCourse", this.ourOnlyCourseId);
+  },
+
+  mounted() {
+    const trailer = this.$refs.trailer;
+    if (!trailer) {
+      return;
+    }
+
+    trailer.addEventListener("fullscreenchange", () => {
+      this.trailerFullScreen = document.fullscreenElement === trailer;
+    });
+
+    this.listenToScroll();
+    this.initLastActiveCard();
+  },
+
+  computed: {
+    course() {
+      this.refreshKey;
+      let courses = this.$store.getters["UserState/courses"];
+      if (courses && courses.length) {
+        return courses.find((course) => course.id == this.ourOnlyCourseId);
+      }
+
+      courses = this.$store.getters["ContentState/courses"];
+      if (courses && courses.length) {
+        return courses.find((course) => course.id == this.ourOnlyCourseId);
+      }
+
+      return null;
     },
 
-    data() {
-        return {
-            loading: true,
-            aboutPlayerSrc: require('../../../public/assets/images/general/about_player.png')
-        }
-    },
-    
-    created() {
-        this.getContent();
+    showTrailer() {
+      return this.trailerFullScreen;
     },
 
-    computed: {
-        courses() {
-            const courses = this.$store.getters['ContentState/courses'];
-            return courses ? courses : [];
-        },
-
-        lessons() {
-            const lessons = this.$store.getters['ContentState/lessons'];
-            return lessons ? lessons : [];
-        },
-
-        trainers() {
-            const trainers = this.$store.getters['ContentState/trainers'];
-            return trainers ? trainers : [];
-        },
-
-        questions() {
-            return [
-                {
-                    title: 'סתם משהו ראשון',
-                    content: 'סתם תוכן לא קשור לכלום רק בשביל למלא את המקום הזה כדי שאוכל לבדוק'
-                },
-                {
-                    title: 'סתם משהו שני',
-                    content: 'סתם תוכן לא קשור לכלום רק בשביל למלא את המקום הזה כדי שאוכל לבדוק, סתם תוכן לא קשור לכלום רק בשביל למלא את המקום הזה כדי שאוכל לבדוק'
-                },
-            ];
-        },
-
-        recommendations() {
-            return [
-                {
-                    image: 'https://static.bangkokpost.com/media/content/20200619/c1_1937552_200619122619.jpg',
-                    name: 'שחר פאר',
-                    content: `מונפרד אדנדום לורם איפסום דולור סיט אמט, קונסקטורר
-                            מרגשי ומרגשח. עמחליף מודוף. אדיפיסינג אלית קולורס
-                            אודיפו בלאסטיק מונופץ קליר סילקוף,`
-                },
-                {
-                    image: 'https://static.bangkokpost.com/media/content/20200619/c1_1937552_200619122619.jpg',
-                    name: 'קלארק קנט',
-                    content: `מונפרד אדנדום לורם איפסום דולור סיט אמט, קונסקטורר
-                            מרגשי ומרגשח. עמחליף מודוף. אדיפיסינג אלית קולורס
-                            אודיפו בלאסטיק מונופץ קליר סילקוף,`
-                },
-                {
-                    image: 'https://static.bangkokpost.com/media/content/20200619/c1_1937552_200619122619.jpg',
-                    name: 'אסף לוץ',
-                    content: `מונפרד אדנדום לורם איפסום דולור סיט אמט, קונסקטורר
-                            מרגשי ומרגשח. עמחליף מודוף. אדיפיסינג אלית קולורס
-                            אודיפו בלאסטיק מונופץ קליר סילקוף,`
-                },
-                {
-                    image: 'https://static.bangkokpost.com/media/content/20200619/c1_1937552_200619122619.jpg',
-                    name: 'פינוקיו',
-                    content: `מונפרד אדנדום לורם איפסום דולור סיט אמט, קונסקטורר
-                            מרגשי ומרגשח. עמחליף מודוף. אדיפיסינג אלית קולורס
-                            אודיפו בלאסטיק מונופץ קליר סילקוף,`
-                },
-                {
-                    image: 'https://static.bangkokpost.com/media/content/20200619/c1_1937552_200619122619.jpg',
-                    name: 'ספיידרמן',
-                    content: `מונפרד אדנדום לורם איפסום דולור סיט אמט, קונסקטורר
-                            מרגשי ומרגשח. עמחליף מודוף. אדיפיסינג אלית קולורס
-                            אודיפו בלאסטיק מונופץ קליר סילקוף,`
-                },
-                {
-                    image: 'https://static.bangkokpost.com/media/content/20200619/c1_1937552_200619122619.jpg',
-                    name: 'איירון מן',
-                    content: `מונפרד אדנדום לורם איפסום דולור סיט אמט, קונסקטורר
-                            מרגשי ומרגשח. עמחליף מודוף. אדיפיסינג אלית קולורס
-                            אודיפו בלאסטיק מונופץ קליר סילקוף,`
-                },
-            ];
-        },
-            
-        recommendationPerPage() {
-            return this.$vuetify.breakpoint.mdAndUp ? 3 : 1
-        },
+    hasActiveCourse() {
+      return this.$store.getters["UserState/hasActiveCourse"];
     },
 
-    methods: {
-        async getContent() {
-            await Promise.allSettled([
-                this.$store.dispatch('ContentState/getCategories'),
-                this.$store.dispatch('ContentState/getLessons'),
-                this.$store.dispatch('ContentState/getTrainers'),
-                this.$store.dispatch('ContentState/getActiveCourses')
-            ])
-            this.loading = false;
-        },
-
-        enterCourse(course) {
-            this.$router.push('/courses/' + course.id)
-        }
+    courseAreas() {
+      return this.course?.guest_active_areas_with_active_lessons;
     },
-}
+
+    trainers() {
+      const trainers = this.$store.getters["ContentState/trainers"];
+      return trainers ? trainers : [];
+    },
+
+    items() {
+      return [
+        {
+          icon: require("../../../public/assets/images/general/application.svg"),
+          title: "נושא חדש",
+          content: `ררוטקסנוק ,טמא טיס רולוד םוספיא םרול
+                    םודנדא דרפנומ סרולוק תילא גניסיפידא
+                    .ףודומ ףילחמע .חשגרמו ישגרמ ,ףוקליס
+                    רילק ץפונומ קיטסאלב ופידוא`,
+        },
+        {
+          icon: require("../../../public/assets/images/general/whistle.svg"),
+          title: "אימון מקצועי",
+          content: `ררוטקסנוק ,טמא טיס רולוד םוספיא םרול
+                    םודנדא דרפנומ סרולוק תילא גניסיפידא
+                    .ףודומ ףילחמע .חשגרמו ישגרמ ,ףוקליס
+                    רילק ץפונומ קיטסאלב ופידוא`,
+        },
+        {
+          icon: require("../../../public/assets/images/general/walker.svg"),
+          title: "שיפור מהיר",
+          content: `ררוטקסנוק ,טמא טיס רולוד םוספיא םרול
+                    םודנדא דרפנומ סרולוק תילא גניסיפידא
+                    .ףודומ ףילחמע .חשגרמו ישגרמ ,ףוקליס
+                    רילק ץפונומ קיטסאלב ופידוא`,
+        },
+      ];
+    },
+  },
+
+  methods: {
+    async getContent() {
+      await Promise.allSettled([
+        this.$store.dispatch("ContentState/getTrainers"),
+      ]);
+      this.loading = false;
+    },
+
+    scrollToBuySection() {
+      document
+        .querySelector(".buy_section")
+        .scrollIntoView({ block: "center", behavior: "smooth" });
+    },
+
+    clickOnCourseArea(courseArea) {
+      const courseAreaIndex = this.courseAreas.findIndex(
+        (item) => item.id === courseArea.id
+      );
+      this.$refs.coursePlan.setActiveCourseArea(courseAreaIndex);
+      this.$refs.coursePlan.$el.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "center",
+      });
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
+.course_header_section {
+  position: relative;
+  z-index: 2;
 
-    .home_wrapper {
+  .last_progress_card {
+    position: absolute;
+    border-radius: 8px 0 0 8px;
+    right: 0;
+    z-index: 15;
+    width: 300px;
+    transition: 0.7s right ease-out;
+  }
 
-        h1 {
-            font-size: 6em;
-        }
-        
-        h1:nth-of-type(2) {
-            position: relative;
-            top: -50px;
-        }
+  .hide_last_progress_card {
+    right: -500px;
+  }
 
-        @media only screen and (max-width: 600px) {
-            h1 {
-                font-size: 4em;
-            }
+  .course_page_image_wrapper {
+    position: relative;
+    height: 70vh;
+    width: 100vw;
+    text-align: center;
 
-            h1:nth-of-type(2) {
-                position: relative;
-                top: -30px;
-            }
-        }
-        h3 {
-            font-size: 2em;
-        }
-    
-        p {
-            font-size: 1.2em;
-            position: relative;
-            top: -20px;
-        }
-    
-        .home_course_card {
-            height: 150px;
-        }
-
-        .star_logo_wrapper {
-            position: relative;
-            z-index: 8;
-            width: 90%;
-            top: -10%;
-        }
-
-        .lessons_wrapper_carousel {
-            position: relative;
-            width: 100%;
-            display: flex;
-            align-items: center;
-
-
-            @media only screen and (max-width: 600px) {
-                .lessons_wrapper {
-                    overflow-x: auto;
-                }
-            }
-
-            .lessons_wrapper {
-                height: 30vh;
-                min-height: 375px;
-                max-height: 425px;
-                display: flex;
-    
-                &::-webkit-scrollbar {
-                    display: none;
-                }
-
-                & > div {
-                    min-width: 220px;
-                }
-            }
-
-            .lesson_wrapper_right_icon {
-                position: absolute;
-                right: 15px;
-                z-index: 5;                
-            }
-
-            .lesson_wrapper_left_icon {
-                position: absolute;
-                left: 15px;
-                z-index: 5;                
-            }
-        }
-
-        .spacer {
-            height: 100px;
-            width: 100%;
-        }
-
-        .about_wrapper {
-            height: 60vh;
-            max-height: 800px;
-            position: relative;
-            
-            small {
-                font-weight: bold;
-            }
-
-            img {
-                object-fit: cover;
-                position: absolute;
-                top: -10vh;
-                left: 20%;
-                width: 70%;
-                min-width: 300px;
-                z-index: 2;
-            }
-
-            .about_button_wrapper {
-                width: 160px;
-                z-index: 3;
-                position: relative;
-            }
-
-            .about_left_side_wrapper {
-                position: relative;
-            }
-            
-            .about_right_side_wrapper {
-                z-index: 4;
-            }
-        }
-
+    img.course_image {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      right: 0;
     }
 
-    div.about_arrow_decorator {
-        width: 50vw;
-        z-index: 2;
-        position: absolute;
+    h1 {
+      position: relative;
+      color: #fff;
+      font-size: 3em;
+      z-index: 3;
     }
 
-    ::v-deep .about_arrow_decorator img {
-        position: relative;
-        top: -25vh;
-        right: -13vw;
+    .course_page_image_details {
+      position: relative;
+      z-index: 3;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .about_wrapper ::v-deep .about_star_decorator img {
-        position: relative;
-        top: -20vh;
-        left: -30%;
-        z-index: 2;
-        width: 180%;
+    .course_page_actions_wrapper {
+      position: relative;
+      z-index: 3;
     }
 
-    .questions_wrapper {
-        background-color: #102A46;
-        height: 70vh;
-        max-height: 800px;
-        min-height: 400px;
-        width: 100%;
-        position: relative;
-
-        .questions_content {
-            z-index: 5;
-            position: relative;
-        }
-
-        .arrows {
-            position: absolute;
-            left: 30%;
-        }
+    .course_page_image_darkner {
+      right: 0;
+      position: absolute;
+      height: 100%;
+      width: 100%;
     }
 
+    .course_page_image_darkner_left_to_right {
+      background: linear-gradient(90deg, #0006, #102a46);
+    }
+
+    .course_page_image_darkner_right_to_left {
+      background: linear-gradient(90deg, #0006, #102a46);
+    }
+
+    .divider {
+      height: 3px;
+      width: 30%;
+      position: relative;
+      margin: auto;
+      z-index: 3;
+      background-color: #d5b26e;
+    }
+  }
+}
+
+.cooperation_section {
+  position: relative;
+  z-index: 2;
+  height: 80px;
+  width: 100vw;
+}
+
+.separator {
+  height: 50vh;
+  max-height: 300px;
+  width: 100%;
+}
+
+.course_areas_section {
+  position: relative;
+}
+
+.benefits_section {
+  position: relative;
+}
+
+.benefits_background_effect {
+ position: absolute;
+ height: 70vw;
+ width: 70vw;
+ left: 0;
+ right: 0;
+ margin: auto;
+ top: -40vh;
+}
+
+.course_area_background_effect {
+  height: 100vw;
+  width: 100vw;
+  background-color: var(--mainColor);
+  position: absolute;
+  left: -50vw;
+  top: -60vw;
+  rotate: 45deg;
+}
+
+.course_area_content {
+  position: relative;
+  z-index: 2;
+}
+
+.course_area_free_text {
+  background-color: #fff;
+  padding: 50px;
+  box-shadow: 0px 0.5em 0.6em 0.2em #000c;
+  border-radius: 20% 0 20% 0;
+  word-break: break-all;
+  font-size: 1.4em;
+}
+
+.how_it_works_section {
+  height: 100vh;
+  background-color: #222;
+}
+
+@media only screen and (max-width: 600px) {
+  .course_page_image_wrapper {
+    height: 35vh !important;
+  }
+
+  .course_page_image_darkner {
+    background: linear-gradient(#102a46, #0006) !important;
+  }
+
+  .last_progress_card {
+    top: 100px;
+  }
+
+  .course_area_background_effect {
+    left: -50vw;
+    top: -70vw;
+  }
+
+  .separator {
+    height: 15vh;
+  }
+}
 </style>

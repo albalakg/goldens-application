@@ -138,7 +138,6 @@ export default {
     },
 
     showCourseTabs() {
-      // return this.$vuetify.breakpoint.smAndDown && this.hasActiveCourse
       return this.hasActiveCourse
     }
   },
@@ -155,10 +154,8 @@ export default {
     },
 
     setTabByRoute() {
-      const path      = this.$route.params.pathMatch ?? '';
       const pathArray = this.$route.path.split('/');
       this.activeTab = this.tabs.findIndex(tab => tab.url === pathArray[pathArray.length - 1]);
-      console.log('this.activeTab', this.activeTab, path);
     },
 
     openTrailer() {

@@ -116,9 +116,9 @@ export default {
 
     async setInitialSettings() {
       this.$store.dispatch('AuthState/setLogStatus', Auth.isLogged());
-      if(!Auth.isLogged()) {
-        this.loadInitialData();
-      }
+      // if(!Auth.isLogged()) {
+      //   this.loadInitialData();
+      // }
     },
     
     closeMessage() {

@@ -6,7 +6,7 @@
 
 
 .app_padding_top {
-    padding-top: 10%;
+    padding-top: 80px;
 }
 
 .auth_padding_top {
@@ -49,6 +49,10 @@
 
     .auth_padding_top {
         padding-top: 15%;
+    }
+
+    .app_padding_top {
+        padding-top: 0px;
     }
     
 }

@@ -56,9 +56,14 @@
                             </v-flex>
                         </template>
                         <template v-else>
-                            <router-link class="simple_link" to="/signin">
-                                <img loading="lazy" :src="userImage" alt="user">
-                            </router-link>
+                            <v-flex align-center d-flex>
+                                <router-link class="simple_link d-flex" to="/orders?courseId=1">
+                                    <buy-button :dark="false" slim />
+                                </router-link>
+                                <router-link class="simple_link d-flex" to="/signin">
+                                    <img loading="lazy" :src="userImage" alt="user">
+                                </router-link>
+                            </v-flex>
                         </template>
                     </div>
                 </v-flex>
@@ -78,6 +83,7 @@
 </template>
 
 <script>
+import BuyButton from '../Buttons/BuyButton.vue';
 import SearchInput from '../Form/Inputs/SearchInput.vue';
 import Heart from '../General/Heart.vue';
 import Logo from './../General/Logo.vue'
@@ -87,6 +93,7 @@ export default {
         Logo,
         SearchInput,
         Heart,
+        BuyButton,
     },
 
     props: {
@@ -139,14 +146,14 @@ export default {
                 }
             ]
 
-            try {
-                links.unshift({
-                    text: 'הקורס שלנו',
-                    url: 'courses/' + courses[0].id
-                })
-            } catch(err) {
-                console.warn(err);
-            }
+            // try {
+            //     links.unshift({
+            //         text: 'הקורס שלנו',
+            //         url: 'courses/' + courses[0].id
+            //     })
+            // } catch(err) {
+            //     console.warn(err);
+            // }
             
             return links;
         }

@@ -19,7 +19,7 @@ const UserState = {
     },
 
     getters: {
-        supportTickets: state   => state.supportTickets,
+        supportTickets:     state   => state.supportTickets,
         profile:            state   => state.profile,
         orders:             state   => state.orders,
         favorites:          state   => state.favorites,

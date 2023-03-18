@@ -15,6 +15,7 @@ export default {
 
   computed: {
     hasActiveCourse() {
+      console.log(`this.$store.getters['UserState/hasActiveCourse']`, this.$store.getters['UserState/hasActiveCourse']);
       return this.$store.getters['UserState/hasActiveCourse']
     },
 

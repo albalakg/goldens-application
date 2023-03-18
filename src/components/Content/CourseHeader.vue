@@ -44,6 +44,9 @@
             </h1>
             <p class="grey_text_color sub_border_right pr-3 mt-3" v-html="course.description">
             </p>
+            <slot name="headerContent">
+              
+            </slot>
         </v-flex>
     </v-flex>
   </div>
