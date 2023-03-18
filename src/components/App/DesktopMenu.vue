@@ -160,10 +160,6 @@ export default {
     },
 
     methods: {
-        toggleSearchBox() {
-            console.log('toggleSearchBox');
-        },
-
         activateAction(action) {
             if(action) {
                 this[action]();

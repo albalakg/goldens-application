@@ -65,11 +65,15 @@ export default {
 
             const startIndex    = (this.page - 1) * this.totalLessonsPerPage;
             const endIndex      = startIndex + this.totalLessonsPerPage;
-            return this.lessons.slice(startIndex, endIndex)
+
+            let lessons = this.lessons.slice(startIndex, endIndex)
+            return lessons.filter(lesson => {
+                return Boolean(ContentService.findLessonById(lesson.id));
+            });
         },
 
         totalPages() {
-            return Math.ceil(this.lessons.length / this.totalLessonsPerPage);
+            return Math.ceil(this.viewLessons.length / this.totalLessonsPerPage);
         }
     },
 

@@ -126,12 +126,13 @@ export default {
     },
 
     setMenuMode() {
-      const pages = ['courses/%course_id%', 'courses/%course_id%/lessons', 'about'];
+      const pages = ['courses/%course_id%', 'courses/%course_id%/lessons', 'about', ''];
       
       for(let index = 0; index < pages.length; index++) {
         let page      = pages[index];
         const route   = this.$route.path.replace('/', '');
         const params  = this.$route.params;
+
 
         for (const property in params) {
           page = page.replace(`%${property}%`, params[property])

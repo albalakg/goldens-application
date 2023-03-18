@@ -1,5 +1,5 @@
 <template>
-    <div class="user_header_wrapper app_padding_top mt-10 mt-md-0">
+    <div class="user_header_wrapper app_padding_top mt-10">
         <div class="itemToScrollTo" ref="itemToScrollTo"></div>
         <colored-circle-decorator class="user_colored_circle" />
         <v-flex class="user_header_content" v-if="$vuetify.breakpoint.smAndDown">

@@ -1,36 +1,42 @@
 <template>
     <div class="user_favorites_wrapper">
-        <div v-if="lessons && lessons.length">
-            <v-flex d-flex flex-wrap v-if="$vuetify.breakpoint.mdAndUp">
-                <v-flex md3 v-for="lesson in viewLessons" :key="lesson.course_lesson_id" class="mb-10 pl-3">
-                    <lesson-favorite-card class="lesson_favorites_card" :lesson="lesson" @submit="enterLesson" />
-                </v-flex>
-            </v-flex>
-
-            <v-flex v-else class="user_favorites_mobile">
-                <v-flex d-flex class="use_favorites_lessons_wrapper pr-10">
-                    <v-flex v-for="lesson in viewLessons" :key="lesson.course_lesson_id" class="pl-3">
-                        <lesson-favorite-card class="lesson_favorites_card my-10" :lesson="lesson" @submit="enterLesson" />
+        <div v-if="lessons">
+            <template v-if="lessons.length">
+                <v-flex d-flex flex-wrap v-if="$vuetify.breakpoint.mdAndUp">
+                    <v-flex md3 v-for="lesson in viewLessons" :key="lesson.course_lesson_id" class="mb-10 pl-3">
+                        <lesson-favorite-card class="lesson_favorites_card" :lesson="lesson" @submit="enterLesson" />
                     </v-flex>
                 </v-flex>
-            </v-flex>
-
-            <br>
-            <br>
-
-            <v-flex md6 mx-auto>
-                <pagination 
-                    :totalPages="totalPages"
-                    :currentPage="page"
-                    @setPage="setPage"
-                />
-            </v-flex>
+    
+                <v-flex v-else class="user_favorites_mobile">
+                    <v-flex d-flex class="use_favorites_lessons_wrapper pr-10">
+                        <v-flex v-for="lesson in viewLessons" :key="lesson.course_lesson_id" class="pl-3">
+                            <lesson-favorite-card class="lesson_favorites_card my-10" :lesson="lesson" @submit="enterLesson" />
+                        </v-flex>
+                    </v-flex>
+                </v-flex>
+    
+                <br>
+                <br>
+    
+                <v-flex md6 mx-auto>
+                    <pagination 
+                        :totalPages="totalPages"
+                        :currentPage="page"
+                        @setPage="setPage"
+                    />
+                </v-flex>
+            </template>
+            <template v-else>
+                <h2 class="text-center">
+                    לא נמצאו שיעורים מועדפים
+                </h2>
+            </template>
         </div>
-
         <div v-else>
-            <h1 class="text-center">
-                לא נמצאו שיעורים מועדפים
-            </h1>
+            <h2 class="text-center">
+                טוען...
+            </h2>
         </div>
     </div>
 </template>
@@ -50,17 +56,22 @@ export default {
 
     computed: {
         lessons() {
+            console.log(`this.$store.getters['UserState/favorites']`, this.$store.getters['UserState/favorites']);
             return this.$store.getters['UserState/favorites'];
         },
 
         viewLessons() {
             const startIndex    = (this.page - 1) * this.totalLessonsPerPage;
             const endIndex      = startIndex + this.totalLessonsPerPage;
-            return this.lessons.slice(startIndex, endIndex)
+            
+            let lessons = this.lessons.slice(startIndex, endIndex)
+            return lessons.filter(lesson => {
+                return Boolean(ContentService.findLessonById(lesson.id));
+            });
         },
 
         totalPages() {
-            return Math.ceil(this.lessons.length / this.totalLessonsPerPage);
+            return Math.ceil(this.viewLessons.length / this.totalLessonsPerPage);
         }
     },
 

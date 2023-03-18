@@ -1,5 +1,5 @@
 <template>
-  <div v-if="course && !loading" class="app_padding_top">
+  <div v-if="course && !loading">
     <section class="course_header_section">
       <v-flex class="course_page_image_wrapper" ref="courseHeader">
         <img
@@ -183,6 +183,8 @@ export default {
   },
 
   mounted() {
+    this.listenToScroll();
+
     const trailer = this.$refs.trailer;
     if (!trailer) {
       return;
@@ -192,8 +194,6 @@ export default {
       this.trailerFullScreen = document.fullscreenElement === trailer;
     });
 
-    this.listenToScroll();
-    this.initLastActiveCard();
   },
 
   computed: {
@@ -227,6 +227,10 @@ export default {
     trainers() {
       const trainers = this.$store.getters["ContentState/trainers"];
       return trainers ? trainers : [];
+    },
+
+    isDark() {
+      return this.$store.getters['AppState/isMenuDark']
     },
 
     items() {
@@ -282,6 +286,26 @@ export default {
         behavior: "smooth",
         block: "center",
         inline: "center",
+      });
+    },
+
+    listenToScroll() {
+      document.body.addEventListener("scroll", () => {
+        let element = document.querySelector(".course_page_image_wrapper");
+        if (!element) {
+          return;
+        }
+
+        let position = element.getBoundingClientRect();
+        if (position.top > -600) {
+          if (!this.isDark) {
+            return this.$store.dispatch("AppState/setMenuMode", true);
+          }
+        } else {
+          if (this.isDark) {
+            return this.$store.dispatch("AppState/setMenuMode", false);
+          }
+        }
       });
     },
   },

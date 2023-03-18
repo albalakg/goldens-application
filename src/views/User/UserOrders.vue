@@ -5,13 +5,15 @@
                 <order-course-card class="user_order mb-5" :course="order" v-for="(order, index) in orders" :key="index" />
             </div>
             <div v-else class="text-center">
-                לא נמצאו הזמנות
+                <h2 class="text-center">
+                    לא נמצאו הזמנות
+                </h2>
             </div>
         </div>
         <div v-else>
-            <h1 class="text-center">
+            <h2 class="text-center">
                 טוען...
-            </h1>
+            </h2>
         </div>
     </div>
 </template>

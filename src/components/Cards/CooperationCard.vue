@@ -2,19 +2,25 @@
   <div class="cooperation_wrapper">
     <marquee scrollamount="5">
       <span class="cooperation_item">
-        <logo dark :width="'20%'" />
+        <logo dark :width="'15%'" />
       </span>
       <span class="cooperation_item">
-        <logo dark :width="'20%'" />
+        <logo dark :width="'15%'" />
       </span>
       <span class="cooperation_item">
-        <logo dark :width="'20%'" />
+        <logo dark :width="'15%'" />
       </span>
       <span class="cooperation_item">
-        <logo dark :width="'20%'" />
+        <logo dark :width="'15%'" />
       </span>
       <span class="cooperation_item">
-        <logo dark :width="'20%'" />
+        <logo dark :width="'15%'" />
+      </span>
+      <span class="cooperation_item">
+        <logo dark :width="'15%'" />
+      </span>
+      <span class="cooperation_item">
+        <logo dark :width="'15%'" />
       </span>
     </marquee>
   </div>
