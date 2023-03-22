@@ -85,15 +85,15 @@
 
     <div class="separator"></div>
 
-    <section class="trainers_section py-4">
-      <trainers right dark v-if="trainers.length" :trainers="trainers" />
+    <section class="trainers_section py-4 px-5">
+      <trainers :right="!$vuetify.breakpoint.smAndDown" :dark="!$vuetify.breakpoint.smAndDown" v-if="trainers.length" :trainers="trainers" />
     </section>
 
     <div class="separator"></div>
 
     <section class="how_it_works_section pt-10">
       <v-flex xl8 lg9 md10 mx-auto>
-        <section-header dark :title="'איך זה עובד'" :backgroundTitle="'שלבי המערכת'" />
+        <section-header :title="'איך זה עובד'" :backgroundTitle="'שלבי המערכת'" />
         <br />
       </v-flex>
     </section>
@@ -102,16 +102,16 @@
 
     <section class="recommendations_section">
       <v-flex xl8 lg9 md10 mx-auto>
-        <recommendations :items="course.recommendations" :perPage="3" />
+        <recommendations :items="course.recommendations" :perPage="recommendationsPerPage" />
       </v-flex>
     </section>
 
     <div class="separator"></div>
 
-    <section class="buy_section">
+    <section class="buy_section ">
       <section-header :title="'רכישה'" :backgroundTitle="'רכישת הקורס'" />
       <br />
-      <v-flex xl8 lg9 md10 mx-auto>
+      <v-flex xl8 lg9 md10 mx-auto class="px-3 px-md-0">
         <detailed-course-card-horizontal :course="course" />
       </v-flex>
     </section>
@@ -197,6 +197,10 @@ export default {
   },
 
   computed: {
+    recommendationsPerPage() {
+      return this.$vuetify.breakpoint.smAndDown ? 1 : 3;
+    },
+
     course() {
       this.refreshKey;
       let courses = this.$store.getters["UserState/courses"];
@@ -248,8 +252,7 @@ export default {
           title: "אימון מקצועי",
           content: `ררוטקסנוק ,טמא טיס רולוד םוספיא םרול
                     םודנדא דרפנומ סרולוק תילא גניסיפידא
-                    .ףודומ ףילחמע .חשגרמו ישגרמ ,ףוקליס
-                    רילק ץפונומ קיטסאלב ופידוא`,
+                    .ףודומ ףילחמע .חשגרמו ישגרמ ,ףוקליס`,
         },
         {
           icon: require("../../../public/assets/images/general/walker.svg"),

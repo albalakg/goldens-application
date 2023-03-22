@@ -39,6 +39,7 @@ export default {
 
   .recommendation_card {
     border-radius: 8px;
+    height: 100%;
     position: relative;
   }
 

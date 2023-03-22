@@ -8,7 +8,7 @@
         <br>
         
         <v-flex :class="{
-            'lg10 xl9': !full
+            'xs10 xl9': !full
         }" mx-auto>
             <v-flex class="trainers_desktop_wrapper mt-10" d-none d-md-block>
                 <v-flex class="trainers_wrapper mr-auto">
@@ -16,7 +16,7 @@
                 </v-flex>
             </v-flex>
             
-            <v-flex class="trainers_mobile_wrapper main_dark_bg_color mt-10 pt-5" d-flex d-md-none>
+            <v-flex class="trainers_mobile_wrapper mt-10 pt-5" d-flex d-md-none>
                 <arrow-chip v-show="showNextTrainerArrow" @submit="goToLastTrainer()" :left="false" class="lesson_wrapper_right_icon" />
                 <v-flex class="trainers_wrapper mr-auto" ref="trainers">
                     <trainer-card-mobile v-for="(trainer, index) in trainers" :trainer="trainer" :key="index" :ref="`trainer-${index}`" />

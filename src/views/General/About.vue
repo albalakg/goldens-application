@@ -45,9 +45,11 @@
       <div class="spacer"></div>
     </v-flex>
 
-    <trainers v-if="trainers.length" full dark :trainers="trainers" />
+    <v-flex md8 mx-auto>
+      <trainers v-if="trainers.length" full dark :trainers="trainers" />
+    </v-flex>
 
-    <section class="about_believe_section px-lg-5 px-md-0">
+    <section class="about_believe_section mt-10 px-lg-5 px-md-0">
       <div class="spacer"></div>
       <img loading="lazy" :src="aboutBelieveBackgroundImage" alt="about believe background" />
       <div class="about_background_darkner"></div>
@@ -206,6 +208,7 @@ export default {
   .about_background_darkner {
     position: absolute;
     top: 0;
+    right: 0;
     width: 100%;
   }
 
@@ -242,6 +245,7 @@ export default {
     img {
       position: absolute;
       top: 0;
+      right: 0;
       height: 100%;
       width: 100%;
       object-fit: cover;

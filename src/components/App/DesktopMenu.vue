@@ -58,7 +58,7 @@
                         <template v-else>
                             <v-flex align-center d-flex>
                                 <router-link class="simple_link d-flex" to="/orders?courseId=1">
-                                    <buy-button :dark="false" slim />
+                                    <buy-button :dark="isDark" slim />
                                 </router-link>
                                 <router-link class="simple_link d-flex" to="/signin">
                                     <img loading="lazy" :src="userImage" alt="user">

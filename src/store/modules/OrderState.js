@@ -16,8 +16,9 @@ const OrderState = {
     },
 
     actions: {
+       // eslint-disable-next-line no-empty-pattern
        getCoupon({}, code) {
-            return new Promise((resolve, reject) => {
+            return new Promise((resolve) => {
                 axios.get('orders/coupon?code=' + code)
                     .then(res => {
                         return resolve(res.data.data);
@@ -35,7 +36,7 @@ const OrderState = {
                     .then(res => {
                         commit('SET_ORDER', res.data.data);
                         resolve()
-                    }).catch(err => {   
+                    }).catch(() => {   
                         reject()
                     })
             })

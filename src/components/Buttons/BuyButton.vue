@@ -43,7 +43,7 @@ export default {
 
     .buy_button_wrapper {
         border: 1px solid #fff;
-        padding: 7px 20px;
+        padding: 7px 40px;
         font-size: 1.5em;
         color: #fff;
         transition: .2s all ease-in;
