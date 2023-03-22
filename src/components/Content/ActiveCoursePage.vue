@@ -24,7 +24,7 @@
     <!-- big screen -->
     <template v-else>
       <v-flex d-flex justify-center md10 xl9 mx-auto>
-        <v-flex md4 offset-md-1>
+        <v-flex md4 offset-md1>
           
           <template v-for="(courseArea, index) in courseAreas">
             <course-area-card 

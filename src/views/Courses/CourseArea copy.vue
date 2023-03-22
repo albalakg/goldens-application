@@ -17,7 +17,7 @@
     <!-- big screen -->
     <template v-else>
       <v-flex d-flex justify-center md10 xl9 mx-auto>
-        <v-flex md4 offset-md-1 class="desktop_lessons_list">
+        <v-flex md4 offset-md1 class="desktop_lessons_list">
           <template v-for="(lesson, index) in lessons">
             <div class="lesson_list_item main_bg_color" :key="index">
               <router-link
@@ -34,7 +34,7 @@
         <v-flex md5>
           
         </v-flex>
-        <!-- <v-flex md4 offset-md-1 class="desktop_lessons_list pl-5">
+        <!-- <v-flex md4 offset-md1 class="desktop_lessons_list pl-5">
           <template v-for="(lesson, index) in lessons">
             <div class="lesson_card_wrapper mb-5" :key="index">
               <router-link

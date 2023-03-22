@@ -9,7 +9,7 @@
                 />
             </v-flex>
             
-            <v-flex x12 md4 offset-md-1 class="course_areas_wrapper mt-sm-0 mt-10 pt-sm-0 pt-10">
+            <v-flex x12 md4 offset-md1 class="course_areas_wrapper mt-sm-0 mt-10 pt-sm-0 pt-10">
                 <p class="course_areas_title white_text_color mb-1" v-if="$vuetify.breakpoint.mdAndUp">
                     <strong>
                         תחומי הקורס
