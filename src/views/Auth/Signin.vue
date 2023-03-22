@@ -162,7 +162,7 @@ export default {
 
         async loggedSuccessfullyActions(){
             this.$store.dispatch('AuthState/setLogStatus', true);
-            this.$store.dispatch('UserState/init', true);
+            await this.$store.dispatch('UserState/init', true);
 
             if(this.$route.query.redirect) {
                 this.redirectToPage();

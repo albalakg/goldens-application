@@ -5,12 +5,16 @@
 </template>
 
 <script>
+import Auth from '../../helpers/Auth';
+
 export default {
     created() {
         Auth.deleteCookie();
         this.$store.dispatch('AuthState/setLogStatus', false);
         this.$store.dispatch('UserState/clearUserState', false);
-        this.$router.push('/signin');
+        if(!Auth.isLogged()) {
+            this.$router.push('/signin');
+        }
     }
 }
 </script>

@@ -24,7 +24,7 @@ const UserState = {
         orders:             state   => state.orders,
         favorites:          state   => state.favorites,
         progress:           state   => state.progress,
-        hasActiveCourse:    state   => state.courses && state.courses.length,
+        hasActiveCourse:    state   => Boolean(state.courses && state.courses.length),
         courses:            state   => state.courses,
         courseAreas:        state   => state.courseAreas,
         lessons:            state   => state.lessons,
@@ -162,6 +162,7 @@ const UserState = {
             commit('SET_USER_LAST_ACTIVE', null);
             commit('SET_USER_COURSES', null);
             commit('SET_USER_LESSONS', []);
+            commit('SET_INITIATED', false);
         },
 
         updateProfile({ commit, dispatch }, data) {
@@ -355,7 +356,7 @@ const UserState = {
             try {        
                 const courses = state.courses;
                 if(!courses || !courses.length) {
-                    if('/signin' === window.location.hash.replace('#', '')) {
+                    if('/signin' === window.location.pathname) {
                         return router.push('/');
                     }
                     
@@ -369,7 +370,7 @@ const UserState = {
                     route = '/courses/' + courses[0].id;
                 }
                 
-                if(route === window.location.hash.replace('#', '')) {
+                if(route === window.location.pathname) {
                     return;
                 }
                 
