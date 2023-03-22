@@ -7,7 +7,7 @@
     }" 
     align-center 
     d-flex 
-    class="h100 pointer" 
+    class="h100 pointer heart" 
     @click.prevent="submit()"
   >
     <svg :class="{'dark_heart': !dark, 'filled_heart': filled && !dark, 'dark_filled_heart': filled && dark}" width="27" height="24" viewBox="0 0 27 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -57,6 +57,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+  .heart {
+    transition: .4s transform linear;
+  }
+
+  .heart:active {
+    transform: scale(1.7);
+  }
 
   .dark_heart path{
     stroke: #0e3556;

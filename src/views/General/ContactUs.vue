@@ -1,7 +1,7 @@
 <template>
   <v-flex d-flex justify-center align-center class="contact_us_wrapper app_padding_top">
     <img loading="lazy" class="contact_us_background" :src="backgroundImage" alt="map">
-    <v-flex d-flex flex-wrap align-center md8 lg7 xl6 class="contact_us_content h100">
+    <v-flex d-flex flex-wrap align-center md8 lg7 xl6 class="contact_us_content h100 mt-10 mt-md-0">
       <v-flex xs10 mx-auto md4 class="contact_us_details_wrapper second_dark_bg_color py-10 mt-10 mt-md-0">
 
         <h1 class="white_text_color text-center mt-5">
@@ -28,7 +28,7 @@
             <span class="dark_text_color">השאירו לנו </span>
             <span class="main_text_color">הודעה</span>
           </h2>          
-          <p>תכתבו מה שבא לכם ואנחנו נענה</p>
+          <p>ואנחנו נענה עליה בהקדם</p>
 
           <div class="spacer"></div>
 
@@ -115,19 +115,35 @@ export default {
   },
 
   mounted() {
-    this.setInitEmail();
+    this.setInitUserData();
   },
 
   computed: {
     categories() {
       return this.$store.getters['SupportState/supportCategories'];
-    }
+    },
+
+    email() {
+      return this.$store.getters['UserState/email'];
+    },
+
+    fullName() {
+      return this.$store.getters['UserState/fullName'];
+    },
   },
 
   watch: {
     categories() {
       this.setSupportCategory();
-    }
+    },
+
+    email() {
+      this.setInitEmail(this.email);
+    },
+
+    fullName() {
+      this.setInitUserFullName(this.fullName);
+    },
   },
 
   methods: {
@@ -183,11 +199,21 @@ export default {
       return isFullNameValid && isEmailValid && isDescriptionValid;
     },
 
-    setInitEmail() {
-      const email = this.$store.getters['UserState/email'];
-      if(email) {
-        this.$refs.email.setValue(email);
+    setInitUserData() {
+      if(this.email) {
+        this.setInitEmail(this.email);
       }
+      if(this.fullName) {
+        this.setInitUserFullName(this.fullName);
+      }
+    },
+
+    setInitEmail(email) {
+      this.$refs.email.setValue(email);
+    },
+
+    setInitUserFullName(fullName) {
+      this.$refs.fullName.setValue(fullName);
     }
   },
 };

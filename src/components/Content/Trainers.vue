@@ -1,10 +1,12 @@
 <template>
     <section>
         
-        <section-header :dark="dark" :title="'המאמנים שלנו'" :backgroundTitle="'מאמנים'" :subtitle="`םודנדא דרפנומ סרולוק תילא גניסיפידא ררוטקסנוק ,טמא טיס רולוד םוספיא םרול
+        <section-header :right="right" :dark="dark" :title="'המאמנים שלנו'" :backgroundTitle="'מאמנים'" :subtitle="`םודנדא דרפנומ סרולוק תילא גניסיפידא ררוטקסנוק ,טמא טיס רולוד םוספיא םרול
 רילק ץפונומ קיטסאלב ופידוא .ףודומ ףילחמע .חשגרמו ישגרמ ,ףוקליס`">
         </section-header>
 
+        <br>
+        
         <v-flex :class="{
             'lg10 xl9': !full
         }" mx-auto>
@@ -48,6 +50,11 @@ export default {
     props: {
         dark: {
             type: Boolean
+        },
+
+        right: {
+            type: Boolean,
+            default: false
         },
 
         full: {

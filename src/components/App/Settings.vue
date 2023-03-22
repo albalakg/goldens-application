@@ -8,7 +8,7 @@
         <h2 class="mr-5">תפריט</h2>
       </v-flex>
 
-      <main-button
+      <!-- <main-button
         class="setting_download_button setting_row"
         subColor
         :styleConfig="{
@@ -22,7 +22,7 @@
             <img loading="lazy" :src="downloadIcon" alt="download icon" />
           </v-flex>
         </template>
-      </main-button>
+      </main-button> -->
     </div>
 
     <div class="settings_links">

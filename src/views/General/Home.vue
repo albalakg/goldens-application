@@ -72,12 +72,6 @@
 
     <div class="separator"></div>
 
-    <section class="trainers_section">
-      <trainers v-if="trainers.length" :trainers="trainers" />
-    </section>
-
-    <div class="separator"></div>
-
     <section class="benefits_section">
       <star-logo class="benefits_background_effect" gstar />
       <section-header
@@ -87,6 +81,12 @@
       <v-flex xl8 lg9 md10 mx-auto>
         <course-benefits :items="items" />
       </v-flex>
+    </section>
+
+    <div class="separator"></div>
+
+    <section class="trainers_section py-4">
+      <trainers right dark v-if="trainers.length" :trainers="trainers" />
     </section>
 
     <div class="separator"></div>
@@ -413,6 +413,17 @@ export default {
   position: relative;
 }
 
+.trainers_section {
+  background-color: var(--mainSecondDarkColor);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // background-image: linear-gradient(135deg, rgba(23,58,112, 0.8) 0%, rgba(23,58,112, 0.8) 15%,transparent 15%, transparent 32%,rgba(28,57,100, 0.81) 32%, rgba(28,57,100, 0.81) 100%),linear-gradient(0deg, rgba(28,57,100, 0.81) 0%, rgba(28,57,100, 0.81) 37%,transparent 37%, transparent 55%,rgba(28,57,100, 0.81) 55%, rgba(28,57,100, 0.81) 63%,rgba(32,70,127, 0.8) 63%, rgba(32,70,127, 0.8) 100%),linear-gradient(90deg, rgb(230, 182, 95),rgb(230, 182, 95));
+  background-image: linear-gradient(135deg, rgba(23,58,112, 0.85) 0%, rgba(23,58,112, 0.85) 15%,transparent 15%, transparent 32%,rgba(28,57,100, 0.88) 32%, rgba(28,57,100, 0.88) 100%),linear-gradient(0deg, rgba(28,57,100, 0.88) 0%, rgba(28,57,100, 0.88) 37%,transparent 37%, transparent 55%,rgba(28,57,100, 0.88) 55%, rgba(28,57,100, 0.88) 63%,rgb(255,254,252) 63%, rgb(255,254,252) 100%),linear-gradient(90deg, rgb(230, 182, 95),rgb(230, 182, 95));
+  // background-image: linear-gradient(395deg, rgba(23,58,112, 0.8) 0%, rgba(23,58,112, 0.8) 15%,transparent 15%, transparent 32%,rgba(28,57,100, 0.81) 32%, rgba(28,57,100, 0.81) 100%),linear-gradient(260deg, rgba(28,57,100, 0.81) 0%, rgba(28,57,100, 0.81) 37%,transparent 37%, transparent 55%,rgba(28,57,100, 0.81) 55%, rgba(28,57,100, 0.81) 63%,rgba(209,162,77, 0.77) 63%, rgba(209,162,77, 0.77) 100%),linear-gradient(350deg, rgba(209,162,77, 0.77),rgba(209,162,77, 0.77));
+}
+
 .benefits_background_effect {
  position: absolute;
  height: 70vw;
@@ -445,11 +456,6 @@ export default {
   border-radius: 20% 0 20% 0;
   word-break: break-all;
   font-size: 1.4em;
-}
-
-.how_it_works_section {
-  height: 100vh;
-  background-color: #222;
 }
 
 @media only screen and (max-width: 600px) {

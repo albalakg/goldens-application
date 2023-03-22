@@ -73,6 +73,10 @@ export default {
             this.$emit('onChange', value);
         },
 
+        setValue(value) {
+            return this.$refs.input.setValue(value);
+        },
+
         validate() {
             return this.$refs.input.validate();
         }

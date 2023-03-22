@@ -8,6 +8,13 @@
             (לא חובה)
         </small>
     </div>
+    <div :class="{
+        'base_input_floating_placeholder_hidden': !(placeholder && value) || title
+    }" class="mb-1 base_input_floating_placeholder">
+        <strong>
+            {{ placeholder }}
+        </strong>
+    </div>
     <div 
         class="base_input_content"
         :class="{
@@ -223,6 +230,19 @@ export default {
 <style scoped lang="scss">
 
     .base_input_wrapper {
+        position: relative;
+
+        .base_input_floating_placeholder {
+            position: absolute;
+            top: -25px;
+            right: 0;
+            transition: .3s opacity;
+            opacity: 1;
+        }
+
+        .base_input_floating_placeholder_hidden {
+            opacity: 0;
+        }
 
         .base_input_content {
             border-radius: 8px;

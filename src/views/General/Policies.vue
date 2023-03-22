@@ -1,6 +1,6 @@
 <template>
   <v-flex class="tnc_wrapper h100 w100 px-3 app_padding_top">
-    <v-flex md8 lg5 xl4 mx-auto>
+    <v-flex md8 lg5 xl4 mx-auto class="mt-8 mt-md-0">
       <br>
 
       <h1>

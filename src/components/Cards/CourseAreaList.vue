@@ -55,9 +55,8 @@ export default {
         max-height: 100%;
 
         div {
-            height: 100%;
             width: 100%;
-            height: 80px;
+            height: 100px;
         }
     }
 

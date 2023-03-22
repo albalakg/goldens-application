@@ -1,6 +1,6 @@
 <template>
   <v-flex
-    class="support_wrapper px-2 px-md-0 text-center app_padding_top"
+    class="support_wrapper px-2 px-md-0 text-center app_padding_top mt-10"
     md5
     lg4
     xl3

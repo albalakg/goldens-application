@@ -1,5 +1,5 @@
 <template>
-    <div class="phone_input_wrapper">
+    <div class="contact_description_input_wrapper">
         <BaseTextArea 
             ref="textarea"
             :outlined="outlined"
@@ -46,7 +46,7 @@ export default {
 
     data() {
         return {
-            text:       '',
+            text:       'דברו אלינו...',
             rules:      [
                 {
                     rule: /^.+$/ms,

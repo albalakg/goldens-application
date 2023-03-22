@@ -100,7 +100,7 @@ export default {
     },
 
     mobileFiller() {
-      const pages = [''];
+      const pages = [];
       return pages.includes(this.$route.path.replace('/', '')); 
     },
   },
