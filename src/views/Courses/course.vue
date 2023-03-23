@@ -50,8 +50,6 @@ import LastActiveLessonCard from '../../components/Cards/LastActiveLessonCard.vu
 import CourseHeader from '../../components/Content/CourseHeader.vue';
 import MainTabs from '../../components/Tabs/MainTabs.vue';
 
-const COURSE_AREAS_TAB_INDEX  = 0;
-const LESSONS_TAB_INDEX       = 1;
 export default {
   components: {
     MainTabs,
