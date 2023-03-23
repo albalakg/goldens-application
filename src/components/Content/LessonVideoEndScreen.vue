@@ -72,7 +72,7 @@ export default {
 
     data() {
         return {
-            timer: 105,
+            timer: 15,
             timerInterval: null
         }
     },
