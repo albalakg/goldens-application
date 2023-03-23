@@ -32,7 +32,7 @@
 
           <div class="spacer"></div>
 
-          <v-form class="text-right" @submit="submit()">
+          <v-form class="text-right" @submit.prevent="submit()">
             <email-input dark @onChange="setEmail" ref="email" />
 
             <div class="spacer"></div>
@@ -66,7 +66,6 @@
 
 <script>
 import MainButton from "../../components/Buttons/MainButton.vue";
-import BaseTextArea from "../../components/Form/Inputs/BaseTextArea.vue";
 import ContactDescriptionArea from '../../components/Form/Inputs/ContactDescriptionArea.vue';
 import EmailInput from "../../components/Form/Inputs/EmailInput.vue";
 import FullNameInput from "../../components/Form/Inputs/FullNameInput.vue";
@@ -74,7 +73,6 @@ export default {
   components: {
     FullNameInput,
     EmailInput,
-    BaseTextArea,
     MainButton,
     ContactDescriptionArea,
   },
@@ -181,7 +179,6 @@ export default {
 
         this.$router.push('/')
       } catch(err) {
-        console.error('err', err);
         this.$store.dispatch('MessageState/addInfoMessage', {
           message: 'מצטערים אבל נכשלה הבקשה ליצירת קשר',
           type: 'error',
@@ -249,7 +246,7 @@ export default {
 
   .contact_us_button_wrapper {
     position: relative;
-    top: 80px;
+    top: 95px;
   }
 
   .contact_us_form_wrapper {
@@ -264,15 +261,11 @@ export default {
   }
 
   .spacer {
-    height: 30px;
+    height: 45px;
     width: 100%;
   }
 
   @media only screen and (max-width: 600px) {
-      
-    .contact_us_form_wrapper {
-
-    }
 
     .contact_us_details_wrapper {
       border-radius: 15px 15px 0 0;

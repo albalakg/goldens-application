@@ -60,7 +60,7 @@
 
     <div class="separator"></div>
 
-    <section class="trainers_section py-4 px-5">
+    <section class="trainers_section pb-4 px-5">
       <trainers :right="!$vuetify.breakpoint.smAndDown" :dark="!$vuetify.breakpoint.smAndDown" v-if="trainers.length"
         :trainers="trainers" />
     </section>
@@ -81,14 +81,12 @@
       <section-header :title="'שאלות ותשובות'" :backgroundTitle="'שאלות נפוצות'" />
       <br />
       <br />
-      <v-flex xs9 lg7 xl5 mx-auto class="questions_wrapper">
+      <v-flex xs11 md9 lg7 xl5 mx-auto class="questions_wrapper">
         <v-flex v-for="(question, index) in questions" :key="index" class="mb-5">
           <question-card dark :question="question" />
         </v-flex>
       </v-flex>
     </section>
-
-    <div class="separator"></div>
 
     <section class="recommendations_section">
       <v-flex xl8 lg9 md10 mx-auto>
@@ -275,7 +273,7 @@ export default {
           content: `נכון, זה מאתגר לצפות בסרטון ואז לנסות לבצע את התרגיל בעצמך. הרבה יותר קל להשתתף בחוג כדורגל…רק מה? בחוג כדורגל יהיו מגוון של תלמידים, כל אחד ברמה אחרת ובקצב למידה אחר. בחוג כדורגל המאמן יראה לתלמידים את התרגיל- אך הביצוע שלו בלייב יהיה מהיר מאוד ולפעמים אף בלתי קליט. בסרטונים- יש את האופציה האולטימטיבית עבור הילד שלך: הסרטונים כוללים האטות ועצירות באמצע תרגיל כדי לתת דגשים חשובים, הנחיות מדויקות והכוונה ספציפית- מה שלא ניתן לראות במשחק פיזי! כך שבסופו של דבר- צפיה בסרטונים דורשת יותר משמעת עצמית והרבה תרגול- אך הלמידה היא מדוייקת יותר, מותאמת לרמת התלמיד, הוא יכול לצפות שוב ושוב בתרגיל עד שהוא מסוגל לבצע אותו בצורה הטובה ביותר!`
         },
         {
-          title: 'האם זה מתאים גם למתחילים??',
+          title: 'האם זה מתאים גם למתחילים?',
           content: `בהחלט! הקורס בנוי מהבסיס ממש ומורכב מ50 שיעורים שלב אחרי שלב עד לרמות הגבוהות ביותר בעולם הכדורגל. כל תלמיד יכול לבחור לעצמו שלב התרגילים לפי הרמה שהוא נמצא בה ולפי הידע והניסיון שכבר יש לו בשטח. הקורס מעניק גם מעטפת של אימון מטאלי כדי לעודד את הילד להצליח במגרש, לא לפחד מכשלונות ולהתמיד בתרגול. הקורס הזה מוביל את הילד שלך מסע מרתק של גדילה עצמית הרבה מעבר למשחק.`
         },
       ];
@@ -519,6 +517,21 @@ export default {
 
   .separator {
     height: 15vh;
+  }
+  
+  .questions_section {
+    height: 60vh;
+  }
+
+  .arrows_decoration {
+    top: -59vh;
+    left: none;
+    right: -50px;
+    height: 110vh;
+  }
+
+  .trainers_section {
+    padding-top: 25%;
   }
 }
 </style>

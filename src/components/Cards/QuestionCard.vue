@@ -77,4 +77,10 @@ export default {
         height: 120px;
     }
 
+    @media only screen and (max-width: 600px) {
+        .question_card_content_open {
+            height: 280px;
+        }
+    }
+
 </style>

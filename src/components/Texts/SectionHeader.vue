@@ -101,8 +101,7 @@ export default {
         }
 
         p {
-            font-size: 0.9em;
-            color: #999;
+            color: #222;
             width: 65%;
         }
 

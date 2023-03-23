@@ -186,4 +186,10 @@ export default {
     overflow-x: hidden;
   }
 
+  @media only screen and (max-width: 600px) {
+    .app_content {
+      padding-bottom: 15vh;
+    }
+  }
+
 </style>

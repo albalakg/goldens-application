@@ -54,7 +54,7 @@
               class="time_chip"
               :seconds="seconds"
             />
-            <v-flex d-flex align-center justify-space-between>
+            <v-flex d-flex align-center justify-space-between class="">
               <small v-html="activeLessonDescription">
               </small>
               <v-flex md4>
