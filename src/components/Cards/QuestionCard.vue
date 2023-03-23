@@ -2,13 +2,17 @@
     <div 
         class="question_card pointer pa-5"
         :class="{
-            'white_bg_color': dark,
-            'dark_bg_color': !dark
+            'white_bg_color': !dark,
+            'dark_bg_color white_text_color': dark
         }"
         @click="toggleCard()"
     >
         <v-flex d-flex justify-space-between align-center class="question_card_title pointer">
-            <strong>
+            <strong 
+                :class="{
+                    'sub_text_color': dark
+                }"
+            >
                 {{
                     question.title
                 }}
@@ -31,7 +35,7 @@ export default {
 
         dark: {
             type: Boolean,
-            default: true
+            default: false
         },
     },
     
@@ -70,7 +74,7 @@ export default {
     }
 
     .question_card_content_open {
-        height: 80px;
+        height: 120px;
     }
 
 </style>

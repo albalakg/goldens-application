@@ -86,6 +86,10 @@ export default {
     if(!this.$store.getters['AuthState/isLogged']) {
       this.$store.dispatch('ContentState/getCourse', this.$route.params.course_id)
     }
+
+    if(!this.hasActiveCourse) {
+      this.$router.push('/');
+    }
   },
 
   mounted() {

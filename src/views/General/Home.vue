@@ -2,24 +2,13 @@
   <div v-if="course && !loading">
     <section class="course_header_section">
       <v-flex class="course_page_image_wrapper" ref="courseHeader">
-        <img
-          loading="lazy"
-          class="course_image"
-          :src="course.imageSrc"
-          alt=""
-        />
-        <div
-          class="course_page_image_darkner"
-          :class="
-            hasActiveCourse
-              ? 'course_page_image_darkner_left_to_right'
-              : 'course_page_image_darkner_right_to_left'
-          "
-        ></div>
-        <div
-          class="course_page_image_details"
-          :class="{ 'pr-5 pr-md-0': !hasActiveCourse }"
-        >
+        <img loading="lazy" class="course_image" :src="course.imageSrc" alt="" />
+        <div class="course_page_image_darkner" :class="
+          hasActiveCourse
+            ? 'course_page_image_darkner_left_to_right'
+            : 'course_page_image_darkner_right_to_left'
+        "></div>
+        <div class="course_page_image_details" :class="{ 'pr-5 pr-md-0': !hasActiveCourse }">
           <course-header :course="course">
             <template slot="headerContent">
               <buy-button @submit="scrollToBuySection()" />
@@ -40,21 +29,10 @@
     <section class="course_areas_section">
       <div class="course_area_background_effect"></div>
       <v-flex xl8 lg9 md10 mx-auto class="course_area_content">
-        <section-header
-          class="mr-3 mr-md-0"
-          right
-          :title="'תחומי הקורס'"
-          :backgroundTitle="'תחומים'"
-        />
+        <section-header class="mr-3 mr-md-0" right :title="'תחומי הקורס'" :backgroundTitle="'תחומים'" />
         <v-flex d-flex flex-wrap justify-space-between class="mt-5">
           <v-flex md5>
-            <course-area-list
-              v-if="courseAreas"
-              :courseAreas="courseAreas"
-              guest
-              separated
-              @submit="clickOnCourseArea"
-            />
+            <course-area-list v-if="courseAreas" :courseAreas="courseAreas" guest separated @submit="clickOnCourseArea" />
           </v-flex>
           <v-flex md5 class="course_area_free_text mt-10 mt-md-0 mx-md-0 mx-5">
             <p>
@@ -74,10 +52,7 @@
 
     <section class="benefits_section">
       <star-logo class="benefits_background_effect" gstar />
-      <section-header
-        :title="'מה יצא לכם מזה'"
-        :backgroundTitle="'מידע כללי'"
-      />
+      <section-header :title="'מה יצא לכם מזה'" :backgroundTitle="'מידע כללי'" />
       <v-flex xl8 lg9 md10 mx-auto>
         <course-benefits :items="items" />
       </v-flex>
@@ -86,15 +61,30 @@
     <div class="separator"></div>
 
     <section class="trainers_section py-4 px-5">
-      <trainers :right="!$vuetify.breakpoint.smAndDown" :dark="!$vuetify.breakpoint.smAndDown" v-if="trainers.length" :trainers="trainers" />
+      <trainers :right="!$vuetify.breakpoint.smAndDown" :dark="!$vuetify.breakpoint.smAndDown" v-if="trainers.length"
+        :trainers="trainers" />
     </section>
-
+    <!-- 
     <div class="separator"></div>
 
     <section class="how_it_works_section pt-10">
       <v-flex xl8 lg9 md10 mx-auto>
         <section-header :title="'איך זה עובד'" :backgroundTitle="'שלבי המערכת'" />
         <br />
+      </v-flex>
+    </section> -->
+
+    <div class="separator"></div>
+
+    <section class="questions_section">
+      <arrows-decorator class="arrows_decoration" />
+      <section-header :title="'שאלות ותשובות'" :backgroundTitle="'שאלות נפוצות'" />
+      <br />
+      <br />
+      <v-flex xs9 lg7 xl5 mx-auto class="questions_wrapper">
+        <v-flex v-for="(question, index) in questions" :key="index" class="mb-5">
+          <question-card dark :question="question" />
+        </v-flex>
       </v-flex>
     </section>
 
@@ -132,6 +122,8 @@ import Recommendations from '../../components/Content/Recommendations.vue';
 import Trainers from "../../components/Content/Trainers.vue";
 import StarLogo from '../../components/General/StarLogo.vue';
 import SectionHeader from "../../components/Texts/SectionHeader.vue";
+import QuestionCard from '../../components/Cards/QuestionCard.vue';
+import ArrowsDecorator from '../../components/Decorators/ArrowsDecorator.vue'
 
 export default {
   components: {
@@ -145,6 +137,8 @@ export default {
     CourseBenefits,
     StarLogo,
     Recommendations,
+    QuestionCard,
+    ArrowsDecorator,
   },
 
   data() {
@@ -172,7 +166,7 @@ export default {
   },
 
   beforeCreate() {
-    if(Auth.isLogged()) {
+    if (Auth.isLogged()) {
       this.$router.push('/courses/1');
     }
   },
@@ -261,6 +255,28 @@ export default {
                     םודנדא דרפנומ סרולוק תילא גניסיפידא
                     .ףודומ ףילחמע .חשגרמו ישגרמ ,ףוקליס
                     רילק ץפונומ קיטסאלב ופידוא`,
+        },
+      ];
+    },
+
+    questions() {
+      return [
+        {
+          title: 'למה לא להסתפק בסרטוני יוטיוב?',
+          content: `כהורים אנחנו מחפשים להשקיע בעתיד הילדים שלנו. ביוטיוב תמצאו סרטונים נחמדים שיראו לכם כיצד לבצע תרגילים ראוותניים בכדור ולא בהכרח תרגילים בסיסיים שאיתם נדרשים להתמודד בזמן אמת- במגרש, במשחק.  ביוטיוב הילד או ההורה יאלץ לחפש לעצמו את הסרטונים, לבנות לעצמו מערכת מותאמת ורצף הגיוני ללימוד הטכניקות, ובכלל- תמצאו שם רק סרטונים של משחק בלי כל המעטפת הנדרשת כדי להפוך לשחקן מוביל: בלי הכוונה לתזונה נכונה, בלי התייחסות לחלק המנטאלי, בלי להקפיד על כושר כאורח חיים. 
+בקורס אתם מקבלים את כל התחומים המקיפים את חייו של ספורטאי וכדורגלן מצליח. הילד לומד להתמודד עם המשחק במגרש בצורה טובה יותר ויסודית יותר והכל בהתאמה לסדר יומו וליכולת שלו.`
+        },
+        {
+          title: 'למה אין תמיכה?',
+          content: `על חוק 10000 שמעתם? החוק אומר שככל שתרגלו יותר- תהיו טובים יותר ותשתפרו יותר. אנחנו בקורס מעניקים לכם את כל הידע שאתם זקוקים לו כדי להצליח. במידה ויש משהו לא ברור- פשוט תצאו לשטח! תתאמנו שוב ושוב עד שתצליחו. הסרטונים מאוד ברורים וכוללים עצירות לדגשים חשובים אבל מבחן ההצלחה האמיתי הוא במגרש. כמו כן יש לכם את קבוצת הפייסבוק שלנו- בה תמצאו קהילה חמה ואוהדת של חברים-תלמידים נוספים. תוכלו לשתף, ולהתייעץ, לקבל פידבק ותמיכה ואף לקבוע אימונים משותפים יחד. אז יש תמיכה או אין?!`
+        },
+        {
+          title: 'איך אפשר ללמוד מסרטונים?',
+          content: `נכון, זה מאתגר לצפות בסרטון ואז לנסות לבצע את התרגיל בעצמך. הרבה יותר קל להשתתף בחוג כדורגל…רק מה? בחוג כדורגל יהיו מגוון של תלמידים, כל אחד ברמה אחרת ובקצב למידה אחר. בחוג כדורגל המאמן יראה לתלמידים את התרגיל- אך הביצוע שלו בלייב יהיה מהיר מאוד ולפעמים אף בלתי קליט. בסרטונים- יש את האופציה האולטימטיבית עבור הילד שלך: הסרטונים כוללים האטות ועצירות באמצע תרגיל כדי לתת דגשים חשובים, הנחיות מדויקות והכוונה ספציפית- מה שלא ניתן לראות במשחק פיזי! כך שבסופו של דבר- צפיה בסרטונים דורשת יותר משמעת עצמית והרבה תרגול- אך הלמידה היא מדוייקת יותר, מותאמת לרמת התלמיד, הוא יכול לצפות שוב ושוב בתרגיל עד שהוא מסוגל לבצע אותו בצורה הטובה ביותר!`
+        },
+        {
+          title: 'האם זה מתאים גם למתחילים??',
+          content: `בהחלט! הקורס בנוי מהבסיס ממש ומורכב מ50 שיעורים שלב אחרי שלב עד לרמות הגבוהות ביותר בעולם הכדורגל. כל תלמיד יכול לבחור לעצמו שלב התרגילים לפי הרמה שהוא נמצא בה ולפי הידע והניסיון שכבר יש לו בשטח. הקורס מעניק גם מעטפת של אימון מטאלי כדי לעודד את הילד להצליח במגרש, לא לפחד מכשלונות ולהתמיד בתרגול. הקורס הזה מוביל את הילד שלך מסע מרתק של גדילה עצמית הרבה מעבר למשחק.`
         },
       ];
     },
@@ -422,19 +438,22 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  z-index: 2;
+    
   // background-image: linear-gradient(135deg, rgba(23,58,112, 0.8) 0%, rgba(23,58,112, 0.8) 15%,transparent 15%, transparent 32%,rgba(28,57,100, 0.81) 32%, rgba(28,57,100, 0.81) 100%),linear-gradient(0deg, rgba(28,57,100, 0.81) 0%, rgba(28,57,100, 0.81) 37%,transparent 37%, transparent 55%,rgba(28,57,100, 0.81) 55%, rgba(28,57,100, 0.81) 63%,rgba(32,70,127, 0.8) 63%, rgba(32,70,127, 0.8) 100%),linear-gradient(90deg, rgb(230, 182, 95),rgb(230, 182, 95));
-  background-image: linear-gradient(135deg, rgba(23,58,112, 0.85) 0%, rgba(23,58,112, 0.85) 15%,transparent 15%, transparent 32%,rgba(28,57,100, 0.88) 32%, rgba(28,57,100, 0.88) 100%),linear-gradient(0deg, rgba(28,57,100, 0.88) 0%, rgba(28,57,100, 0.88) 37%,transparent 37%, transparent 55%,rgba(28,57,100, 0.88) 55%, rgba(28,57,100, 0.88) 63%,rgb(255,254,252) 63%, rgb(255,254,252) 100%),linear-gradient(90deg, rgb(230, 182, 95),rgb(230, 182, 95));
+  background-image: linear-gradient(135deg, rgba(23, 58, 112, 0.85) 0%, rgba(23, 58, 112, 0.85) 15%, transparent 15%, transparent 32%, rgba(28, 57, 100, 0.88) 32%, rgba(28, 57, 100, 0.88) 100%), linear-gradient(0deg, rgba(28, 57, 100, 0.88) 0%, rgba(28, 57, 100, 0.88) 37%, transparent 37%, transparent 55%, rgba(28, 57, 100, 0.88) 55%, rgba(28, 57, 100, 0.88) 63%, rgb(255, 254, 252) 63%, rgb(255, 254, 252) 100%), linear-gradient(90deg, rgb(230, 182, 95), rgb(230, 182, 95));
   // background-image: linear-gradient(395deg, rgba(23,58,112, 0.8) 0%, rgba(23,58,112, 0.8) 15%,transparent 15%, transparent 32%,rgba(28,57,100, 0.81) 32%, rgba(28,57,100, 0.81) 100%),linear-gradient(260deg, rgba(28,57,100, 0.81) 0%, rgba(28,57,100, 0.81) 37%,transparent 37%, transparent 55%,rgba(28,57,100, 0.81) 55%, rgba(28,57,100, 0.81) 63%,rgba(209,162,77, 0.77) 63%, rgba(209,162,77, 0.77) 100%),linear-gradient(350deg, rgba(209,162,77, 0.77),rgba(209,162,77, 0.77));
 }
 
 .benefits_background_effect {
- position: absolute;
- height: 70vw;
- width: 70vw;
- left: 0;
- right: 0;
- margin: auto;
- top: -40vh;
+  position: absolute;
+  height: 70vw;
+  width: 70vw;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: -40vh;
 }
 
 .course_area_background_effect {
@@ -459,6 +478,25 @@ export default {
   border-radius: 20% 0 20% 0;
   word-break: break-all;
   font-size: 1.4em;
+}
+
+.questions_section {
+  position: relative;
+  height: 80vh;
+}
+
+.questions_wrapper {
+  position: relative;
+  z-index: 2;
+}
+
+.arrows_decoration {
+  opacity: 1;
+  position: absolute;
+  top: -45vh;
+  left: -50vh;
+  height: 120vh;
+  z-index: 0;
 }
 
 @media only screen and (max-width: 600px) {

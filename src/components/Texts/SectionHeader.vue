@@ -15,7 +15,11 @@
         }"
     ></div>
 
-    <p v-if="subtitle" class="mt-2">
+    <p v-if="subtitle" class="mt-2" :class="{
+        'ml-auto': right,
+        'mr-auto': left,
+        'mx-auto': !left && !right,
+    }">
         {{ subtitle }}
     </p>
 </div>
@@ -99,6 +103,7 @@ export default {
         p {
             font-size: 0.9em;
             color: #999;
+            width: 65%;
         }
 
         .line {
