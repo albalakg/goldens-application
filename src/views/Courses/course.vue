@@ -1,5 +1,5 @@
 <template>
-  <div class="course_page_wrapper" v-if="course">
+  <div class="course_page_wrapper" v-if="course && hasActiveCourse">
 
     <v-flex class="course_page_image_wrapper mb-3" ref="courseHeader">
       <img loading="lazy" class="course_image" :src="course.imageSrc" alt="">
@@ -83,10 +83,6 @@ export default {
   created() {
     if(!this.$store.getters['AuthState/isLogged']) {
       this.$store.dispatch('ContentState/getCourse', this.$route.params.course_id)
-    }
-
-    if(!this.hasActiveCourse) {
-      this.$router.push('/');
     }
   },
 
