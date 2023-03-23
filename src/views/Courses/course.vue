@@ -321,16 +321,7 @@ export default {
     }
 
     .last_progress_card {
-      top: 100px;
+      top: 60px;
     }
   }
-
-  // @media only screen and (min-width: 600px) {
-  //   .course_page_tabs {
-  //     top: -120px;
-  //     color: #fff;
-  //   }
-  // }
-
-
 </style>

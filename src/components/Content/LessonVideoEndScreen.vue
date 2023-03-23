@@ -72,7 +72,7 @@ export default {
 
     data() {
         return {
-            timer: 15,
+            timer: 105,
             timerInterval: null
         }
     },
@@ -123,7 +123,6 @@ export default {
 <style scoped>
 
     img {
-        height: 30%;
         width: 100%;
         border-radius: 12px;
         object-fit: cover;
@@ -131,6 +130,14 @@ export default {
 
     .timer_text {
         color: #346b9b;
+    }
+
+    @media only screen and (max-width: 600px) {
+    
+        img {
+            height: 60px;
+        }
+
     }
 
 </style>

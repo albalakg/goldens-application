@@ -359,8 +359,8 @@ export default {
 <style scoped lang="scss">
 
   .lesson_trainer_card {
-    height: 50px;
-    width: 50px;
+    height: 50px !important;
+    width: 50px !important;
   }
 
   .lesson_page_content {

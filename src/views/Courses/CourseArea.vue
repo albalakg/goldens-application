@@ -50,20 +50,28 @@
                 />
             </v-flex>
             <img :src="activeLesson.imageSrc" class="w100 mt-1" alt="lesson image">
-            <time-chip 
-              class="time_chip"
-              :seconds="seconds"
-            />
-            <v-flex d-flex align-center justify-space-between class="">
-              <small v-html="activeLessonDescription">
-              </small>
-              <v-flex md4>
-                <main-button 
-                  text="הפעל שיעור"
-                  shadow
-                  slim
-                  @submit="enterLesson()"
-                />
+            <div class="active_lesson_darkner"></div>
+            <v-flex d-flex align-center justify-space-between class="active_lesson_content">
+              <v-flex d-flex flex-column justify-space-between class="h100">
+                <div>
+                  <small class="white_text_color" v-html="activeLessonDescription">
+                  </small>
+                </div>
+                <v-flex d-flex align-end justify-space-between class="w100">
+                  <time-chip 
+                    class="time_chip"
+                    :seconds="seconds"
+                  />
+
+                  <v-flex md4>
+                    <main-button 
+                      text="הפעל שיעור"
+                      shadow
+                      slim
+                      @submit="enterLesson()"
+                    />
+                  </v-flex>
+                </v-flex>
               </v-flex>
             </v-flex>
           </template>
@@ -157,8 +165,8 @@ export default {
     },
 
     activeLessonDescription() {
-      return ContentService.getLessonShortDescription(this.activeLesson);
-
+      const MAX_CHARS = 250;
+      return ContentService.getLessonShortDescription(this.activeLesson, MAX_CHARS);
     }
   },
 
@@ -208,6 +216,22 @@ export default {
   width: 100%;
 }
 
+.active_lesson_darkner {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  height: 50%;
+  background: linear-gradient(#0000, #000c, #000 90%);
+}
+
+.active_lesson_content {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  padding: 15px 10px;
+  height: 35%;
+}
+
 @media only screen and (min-width: 600px) {
   .course_area_wrapper {
     position: relative;
@@ -227,9 +251,7 @@ export default {
   }
     
   .time_chip {
-    position: absolute;
-    bottom: 45px;
-    left: 5px;
+    
   }
 }
 

@@ -14,16 +14,24 @@
         <video-card v-if="$vuetify.breakpoint.mdAndUp" :src="lesson.video.videoSrc" @playClicked="enterLesson()" />
         <p @click="enterLesson()" v-html="lessonContent">
         </p>
+        <main-button 
+            text="נתחיל להתאמן"
+            dark
+            slim
+            @submit="enterLesson()"
+        />
     </div>
 </template>
 
 <script>
 import Collapse from '../General/Collapse.vue';
 import VideoCard from './VideoCard.vue';
+import MainButton from '../Buttons/MainButton.vue';
 export default {
     components: {
         Collapse,
         VideoCard,
+        MainButton,
     },
     
     computed: {
