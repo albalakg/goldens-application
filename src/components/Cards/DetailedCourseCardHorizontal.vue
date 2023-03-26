@@ -3,11 +3,12 @@
         'flex-wrap': $vuetify.breakpoint.smAndDown
     }">
         <v-flex md4>
-            <video-card 
+            <!-- <video-card 
                 ref="video"
                 :src="course.trailerSrc"
                 @playClicked="startTrailer()"
-            />
+            /> -->
+            <img :src="course.imageSrc" alt="תמונת הקורס" />
         </v-flex>
         <v-flex xs12 md4 class="pa-5">
             <strong>
@@ -130,6 +131,11 @@ export default {
         min-width: 100%;
         border-radius: 12px;
         position: relative;
+
+        img {
+            width: 100%;
+            border-radius: 15px;
+        }
 
         .detailed_course_card_actions {
 

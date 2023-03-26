@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <div>
         
         <section-header :right="right" :dark="dark" :title="'המאמנים שלנו'" :backgroundTitle="'מאמנים'" :subtitle="`בצוות תמצאו אנשי המפתח מעולם הכדורגל- הם בחרו את התרגילים והתכנים הכי מדוייקים בשבילכם! הם מקצועיים, הם מתאימים לתכונות שאנחנו מחפשים עבורכם והם הכי טובים במה שהם עושים.`">
         </section-header>
@@ -28,7 +28,7 @@
 
 
 
-    </section>
+    </div>
 </template>
 
 <script>

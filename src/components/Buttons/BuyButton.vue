@@ -48,6 +48,7 @@ export default {
         color: #fff;
         transition: .2s all ease-in;
         box-shadow: 0px 4px 6px 3px #0008;
+        border-radius: 30px;
         
         &:hover {
             transform: scale(1.05);

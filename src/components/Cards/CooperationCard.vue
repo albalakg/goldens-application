@@ -1,55 +1,63 @@
 <template>
   <div class="cooperation_wrapper">
     <marquee scrollamount="5">
-      <span class="cooperation_item">
-        <logo dark :width="$vuetify.breakpoint.smAndDown ? '35%' : '15%'" />
-      </span>
-      <span class="cooperation_item">
-        <logo dark :width="$vuetify.breakpoint.smAndDown ? '35%' : '15%'" />
-      </span>
-      <span class="cooperation_item">
-        <logo dark :width="$vuetify.breakpoint.smAndDown ? '35%' : '15%'" />
-      </span>
-      <span class="cooperation_item">
-        <logo dark :width="$vuetify.breakpoint.smAndDown ? '35%' : '15%'" />
-      </span>
-      <span class="cooperation_item">
-        <logo dark :width="$vuetify.breakpoint.smAndDown ? '35%' : '15%'" />
-      </span>
-      <span class="cooperation_item">
-        <logo dark :width="$vuetify.breakpoint.smAndDown ? '35%' : '15%'" />
-      </span>
-      <span class="cooperation_item">
-        <logo dark :width="$vuetify.breakpoint.smAndDown ? '35%' : '15%'" />
-      </span>
+      <template v-for="index in 100">
+        <span :key="'a' + index" class="cooperation_item">
+          <strong>{{ cooperationText }}</strong>
+          <!-- <logo dark :width="$vuetify.breakpoint.smAndDown ? '35%' : '15%'" /> -->
+        </span>
+        <span :key="'b' + index" class="cooperation_item">
+          <img src="./../../../public/assets/images/partners/nike.png" alt="nike">
+        </span>
+      </template>
     </marquee>
   </div>
 </template>
 
 <script>
-import Logo from '../General/Logo.vue';
+// import Logo from '../General/Logo.vue';
 export default {
-  components: { Logo },
+  // components: { Logo },
   props: {},
 
-  computed: {},
+  data() {
+    return {
+      cooperationText: 'שחק ברמה עולמית'
+    }
+  },
+
+  computed: {
+  },
 };
 </script>
 
 <style scoped lang="scss">
-    .cooperation_wrapper {
-      height: 100%;
-      width: 100%;
-      background-color: #222;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+  .cooperation_wrapper {
+    height: 100%;
+    width: 100%;
+    // background-color: #222;
+    background-image: linear-gradient(216deg, rgba(77, 77, 77,0.05) 0%, rgba(77, 77, 77,0.05) 25%,rgba(42, 42, 42,0.05) 25%, rgba(42, 42, 42,0.05) 38%,rgba(223, 223, 223,0.05) 38%, rgba(223, 223, 223,0.05) 75%,rgba(36, 36, 36,0.05) 75%, rgba(36, 36, 36,0.05) 100%),linear-gradient(44deg, rgba(128, 128, 128,0.05) 0%, rgba(128, 128, 128,0.05) 34%,rgba(212, 212, 212,0.05) 34%, rgba(212, 212, 212,0.05) 57%,rgba(25, 25, 25,0.05) 57%, rgba(25, 25, 25,0.05) 89%,rgba(135, 135, 135,0.05) 89%, rgba(135, 135, 135,0.05) 100%),linear-gradient(241deg, rgba(55, 55, 55,0.05) 0%, rgba(55, 55, 55,0.05) 14%,rgba(209, 209, 209,0.05) 14%, rgba(209, 209, 209,0.05) 60%,rgba(245, 245, 245,0.05) 60%, rgba(245, 245, 245,0.05) 69%,rgba(164, 164, 164,0.05) 69%, rgba(164, 164, 164,0.05) 100%),linear-gradient(249deg, rgba(248, 248, 248,0.05) 0%, rgba(248, 248, 248,0.05) 32%,rgba(148, 148, 148,0.05) 32%, rgba(148, 148, 148,0.05) 35%,rgba(202, 202, 202,0.05) 35%, rgba(202, 202, 202,0.05) 51%,rgba(181, 181, 181,0.05) 51%, rgba(181, 181, 181,0.05) 100%),linear-gradient(92deg, rgb(213,178,110),rgb(213,178,110));
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-      .cooperation_item {
-        width: 100%;
-        margin-right: 5%;
-        pointer-events: none;
-      }
+    .cooperation_item {
+      width: 100%;
+      margin-right: 5%;
+      pointer-events: none;
     }
+  
+  
+    img {
+      height: 50px;
+    }
+
+    strong {
+      font-size: 1.5em;
+      position: relative;
+      bottom: 13px;
+      // color: var(--subColor);
+    }
+  }
 </style>

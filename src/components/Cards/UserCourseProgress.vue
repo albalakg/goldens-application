@@ -1,14 +1,14 @@
 <template>
     <div class="user_course_progress_wrapper white_bg_color">
-        <v-progress-circular
+        <!-- <v-progress-circular
             :size="93"
             :value="progress"
             color="#d5b26e"
             :rotate="-90"
             width="3"
         >
-            <img loading="lazy" class="user_course_profile_image" :src="imageSrc" alt="image">
-        </v-progress-circular>
+            <img loading="lazy" class="user_course_profile_image" src="../../../public/assets/images/general/test2.jpg" alt="image">
+        </v-progress-circular> -->
         <div class="user_course_content pa-6 pt-10">
             <star-logo class="user_course_star_image" :gstar="false" :opacity=".1" />
             <h3 class="text-center mt-3">

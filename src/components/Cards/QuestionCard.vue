@@ -3,7 +3,7 @@
         class="question_card pointer pa-5"
         :class="{
             'white_bg_color': !dark,
-            'dark_bg_color white_text_color': dark
+            'main_bg_color white_text_color': dark
         }"
         @click="toggleCard()"
     >

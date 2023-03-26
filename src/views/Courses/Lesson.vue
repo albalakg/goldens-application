@@ -2,10 +2,12 @@
   <div v-if="Boolean(lesson)" class="auth_padding_top" :key="lesson.id">
     <v-flex md7 xl6 mx-auto v-if="lesson" class="lesson_page_content mt-5 mb-10">
       
-      <v-flex d-flex align-center flex-wrap justify-space-between class="px-2 px-md-0">
-        <h1 class="mb-0">
-          {{ lesson.name }}
-        </h1>
+      <v-flex d-flex align-start flex-wrap justify-space-between class="px-2 px-md-0">
+        <v-flex xs9>
+          <h1 class="mb-0">
+            {{ lesson.name }}
+          </h1>
+        </v-flex>
 
         <div md4 v-if="$vuetify.breakpoint.mdAndUp">
           <div>
@@ -32,7 +34,7 @@
           </div>
         </div>
 
-        <div class="heart_badge main_bg_color" v-else @submit="toggleFavorite()">
+        <div class="heart_badge main_bg_color mt-4" v-else @submit="toggleFavorite()">
           <heart 
             @submit="toggleFavorite()"
             dark
@@ -224,6 +226,7 @@ export default {
       deep: true,
       handler() {
         this.stopUpdateProgress();
+        // TODO: fix this line
         this.videoProgress.lesson_id = this.lesson.id;
         this.alertedALessonHasSkipped = false;
         this.alertIfSkippedLessons();
@@ -437,7 +440,6 @@ export default {
     z-index: 100;
     position: absolute;
     left: 0;
-    top: -30px;
     width: 45px;
     border-radius: 0 25px 25px 0;
     padding: 5px;

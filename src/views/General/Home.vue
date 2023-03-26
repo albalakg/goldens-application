@@ -2,14 +2,14 @@
   <div v-if="course && !loading">
     <section class="course_header_section">
       <v-flex class="course_page_image_wrapper" ref="courseHeader">
-        <img loading="lazy" class="course_image" :src="course.imageSrc" alt="" />
+        <img loading="lazy" class="course_image" src="../../../public/assets/images/general/home_header.png" alt="תמונת עמוד בית" />
         <div class="course_page_image_darkner" :class="
           hasActiveCourse
             ? 'course_page_image_darkner_left_to_right'
             : 'course_page_image_darkner_right_to_left'
         "></div>
         <div class="course_page_image_details" :class="{ 'pr-5 pr-md-0': !hasActiveCourse }">
-          <course-header :course="course">
+          <course-header title :course="course">
             <template slot="headerContent">
               <buy-button @submit="scrollToBuySection()" />
             </template>
@@ -26,22 +26,32 @@
     <br />
     <br />
 
+    
+    <section class="benefits_section">
+      <star-logo class="benefits_background_effect" gstar />
+      <section-header :title="'מה יצא לכם מזה'" :backgroundTitle="'מידע כללי'" />
+      <v-flex xl8 lg9 md10 mx-auto>
+        <course-benefits />
+      </v-flex>
+    </section>
+
+    <div class="separator"></div>
+
     <section class="course_areas_section">
-      <div class="course_area_background_effect"></div>
       <v-flex xl8 lg9 md10 mx-auto class="course_area_content">
-        <section-header class="mr-3 mr-md-0" right :title="'תחומי הקורס'" :backgroundTitle="'תחומים'" />
+        <section-header class="mr-3 mr-md-0" right :title="'תחומי הקורס'" :subtitle="'תוכנית אימון שנתית המשלבת שישה תחומים המרכיבים את כל הדרוש על מנת להצליח להגיע למטרה ולהגשים את החלום'" :backgroundTitle="'תחומים'" />
         <v-flex d-flex flex-wrap justify-space-between class="mt-5">
           <v-flex md5>
             <course-area-list v-if="courseAreas" :courseAreas="courseAreas" guest separated @submit="clickOnCourseArea" />
           </v-flex>
           <v-flex md5 class="course_area_free_text mt-10 mt-md-0 mx-md-0 mx-5">
+            <strong>
+              קצת עלינו
+            </strong>
             <p>
-              לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית לורם איפסום
-              דולור סיט אמט, קונסקטורר אדיפיסינג אלית. סת אלמנקום ניסי נון
-              ניבאה. דס איאקוליס וולופטה דיאם. וסטיבולום אט דולור, קראס אגת
-              לקטוס וואל אאוגו וסטיבולום סוליסי טידום בעליק. ושבעגט ליבם סולגק.
-              בראיט ולחת צורק מונחף, בגורמי מגמש. תרבנך וסתעד לכנו סתשם השמה -
-              לתכי מורגם בורק? לתיג ישבעס.
+              'גולדנס' הוא מיזם מיוחד שהוקם במטרה לעודד את תרבות הספורט בדור הצעיר.
+              הערכים המנחים של התכנית הם ערכים שילוו את התלמידים לטווח הקצר והארוך ויעניקו להם מעטפת שלמה של ידע מקצועי, קהילה תומכת ועוצמה פנימית. 
+              הצוות המקצועי שמלווה את הקורס, התוכן המדויק והיסודי, האיכות הגבוהה של הסרטונים והביצוע הטכני- יאפשר לכם ולילד שלכם להגשים חלום!
             </p>
           </v-flex>
         </v-flex>
@@ -50,32 +60,33 @@
 
     <div class="separator"></div>
 
-    <section class="benefits_section">
-      <star-logo class="benefits_background_effect" gstar />
-      <section-header :title="'מה יצא לכם מזה'" :backgroundTitle="'מידע כללי'" />
-      <v-flex xl8 lg9 md10 mx-auto>
-        <course-benefits :items="items" />
-      </v-flex>
-    </section>
-
-    <div class="separator"></div>
-
     <section class="trainers_section pb-4 px-5">
-      <trainers :right="!$vuetify.breakpoint.smAndDown" :dark="!$vuetify.breakpoint.smAndDown" v-if="trainers.length"
+      <trainers :right="!$vuetify.breakpoint.smAndDown" v-if="trainers.length"
         :trainers="trainers" />
     </section>
-    <!-- 
+    
     <div class="separator"></div>
 
     <section class="how_it_works_section pt-10">
       <v-flex xl8 lg9 md10 mx-auto>
         <section-header :title="'איך זה עובד'" :backgroundTitle="'שלבי המערכת'" />
         <br />
+        <br />
+
+        <how-it-works />
       </v-flex>
-    </section> -->
+    </section>
 
     <div class="separator"></div>
 
+    <section class="recommendations_section">
+      <v-flex xl8 lg9 md10 mx-auto>
+        <recommendations :items="course.recommendations" :perPage="recommendationsPerPage" />
+      </v-flex>
+    </section>
+
+    <div class="separator"></div>
+    
     <section class="questions_section">
       <arrows-decorator class="arrows_decoration" />
       <section-header :title="'שאלות ותשובות'" :backgroundTitle="'שאלות נפוצות'" />
@@ -87,14 +98,6 @@
         </v-flex>
       </v-flex>
     </section>
-
-    <section class="recommendations_section">
-      <v-flex xl8 lg9 md10 mx-auto>
-        <recommendations :items="course.recommendations" :perPage="recommendationsPerPage" />
-      </v-flex>
-    </section>
-
-    <div class="separator"></div>
 
     <section class="buy_section ">
       <section-header :title="'רכישה'" :backgroundTitle="'רכישת הקורס'" />
@@ -122,6 +125,7 @@ import StarLogo from '../../components/General/StarLogo.vue';
 import SectionHeader from "../../components/Texts/SectionHeader.vue";
 import QuestionCard from '../../components/Cards/QuestionCard.vue';
 import ArrowsDecorator from '../../components/Decorators/ArrowsDecorator.vue'
+import HowItWorks from "../../components/Content/HowItWorks.vue";
 
 export default {
   components: {
@@ -137,7 +141,8 @@ export default {
     Recommendations,
     QuestionCard,
     ArrowsDecorator,
-  },
+    HowItWorks,
+},
 
   data() {
     return {
@@ -227,34 +232,6 @@ export default {
 
     isDark() {
       return this.$store.getters['AppState/isMenuDark']
-    },
-
-    items() {
-      return [
-        {
-          icon: require("../../../public/assets/images/general/application.svg"),
-          title: "נושא חדש",
-          content: `ררוטקסנוק ,טמא טיס רולוד םוספיא םרול
-                    םודנדא דרפנומ סרולוק תילא גניסיפידא
-                    .ףודומ ףילחמע .חשגרמו ישגרמ ,ףוקליס
-                    רילק ץפונומ קיטסאלב ופידוא`,
-        },
-        {
-          icon: require("../../../public/assets/images/general/whistle.svg"),
-          title: "אימון מקצועי",
-          content: `ררוטקסנוק ,טמא טיס רולוד םוספיא םרול
-                    םודנדא דרפנומ סרולוק תילא גניסיפידא
-                    .ףודומ ףילחמע .חשגרמו ישגרמ ,ףוקליס`,
-        },
-        {
-          icon: require("../../../public/assets/images/general/walker.svg"),
-          title: "שיפור מהיר",
-          content: `ררוטקסנוק ,טמא טיס רולוד םוספיא םרול
-                    םודנדא דרפנומ סרולוק תילא גניסיפידא
-                    .ףודומ ףילחמע .חשגרמו ישגרמ ,ףוקליס
-                    רילק ץפונומ קיטסאלב ופידוא`,
-        },
-      ];
     },
 
     questions() {
@@ -349,7 +326,7 @@ export default {
 
   .course_page_image_wrapper {
     position: relative;
-    height: 70vh;
+    height: 80vh;
     width: 100vw;
     text-align: center;
 
@@ -391,11 +368,11 @@ export default {
     }
 
     .course_page_image_darkner_left_to_right {
-      background: linear-gradient(90deg, #0006, #102a46);
+      background: linear-gradient(90deg, #0000, #0007);
     }
 
     .course_page_image_darkner_right_to_left {
-      background: linear-gradient(90deg, #0006, #102a46);
+      background: linear-gradient(90deg, #0000, #0007);
     }
 
     .divider {
@@ -431,7 +408,7 @@ export default {
 }
 
 .trainers_section {
-  background-color: var(--mainSecondDarkColor);
+  // background-color: var(--mainSecondDarkColor);
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -440,7 +417,7 @@ export default {
   z-index: 2;
     
   // background-image: linear-gradient(135deg, rgba(23,58,112, 0.8) 0%, rgba(23,58,112, 0.8) 15%,transparent 15%, transparent 32%,rgba(28,57,100, 0.81) 32%, rgba(28,57,100, 0.81) 100%),linear-gradient(0deg, rgba(28,57,100, 0.81) 0%, rgba(28,57,100, 0.81) 37%,transparent 37%, transparent 55%,rgba(28,57,100, 0.81) 55%, rgba(28,57,100, 0.81) 63%,rgba(32,70,127, 0.8) 63%, rgba(32,70,127, 0.8) 100%),linear-gradient(90deg, rgb(230, 182, 95),rgb(230, 182, 95));
-  background-image: linear-gradient(135deg, rgba(23, 58, 112, 0.85) 0%, rgba(23, 58, 112, 0.85) 15%, transparent 15%, transparent 32%, rgba(28, 57, 100, 0.88) 32%, rgba(28, 57, 100, 0.88) 100%), linear-gradient(0deg, rgba(28, 57, 100, 0.88) 0%, rgba(28, 57, 100, 0.88) 37%, transparent 37%, transparent 55%, rgba(28, 57, 100, 0.88) 55%, rgba(28, 57, 100, 0.88) 63%, rgb(255, 254, 252) 63%, rgb(255, 254, 252) 100%), linear-gradient(90deg, rgb(230, 182, 95), rgb(230, 182, 95));
+  // background-image: linear-gradient(135deg, rgba(23, 58, 112, 0.85) 0%, rgba(23, 58, 112, 0.85) 15%, transparent 15%, transparent 32%, rgba(28, 57, 100, 0.88) 32%, rgba(28, 57, 100, 0.88) 100%), linear-gradient(0deg, rgba(28, 57, 100, 0.88) 0%, rgba(28, 57, 100, 0.88) 37%, transparent 37%, transparent 55%, rgba(28, 57, 100, 0.88) 55%, rgba(28, 57, 100, 0.88) 63%, rgb(255, 254, 252) 63%, rgb(255, 254, 252) 100%), linear-gradient(90deg, rgb(230, 182, 95), rgb(230, 182, 95));
   // background-image: linear-gradient(395deg, rgba(23,58,112, 0.8) 0%, rgba(23,58,112, 0.8) 15%,transparent 15%, transparent 32%,rgba(28,57,100, 0.81) 32%, rgba(28,57,100, 0.81) 100%),linear-gradient(260deg, rgba(28,57,100, 0.81) 0%, rgba(28,57,100, 0.81) 37%,transparent 37%, transparent 55%,rgba(28,57,100, 0.81) 55%, rgba(28,57,100, 0.81) 63%,rgba(209,162,77, 0.77) 63%, rgba(209,162,77, 0.77) 100%),linear-gradient(350deg, rgba(209,162,77, 0.77),rgba(209,162,77, 0.77));
 }
 
@@ -448,20 +425,9 @@ export default {
   position: absolute;
   height: 70vw;
   width: 70vw;
-  left: 0;
-  right: 0;
+  left: -10%;
   margin: auto;
-  top: -40vh;
-}
-
-.course_area_background_effect {
-  height: 100vw;
-  width: 100vw;
-  background-color: var(--mainColor);
-  position: absolute;
-  left: -50vw;
-  top: -60vw;
-  rotate: 45deg;
+  top: -10vh;
 }
 
 .course_area_content {
@@ -472,9 +438,8 @@ export default {
 .course_area_free_text {
   background-color: #fff;
   padding: 50px;
-  box-shadow: 0px 0.5em 0.6em 0.2em #000c;
-  border-radius: 20% 0 20% 0;
-  word-break: break-all;
+  box-shadow: 0px 0.5em 0.6em 0.2em var(--mainColor);
+  border-radius: 0 20% 0 20%;
   font-size: 1.4em;
 }
 
@@ -489,21 +454,20 @@ export default {
 }
 
 .arrows_decoration {
-  opacity: 1;
   position: absolute;
-  top: -45vh;
+  top: -20vh;
   left: -50vh;
-  height: 120vh;
+  height: 90vh;
   z-index: 0;
 }
 
 @media only screen and (max-width: 600px) {
   .course_page_image_wrapper {
-    height: 35vh !important;
+    height: 60vh !important;
   }
 
   .course_page_image_darkner {
-    background: linear-gradient(#102a46, #0006) !important;
+    background: linear-gradient(#0008, #0000) !important;
   }
 
   .last_progress_card {

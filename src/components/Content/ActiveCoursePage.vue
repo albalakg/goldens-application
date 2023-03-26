@@ -36,11 +36,7 @@
           </template>
         </v-flex>
         <v-flex md4>
-          <video :src="course.trailerSrc" ref="trailer" controls></video>
-          <br>
-          <br>
-          <br>
-          <br>
+        
           <user-course-progress v-if="hasActiveCourse" :course="course" />
         </v-flex>
       </v-flex>

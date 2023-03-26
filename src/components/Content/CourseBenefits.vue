@@ -2,14 +2,14 @@
     <div class="course_benefits_wrapper w100 pa-10 second_dark_bg_color" :class="{'rounded': $vuetify.breakpoint.mdAndUp}">
         <div class="course_benefits_content h100 w100 pb-5">
             <circle-decorator class="circle_decorator"/>
-            <h2 class="white_text_color">
+            <!-- <h2 class="white_text_color">
                 <span class="sub_text_color">
                     מה יצא 
                 </span>
                 לכם מזה
-            </h2>
+            </h2> -->
 
-            <v-flex d-flex class="mt-10" :class="{
+            <v-flex d-flex :class="{
                 'flex-wrap': $vuetify.breakpoint.smAndDown
             }">
                 <v-flex 
@@ -46,11 +46,28 @@ import CircleDecorator from "../Decorators/CircleDecorator.vue"
 export default {
     components: { CircleDecorator },
 
-    props: {
-        items: {
-            type: Array,
-            required: true
-        }
+    computed: {
+        items() {
+        return [
+            {
+            icon: require("../../../public/assets/images/general/application.svg"),
+            title: "חינוך לספורט ואורח חיים של כדורגלן",
+            content: `הקורס מעניק תמיכה והכוונה ובנוסף ילמד כיצד לחיות אורח חיים מוקפד ובריא של ספורטאי ויהפוך לשחקן מוביל`,
+            },
+            {
+            icon: require("../../../public/assets/images/general/whistle.svg"),
+            title: "אימון מנטאלי מעצים, בשלות ואופי חזק",
+            content: `הילד שלך ירגיש בטוח במגרש, ידע להתמודד עם אתגרים, למנף כשלונות ולחתור למטרה שהציב לעצמו.
+הילד שלך מקבל כלים לחיים
+`,
+            },
+            {
+            icon: require("../../../public/assets/images/general/walker.svg"),
+            title: "טכניקה מקצועית שתהפוך אותו לאלוף",
+            content: `סרטונים מלאי תוכן וידע סופר מקצועי ומדויק שיעיף את הילד שלך כמה רמות למעלה.התרגילים בהתאמה לסדר יומו וליכולת שלו`,
+            },
+        ];
+        },
     },
 }
 </script>
@@ -84,7 +101,7 @@ export default {
                 height: 100%;
                 width: 100%;
                 right: -50%;
-                top: -50%;
+                top: 0%;
                 transform: rotate(-90deg);
             }
 
@@ -106,16 +123,16 @@ export default {
             }
 
             .course_benefit_padding_left {
-                padding-left: 6%;
+                // padding-left: 6%;
             }
 
 
             h3 {
-                font-size: 1em;
+                font-size: 1.3em;
             }
             
             p {
-                font-size: .8em;
+                font-size: 1.1em;
             }
         }
 

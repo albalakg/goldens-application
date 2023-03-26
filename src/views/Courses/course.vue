@@ -82,7 +82,7 @@ export default {
 
   created() {
     if(!this.$store.getters['AuthState/isLogged']) {
-      this.$store.dispatch('ContentState/getCourse', this.$route.params.course_id)
+      this.$router.push('/');
     }
   },
 

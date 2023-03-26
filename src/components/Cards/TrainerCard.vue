@@ -1,9 +1,12 @@
 
 <template>
   <div class="trainer_card_wrapper" :class="{'rounded': rounded}">
-    <img loading="lazy" :src="trainer.imageSrc" alt="trainer image" :class="{'rounded': rounded}">
-    <div class="trainer_card_darkner" :class="{'rounded': rounded}"></div>
-    <h3>
+    <div class="trainer_card_content">
+      <img loading="lazy" :src="trainer.imageSrc" alt="trainer image" :class="{'rounded': rounded}" class="trainer_person">
+      <img loading="lazy" src="../../../public/assets/images/general/trainer_card.png" alt="trainer card" class="trainer_card">
+    </div>
+    <!-- <div class="trainer_card_darkner" :class="{'rounded': rounded}"></div> -->
+    <!-- <h3>
       {{
         trainer.name
       }}
@@ -12,7 +15,7 @@
       {{
         trainer.title
       }}
-    </p>
+    </p> -->
   </div>
 </template>
 
@@ -54,13 +57,30 @@ export default {
       border-radius: 8px;
     }
 
-    img {
-      position: absolute;
-      width: 100%;
+    .trainer_card_content {
       height: 100%;
+      width: 100%;
+      background-image: linear-gradient(148deg, rgba(15, 15, 15,0.04) 0%, rgba(15, 15, 15,0.04) 35%,rgba(113, 113, 113,0.04) 35%, rgba(113, 113, 113,0.04) 42%,rgba(210, 210, 210,0.04) 42%, rgba(210, 210, 210,0.04) 100%),linear-gradient(70deg, rgba(15, 15, 15,0.04) 0%, rgba(15, 15, 15,0.04) 25%,rgba(113, 113, 113,0.04) 25%, rgba(113, 113, 113,0.04) 30%,rgba(210, 210, 210,0.04) 30%, rgba(210, 210, 210,0.04) 100%),linear-gradient(65deg, rgba(15, 15, 15,0.04) 0%, rgba(15, 15, 15,0.04) 13%,rgba(113, 113, 113,0.04) 13%, rgba(113, 113, 113,0.04) 27%,rgba(210, 210, 210,0.04) 27%, rgba(210, 210, 210,0.04) 100%),linear-gradient(90deg, rgba(213,178,110, 0.3333333333333333),rgba(213,178,110, 0.3333333333333333));
+      padding: 5px;
+      border: 1px solid var(--mainColor);
+      box-shadow: inset 0px 0px 10px 2px var(--subColor);
+    }
+
+    img.trainer_person {
+      position: absolute;
+      width: calc(100% - 10px);
+      height: calc(100% - 10px);
       object-fit: cover;
       border-radius: 8px;
-      box-shadow: 0 4px 3px 0px #111;
+      z-index: 2;
+    }
+
+    img.trainer_card {
+      position: absolute;
+      width: calc(100% - 10px);
+      height: calc(100% - 10px);
+      object-fit: cover;
+      
     }
 
     h3, p {

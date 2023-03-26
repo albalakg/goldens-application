@@ -39,14 +39,27 @@
 
     <v-flex v-else md9 mx-auto class="text-right">
         <v-flex>
-            <h1>
-                {{ course.name }}
+            <h1 v-if="title">
+              להתאמן בכל מקום ובכל זמן
+              <br>
+              <span>
+               עם המאמנים הכי טובים
+              </span>
             </h1>
-            <p class="grey_text_color sub_border_right pr-3 mt-3" v-html="course.description">
-            </p>
+            <h1 v-else>
+               {{ course.name }}
+            </h1>
+            <!-- <p class="grey_text_color sub_border_right pr-5 mt-3" v-html="course.description">
+            </p> -->
             <slot name="headerContent">
               
             </slot>
+            <div class="phone_card phone_card_on_side mx-auto">
+              <img src="../../../public/assets/images/phone/header.png" alt="שלב ראשון">
+            </div>
+            <div class="phone_card phone_card_front mx-auto">
+              <img src="../../../public/assets/images/phone/step1.png" alt="שלב ראשון">
+            </div>
         </v-flex>
     </v-flex>
   </div>
@@ -61,6 +74,11 @@ export default {
       type: Object,
       required: true,
     },
+
+    title: {
+      type: Boolean,
+      required: true
+    }
   },
 
   data() {
@@ -141,6 +159,11 @@ h1 {
   color: #fff;
   font-size: 3em;
   z-index: 3;
+
+  span {
+    position: relative;
+    bottom: 20px;
+  }
 }
 .course_page_actions_wrapper {
   position: relative;
@@ -171,6 +194,49 @@ h1 {
     width: 100%;
     border-radius: 50%;
     object-fit: cover;
+  }
+}
+
+.phone_card {
+  height: 34vh;
+  width: 17vh;
+  box-shadow: 0 0 5px 4px var(--subColor);
+  border: 2px solid var(--mainColor);
+  border-radius: 20px;
+  position: absolute;
+
+
+  img {
+      height: calc(100% + 3px);
+      width: calc(100% + 2px);
+      border-radius: 20px;
+      position: absolute;
+      top: -1px;
+      right: -1px;
+  }
+
+  p {
+      bottom: -35%;
+      position: absolute;
+  }
+}
+
+.phone_card_on_side {
+  height: 28vh;
+  width: 14vh;
+  left: 4%;
+  top: 47%;
+  rotate: -15deg;
+}
+
+.phone_card_front {
+  left: 10%;
+  top: 43%;
+} 
+
+@media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 2.3em;
   }
 }
 </style>

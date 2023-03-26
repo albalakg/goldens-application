@@ -1,7 +1,7 @@
 <template>
   <section class="lesson_content_wrapper mx-3">
     <v-flex d-flex flex-wrap class="mt-2 mt-md-10">
-      <v-flex order-1 order-md-0 md7 class="mt-5 mt-md-0" v-if="lesson.skills.length">
+      <v-flex xs12 order-1 order-md-0 md7 class="mt-5 mt-md-0" v-if="lesson.skills.length">
         <lesson-details-card
           class="lesson_section"
           title="יכולות"
@@ -23,7 +23,7 @@
 
       <v-flex order-0 order-md-1 align-self-start md5 class="pr-md-5" v-if="lesson.training_options.length">
         <v-flex class="lesson_times_section" d-flex flex-wrap>
-          <v-flex xs6 d-flex justify-center pa-2 v-for="(item, index) in lesson.training_options" :key="index">
+          <v-flex xs12 d-flex justify-center pa-2 v-for="(item, index) in lesson.training_options" :key="index">
             <v-flex
               class="lesson_time_box text-center"
               d-flex
@@ -44,7 +44,7 @@
         </v-flex>
       </v-flex>
 
-      <v-flex order-2 order-md-3 md7 class="mt-5" v-if="lesson.terms.length">
+      <v-flex xs12 order-2 order-md-3 md7 class="mt-5" v-if="lesson.terms.length">
         <lesson-details-card
           class="lesson_section"
           title="מונחים"
@@ -70,7 +70,7 @@
         </lesson-details-card>
       </v-flex>
 
-      <v-flex order-3 order-md-4 md5 class="pr-md-5 mt-5" v-if="lesson.equipment.length">
+      <v-flex xs12 order-3 order-md-4 md5 class="pr-md-5 mt-5" v-if="lesson.equipment.length">
         <lesson-details-card
           class="lesson_section"
           title="ציוד"
