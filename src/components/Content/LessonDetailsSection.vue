@@ -1,7 +1,7 @@
 <template>
   <section class="lesson_content_wrapper mx-3">
-    <v-flex d-flex flex-wrap class="mt-2 mt-md-10">
-      <v-flex xs12 order-1 order-md-0 md7 class="mt-5 mt-md-0" v-if="lesson.skills.length">
+    <v-flex d-flex flex-wrap justify-space-between class="mt-2 mt-md-10">
+      <v-flex xs12 order-1 order-md-0 md6 class="pa-2" v-if="lesson.skills.length">
         <lesson-details-card
           class="lesson_section"
           title="יכולות"
@@ -21,8 +21,8 @@
         </lesson-details-card>
       </v-flex>
 
-      <v-flex order-0 order-md-1 align-self-start md5 class="pr-md-5" v-if="lesson.training_options.length">
-        <v-flex class="lesson_times_section" d-flex flex-wrap>
+      <v-flex order-0 order-md-1 align-self-start md6 class="pa-2" v-if="lesson.training_options.length">
+        <v-flex class="lesson_section" d-flex flex-wrap>
           <v-flex xs12 d-flex justify-center pa-2 v-for="(item, index) in lesson.training_options" :key="index">
             <v-flex
               class="lesson_time_box text-center"
@@ -44,7 +44,7 @@
         </v-flex>
       </v-flex>
 
-      <v-flex xs12 order-2 order-md-3 md7 class="mt-5" v-if="lesson.terms.length">
+      <v-flex xs12 order-2 order-md-3 md6 class="pa-2" v-if="lesson.terms.length">
         <lesson-details-card
           class="lesson_section"
           title="מונחים"
@@ -70,7 +70,7 @@
         </lesson-details-card>
       </v-flex>
 
-      <v-flex xs12 order-3 order-md-4 md5 class="pr-md-5 mt-5" v-if="lesson.equipment.length">
+      <v-flex xs12 order-3 order-md-4 md6 class="pa-2" v-if="lesson.equipment.length">
         <lesson-details-card
           class="lesson_section"
           title="ציוד"
@@ -160,10 +160,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.lesson_section {
-  min-height: 160px;
-}
-
 .skills_content {
   overflow-y: auto;
   max-height: 98px;
@@ -175,11 +171,10 @@ export default {
   max-height: 85px;
 }
 
-.lesson_times_section {
+.lesson_section {
   background-color: #eee8;
-  height: 166px;
+  height: 160px;
   padding: 10px;
-  border-radius: 4px;
   box-shadow: 0 2px 3px 1px #8883;
 
   .lesson_time_box {
