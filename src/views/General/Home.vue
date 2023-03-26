@@ -139,7 +139,6 @@ import Recommendations from '../../components/Content/Recommendations.vue';
 import Trainers from "../../components/Content/Trainers.vue";
 import StarLogo from '../../components/General/StarLogo.vue';
 import SectionHeader from "../../components/Texts/SectionHeader.vue";
-import QuestionCard from '../../components/Cards/QuestionCard.vue';
 import ArrowsDecorator from '../../components/Decorators/ArrowsDecorator.vue'
 import HowItWorks from "../../components/Content/HowItWorks.vue";
 
@@ -155,7 +154,6 @@ export default {
     CourseBenefits,
     StarLogo,
     Recommendations,
-    QuestionCard,
     ArrowsDecorator,
     HowItWorks,
 },
