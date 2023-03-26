@@ -1,5 +1,5 @@
 <template>
-  <div class="course_page_wrapper" v-if="course && hasActiveCourse">
+  <div class="course_page_wrapper" v-if="initiatedLoading && course && hasActiveCourse">
 
     <v-flex class="course_page_image_wrapper mb-3" ref="courseHeader">
       <img loading="lazy" class="course_image" :src="course.imageSrc" alt="">
@@ -105,6 +105,15 @@ export default {
     $route() {
       this.setTabByRoute();
     },
+    
+    initiatedLoading: {
+      immediate: true,
+      handler() {
+        if(this.initiatedLoading && !this.hasActiveCourse) {
+          this.$router.push('/')
+        }
+      }
+    }
   },
 
   computed: {
@@ -125,6 +134,10 @@ export default {
 
     showTrailer() {
       return this.trailerFullScreen;
+    },
+
+    initiatedLoading() {
+      return this.$store.getters['UserState/initiated']
     },
 
     hasActiveCourse() {

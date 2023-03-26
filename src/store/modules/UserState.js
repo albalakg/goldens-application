@@ -20,11 +20,12 @@ const UserState = {
 
     getters: {
         supportTickets:     state   => state.supportTickets,
+        initiated:          state   => state.initiated,
         profile:            state   => state.profile,
         orders:             state   => state.orders,
         favorites:          state   => state.favorites,
         progress:           state   => state.progress,
-        hasActiveCourse:    state   => Boolean(state.courses && state.courses.length),
+        hasActiveCourse:    state   => state.courses == null ? null : Boolean(state.courses && state.courses.length),
         courses:            state   => state.courses,
         courseAreas:        state   => state.courseAreas,
         lessons:            state   => state.lessons,
@@ -139,12 +140,10 @@ const UserState = {
     },
 
     actions: {
-        async init({ state, commit, dispatch }) {
+        async init({ state, dispatch }) {
             if(state.initiated) {
                 return;
             }
-
-            commit('SET_INITIATED', true);
 
             return await Promise.allSettled(
                 [
@@ -154,6 +153,10 @@ const UserState = {
                     dispatch('getFavorites'),
                 ]
             )
+        },
+
+        setInitiated({ commit }, status) {
+            commit('SET_INITIATED', status);
         },
 
         clearUserState({ commit }) {

@@ -184,12 +184,6 @@ export default {
     };
   },
 
-  beforeCreate() {
-    if (Auth.isLogged()) {
-      this.$router.push('/courses/1');
-    }
-  },
-
   created() {
     this.getContent();
     this.$store.dispatch("ContentState/getCourse", this.ourOnlyCourseId);
@@ -207,6 +201,14 @@ export default {
       this.trailerFullScreen = document.fullscreenElement === trailer;
     });
 
+  },
+
+  watch: {
+    hasActiveCourse() {
+      if(this.hasActiveCourse) {
+        this.$router.push('/courses/1')
+      }
+    }
   },
 
   computed: {

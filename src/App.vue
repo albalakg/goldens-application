@@ -62,6 +62,8 @@ export default {
         this.$store.dispatch('AppState/setIsLoadingState', true);
         try {
           await this.$store.dispatch('UserState/init');
+          this.$store.dispatch('UserState/setInitiated', true);
+          
           if(isMobile()) {
             this.$store.dispatch('UserState/goToLastActiveCourse');
           }

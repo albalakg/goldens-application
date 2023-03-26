@@ -153,6 +153,10 @@ export default {
   },
 
   computed: {
+    hasActiveCourse() {
+      return this.$store.getters['UserState/hasActiveCourse']
+    },
+
     lesson() {
       return ContentService.findLessonById(this.$route.params.lesson_id)
     },
@@ -225,13 +229,15 @@ export default {
       immediate: true,
       deep: true,
       handler() {
+        if(!this.lesson) {
+          return this.$router.push('/');
+        }
         this.stopUpdateProgress();
-        // TODO: fix this line
         this.videoProgress.lesson_id = this.lesson.id;
         this.alertedALessonHasSkipped = false;
         this.alertIfSkippedLessons();
       }
-    }
+    },
   },
 
   methods: {
