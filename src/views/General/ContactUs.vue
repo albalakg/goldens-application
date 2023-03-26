@@ -33,15 +33,16 @@
           <div class="spacer"></div>
 
           <v-form class="text-right" @submit.prevent="submit()">
-            <email-input dark @onChange="setEmail" ref="email" />
+            <email-input floatingPlaceholder dark @onChange="setEmail" ref="email" />
 
             <div class="spacer"></div>
 
-            <full-name-input dark @onChange="setFullName" ref="fullName" />
+            <full-name-input floatingPlaceholder dark @onChange="setFullName" ref="fullName" />
 
             <div class="spacer"></div>
 
-            <contact-description-area
+            <contact-description-area 
+              floatingPlaceholder
               dark
               ref="description"
               @onChange="setDescription"

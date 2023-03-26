@@ -10,6 +10,7 @@
             :icon="icon ? iconSrc : ''"
             :maxlength="maxlength"
             :rules="rules"
+            :floatingPlaceholder="floatingPlaceholder"
             @onChange="onChange"
         />
     </div>
@@ -43,6 +44,11 @@ export default {
         placeholder: {
             type: Boolean,
             default: true
+        },
+        
+        floatingPlaceholder: {
+            type: Boolean,
+            default: false
         },
         
         title: {

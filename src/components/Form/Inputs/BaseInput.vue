@@ -8,7 +8,7 @@
             (לא חובה)
         </small>
     </div>
-    <div :class="{
+    <div v-if="floatingPlaceholder" :class="{
         'base_input_floating_placeholder_hidden': !(placeholder && value) || title
     }" class="mb-1 base_input_floating_placeholder">
         <strong>
@@ -114,6 +114,12 @@ export default {
         type: {
             type: String,
             default: 'text'
+        },
+
+        floatingPlaceholder: {
+            type: Boolean,
+            required: false,
+            default: false
         },
 
         placeholder: {

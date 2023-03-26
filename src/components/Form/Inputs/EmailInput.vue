@@ -10,6 +10,7 @@
             :title="title ? text : ''"
             :icon="icon ? iconSrc : ''"
             :rules="rules"
+            :floatingPlaceholder="floatingPlaceholder"
             @onChange="onChange"
         />
     </div>
@@ -49,6 +50,11 @@ export default {
             default: true
         },
         
+        floatingPlaceholder: {
+            type: Boolean,
+            default: false
+        },
+
         title: {
             type: Boolean,
         },

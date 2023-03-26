@@ -8,6 +8,7 @@
             :rules="rules"
             :placeholder="placeholder ? text : ''"
             :title="title ? text : ''"
+            :floatingPlaceholder="floatingPlaceholder"
             @onChange="onChange"
         />
     </div>
@@ -37,6 +38,11 @@ export default {
         placeholder: {
             type: Boolean,
             default: true
+        },
+        
+        floatingPlaceholder: {
+            type: Boolean,
+            default: false
         },
         
         title: {
