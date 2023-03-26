@@ -93,9 +93,25 @@
       <br />
       <br />
       <v-flex xs11 md9 lg7 xl5 mx-auto class="questions_wrapper">
-        <v-flex v-for="(question, index) in questions" :key="index" class="mb-5">
+        <v-expansion-panels>
+          <v-expansion-panel
+            v-for="(question, index) in questions"
+            :key="index"
+            
+          >
+            <v-expansion-panel-header class="main_bg_color">
+              <strong class="sub_text_color">
+                {{ question.title }}
+              </strong>
+            </v-expansion-panel-header>
+            <v-expansion-panel-content class="main_bg_color white_text_color">
+              {{question.content}}
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+        </v-expansion-panels>
+        <!-- <v-flex v-for="(question, index) in questions" :key="index" class="mb-5">
           <question-card dark :question="question" />
-        </v-flex>
+        </v-flex> -->
       </v-flex>
     </section>
 
@@ -459,6 +475,12 @@ export default {
   left: -50vh;
   height: 90vh;
   z-index: 0;
+}
+
+::v-deep .questions_wrapper {
+  .v-icon {
+    color: #fff !important;
+  }
 }
 
 @media only screen and (max-width: 600px) {

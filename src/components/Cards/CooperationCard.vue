@@ -1,7 +1,7 @@
 <template>
   <div class="cooperation_wrapper">
-    <marquee scrollamount="5">
-      <template v-for="index in 100">
+    <marquee>
+      <template v-for="index in 6">
         <span :key="'a' + index" class="cooperation_item">
           <strong>{{ cooperationText }}</strong>
           <!-- <logo dark :width="$vuetify.breakpoint.smAndDown ? '35%' : '15%'" /> -->

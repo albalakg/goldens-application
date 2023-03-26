@@ -198,8 +198,6 @@ h1 {
 }
 
 .phone_card {
-  height: 34vh;
-  width: 17vh;
   box-shadow: 0 0 5px 4px var(--subColor);
   border: 2px solid var(--mainColor);
   border-radius: 20px;
@@ -232,11 +230,32 @@ h1 {
 .phone_card_front {
   left: 10%;
   top: 43%;
+  height: 34vh;
+  width: 17vh;
 } 
 
 @media only screen and (max-width: 600px) {
   h1 {
     font-size: 2.3em;
+  }
+
+  .phone_card_on_side {
+    left: 4%;
+    top: 56%;
+    height: 20vh;
+    width: 10vh;
+    rotate: -15deg;
+  }
+
+  .phone_card_front {
+    left: 18%;
+    top: 54%;
+    height: 24vh;
+    width: 12vh;
+  } 
+
+  .phone_card, .phone_card img {
+    border-radius: 12px;
   }
 }
 </style>
