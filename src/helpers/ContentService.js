@@ -165,7 +165,9 @@ class ContentService {
       courseArea.active_lessons.forEach(lesson => {
         lesson.progress = this.getLessonProgressById(lesson.id)
       });
-      return courseArea.active_lessons
+      return courseArea.active_lessons.sort((a, b) => {
+        return this.sortByColumn('view_order', a, b);
+      });
     } catch(err) {
       error(err);
       return [];
@@ -180,7 +182,9 @@ class ContentService {
         lessons = lessons.concat(courseArea.active_lessons);
       });
 
-      return lessons;
+      return lessons.sort((a, b) => {
+        return this.sortByColumn('view_order', a, b);
+      });
     } catch(err) {
       error(err);
       return [];
@@ -340,6 +344,16 @@ class ContentService {
     }
 
     return `${day}.${month}.${year}`;
+  }
+
+  sortByColumn(column, a, b) {
+    if ( a[column] < b[column] ){
+      return -1;
+    }
+    if ( a[column] > b[column] ){
+      return 1;
+    }
+    return 0;
   }
 }
 

@@ -28,7 +28,10 @@
             <span class="dark_text_color">השאירו לנו </span>
             <span class="main_text_color">הודעה</span>
           </h2>          
-          <p>ואנחנו נענה עליה בהקדם</p>
+          <p>
+            אנחנו אוהדים מושבעים של אנשים כמוכם
+            שפשוט לא מפחדים לשאול
+          </p>
 
           <div class="spacer"></div>
 

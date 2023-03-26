@@ -87,7 +87,10 @@ export default {
   },
 
   mounted() {
-    this.setTabByRoute();
+    if(!isMobile()) {
+      this.setTabByRoute();
+    }
+    
     const trailer = this.$refs.trailer;
     if(!trailer) {
       return;
@@ -157,7 +160,8 @@ export default {
     setActiveTab(activeTabIndex) {
       this.activeTab = activeTabIndex;
       const path = `/courses/${this.course.id}/${this.tabs[activeTabIndex].url}`;
-      if(this.$route.path === path) {
+
+      if(this.$route.path.slice(0, -1) === path.slice(0, -1)) {
         return;
       }
 

@@ -77,7 +77,7 @@ export default {
 
     title: {
       type: Boolean,
-      required: true
+      required: false
     }
   },
 

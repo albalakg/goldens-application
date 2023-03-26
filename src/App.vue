@@ -128,7 +128,7 @@ export default {
     },
 
     setMenuMode() {
-      const pages = ['courses/%course_id%', 'courses/%course_id%/lessons', 'about', ''];
+      const pages = ['courses/%course_id%', 'courses/%course_id%/lessons', 'courses/%course_id%/', 'courses/%course_id%/schedule', 'about', ''];
       
       for(let index = 0; index < pages.length; index++) {
         let page      = pages[index];
