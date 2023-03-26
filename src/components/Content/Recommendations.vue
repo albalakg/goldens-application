@@ -92,6 +92,7 @@ export default {
         },
 
         moveRight () {
+            console.log('isRightArrowDisabled', this.isRightArrowDisabled);
             if(this.isRightArrowDisabled) {
                 return;
             }
@@ -108,6 +109,11 @@ export default {
     .recommendations_list {
         direction: ltr;
         position: relative;
+        cursor: grab;
+    }
+
+    .recommendations_list:active {
+        cursor: grabbing;
     }
 
     .arrow_chip {
@@ -115,15 +121,15 @@ export default {
         width: 36px;
         position: absolute;
         z-index: 2;
-        top: 33%;
+        top: 30%;
     }
 
     .right_arrow {
-        right: -3px;
+        right: 4px;
     }
 
     .left_arrow {
-        left: -3px;
+        left: 4px;
     }
 
 </style>

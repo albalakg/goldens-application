@@ -1,6 +1,6 @@
 <template>
     <div class="course_benefits_wrapper w100 pa-10 second_dark_bg_color" :class="{'rounded': $vuetify.breakpoint.mdAndUp}">
-        <div class="course_benefits_content h100 w100 pb-5">
+        <div class="course_benefits_content h100 w100">
             <circle-decorator class="circle_decorator"/>
             <!-- <h2 class="white_text_color">
                 <span class="sub_text_color">
@@ -24,7 +24,7 @@
                     d-flex
                     flex-column
                     justify-end
-                    class="course_benefit_item"
+                    class="course_benefit_item mb-4 mb-md-0"
                 >
                     <img :src="item.icon" :alt="`course ${item.title}`">
                     <div class="circle"></div>
@@ -76,17 +76,19 @@ export default {
 
     
     .course_benefits_wrapper {
+        height: 35vh;
         margin-top: 10vh;
         position: relative;
         z-index: 2;
 
         .course_benefits_content {
             overflow: hidden;
-            padding-top: 40px;
+            display: flex;
+            align-items: center;
 
             img {
-                height: 25%;
-                width: 25%;
+                height: 50px;
+                width: 50px;
                 margin-bottom: 10px;
                 position: relative;
                 z-index: 2;
@@ -153,6 +155,10 @@ export default {
     @media only screen and (max-width: 600px) {
         .circle {
             top: 30% !important;
+        }
+
+        .course_benefits_wrapper {
+            height: fit-content;
         }
     }
     

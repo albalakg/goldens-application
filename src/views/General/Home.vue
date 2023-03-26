@@ -508,18 +508,19 @@ export default {
   }
   
   .questions_section {
-    height: 60vh;
+    height: 100vh;
   }
 
   .arrows_decoration {
-    top: -59vh;
+    top: -25vh;
     left: none;
-    right: -50px;
-    height: 110vh;
+    right: 0%;
+    height: 100vh;
   }
 
   .trainers_section {
     padding-top: 25%;
   }
+  
 }
 </style>
