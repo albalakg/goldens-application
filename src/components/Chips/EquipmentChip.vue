@@ -1,9 +1,9 @@
 <template>
     <div class="equipment_chip">
-        <v-icon>
+        <!-- <v-icon>
             {{ icon }}
         </v-icon>
-        <br>
+        <br> -->
         <span>
             {{ text }}
         </span>
@@ -29,13 +29,13 @@ export default {
 <style scoped>
 
     .equipment_chip {
+        box-shadow: 0 2px 3px 1px #888;
+        border-radius: 4px;
         padding: 0px 10px;
         min-width: 75px;
         text-align: center;
-        border-radius: 12px;
         font-size: 1.2em;
-        background-color: #ffff;
-        box-shadow: 0 2px 3px 1px #8885;
+        background-color: #fff;
     }
     
 </style>

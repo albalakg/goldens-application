@@ -158,8 +158,7 @@ export default {
 
   methods: {
     setActiveTab(activeTabIndex) {
-      this.activeTab = activeTabIndex;
-      const path = `/courses/${this.course.id}/${this.tabs[activeTabIndex].url}`;
+      const path = `/courses/${this.course.id}${this.tabs[activeTabIndex].url ? '/' + this.tabs[activeTabIndex].url : ''}`;
 
       if(this.$route.path.slice(0, -1) === path.slice(0, -1)) {
         return;
@@ -170,6 +169,10 @@ export default {
 
     setTabByRoute() {
       const pathArray = this.$route.path.split('/');
+      if(pathArray.length === 3) {
+        return this.activeTab = this.tabs.findIndex(tab => tab.url === '');
+      }
+
       this.activeTab = this.tabs.findIndex(tab => tab.url === pathArray[pathArray.length - 1]);
     },
 

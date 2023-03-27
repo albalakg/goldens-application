@@ -1,6 +1,8 @@
 <template>
   <div class="course_area_wrapper" v-if="course">
-    <!-- small screen -->
+      <v-flex xs10 md6 lg5 xl3 mx-auto>
+        <new-training-activity-form :lessons="lessons" :courseId="course.id" />
+      </v-flex>
       <v-flex xl10 md11 mx-auto justify-center class="mt-10">
         <v-sheet height="64">
           <v-toolbar flat>
@@ -93,9 +95,10 @@
 
 <script>
 import MainButton from '../../components/Buttons/MainButton.vue';
+import NewTrainingActivityForm from '../../components/Form/NewTrainingActivityForm.vue';
 
 export default {
-  components: { MainButton, },
+  components: { MainButton, NewTrainingActivityForm, },
 
   props: {
     course: {
@@ -159,6 +162,17 @@ export default {
     }
   },
 
+  computed: {
+    lessons() {
+      try {
+        return ContentService.getLessonsByCourseId(this.course.id);
+      } catch (err) {
+        error(err);
+        return [];
+      }
+    },
+  },
+
   methods: {
     updateRange() {
       const events = [];
@@ -167,7 +181,7 @@ export default {
       this.course.active_areas_with_active_lessons.forEach(course_area => {
         lessons = lessons.concat(course_area.active_lessons)
       })
-      // const lessons = this.$store.getters["LessonState/lessons"];
+
       if (!lessons) {
         return;
       }
@@ -179,11 +193,11 @@ export default {
           return;
         }
 
-        const year = new Date(date).getFullYear();
-        let month = new Date(date).getMonth() + 1;
-        month = String(month).length === 1 ? "0" + month : month;
-        let day = new Date(date).getDate();
-        day = String(day).length === 1 ? "0" + day : day;
+        const year  = new Date(date).getFullYear();
+        let month   = new Date(date).getMonth() + 1;
+        month       = String(month).length === 1 ? "0" + month : month;
+        let day     = new Date(date).getDate();
+        day         = String(day).length === 1 ? "0" + day : day;
 
         events.push({
           lessonId: lesson.id,

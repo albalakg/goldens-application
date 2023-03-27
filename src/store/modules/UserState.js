@@ -75,6 +75,39 @@ const UserState = {
             });
         },
 
+        CREATE_TRAINING_SCHEDULE(state, newTrainingSchedule) {
+            const course = state.courses.find(course => course.id = newTrainingSchedule.courseId);
+            if(!course) {
+                return;
+            }
+
+            if(!course.schedules) {
+                course.schedules = [];
+            }
+
+            const lesson = ContentService.findLessonById(newTrainingSchedule.lessonId);
+            if(!lesson) {
+                return;
+            }
+
+            course.schedules.push({
+                date: newTrainingSchedule.date,
+                name: lesson.name,
+                description: lesson.description,
+                image: lesson.imageSrc,
+                course_area_id: lesson.course_area_id,
+            }); 
+
+            // state.courses.forEach(course => {
+            //     course.active_areas_with_active_lessons.forEach(courseArea => {
+            //         const lessonIndex = courseArea.active_lessons.findIndex(lesson => lesson.id === updatedLesson.id);
+            //         if(lessonIndex !== -1) {
+            //             courseArea.active_lessons[lessonIndex].schedule.date = updatedLesson.date;
+            //         }
+            //     })
+            // });
+        },
+
         UPDATE_USER_PROGRESS(state, data) {
             try {
                 const courseIndex   = state.progress.findIndex(course => course.id === data.user_course_id);
@@ -411,6 +444,19 @@ const UserState = {
                         warning(err);
                     })
             })
+       },
+        
+       createTrainingSchedule({ commit }, newTrainingSchedule) {
+           commit('CREATE_TRAINING_SCHEDULE', newTrainingSchedule);
+            // return new Promise((resolve) => {
+            //     axios.post('profile/lesson/training-schedule', newTrainingSchedule)
+            //         .then(res => {
+            //             return resolve(res.data.data);
+            //         })
+            //         .catch(err => {
+            //             warning(err);
+            //         })
+            // })
        },
 
     }

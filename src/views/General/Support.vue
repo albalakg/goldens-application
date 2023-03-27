@@ -17,7 +17,7 @@
         <p>תרגישו חופשי לשלוח איזו בקשה שרוצים</p>
       </div>
 
-      <v-form class="text-right" @submit="submit()">
+      <v-form class="text-right" @submit.prevent="submit()">
         <support-category-select @onChange="setSupportCategory" ref="supportCategory" />
 
         <div class="spacer"></div>
@@ -32,12 +32,18 @@
           <div class="spacer"></div>
         </template>
 
-        <base-text-area
+        <!-- <base-text-area
           outlined
           title="איך אפשר לעזור"
           ref="description"
           @onChange="setDescription"
-        />
+        /> -->
+        <contact-description-area 
+          floatingPlaceholder
+          outlined
+          ref="description"
+          @onChange="setDescription"
+          />
 
         <div class="spacer"></div>
 
@@ -54,16 +60,17 @@
 
 <script>
 import MainButton from "../../components/Buttons/MainButton.vue";
-import BaseTextArea from "../../components/Form/Inputs/BaseTextArea.vue";
 import EmailInput from "../../components/Form/Inputs/EmailInput.vue";
 import FullNameInput from "../../components/Form/Inputs/FullNameInput.vue";
 import SupportCategorySelect from "../../components/Form/Inputs/SupportCategorySelect.vue";
+import ContactDescriptionArea from '../../components/Form/Inputs/ContactDescriptionArea.vue';
+
 export default {
   components: {
     SupportCategorySelect,
     FullNameInput,
     EmailInput,
-    BaseTextArea,
+    ContactDescriptionArea,
     MainButton,
   },
 
@@ -108,6 +115,7 @@ export default {
 
     async submit() {
       try {
+
         if (!this.validate()) {
           return;
         }
@@ -131,10 +139,10 @@ export default {
     },
 
     validate() {
-      const isSupportCategoryValid = this.$refs.supportCategory.validate();
-      const isFullNameValid = this.isLogged ? true : this.$refs.fullName.validate();
-      const isEmailValid = this.isLogged ? true : this.$refs.email.validate();
-      const isDescriptionValid = this.$refs.description.validate();
+      const isSupportCategoryValid  = this.$refs.supportCategory.validate();
+      const isFullNameValid         = this.isLogged ? true : this.$refs.fullName.validate();
+      const isEmailValid            = this.isLogged ? true : this.$refs.email.validate();
+      const isDescriptionValid      = this.$refs.description.validate();
 
       return isSupportCategoryValid && isFullNameValid && isEmailValid && isDescriptionValid;
     },

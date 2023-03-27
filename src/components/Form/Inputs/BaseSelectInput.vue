@@ -81,6 +81,8 @@
 </template>
 
 <script>
+import { nextTick } from 'process';
+
 const BORDER_SIZE = 2;
 
 export default {
@@ -169,7 +171,8 @@ export default {
         }
     },
 
-    mounted() {
+    async mounted() {
+        await nextTick()
         this.itemsListWidth = this.getItemsListWidth();
     },
     
@@ -191,7 +194,11 @@ export default {
             }
 
             this.showList = false;
-        }   
+        },
+
+        viewValue() {
+            this.$emit('onChangeSearchValue', this.viewValue);
+        }
     },
 
     computed: {
@@ -239,7 +246,7 @@ export default {
         setValue(value) {
             this.values = [value];
             const viewValue = this.items.find(item => item.id === value)
-            this.setViewValues(viewValue.value)
+            this.setViewValues(viewValue.value);
         },
 
         toggleList() {

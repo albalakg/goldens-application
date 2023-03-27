@@ -92,7 +92,6 @@ export default {
         },
 
         moveRight () {
-            console.log('isRightArrowDisabled', this.isRightArrowDisabled);
             if(this.isRightArrowDisabled) {
                 return;
             }

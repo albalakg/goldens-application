@@ -1,7 +1,7 @@
 <template>
   <div class="settings_wrapper second_dark_bg_color pa-10">
     <div class="setting_header">
-      <v-flex d-flex align-center class="setting_row mt-5">
+      <v-flex d-flex align-center class="setting_row mt-10 pt-5">
         <v-icon class="close_icon" color="white" large @click="close()"
           >mdi-close</v-icon
         >

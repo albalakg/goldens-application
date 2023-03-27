@@ -10,7 +10,7 @@
 
         <div class="spacer"></div>
 
-        <v-flex class="pb-3 pb-md-6 pb-xl-10 pr-10" d-flex v-for="(item, index) in contactDetails" :key="index">
+        <v-flex class="pb-md-6 pb-xl-10 pr-10" d-flex v-for="(item, index) in contactDetails" :key="index">
           <v-flex xs2>
             <img loading="lazy" :src="item.image" alt="">
           </v-flex>
@@ -18,6 +18,11 @@
             <a v-if="item.link" class="simple_link white_text_color" :href="item.link">{{item.text}}</a>
             <span v-else class="white_text_color">{{item.text}}</span>
           </v-flex>
+        </v-flex>
+        <v-flex class="pr-10 pb-5">
+          <span class="grey_text_color">
+            שעות פעילות: ימים א'-ה' 10:00 - 17:00
+          </span>
         </v-flex>
       </v-flex>
       <v-flex xs11 mx-auto md8 class="contact_us_form_wrapper white_bg_color dark_shadow">
@@ -94,14 +99,14 @@ export default {
       locationMarkImage: require('../../../public/assets/images/general/goldens_location_mark.svg'),
       contactDetails: [
         {
-          text: 'קדימה-צורן, הברוש 109',
+          text: 'קדימה-צורן, הפקאן 21',
           image: require('../../../public/assets/images/general/location.svg'), 
           link: false
         },
         {
-          text: '052-8556745',
+          text: '052-1234455',
           image: require('../../../public/assets/images/general/phone.svg'), 
-          link: 'tel:052-8556745'
+          link: 'tel:052-1234455'
         },
         {
           text: 'contact@goldens.com',
