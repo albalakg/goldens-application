@@ -299,7 +299,6 @@ export default {
 
     setVideoStartTime() {
       const isPassedMostOfVideo = (this.startTime * 100 / this.lesson.video.video_length) > 80;
-      console.log(this.startTime, this.lesson.progress);
       if(this.$refs.video && !isPassedMostOfVideo) {
         this.$refs.video.setStartTime(this.startTime)
       }
