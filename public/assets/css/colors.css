@@ -1,11 +1,11 @@
 :root {
-  --mainColor: #0e3556;
+  --mainColor: #102a46;
   --mainColorWithHardOpacity: #0e355655;
   --mainColorWithOpacity: #0e3556aa;
-  --mainDarkColor: #1C3F64;
-  --mainDarkColorWithOpacity: #1C3F64aa;
-  --mainSecondDarkColor: #1C3F64;
-  --mainSecondDarkColorWithOpacity: #1C3F64aa;
+  --mainDarkColor: #0c2036;
+  --mainDarkColorWithOpacity: #0c2036aa;
+  --mainSecondDarkColor: #0c2036;
+  --mainSecondDarkColorWithOpacity: #0c2036aa;
   --subColor: #d5b26e;
   --subColorWithOpacity: #d5b26e88;
 }

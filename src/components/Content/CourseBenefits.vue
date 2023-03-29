@@ -23,7 +23,7 @@
                     :key="index"
                     d-flex
                     flex-column
-                    justify-end
+                    justify-start
                     class="course_benefit_item mb-4 mb-md-0"
                 >
                     <img :src="item.icon" :alt="`course ${item.title}`">
@@ -128,7 +128,7 @@ export default {
 
 
             h3 {
-                font-size: 1.3em;
+                font-size: 1.5em;
             }
             
             p {

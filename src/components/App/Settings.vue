@@ -1,7 +1,7 @@
 <template>
   <div class="settings_wrapper second_dark_bg_color pa-10">
     <div class="setting_header">
-      <v-flex d-flex align-center class="setting_row mt-10 pt-5">
+      <v-flex d-flex align-center class="setting_row mt-10 pt-8">
         <v-icon class="close_icon" color="white" large @click="close()"
           >mdi-close</v-icon
         >
@@ -56,7 +56,6 @@ export default {
     },
 
     links() {
-      const courses = this.$store.getters["ContentState/courses"];
       const links = [
         {
           text: "דף הבית",
@@ -99,16 +98,6 @@ export default {
           isLogged: true
         },
       ];
-
-      try {
-        links.unshift({
-          text: "הקורס שלנו",
-          url: "courses/" + courses[0].id,
-          isLogged: false
-        });
-      } catch (err) {
-        console.error(err);
-      }
 
       return links.filter(link => link.isLogged === this.isLogged || link.isLogged === null);
     },

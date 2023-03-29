@@ -39,12 +39,12 @@
 
     <section class="course_areas_section">
       <v-flex xl8 lg9 md10 mx-auto class="course_area_content">
-        <section-header class="mr-3 mr-md-0" right :title="'תחומי הקורס'" :subtitle="'תוכנית אימון שנתית המשלבת שישה תחומים המרכיבים את כל הדרוש על מנת להצליח להגיע למטרה ולהגשים את החלום'" :backgroundTitle="'תחומים'" />
-        <v-flex d-flex flex-wrap justify-space-between class="mt-5">
-          <v-flex md5>
+        <v-flex d-flex flex-wrap justify-space-between>
+          <v-flex md5 order-2 order-md-1 class="mt-10 mt-md-0">
+            <section-header class="mr-3 mr-md-0" right :title="'תחומי הקורס'" :subtitle="'תוכנית אימון שנתית המשלבת שישה תחומים המרכיבים את כל הדרוש על מנת להצליח להגיע למטרה ולהגשים את החלום'" :backgroundTitle="'תחומים'" />
             <course-area-list v-if="courseAreas" :courseAreas="courseAreas" guest separated @submit="clickOnCourseArea" />
           </v-flex>
-          <v-flex md5 class="course_area_free_text mt-10 mt-md-0 mx-md-0 mx-5">
+          <v-flex md5 order-1 order-md-2 class="course_area_free_text mb-10 mt-md-0 mx-md-0 mx-5">
             <strong>
               קצת עלינו
             </strong>
@@ -526,6 +526,10 @@ export default {
     left: 0;
     top: -9vh;
     right: 0;
+  }
+
+  .course_area_free_text {
+    border-radius: 0 50px 0 50px;
   }
 }
 </style>

@@ -228,13 +228,18 @@ export default {
     lesson: {
       immediate: true,
       deep: true,
-      handler() {
+      handler(oldVal, newVal) {
+
         if(!this.lesson) {
           return this.$router.push('/');
         }
+
         this.stopUpdateProgress();
         this.videoProgress.lesson_id = this.lesson.id;
-        this.alertedALessonHasSkipped = false;
+        if(oldVal && newVal && oldVal.id !== newVal.id) {
+          this.alertedALessonHasSkipped = false;
+        }
+
         this.alertIfSkippedLessons();
       }
     },

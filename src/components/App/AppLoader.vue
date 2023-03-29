@@ -25,7 +25,7 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #31353d;
+        background-color: var(--mainColor);
         z-index: 1000;
     }
 
