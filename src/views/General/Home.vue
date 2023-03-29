@@ -174,7 +174,6 @@ export default {
           url: "schedule",
         },
       ],
-      ourOnlyCourseId: 1,
       activeTab: 0,
       loading: true,
       trailerFullScreen: false,
@@ -184,7 +183,7 @@ export default {
 
   created() {
     this.getContent();
-    this.$store.dispatch("ContentState/getCourse", this.ourOnlyCourseId);
+    this.$store.dispatch("ContentState/getCourse");
   },
 
   mounted() {
@@ -221,12 +220,12 @@ export default {
       this.refreshKey;
       let courses = this.$store.getters["UserState/courses"];
       if (courses && courses.length) {
-        return courses.find((course) => course.id == this.ourOnlyCourseId);
+        return courses[0];
       }
 
       courses = this.$store.getters["ContentState/courses"];
       if (courses && courses.length) {
-        return courses.find((course) => course.id == this.ourOnlyCourseId);
+        return courses[0];
       }
 
       return null;

@@ -138,7 +138,7 @@ const ContentState = {
             })
        },
 
-        getCourse({ state, commit }, courseId) {
+        getCourse({ state, commit }, courseId = 1) {
             return new Promise((resolve) => {
                 if(state.courses) {
                     const course = state.courses.find(course => course.id == courseId);

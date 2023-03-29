@@ -42,9 +42,7 @@
 </template>
 
 <script>
-import MainButton from "../Buttons/MainButton.vue";
 export default {
-  components: { MainButton },
 
   data() {
     return {
@@ -109,7 +107,7 @@ export default {
           isLogged: false
         });
       } catch (err) {
-
+        console.error(err);
       }
 
       return links.filter(link => link.isLogged === this.isLogged || link.isLogged === null);
