@@ -508,7 +508,7 @@ export default {
   }
   
   .questions_section {
-    height: 100vh;
+    height: 70vh;
   }
 
   .arrows_decoration {
