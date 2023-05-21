@@ -1,5 +1,5 @@
 <template>
-    <v-form @submit="submit()">
+    <v-form @submit.prevent="submit()">
         <v-flex d-flex flex-wrap>
             <v-flex ml-md-2>
                 <first-name-input

@@ -144,12 +144,12 @@ export default {
             
             & > div {
                 transition: .3s transform;
-                min-width: 250px;
+                min-width: 225px;
             }
 
             & > div:hover {
                 transform: scale(1.2);
-                z-index: 2;
+                z-index: 3;
             }
         }
 

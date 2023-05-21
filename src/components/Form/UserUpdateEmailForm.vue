@@ -1,5 +1,5 @@
 <template>
-<v-form @submit="submit()">
+<v-form @submit.prevent="submit()">
     <email-input 
         ref="email"
         :loading="loading"

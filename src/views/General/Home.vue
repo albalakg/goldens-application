@@ -28,7 +28,7 @@
 
     
     <section class="benefits_section">
-      <star-logo class="benefits_background_effect" gstar />
+      <star-logo class="benefits_background_effect" v-show="$vuetify.breakpoint.mdAndUp" gstar />
       <section-header :title="'מה יצא לכם מזה'" :backgroundTitle="'מידע כללי'" />
       <v-flex xl8 lg9 md10 mx-auto>
         <course-benefits />
@@ -61,8 +61,10 @@
     <div class="separator"></div>
 
     <section class="trainers_section pb-4 px-5">
-      <trainers :right="!$vuetify.breakpoint.smAndDown" v-if="trainers.length"
-        :trainers="trainers" />
+      <v-flex xl8 lg9 md10 mx-auto>
+        <trainers :right="!$vuetify.breakpoint.smAndDown" v-if="trainers.length"
+          :trainers="trainers" />
+      </v-flex>
     </section>
     
     <div class="separator"></div>
@@ -463,7 +465,7 @@ export default {
 
 .questions_section {
   position: relative;
-  height: 80vh;
+  min-height: 80vh;
 }
 
 .questions_wrapper {
@@ -508,7 +510,7 @@ export default {
   }
   
   .questions_section {
-    height: 70vh;
+    min-height: 70vh;
   }
 
   .arrows_decoration {
@@ -522,11 +524,11 @@ export default {
     padding-top: 25%;
   }
 
-  .benefits_background_effect {
-    left: 0;
-    top: -9vh;
-    right: 0;
-  }
+  // .benefits_background_effect {
+  //   left: 0;
+  //   top: -9vh;
+  //   right: 0;
+  // }
 
   .course_area_free_text {
     border-radius: 0 50px 0 50px;

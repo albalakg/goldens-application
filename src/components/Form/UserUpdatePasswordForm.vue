@@ -1,6 +1,6 @@
 <template>
 <div>
-    <v-form @submit="submit()" v-if="showPasswordForm">
+    <v-form @submit.prevent="submit()" v-if="showPasswordForm">
         <password-input 
             ref="oldPassword"
             text="סיסמה נוכחית"

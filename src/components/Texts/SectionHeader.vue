@@ -137,8 +137,8 @@ export default {
         }
 
         .section_header_wrapper h2 {
-            font-size: 5.2em;
-            top: -45px;
+            font-size: 4.5em;
+            top: -25px;
         }
     }
 

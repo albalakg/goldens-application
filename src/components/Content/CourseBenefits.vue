@@ -74,7 +74,7 @@ export default {
 
     
     .course_benefits_wrapper {
-        height: 35vh;
+        min-height: 35vh;
         margin-top: 10vh;
         position: relative;
         z-index: 2;

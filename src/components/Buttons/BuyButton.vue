@@ -7,9 +7,9 @@
     }"
     @click="submit()"
 >
-    <span>
+    <strong>
         רכוש עכשיו
-    </span>
+    </strong>
 
     <slot name="content">
 
@@ -68,6 +68,12 @@ export default {
 
     .slim_buy_button_wrapper {
         padding: 0px 20px;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .buy_button_wrapper {
+            padding: 7px 25px;
+        }
     }
 
 </style>
