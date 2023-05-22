@@ -14,10 +14,10 @@ import TimeService from './helpers/TimeService'
 import StatusService from './helpers/StatusService'
 import { LOCAL, PROD } from './helpers/EnvService'
 import Auth from "./helpers/Auth";
+import AddToHome from "./helpers/AddToHome"
 
 Vue.config.productionTip  = false
 axios.defaults.baseURL    = process.env.VUE_APP_SERVER_BASE_URL + '/api/';
-
 window.ClientService      = ClientService;
 window.isMobile           = ClientService.isMobile;
 window.error              = error;

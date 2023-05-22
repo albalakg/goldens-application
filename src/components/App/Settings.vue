@@ -8,12 +8,13 @@
         <h2 class="mr-5">תפריט</h2>
       </v-flex>
 
-      <!-- <main-button
+      <main-button
         class="setting_download_button setting_row"
         subColor
         :styleConfig="{
           borderRadius: 25,
         }"
+        @submit="addToHomescreen()"
       >
         <template slot="content">
           <v-flex d-flex align-center justify-space-between>
@@ -22,14 +23,14 @@
             <img loading="lazy" :src="downloadIcon" alt="download icon" />
           </v-flex>
         </template>
-      </main-button> -->
+      </main-button>
     </div>
 
     <div class="settings_links">
       <div
         v-for="(link, index) in links"
         :key="index"
-        class="setting_row mb-10 settings_link"
+        class="setting_row mb-6 settings_link"
       >
         <h3 @click="close()">
           <router-link class="simple_link grey_text_color" :to="'/' + link.url">
@@ -42,7 +43,12 @@
 </template>
 
 <script>
+import MainButton from '../Buttons/MainButton.vue';
 export default {
+
+  components: {
+    MainButton,
+  },
 
   data() {
     return {
@@ -107,6 +113,10 @@ export default {
     close() {
       this.$emit("close");
     },
+
+    addToHomescreen() {
+      addToHomescreen();
+    }
   },
 };
 </script>
