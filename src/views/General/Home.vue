@@ -8,10 +8,10 @@
             ? 'course_page_image_darkner_left_to_right'
             : 'course_page_image_darkner_right_to_left'
         "></div>
-        <div class="course_page_image_details" :class="{ 'pr-5 pr-md-0': !hasActiveCourse }">
+        <div class="course_page_image_details">
           <course-header title :course="course">
             <template slot="headerContent">
-              <buy-button @submit="scrollToBuySection()" />
+              <buy-button @submit="scrollToBuySection()" class="mr-3 mr-md-0" />
             </template>
           </course-header>
         </div>

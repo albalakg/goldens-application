@@ -67,7 +67,7 @@ export default {
     data() {
         return {
             text:       'שם הקבוצה',
-            iconSrc:    'mdi-account-circle',
+            iconSrc:    'mdi-account-group',
             rules: [
                 {
                     rule: /^.{2,100}$/,

@@ -5,7 +5,7 @@
                 <v-flex xs12 md6 lg7 xl8>
                     <star-logo colored class="star_image" />
                 </v-flex>
-                <v-flex xs12 md6 lg5 xl4 px-5 px-md-0>
+                <v-flex xs12 md6 lg5 xl4 px-5 px-md-0 mb-md-8>
                     <v-flex md8>
                         <v-form class="signin_form" ref="form" @submit.prevent="submit()">
                             <h2 class="auth_form_title"><span class="main_text_color">הרשמה</span> לאתר</h2>
@@ -76,6 +76,17 @@
                                 optional
                                 icon
                                 @onChange="setCity" 
+                            />
+
+                            <div class="spacer"></div>
+
+                            <birthdate-input 
+                                ref="birthdate"
+                                outlined
+                                title
+                                optional
+                                icon
+                                @onChange="setBirthdate" 
                             />
                             
                             <div class="spacer"></div>
@@ -148,6 +159,7 @@ import FirstNameInput from '../../components/Form/Inputs/FirstNameInput.vue'
 import LastNameInput from '../../components/Form/Inputs/LastNameInput.vue'
 import TeamInput from '../../components/Form/Inputs/TeamInput.vue'
 import CityInput from '../../components/Form/Inputs/CityInput.vue'
+import BirthdateInput from '../../components/Form/Inputs/BirthdateInput.vue'
 
 export default {
     components: {
@@ -160,6 +172,7 @@ export default {
         LastNameInput,
         TeamInput,
         CityInput,
+        BirthdateInput,
     },
     
     data() {
@@ -171,6 +184,7 @@ export default {
                 last_name:  '',
                 team:       '',
                 city:       '',
+                birth_date: '',
             },
             loading: false
         }
@@ -190,7 +204,7 @@ export default {
                     this.$router.push('/signin');
                     this.$store.dispatch('MessageState/addInfoMessage', {message: 'נרשמת בהצלחה למערכת, ברוך הבא!'})
                 }).catch(() => {
-                    this.$store.dispatch('MessageState/addErrorMessage', { message: 'האימייל או הסיסמה אינם תקינים' })
+                    this.$store.dispatch('MessageState/addErrorMessage', { message: 'מצטערים, אך נתקלנו בשגיאה במהלך ההרשמה' })
                 }).finally(() => {
                     this.loading = false;
                 })
@@ -208,8 +222,9 @@ export default {
             const isLastNameValid   = this.$refs.lastName.validate();
             const isTeamValid       = this.$refs.team.validate();
             const isCityValid       = this.$refs.city.validate();
+            const isBirthdateValid   = this.$refs.birthdate.validate();
 
-            return isEmailValid && isPasswordValid && isFirstNameValid && isLastNameValid && isTeamValid && isCityValid;
+            return isEmailValid && isPasswordValid && isFirstNameValid && isLastNameValid && isTeamValid && isCityValid && isBirthdateValid;
         },
 
         setEmail(email) {
@@ -234,6 +249,10 @@ export default {
 
         setCity(city) {
             this.form.city = city;
+        },
+
+        setBirthdate(birthdate) {
+            this.form.birth_date = birthdate;
         },
     }
 }

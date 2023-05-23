@@ -39,9 +39,15 @@
 
     <v-flex v-else md9 mx-auto class="text-right">
         <v-flex>
-            <h1 v-if="title">
+            <h1 
+              v-if="title"
+              :class="{
+                'text-center': $vuetify.breakpoint.smAndDown,
+                'mobile-title': $vuetify.breakpoint.smAndDown
+              }"
+            >
               להתאמן בכל מקום ובכל זמן
-              <br>
+              <div class="title_separator"></div>
               <span>
                עם המאמנים הכי טובים
               </span>
@@ -160,6 +166,10 @@ h1 {
   font-size: 3em;
   z-index: 3;
 
+  &.mobile-title {
+    font-size: 1.7em;
+  }
+
   span {
     position: relative;
     bottom: 20px;
@@ -168,6 +178,10 @@ h1 {
 .course_page_actions_wrapper {
   position: relative;
   z-index: 3;
+}
+
+.title_separator {
+  height: 10px;
 }
 
 .divider {

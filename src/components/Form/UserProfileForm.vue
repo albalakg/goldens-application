@@ -75,6 +75,19 @@
             </v-flex>
         </v-flex>
 
+        <v-flex d-flex flex-wrap mt-5>
+            <v-flex md6>
+                <birthdate-input 
+                    ref="birthdate"
+                    outlined
+                    title
+                    optional
+                    icon
+                    @onChange="setBirthdate"
+                />
+            </v-flex>
+        </v-flex>
+
         <v-flex d-flex justify-end mt-10 mt-md-5>
             <v-flex xs12 md4 lg2>
                 <main-button 
@@ -93,26 +106,29 @@ import FirstNameInput from '../../components/Form/Inputs/FirstNameInput.vue'
 import GenderSelect from '../../components/Form/Inputs/GenderSelect.vue'
 import LastNameInput from '../../components/Form/Inputs/LastNameInput.vue'
 import PhoneInput from '../../components/Form/Inputs/PhoneInput.vue'
+import BirthdateInput from './Inputs/BirthdateInput.vue'
 import CityInput from './Inputs/CityInput.vue'
 import TeamInput from './Inputs/TeamInput.vue'
 export default {
-    components: { 
-        FirstNameInput, 
-        LastNameInput,
-        PhoneInput,
-        GenderSelect,
-        MainButton,
-        CityInput,
-        TeamInput,
-    },
+    components: {
+    FirstNameInput,
+    LastNameInput,
+    PhoneInput,
+    GenderSelect,
+    MainButton,
+    CityInput,
+    TeamInput,
+    BirthdateInput
+},
 
     data() {
         return {
             form: {
                 first_name: '',
-                last_name: '',
-                phone: '',
-                gender: '',
+                last_name:  '',
+                phone:      '',
+                gender:     '',
+                birth_date: '',
             },
             loading: true,
         }
@@ -156,6 +172,10 @@ export default {
                 this.$refs.city.setValue(this.$store.getters['UserState/city']);
             }
 
+            if(this.$store.getters['UserState/birthdate']) {
+                this.$refs.birthdate.setValue(this.$store.getters['UserState/birthdate']);
+            }
+
             this.$refs.firstName.$el.focus();
             this.loading = false;
         },
@@ -182,6 +202,10 @@ export default {
 
         setPhone(value) {
             this.form.phone = value;
+        },
+
+        setBirthdate(birthdate) {
+            this.form.birth_date = birthdate;
         },
 
         async submit() {

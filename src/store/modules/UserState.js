@@ -37,14 +37,15 @@ const UserState = {
         email:              state   => state.profile.email,
         team:               state   => state.profile.team,
         city:               state   => state.profile.city,
+        birthdate:          state   => state.profile.birth_date,
         lastActive:         state   => state.lastActive,
     },
 
     mutations: {
         SET_USER_PROFILE(state, userProfile) {
             state.profile       = userProfile;
-            state.profile.team  = userProfile.team?.name
-            state.profile.city  = userProfile.city?.name
+            state.profile.team  = userProfile.team?.name;
+            state.profile.city  = userProfile.city?.name;
         },
         
         SET_USER_DETAILS(state, userDetails) {
@@ -54,6 +55,7 @@ const UserState = {
             state.profile.phone         = userDetails.phone;
             state.profile.city          = userDetails.city;
             state.profile.team          = userDetails.team;
+            state.profile.birth_date    = userDetails.birth_date;
         },
         
         SET_USER_SUPPORT_TICKETS(state, userSupportTickets) {
@@ -97,15 +99,6 @@ const UserState = {
                 image: lesson.imageSrc,
                 course_area_id: lesson.course_area_id,
             }); 
-
-            // state.courses.forEach(course => {
-            //     course.active_areas_with_active_lessons.forEach(courseArea => {
-            //         const lessonIndex = courseArea.active_lessons.findIndex(lesson => lesson.id === updatedLesson.id);
-            //         if(lessonIndex !== -1) {
-            //             courseArea.active_lessons[lessonIndex].schedule.date = updatedLesson.date;
-            //         }
-            //     })
-            // });
         },
 
         UPDATE_USER_PROGRESS(state, data) {
