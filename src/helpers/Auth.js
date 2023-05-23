@@ -15,7 +15,12 @@ class Auth {
     }
 
     createCookie(data) {
-        document.cookie = `${COOKIE_NAME}=${this.encrypt(data)};SameSite=Lax;secure;expires=${new Date(data.expired_at)}`;
+        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+        if(isSafari) {
+            document.cookie = `${COOKIE_NAME}=${this.encrypt(data)};expires=${new Date(data.expired_at)}`;
+        } else {
+            document.cookie = `${COOKIE_NAME}=${this.encrypt(data)};SameSite=Lax;secure;expires=${new Date(data.expired_at)}`;
+        }
     }
 
     logout() {

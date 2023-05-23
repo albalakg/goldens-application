@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { error, warning } from "./helpers/GlobalMethods";
 import Vue from 'vue'
 import App from './App.vue'
@@ -5,7 +6,6 @@ import vuetify from './plugins/vuetify'
 import router from './router'
 import store from './store'
 import axios from "axios";
-// eslint-disable-next-line no-unused-vars
 import AxiosHandler from './helpers/AxiosHandler'
 import ContentService from './helpers/ContentService'
 import CookieService from './helpers/CookieService'

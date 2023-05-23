@@ -211,6 +211,7 @@ export default {
             position: fixed;
             top: -40%;
             right: -40%;
+            pointer-events: none;
         }
             
         @media only screen and (max-width: 600px) {

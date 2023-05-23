@@ -57,7 +57,7 @@ export default {
             {
                 icon: require("../../../public/assets/images/general/whistle.svg"),
                 title: "אימון מנטאלי מעצים, בשלות ואופי חזק",
-                content: `הרגשת במטחון במגרש, התמודדות עם אתגרים, מינוף כשלונות ותחירה למטרה שהוצבה`,
+                content: `הרגשת במטחון במגרש, התמודדות עם אתגרים, מינוף כשלונות וחתירה למטרה שהוצבה`,
             },
             {
                 icon: require("../../../public/assets/images/general/walker.svg"),

@@ -204,6 +204,7 @@ export default {
         position: absolute;
         top: -80%;
         right: -48%;
+        pointer-events: none;
     }
 
 </style>

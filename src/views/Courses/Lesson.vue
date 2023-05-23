@@ -278,6 +278,10 @@ export default {
         this.sendRequest();
         this.videoProgress.start_time = videoElement.currentTime;
 
+        if(videoElement.duration <= videoElement.currentTime) {
+          this.stopUpdateProgress();
+        }
+
       }, SPACE_BETWEEN_VIDEO_PROGRESS_UPDATE);
     },
 
@@ -289,6 +293,7 @@ export default {
     },
 
     onVideoEnd() {
+      this.stopUpdateProgress();
       this.showEndLessonScreen = true;
       this.$store.dispatch('MessageState/addSuccessMessage', {title: this.getRandomTitle(), message: `סיימת את שיעור ${this.lesson.name}`})
     },
@@ -435,6 +440,7 @@ export default {
     right: -10vw;
     min-width: 350px;
     min-height: 350px;
+    pointer-events: none;
   }
 
   .circle_decorator {

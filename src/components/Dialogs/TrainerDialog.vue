@@ -21,8 +21,7 @@
 
             <div class="divider my-md-4"></div>
 
-            <p>
-              {{ trainer.description }}
+            <p v-html="trainer.description">
             </p>
           </v-flex>
         </v-flex>

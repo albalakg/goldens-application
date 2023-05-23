@@ -252,7 +252,7 @@ const UserState = {
                 })
         },
 
-        getProfile({ commit, dispatch}) {
+        getProfile({ commit, dispatch }) {
             axios.get('profile')
                 .then(res => {
                     const details = res.data.data.details;
