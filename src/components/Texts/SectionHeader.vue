@@ -16,6 +16,7 @@
     ></div>
 
     <p v-if="subtitle" class="mt-2" :class="{
+        'grey_text_color': dark,
         'ml-auto': right,
         'mr-auto': left,
         'mx-auto': !left && !right,

@@ -61,8 +61,9 @@
     <div class="separator"></div>
 
     <section class="trainers_section pb-4 px-5">
+      <img class="trainers_background" src="./../../../public/assets/images/trainers/Trainers-background-sm.webp" alt="trainers background">
       <v-flex xl8 lg9 md10 mx-auto>
-        <trainers :right="!$vuetify.breakpoint.smAndDown" v-if="trainers.length"
+        <trainers dark :right="!$vuetify.breakpoint.smAndDown" v-if="trainers.length"
           :trainers="trainers" />
       </v-flex>
     </section>
@@ -429,12 +430,18 @@ export default {
 
 .trainers_section {
   // background-color: var(--mainSecondDarkColor);
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   z-index: 2;
+
+  .trainers_background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
     
   // background-image: linear-gradient(135deg, rgba(23,58,112, 0.8) 0%, rgba(23,58,112, 0.8) 15%,transparent 15%, transparent 32%,rgba(28,57,100, 0.81) 32%, rgba(28,57,100, 0.81) 100%),linear-gradient(0deg, rgba(28,57,100, 0.81) 0%, rgba(28,57,100, 0.81) 37%,transparent 37%, transparent 55%,rgba(28,57,100, 0.81) 55%, rgba(28,57,100, 0.81) 63%,rgba(32,70,127, 0.8) 63%, rgba(32,70,127, 0.8) 100%),linear-gradient(90deg, rgb(230, 182, 95),rgb(230, 182, 95));
   // background-image: linear-gradient(135deg, rgba(23, 58, 112, 0.85) 0%, rgba(23, 58, 112, 0.85) 15%, transparent 15%, transparent 32%, rgba(28, 57, 100, 0.88) 32%, rgba(28, 57, 100, 0.88) 100%), linear-gradient(0deg, rgba(28, 57, 100, 0.88) 0%, rgba(28, 57, 100, 0.88) 37%, transparent 37%, transparent 55%, rgba(28, 57, 100, 0.88) 55%, rgba(28, 57, 100, 0.88) 63%, rgb(255, 254, 252) 63%, rgb(255, 254, 252) 100%), linear-gradient(90deg, rgb(230, 182, 95), rgb(230, 182, 95));

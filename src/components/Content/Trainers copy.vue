@@ -5,36 +5,43 @@
         </section-header>
 
         <br>
-
-        <div class="trainer_content">
-            <v-flex v-if="$vuetify.breakpoint.mdAndUp" d-flex justify-space-between flex-wrap>
-                <!-- <img class="trainers_background" src="./../../../public/assets/images/trainers/trainers-desktop.webp" alt="trainers"> -->
-                <div v-for="(trainer, index) in trainers" :key="index">
-                    <img class="trainer_card" src="./../../../public/assets/images/trainers/trainer-card.png" alt="trainer card">
-                </div>
+        
+        <v-flex :class="{
+            'xs10 xl9': !full
+        }" mx-auto>
+            <v-flex class="trainers_desktop_wrapper mt-10" d-none d-md-block>
+                <v-flex class="trainers_wrapper mr-auto">
+                    <trainer-card class="ml-2" v-for="(trainer, index) in viewTrainers" :trainer="trainer" :key="index" />
+                </v-flex>
             </v-flex>
-
-            <v-flex class="trainers_mobile_wrapper mt-md-10 pt-md-5" v-else>
+            
+            <v-flex class="trainers_mobile_wrapper mt-10 pt-5" d-flex d-md-none>
                 <arrow-chip v-show="showNextTrainerArrow" @submit="goToLastTrainer()" :left="false" class="lesson_wrapper_right_icon" />
                 <v-flex class="trainers_wrapper mr-auto" ref="trainers">
-                    <div v-for="(trainer, index) in trainers" :key="index" :ref="`trainer-${index}`">
-                        <img class="trainer_card" src="./../../../public/assets/images/trainers/trainer-card.png" alt="trainer card">
-                    </div>
+                    <trainer-card-mobile v-for="(trainer, index) in trainers" :trainer="trainer" :key="index" :ref="`trainer-${index}`" />
                 </v-flex>
                 <arrow-chip v-show="showLastTrainerArrow" @submit="goToNextTrainer()" class="lesson_wrapper_left_icon" />
             </v-flex>
-        </div>
-        
+
+            
+        </v-flex>
+
+
+
     </div>
 </template>
 
 <script>
+import TrainerCard from '../Cards/TrainerCard.vue';
+import TrainerCardMobile from '../Cards/TrainerCardMobile.vue';
 import ArrowChip from '../Chips/arrowChip.vue';
 import SectionHeader from '../Texts/SectionHeader.vue';
 
 export default {
 
     components: {
+        TrainerCard,
+        TrainerCardMobile,
         ArrowChip,
         SectionHeader,
     },
@@ -104,8 +111,7 @@ export default {
 
         moveToTrainer(goToTrainerIndex) {
             try {
-                // const trainer = this.$refs[`trainer-${goToTrainerIndex}`][0].$el;
-                const trainer = this.$refs[`trainer-${goToTrainerIndex}`][0];
+                const trainer = this.$refs[`trainer-${goToTrainerIndex}`][0].$el;
                 trainer.scrollIntoView({behavior: "smooth", block: "center", inline: "center"})
                 this.focusedTrainerIndex = goToTrainerIndex;
             } catch(err) {
@@ -118,8 +124,35 @@ export default {
 
 <style scoped lang="scss">
 
-    .trainer_content {
+    .trainers_desktop_wrapper {
         position: relative;
+        width: 100%;
+        display: flex;
+        height: 35vh;
+        min-height: 400px;
+        max-height: 450px;
+
+        .trainers_wrapper {
+            scroll-behavior: smooth;
+            height: 100%;
+            width: 100%;
+            display: flex;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+            
+            & > div {
+                transition: .3s transform;
+                min-width: 250px;
+            }
+
+            & > div:hover {
+                transform: scale(1.2);
+                z-index: 2;
+            }
+        }
+
     }
 
     .trainers_mobile_wrapper {
@@ -147,15 +180,13 @@ export default {
 
         .lesson_wrapper_right_icon {
             position: absolute;
-            right: 0px;
-            top: 40%;
+            right: 15px;
             z-index: 5;                
         }
 
         .lesson_wrapper_left_icon {
             position: absolute;
-            left: 0px;
-            top: 40%;
+            left: 15px;
             z-index: 5;                
         }
     }

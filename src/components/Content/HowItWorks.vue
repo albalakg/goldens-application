@@ -98,7 +98,7 @@ export default {
     h3 {
         font-size: 7em;
         position: absolute;
-        right: 5%;
+        right: 15px;
     }
 
     
@@ -126,6 +126,12 @@ export default {
         p {
             bottom: -35%;
             position: absolute;
+        }
+    }
+
+    @media only screen and (max-width: 1400px) {
+        h3 {
+            right: -15px;
         }
     }
 
