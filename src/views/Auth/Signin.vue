@@ -132,7 +132,11 @@ export default {
                 email: '',
                 password: '',
             },
-            loading: false
+            loading: false,
+            errorsMapping: {
+                'Email or password is invalid': 'האימייל או הסיסמה אינם תקינים',
+                'Please confirm your email first': 'מצטערים, אך צריכים שקודם תאשר את המייל',
+            }
         }
     },
 
@@ -152,12 +156,20 @@ export default {
                     this.$store.dispatch('MessageState/addInfoMessage', {type: 'info', title: 'ברוך הבא', message: 'התחברת בהצלחה ' + Auth.firstName()});
                     this.loggedSuccessfullyActions();
                     
-                }).catch(() => {
-                    this.$store.dispatch('MessageState/addErrorMessage', {message: 'האימייל או הסיסמה אינם תקינים' })
+                }).catch((err) => {
+                    this.handleLoginError(err);
                 }).finally(() => {
                     this.loading = false;
                 })
 
+        },
+
+        handleLoginError(error) {
+            try {
+                this.$store.dispatch('MessageState/addErrorMessage', {message: this.errorsMapping[error.response.data.message] })
+            } catch(err) {
+                this.$store.dispatch('MessageState/addErrorMessage', {message: 'מצטערים אך יש תקלה בנסיון ההתחברות' })
+            }
         },
 
         async loggedSuccessfullyActions(){

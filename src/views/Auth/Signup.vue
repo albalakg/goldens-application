@@ -312,7 +312,7 @@ export default {
         },
 
         preSendActions() {
-            this.loading    = true;
+            this.loading = true;
         },
 
         validate() {
