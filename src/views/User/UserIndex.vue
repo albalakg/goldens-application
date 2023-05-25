@@ -109,13 +109,11 @@
 
 <script>
 import MainButton   from '../../components/Buttons/MainButton.vue';
-import ProfileCard  from '../../components/Cards/ProfileCard.vue';
 import ColoredCircleDecorator from '../../components/Decorators/ColoredCircleDecorator.vue';
 import MainTabs     from '../../components/Tabs/MainTabs.vue';
 
 export default {
     components: { 
-        ProfileCard,
         MainButton,
         MainTabs,
         ColoredCircleDecorator,
