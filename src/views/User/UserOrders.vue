@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import { type } from 'os';
 import OrderCourseCard from '../../components/Cards/OrderCourseCard.vue';
 export default {
   components: { OrderCourseCard },
