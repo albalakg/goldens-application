@@ -39,7 +39,9 @@
             }"
         >
             <small>
-                {{ errorMessage }}
+                <strong>
+                    {{ errorMessage }}
+                </strong>
             </small>
         </div>
     </div>

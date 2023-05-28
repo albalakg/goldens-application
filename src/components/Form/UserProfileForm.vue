@@ -93,6 +93,7 @@
                 <main-button 
                     :text="'עדכן פרטים'"
                     shadow
+                    :disabled="!formHasChanged"
                     :loading="loading"
                 />
             </v-flex>
@@ -101,6 +102,7 @@
 </template>
 
 <script>
+import { nextTick } from 'process'
 import MainButton from '../../components/Buttons/MainButton.vue'
 import FirstNameInput from '../../components/Form/Inputs/FirstNameInput.vue'
 import GenderSelect from '../../components/Form/Inputs/GenderSelect.vue'
@@ -128,8 +130,11 @@ export default {
                 last_name:  '',
                 phone:      '',
                 gender:     '',
+                team:     '',
+                city:     '',
                 birth_date: '',
             },
+            initForm: '',
             loading: true,
         }
     },
@@ -149,6 +154,13 @@ export default {
     computed: {
         firstName() {
             return this.$store.getters['UserState/firstName']
+        },
+
+        formHasChanged() {
+            console.log(this.initForm);
+            console.log(JSON.stringify(this.form));
+            console.log(this.initForm !== JSON.stringify(this.form));
+            return this.initForm !== JSON.stringify(this.form)
         }
     },
 
@@ -156,6 +168,7 @@ export default {
         setInitialData() {
             this.$refs.firstName.setValue(this.$store.getters['UserState/firstName']);
             this.$refs.lastName.setValue(this.$store.getters['UserState/lastName']);
+
             if(this.$store.getters['UserState/phone']) {
                 this.$refs.phone.setValue(this.$store.getters['UserState/phone']);
             }
@@ -178,6 +191,10 @@ export default {
 
             this.$refs.firstName.$el.focus();
             this.loading = false;
+
+            nextTick(() => {
+                this.initForm = JSON.stringify(this.form);
+            })
         },
 
         setFirstName(value) {

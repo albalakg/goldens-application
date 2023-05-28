@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { type } from 'os';
 import OrderCourseCard from '../../components/Cards/OrderCourseCard.vue';
 export default {
   components: { OrderCourseCard },
@@ -28,9 +29,9 @@ export default {
 
     computed: {
         orders() {
-            let orders  = this.$store.getters['UserState/orders']
+            let orders  = this.$store.getters['UserState/orders'];
             if(!orders || !orders.length) {
-                return null;
+                return orders;
             }
 
             return orders.map((order) => {

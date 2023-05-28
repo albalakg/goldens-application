@@ -190,7 +190,7 @@ export default {
 
   @media only screen and (max-width: 600px) {
     .app_content {
-      padding-bottom: 15vh;
+      padding-bottom: 5vh;
     }
   }
 

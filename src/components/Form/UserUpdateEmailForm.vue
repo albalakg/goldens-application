@@ -14,6 +14,7 @@
             <main-button 
                 :text="'עדכן אימייל'"
                 shadow
+                :disabled="isSameEmail"
                 :loading="loading"
             />
         </v-flex>
@@ -55,6 +56,10 @@ export default {
     computed: {
         email() {
             return this.$store.getters['UserState/email']
+        },
+
+        isSameEmail() {
+            return this.form.email === this.$store.getters['UserState/email'];
         }
     },
 
@@ -73,7 +78,7 @@ export default {
                 return;
             }
 
-            if(this.isSameEmail()) {
+            if(this.isSameEmail) {
                 this.$store.dispatch('MessageState/addErrorMessage', { message: 'הכותבת מייל אינה יכולה להיות זהה לכתובת הנוכחית' })
                 return;
             }
@@ -86,10 +91,6 @@ export default {
         validate() {
             return this.$refs.email.validate();
         },
-
-        isSameEmail() {
-            return this.form.email === this.$store.getters['UserState/email'];
-        }
     }
 }
 </script>

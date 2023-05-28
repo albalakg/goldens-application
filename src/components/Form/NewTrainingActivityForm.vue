@@ -100,7 +100,7 @@ export default {
             }
 
             this.loading = true;
-            await this.$store.dispatch('UserCourseState/createTrainingSchedule', {...this.form, courseId: this.courseId})
+            await this.$store.dispatch('UserState/createTrainingSchedule', {...this.form, courseId: this.courseId})
             this.loading = false;
         },
 

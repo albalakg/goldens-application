@@ -24,6 +24,7 @@
                 <main-button 
                     :text="'עדכן סיסמה'"
                     shadow
+                    :disabled="isPasswordsEmpty"
                     :loading="loading"
                 />
             </v-flex>
@@ -56,6 +57,13 @@ export default {
             loading: false,
             showPasswordForm: false
         }
+    },
+
+    computed: {
+        
+        isPasswordsEmpty() {
+            return !this.form.password || !this.form.old_password;
+        },
     },
 
     methods: {

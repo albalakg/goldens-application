@@ -196,11 +196,12 @@ export default {
         z-index: 10;
 
         .mobile_menu_content {
-            background-color: #31353d;
+            background-color: var(--mainDarkColor);
             position: fixed;
             bottom: 0;
             right: 0;
             width: 100vw;
+            padding-bottom: 8px;
         }
 
         .mobile_menu_filler {
