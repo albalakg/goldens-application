@@ -62,7 +62,12 @@ export default {
     data() {
         return {
             focusedTrainerIndex: 0,
+            scrollingDisabled:   false,
         }
+    },
+
+    mounted() {
+        this.displayArrowsByScrolling();
     },
     
     computed: {
@@ -84,6 +89,7 @@ export default {
         },
 
         showNextTrainerArrow() {
+            console.log('focusedTrainerIndex', this.focusedTrainerIndex, this.focusedTrainerIndex !== 0 && this.trainers.length > 0);
             return this.focusedTrainerIndex !== 0 && this.trainers.length > 0;
         },
 
@@ -93,6 +99,20 @@ export default {
     },
 
     methods: {
+        displayArrowsByScrolling() {
+            const wrapper           = this.$refs.trainers;
+            const trainerMarginSize = 66; 
+            const trainerWidthSize  = this.$refs['trainer-0'][0].clientWidth
+            const trainerSize       = trainerMarginSize + trainerWidthSize;
+            wrapper.addEventListener('scroll', (event) => {
+                const nextFocusedTrainer = 4 - Math.floor((wrapper.scrollWidth + event.currentTarget.scrollLeft) / trainerSize);
+                if(!this.scrollingDisabled) {
+                    this.moveToTrainer(nextFocusedTrainer)
+                } else {
+                    this.focusedTrainerIndex = nextFocusedTrainer;
+                }
+            })
+        },
         
         goToLastTrainer() {
             this.moveToTrainer(this.focusedTrainerIndex - 1)
@@ -104,6 +124,10 @@ export default {
 
         moveToTrainer(goToTrainerIndex) {
             try {
+                this.scrollingDisabled = true;
+                setTimeout(() => {
+                    this.scrollingDisabled = false;
+                }, 500);
                 // const trainer = this.$refs[`trainer-${goToTrainerIndex}`][0].$el;
                 const trainer = this.$refs[`trainer-${goToTrainerIndex}`][0];
                 trainer.scrollIntoView({behavior: "smooth", block: "center", inline: "center"})
@@ -148,14 +172,14 @@ export default {
         .lesson_wrapper_right_icon {
             position: absolute;
             right: 0px;
-            top: 40%;
+            top: 33%;
             z-index: 5;                
         }
 
         .lesson_wrapper_left_icon {
             position: absolute;
             left: 0px;
-            top: 40%;
+            top: 33%;
             z-index: 5;                
         }
     }
