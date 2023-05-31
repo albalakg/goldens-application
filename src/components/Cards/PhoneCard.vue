@@ -26,13 +26,12 @@ export default {
         position: relative;
 
         img {
-            height: calc(100% + 3px);
-            width: calc(100% + 2px);
+            height: calc(100% + 0px);
+            width: calc(100% + 0px);
             border-radius: 20px;
             position: absolute;
-            top: -1px;
-            right: -1px;
-        }
+            top: 0px;
+            right: 0px;
 
         p {
             bottom: -35%;

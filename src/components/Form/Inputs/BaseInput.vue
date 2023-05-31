@@ -47,7 +47,7 @@
             @blur="focusOut"
         >
 
-        <div class="base_input_sub_icon mr-2 pointer" v-if="closeable && value" @click="close()">
+        <div class="base_input_sub_icon base_input_close_icon mr-2 pointer" v-if="closeable && value" @click="close()">
             <v-icon class="close_icon">
                 mdi-close
             </v-icon>
@@ -205,6 +205,10 @@ export default {
             })
         },
 
+        setErrorMessage(errorMessage) {
+            this.errorMessage = errorMessage;
+        },
+        
         subIconClicked() {
             this.$emit('subIconClicked')
         },
@@ -292,6 +296,10 @@ export default {
             position: absolute;
             left: 10px;
             z-index: 2;
+        }
+        
+        .base_input_close_icon {
+            top: 10%;
         }
     
         .base_input_outlined {

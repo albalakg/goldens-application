@@ -1,62 +1,41 @@
 <template>
     <div class="city_input_wrapper">
-        <BaseInput 
+        <BaseAutocompleteInput 
+            title
             ref="input"
             :outlined="outlined"
+            :items="cities"
+            :text="text"
+            :placeholder="placeholder"
             :dark="dark"
-            :slim="slim"
-            :optional="optional"
-            :readonly="readonly"
-            :loading="loading"
-            :placeholder="placeholder ? text : ''"
-            :title="title ? text : ''"
-            :icon="icon ? iconSrc : ''"
-            :rules="rules"
+            :icon="iconSrc"
+            :emptyResultMessage="emptyResultMessage"
+            :resize="resize"
             @onChange="onChange"
         />
     </div>
 </template>
 
 <script>
-import BaseInput from './BaseInput.vue';
+import BaseAutocompleteInput from './BaseAutocompleteInput.vue';
+import citiesJson from '../../../helpers/cities.json'; 
 
 export default {
     components: {
-        BaseInput
+        BaseAutocompleteInput,
     },
 
     props: {
         outlined: {
             type: Boolean
         },
-
-        optional: {
-            type: Boolean
-        },
         
-        readonly: {
+        resize: {
             type: Boolean
         },
 
         dark: {
             type: Boolean
-        },
-
-        slim: {
-            type: Boolean
-        },
-
-        loading: {
-            type: Boolean
-        },
-        
-        icon: {
-            type: Boolean
-        },
-        
-        placeholder: {
-            type: Boolean,
-            default: true
         },
         
         title: {
@@ -64,16 +43,19 @@ export default {
         },
     },
 
+    computed: {
+        cities() {
+            return citiesJson.cities;
+        }
+    },
+
     data() {
         return {
-            text:       'שם העיר',
+            text: 'עיר',
+            placeholder: 'חפש עיר',
             iconSrc:    'mdi-city-variant-outline',
-            rules: [
-                {
-                    rule: /^.{2,100}$/,
-                    message: 'שם העיר חייב להכיל בין 2-100 תווים'
-                }
-            ]
+            emptyResultMessage: 'מצטערים, אך לא מצאנו את העיר',
+            errorMessage: 'צריך לבחור עיר מהרשימה',
         }
     },
 
@@ -83,11 +65,17 @@ export default {
         },
 
         validate() {
-            return this.$refs.input.validate();
+            const isValid = this.$refs.input.validate();
+            this.setErrorMessage(isValid)
+            return isValid;
+        },
+
+        setErrorMessage(isValid) {
+            this.$refs.input.setErrorMessage(isValid ? '' : this.errorMessage)
         },
 
         setValue(value) {
-            return this.$refs.input.setValue(value);
+            this.$refs.input.setValue(value);
         }
     }
 }

@@ -8,7 +8,6 @@
 
         <div class="trainer_content">
             <v-flex v-if="$vuetify.breakpoint.mdAndUp" d-flex justify-space-between flex-wrap>
-                <!-- <img class="trainers_background" src="./../../../public/assets/images/trainers/trainers-desktop.webp" alt="trainers"> -->
                 <div v-for="(trainer, index) in trainers" :key="index">
                     <img class="trainer_card" src="./../../../public/assets/images/trainers/trainer-card.png" alt="trainer card">
                 </div>
@@ -66,9 +65,6 @@ export default {
         }
     },
 
-    mounted() {
-        this.displayArrowsByScrolling();
-    },
     
     computed: {
         viewTrainers() {
@@ -89,7 +85,6 @@ export default {
         },
 
         showNextTrainerArrow() {
-            console.log('focusedTrainerIndex', this.focusedTrainerIndex, this.focusedTrainerIndex !== 0 && this.trainers.length > 0);
             return this.focusedTrainerIndex !== 0 && this.trainers.length > 0;
         },
 
@@ -99,21 +94,6 @@ export default {
     },
 
     methods: {
-        displayArrowsByScrolling() {
-            const wrapper           = this.$refs.trainers;
-            const trainerMarginSize = 66; 
-            const trainerWidthSize  = this.$refs['trainer-0'][0].clientWidth
-            const trainerSize       = trainerMarginSize + trainerWidthSize;
-            wrapper.addEventListener('scroll', (event) => {
-                const nextFocusedTrainer = 4 - Math.floor((wrapper.scrollWidth + event.currentTarget.scrollLeft) / trainerSize);
-                if(!this.scrollingDisabled) {
-                    this.moveToTrainer(nextFocusedTrainer)
-                } else {
-                    this.focusedTrainerIndex = nextFocusedTrainer;
-                }
-            })
-        },
-        
         goToLastTrainer() {
             this.moveToTrainer(this.focusedTrainerIndex - 1)
         },
@@ -124,11 +104,15 @@ export default {
 
         moveToTrainer(goToTrainerIndex) {
             try {
+                if(this.scrollingDisabled) {
+                    return;
+                }
+
                 this.scrollingDisabled = true;
                 setTimeout(() => {
                     this.scrollingDisabled = false;
-                }, 500);
-                // const trainer = this.$refs[`trainer-${goToTrainerIndex}`][0].$el;
+                }, 300);
+
                 const trainer = this.$refs[`trainer-${goToTrainerIndex}`][0];
                 trainer.scrollIntoView({behavior: "smooth", block: "center", inline: "center"})
                 this.focusedTrainerIndex = goToTrainerIndex;
@@ -158,7 +142,8 @@ export default {
             width: 100%;
             display: flex;
             overflow-x: auto;
-            
+            pointer-events: none;
+
             &::-webkit-scrollbar {
                 display: none;
             }

@@ -4,7 +4,7 @@
             transition="scale-transition" offset-y min-width="auto">
             <template v-slot:activator="{ on, attrs }">
                 <div v-bind="attrs" v-on="on">
-                    <BaseInput ref="input" :outlined="outlined" :dark="dark" :slim="slim" :optional="optional"
+                    <BaseInput ref="input" :outlined="outlined" :dark="dark" :slim="slim"
                         :readonly="true" :loading="loading" :placeholder="placeholder ? text : ''"
                         :title="title ? text : ''" :icon="icon ? iconSrc : ''" :rules="rules" @onChange="onChange" />
                 </div>
@@ -14,7 +14,7 @@
                 <v-btn text color="#102a46" @click="menu = false">
                     ביטול
                 </v-btn>
-                <v-btn text color="#102a46" @click="$refs.menu.save(dates)">
+                <v-btn text color="#102a46" @click="saveDates(dates)">
                     אישור
                 </v-btn>
             </v-date-picker>
@@ -95,6 +95,10 @@ export default {
             this.$emit('onChange', value);
         },
 
+        setErrorMessage(errorMessage) {
+            this.$refs.input.setErrorMessage(errorMessage)
+        },
+
         validate() {
             return this.$refs.input.validate();
         },
@@ -105,6 +109,11 @@ export default {
 
         clicked() {
             this.menu = !this.menu;
+        },
+
+        saveDates(dates) {
+            this.$refs.menu.save(dates);
+            this.$refs.input.setErrorMessage('');
         }
     }
 }

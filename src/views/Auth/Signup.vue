@@ -176,6 +176,15 @@
                                     @onChange="setCity" 
                                 />
 
+                                <autocomplete-input 
+                                    ref="city"
+                                    outlined
+                                    title
+                                    optional
+                                    icon
+                                    @onChange="setCity" 
+                                />
+
                                 <div class="spacer"></div>
 
                                 <birthdate-input 
@@ -259,7 +268,9 @@ import FirstNameInput from '../../components/Form/Inputs/FirstNameInput.vue'
 import LastNameInput from '../../components/Form/Inputs/LastNameInput.vue'
 import TeamInput from '../../components/Form/Inputs/TeamInput.vue'
 import CityInput from '../../components/Form/Inputs/CityInput.vue'
+import AutocompleteInput from '../../components/Form/Inputs/BaseAutocompleteInput.vue'
 import BirthdateInput from '../../components/Form/Inputs/BirthdateInput.vue'
+import citiesJson from '../../helpers/cities.json'; 
 
 export default {
     components: {
@@ -272,6 +283,7 @@ export default {
         LastNameInput,
         TeamInput,
         CityInput,
+        AutocompleteInput,
         BirthdateInput,
     },
     
@@ -287,6 +299,12 @@ export default {
                 birth_date: '',
             },
             loading: false
+        }
+    },
+
+    computed: {
+        cities() {
+            return citiesJson.cities;
         }
     },
 

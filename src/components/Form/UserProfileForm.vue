@@ -86,6 +86,9 @@
                     @onChange="setBirthdate"
                 />
             </v-flex>
+            <v-flex>
+               
+            </v-flex>
         </v-flex>
 
         <v-flex d-flex justify-end mt-10 mt-md-5>
@@ -157,9 +160,6 @@ export default {
         },
 
         formHasChanged() {
-            console.log(this.initForm);
-            console.log(JSON.stringify(this.form));
-            console.log(this.initForm !== JSON.stringify(this.form));
             return this.initForm !== JSON.stringify(this.form)
         }
     },
