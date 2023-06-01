@@ -50,17 +50,17 @@ export default {
         items() {
         return [
             {
-                icon: require("../../../public/assets/images/general/application.svg"),
+                icon: require("../../../public/assets/images/icons/strength.png"),
                 title: "חינוך לספורט ואורח חיים של כדורגלן",
                 content: `הקורס מעניק תמיכה והכוונה, ילמד כיצד לחיות אורח חיים מוקפד ובריא של ספורטאי ויהפוך לשחקן מוביל`,
             },
             {
-                icon: require("../../../public/assets/images/general/whistle.svg"),
+                icon: require("../../../public/assets/images/icons/trophy.png"),
                 title: "אימון מנטאלי מעצים, בשלות ואופי חזק",
                 content: `הרגשת במטחון במגרש, התמודדות עם אתגרים, מינוף כשלונות וחתירה למטרה שהוצבה`,
             },
             {
-                icon: require("../../../public/assets/images/general/walker.svg"),
+                icon: require("../../../public/assets/images/icons/technic.png"),
                 title: "טכניקה מקצועית שתהפוך אותו לאלוף",
                 content: `סרטונים מלאי תוכן וידע סופר מקצועי ומדויק שיעיף את הילד שלך כמה רמות למעלה.התרגילים בהתאמה לסדר יומו וליכולת שלו`,
             },
@@ -85,8 +85,8 @@ export default {
             align-items: center;
 
             img {
-                height: 50px;
-                width: 50px;
+                height: 80px;
+                width: 80px;
                 margin-bottom: 10px;
                 position: relative;
                 z-index: 2;

@@ -5,7 +5,7 @@
                 <v-flex xs12 md6 lg7 xl8>
                     <star-logo colored class="star_image" />
                 </v-flex>
-                <v-flex xs12 md6 lg5 xl4 px-5 px-md-0>
+                <v-flex xs12 md6 lg5 xl4 px-5 px-md-0 mb-md-8>
                     <v-flex md8>
                         <v-form class="signin_form" ref="form" @submit.prevent="submit()">
                             <h2 class="auth_form_title"><span class="main_text_color">התחברות</span> לאתר</h2>

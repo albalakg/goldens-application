@@ -23,7 +23,7 @@
 
       <v-flex order-0 order-md-1 align-self-start md6 class="pa-2" v-if="lesson.training_options.length">
         <v-flex class="lesson_section lesson_time_boxes_wrapper pa-2" d-flex flex-wrap>
-          <v-flex xs12 d-flex justify-center py-1 v-for="(item, index) in lesson.training_options" :key="index">
+          <v-flex mx-1 d-flex justify-center py-1 v-for="(item, index) in lesson.training_options" :key="index">
             <v-flex
               class="lesson_time_box text-center"
               d-flex
