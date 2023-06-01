@@ -152,7 +152,7 @@ export default {
         position: absolute;
         bottom: 10px;
         right: 15px;
-        z-index: 3;
+        z-index: 4;
     }
 
     .completed_chip {
