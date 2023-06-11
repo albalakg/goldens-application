@@ -1,5 +1,5 @@
 import axios from "axios";
-import ContentService from "../../helpers/ContentService";
+import ContentService, { SCHEDULE_TRAINING_TYPE_ID } from "../../helpers/ContentService";
 import router from '../../router';
 
 const UserState = {
@@ -78,10 +78,11 @@ const UserState = {
             if(!course) {
                 return;
             }
-
+            
             if(!course.schedules) {
                 course.schedules = [];
             }
+
 
             const lesson = ContentService.findLessonById(newTrainingSchedule.lessonId);
             if(!lesson) {
@@ -89,11 +90,12 @@ const UserState = {
             }
 
             course.schedules.push({
-                date: newTrainingSchedule.date,
-                name: lesson.name,
-                description: lesson.description,
-                image: lesson.imageSrc,
-                course_area_id: lesson.course_area_id,
+                id:                 newTrainingSchedule.id,
+                type_id:            SCHEDULE_TRAINING_TYPE_ID,
+                course_id:          course.id,
+                course_lesson_id:   newTrainingSchedule.lessonId,
+                date:               newTrainingSchedule.date,
+                course_area_id:     lesson.course_area_id,
             }); 
         },
 
@@ -439,16 +441,21 @@ const UserState = {
        },
         
        createTrainingSchedule({ commit }, newTrainingSchedule) {
-           commit('CREATE_TRAINING_SCHEDULE', newTrainingSchedule);
-            // return new Promise((resolve) => {
-            //     axios.post('profile/lesson/training-schedule', newTrainingSchedule)
-            //         .then(res => {
-            //             return resolve(res.data.data);
-            //         })
-            //         .catch(err => {
-            //             warning(err);
-            //         })
-            // })
+            return new Promise((resolve) => {
+                axios.post('profile/lesson/training-schedule', {
+                    date:      newTrainingSchedule.date,
+                    lesson_id: newTrainingSchedule.lessonId,
+                    course_id: newTrainingSchedule.courseId,
+                })
+                .then(res => {
+                        newTrainingSchedule.id = res.data.data.id;
+                        commit('CREATE_TRAINING_SCHEDULE', newTrainingSchedule);
+                        return resolve(res.data.data);
+                    })
+                    .catch(err => {
+                        warning(err);
+                    })
+            })
        },
 
     }

@@ -32,7 +32,7 @@
                             text="צור אימון"
                             shadow
                             subColor
-                            @submit="submit()"
+                            :disabled="!canCreateTrainingSchedule"
                         />
                     </v-flex>
                     <br>
@@ -70,12 +70,17 @@ export default {
                 date: ''
             },
             trainingDialog: false,
-            loading: false,
         }
     },
 
     created() {
        this.setInitDate();
+    },
+
+    computed: {
+        canCreateTrainingSchedule() {
+            return Boolean(this.form.date) && Boolean(this.form.lessonId);
+        }
     },
 
     methods: {
@@ -94,14 +99,13 @@ export default {
             this.form.lessonId = lessonId;
         },
 
-        async submit() {
-            if(this.loading || !this.validate()) {
+        submit() {
+            if(!this.validate()) {
                 return;
             }
 
-            this.loading = true;
-            await this.$store.dispatch('UserState/createTrainingSchedule', {...this.form, courseId: this.courseId})
-            this.loading = false;
+            this.$emit('submit', {...this.form, courseId: this.courseId});
+            this.trainingDialog = false;
         },
 
         validate() {

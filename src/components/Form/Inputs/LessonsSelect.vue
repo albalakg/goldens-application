@@ -94,6 +94,11 @@ export default {
       this.value = value;
     },
 
+    setValue(value) {
+      this.value = value;
+      this.$refs.input.setValue('');
+    },
+
     validate() {
       return this.$refs.input.validate();
     },

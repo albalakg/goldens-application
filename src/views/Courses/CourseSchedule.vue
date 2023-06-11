@@ -1,7 +1,7 @@
 <template>
   <div class="course_area_wrapper" v-if="course">
       <v-flex xs10 md6 lg5 xl3 mx-auto>
-        <new-training-activity-form :lessons="lessons" :courseId="course.id" />
+        <new-training-activity-form :lessons="lessons" :courseId="course.id" @submit="addNewTrainingActivity" />
       </v-flex>
       <v-flex xl10 md11 mx-auto justify-center class="mt-10">
         <v-sheet height="64">
@@ -206,7 +206,7 @@ export default {
         month       = String(month).length === 1 ? "0" + month : month;
         let day     = new Date(schedule.date).getDate();
         day         = String(day).length === 1 ? "0" + day : day;
-
+        
         events.push({
           scheduleId:   schedule.id,
           typeId:       schedule.type_id,
@@ -285,7 +285,13 @@ export default {
       this.selectedOpen = false;
       this.updateRange();
       this.$emit('refreshCourse');
-      this.setFocus(schedule.dateOnly)
+      this.setFocus(schedule.dateOnly);
+    },
+
+    async addNewTrainingActivity(training) {
+      await this.$store.dispatch('UserState/createTrainingSchedule', training);
+      this.updateRange();
+      this.setFocus(training.date);
     },
 
     setFocus(date) {

@@ -245,8 +245,10 @@ export default {
         
         setValue(value) {
             this.values = [value];
-            const viewValue = this.items.find(item => item.id === value)
-            this.setViewValues(viewValue.value);
+            const viewValue = this.items.find(item => item.id === value);
+            if(viewValue) {
+                this.setViewValues(viewValue.value);
+            }
         },
 
         toggleList() {
