@@ -17,12 +17,11 @@
 
 <script>
 import UnfavoriteChip from '../Chips/UnfavoriteChip.vue';
-import Divider from '../General/Divider.vue';
 
 const MAX_LESSON_CONTENT_CHARS = 50;
 
 export default {
-  components: { Divider, UnfavoriteChip },
+  components: {  UnfavoriteChip },
 
   props: {
     lesson: {
