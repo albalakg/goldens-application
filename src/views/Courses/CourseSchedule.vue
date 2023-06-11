@@ -96,6 +96,7 @@
 <script>
 import MainButton from '../../components/Buttons/MainButton.vue';
 import NewTrainingActivityForm from '../../components/Form/NewTrainingActivityForm.vue';
+import { SCHEDULE_TRAINING_TYPE_ID } from '../../helpers/ContentService'
 
 export default {
   components: { MainButton, NewTrainingActivityForm, },
@@ -109,10 +110,10 @@ export default {
 
   data() {
     return {
-      refreshKey: 1,
       loading: false,
+      earliestDate: null,
       filterByDate: "",
-      focus: new Date("2023-01-01"),
+      focus: '',
       type: "month",
       events: [],
       selectedEvent: {},
@@ -150,6 +151,8 @@ export default {
   mounted() {
     setTimeout(() => {
       this.updateRange();
+      this.setFocus(this.earliestDate);
+
     }, 1000);
   },
 
@@ -157,7 +160,7 @@ export default {
     course: {
       deep: true,
       handler() {
-        this.updateRange()
+        this.updateRange();
       }
     }
   },
@@ -175,9 +178,10 @@ export default {
 
   methods: {
     updateRange() {
-      const events = [];
-      
-      let lessons = [];
+      const events      = [];
+      let lessons       = [];
+      this.earliestDate  = null;
+
       this.course.active_areas_with_active_lessons.forEach(course_area => {
         lessons = lessons.concat(course_area.active_lessons)
       })
@@ -186,50 +190,39 @@ export default {
         return;
       }
 
-      lessons.forEach((lesson) => {
-        let date = lesson.schedule ? lesson.schedule.date : "";
+      this.course.schedules.forEach((schedule) => {
+        const lesson = lessons.find(lesson => lesson.id === schedule.course_lesson_id);
 
-        if (!date) {
+        if(!lesson) {
           return;
         }
 
-        const year  = new Date(date).getFullYear();
-        let month   = new Date(date).getMonth() + 1;
+        if(!this.earliestDate || schedule.date < this.earliestDate) {
+          this.earliestDate = schedule.date;
+        }
+
+        const year  = new Date(schedule.date).getFullYear();
+        let month   = new Date(schedule.date).getMonth() + 1;
         month       = String(month).length === 1 ? "0" + month : month;
-        let day     = new Date(date).getDate();
+        let day     = new Date(schedule.date).getDate();
         day         = String(day).length === 1 ? "0" + day : day;
 
         events.push({
-          lessonId: lesson.id,
-          name: lesson.name,
-          description: lesson.description,
-          image: lesson.imageSrc,
-          color: this.courseAreaColors[lesson.course_area_id],
-          start: new Date(date),
-          end: new Date(date),
-          dateOnly: year + "-" + month + "-" + day,
-          allDay: true,
+          scheduleId:   schedule.id,
+          typeId:       schedule.type_id,
+          lessonId:     lesson.id,
+          name:         lesson.name,
+          description:  lesson.description,
+          image:        lesson.imageSrc,
+          color:        schedule.type_id === SCHEDULE_TRAINING_TYPE_ID ? this.courseAreaColors[6] :this.courseAreaColors[lesson.course_area_id],
+          start:        new Date(schedule.date),
+          end:          new Date(schedule.date),
+          dateOnly:     year + "-" + month + "-" + day,
+          allDay:       true,
         });
       });
 
       this.events = events;
-    },
-
-    async submit() {
-      this.loading = true;
-
-      const lessons = this.$store.getters["LessonState/lessons"];
-      const data = {
-        id: lessons[0].course_id,
-        lessonsId: lessons.map((lesson) => {
-          return {
-            id:   lesson.id,
-            date: lesson.schedule?.date,
-          };
-        }),
-      };
-      await this.$store.dispatch("CourseState/saveCourseSchedule", data);
-      this.loading = false;
     },
 
     viewDay({ date }) {
@@ -281,15 +274,22 @@ export default {
               firstDay.getDate() === secondDay.getDate();
     },
 
-    saveDateInCalendar(lesson) {
+    saveDateInCalendar(schedule) {
       this.$store.dispatch('UserState/saveLessonDateInCalendar', {
-        id:   lesson.lessonId,
-        date: lesson.dateOnly
+        date:        schedule.dateOnly,
+        lesson_id:   schedule.lessonId,
+        scheduleId:  schedule.scheduleId,
+        type_id:     schedule.typeId,
       });
 
       this.selectedOpen = false;
-      this.refreshKey++;
+      this.updateRange();
       this.$emit('refreshCourse');
+      this.setFocus(schedule.dateOnly)
+    },
+
+    setFocus(date) {
+      this.focus = date;
     }
   },
 };

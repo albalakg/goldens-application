@@ -1,6 +1,8 @@
 import store from '../store'
 
-const MAX_LESSON_CONTENT_CHARS = 120;
+const MAX_LESSON_CONTENT_CHARS          = 120;
+export const SCHEDULE_LESSON_TYPE_ID    = 1;
+export const SCHEDULE_TRAINING_TYPE_ID  = 2;
 
 class ContentService {
 

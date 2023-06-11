@@ -66,14 +66,10 @@ const UserState = {
             state.progress = userProgress;
         },
 
-        UPDATE_LESSON_DATE(state, updatedLesson) {
+        UPDATE_SCHEDULE_DATE(state, updatedSchedule) {
             state.courses.forEach(course => {
-                course.active_areas_with_active_lessons.forEach(courseArea => {
-                    const lessonIndex = courseArea.active_lessons.findIndex(lesson => lesson.id === updatedLesson.id);
-                    if(lessonIndex !== -1) {
-                        courseArea.active_lessons[lessonIndex].schedule.date = updatedLesson.date;
-                    }
-                })
+                const scheduleIndex = course.schedules.findIndex(schedule => schedule.id === updatedSchedule.scheduleId);
+                course.schedules[scheduleIndex].date = updatedSchedule.date;
             });
         },
 
@@ -427,15 +423,18 @@ const UserState = {
         },
         
        saveLessonDateInCalendar({ commit }, lesson) {
-            return new Promise((resolve) => {
-                axios.post('profile/lesson/schedule', lesson)
-                    .then(res => {
-                        commit('UPDATE_LESSON_DATE', lesson);
-                        return resolve(res.data.data);
-                    })
-                    .catch(err => {
-                        warning(err);
-                    })
+           commit('UPDATE_SCHEDULE_DATE', lesson);
+           return new Promise((resolve) => {
+                axios.post('profile/lesson/schedule', {
+                    id:     lesson.scheduleId,
+                    date:   lesson.date,
+                })
+                .then(res => {
+                    return resolve(res.data.data);
+                })
+                .catch(err => {
+                    warning(err);
+                })
             })
        },
         
