@@ -104,6 +104,7 @@ const ContentState = {
         getActiveCourses({ state, commit }) {
             return new Promise((resolve) => {
                 if(state.courses) {
+                    console.log(123, state.courses);
                     resolve(state.courses);
                     return;
                 }
@@ -149,8 +150,24 @@ const ContentState = {
 
                 axios.get('content/courses/' + courseId)
                     .then(res => {
-                        commit('ADD_COURSE', res.data.data);
-                        return resolve(res.data.data);
+                        const course = res.data.data;
+                        course.active_areas_with_active_lessons = course.guest_active_areas_with_active_lessons;
+                        delete course.guest_active_areas_with_active_lessons;
+
+                        course.active_areas_with_active_lessons = course.active_areas_with_active_lessons.map(courseArea => {
+                            courseArea.active_lessons = courseArea.guest_active_lessons;
+                            delete courseArea.guest_active_lessons;
+
+                            courseArea.active_lessons = courseArea.active_lessons.map(lesson => {
+                                lesson.video = lesson.guest_video;
+                                delete lesson.guest_video;
+                                return lesson
+                            })
+                            
+                            return courseArea
+                        })
+                        commit('ADD_COURSE', course);
+                        return resolve(course);
                     })
                     .catch(err => {
                         warning(err);

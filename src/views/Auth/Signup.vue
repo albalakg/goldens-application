@@ -69,32 +69,16 @@
 
                                 <v-flex d-flex>
                                     <v-flex xs6 class="ml-1">
-                                        <team-input 
-                                            ref="team"
+                                        <phone-input
+                                            ref="phone"
+                                            :loading="loading"
                                             outlined
                                             title
-                                            optional
                                             icon
-                                            @onChange="setTeam" 
+                                            @onChange="setPhone" 
                                         />
                                     </v-flex>
                                     <v-flex xs6 class="mr-1">
-                                        <city-input 
-                                            ref="city"
-                                            outlined
-                                            title
-                                            optional
-                                            icon
-                                            @onChange="setCity" 
-                                        />
-                                    </v-flex>
-                                </v-flex>
-                                
-                                <div class="spacer"></div>
-                                <div class="spacer"></div>
-                                
-                                <v-flex d-flex>
-                                    <v-flex xs6 class="ml-1">
                                         <birthdate-input 
                                             ref="birthdate"
                                             outlined
@@ -104,7 +88,31 @@
                                             @onChange="setBirthdate" 
                                         />
                                     </v-flex>
+                                </v-flex>
+                                
+                                <div class="spacer"></div>
+                                <div class="spacer"></div>
+                                
+                                <v-flex d-flex>
+                                    <v-flex xs6 class="ml-1">
+                                        <city-input 
+                                            ref="city"
+                                            outlined
+                                            title
+                                            optional
+                                            icon
+                                            @onChange="setCity" 
+                                        />
+                                    </v-flex>
                                     <v-flex xs6 class="mr-1">
+                                        <team-input 
+                                            ref="team"
+                                            outlined
+                                            title
+                                            optional
+                                            icon
+                                            @onChange="setTeam" 
+                                        />
                                     </v-flex>
                                 </v-flex>
                             </v-flex>
@@ -155,14 +163,25 @@
                                 </last-name-input>
                                 
                                 <div class="spacer"></div>
+
+                                <phone-input
+                                    ref="phone"
+                                    :loading="loading"
+                                    outlined
+                                    title
+                                    icon
+                                    @onChange="setPhone" 
+                                />
+
+                                <div class="spacer"></div>
                                 
-                                <team-input 
-                                    ref="team"
+                                <birthdate-input 
+                                    ref="birthdate"
                                     outlined
                                     title
                                     optional
                                     icon
-                                    @onChange="setTeam" 
+                                    @onChange="setBirthdate" 
                                 />
 
                                 <div class="spacer"></div>
@@ -176,25 +195,17 @@
                                     @onChange="setCity" 
                                 />
 
-                                <autocomplete-input 
-                                    ref="city"
-                                    outlined
-                                    title
-                                    optional
-                                    icon
-                                    @onChange="setCity" 
-                                />
-
                                 <div class="spacer"></div>
 
-                                <birthdate-input 
-                                    ref="birthdate"
+                                <team-input 
+                                    ref="team"
                                     outlined
                                     title
                                     optional
                                     icon
-                                    @onChange="setBirthdate" 
+                                    @onChange="setTeam" 
                                 />
+                                
                             </v-flex>
                             
                             <div class="spacer"></div>
@@ -267,8 +278,8 @@ import StarLogo from '../../components/General/StarLogo.vue'
 import FirstNameInput from '../../components/Form/Inputs/FirstNameInput.vue'
 import LastNameInput from '../../components/Form/Inputs/LastNameInput.vue'
 import TeamInput from '../../components/Form/Inputs/TeamInput.vue'
+import PhoneInput from '../../components/Form/Inputs/PhoneInput.vue'
 import CityInput from '../../components/Form/Inputs/CityInput.vue'
-import AutocompleteInput from '../../components/Form/Inputs/BaseAutocompleteInput.vue'
 import BirthdateInput from '../../components/Form/Inputs/BirthdateInput.vue'
 import citiesJson from '../../helpers/cities.json'; 
 
@@ -282,8 +293,8 @@ export default {
         FirstNameInput,
         LastNameInput,
         TeamInput,
+        PhoneInput,
         CityInput,
-        AutocompleteInput,
         BirthdateInput,
     },
     
@@ -294,6 +305,7 @@ export default {
                 password:   '',
                 first_name: '',
                 last_name:  '',
+                phone:      '',
                 team:       '',
                 city:       '',
                 birth_date: '',
@@ -335,7 +347,7 @@ export default {
 
         validate() {
             const fields = [
-                'email', 'password', 'firstName', 'lastName', 'team', 'city', 'birthdate'
+                'email', 'password', 'firstName', 'lastName', 'phone', 'team', 'city', 'birthdate',
             ];
 
             let isValid             = true;
@@ -371,6 +383,10 @@ export default {
 
         setLastName(lastName) {
             this.form.last_name = lastName;
+        },
+
+        setPhone(phone) {
+            this.form.phone = phone;
         },
 
         setTeam(team) {

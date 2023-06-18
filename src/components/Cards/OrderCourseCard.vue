@@ -91,13 +91,7 @@
 </template>
 
 <script>
-import MainButton from "../Buttons/MainButton.vue";
-import Arrow from "../General/Arrow.vue";
-import VideoCard from "./VideoCard.vue";
-
 export default {
-  components: { VideoCard, MainButton, Arrow },
-
   props: {
     course: {
       type: Object,
@@ -124,6 +118,7 @@ export default {
     },
 
     totalLessons() {
+      console.log('total', ContentService.countTotalLessonsByCourseId(this.course.id));
       return ContentService.countTotalLessonsByCourseId(this.course.id);
     },
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 export const FIRST_NAME_RULE            = /.{2,30}/;
 export const LAST_NAME_RULE             = /.{2,30}/;
 export const EMAIL_RULE                 = /^.+@.+\..+$/;

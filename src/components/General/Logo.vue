@@ -1,6 +1,6 @@
 <template>
   <router-link :to="link">
-      <img :style="`width: ${width}`" loading="lazy" v-if="dark" src="./../../../public/assets/images/general/dark_logo.svg" alt="dark logo">
+      <img :style="`width: ${width}`" loading="lazy" v-if="dark" src="./../../../public/assets/images/general/dark_logo.png" alt="dark logo">
       <img :style="`width: ${width}`" loading="lazy" v-else src="./../../../public/assets/images/general/lightLogo.png" alt="logo">
   </router-link>
 </template>

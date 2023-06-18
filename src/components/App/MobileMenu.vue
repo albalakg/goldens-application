@@ -60,25 +60,25 @@ export default {
                 {
                     url: '/',
                     text: 'דף הבית',
-                    image: require('../../../public/assets/images/general/home.svg'),
+                    image: require('../../../public/assets/images/icons/Home.png'),
                     logged: false
                 },
                 {
                     url: '/signin',
                     text: 'התחבר',
-                    image: require('../../../public/assets/images/general/profile.svg'),
+                    image: require('../../../public/assets/images/icons/Profile.png'),
                     logged: false
                 },
                 {
                     url: '/about',
                     text: 'מי אנחנו',
-                    image: require('../../../public/assets/images/general/about.svg'),
+                    image: require('../../../public/assets/images/icons/Gstar.png'),
                     logged: false
                 },
                 {
                     action: 'toggleSettings',
                     text: 'הגדרות',
-                    image: require('../../../public/assets/images/general/settings.svg'),
+                    image: require('../../../public/assets/images/icons/Settings.png'),
                     logged: false
                 },
 
@@ -86,25 +86,25 @@ export default {
                 {
                     url: '/',
                     text: 'דף הבית',
-                    image: require('../../../public/assets/images/general/home.svg'),
+                    image: require('../../../public/assets/images/icons/Home.png'),
                     logged: true
                 },
                 {
                     url: '/user',
                     text: 'פרופיל',
-                    image: require('../../../public/assets/images/general/profile.svg'),
+                    image: require('../../../public/assets/images/icons/Profile.png'),
                     logged: true
                 },
                 {
                     url: '/about',
                     text: 'מי אנחנו',
-                    image: require('../../../public/assets/images/general/about.svg'),
+                    image: require('../../../public/assets/images/icons/Gstar.png'),
                     logged: true
                 },
                 {
                     action: 'toggleSettings',
                     text: 'הגדרות',
-                    image: require('../../../public/assets/images/general/settings.svg'),
+                    image: require('../../../public/assets/images/icons/Settings.png'),
                     logged: true
                 },
             ],
@@ -112,13 +112,13 @@ export default {
             myCourseLink: {
                 action: 'home',
                 text: 'הקורס שלי',
-                image: require('../../../public/assets/images/general/courses.svg'),
+                image: require('../../../public/assets/images/icons/Home.png'),
                 logged: true
             },
             searchLink: {
                 action: 'search',
                 text: 'חיפוש',
-                image: require('../../../public/assets/images/general/search.svg'),
+                image: require('../../../public/assets/images/icons/Search.png'),
                 logged: true
             },
 
@@ -178,7 +178,7 @@ export default {
         },
 
         home() {
-            this.$store.dispatch('UserState/goToLastActiveCourse', this.$route.path);
+            this.$store.dispatch('UserState/goToLastActiveCourse');
         },
 
         toggleSettings() {

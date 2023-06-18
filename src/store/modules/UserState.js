@@ -25,7 +25,7 @@ const UserState = {
         orders:             state   => state.orders,
         favorites:          state   => state.favorites,
         progress:           state   => state.progress,
-        hasActiveCourse:    state   => state.courses == null ? null : Boolean(state.courses && state.courses.length),
+        hasActiveCourse:    state   => state.courses === null ? null : Boolean(state.courses && state.courses.length),
         courses:            state   => state.courses,
         courseAreas:        state   => state.courseAreas,
         lessons:            state   => state.lessons,

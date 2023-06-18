@@ -35,10 +35,8 @@
                     outlined
                     title
                     icon
-                    optional
                     @onChange="setPhone" 
-                >
-                </phone-input>
+                />
             </v-flex>
             <v-flex mr-md-2 mt-5 mt-md-0>
                 <gender-select 
@@ -52,14 +50,13 @@
 
         <v-flex d-flex flex-wrap mt-5>
             <v-flex ml-md-2>
-                <team-input 
-                    ref="team"
-                    title
-                    icon
+                <birthdate-input 
+                    ref="birthdate"
                     outlined
+                    title
                     optional
-                    :loading="loading"
-                    @onChange="setTeam" 
+                    icon
+                    @onChange="setBirthdate"
                 />
             </v-flex>
             <v-flex mr-md-2 mt-5 mt-md-0>
@@ -76,18 +73,16 @@
         </v-flex>
 
         <v-flex d-flex flex-wrap mt-5>
-            <v-flex md6>
-                <birthdate-input 
-                    ref="birthdate"
-                    outlined
+            <v-flex md6 ml-md-2>
+                <team-input 
+                    ref="team"
                     title
-                    optional
                     icon
-                    @onChange="setBirthdate"
+                    outlined
+                    optional
+                    :loading="loading"
+                    @onChange="setTeam" 
                 />
-            </v-flex>
-            <v-flex>
-               
             </v-flex>
         </v-flex>
 
@@ -236,14 +231,19 @@ export default {
         },
         
         validate() {
-            const isFirstNameValid      = this.$refs.firstName.validate();
-            const isLastNameValid       = this.$refs.lastName.validate();
-            const isPhoneValid          = this.$refs.phone.validate();
-            const isGenderValid         = this.$refs.gender.validate();
-            const isTeamValid           = this.$refs.team.validate();
-            const isCityValid           = this.$refs.city.validate();
+            let isValid     = true;
+            const fields    = [
+                'firstName', 'lastName', 'phone', 'team', 'city', 'gender', 'birthdate',
+            ];
 
-            return isFirstNameValid && isGenderValid && isLastNameValid && isPhoneValid && isTeamValid && isCityValid;
+            fields.forEach(field => {
+                const isFieldValid = this.$refs[field].validate();
+                if(!isFieldValid) {
+                    isValid = false;
+                }
+            })
+            
+            return isValid;
         },
     }
 }

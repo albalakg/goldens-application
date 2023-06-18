@@ -2,20 +2,13 @@
   <div class="settings_wrapper second_dark_bg_color pa-10">
     <div class="setting_header">
       <v-flex d-flex align-center class="setting_row mt-10 pt-8">
-        <v-icon class="close_icon" color="white" large @click="close()"
-          >mdi-close</v-icon
-        >
+        <v-icon class="close_icon" color="white" large @click="close()">mdi-close</v-icon>
         <h2 class="mr-5">תפריט</h2>
       </v-flex>
 
-      <main-button
-        class="setting_download_button setting_row"
-        subColor
-        :styleConfig="{
-          borderRadius: 25,
-        }"
-        @submit="addToHomescreen()"
-      >
+      <main-button class="setting_download_button setting_row" subColor :styleConfig="{
+        borderRadius: 25,
+      }" @submit="addToHomescreen()">
         <template slot="content">
           <v-flex d-flex align-center justify-space-between>
             <span></span>
@@ -27,11 +20,7 @@
     </div>
 
     <div class="settings_links">
-      <div
-        v-for="(link, index) in links"
-        :key="index"
-        class="setting_row mb-6 settings_link"
-      >
+      <div v-for="(link, index) in links" :key="index" class="setting_row mb-6 settings_link">
         <h3 @click="close()">
           <router-link class="simple_link grey_text_color" :to="'/' + link.url">
             {{ link.text }}
@@ -115,7 +104,16 @@ export default {
     },
 
     addToHomescreen() {
-      addToHomescreen();
+      if (window.deferredPrompt) {
+        window.deferredPrompt.prompt();
+        window.deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === "accepted") {
+            console.log("User accepted the install prompt");
+          } else {
+            console.log("User dismissed the install prompt");
+          }
+        });
+      }
     }
   },
 };

@@ -56,4 +56,8 @@ export default {
     font-size: 0.8em;
   }
 
+  img {
+    height: 26px;
+  }
+
 </style>

@@ -2,10 +2,10 @@
     <div class="signin_wrapper auth_padding_top">
         <main class="auth_form_top_margin w100">
             <v-flex d-flex flex-wrap>
-                <v-flex xs12 md6 lg7 xl8>
+                <v-flex xs12 md6 xl7>
                     <star-logo colored class="star_image" />
                 </v-flex>
-                <v-flex xs12 md6 lg5 xl4 px-5 px-md-0>
+                <v-flex xs12 md6 xl5 px-5 px-md-0>
                     <v-flex md8>
                         <v-form class="signin_form" ref="form" @submit.prevent="submit()">
                             <h2 class="auth_form_title"><span class="main_text_color">שכחתי סיסמה</span> לאתר</h2>

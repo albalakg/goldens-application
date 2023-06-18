@@ -31,8 +31,7 @@
                         {{title}}
                     </h2>
 
-                    <p>
-                        {{ message }}
+                    <p v-html="message">
                     </p>
                 </div>
 

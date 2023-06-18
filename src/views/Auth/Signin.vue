@@ -179,7 +179,7 @@ export default {
             if(this.$route.query.redirect) {
                 this.redirectToPage();
             } else {
-                this.$store.dispatch('UserState/goToLastActiveCourse', true);
+                this.$store.dispatch('UserState/goToLastActiveCourse');
             }
         },
 

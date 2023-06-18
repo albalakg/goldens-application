@@ -42,6 +42,18 @@ const OrderState = {
             })
         },
 
+        checkPaymentStatus({ commit }) {
+            return new Promise((resolve, reject) => {
+                axios.get('orders/payment-status')
+                    .then(res => {
+                        commit('SET_ORDER', res.data.data);
+                        resolve()
+                    }).catch(() => {   
+                        reject()
+                    })
+            })
+        },
+
     }
 };
 

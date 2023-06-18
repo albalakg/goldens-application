@@ -1,9 +1,9 @@
 <template>
     <v-flex md10 xl9 mx-auto class="auth_padding_top px-5 px-md-0" v-if="course">
         <colored-circle-decorator class="user_colored_circle" />
-        <div v-if="orderToken" class="payment_card">
-            מסך תשלום צד שלישי   
-        </div>
+        <v-flex lg8 md10 mx-auto v-if="orderToken" class="payment_card text-center">
+            מסך תשלום צד שלישי
+        </v-flex>
         <div v-else class="order_page_content mt-5">
             <h1>
                 הרכישה <span class="main_text_color">שלכם</span>
@@ -56,6 +56,11 @@ import OrderCourseCard from '../../components/Cards/OrderCourseCard.vue'
 import OrderSummaryCard from '../../components/Cards/OrderSummaryCard.vue'
 import ColoredCircleDecorator from '../../components/Decorators/ColoredCircleDecorator.vue'
 import CouponInput from '../../components/Form/Inputs/CouponInput.vue'
+
+const CHECKING_PAYMENT_INIT_DELAY   = 1; // TODO: change to 30 seconds
+const CHECKING_PAYMENT_DELAY        = 5000; // 5 seconds
+const CHECKING_PAYMENT_MAX_ATTEMPTS = 1; // TODO: change to 30
+
 export default {
   components: { OrderCourseCard, CouponInput, OrderSummaryCard, ColoredCircleDecorator},
     data() {
@@ -66,7 +71,9 @@ export default {
             },
             coupon: null,
             loading: false,
-            orderToken: null
+            orderToken: null,
+            checkingPaymentInterval: null,
+            currentIntervalAttempt: 0,
         }
     },
 
@@ -166,13 +173,32 @@ export default {
                 })
 
                 this.orderToken = 'asd';
-                this.$refs.coupon.setErrorMessage('')
+                this.$refs.coupon.setErrorMessage('');
+                this.checkPaymentStatus();
 
             } catch(err) {
                 error(err);
                 this.$store.dispatch('MessageState/addErrorMessage', { message: 'מצטערים, אבל תהליך ההזמנה כשל' })
             }
             this.loading = false;
+        },
+
+        checkPaymentStatus() {
+            setTimeout(() => {
+                this.checkingPaymentInterval = setInterval(async () => {
+                    if(this.checkingPaymentInterval >= CHECKING_PAYMENT_MAX_ATTEMPTS) {
+                        clearInterval(this.checkingPaymentInterval);
+                        this.$store.dispatch('MessageState/addInfoMessage', {
+                            message: 'בהצלחה בקורס ומקווים שתהנה! <br> מזכירים שהקורס הוא לשימושך האישי בלבד',
+                            time: 5000
+                        });
+                        this.$store.dispatch('UserState/goToLastActiveCourse');
+                        return;
+                    }
+                    this.currentIntervalAttempt++;
+                    // await this.$store.dispatch('OrderState/checkPaymentStatus');
+                }, CHECKING_PAYMENT_DELAY);
+            }, CHECKING_PAYMENT_INIT_DELAY);
         },
 
         isTheSameValue() {
@@ -184,7 +210,9 @@ export default {
         },
 
         saveMarketingToken() {
-            this.form.marketing_token = CookieService.get('marketingToken');
+            if(CookieService.get('marketingToken') !== 'undefined') {
+                this.form.marketing_token = CookieService.get('marketingToken');
+            }
         },
     }
 }
@@ -199,6 +227,7 @@ export default {
 
     .user_colored_circle {
         height: 50vw;
+        max-height: 80vh;
         width: 50vw;
         transform: scale(1.5);
         position: absolute;

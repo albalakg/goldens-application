@@ -20,12 +20,7 @@
 </template>
 
 <script>
-import LessonFavoriteCard from '../../components/Cards/LessonFavoriteCard.vue';
-import SupportTicketCard from '../../components/Cards/SupportTicketCard.vue';
-import ArrowChip from '../../components/Chips/arrowChip.vue';
-import Pagination from '../../components/General/Pagination.vue';
 export default {
-  components: { LessonFavoriteCard, Pagination, ArrowChip, SupportTicketCard },
     created() {
         this.$store.dispatch('UserState/getSupportTickets');
     },
