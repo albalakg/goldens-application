@@ -1,7 +1,7 @@
 <template>
     <div>
         
-        <section-header :right="right" :dark="dark" :title="'המאמנים שלנו'" :backgroundTitle="'מאמנים'" :subtitle="`בצוות תמצאו אנשי המפתח מעולם הכדורגל- הם בחרו את התרגילים והתכנים הכי מדוייקים בשבילכם! הם מקצועיים, הם מתאימים לתכונות שאנחנו מחפשים עבורכם והם הכי טובים במה שהם עושים.`">
+        <section-header :right="right" :dark="dark" :title="'המאמנים שלנו'" :backgroundTitle="'מאמנים'" :subtitle="subtitle">
         </section-header>
 
         <br>
@@ -62,6 +62,7 @@ export default {
         return {
             focusedTrainerIndex: 0,
             scrollingDisabled:   false,
+            subtitle: `בצוות תמצאו אנשי המפתח מעולם הכדורגל - </br> הם בחרו את התרגילים והתכנים </br> הכי מדוייקים בשבילכם! הם מקצועיים, </br> הם מתאימים לתכונות שאנחנו מחפשים </br> עבורכם והם הכי טובים במה שהם עושים.`
         }
     },
 

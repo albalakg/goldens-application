@@ -1,10 +1,6 @@
 <template>
   <div class="about_wrapper second_dark_bg_color app_padding_top">
-    <img
-      class="about_background_image"
-      :src="aboutBackgroundImage"
-      alt="about background"
-    />
+    <img class="about_background_image" :src="aboutBackgroundImage" alt="about background" />
     <div class="about_background_darkner"></div>
     <v-flex md10 xl9 mx-auto class="about_background_content">
       <section class="about_header">
@@ -20,16 +16,13 @@
         </v-flex>
       </section>
 
-      <div class="spacer"></div>
+      <!-- <div class="spacer"></div>
 
       <section>
         <v-flex md10 mx-auto class="px-3 px-md-0">
-          <video
-            src="https://www.youtube.com/watch?v=0CUjzYtloe8"
-            controls
-          ></video>
+          <video src="https://www.youtube.com/watch?v=0CUjzYtloe8" controls></video>
         </v-flex>
-      </section>
+      </section> -->
 
       <div class="spacer"></div>
 
@@ -45,7 +38,7 @@
       <div class="spacer"></div>
     </v-flex>
 
-    <v-flex md8 mx-auto>
+    <v-flex md8 mx-auto class="trainers_section">
       <trainers v-if="trainers.length" full dark :trainers="trainers" />
     </v-flex>
 
@@ -55,21 +48,13 @@
       <div class="about_background_darkner"></div>
 
       <div class="about_believe_content px-3">
-        <section-header
-          :title="'האני מאמין'"
-          :backgroundTitle="'מאמין'"
-          :subtitle="'סתם בלה בלה בלה בלה שבא לי לכתוב כי אני רוצה לכתוב סתם דברים בלי סיבה בלה בלה בלה'"
-          dark
-        />
+        <section-header :title="'האני מאמין'" :backgroundTitle="'מאמין'"
+          :subtitle="'סתם בלה בלה בלה בלה שבא לי לכתוב כי אני רוצה לכתוב סתם דברים בלי סיבה בלה בלה בלה'" dark />
 
         <v-flex d-flex>
           <v-flex md5 xl6> </v-flex>
           <v-flex md5 xl4>
-            <div
-              class="side_note white_border_right pr-3"
-              v-for="(note, index) in sideNotes"
-              :key="index"
-            >
+            <div class="side_note white_border_right pr-3" v-for="(note, index) in sideNotes" :key="index">
               <h2 class="sub_text_color">
                 {{ note.title }}
               </h2>
@@ -154,7 +139,7 @@ export default {
   mounted() {
     this.listenToScroll();
   },
-  
+
   computed: {
     trainers() {
       const trainers = this.$store.getters['ContentState/trainers'];
@@ -239,6 +224,15 @@ export default {
     }
   }
 
+  .trainers_section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+    z-index: 2;
+  }
+
   .about_believe_section {
     position: relative;
 
@@ -249,7 +243,7 @@ export default {
       height: 100%;
       width: 100%;
       object-fit: cover;
-      
+
       @media only screen and (max-width: 600px) {
         object-position: right;
       }

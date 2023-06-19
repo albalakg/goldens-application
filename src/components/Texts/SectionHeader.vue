@@ -20,8 +20,8 @@
         'ml-auto': right,
         'mr-auto': left,
         'mx-auto': !left && !right,
-    }">
-        {{ subtitle }}
+    }" v-html="subtitle">
+        
     </p>
 </div>
 </template>
