@@ -226,9 +226,6 @@ export default {
 
   .trainers_section {
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
     position: relative;
     z-index: 2;
   }
@@ -296,5 +293,14 @@ export default {
       left: 0% !important;
     }
   }
+}
+
+@media only screen and (min-width: 601px) {
+  
+  .trainers_section {
+    display: flex;
+    align-items: flex-end;
+  }
+
 }
 </style>

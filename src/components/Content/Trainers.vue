@@ -62,7 +62,7 @@ export default {
         return {
             focusedTrainerIndex: 0,
             scrollingDisabled:   false,
-            subtitle: `בצוות תמצאו אנשי המפתח מעולם הכדורגל - </br> הם בחרו את התרגילים והתכנים </br> הכי מדוייקים בשבילכם! הם מקצועיים, </br> הם מתאימים לתכונות שאנחנו מחפשים </br> עבורכם והם הכי טובים במה שהם עושים.`
+            subtitle: `בצוות תמצאו אנשי המפתח מעולם הכדורגל- הם בחרו את התרגילים והתכנים הכי מדוייקים בשבילכם! הם מקצועיים, הם מתאימים לתכונות שאנחנו מחפשים עבורכם והם הכי טובים במה שהם עושים.`
         }
     },
 
@@ -157,14 +157,14 @@ export default {
 
         .lesson_wrapper_right_icon {
             position: absolute;
-            right: 0px;
+            right: 8px;
             top: 33%;
             z-index: 5;                
         }
 
         .lesson_wrapper_left_icon {
             position: absolute;
-            left: 0px;
+            left: 8px;
             top: 33%;
             z-index: 5;                
         }
