@@ -243,7 +243,7 @@ export default {
     },
 
     courseAreas() {
-      return this.course?.guest_active_areas_with_active_lessons;
+      return this.course?.active_areas_with_active_lessons;
     },
 
     trainers() {
