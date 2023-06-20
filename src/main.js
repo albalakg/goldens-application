@@ -3,6 +3,7 @@ import { error, warning } from "./helpers/GlobalMethods";
 import Vue from 'vue'
 import App from './App.vue'
 import vuetify from './plugins/vuetify'
+import he from 'vuetify/es5/locale/he';
 import router from './router'
 import store from './store'
 import axios from "axios";
@@ -15,6 +16,9 @@ import StatusService from './helpers/StatusService'
 import { LOCAL, PROD } from './helpers/EnvService'
 import Auth from "./helpers/Auth";
 import './registerServiceWorker'
+
+vuetify.framework.lang.current = 'he';
+vuetify.framework.lang.locales.he = he;
 
 Vue.config.productionTip  = false
 axios.defaults.baseURL    = process.env.VUE_APP_SERVER_BASE_URL + '/api/';

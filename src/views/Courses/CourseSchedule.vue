@@ -40,6 +40,7 @@
         <v-sheet height="600" dir="rtl">
           <v-calendar
             ref="calendar"
+            locale="he"
             v-model="focus"
             color="primary"
             :events="events"
@@ -296,6 +297,10 @@ export default {
 
     setFocus(date) {
       this.focus = date;
+    },
+
+    updateScheduleMonth() {
+
     }
   },
 };
