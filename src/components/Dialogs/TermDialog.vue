@@ -15,11 +15,11 @@
       <div class="term_card_right_border"></div>
       <div class="term_card_bottom_border"></div>
       <div class="term_card_content">
-        <v-card-title class="term_card_title">
+        <h2 class="term_card_title">
           {{
             term.name
           }}
-        </v-card-title>
+        </h2>
         
         <div class="term_card_separator"></div>
 

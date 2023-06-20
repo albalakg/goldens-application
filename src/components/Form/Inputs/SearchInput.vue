@@ -15,7 +15,7 @@
             @onFocus="onFocus"
         />
 
-        <v-flex class="search_list" v-show="searchValue">
+        <v-flex class="search_list" v-show="showSearchList">
             <template v-if="result.length">
                 <v-flex d-flex v-for="(lesson, index) in result" :key="index" class="search_list_item" :class="{'mb-2': index != result.length -1}" @click="enterLesson(lesson)">
                     <v-flex xs4>
@@ -83,6 +83,7 @@ export default {
             iconSrc:        'mdi-magnify',
             rules:          [],
             searchValue:    '',
+            isFocused:      false
         }
     },
 
@@ -103,6 +104,10 @@ export default {
             })
 
             return lessons;
+        },
+
+        showSearchList() {
+            return this.searchValue && this.isFocused;
         }
     },
 
@@ -114,6 +119,7 @@ export default {
 
         onFocus(value) {
             this.$emit('onFocus', value);
+            this.isFocused = value;
         },
 
         enterLesson(lesson) {
