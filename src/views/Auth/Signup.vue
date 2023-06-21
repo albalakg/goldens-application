@@ -16,6 +16,32 @@
                             <v-flex v-if="$vuetify.breakpoint.mdAndUp">
                                 <v-flex d-flex>
                                     <v-flex xs6 class="ml-1">
+                                        <first-name-input
+                                            ref="firstName"
+                                            outlined
+                                            title
+                                            icon
+                                            @onChange="setFirstName" 
+                                        >
+                                        </first-name-input>
+                                    </v-flex>
+                                    <v-flex xs6 class="mr-1">
+                                        <last-name-input
+                                            ref="lastName"
+                                            outlined
+                                            title
+                                            icon
+                                            @onChange="setLastName" 
+                                        >
+                                        </last-name-input>
+                                    </v-flex>
+                                </v-flex>
+                                
+                                <div class="spacer"></div>
+                                <div class="spacer"></div>
+
+                                <v-flex d-flex>
+                                    <v-flex xs6 class="ml-1">
                                         <email-input
                                             ref="email"
                                             outlined
@@ -35,32 +61,6 @@
                                             @onChange="setPassword" 
                                         >
                                         </password-input>
-                                    </v-flex>
-                                </v-flex>
-                                
-                                <div class="spacer"></div>
-                                <div class="spacer"></div>
-
-                                <v-flex d-flex>
-                                    <v-flex xs6 class="ml-1">
-                                        <first-name-input
-                                            ref="firstName"
-                                            outlined
-                                            title
-                                            icon
-                                            @onChange="setFirstName" 
-                                        >
-                                        </first-name-input>
-                                    </v-flex>
-                                    <v-flex xs6 class="mr-1">
-                                        <last-name-input
-                                            ref="lastName"
-                                            outlined
-                                            title
-                                            icon
-                                            @onChange="setLastName" 
-                                        >
-                                        </last-name-input>
                                     </v-flex>
                                 </v-flex>
                                 
@@ -119,6 +119,28 @@
 
                             <v-flex v-else>
                                     
+                                <first-name-input
+                                    ref="firstName"
+                                    outlined
+                                    title
+                                    icon
+                                    @onChange="setFirstName" 
+                                >
+                                </first-name-input>
+
+                                <div class="spacer"></div>
+
+                                <last-name-input
+                                    ref="lastName"
+                                    outlined
+                                    title
+                                    icon
+                                    @onChange="setLastName" 
+                                >
+                                </last-name-input>
+                                
+                                <div class="spacer"></div>
+
                                 <email-input
                                     ref="email"
                                     outlined
@@ -139,28 +161,6 @@
                                     @onChange="setPassword" 
                                 >
                                 </password-input>
-                                
-                                <div class="spacer"></div>
-
-                                <first-name-input
-                                    ref="firstName"
-                                    outlined
-                                    title
-                                    icon
-                                    @onChange="setFirstName" 
-                                >
-                                </first-name-input>
-
-                                <div class="spacer"></div>
-
-                                <last-name-input
-                                    ref="lastName"
-                                    outlined
-                                    title
-                                    icon
-                                    @onChange="setLastName" 
-                                >
-                                </last-name-input>
                                 
                                 <div class="spacer"></div>
 

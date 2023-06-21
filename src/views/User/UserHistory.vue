@@ -3,6 +3,7 @@
         <div v-if="lessons && lessons.length">
             <v-flex d-flex flex-wrap v-if="$vuetify.breakpoint.mdAndUp">
                 <v-flex md3 v-for="lesson in viewLessons" :key="lesson.course_lesson_id" class="mb-10 pl-3">
+                    {{ lesson }}
                     <lesson-history-card class="lesson_history_card" :lesson="lesson" @submit="enterLesson" />
                 </v-flex>
             </v-flex>
@@ -55,6 +56,7 @@ export default {
             courses.forEach(course => {
                 lessons = lessons.concat(course.lessons_progress)
             });
+
             return lessons.filter(lesson => lesson.finished_at);
         },
 
@@ -66,10 +68,7 @@ export default {
             const startIndex    = (this.page - 1) * this.totalLessonsPerPage;
             const endIndex      = startIndex + this.totalLessonsPerPage;
 
-            let lessons = this.lessons.slice(startIndex, endIndex)
-            return lessons.filter(lesson => {
-                return Boolean(ContentService.findLessonById(lesson.id));
-            });
+            return this.lessons.slice(startIndex, endIndex);
         },
 
         totalPages() {

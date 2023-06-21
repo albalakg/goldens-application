@@ -22,7 +22,7 @@
                 </v-flex>
             </v-flex>
             <v-flex d-flex justify-space-between align-start class="mt-5">
-                <v-flex md4 d-flex align-center class="text-center px-10" v-for="(step, index) in steps" :key="index">
+                <v-flex md4 mr-md-3 d-flex align-center class="px-10" v-for="(step, index) in steps" :key="index">
                     <p class="px-10">
                         <strong>
                             {{ step.title }}
@@ -75,8 +75,7 @@ export default {
             steps: [
                 {
                     title: 'מתחילים ללמוד לשחק כמו אלופים!',
-                    description: `אחרי ההרשמה לתוכנית השנתית, אתם מקבלים גישה למערכת הקורס שלנו. 
-                        ישנם כ 50 תרגילים המנוהלים לפי יומן שמגדיר מתי לבצע כל אימון`
+                    description: `אחרי ההרשמה לתוכנית השנתית, אתם מקבלים גישה למערכת האקדמיה. ישנם 51 תרגילים המנוהלים לפי יומן שמגדיר מתי לבצע כל אימון`
                 },
                 {
                     title: 'צופים בשיעורים בהתאמה אישית',

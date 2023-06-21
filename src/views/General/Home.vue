@@ -9,11 +9,12 @@
             : 'course_page_image_darkner_right_to_left'
         "></div>
         <div class="course_page_image_details">
-          <course-header title :course="course">
+          <course-header title :course="course" v-if="$vuetify.breakpoint.mdAndUp">
             <template slot="headerContent">
               <buy-button @submit="scrollToBuySection()" class="mr-3 mr-md-0" />
             </template>
           </course-header>
+          <home-header v-else @scrollToBuySection="scrollToBuySection()" />
         </div>
       </v-flex>
     </section>
@@ -41,7 +42,7 @@
       <v-flex xl8 lg9 md10 mx-auto class="course_area_content">
         <v-flex d-flex flex-wrap justify-space-between>
           <v-flex md5 order-2 order-md-1 class="mt-10 mt-md-0">
-            <section-header class="mr-3 mr-md-0" right :title="'תחומי הקורס'" :subtitle="'תוכנית אימון שנתית המשלבת שישה תחומים המרכיבים את כל הדרוש על מנת להצליח להגיע למטרה ולהגשים את החלום'" :backgroundTitle="'תחומים'" />
+            <section-header class="mr-3 mr-md-0" right :title="'תחומי האקדמיה'" :subtitle="'תוכנית אימון שנתית המשלבת את חמשת המרכיבים הנדרשים על מנת להצליח'" :backgroundTitle="'תחומים'" />
             <course-area-list v-if="courseAreas" :courseAreas="courseAreas" guest separated @submit="clickOnCourseArea" />
           </v-flex>
           <v-flex md5 order-1 order-md-2 class="course_area_free_text mb-10 mt-md-0 mx-md-0 mx-5">
@@ -49,9 +50,7 @@
               קצת עלינו
             </strong>
             <p>
-              'גולדנס' הוא מיזם מיוחד שהוקם במטרה לעודד את תרבות הספורט בדור הצעיר.
-              הערכים המנחים של התכנית הם ערכים שילוו את התלמידים לטווח הקצר והארוך ויעניקו להם מעטפת שלמה של ידע מקצועי, קהילה תומכת ועוצמה פנימית. 
-              הצוות המקצועי שמלווה את הקורס, התוכן המדויק והיסודי, האיכות הגבוהה של הסרטונים והביצוע הטכני- יאפשר לכם ולילד שלכם להגשים חלום!
+              גולדנס הוא מיזם מיוחד שהוקם במטרה לעודד את תרבות הספורט בדור הצעיר. הערכים המנחים של התכנית הם ערכים שילוו אתכם לטווח הקצר והארוך ויספקו מעטפת שלמה של ידע מקצועי, קהילה תומכת ועוצמה פנימית. הצוות המקצועי של האקדמיה נבחר בקפידה להעניק לכם את התוכן המדויק והיסודי המבוסס על ידע מתוך שנים של ניסיון ומחקר, הבסיס החשוב ביותר לפעולות במגרש ומחוצה לו, אנחנו מאמינים בגישה מקצועית וממוקדת שתסייע להתפתח בצורה מרשימה, הקפדנו על האיכות הגבוהה של הסרטונים, ההדרכה והביצוע הטכני, שיאפשרו לפתח את הכישורים ולהשיג את היעדים הספורטיביים בעולם הכדורגל!
             </p>
           </v-flex>
         </v-flex>
@@ -72,7 +71,7 @@
 
     <section class="how_it_works_section pt-10">
       <v-flex xl8 lg9 md10 mx-auto>
-        <section-header :title="'איך זה עובד'" :backgroundTitle="'שלבי המערכת'" />
+        <section-header :title="'השלבים להצלחה'" :backgroundTitle="'השלבים'" />
         <br />
         <br />
 
@@ -84,7 +83,7 @@
 
     <section class="recommendations_section">
       <v-flex xl8 lg9 md10 mx-auto>
-        <recommendations :items="course.recommendations" :perPage="recommendationsPerPage" />
+        <recommendations dark :items="course.recommendations" :perPage="recommendationsPerPage" />
       </v-flex>
     </section>
 
@@ -118,8 +117,8 @@
       </v-flex>
     </section>
 
-    <section class="buy_section ">
-      <section-header :title="'רכישה'" :backgroundTitle="'רכישת הקורס'" />
+    <section class="buy_section">
+      <section-header :title="'רכישה'" :backgroundTitle="$vuetify.breakpoint.mdAndUp ? 'הצטרפות לאקדמיה' : 'הצטרף'" />
       <br />
       <v-flex xl8 lg9 md10 mx-auto class="px-3 px-md-0">
         <detailed-course-card-horizontal :course="course" />
@@ -144,6 +143,7 @@ import StarLogo from '../../components/General/StarLogo.vue';
 import SectionHeader from "../../components/Texts/SectionHeader.vue";
 import ArrowsDecorator from '../../components/Decorators/ArrowsDecorator.vue'
 import HowItWorks from "../../components/Content/HowItWorks.vue";
+import HomeHeader from "../../components/Content/HomeHeader.vue";
 
 export default {
   components: {
@@ -159,6 +159,7 @@ export default {
     Recommendations,
     ArrowsDecorator,
     HowItWorks,
+    HomeHeader,
 },
 
   data() {
@@ -259,20 +260,19 @@ export default {
       return [
         {
           title: 'למה לא להסתפק בסרטוני יוטיוב?',
-          content: `כהורים אנחנו מחפשים להשקיע בעתיד הילדים שלנו. ביוטיוב תמצאו סרטונים נחמדים שיראו לכם כיצד לבצע תרגילים ראוותניים בכדור ולא בהכרח תרגילים בסיסיים שאיתם נדרשים להתמודד בזמן אמת- במגרש, במשחק.  ביוטיוב הילד או ההורה יאלץ לחפש לעצמו את הסרטונים, לבנות לעצמו מערכת מותאמת ורצף הגיוני ללימוד הטכניקות, ובכלל- תמצאו שם רק סרטונים של משחק בלי כל המעטפת הנדרשת כדי להפוך לשחקן מוביל: בלי הכוונה לתזונה נכונה, בלי התייחסות לחלק המנטלי, בלי להקפיד על כושר כאורח חיים. 
-בקורס אתם מקבלים את כל התחומים המקיפים את חייו של ספורטאי וכדורגלן מצליח. הילד לומד להתמודד עם המשחק במגרש בצורה טובה יותר ויסודית יותר והכל בהתאמה לסדר יומו וליכולת שלו.`
+          content: `כהורים אנחנו מחפשים להשקיע בעתיד הילדים שלנו. ביוטיוב תמצאו סרטונים שיראו לכם כיצד לבצע תרגילים ראוותניים בכדור ולא בהכרח תרגילים בסיסיים ״יסודות״ שאיתם נדרשים להתמודד בזמן אמת במגרש, במשחק, אשר מרכיבים כ90% מהפעולות של השחקן. ביוטיוב הילד או ההורה יאלץ לחפש לעצמו את הסרטונים, לבנות לעצמו מערכת מותאמת ורצף הגיוני ללימוד הטכניקות, ובכלל, תמצאו שם רק סרטונים של משחק בלי כל המעטפת הנדרשת כדי להפוך לשחקן מוביל: בלי הכוונה לתזונה נכונה, בלי התייחסות לחלק המנטאלי, בלי להקפיד על כושר ואתלטיות כאורח חיים.באקדמיה אתם מקבלים את כל התחומים המקיפים את חייו של ספורטאי וכדורגלן מצליח, אשר נבחרו בקפידה ע״י אנשי המקצוע המובילים שהרכיבו עבורכם תוכנית אימון שנתית, הילד לומד להתמודד עם המשחק במגרש בצורה טובה יותר ויסודית יותר והכל בהתאמה לסדר יומו וליכולת שלו.`
         },
         {
-          title: 'למה אין תמיכה?',
-          content: `על חוק 10000 שמעתם? החוק אומר שככל שתרגלו יותר- תהיו טובים יותר ותשתפרו יותר. אנחנו בקורס מעניקים לכם את כל הידע שאתם זקוקים לו כדי להצליח. במידה ויש משהו לא ברור- פשוט תצאו לשטח! תתאמנו שוב ושוב עד שתצליחו. הסרטונים מאוד ברורים וכוללים עצירות לדגשים חשובים אבל מבחן ההצלחה האמיתי הוא במגרש. כמו כן יש לכם את קבוצת הפייסבוק שלנו- בה תמצאו קהילה חמה ואוהדת של חברים-תלמידים נוספים. תוכלו לשתף, ולהתייעץ, לקבל פידבק ותמיכה ואף לקבוע אימונים משותפים יחד. אז יש תמיכה או אין?!`
+          title: 'האם יש משוב?',
+          content: `על חוק 10,000 השעות שמעתם? החוק אומר שככל שתתרגלו יותר, תהיו טובים יותר ותשתפרו יותר. הממשק שהקמנו עבורכם פשוט ונח, נגיש לכל האמצעים, מתאים למחשב לטאבלט וכמובן גם לנייד, אתם צופים בתרגילים ויכולים לקחת את המאמן האישי לקבל הדרכה גם במגרש, הסרטונים מאוד ברורים וכוללים עצירות לדגשים החשובים. אנחנו באקדמיה מעניקים לכם את כל הידע שאתם זקוקים לו כדי להצליח. במידה ומשהו לא ברור, פשוט תצאו למגרש! תתאמנו שוב ושוב עד שתצליחו. כמו כן יש לכם את קבוצת הפייסבוק שלנו, בה תמצאו קהילה חמה ואוהדת של חברים, שחקנים נוספים. תוכלו לשתף ולהתייעץ, לקבל פידבק ותמיכה ואף לקבוע אימונים משותפים יחד.`
         },
         {
           title: 'איך אפשר ללמוד מסרטונים?',
-          content: `נכון, זה מאתגר לצפות בסרטון ואז לנסות לבצע את התרגיל בעצמך. הרבה יותר קל להשתתף בחוג כדורגל…רק מה? בחוג כדורגל יהיו מגוון של תלמידים, כל אחד ברמה אחרת ובקצב למידה אחר. בחוג כדורגל המאמן יראה לתלמידים את התרגיל- אך הביצוע שלו בלייב יהיה מהיר מאוד ולפעמים אף בלתי קליט. בסרטונים- יש את האופציה האולטימטיבית עבור הילד שלך: הסרטונים כוללים האטות ועצירות באמצע תרגיל כדי לתת דגשים חשובים, הנחיות מדויקות והכוונה ספציפית- מה שלא ניתן לראות במשחק פיזי! כך שבסופו של דבר- צפיה בסרטונים דורשת יותר משמעת עצמית והרבה תרגול- אך הלמידה היא מדוייקת יותר, מותאמת לרמת התלמיד, הוא יכול לצפות שוב ושוב בתרגיל עד שהוא מסוגל לבצע אותו בצורה הטובה ביותר!`
+          content: `נכון, זה מאתגר לצפות בסרטון ואז לנסות לבצע את התרגיל בעצמך. הרבה יותר קל להשתתף בחוג כדורגל.. רק מה? בחוג כדורגל יהיו מגוון של שחקנים, כל אחד ברמה אחרת ובקצב למידה אחר, היחס והאימון אינו אישי, מעבר לכך מספר הנגיעות בכדור והתרגול הוא נמוך מאוד ביחס לאימון. בחוג כדורגל המאמן יראה לתלמידים את התרגיל, אך הביצוע שלו בלייב יהיה מהיר מאוד ולפעמים אף בלתי קליט. בסרטונים, יש את האופציה האולטימטיבית עבור הילד שלך: הסרטונים כוללים האטות ועצירות באמצע תרגיל כדי לתת דגשים חשובים, הנחיות מדויקות והכוונה ספציפית, מה שלא ניתן לראות במשחק פיזי! כך שבסופו של דבר, צפיה בסרטונים דורשת יותר משמעת עצמית והרבה תרגול, אך הלמידה היא מדוייקת יותר, מותאמת לרמת התלמיד, הוא יכול לצפות שוב ושוב בתרגיל עד שהוא מסוגל לבצע אותו בצורה הטובה ביותר!`
         },
         {
-          title: 'האם זה מתאים גם למתחילים?',
-          content: `בהחלט! הקורס בנוי מהבסיס ממש ומורכב מ50 שיעורים שלב אחרי שלב עד לרמות הגבוהות ביותר בעולם הכדורגל. כל תלמיד יכול לבחור לעצמו שלב התרגילים לפי הרמה שהוא נמצא בה ולפי הידע והניסיון שכבר יש לו בשטח. הקורס מעניק גם מעטפת של אימון מטאלי כדי לעודד את הילד להצליח במגרש, לא לפחד מכשלונות ולהתמיד בתרגול. הקורס הזה מוביל את הילד שלך מסע מרתק של גדילה עצמית הרבה מעבר למשחק.`
+          title: 'האם האקדמיה מתאימה גם למתחילים?',
+          content: `בהחלט! האקדמיה בנויה מהבסיס ממש ומורכבת מ52? שיעורים שלב אחרי שלב עד לרמות הגבוהות ביותר בעולם הכדורגל, שלא בהכרח קשות לתרגול, אך מצריכות הכוונה והדרכה נכונה. כל תלמיד יכול לבחור לעצמו את קצב ההתקדמות לפי הרמה שהוא נמצא בה ולפי הידע והניסיון שכבר יש לו בשטח. האקדמיה מעניקה גם מעטפת של אימון מנטאלי כדי לעודד את הילד להצליח במגרש, לא לפחד מכשלונות ולהתמיד בתרגול. האקדמיה הזאת מובילה את הילד שלך מסע מרתק של גדילה עצמית הרבה מעבר למשחק.`
         },
       ];
     },
@@ -407,6 +407,11 @@ export default {
   }
 }
 
+.buy_section {
+  margin-top: 15vh;
+  margin-bottom: 5vh;
+}
+
 .cooperation_section {
   position: relative;
   z-index: 2;
@@ -443,6 +448,17 @@ export default {
   }
 }
 
+.recommendations_section {
+  min-height: 100vh;
+  padding-top: 10vh;
+  background-image: radial-gradient(circle at 40% 91%, rgba(251, 251, 251,0.04) 0%, rgba(251, 251, 251,0.04) 50%,rgba(229, 229, 229,0.04) 50%, rgba(229, 229, 229,0.04) 100%),radial-gradient(circle at 66% 97%, rgba(36, 36, 36,0.04) 0%, rgba(36, 36, 36,0.04) 50%,rgba(46, 46, 46,0.04) 50%, rgba(46, 46, 46,0.04) 100%),radial-gradient(circle at 86% 7%, rgba(40, 40, 40,0.04) 0%, rgba(40, 40, 40,0.04) 50%,rgba(200, 200, 200,0.04) 50%, rgba(200, 200, 200,0.04) 100%),radial-gradient(circle at 15% 16%, rgba(99, 99, 99,0.04) 0%, rgba(99, 99, 99,0.04) 50%,rgba(45, 45, 45,0.04) 50%, rgba(45, 45, 45,0.04) 100%),radial-gradient(circle at 75% 99%, rgba(243, 243, 243,0.04) 0%, rgba(243, 243, 243,0.04) 50%,rgba(37, 37, 37,0.04) 50%, rgba(37, 37, 37,0.04) 100%),linear-gradient(90deg, rgb(16,42,70),rgb(228,202,149));
+
+  // background-image: radial-gradient(circle at 40% 91%, rgba(251, 251, 251,0.04) 0%, rgba(251, 251, 251,0.04) 50%,rgba(229, 229, 229,0.04) 50%, rgba(229, 229, 229,0.04) 100%),radial-gradient(circle at 66% 97%, rgba(36, 36, 36,0.04) 0%, rgba(36, 36, 36,0.04) 50%,rgba(46, 46, 46,0.04) 50%, rgba(46, 46, 46,0.04) 100%),radial-gradient(circle at 86% 7%, rgba(40, 40, 40,0.04) 0%, rgba(40, 40, 40,0.04) 50%,rgba(200, 200, 200,0.04) 50%, rgba(200, 200, 200,0.04) 100%),radial-gradient(circle at 15% 16%, rgba(99, 99, 99,0.04) 0%, rgba(99, 99, 99,0.04) 50%,rgba(45, 45, 45,0.04) 50%, rgba(45, 45, 45,0.04) 100%),radial-gradient(circle at 75% 99%, rgba(243, 243, 243,0.04) 0%, rgba(243, 243, 243,0.04) 50%,rgba(37, 37, 37,0.04) 50%, rgba(37, 37, 37,0.04) 100%),linear-gradient(90deg, rgb(16,42,70),rgb(213,178,110));
+  
+  // background-image: radial-gradient(circle at 29% 55%, hsla(329,0%,99%,0.05) 0%, hsla(329,0%,99%,0.05) 4%,transparent 4%, transparent 44%,transparent 44%, transparent 100%),radial-gradient(circle at 85% 89%, hsla(329,0%,99%,0.05) 0%, hsla(329,0%,99%,0.05) 51%,transparent 51%, transparent 52%,transparent 52%, transparent 100%),radial-gradient(circle at 6% 90%, hsla(329,0%,99%,0.05) 0%, hsla(329,0%,99%,0.05) 53%,transparent 53%, transparent 64%,transparent 64%, transparent 100%),radial-gradient(circle at 35% 75%, hsla(329,0%,99%,0.05) 0%, hsla(329,0%,99%,0.05) 6%,transparent 6%, transparent 98%,transparent 98%, transparent 100%),radial-gradient(circle at 56% 75%, hsla(329,0%,99%,0.05) 0%, hsla(329,0%,99%,0.05) 16%,transparent 16%, transparent 23%,transparent 23%, transparent 100%),radial-gradient(circle at 42% 0%, hsla(329,0%,99%,0.05) 0%, hsla(329,0%,99%,0.05) 3%,transparent 3%, transparent 26%,transparent 26%, transparent 100%),radial-gradient(circle at 29% 28%, hsla(329,0%,99%,0.05) 0%, hsla(329,0%,99%,0.05) 51%,transparent 51%, transparent 75%,transparent 75%, transparent 100%),radial-gradient(circle at 77% 21%, hsla(329,0%,99%,0.05) 0%, hsla(329,0%,99%,0.05) 35%,transparent 35%, transparent 55%,transparent 55%, transparent 100%),radial-gradient(circle at 65% 91%, hsla(329,0%,99%,0.05) 0%, hsla(329,0%,99%,0.05) 46%,transparent 46%, transparent 76%,transparent 76%, transparent 100%),linear-gradient(45deg, rgb(16,42,70),rgb(12,32,54));
+  // background: #102a46;
+}
+
 .benefits_background_effect {
   position: absolute;
   height: 70vw;
@@ -477,7 +493,7 @@ export default {
 
 .arrows_decoration {
   position: absolute;
-  top: -20vh;
+  top: -10vh;
   left: -50vh;
   height: 90vh;
   z-index: 0;
@@ -491,7 +507,7 @@ export default {
 
 @media only screen and (max-width: 600px) {
   .course_page_image_wrapper {
-    height: 60vh !important;
+    height: 77vh !important;
   }
 
   .course_page_image_darkner {

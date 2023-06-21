@@ -4,6 +4,7 @@
     :class="{
         'light_buy_button_wrapper': !dark,
         'slim_buy_button_wrapper':  slim,
+        'fill_buy_button_wrapper':  fill,
     }"
     @click="submit()"
 >
@@ -26,6 +27,11 @@ export default {
         },
 
         slim: {
+            type: Boolean,
+            default: false
+        },
+
+        fill: {
             type: Boolean,
             default: false
         },
@@ -68,6 +74,10 @@ export default {
 
     .slim_buy_button_wrapper {
         padding: 0px 20px;
+    }
+
+    .fill_buy_button_wrapper {
+        width: 100%;
     }
 
     @media only screen and (max-width: 600px) {

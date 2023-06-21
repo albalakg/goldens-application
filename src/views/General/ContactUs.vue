@@ -103,11 +103,11 @@ export default {
           image: require('../../../public/assets/images/general/location.svg'), 
           link: false
         },
-        {
-          text: '052-1234455',
-          image: require('../../../public/assets/images/general/phone.svg'), 
-          link: 'tel:052-1234455'
-        },
+        // {
+        //   text: '052-1234455',
+        //   image: require('../../../public/assets/images/general/phone.svg'), 
+        //   link: 'tel:052-1234455'
+        // },
         {
           text: 'contact@goldens.com',
           image: require('../../../public/assets/images/general/mail.svg'), 

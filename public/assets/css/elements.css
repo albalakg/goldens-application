@@ -81,6 +81,10 @@
     outline: 2px solid #d5b26e;
 }
 
+.second_layer {
+    z-index: 2;
+}
+
 @media only screen and (max-width: 1900px) {
     
     .auth_form_top_margin {

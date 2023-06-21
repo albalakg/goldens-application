@@ -83,7 +83,6 @@ export default {
             iconSrc:        'mdi-magnify',
             rules:          [],
             searchValue:    '',
-            isFocused:      false
         }
     },
 
@@ -107,7 +106,7 @@ export default {
         },
 
         showSearchList() {
-            return this.searchValue && this.isFocused;
+            return this.searchValue
         }
     },
 
@@ -119,7 +118,6 @@ export default {
 
         onFocus(value) {
             this.$emit('onFocus', value);
-            this.isFocused = value;
         },
 
         enterLesson(lesson) {

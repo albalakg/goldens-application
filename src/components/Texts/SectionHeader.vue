@@ -92,11 +92,12 @@ export default {
         }
 
         h2 {
-            font-size: 7em;
+            font-size: 5em;
             color: #88888822;
-            top: -55px;
+            top: -25px;
             position: absolute;
             left: 0;
+            letter-spacing: 6px;
             right: 0;
             margin: auto;
         }
@@ -138,8 +139,8 @@ export default {
         }
 
         .section_header_wrapper h2 {
-            font-size: 4.5em;
-            top: -25px;
+            font-size: 4em;
+            top: -0.3em;
         }
     }
 

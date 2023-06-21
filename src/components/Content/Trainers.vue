@@ -8,14 +8,14 @@
 
         <div class="trainer_content">
             <v-flex v-if="$vuetify.breakpoint.mdAndUp" d-flex justify-space-between flex-wrap>
-                <div v-for="(trainer, index) in trainers" :key="index">
+                <div v-for="(trainer, index) in trainers" :key="index" class="mb-2">
                     <img class="trainer_card" src="./../../../public/assets/images/trainers/trainer-card.png" alt="trainer card">
                 </div>
             </v-flex>
 
             <v-flex class="trainers_mobile_wrapper mt-md-10 pt-md-5" v-else>
                 <arrow-chip v-show="showNextTrainerArrow" @submit="goToLastTrainer()" :left="false" class="lesson_wrapper_right_icon" />
-                <v-flex class="trainers_wrapper mr-auto" ref="trainers">
+                <v-flex class="trainers_wrapper" ref="trainers">
                     <div v-for="(trainer, index) in trainers" :key="index" :ref="`trainer-${index}`">
                         <img class="trainer_card" src="./../../../public/assets/images/trainers/trainer-card.png" alt="trainer card">
                     </div>
@@ -137,13 +137,14 @@ export default {
         display: flex;
         align-items: center;
         height: 70vh;
-
+        
         .trainers_wrapper {
             height: 90%;
             width: 100%;
             display: flex;
             overflow-x: auto;
             pointer-events: none;
+            // margin-right: 10%;
 
             &::-webkit-scrollbar {
                 display: none;
@@ -152,19 +153,20 @@ export default {
             & > div {
                 min-width: 80%;
                 margin: 0 10%;
+                text-align: center;
             }
         }
 
         .lesson_wrapper_right_icon {
             position: absolute;
-            right: 8px;
+            right: 0;
             top: 33%;
             z-index: 5;                
         }
 
         .lesson_wrapper_left_icon {
             position: absolute;
-            left: 8px;
+            left: 0;
             top: 33%;
             z-index: 5;                
         }

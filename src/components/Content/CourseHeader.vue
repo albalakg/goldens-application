@@ -39,7 +39,8 @@
 
     <v-flex v-else md9 mx-auto class="text-right">
         <v-flex>
-            <h1 
+            <h1
+              order-2
               v-if="title"
               :class="{
                 'text-center': $vuetify.breakpoint.smAndDown,
@@ -57,7 +58,7 @@
             </h1>
             <!-- <p class="grey_text_color sub_border_right pr-5 mt-3" v-html="course.description">
             </p> -->
-            <slot name="headerContent">
+            <slot order-1 name="headerContent">
               
             </slot>
             <div class="phone_card phone_card_on_side mx-auto">

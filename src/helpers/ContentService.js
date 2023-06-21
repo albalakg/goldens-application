@@ -99,8 +99,7 @@ class ContentService {
             break;
           }
 
-          const courseArea =
-            course.active_areas_with_active_lessons[courseAreaIndex];
+          const courseArea = course.active_areas_with_active_lessons[courseAreaIndex];
           foundLesson = courseArea.active_lessons.find(
             (lesson) => lesson.id == lessonId
           );
@@ -242,10 +241,10 @@ class ContentService {
       const course = this.findCourseById(courseId);
       let totalDuration = 0;
 
-      if(!course) {
+      if (!course) {
         return totalDuration;
       }
-      
+
       course.active_areas_with_active_lessons.forEach((courseArea) => {
         totalDuration += this.countTotalCourseAreaDuration(courseArea.id);
       });
