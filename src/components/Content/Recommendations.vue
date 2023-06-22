@@ -1,14 +1,17 @@
 <!-- eslint-disable vue/valid-v-for -->
 <template>
     <div>
-        <section-header title="לקוחות ממליצים" :backgroundTitle="$vuetify.breakpoint.mdAndUp ? 'המלצות חמות' : 'המלצות'" :dark="dark" />
+        <section-header title="לקוחות ממליצים" :backgroundTitle="$vuetify.breakpoint.mdAndUp ? 'המלצות חמות' : 'המלצות'"
+            :dark="dark" />
 
         <br>
         <br>
 
-        <v-flex md9 xl8 mx-auto class="recommendations_list recommendations_scroll" v-if="$vuetify.breakpoint.mdAndUp || items.length > 3">
+        <v-flex md9 xl8 mx-auto class="recommendations_list recommendations_scroll"
+            v-if="$vuetify.breakpoint.mdAndUp || items.length > 3">
             <!-- <arrow-chip v-show="!isLeftArrowDisabled && $vuetify.breakpoint.smAndDown" class="arrow_chip left_arrow" @submit="moveLeft()" /> -->
-            <carousel :rtl="$vuetify.breakpoint.smAndDown" ref="carousel" :perPage="perPage" :value="currentPage" v-model="currentPage">
+            <carousel :rtl="$vuetify.breakpoint.smAndDown" ref="carousel" :perPage="perPage" :value="currentPage"
+                v-model="currentPage">
                 <slide v-for="(item, index) in items" :key="index + item.name" class="py-8 px-4">
                     <recommendation-card :data="item" :index="index" />
                 </slide>
@@ -17,7 +20,7 @@
         </v-flex>
         <v-flex d-flex md9 xl8 mx-auto class="recommendations_list" v-else>
             <v-flex md4 v-for="(item, index) in items" :key="index" class="py-8 px-4">
-                <recommendation-card :data="item" :index="index"/>
+                <recommendation-card :data="item" :index="index" />
             </v-flex>
         </v-flex>
     </div>
@@ -145,7 +148,11 @@ export default {
     outline: none;
 }
 
-::v-deep .VueCarousel-inner {
-    direction: rtl;
+@media only screen and (max-width: 600px) {
+
+    ::v-deep .VueCarousel-inner {
+        direction: rtl;
+    }
+
 }
 </style>
