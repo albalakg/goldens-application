@@ -1,6 +1,6 @@
 <template>
     <div 
-        class="course_area_item main_bg_color pointer pa-5 white_text_color" 
+        class="course_area_item main_bg_color pa-5 white_text_color" 
         :class="{
             'active_course_area': courseArea.id === activeCourseId,
             'course_area_item_separated': separated
@@ -9,7 +9,7 @@
     >
         <!-- <img class="course_image" loading="lazy" :src="courseArea.imageSrc" alt="course area image"> -->
         <div class="course_area_darkner"></div>
-        <div class="course_area_content">
+        <div class="course_area_content w100">
             <strong>
                 {{ courseArea.name }}
             </strong>
@@ -88,6 +88,7 @@ export default {
 
 <style lang="scss" scoped>
     .course_area_item {
+        overflow: hidden;
         border-left: 2px solid var(--subColor);
         border-right: 2px solid var(--subColor);
         border-bottom: 1px solid var(--subColor);
@@ -153,6 +154,11 @@ export default {
     .course_area_subtitle {
         letter-spacing: 2px;
         font-size: 1em;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 100%;
+        display: block;
     }
 
     .active_course_area {
