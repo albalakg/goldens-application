@@ -144,4 +144,8 @@ export default {
 ::v-deep .VueCarousel-pagination .VueCarousel-dot:focus {
     outline: none;
 }
+
+::v-deep .VueCarousel-inner {
+    direction: rtl;
+}
 </style>

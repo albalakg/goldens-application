@@ -130,7 +130,7 @@ export default {
         },
         
         links() {
-            const courses   = this.$store.getters['ContentState/courses'];
+            // const courses   = this.$store.getters['ContentState/courses'];
             const links     = [
                 {
                     text: 'מי אנחנו',
