@@ -14,6 +14,11 @@
             <span>הנחת קופון</span>
             <span>{{ discountView }}</span>
         </v-flex>
+        <div v-if="marketingTokenDiscount" class="divider"></div>
+        <v-flex v-if="marketingTokenDiscount" d-flex justify-space-between class="px-6 py-3">
+            <span>הנחת שיווק</span>
+            <span>₪{{ marketingTokenDiscount }}</span>
+        </v-flex>
         <v-flex d-flex justify-space-between class="grey_bg_color px-6 py-3">
             <strong>מע"מ</strong>
             <strong>₪{{ taxPrice }}</strong>
@@ -59,6 +64,11 @@ export default {
             default: 0
         },
 
+        marketingTokenDiscount: {
+            type: Number,
+            default: 0
+        },
+
         loading: {
             type: Boolean
         },
@@ -73,12 +83,16 @@ export default {
             return '₪' + this.discount;
         },
 
+        coursePrice() {
+            return this.price - this.discount - this.marketingTokenDiscount;
+        },
+
         taxPrice() {
-            return Math.floor((this.price - this.discount) * 0.17);
+            return Math.floor(this.coursePrice * 0.17);
         },
 
         totalPrice() {
-            return this.price - this.discount + this.taxPrice;
+            return this.coursePrice + this.taxPrice;
         }
     },
 

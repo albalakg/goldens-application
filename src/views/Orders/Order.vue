@@ -41,6 +41,7 @@
                         :price="price"
                         :loading="loading"
                         :discount="discount"
+                        :marketingTokenDiscount="marketingTokenDiscount"
                         @submit="submitOrder()"
                     />
                 </v-flex>
@@ -78,7 +79,7 @@ export default {
     },
 
     created() {
-        this.saveMarketingToken();
+        this.getMarketingToken();
     },
 
     computed: {
@@ -109,6 +110,11 @@ export default {
 
         hasActiveCourse() {
             return this.$store.getters['UserState/hasActiveCourse'];
+        },
+
+        marketingTokenDiscount() {
+            const marketingToken = this.$store.getters['ContentState/marketingToken']
+            return marketingToken ? marketingToken.discount : 0
         }
     },
 
@@ -209,9 +215,9 @@ export default {
             return this.$refs.coupon.validate();
         },
 
-        saveMarketingToken() {
-            if(CookieService.get('marketingToken') !== 'undefined') {
-                this.form.marketing_token = CookieService.get('marketingToken');
+        getMarketingToken() {
+            if(CookieService.get('marketingToken')) {
+                this.$store.dispatch('ContentState/getMarketingToken', CookieService.get('marketingToken'));
             }
         },
     }

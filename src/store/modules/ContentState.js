@@ -6,15 +6,17 @@ const ContentState = {
         trainers:           null,
         courses:            null,
         categories:         null,
+        marketingToken:     null,
         showLastActiveCard: true
     },
 
     getters: {
-        lessons: state => state.lessons,
-        trainers: state => state.trainers,
+        lessons:            state => state.lessons,
+        trainers:           state => state.trainers,
         showLastActiveCard: state => state.showLastActiveCard,
-        courses: state => state.courses,
-        categories: state => state.categories,
+        courses:            state => state.courses,
+        categories:         state => state.categories,
+        marketingToken:     state => state.marketingToken,
     },
 
     mutations: {
@@ -47,6 +49,10 @@ const ContentState = {
 
         SET_CATEGORIES(state, categories) {
             state.categories = categories;
+        },
+
+        SET_MARKETING_TOKEN(state, marketingToken) {
+            state.marketingToken = marketingToken;
         }
     },
 
@@ -84,6 +90,24 @@ const ContentState = {
                     })
             })
        },
+
+        getMarketingToken({ state, commit }, token) {
+            return new Promise((resolve) => {
+                if(state.marketingToken) {
+                    return resolve(state.marketingToken);
+                }
+
+                axios.get('content/marketing-token/' + token)
+                    .then(res => {
+                        commit('SET_MARKETING_TOKEN', res.data.data);
+                        return resolve(res.data.data);
+                    })
+                    .catch(err => {
+                        warning(err);
+                    })
+            })
+       },
+       
         getTrainers({ state, commit }) {
             return new Promise((resolve) => {
                 if(state.trainers) {

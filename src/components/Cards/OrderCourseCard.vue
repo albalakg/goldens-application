@@ -118,7 +118,6 @@ export default {
     },
 
     totalLessons() {
-      console.log('total', ContentService.countTotalLessonsByCourseId(this.course.id));
       return ContentService.countTotalLessonsByCourseId(this.course.id);
     },
 
