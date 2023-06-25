@@ -508,7 +508,7 @@ export default {
 
 @media only screen and (max-width: 600px) {
   .course_page_image_wrapper {
-    height: 90vh !important;
+    height: 88vh !important;
   }
 
   .course_page_image_darkner {
