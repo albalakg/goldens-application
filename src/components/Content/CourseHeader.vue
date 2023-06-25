@@ -1,6 +1,6 @@
 <template>
   <div :class="{
-      'w100': !hasActiveCourse
+    'w100': !hasActiveCourse
   }">
     <div v-if="hasActiveCourse" class="mt-5">
       <h1>
@@ -38,36 +38,37 @@
     </div>
 
     <v-flex v-else md9 mx-auto class="text-right">
-        <v-flex>
-            <h1
-              order-2
-              v-if="title"
-              :class="{
-                'text-center': $vuetify.breakpoint.smAndDown,
-                'mobile-title': $vuetify.breakpoint.smAndDown
-              }"
-            >
-              להתאמן בכל מקום ובכל זמן
-              <div class="title_separator"></div>
-              <span>
-               עם המאמנים הכי טובים
-              </span>
-            </h1>
-            <h1 v-else>
-               {{ course.name }}
-            </h1>
-            <!-- <p class="grey_text_color sub_border_right pr-5 mt-3" v-html="course.description">
+      <v-flex>
+        <h1 order-2 v-if="title" :class="{
+          'text-center': $vuetify.breakpoint.smAndDown,
+          'mobile-title': $vuetify.breakpoint.smAndDown
+        }">
+          תלמד מהטובים ביותר,
+          <div class="title_separator"></div>
+          <span>
+            תהיה הטוב ביותר
+          </span>
+        </h1>
+        <h3 v-if="title" class="grey_text_color">
+          להצטרף לאדמיה מקצועית לכדורגל והתאמן בכל זמן ובכל מקום
+          <br>
+          ראה שיפורים מידיים עם גישה לאיכות הגבוהה ביותר של אימון וקהילה תומכת
+        </h3>
+        <h1 v-else>
+          {{ course.name }}
+        </h1>
+        <!-- <p class="grey_text_color sub_border_right pr-5 mt-3" v-html="course.description">
             </p> -->
-            <slot order-1 name="headerContent">
-              
-            </slot>
-            <div class="phone_card phone_card_on_side mx-auto">
-              <img src="../../../public/assets/images/phone/header.png" alt="שלב ראשון">
-            </div>
-            <div class="phone_card phone_card_front mx-auto">
-              <img src="../../../public/assets/images/phone/step1.png" alt="שלב ראשון">
-            </div>
-        </v-flex>
+        <slot order-1 name="headerContent">
+
+        </slot>
+        <div class="phone_card phone_card_on_side mx-auto">
+          <img src="../../../public/assets/images/phone/header.png" alt="שלב ראשון">
+        </div>
+        <div class="phone_card phone_card_front mx-auto">
+          <img src="../../../public/assets/images/phone/step1.png" alt="שלב ראשון">
+        </div>
+      </v-flex>
     </v-flex>
   </div>
 </template>
@@ -105,7 +106,7 @@ export default {
           text: "טריילר",
           action: "openTrailer",
         },
-       
+
       ],
     };
   },
@@ -120,8 +121,8 @@ export default {
     },
 
     trainer() {
-      const courseAreaId  = this.$route.query.courseArea;
-      const trainer       = ContentService.findTrainerByCourseAreaId(courseAreaId);
+      const courseAreaId = this.$route.query.courseArea;
+      const trainer = ContentService.findTrainerByCourseAreaId(courseAreaId);
       return trainer;
     }
   },
@@ -152,7 +153,7 @@ export default {
     openTrailer() {
       this.$emit('openTrailer')
     },
-    
+
     toggleTrainerDialog() {
       this.showTrainerDialog = !this.showTrainerDialog;
     },
@@ -176,6 +177,12 @@ h1 {
     bottom: 20px;
   }
 }
+
+h3 {
+  position: relative;
+  top: -20px;
+}
+
 .course_page_actions_wrapper {
   position: relative;
   z-index: 3;
@@ -220,17 +227,17 @@ h1 {
 
 
   img {
-      height: calc(100% + 3px);
-      width: calc(100% + 2px);
-      border-radius: 20px;
-      position: absolute;
-      top: -1px;
-      right: -1px;
+    height: calc(100% + 3px);
+    width: calc(100% + 2px);
+    border-radius: 20px;
+    position: absolute;
+    top: -1px;
+    right: -1px;
   }
 
   p {
-      bottom: -35%;
-      position: absolute;
+    bottom: -35%;
+    position: absolute;
   }
 }
 
@@ -247,7 +254,7 @@ h1 {
   top: 43%;
   height: 34vh;
   width: 17vh;
-} 
+}
 
 @media only screen and (max-width: 600px) {
   h1 {
@@ -267,9 +274,10 @@ h1 {
     top: 54%;
     height: 24vh;
     width: 12vh;
-  } 
+  }
 
-  .phone_card, .phone_card img {
+  .phone_card,
+  .phone_card img {
     border-radius: 12px;
   }
 }

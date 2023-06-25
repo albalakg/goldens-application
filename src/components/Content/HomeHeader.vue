@@ -15,15 +15,20 @@
                 'text-center': $vuetify.breakpoint.smAndDown,
                 'mobile-title': $vuetify.breakpoint.smAndDown
             }">
-                להתאמן בכל מקום ובכל זמן
+                תלמד מהטובים ביותר,
                 <div class="title_separator"></div>
                 <span>
-                    עם המאמנים הכי טובים
+                    תהיה הטוב ביותר
                 </span>
             </h1>
+            <strong class="grey_text_color">
+                הצטרף לאקדמיה מקצועית לכדורגל והתאמן בכל זמן ובכל מקום
+                <br>
+                ראה שיפורים מידיים עם גישה לאיכות הגבוהה ביותר של אימון וקהילה תומכת
+            </strong>
         </div>
         <div class="px-5 second_layer relative">
-            <buy-button fill @submit="scrollToBuySection()"/>
+            <buy-button fill @submit="scrollToBuySection()" />
         </div>
         <div class="darkner"></div>
     </div>
@@ -59,6 +64,12 @@ h1 {
         position: relative;
         bottom: 20px;
     }
+}
+
+strong {
+    position: relative;
+    top: -20px;
+    padding: 0 10px;
 }
 
 .title_separator {
@@ -114,7 +125,7 @@ h1 {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 40vh;
+    height: 55vh;
     background: linear-gradient(#fff0, #000a);
     z-index: 1;
 }

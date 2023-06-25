@@ -30,7 +30,7 @@
     
     <section class="benefits_section">
       <star-logo class="benefits_background_effect" v-show="$vuetify.breakpoint.mdAndUp" gstar />
-      <section-header :title="'מה יצא לכם מזה'" :backgroundTitle="'מידע כללי'" />
+      <section-header :title="'מיומנויות מפתח'" :backgroundTitle="'מיומנויות'" />
       <v-flex xl8 lg9 md10 mx-auto>
         <course-benefits />
       </v-flex>
@@ -508,7 +508,7 @@ export default {
 
 @media only screen and (max-width: 600px) {
   .course_page_image_wrapper {
-    height: 77vh !important;
+    height: 90vh !important;
   }
 
   .course_page_image_darkner {
