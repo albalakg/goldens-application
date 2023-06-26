@@ -138,14 +138,9 @@ export default {
         month: "חודש",
         day: "יום",
       },
-      courseAreaColors: {
-        1: "blue",
-        2: "indigo",
-        3: "deep-purple",
-        4: "cyan",
-        5: "green",
-        6: "orange",
-      },
+      scheduleColors: ['blue', 'indigo', 'deep-purple', 'cyan', 'green'],
+      trainingScheduleColor: 'orange',
+      courseAreaColors: {},
     };
   },
 
@@ -201,12 +196,11 @@ export default {
         if(!this.earliestDate || schedule.date < this.earliestDate) {
           this.earliestDate = schedule.date;
         }
-
-        const year  = new Date(schedule.date).getFullYear();
-        let month   = new Date(schedule.date).getMonth() + 1;
-        month       = String(month).length === 1 ? "0" + month : month;
-        let day     = new Date(schedule.date).getDate();
-        day         = String(day).length === 1 ? "0" + day : day;
+        const year                        = new Date(schedule.date).getFullYear();
+        let month                         = new Date(schedule.date).getMonth() + 1;
+        month                             = String(month).length === 1 ? "0" + month : month;
+        let day                           = new Date(schedule.date).getDate();
+        day                               = String(day).length === 1 ? "0" + day : day;
         
         events.push({
           scheduleId:   schedule.id,
@@ -215,15 +209,32 @@ export default {
           name:         lesson.name,
           description:  lesson.description,
           image:        lesson.imageSrc,
-          color:        schedule.type_id === SCHEDULE_TRAINING_TYPE_ID ? this.courseAreaColors[6] :this.courseAreaColors[lesson.course_area_id],
           start:        new Date(schedule.date),
           end:          new Date(schedule.date),
           dateOnly:     year + "-" + month + "-" + day,
           allDay:       true,
+          color:        schedule.type_id === SCHEDULE_TRAINING_TYPE_ID ? 
+                                                            this.trainingScheduleColor : 
+                                                            this.getCourseAreaColor(lesson.course_area_id),
         });
       });
 
       this.events = events;
+    },
+     
+    setCourseAreaColor(courseAreaId) {
+      const firstColorIndex   = 0;
+      const color             = this.scheduleColors[firstColorIndex];
+      this.scheduleColors.splice(firstColorIndex, 1);
+      this.courseAreaColors[courseAreaId] = color;
+    },
+    
+    getCourseAreaColor(courseAreaId) {
+      if(!this.courseAreaColors[courseAreaId]) {
+          this.setCourseAreaColor(courseAreaId);
+      }
+
+      return this.courseAreaColors[courseAreaId];
     },
 
     viewDay({ date }) {
