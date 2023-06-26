@@ -40,7 +40,6 @@ const routes = [
   {
     path: '/email-confirmation',
     name: 'EmailConfirmation',
-    beforeEnter: Guard.guest,
     component: () => import('../views/Auth/EmailConfirmation.vue')
   },
   // ***** AUTH END *****

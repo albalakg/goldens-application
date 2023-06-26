@@ -128,7 +128,6 @@ const ContentState = {
         getActiveCourses({ state, commit }) {
             return new Promise((resolve) => {
                 if(state.courses) {
-                    console.log(123, state.courses);
                     resolve(state.courses);
                     return;
                 }
