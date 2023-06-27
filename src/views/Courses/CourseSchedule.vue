@@ -196,11 +196,11 @@ export default {
         if(!this.earliestDate || schedule.date < this.earliestDate) {
           this.earliestDate = schedule.date;
         }
-        const year                        = new Date(schedule.date).getFullYear();
-        let month                         = new Date(schedule.date).getMonth() + 1;
-        month                             = String(month).length === 1 ? "0" + month : month;
-        let day                           = new Date(schedule.date).getDate();
-        day                               = String(day).length === 1 ? "0" + day : day;
+        const year  = new Date(schedule.date).getFullYear();
+        let month   = new Date(schedule.date).getMonth() + 1;
+        month       = String(month).length === 1 ? "0" + month : month;
+        let day     = new Date(schedule.date).getDate();
+        day         = String(day).length === 1 ? "0" + day : day;
         
         events.push({
           scheduleId:   schedule.id,

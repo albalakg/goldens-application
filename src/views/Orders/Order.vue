@@ -78,10 +78,6 @@ export default {
         }
     },
 
-    created() {
-        this.getMarketingToken();
-    },
-
     computed: {
         course() {
             return ContentService.findCourseById(this.$route.query.courseId)
@@ -175,7 +171,7 @@ export default {
                 this.orderToken = await this.$store.dispatch('OrderState/submitOrder', {
                     content_id:         this.course.id,
                     coupon_code:        this.form.coupon,
-                    marketing_token:    this.form.marketing_token
+                    marketing_token:    CookieService.get('marketingToken')
                 })
 
                 this.orderToken = 'asd';
@@ -213,13 +209,7 @@ export default {
 
         validate() {
             return this.$refs.coupon.validate();
-        },
-
-        getMarketingToken() {
-            if(CookieService.get('marketingToken')) {
-                this.$store.dispatch('ContentState/getMarketingToken', CookieService.get('marketingToken'));
-            }
-        },
+        }
     }
 }
 </script>
