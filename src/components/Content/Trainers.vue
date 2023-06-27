@@ -8,16 +8,16 @@
 
         <div class="trainer_content">
             <v-flex v-if="$vuetify.breakpoint.mdAndUp" d-flex justify-space-between flex-wrap>
-                <div v-for="(trainer, index) in trainers" :key="index" class="mb-2">
-                    <img class="trainer_card" src="./../../../public/assets/images/trainers/trainer-card.png" alt="trainer card">
-                </div>
+                <v-flex md3 v-for="(trainer, index) in trainers" :key="index" class="mb-2 px-5">
+                    <img class="trainer_card" src="./../../../public/assets/images/trainers/trainer-card.webp" alt="trainer card">
+                </v-flex>
             </v-flex>
 
             <v-flex class="trainers_mobile_wrapper mt-md-10 pt-md-5" v-else>
                 <arrow-chip v-show="showNextTrainerArrow" @submit="goToLastTrainer()" :left="false" class="lesson_wrapper_right_icon" />
                 <v-flex class="trainers_wrapper" ref="trainers">
                     <div v-for="(trainer, index) in trainers" :key="index" :ref="`trainer-${index}`">
-                        <img class="trainer_card" src="./../../../public/assets/images/trainers/trainer-card.png" alt="trainer card">
+                        <img class="trainer_card" src="./../../../public/assets/images/trainers/trainer-card.webp" alt="trainer card">
                     </div>
                 </v-flex>
                 <arrow-chip v-show="showLastTrainerArrow" @submit="goToNextTrainer()" class="lesson_wrapper_left_icon" />
@@ -170,5 +170,9 @@ export default {
             top: 33%;
             z-index: 5;                
         }
+    }
+
+    .trainer_card {
+        width: 90%;
     }
 </style>

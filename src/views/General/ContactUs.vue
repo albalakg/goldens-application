@@ -19,11 +19,6 @@
             <span v-else class="white_text_color">{{item.text}}</span>
           </v-flex>
         </v-flex>
-        <v-flex class="pr-10 pb-5">
-          <span class="grey_text_color">
-            שעות פעילות: ימים א'-ה' 10:00 - 17:00
-          </span>
-        </v-flex>
       </v-flex>
       <v-flex xs11 mx-auto md8 class="contact_us_form_wrapper white_bg_color dark_shadow">
         <img loading="lazy" class="contact_us_location_mark" :src="locationMarkImage" alt="location mark">
