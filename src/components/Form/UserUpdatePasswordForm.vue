@@ -30,7 +30,7 @@
             </v-flex>
         </v-flex>
     </v-form>
-    <v-flex md4 v-else>
+    <v-flex md6 v-else>
         <main-button 
             text="החלף סיסמה"
             @submit="toggleShowPasswordForm()"

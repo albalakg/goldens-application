@@ -87,7 +87,7 @@
         </v-flex>
 
         <v-flex d-flex justify-end mt-10 mt-md-5>
-            <v-flex xs12 md4 lg2>
+            <v-flex xs12 lg3 md4>
                 <main-button 
                     :text="'עדכן פרטים'"
                     shadow

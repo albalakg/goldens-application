@@ -10,7 +10,7 @@
     />
 
     <v-flex d-flex justify-end mt-10 mt-md-5>
-        <v-flex xs12 md4>
+        <v-flex xs12 md6>
             <main-button 
                 :text="'עדכן אימייל'"
                 shadow
