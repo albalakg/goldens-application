@@ -57,6 +57,7 @@
             :close-on-content-click="false"
             :activator="selectedElement"
             offset-x
+            max-width="400px"
           >
             <v-card color="grey lighten-4" min-width="350px" flat>
               <v-toolbar :color="selectedEvent.color" dark>
@@ -78,12 +79,19 @@
                 </v-date-picker>
                 <main-button
                   class="mt-3"
-                  text="שמור שיעור"
+                  :text="selectedEvent.typeId === trainingTypeId ? 'שמור אימון' : 'שמור שיעור'"
                   shadow
                   :disabled="
                     isSameDay(selectedEvent.dateOnly, selectedEvent.start)
                   "
                   @submit="saveDateInCalendar(selectedEvent)"
+                />
+                <main-button
+                  class="mt-3"
+                  text="מחק אימון"
+                  dark
+                  v-if="selectedEvent.isSetByUser"
+                  @submit="deleteTrainingSchedule(selectedEvent)"
                 />
               </v-card-text>
               <v-card-actions> </v-card-actions>
@@ -111,6 +119,7 @@ export default {
 
   data() {
     return {
+      trainingTypeId: SCHEDULE_TRAINING_TYPE_ID,
       loading: false,
       filterByDate: "",
       focus: '',
@@ -326,6 +335,11 @@ export default {
       this.setFocus(schedule.dateOnly);
     },
 
+    deleteTrainingSchedule(schedule) {
+      this.$store.dispatch('UserState/deleteTrainingSchedule', schedule.scheduleId);
+      this.selectedOpen = false;
+    },
+
     async addNewTrainingActivity(training) {
       await this.$store.dispatch('UserState/createTrainingSchedule', training);
       this.updateRange();
@@ -357,8 +371,7 @@ export default {
   }
   
   .event_image {
-    width: 410px;
-    height: 200px;
+    width: 100%;
     object-fit: cover;
     max-width: 90vw;
   }

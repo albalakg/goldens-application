@@ -73,6 +73,13 @@ const UserState = {
             });
         },
 
+        DELETE_SCHEDULE_DATE(state, scheduleId) {
+            state.courses.forEach(course => {
+                const scheduleIndex = course.schedules.findIndex(schedule => schedule.id === scheduleId);
+                course.schedules.splice(scheduleIndex, 1);
+            });
+        },
+
         CREATE_TRAINING_SCHEDULE(state, newTrainingSchedule) {
             const course = state.courses.find(course => course.id = newTrainingSchedule.courseId);
             if(!course) {
@@ -466,6 +473,20 @@ const UserState = {
                 axios.post('profile/lesson/training-schedule/' + updatedTrainingSchedule.scheduleId, {
                     date:      updatedTrainingSchedule.date
                 })
+                .then(res => {
+                    return resolve(res.data.data);
+                })
+                .catch(err => {
+                    warning(err);
+                })
+            })
+       },
+        
+       deleteTrainingSchedule({ commit }, scheduleId) {
+            commit('DELETE_SCHEDULE_DATE', scheduleId);
+
+            return new Promise((resolve) => {
+                axios.delete('profile/lesson/training-schedule/' + scheduleId)
                 .then(res => {
                     return resolve(res.data.data);
                 })
