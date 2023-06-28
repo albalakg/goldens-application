@@ -112,14 +112,15 @@ export default {
   data() {
     return {
       loading: false,
-      earliestDate: null,
       filterByDate: "",
       focus: '',
+      earliestScheduledDate: '',
       type: "month",
       events: [],
       selectedEvent: {},
       selectedElement: null,
       selectedOpen: false,
+      startDiffInDays: 0,
       colors: [
         "blue",
         "indigo",
@@ -147,7 +148,7 @@ export default {
   mounted() {
     setTimeout(() => {
       this.updateRange();
-      this.setFocus(this.earliestDate);
+      this.setFocus(new Date(this.earliestScheduledDate).addDays(this.startDiffInDays));
 
     }, 1000);
   },
@@ -176,8 +177,7 @@ export default {
     updateRange() {
       const events      = [];
       let lessons       = [];
-      this.earliestDate  = null;
-
+      
       this.course.active_areas_with_active_lessons.forEach(course_area => {
         lessons = lessons.concat(course_area.active_lessons)
       })
@@ -193,25 +193,15 @@ export default {
           return;
         }
 
-        if(!this.earliestDate || schedule.date < this.earliestDate) {
-          this.earliestDate = schedule.date;
-        }
-        const year  = new Date(schedule.date).getFullYear();
-        let month   = new Date(schedule.date).getMonth() + 1;
-        month       = String(month).length === 1 ? "0" + month : month;
-        let day     = new Date(schedule.date).getDate();
-        day         = String(day).length === 1 ? "0" + day : day;
-        
         events.push({
           scheduleId:   schedule.id,
           typeId:       schedule.type_id,
+          isSetByUser:  schedule.course_schedule_lesson_id === null,
           lessonId:     lesson.id,
           name:         lesson.name,
           description:  lesson.description,
           image:        lesson.imageSrc,
-          start:        new Date(schedule.date),
-          end:          new Date(schedule.date),
-          dateOnly:     year + "-" + month + "-" + day,
+          scheduleDate: new Date(schedule.date),
           allDay:       true,
           color:        schedule.type_id === SCHEDULE_TRAINING_TYPE_ID ? 
                                                             this.trainingScheduleColor : 
@@ -219,7 +209,34 @@ export default {
         });
       });
 
-      this.events = events;
+      this.events = this.pushEventsForwardByCourseStartDate(events);
+    },
+
+    getEventDate(date) {
+      const year  = new Date(date).getFullYear();
+      let month   = new Date(date).getMonth() + 1;
+      month       = String(month).length === 1 ? "0" + month : month;
+      let day     = new Date(date).getDate();
+      day         = String(day).length === 1 ? "0" + day : day;
+      return year + "-" + month + "-" + day;
+    },
+
+    pushEventsForwardByCourseStartDate(events) {
+      const startDate           = new Date(this.course.schedule_start_date);
+      const earliestEventDate   = new Date(this.course.earliest_scheduled_date);
+      const diffInTime          = startDate.getTime() - earliestEventDate.getTime();
+      this.startDiffInDays      = Math.floor(diffInTime / (1000 * 3600 * 24));
+      return events.map(event => {
+        const eventDate = event.isSetByUser ?  this.getEventDate(event.scheduleDate) : this.getEventDate(event.scheduleDate.addDays(this.startDiffInDays));
+        event.dateOnly  = eventDate;
+        event.start     = eventDate;
+        event.end       = eventDate;
+
+        if(!this.earliestScheduledDate || this.earliestScheduledDate > event.start) {
+          this.earliestScheduledDate = event.start; 
+        }
+        return event;
+      })
     },
      
     setCourseAreaColor(courseAreaId) {
@@ -287,12 +304,21 @@ export default {
     },
 
     saveDateInCalendar(schedule) {
-      this.$store.dispatch('UserState/saveLessonDateInCalendar', {
-        date:        schedule.dateOnly,
-        lesson_id:   schedule.lessonId,
-        scheduleId:  schedule.scheduleId,
-        type_id:     schedule.typeId,
-      });
+      if(schedule.isSetByUser) {
+        this.$store.dispatch('UserState/updateTrainingSchedule', {
+          date:        schedule.dateOnly,
+          lesson_id:   schedule.lessonId,
+          scheduleId:  schedule.scheduleId,
+          type_id:     schedule.typeId,
+        });
+      } else {
+        this.$store.dispatch('UserState/saveLessonDateInCalendar', {
+          date:        schedule.dateOnly,
+          lesson_id:   schedule.lessonId,
+          scheduleId:  schedule.scheduleId,
+          type_id:     schedule.typeId,
+        });
+      }
 
       this.selectedOpen = false;
       this.updateRange();
@@ -308,10 +334,6 @@ export default {
 
     setFocus(date) {
       this.focus = date;
-    },
-
-    updateScheduleMonth() {
-
     }
   },
 };

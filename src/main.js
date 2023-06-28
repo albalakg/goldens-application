@@ -20,6 +20,12 @@ import './registerServiceWorker'
 vuetify.framework.lang.current = 'he';
 vuetify.framework.lang.locales.he = he;
 
+Date.prototype.addDays = function(days) {
+  var date = new Date(this.valueOf());
+  date.setDate(date.getDate() + days);
+  return date;
+}
+
 Vue.config.productionTip  = false
 axios.defaults.baseURL    = process.env.VUE_APP_SERVER_BASE_URL + '/api/';
 window.ClientService      = ClientService;

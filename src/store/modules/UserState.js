@@ -90,12 +90,13 @@ const UserState = {
             }
 
             course.schedules.push({
-                id:                 newTrainingSchedule.id,
-                type_id:            SCHEDULE_TRAINING_TYPE_ID,
-                course_id:          course.id,
-                course_lesson_id:   newTrainingSchedule.lessonId,
-                date:               newTrainingSchedule.date,
-                course_area_id:     lesson.course_area_id,
+                id:                         newTrainingSchedule.id,
+                type_id:                    SCHEDULE_TRAINING_TYPE_ID,
+                course_id:                  course.id,
+                course_lesson_id:           newTrainingSchedule.lessonId,
+                date:                       newTrainingSchedule.date,
+                course_area_id:             lesson.course_area_id,
+                course_schedule_lesson_id:  null
             }); 
         },
 
@@ -455,6 +456,22 @@ const UserState = {
                     .catch(err => {
                         warning(err);
                     })
+            })
+       },
+        
+       updateTrainingSchedule({ commit }, updatedTrainingSchedule) {
+            commit('UPDATE_SCHEDULE_DATE', updatedTrainingSchedule);
+
+            return new Promise((resolve) => {
+                axios.post('profile/lesson/training-schedule/' + updatedTrainingSchedule.scheduleId, {
+                    date:      updatedTrainingSchedule.date
+                })
+                .then(res => {
+                    return resolve(res.data.data);
+                })
+                .catch(err => {
+                    warning(err);
+                })
             })
        },
 
