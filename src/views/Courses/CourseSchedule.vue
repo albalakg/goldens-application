@@ -151,15 +151,12 @@ export default {
       scheduleColors: ['blue', 'indigo', 'deep-purple', 'cyan', 'green'],
       trainingScheduleColor: 'orange',
       courseAreaColors: {},
+      hasFocused: false
     };
   },
 
   mounted() {
-    setTimeout(() => {
-      this.updateRange();
-      this.setFocus(new Date(this.earliestScheduledDate).addDays(this.startDiffInDays));
-
-    }, 1000);
+    this.updateRange();
   },
 
   watch: {
@@ -168,6 +165,9 @@ export default {
       handler() {
         this.updateRange();
       }
+    },
+    hasFocused() {
+      this.setFocus(new Date(this.earliestScheduledDate).addDays(this.startDiffInDays));
     }
   },
 
@@ -218,7 +218,8 @@ export default {
         });
       });
 
-      this.events = this.pushEventsForwardByCourseStartDate(events);
+      this.events     = this.pushEventsForwardByCourseStartDate(events);
+      this.hasFocused = true;
     },
 
     getEventDate(date) {

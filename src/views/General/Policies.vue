@@ -10,7 +10,10 @@
 
       <br>
     
-      <div class="tnc_content" v-if="terms && terms.content" v-html="terms.content"></div>
+      <div class="tnc_content" v-if="terms === null">
+        <strong>טוען...</strong>
+      </div>
+      <div class="tnc_content" v-else-if="terms && terms.content" v-html="terms.content"></div>
       <div class="tnc_content" v-else>
         <p>
           מצטערים אך קרתה תקלה ולא הצלחנו למשוך את תנאי האתר.
