@@ -20,7 +20,7 @@
         />
 
         <v-flex d-flex justify-end mt-10 mt-md-5>
-            <v-flex xs12 md4 mt-4>
+            <v-flex xs12 md6 mt-4>
                 <main-button 
                     :text="'עדכן סיסמה'"
                     shadow

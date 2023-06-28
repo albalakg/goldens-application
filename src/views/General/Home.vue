@@ -210,7 +210,8 @@ export default {
       immediate: true,
       handler() {
         if(this.hasActiveCourse) {
-          this.$router.push('/courses/1')
+          const courses = this.$store.getters['UserState/courses'];
+          this.$router.push('/courses/' + courses[0].id)
         }
       }
     }
