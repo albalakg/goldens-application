@@ -56,7 +56,7 @@ export default {
 
         div {
             width: 100%;
-            height: 100px;
+            height: 117px;
         }
     }
 

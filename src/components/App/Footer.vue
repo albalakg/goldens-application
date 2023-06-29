@@ -6,13 +6,11 @@
             <v-flex xs8>
                 <logo dark />
             </v-flex>
-            <v-flex d-flex class="mt-2">
-                <img loading="lazy" v-for="(network, index) in networks" :key="index" :src="network.src" :alt="network.name" class="ml-10 pointer">
+            <v-flex xs8 d-flex justify-space-between class="mt-4">
+                <a :href="network.link" target="_blank" v-for="(network, index) in networks" :key="index">
+                    <img loading="lazy" :src="network.src" :alt="network.name" class="pointer" />
+                </a>
             </v-flex>
-            <br>
-            <p class="grey_text_color">
-                קח את הקריירה שלך לשלב הבא
-            </p>
         </v-flex>
 
         <v-flex md2></v-flex>
@@ -30,7 +28,11 @@
                </div>
             </v-flex>
         </v-flex>
+        <span class="rights_text">
+            Goldens Sport Services LTD. © {{ year }}
+        </span>
     </v-flex>
+
 
     <star-logo class="star_decorator" :gstar="false" :opacity=".1" />
     <circle-decorator class="circle_decorator" :opacity=".6" />
@@ -47,17 +49,30 @@ export default {
     data() {
         return {
             networks: [
+                // {
+                //     name: 'Linkedin',
+                //     link: 'https://instagram.com/goldens.fa?igshid=MjEwN2IyYWYwYw==',
+                //     src: require('../../../public/assets/images/network/linkedin.png'),
+                // },
                 {
-                    name: 'linkedin',
-                    src: require('../../../public/assets/images/network/linkedin.svg'),
+                    name: 'Instagram',
+                    link: 'https://instagram.com/goldens.fa?igshid=MjEwN2IyYWYwYw==',
+                    src: require('../../../public/assets/images/network/instagram.png'),
                 },
                 {
-                    name: 'google',
-                    src: require('../../../public/assets/images/network/google.svg'),
+                    name: 'Facebook',
+                    link: 'https://www.facebook.com/profile.php?id=100094130323045',
+                    src: require('../../../public/assets/images/network/facebook.png'),
                 },
                 {
-                    name: 'facebook',
-                    src: require('../../../public/assets/images/network/facebook.svg'),
+                    name: 'Tiktok',
+                    link: 'https://www.tiktok.com/@goldens.fa?lang=en',
+                    src: require('../../../public/assets/images/network/tik-tok.png'),
+                },
+                {
+                    name: 'Youtube',
+                    link: 'https://www.youtube.com/@GOLDENSACADEMY',
+                    src: require('../../../public/assets/images/network/youtube.png'),
                 },
             ],
             tabs: [
@@ -98,11 +113,17 @@ export default {
                 },
             ]
         }
+    },
+
+    computed: {
+        year() {
+            return new Date().getFullYear()
+        }
     }
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
     .footer_wrapper {
         background-color: #102a46;
@@ -117,6 +138,13 @@ export default {
         height: 60%;
         border-bottom: 2px solid #fff1;
         z-index: 2;
+        position: relative;
+            
+        .rights_text {
+            position: absolute;
+            bottom: 10px;
+            color: #fff8;
+        }
     }
 
     .line {
@@ -137,6 +165,10 @@ export default {
         right: -35%;
         top: 10%;
         z-index: 1;
+    }
+
+    img {
+        width: 25px;
     }
 
     @media only screen and (max-width: 600px) {

@@ -165,20 +165,6 @@ export default {
 
   data() {
     return {
-      tabs: [
-        {
-          title: "תחומים",
-          url: "",
-        },
-        {
-          title: "שיעורים",
-          url: "lessons",
-        },
-        {
-          title: "לוח שנה",
-          url: "schedule",
-        },
-      ],
       activeTab: 0,
       loading: true,
       trailerFullScreen: false,

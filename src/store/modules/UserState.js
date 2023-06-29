@@ -69,7 +69,8 @@ const UserState = {
         UPDATE_SCHEDULE_DATE(state, updatedSchedule) {
             state.courses.forEach(course => {
                 const scheduleIndex = course.schedules.findIndex(schedule => schedule.id === updatedSchedule.scheduleId);
-                course.schedules[scheduleIndex].date = updatedSchedule.date;
+                course.schedules[scheduleIndex].date            = updatedSchedule.date;
+                course.schedules[scheduleIndex].isDateUpdated   = true;
             });
         },
 
@@ -100,6 +101,7 @@ const UserState = {
                 id:                         newTrainingSchedule.id,
                 type_id:                    SCHEDULE_TRAINING_TYPE_ID,
                 course_id:                  course.id,
+                isSetByUser:                true,
                 course_lesson_id:           newTrainingSchedule.lessonId,
                 date:                       newTrainingSchedule.date,
                 course_area_id:             lesson.course_area_id,

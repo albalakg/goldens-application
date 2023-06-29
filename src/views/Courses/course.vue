@@ -69,7 +69,7 @@ export default {
           url: 'lessons'
         },
         {
-          title: 'לוח שנה',
+          title: 'תוכנית אימונים',
           url: 'schedule'
         },
       ],
@@ -282,8 +282,9 @@ export default {
         height: 100%;
         width: 100%;
         display: flex;
-        align-items: center;
+        align-items: flex-end;
         justify-content: center;
+        padding-bottom: 4%;
       }
 
       .course_page_actions_wrapper {

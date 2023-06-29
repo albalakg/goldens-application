@@ -7,8 +7,8 @@
         <br>
 
         <div class="trainer_content">
-            <v-flex v-if="$vuetify.breakpoint.mdAndUp" d-flex justify-space-between flex-wrap>
-                <v-flex md3 v-for="(trainer, index) in trainers" :key="index" class="mb-2 px-5">
+            <v-flex v-if="$vuetify.breakpoint.mdAndUp" d-flex justify-space-between flex-wrap class="trainers_wrapper">
+                <v-flex md3 v-for="(trainer, index) in trainers" :key="index" class="mb-2 px-5 trainer_wrapper">
                     <img class="trainer_card" src="./../../../public/assets/images/trainers/trainer-card.webp" alt="trainer card">
                 </v-flex>
             </v-flex>
@@ -130,6 +130,14 @@ export default {
     .trainer_content {
         position: relative;
     }
+    
+    .trainer_wrapper {
+        transition: .3s transform linear;
+        
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
 
     .trainers_mobile_wrapper {
         position: relative;
@@ -137,13 +145,14 @@ export default {
         display: flex;
         align-items: center;
         height: 70vh;
-        
+            
         .trainers_wrapper {
             height: 90%;
             width: 100%;
             display: flex;
             overflow-x: auto;
             pointer-events: none;
+
             // margin-right: 10%;
 
             &::-webkit-scrollbar {

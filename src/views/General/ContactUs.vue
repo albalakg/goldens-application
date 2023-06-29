@@ -2,7 +2,7 @@
   <v-flex d-flex justify-center align-center class="contact_us_wrapper app_padding_top">
     <img loading="lazy" class="contact_us_background" :src="backgroundImage" alt="map">
     <v-flex d-flex flex-wrap align-center md8 lg7 xl6 class="contact_us_content h100 mt-10 mt-md-0">
-      <v-flex xs10 mx-auto md4 class="contact_us_details_wrapper second_dark_bg_color py-10 mt-10 mt-md-0">
+      <!-- <v-flex xs10 mx-auto md4 class="contact_us_details_wrapper second_dark_bg_color py-10 mt-10 mt-md-0">
 
         <h1 class="white_text_color text-center mt-5">
           צרו קשר
@@ -19,9 +19,9 @@
             <span v-else class="white_text_color">{{item.text}}</span>
           </v-flex>
         </v-flex>
-      </v-flex>
-      <v-flex xs11 mx-auto md8 class="contact_us_form_wrapper white_bg_color dark_shadow">
-        <img loading="lazy" class="contact_us_location_mark" :src="locationMarkImage" alt="location mark">
+      </v-flex> -->
+      <v-flex xs11 mx-auto md8 class="contact_us_form_wrapper white_bg_color dark_shadow mt-6">
+        <!-- <img loading="lazy" class="contact_us_location_mark" :src="locationMarkImage" alt="location mark"> -->
 
         <v-flex xs10 mx-auto class="text-center">
           <h2>

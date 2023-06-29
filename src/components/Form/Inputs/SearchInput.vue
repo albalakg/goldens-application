@@ -9,7 +9,7 @@
             :icon="icon ? iconSrc : ''"
             :rules="rules"
             :slim="slim"
-            :closeable="true"
+            closeable
             :subIcon="''"
             @onChange="onChange"
             @onFocus="onFocus"

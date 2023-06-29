@@ -203,16 +203,17 @@ export default {
         }
 
         events.push({
-          scheduleId:   schedule.id,
-          typeId:       schedule.type_id,
-          isSetByUser:  schedule.course_schedule_lesson_id === null,
-          lessonId:     lesson.id,
-          name:         lesson.name,
-          description:  lesson.description,
-          image:        lesson.imageSrc,
-          scheduleDate: new Date(schedule.date),
-          allDay:       true,
-          color:        schedule.type_id === SCHEDULE_TRAINING_TYPE_ID ? 
+          scheduleId:     schedule.id,
+          typeId:         schedule.type_id,
+          isSetByUser:    Boolean(schedule.isSetByUser),
+          isDateUpdated:  schedule.is_date_updated,
+          lessonId:       lesson.id,
+          name:           lesson.name,
+          description:    lesson.description,
+          image:          lesson.imageSrc,
+          scheduleDate:   new Date(schedule.date),
+          allDay:         true,
+          color:          schedule.type_id === SCHEDULE_TRAINING_TYPE_ID ? 
                                                             this.trainingScheduleColor : 
                                                             this.getCourseAreaColor(lesson.course_area_id),
         });
@@ -232,12 +233,13 @@ export default {
     },
 
     pushEventsForwardByCourseStartDate(events) {
+      // TODO: fix the updated/new dates schedules
       const startDate           = new Date(this.course.schedule_start_date);
       const earliestEventDate   = new Date(this.course.earliest_scheduled_date);
       const diffInTime          = startDate.getTime() - earliestEventDate.getTime();
       this.startDiffInDays      = Math.floor(diffInTime / (1000 * 3600 * 24));
       return events.map(event => {
-        const eventDate = event.isSetByUser ?  this.getEventDate(event.scheduleDate) : this.getEventDate(event.scheduleDate.addDays(this.startDiffInDays));
+        const eventDate = event.isSetByUser || event.isDateUpdated ? this.getEventDate(event.scheduleDate) : this.getEventDate(event.scheduleDate.addDays(this.startDiffInDays));
         event.dateOnly  = eventDate;
         event.start     = eventDate;
         event.end       = eventDate;

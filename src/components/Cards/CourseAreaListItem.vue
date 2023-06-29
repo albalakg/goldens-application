@@ -1,6 +1,6 @@
 <template>
     <div 
-        class="course_area_item main_bg_color pa-5 white_text_color" 
+        class="course_area_item main_bg_color pa-5 pt-0 white_text_color" 
         :class="{
             'active_course_area': courseArea.id === activeCourseId,
             'course_area_item_separated': separated
@@ -95,13 +95,14 @@ export default {
         border-top: 1px solid var(--subColor);
         position: relative;
         display: flex;
-        align-items: center;
         transition: .3s transform linear;
         border-radius: 18px;
         background-image: linear-gradient(324deg, transparent 0%, transparent 45%,rgba(186, 186, 186,0.04) 45%, rgba(186, 186, 186,0.04) 47%,transparent 47%, transparent 100%),linear-gradient(208deg, transparent 0%, transparent 40%,rgba(186, 186, 186,0.04) 40%, rgba(186, 186, 186,0.04) 80%,transparent 80%, transparent 100%),linear-gradient(202deg, transparent 0%, transparent 20%,rgba(186, 186, 186,0.04) 20%, rgba(186, 186, 186,0.04) 40%,transparent 40%, transparent 100%),linear-gradient(338deg, transparent 0%, transparent 10%,rgba(186, 186, 186,0.04) 10%, rgba(186, 186, 186,0.04) 72%,transparent 72%, transparent 100%),linear-gradient(90deg, rgb(28,63,100),rgb(28,63,100));
 
-        &:hover {
-            transform: scale(1.05);
+        @media only screen and (min-width: 600px) {
+            &:hover {
+                transform: scale(1.05);
+            }
         }
 
         strong {
@@ -140,6 +141,7 @@ export default {
             z-index: 2;
             transform: rotate(180deg);
             left: 15px;
+            top: 0;
         }
 
         .progress_wrapper {
@@ -154,9 +156,9 @@ export default {
     .course_area_subtitle {
         letter-spacing: 2px;
         font-size: 1em;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
+        // text-overflow: ellipsis;
+        // white-space: nowrap;
+        // overflow: hidden;
         width: 100%;
         display: block;
     }
@@ -177,5 +179,6 @@ export default {
         position: absolute;
         z-index: 3;
         left: -30%;
+        top: 0;
     }
 </style>

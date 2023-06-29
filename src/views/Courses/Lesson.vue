@@ -314,6 +314,7 @@ export default {
         return;
       }
 
+      console.log('this.videoProgress', this.videoProgress);
       this.videoProgressLoading = true;
       await this.$store.dispatch('UserState/updateUserVideoProgress', this.videoProgress)
       this.videoProgressLoading = false;

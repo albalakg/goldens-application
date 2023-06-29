@@ -230,11 +230,11 @@ export default {
     }
 
     .search_input_wrapper {
-        width: 15%;
+        width: 25%;
         transition: .2s width ease-out;
     }
 
     .search_input_wrapper_focused > div{
-        width: 25%;
+        width: 45%;
     }
 </style>

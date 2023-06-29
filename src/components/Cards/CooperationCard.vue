@@ -7,7 +7,7 @@
           <!-- <logo dark :width="$vuetify.breakpoint.smAndDown ? '35%' : '15%'" /> -->
         </span>
         <span :key="'b' + index" class="cooperation_item">
-          <img src="./../../../public/assets/images/partners/nike.png" alt="nike">
+          <img src="./../../../public/assets/images/icons/Gstar-black.png" alt="nike">
         </span>
       </template>
     </div>

@@ -16,13 +16,13 @@
         </v-flex>
       </section>
 
-      <!-- <div class="spacer"></div>
+      <div class="spacer"></div>
 
       <section>
         <v-flex md10 mx-auto class="px-3 px-md-0">
-          <video src="https://www.youtube.com/watch?v=0CUjzYtloe8" controls></video>
+          <video id="video" src="https://goldens-server-storage.s3.amazonaws.com/General/TRAILER+FINAL_%D7%99%D7%A1%D7%95%D7%93%D7%95%D7%AA+%D7%9B%D7%93%D7%95%D7%A8%D7%92%D7%9C+%D7%9C%D7%90%D7%9C%D7%95%D7%A4%D7%99%D7%9D.mp4" controls></video>
         </v-flex>
-      </section> -->
+      </section>
 
       <div class="spacer"></div>
 
@@ -206,10 +206,15 @@ export default {
   }
 
   .trainers_section {
-    min-height: 100vh;
+    min-height: 90vh;
     position: relative;
     z-index: 2;
+
+    @media only screen and (max-width: 1600px) {
+      min-height: 70vh;
+    }
   }
+  
 
   .about_believe_section {
     position: relative;

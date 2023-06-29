@@ -26,7 +26,7 @@
                         <img loading="lazy" :src="courseAreaImage" alt="course area image">
                     </div>
                     <span>
-                        תחומי קורס
+                        תחומים
                     </span>
                 </v-flex>
                 <v-flex xs5 d-flex align-center justify-end class="text-left">
@@ -70,7 +70,7 @@
 
             <div class="user_course_progress_bar mt-10">
                 <v-flex d-flex justify-space-between>
-                    <strong>התקדמות בקורס</strong>
+                    <strong>התקדמות באקדמיה</strong>
                     <strong>
                         {{progress}}%
                     </strong>
