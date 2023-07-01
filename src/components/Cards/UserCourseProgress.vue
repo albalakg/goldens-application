@@ -107,10 +107,6 @@ export default {
     },
 
     computed: {
-        imageSrc() {
-            return this.userImage ? userImage : this.defaultImage
-        },
-
         firstName() {
             return this.$store.getters['UserState/firstName'];
         },

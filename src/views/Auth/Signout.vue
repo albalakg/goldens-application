@@ -14,7 +14,7 @@ export default {
 
     methods: {
         deleteSession() {
-            Auth.deleteCookie();
+            Auth.logout();
             if(!Auth.isLogged()) {
                 this.$store.dispatch('AuthState/setLogStatus', false);
                 this.$store.dispatch('UserState/clearUserState');

@@ -151,7 +151,6 @@
                         />
                     </v-flex>
                 </v-flex>
-                <!-- TODO -->
             </v-flex>
         </v-flex>
     </section>

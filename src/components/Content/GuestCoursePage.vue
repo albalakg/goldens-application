@@ -37,7 +37,6 @@
 
         <v-flex md10 xl9 mx-auto>
             <course-benefits :items="items" />
-            <!-- TODO: Not in use yet -->
             <!-- <v-flex d-flex class="course_lessons_wrapper">
                 <v-flex xs3 v-for="(lesson, index) in lessons" :key="index" class="course_lesson_card">
                     <lesson-card 

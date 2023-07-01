@@ -123,8 +123,9 @@ import Heart from '../../components/General/Heart.vue';
 import LessonCompleted from '../../components/General/LessonCompleted.vue';
 import StarLogo from '../../components/General/StarLogo.vue';
 
+const NO_ACCESS_STATUS                    = 400;
 const SPACE_BETWEEN_VIDEO_PROGRESS_UPDATE = 3000;
-const FINISHED_LESSON_TITLES = [
+const FINISHED_LESSON_TITLES              = [
   'כל הכבוד',
   'מצויין',
   'זו הדרך',
@@ -314,9 +315,19 @@ export default {
         return;
       }
 
-      console.log('this.videoProgress', this.videoProgress);
+      if(this.videoProgress.start_time === this.videoProgress.end_time) {
+        return;
+      }
+
       this.videoProgressLoading = true;
-      await this.$store.dispatch('UserState/updateUserVideoProgress', this.videoProgress)
+      try {
+        await this.$store.dispatch('UserState/updateUserVideoProgress', this.videoProgress)
+      } catch(err) {
+        if(err.status === NO_ACCESS_STATUS) {
+          this.$store.dispatch('MessageState/addWarningMessage', { time: 5000, title: 'גישה לתוכן', message: 'מצטערים, אך תוכן זה אינו נגיש לך'});
+          this.$router.push('/');
+        }
+      }
       this.videoProgressLoading = false;
     },
 

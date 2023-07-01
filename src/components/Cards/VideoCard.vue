@@ -9,7 +9,7 @@
             @playing="onVideoPlay"
             @pause="onVideoPaused"
             @ended="onVideoEnd"
-            :controls="controls || playing"
+            controls
             controlsList="nodownload"
             :disablePictureInPicture="disablePictureInPicture"
         >

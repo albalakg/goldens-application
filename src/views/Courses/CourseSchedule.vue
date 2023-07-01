@@ -233,7 +233,6 @@ export default {
     },
 
     pushEventsForwardByCourseStartDate(events) {
-      // TODO: fix the updated/new dates schedules
       const startDate           = new Date(this.course.schedule_start_date);
       const earliestEventDate   = new Date(this.course.earliest_scheduled_date);
       const diffInTime          = startDate.getTime() - earliestEventDate.getTime();

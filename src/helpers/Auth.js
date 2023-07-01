@@ -3,6 +3,7 @@ import axios from "axios";
 import store from '../store'
 
 const COOKIE_NAME = 'GoldensToken';
+const TOKEN_NAME = 'GAT';
 
 class Auth {
     login(data) {
@@ -15,25 +16,21 @@ class Auth {
     }
 
     createCookie(data) {
-        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-        if(isSafari) {
-            document.cookie = `${COOKIE_NAME}=${this.encrypt(data)};expires=${new Date(data.expired_at)}`;
-        } else {
-            document.cookie = `${COOKIE_NAME}=${this.encrypt(data)};SameSite=Lax;secure;expires=${new Date(data.expired_at)}`;
-        }
+        localStorage.setItem(TOKEN_NAME, this.encrypt(data))
     }
 
     logout() {
-        if('/signout' !== window.location.hash.replace('#', '')) {
+        if('/signout' !== window.location.pathname) {
             router.push('/signout')
         }
+        this.deleteToken();
         store.dispatch('AppState/setIsLoadingState', false)
     }
     
     get() {
         const data =  this.decrypt();
         if(!data) {
-            this.deleteCookie();
+            this.deleteToken();
             return null;
         }
 
@@ -90,24 +87,20 @@ class Auth {
     }
 
     decrypt() {
-        const cookie = this.getCookie();
-        if(!cookie) {
+        const token = this.getToken();
+        if(!token) {
             return null;
         } 
 
-        return JSON.parse(decodeURIComponent(escape(atob(cookie))));
+        return JSON.parse(decodeURIComponent(escape(atob(token))));
     }
 
-    getCookie() {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${COOKIE_NAME}=`);
-        if (parts.length === 2) 
-            return parts.pop().split(';').shift();
-        else '';
+    getToken() {
+        return localStorage.getItem(TOKEN_NAME);
     }
 
-    deleteCookie() {
-        document.cookie = `${COOKIE_NAME}=1;expires=Thu, 01 Jan 1970 00:00:01 GMT`;
+    deleteToken() {
+        localStorage.removeItem(TOKEN_NAME);
     }
 }
 

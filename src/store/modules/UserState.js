@@ -419,10 +419,12 @@ const UserState = {
         },
 
         updateUserVideoProgress({ commit }, data) {
-            return new Promise((resolve) => {
+            return new Promise((resolve, reject) => {
                 axios.post(`profile/lesson/progress`, data)
                     .then(res => {
                         commit('UPDATE_USER_PROGRESS', res.data.data);
+                    }).catch(err => {
+                        reject(err.response);
                     }).finally(() => {
                         resolve()
                     });
