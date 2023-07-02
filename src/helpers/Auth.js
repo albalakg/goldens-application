@@ -2,7 +2,6 @@ import router from '../router'
 import axios from "axios";
 import store from '../store'
 
-const COOKIE_NAME = 'GoldensToken';
 const TOKEN_NAME = 'GAT';
 
 class Auth {
