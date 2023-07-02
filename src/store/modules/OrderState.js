@@ -35,7 +35,7 @@ const OrderState = {
                 axios.post('orders', data)
                     .then(res => {
                         commit('SET_ORDER', res.data.data);
-                        resolve()
+                        resolve(res.data.data)
                     }).catch(() => {   
                         reject()
                     })

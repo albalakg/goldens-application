@@ -357,9 +357,9 @@ class ContentService {
     const yearFromNow = new Date(
       new Date().setFullYear(new Date().getFullYear() + 1)
     );
-    let year = String(yearFromNow.getFullYear()).substring(2, 4);
-    let month = String(yearFromNow.getMonth());
-    let day = String(yearFromNow.getDate());
+    let year  = String(yearFromNow.getFullYear()).substring(2, 4);
+    let month = String(yearFromNow.getMonth() + 1);
+    let day   = String(yearFromNow.getDate());
 
     if (day.length === 1) {
       day = `0${day}`;

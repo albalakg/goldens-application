@@ -1,8 +1,8 @@
 <template>
     <v-flex md10 xl9 mx-auto class="auth_padding_top px-5 px-md-0" v-if="course">
         <colored-circle-decorator class="user_colored_circle" />
-        <v-flex lg8 md10 mx-auto v-if="orderToken" class="payment_card text-center">
-            מסך תשלום צד שלישי
+        <v-flex lg8 md10 mx-auto v-if="orderResponse" class="payment_card text-center">
+            <iframe frameBorder="0" :src="orderResponse.page_link" title="עמוד תשלום"></iframe>
         </v-flex>
         <div v-else class="order_page_content mt-5">
             <h1>
@@ -25,7 +25,7 @@
                                 ref="coupon"
                                 dark
                                 :loading="loading"
-                                :readonly="!!orderToken"
+                                :readonly="!!orderResponse"
                                 @onChange="setCoupon"
                             />
                         </v-form>
@@ -72,7 +72,7 @@ export default {
             },
             coupon: null,
             loading: false,
-            orderToken: null,
+            orderResponse: null,
             checkingPaymentInterval: null,
             currentIntervalAttempt: 0,
         }
@@ -168,13 +168,12 @@ export default {
         async submitOrder() {
             this.loading = true;
             try {
-                this.orderToken = await this.$store.dispatch('OrderState/submitOrder', {
+                this.orderResponse = await this.$store.dispatch('OrderState/submitOrder', {
                     content_id:         this.course.id,
                     coupon_code:        this.form.coupon,
                     marketing_token:    CookieService.get('marketingToken')
                 })
 
-                this.orderToken = 'asd';
                 this.$refs.coupon.setErrorMessage('');
                 this.checkPaymentStatus();
 
@@ -232,4 +231,9 @@ export default {
         pointer-events: none;
     }
 
+    iframe {
+        width: 100%;
+        height: 70vh;
+        min-height: 500px;
+    }
 </style>

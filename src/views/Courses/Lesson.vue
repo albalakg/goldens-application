@@ -44,7 +44,7 @@
       </v-flex>
 
       <div class="mt-2 px-2 px-md-0">
-        <v-flex d-flex class="lesson_trainer_details">
+        <v-flex v-if="trainer" d-flex class="lesson_trainer_details">
           <profile-card :image="trainer.imageSrc" class="lesson_trainer_card" />
           <div class="mr-3">
             <strong>
