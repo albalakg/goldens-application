@@ -63,10 +63,32 @@
               <v-toolbar :color="selectedEvent.color" dark>
                 <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
                 <v-spacer></v-spacer>
-                <v-icon @click="selectedOpen = false">mdi-close</v-icon>
+                <!-- <v-icon @click="selectedOpen = false">mdi-close</v-icon> -->
+                <v-tooltip top color="black">
+                  <template v-slot:activator="{ on, attrs }">
+                      <v-icon
+                        v-bind="attrs" 
+                        v-on="on"
+                        class="enter_lesson_button" 
+                        @click="enterLesson(selectedEvent)"
+                      >
+                      mdi-play
+                    </v-icon>
+                  </template>
+                  <span class="white_text_color">
+                    התחל שיעור
+                  </span>
+                </v-tooltip>
+                <!-- <v-icon title="התחל שיעור" class="enter_lesson_button" @click="enterLesson(selectedEvent)">mdi-play</v-icon> -->
               </v-toolbar>
               <v-card-text>
                 <div class="event_content mb-3">
+                  <!-- <main-button
+                    subColor
+                    class="mb-3"
+                    text="התחל שיעור"
+                    @submit="enterLesson(selectedEvent)"
+                  /> -->
                   <img class="event_image rounded" :src="selectedEvent.image" />
                   <div class="event_darkner rounded"></div>
                   <span v-html="selectedEvent.description"></span>
@@ -139,11 +161,6 @@ export default {
         "orange",
         "grey darken-1",
       ],
-      months: [
-        "ינואר",
-        "פברואר",
-        "מרץ"
-      ],
       typeToLabel: {
         month: "חודש",
         day: "יום",
@@ -167,7 +184,15 @@ export default {
       }
     },
     hasFocused() {
-      this.setFocus(new Date(this.earliestScheduledDate).addDays(this.startDiffInDays));
+      if(!this.earliestScheduledDate) {
+        return;
+      }
+
+      if(this.startDiffInDays > 0) {
+        return this.setFocus(this.getEventDate((new Date(this.earliestScheduledDate).addDays(this.startDiffInDays))));
+      }
+
+      return this.setFocus(this.earliestScheduledDate);
     }
   },
 
@@ -314,6 +339,10 @@ export default {
               firstDay.getDate() === secondDay.getDate();
     },
 
+    enterLesson(schedule) {
+      this.$router.push('/courses/' + this.course.id + '/lessons/' + schedule.lessonId)
+    },
+
     saveDateInCalendar(schedule) {
       if(schedule.isSetByUser) {
         this.$store.dispatch('UserState/updateTrainingSchedule', {
@@ -358,6 +387,13 @@ export default {
 <style scoped lang="scss">
 .v-toolbar__content button.v-btn--round {
   rotate: 180deg;
+}
+
+.enter_lesson_button {
+  border: 1px solid #fff;
+  border-radius: 50%;
+  padding: 5px;
+  transform: rotate(180deg);
 }
 
 .event_content {

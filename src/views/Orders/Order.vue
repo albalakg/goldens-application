@@ -176,7 +176,7 @@ export default {
                 })
 
                 this.$refs.coupon.setErrorMessage('');
-                this.checkPaymentStatus();
+                // this.checkPaymentStatus();
 
             } catch(err) {
                 error(err);
