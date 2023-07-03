@@ -122,7 +122,7 @@ export default {
     },
 
     price() {
-      return "₪" + Math.floor(this.course.price);
+      return ContentService.getCoursePrice(this.course);
     },
 
     expiredAt() {

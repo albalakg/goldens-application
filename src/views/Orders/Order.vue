@@ -39,9 +39,10 @@
                     <order-summary-card 
                         :name="course.name"
                         :price="price"
-                        :loading="loading"
-                        :discount="discount"
+                        :courseDiscount="course.discount"
+                        :couponDiscount="couponDiscount"
                         :marketingTokenDiscount="marketingTokenDiscount"
+                        :loading="loading"
                         @submit="submitOrder()"
                     />
                 </v-flex>
@@ -87,7 +88,7 @@ export default {
             return Math.floor(this.course.price);
         },
 
-        discount() {
+        couponDiscount() {
             if(!this.coupon) {
                 return 0;
             }

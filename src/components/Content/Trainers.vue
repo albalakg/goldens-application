@@ -9,7 +9,10 @@
         <div class="trainer_content">
             <v-flex v-if="$vuetify.breakpoint.mdAndUp" d-flex justify-space-between flex-wrap class="trainers_wrapper">
                 <v-flex md3 v-for="(trainer, index) in trainers" :key="index" class="mb-2 px-5 trainer_wrapper">
-                    <img class="trainer_card" src="./../../../public/assets/images/trainers/trainer-card.webp" alt="trainer card">
+                    <div class="trainer_card">
+                        <img class="trainer_shield" src="./../../../public/assets/images/trainers/trainer-card.webp" alt="trainer shield">
+                        <img class="trainer_person" :src="trainer.imageSrc" alt="trainer person">
+                    </div>
                 </v-flex>
             </v-flex>
 
@@ -17,7 +20,10 @@
                 <arrow-chip v-show="showNextTrainerArrow" @submit="goToLastTrainer()" :left="false" class="lesson_wrapper_right_icon" />
                 <v-flex class="trainers_wrapper" ref="trainers">
                     <div v-for="(trainer, index) in trainers" :key="index" :ref="`trainer-${index}`">
-                        <img class="trainer_card" src="./../../../public/assets/images/trainers/trainer-card.webp" alt="trainer card">
+                        <div class="trainer_card">
+                            <img class="trainer_shield" src="./../../../public/assets/images/trainers/trainer-card.webp" alt="trainer shield">
+                            <img class="trainer_person" :src="trainer.imageSrc" alt="trainer person">
+                        </div>
                     </div>
                 </v-flex>
                 <arrow-chip v-show="showLastTrainerArrow" @submit="goToNextTrainer()" class="lesson_wrapper_left_icon" />
@@ -183,5 +189,20 @@ export default {
 
     .trainer_card {
         width: 90%;
+        position: relative;
+
+        .trainer_shield {
+            position: relative;
+            width: 100%;
+        }
+
+        .trainer_person {
+            position: absolute;
+            top: 14px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 100%;
+        }
     }
 </style>

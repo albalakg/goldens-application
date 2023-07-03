@@ -117,6 +117,10 @@ class ContentService {
     }
   }
 
+  getCoursePrice(course) {
+    return "₪" + Math.floor(course.price - (course.price * (course.discount / 100)));
+  }
+
   getLessonProgressById(lessonId) {
     try {
       let userCourses = store.state["UserState"].progress;

@@ -9,10 +9,15 @@
             <span>{{ name }}</span>
             <span>{{ priceView }}</span>
         </v-flex>
+        <div v-if="courseDiscount" class="divider"></div>
+        <v-flex v-if="courseDiscount" d-flex justify-space-between class="px-6 py-3">
+            <span>הנחת קורס</span>
+            <span>₪{{ courseDiscountView }}</span>
+        </v-flex>
         <div class="divider"></div>
         <v-flex d-flex justify-space-between class="px-6 py-3">
             <span>הנחת קופון</span>
-            <span>{{ discountView }}</span>
+            <span>{{ couponDiscountView }}</span>
         </v-flex>
         <div v-if="marketingTokenDiscount" class="divider"></div>
         <v-flex v-if="marketingTokenDiscount" d-flex justify-space-between class="px-6 py-3">
@@ -59,7 +64,12 @@ export default {
             default: 0
         },
 
-        discount: {
+        courseDiscount: {
+            type: Number,
+            default: 0
+        },
+
+        couponDiscount: {
             type: Number,
             default: 0
         },
@@ -79,12 +89,16 @@ export default {
             return '₪' + this.price;
         },
 
-        discountView() {
-            return '₪' + this.discount;
+        couponDiscountView() {
+            return '₪' + this.couponDiscount;
+        },
+
+        courseDiscountView() {
+            return Math.floor(this.price * (this.courseDiscount / 100));
         },
 
         coursePrice() {
-            return this.price - this.discount - this.marketingTokenDiscount;
+            return this.price - this.couponDiscount - this.marketingTokenDiscount - this.courseDiscountView;
         },
 
         taxPrice() {
