@@ -2,7 +2,7 @@
     <div>
         <div v-if="orders">
             <div v-if="orders.length" class="px-3 px-md-0">
-                <order-course-card class="user_order mb-5" :course="order" v-for="(order, index) in orders" :key="index" />
+                <order-course-card class="user_order mb-5" :order="order" v-for="(order, index) in orders" :key="index" />
             </div>
             <div v-else class="text-center">
                 <h2 class="text-center">
@@ -35,11 +35,12 @@ export default {
 
             return orders.map((order) => {
                 return {
-                    ...order.course,
-                    price: order.price
+                    content_id: order.content_id,
+                    price:      order.price,
+                    order_num:  order.order_number
                 }
             })
-        }
+        },
     }
 }
 </script>

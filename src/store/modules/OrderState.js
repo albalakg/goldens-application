@@ -29,6 +29,18 @@ const OrderState = {
                     })
             })
         },
+      
+        getOrder({ commit }, page_uuid) {
+            return new Promise((resolve, reject) => {
+                axios.get('orders/success/' + page_uuid)
+                    .then(res => {
+                        commit('SET_ORDER', res.data.data);
+                        resolve()
+                    }).catch(() => {   
+                        reject()
+                    })
+            })
+        },
 
         submitOrder({ commit }, data) {
             return new Promise((resolve, reject) => {
@@ -36,18 +48,6 @@ const OrderState = {
                     .then(res => {
                         commit('SET_ORDER', res.data.data);
                         resolve(res.data.data)
-                    }).catch(() => {   
-                        reject()
-                    })
-            })
-        },
-
-        checkPaymentStatus({ commit }) {
-            return new Promise((resolve, reject) => {
-                axios.get('orders/payment-status')
-                    .then(res => {
-                        commit('SET_ORDER', res.data.data);
-                        resolve()
                     }).catch(() => {   
                         reject()
                     })

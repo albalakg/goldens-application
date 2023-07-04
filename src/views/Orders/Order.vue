@@ -14,7 +14,7 @@
             <v-flex d-flex flex-wrap>
                 <v-flex xs12 md8 class="pl-md-10">
                     <order-course-card 
-                        :course="course"
+                        :order="courseCardObject"
                     />
                     
                     <br>
@@ -82,6 +82,12 @@ export default {
     computed: {
         course() {
             return ContentService.findCourseById(this.$route.query.courseId)
+        },
+
+        courseCardObject() {
+            return {
+                content_id: this.course.id
+            }
         },
 
         price() {
@@ -176,31 +182,12 @@ export default {
                 })
 
                 this.$refs.coupon.setErrorMessage('');
-                // this.checkPaymentStatus();
 
             } catch(err) {
                 error(err);
                 this.$store.dispatch('MessageState/addErrorMessage', { message: 'מצטערים, אבל תהליך ההזמנה כשל' })
             }
             this.loading = false;
-        },
-
-        checkPaymentStatus() {
-            setTimeout(() => {
-                this.checkingPaymentInterval = setInterval(async () => {
-                    if(this.checkingPaymentInterval >= CHECKING_PAYMENT_MAX_ATTEMPTS) {
-                        clearInterval(this.checkingPaymentInterval);
-                        this.$store.dispatch('MessageState/addInfoMessage', {
-                            message: 'בהצלחה בקורס ומקווים שתהנה! <br> מזכירים שהקורס הוא לשימושך האישי בלבד',
-                            time: 5000
-                        });
-                        this.$store.dispatch('UserState/goToLastActiveCourse');
-                        return;
-                    }
-                    this.currentIntervalAttempt++;
-                    // await this.$store.dispatch('OrderState/checkPaymentStatus');
-                }, CHECKING_PAYMENT_DELAY);
-            }, CHECKING_PAYMENT_INIT_DELAY);
         },
 
         isTheSameValue() {

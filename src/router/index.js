@@ -150,6 +150,11 @@ const routes = [
     beforeEnter: Guard.user,
     component: () => import('../views/Orders/Order.vue'),
   },
+  {
+    path: '/orders/success',
+    beforeEnter: Guard.user,
+    component: () => import('../views/Orders/OrderSuccess.vue'),
+  },
   // ***** ORDERS END *****
 
 

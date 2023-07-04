@@ -118,7 +118,7 @@ class ContentService {
   }
 
   getCoursePrice(course) {
-    return "₪" + Math.floor(course.price - (course.price * (course.discount / 100)));
+    return "₪" + Math.floor(course.price - (course.price * (course.discount ? course.discount / 100 : 0)));
   }
 
   getLessonProgressById(lessonId) {

@@ -11,10 +11,14 @@
     </v-flex>
     <v-flex xs12 md8 d-flex flex-column class="px-md-5 pt-3 pt-md-0">
       <div>
-        <strong>
-          {{ course.name }}
-        </strong>
-        <br />
+        <v-flex d-flex justify-space-between>
+          <strong>
+            {{ course.name }}
+          </strong>
+          <small>
+            {{  order.order_num }}
+          </small>
+        </v-flex>
         <small v-html="course.description"> </small>
       </div>
 
@@ -93,7 +97,7 @@
 <script>
 export default {
   props: {
-    course: {
+    order: {
       type: Object,
       required: true,
     },
@@ -128,6 +132,10 @@ export default {
     expiredAt() {
       return ContentService.getExpiredDate()
     },
+
+    course() {
+      return ContentService.findCourseById(this.order.content_id)
+    }
   },
 };
 </script>
