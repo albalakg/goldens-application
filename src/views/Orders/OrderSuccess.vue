@@ -10,32 +10,37 @@
         <br>
         <v-flex xl5 lg6 md8 sm10 mx-auto v-if="order">
             <v-flex d-flex>
-                <v-flex xs3 class="text-right">
+                <v-flex xs6 class="text-right">
                     <span>מספר אישור</span>
                 </v-flex>
-                <v-flex xs9 class="text-left">
+                <v-flex xs6 class="text-left">
                     {{ order.order_number }}
                 </v-flex>
             </v-flex>
             <v-divider class="my-4"></v-divider>
             <v-flex d-flex>
-                <v-flex xs3 class="text-right">
+                <v-flex xs6 class="text-right">
                     <span>סכום הזמנה</span>
                 </v-flex>
-                <v-flex xs9 class="text-left">
-                    {{ price }}₪
+                <v-flex xs6 class="text-left">
+                    ₪{{ price }}
                 </v-flex>
             </v-flex>
             <v-divider class="my-4"></v-divider>
             <v-flex d-flex>
-                <v-flex xs3 class="text-right">
+                <v-flex xs6 class="text-right">
                     <span>תוקף הרכישה</span>
                 </v-flex>
-                <v-flex xs9 class="text-left">
+                <v-flex xs6 class="text-left">
                     {{ expiredAt }}
                 </v-flex>
             </v-flex>
         </v-flex>
+        <div v-else>
+            <h3>
+                טוען פרטי הזמנה...
+            </h3>
+        </div>
         <br>
         <br>
     </v-flex>
@@ -71,6 +76,10 @@ export default {
 
     methods: {
         getOrder() {
+            if(!this.$route.query.page_request_uid) {
+                return this.$router.push('/')
+            }
+            
             this.$store.dispatch('OrderState/getOrder', this.$route.query.page_request_uid)
         },
 
