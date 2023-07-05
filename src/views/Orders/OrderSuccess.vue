@@ -48,6 +48,8 @@
 
 <script>
 
+import { ACTIVE } from '../../helpers/StatusService'
+
 export default {
     data() {
         return {
@@ -56,7 +58,9 @@ export default {
     },
 
     created() {
-        this.getOrder();
+        setTimeout(() => {
+            this.getOrder();
+        }, 1000);
     },
 
     computed: {
@@ -72,6 +76,18 @@ export default {
             const date = new Date(new Date().setFullYear(new Date().getFullYear() + 1));
             return this.getEventDate(date);
         },
+    },
+
+    watch: {
+        order() {
+            if(this.order.status === ACTIVE) {
+                setTimeout(() => {
+                    window.location.reload();
+                }, 200);
+                this.$router.replace({'query': null});
+                this.$router.push('/')
+            }
+        }
     },
 
     methods: {

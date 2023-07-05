@@ -59,10 +59,6 @@ import OrderSummaryCard from '../../components/Cards/OrderSummaryCard.vue'
 import ColoredCircleDecorator from '../../components/Decorators/ColoredCircleDecorator.vue'
 import CouponInput from '../../components/Form/Inputs/CouponInput.vue'
 
-const CHECKING_PAYMENT_INIT_DELAY   = 1; // TODO: change to 30 seconds
-const CHECKING_PAYMENT_DELAY        = 5000; // 5 seconds
-const CHECKING_PAYMENT_MAX_ATTEMPTS = 1; // TODO: change to 30
-
 export default {
   components: { OrderCourseCard, CouponInput, OrderSummaryCard, ColoredCircleDecorator},
     data() {
