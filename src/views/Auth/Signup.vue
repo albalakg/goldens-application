@@ -213,7 +213,7 @@
 
                             <div>
                                 <small>
-                                    בהתחברות אני מסכים/מה 
+                                    בלחיצה על כפתור ההרשמה אני מסכים/מה 
                                     <router-link to="/policies" target="_blank">
                                         <span class="link">
                                             לתנאי השימוש
@@ -225,6 +225,16 @@
                                         </span>
                                     </router-link>
                                 </small>
+                            </div>
+
+                            <div>
+                                <v-checkbox v-model="form.is_subscribe" color="#d5b26e">
+                                <template v-slot:label>
+                                    <small>
+                                        אשמח לקבל עדכונים ומבצעים שווים באקדמיה
+                                    </small>
+                                </template>
+                                </v-checkbox>
                             </div>
 
                             <v-flex d-md-flex align-center justify-space-between class="text-center text-md-right mt-5">
@@ -301,14 +311,15 @@ export default {
     data() {
         return {
             form: {
-                email:      '',
-                password:   '',
-                first_name: '',
-                last_name:  '',
-                phone:      '',
-                team:       '',
-                city:       '',
-                birth_date: '',
+                email:          '',
+                password:       '',
+                first_name:     '',
+                last_name:      '',
+                phone:          '',
+                team:           '',
+                city:           '',
+                birth_date:     '',
+                is_subscribe:   false,
             },
             loading: false
         }

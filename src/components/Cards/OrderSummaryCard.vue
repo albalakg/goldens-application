@@ -14,10 +14,10 @@
             <span>הנחת קורס</span>
             <span>₪{{ courseDiscountView }}</span>
         </v-flex>
-        <div class="divider"></div>
-        <v-flex d-flex justify-space-between class="px-6 py-3">
+        <div v-if="couponDiscountView" class="divider"></div>
+        <v-flex v-if="couponDiscountView" d-flex justify-space-between class="px-6 py-3">
             <span>הנחת קופון</span>
-            <span>{{ couponDiscountView }}</span>
+            <span>₪{{ couponDiscountView }}</span>
         </v-flex>
         <div v-if="marketingTokenDiscount" class="divider"></div>
         <v-flex v-if="marketingTokenDiscount" d-flex justify-space-between class="px-6 py-3">
@@ -90,7 +90,7 @@ export default {
         },
 
         couponDiscountView() {
-            return '₪' + this.couponDiscount;
+            return this.couponDiscount;
         },
 
         courseDiscountView() {

@@ -2,7 +2,7 @@
   <div v-if="course && !loading">
     <section class="course_header_section">
       <v-flex class="course_page_image_wrapper" ref="courseHeader">
-        <img loading="lazy" class="course_image" src="../../../public/assets/images/general/home_header.png" alt="תמונת עמוד בית" />
+        <img loading="lazy" class="course_image" src="../../../public/assets/images/general/home_header.webp" alt="תמונת עמוד בית" />
         <div class="course_page_image_darkner" :class="
           hasActiveCourse
             ? 'course_page_image_darkner_left_to_right'

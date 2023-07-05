@@ -198,11 +198,11 @@ export default {
 
         .trainer_person {
             position: absolute;
-            top: 14px;
+            top: 33px;
             left: 0;
             right: 0;
             margin: auto;
-            width: 100%;
+            width: 90%;
         }
     }
 </style>
