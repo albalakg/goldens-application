@@ -1,6 +1,7 @@
 import axios from "axios";
 import ContentService, { SCHEDULE_TRAINING_TYPE_ID } from "../../helpers/ContentService";
 import router from '../../router';
+import Auth from '../../helpers/Auth'
 
 const UserState = {
     namespaced: true,
@@ -270,6 +271,7 @@ const UserState = {
                         message: 'מצטערים אבל נכשלה הבקשה למשיכת פרטי הפרופיל',
                         type: 'error',
                     }, {root:true});
+                    Auth.logout()
                 })
         },
         
@@ -343,6 +345,7 @@ const UserState = {
         },
         
         clearUserContent({ commit }) {
+            commit('SET_USER_PROGRESS', null);
             commit('SET_USER_COURSES', null);
             commit('SET_USER_LESSONS', []);
         },

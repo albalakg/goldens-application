@@ -19,7 +19,7 @@ axios.interceptors.response.use(function (response) {
         // Do something with response data
         return response;
     }, function (error) {
-        logoutIfTokenExpired(error.response)
+        logoutIfTokenExpired(error.response);
         // Any status codes that falls outside the range of 2xx cause this function to trigger
         // Do something with response error
         return Promise.reject(error);

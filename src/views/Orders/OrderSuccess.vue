@@ -81,15 +81,26 @@
 import { ACTIVE } from '../../helpers/StatusService'
 import MainButton from '../../components/Buttons/MainButton'
 
+const MAX_CHECK_ORDER_ATTEMPTS  = 10;
+const SPACE_BETWEEN_ATTEMPTS    = 1000 * 10; // 10 seconds
+
 export default {
     components: {
         MainButton,
     },
+
+    data() {
+        return {
+            getOrderInterval: null,
+            currentAttempt: 1
+        }
+    },
     
     created() {
-        setTimeout(() => {
+        this.getOrder();
+        this.getOrderInterval = setInterval(() => {
             this.getOrder();
-        }, 1000);
+        }, SPACE_BETWEEN_ATTEMPTS);
     },
 
     computed: {
@@ -102,7 +113,7 @@ export default {
         },
 
         orderFinished() {
-            return this.order.status === ACTIVE;
+            return this.order && this.order.status === ACTIVE;
         },
 
         expiredAt() {
@@ -113,21 +124,35 @@ export default {
         hasCourses() {
             const courses = this.$store.getters['UserState/courses'];
             return courses ? Boolean(courses.length) : false;
-        }
+        },
+
+        hasReachedMaxAttempts() {
+            return this.currentAttempt >= MAX_CHECK_ORDER_ATTEMPTS;
+        },
     },
 
     watch: {
         order() {
             if(this.orderFinished) {
                 this.$store.dispatch('UserState/clearUserContent');
+                this.$store.dispatch('UserState/getProgress');
                 this.$store.dispatch('UserState/getCourses');
             }
         }
     },
 
+    beforeDestroy() {
+        clearInterval(this.getOrderInterval);
+    },
+
     methods: {
         getOrder() {
+            if(this.hasReachedMaxAttempts || this.orderFinished) {
+                clearInterval(this.getOrderInterval);
+                return;
+            }
             this.$store.dispatch('OrderState/getUserLastOrder');
+            this.currentAttempt++;
         },
 
         getEventDate(date) {

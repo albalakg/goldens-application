@@ -125,7 +125,7 @@ import LessonCompleted      from '../../components/General/LessonCompleted.vue';
 import StarLogo             from '../../components/General/StarLogo.vue';
 
 const NO_ACCESS_STATUS                    = 400;
-const SPACE_BETWEEN_VIDEO_PROGRESS_UPDATE = 3000;
+const SPACE_BETWEEN_VIDEO_PROGRESS_UPDATE = 5000; // 5 seconds
 const FINISHED_LESSON_TITLES              = [
   'כל הכבוד',
   'מצויין',
