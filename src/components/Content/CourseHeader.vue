@@ -9,11 +9,11 @@
 
       <div class="divider mt-md-7"></div>
 
-      <div v-if="showTrainerIcon && $vuetify.breakpoint.smAndDown" class="trainer_icon" @click="toggleTrainerDialog()">
+      <!-- <div v-if="showTrainerIcon && $vuetify.breakpoint.smAndDown" class="trainer_icon" @click="toggleTrainerDialog()">
         <img loading="lazy" :src="trainer.imageSrc">
-      </div>
+      </div> -->
 
-      <trainer-dialog :show="showTrainerDialog" :trainer="trainer" @closed="toggleTrainerDialog()" />
+      <!-- <trainer-dialog :show="showTrainerDialog" :trainer="trainer" @closed="toggleTrainerDialog()" /> -->
 
       <v-flex d-flex class="course_page_actions_wrapper w100 mt-5">
 

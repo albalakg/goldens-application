@@ -12,6 +12,18 @@
                     <div class="trainer_card">
                         <img class="trainer_shield" src="./../../../public/assets/images/trainers/trainer-card.webp" alt="trainer shield">
                         <img class="trainer_person" :src="trainer.imageSrc" alt="trainer person">
+                        <div class="trainer_card_details">
+                            <h4 class="trainer_name">
+                                {{
+                                    trainer.name
+                                }}
+                            </h4>
+                            <p>
+                                {{
+                                    trainer.title
+                                }}
+                            </p>
+                        </div>
                     </div>
                 </v-flex>
             </v-flex>
@@ -23,6 +35,18 @@
                         <div class="trainer_card">
                             <img class="trainer_shield" src="./../../../public/assets/images/trainers/trainer-card.webp" alt="trainer shield">
                             <img class="trainer_person" :src="trainer.imageSrc" alt="trainer person">
+                            <div class="trainer_card_details">
+                                <h4 class="trainer_name">
+                                    {{
+                                        trainer.name
+                                    }}
+                                </h4>
+                                <p>
+                                    {{
+                                        trainer.title
+                                    }}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </v-flex>
@@ -71,7 +95,6 @@ export default {
             subtitle: `בצוות תמצאו אנשי המפתח מעולם הכדורגל- הם בחרו את התרגילים והתכנים הכי מדוייקים בשבילכם! הם מקצועיים, הם מתאימים לתכונות שאנחנו מחפשים עבורכם והם הכי טובים במה שהם עושים.`
         }
     },
-
     
     computed: {
         viewTrainers() {
@@ -120,8 +143,12 @@ export default {
                     this.scrollingDisabled = false;
                 }, 300);
 
-                const trainer = this.$refs[`trainer-${goToTrainerIndex}`][0];
-                trainer.scrollIntoView({behavior: "smooth", block: "center", inline: "center"})
+                const trainers      = document.querySelector('.trainers_wrapper');
+                const trainer       = this.$refs[`trainer-${goToTrainerIndex}`][0];
+                const trainerMargin = 67;
+                trainers.scrollLeft = (trainer.clientWidth + trainerMargin) * -1 * goToTrainerIndex;
+                console.log('trainer', trainers.offsetWidth, trainers.clientWidth, trainer.clientWidth + trainerMargin);
+                // trainer.scrollIntoView({behavior: "smooth", block: "center", inline: "center"})
                 this.focusedTrainerIndex = goToTrainerIndex;
             } catch(err) {
                 console.error(err);
@@ -158,9 +185,13 @@ export default {
             display: flex;
             overflow-x: auto;
             pointer-events: none;
+            scroll-behavior: smooth;
+            
+            @media only screen and (max-width: 600px) {
+                margin-right: 30px;
+            }
 
-            // margin-right: 10%;
-
+            
             &::-webkit-scrollbar {
                 display: none;
             }
@@ -190,6 +221,20 @@ export default {
     .trainer_card {
         width: 90%;
         position: relative;
+
+        .trainer_card_details {
+            position: absolute;
+            z-index: 2;
+            top: 57%;
+            left: 0;
+            right: 0;
+            text-align: center;
+            margin: auto;
+
+            .trainer_name {
+
+            }
+        }
 
         .trainer_shield {
             position: relative;
