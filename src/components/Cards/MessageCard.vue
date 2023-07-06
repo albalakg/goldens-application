@@ -160,7 +160,7 @@ export default {
         left: 0;
         right: 0;
         margin: auto;
-        z-index: 100;
+        z-index: 101;
     }
     
     .message_card_persistent {
@@ -173,7 +173,7 @@ export default {
 
     .message_card_content {
         position: fixed;
-        z-index: 100;
+        z-index: 101;
         border-radius: 12px;
         min-height: 250px;
         max-height: 350px;

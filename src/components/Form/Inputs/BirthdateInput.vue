@@ -9,7 +9,7 @@
                         :title="title ? text : ''" :icon="icon ? iconSrc : ''" :rules="rules" @onChange="onChange" />
                 </div>
             </template>
-            <v-date-picker color="#102a46" v-model="dates" no-title scrollable>
+            <v-date-picker color="#102a46" v-model="dates" no-title scrollable :max="today">
                 <v-spacer></v-spacer>
                 <v-btn text color="#102a46" @click="menu = false">
                     ביטול
@@ -80,7 +80,8 @@ export default {
                 }
             ],
             menu: false,
-            dates: ''
+            dates: '',
+            today: new Date().toISOString().substr(0, 10),
         }
     },
 

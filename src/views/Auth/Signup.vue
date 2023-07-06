@@ -226,7 +226,7 @@
                             </div>
 
                             <div>
-                                <v-checkbox v-model="form.is_subscribe" color="#d5b26e">
+                                <v-checkbox v-model="form.is_subscribed" color="#d5b26e">
                                 <template v-slot:label>
                                     <small>
                                         אשמח לקבל עדכונים ומבצעים שווים באקדמיה
@@ -318,7 +318,7 @@ export default {
                 team:           '',
                 city:           '',
                 birth_date:     '',
-                is_subscribe:   false,
+                is_subscribed:  false,
             },
             loading: false
         }

@@ -86,8 +86,17 @@
             </v-flex>
         </v-flex>
 
-        <v-flex d-flex justify-end mt-10 mt-md-5>
-            <v-flex xs12 lg3 md4>
+        <v-flex d-flex flex-wrap mt-5>
+            <v-flex md6 ml-md-2>
+                <v-checkbox v-model="form.is_subscribed" color="#d5b26e">
+                <template v-slot:label>
+                    <small>
+                        אשמח לקבל עדכונים ומבצעים שווים באקדמיה
+                    </small>
+                </template>
+                </v-checkbox>
+            </v-flex>
+            <v-flex xs12 lg3 md4 mr-auto d-flex align-center>
                 <main-button 
                     :text="'עדכן פרטים'"
                     shadow
@@ -124,13 +133,14 @@ export default {
     data() {
         return {
             form: {
-                first_name: '',
-                last_name:  '',
-                phone:      '',
-                gender:     '',
-                team:     '',
-                city:     '',
-                birth_date: '',
+                first_name:     '',
+                last_name:      '',
+                phone:          '',
+                gender:         '',
+                team:           '',
+                city:           '',
+                birth_date:     '',
+                is_subscribed:  false,
             },
             initForm: '',
             loading: true,
@@ -161,28 +171,32 @@ export default {
 
     methods: {
         setInitialData() {
-            this.$refs.firstName.setValue(this.$store.getters['UserState/firstName']);
-            this.$refs.lastName.setValue(this.$store.getters['UserState/lastName']);
+            const profile = this.$store.getters['UserState/profile'];
 
-            if(this.$store.getters['UserState/phone']) {
-                this.$refs.phone.setValue(this.$store.getters['UserState/phone']);
+            this.$refs.firstName.setValue(profile.first_name);
+            this.$refs.lastName.setValue(profile.last_name);
+
+            if(profile.phone) {
+                this.$refs.phone.setValue(profile.phone);
             }
 
-            if(this.$store.getters['UserState/gender']) {
-                this.$refs.gender.setValue(this.$store.getters['UserState/gender']);
+            if(profile.gender) {
+                this.$refs.gender.setValue(profile.gender);
             }
 
-            if(this.$store.getters['UserState/team']) {
-                this.$refs.team.setValue(this.$store.getters['UserState/team']);
+            if(profile.team) {
+                this.$refs.team.setValue(profile.team);
             }
 
-            if(this.$store.getters['UserState/city']) {
-                this.$refs.city.setValue(this.$store.getters['UserState/city']);
+            if(profile.city) {
+                this.$refs.city.setValue(profile.city);
             }
 
-            if(this.$store.getters['UserState/birthdate']) {
-                this.$refs.birthdate.setValue(this.$store.getters['UserState/birthdate']);
+            if(profile.birth_date) {
+                this.$refs.birthdate.setValue(profile.birth_date);
             }
+
+            this.form.is_subscribed = Boolean(profile.isSubscribed);
 
             this.$refs.firstName.$el.focus();
             this.loading = false;

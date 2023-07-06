@@ -31,6 +31,7 @@ const UserState = {
         lessons:            state   => state.lessons,
         firstName:          state   => state.profile.first_name,
         lastName:           state   => state.profile.last_name,
+        isSubscribed:       state   => state.profile.isSubscribed,
         fullName:           state   => state.profile.first_name ? state.profile.first_name + ' ' + state.profile.last_name : '',
         phone:              state   => state.profile.phone,
         gender:             state   => state.profile.gender,
@@ -43,9 +44,11 @@ const UserState = {
 
     mutations: {
         SET_USER_PROFILE(state, userProfile) {
-            state.profile       = userProfile;
-            state.profile.team  = userProfile.team?.name;
-            state.profile.city  = userProfile.city?.name;
+            state.profile               = userProfile;
+            state.profile.team          = userProfile.team?.name;
+            state.profile.city          = userProfile.city?.name;
+            state.profile.isSubscribed  = userProfile.is_subscribed;
+            delete state.profile.is_subscribed;
         },
         
         SET_USER_DETAILS(state, userDetails) {
@@ -56,6 +59,8 @@ const UserState = {
             state.profile.city          = userDetails.city;
             state.profile.team          = userDetails.team;
             state.profile.birth_date    = userDetails.birth_date;
+            state.profile.isSubscribed  = userDetails.is_subscribed ? 1 : 0;
+
         },
         
         SET_USER_SUPPORT_TICKETS(state, userSupportTickets) {
