@@ -10,6 +10,7 @@
                             :text="link.text" 
                             :image="link.image" 
                             :key="index" 
+                            @onClick="scrollToTop(link.url)"
                         />
                     </router-link>
                 </div>
@@ -17,7 +18,7 @@
                     v-else
                     :text="link.text" 
                     :image="link.image" 
-                    :key="index"
+                    :key="index + 'a'"
                     @onClick="action(link.action)" 
                 />
             </template>
@@ -85,8 +86,8 @@ export default {
                 // logged
                 {
                     url: '/',
-                    text: 'דף הבית',
-                    image: require('../../../public/assets/images/icons/Home.png'),
+                    text: 'האקדמיה',
+                    image: require('../../../public/assets/images/icons/Gstar.png'),
                     logged: true
                 },
                 {
@@ -183,6 +184,14 @@ export default {
 
         toggleSettings() {
             this.showSettings = !this.showSettings;
+        },
+
+        scrollToTop(toUrl) {
+            if(this.$route.path === '/' + toUrl) {
+                document.querySelector('#app').scrollIntoView(
+                    {behavior: "smooth", block: "start"}
+                )
+            }
         }
     }
 }
@@ -193,7 +202,7 @@ export default {
     .mobile_menu_wrapper {
         width: 100vw;
         height:59px;
-        z-index: 10;
+        z-index: 100;
 
         .mobile_menu_content {
             background-color: var(--mainDarkColor);

@@ -1,13 +1,11 @@
 <template>
-    <div class="signin_wrapper auth_padding_top">
+    <div class="reset_password_wrapper auth_padding_top">
         <main class="auth_form_top_margin w100">
             <v-flex d-flex flex-wrap>
-                <v-flex xs12 md6 lg7 xl8>
-                    <star-logo colored class="star_image" />
-                </v-flex>
-                <v-flex xs12 md6 lg5 xl4 px-5 px-md-0>
-                    <v-flex md8>
-                        <v-form class="signin_form" ref="form" @submit.prevent="submit()">
+                <arrows-decorator v-if="$vuetify.breakpoint.mdAndUp" class="arrows_decoration" />
+                <v-flex xs12 md6 lg6 mx-auto px-5 px-md-0 mb-md-8>
+                    <v-flex>
+                        <v-form class="reset_password_form" ref="form" @submit.prevent="submit()">
                             <h2 class="auth_form_title"><span class="main_text_color">איפוס סיסמה</span> לאתר</h2>
                             <h3 class="auth_form_subtitle">חשוב לבחור סיסמה חזקה כדי לאבטח על המשתמש</h3>
                             
@@ -74,24 +72,24 @@
 import PasswordInput from '../../components/Form/Inputs/PasswordInput.vue'
 import MainButton from '../../components/Buttons/MainButton.vue'
 import Divider from '../../components/General/Divider.vue'
-import StarLogo from '../../components/General/StarLogo.vue'
+import ArrowsDecorator  from '../../components/Decorators/ArrowsDecorator.vue'
 
 export default {
     components: {
         PasswordInput,
         MainButton,
         Divider,
-        StarLogo,
+        ArrowsDecorator,
     },
     
     data() {
         return {
             form: {
-                password: '',
-                passwordConfirmation: '',
+                password:               '',
+                passwordConfirmation:   '',
             },
-            error: '',
-            loading: false
+            error:      '',
+            loading:    false
         }
     },
 
@@ -179,17 +177,24 @@ export default {
 
 <style scoped lang="scss">
 
-    .star_image {
-        width: 60%;
-        position: relative;
-        top: -10%;
+    .arrows_decoration {
+        position: absolute;
+        top: 0;
+        left: -70vh;
+        height: 120vh;
+        z-index: 50;
     }
 
-    .signin_wrapper {
+    .reset_password_wrapper {
         width: 100vw;
         display: flex;
         align-items: center;
         overflow: hidden;
+    }
+
+    .reset_password_form {
+        position: relative;
+        z-index: 51;
     }
 
     .player_icon {
@@ -208,9 +213,6 @@ export default {
             height: 50px;
         }
 
-        .star_image {
-            display: none;
-        }
     }
 
 </style>

@@ -11,7 +11,7 @@
         {{ lesson.name }}
         </strong>
         <br>
-        <video-card v-if="$vuetify.breakpoint.mdAndUp" :src="lesson.video.videoSrc" @playClicked="enterLesson()" />
+        <video-card v-if="$vuetify.breakpoint.mdAndUp" :src="lesson.video.videoSrc" :controls="false" @playClicked="enterLesson()" />
         <p v-html="lessonContent">
         </p>
         <main-button 

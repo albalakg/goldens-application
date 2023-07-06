@@ -4,7 +4,7 @@
         <div class="course_area_darkner"></div>
         <arrows-decorator class="arrows_decoration" />
         <v-flex class="course_area_detail h100" d-flex flex-column justify-space-between>
-            <v-flex xs10>
+            <v-flex>
                 <h3 class="white_text_color">
                     {{ courseArea.name }}
                 </h3>
@@ -65,6 +65,7 @@ export default {
 
     computed: {
         description() {
+            return this.courseArea.description;
             const dots = this.courseArea.description.length > 50 ? '...' : '';
             return this.courseArea.description.substring(0, 50) + dots;
         },

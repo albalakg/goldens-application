@@ -1,13 +1,11 @@
 <template>
-    <div class="signin_wrapper auth_padding_top">
+    <div class="forgot_password_wrapper auth_padding_top">
         <main class="auth_form_top_margin w100">
             <v-flex d-flex flex-wrap>
-                <v-flex xs12 md6 xl7>
-                    <star-logo colored class="star_image" />
-                </v-flex>
-                <v-flex xs12 md6 xl5 px-5 px-md-0>
-                    <v-flex md8>
-                        <v-form class="signin_form" ref="form" @submit.prevent="submit()">
+                <arrows-decorator v-if="$vuetify.breakpoint.mdAndUp" class="arrows_decoration" />
+                <v-flex xs12 md6 lg6 mx-auto px-5 px-md-0 mb-md-8>
+                    <v-flex>
+                        <v-form class="forgot_password_form" ref="form" @submit.prevent="submit()">
                             <h2 class="auth_form_title"><span class="main_text_color">שכחתי סיסמה</span> לאתר</h2>
                             <h3 class="auth_form_subtitle">לא באמת שכחתי, סתם בא לי לעדכן את הסיסמה...</h3>
                             
@@ -72,17 +70,17 @@
 </template>
 
 <script>
-import EmailInput from '../../components/Form/Inputs/EmailInput.vue'
-import MainButton from '../../components/Buttons/MainButton.vue'
-import Divider from '../../components/General/Divider.vue'
-import StarLogo from '../../components/General/StarLogo.vue'
+import EmailInput       from '../../components/Form/Inputs/EmailInput.vue'
+import MainButton       from '../../components/Buttons/MainButton.vue'
+import Divider          from '../../components/General/Divider.vue'
+import ArrowsDecorator  from '../../components/Decorators/ArrowsDecorator.vue'
 
 export default {
     components: {
         EmailInput,
         MainButton,
         Divider,
-        StarLogo,
+        ArrowsDecorator
     },
     
     data() {
@@ -90,8 +88,8 @@ export default {
             form: {
                 email: '',
             },
-            error: '',
-            loading: false
+            error:      '',
+            loading:    false
         }
     },
 
@@ -136,17 +134,16 @@ export default {
 
 <style scoped lang="scss">
 
-    .star_image {
-        width: 60%;
-        position: relative;
-        top: -10%;
-    }
-
-    .signin_wrapper {
+    .forgot_password_wrapper {
         width: 100vw;
         display: flex;
         align-items: center;
         overflow: hidden;
+    }
+
+    .forgot_password_form {
+        position: relative;
+        z-index: 51;
     }
 
     .player_icon {
@@ -154,10 +151,12 @@ export default {
         width: 15px;
     }
     
-    @media only screen and (max-width: 600px) {
-        .star_image {
-            display: none;
-        }
+    .arrows_decoration {
+        position: absolute;
+        top: 0;
+        left: -70vh;
+        height: 120vh;
+        z-index: 50;
     }
 
 </style>

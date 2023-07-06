@@ -9,7 +9,7 @@
             @playing="onVideoPlay"
             @pause="onVideoPaused"
             @ended="onVideoEnd"
-            controls
+            :controls="controls"
             controlsList="nodownload"
             :disablePictureInPicture="disablePictureInPicture"
         >
@@ -34,7 +34,8 @@ export default {
         },
 
         controls: {
-            type: Boolean
+            type: Boolean,
+            default: true
         },
 
         disablePictureInPicture: {

@@ -34,10 +34,10 @@
                         </small>
                     </div>
             </v-flex>
-            <v-flex>
+            <!-- <v-flex>
                 <p class="lesson_card_description" v-html="lessonDescription">
                 </p>
-            </v-flex>
+            </v-flex> -->
         </v-flex>
     </v-flex>
 </template>
@@ -158,7 +158,7 @@ export default {
         position: absolute;
         z-index: 2;
         left: -5px;
-        top: 20px;
+        top: 50px;
     }
 
     .lesson_card_content {
@@ -168,6 +168,12 @@ export default {
 
         .lesson_card_name {
             font-size: 2em;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .lesson_card_name {
+                font-size: 1.5em;
+            }
         }
 
         .lesson_card_description {

@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import Divider from '../../components/General/Divider.vue'
+import Divider  from '../../components/General/Divider.vue'
 import StarLogo from '../../components/General/StarLogo.vue'
 
 export default {

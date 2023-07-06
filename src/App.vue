@@ -167,13 +167,8 @@ export default {
     opacity: 0;
   }
 
-  html {
-    overflow: hidden;
-  }
-
   body {
     overflow-x: hidden;
-    height: 100vh;
     direction: rtl;
   }
 
@@ -187,7 +182,7 @@ export default {
 
   @media only screen and (max-width: 600px) {
     .app_content {
-      padding-bottom: 5vh;
+      padding-bottom: 80px;
     }
   }
 

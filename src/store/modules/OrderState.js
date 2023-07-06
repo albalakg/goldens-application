@@ -11,7 +11,7 @@ const OrderState = {
 
     mutations: {
         SET_ORDER(state, order) {
-            state.order = order;
+            state.order = order ?? {};
         },
     },
 
@@ -30,9 +30,9 @@ const OrderState = {
             })
         },
       
-        getOrder({ commit }, page_uuid) {
+        getUserLastOrder({ commit }) {
             return new Promise((resolve, reject) => {
-                axios.get('orders/success/' + page_uuid)
+                axios.get('orders/recent')
                     .then(res => {
                         commit('SET_ORDER', res.data.data);
                         resolve()

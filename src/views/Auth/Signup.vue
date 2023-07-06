@@ -1,13 +1,11 @@
 <template>
-    <div class="signin_wrapper auth_padding_top">
+    <div class="signup_wrapper auth_padding_top">
         <main class="auth_form_top_margin w100">
             <v-flex d-flex flex-wrap>
-                <v-flex xs12 md6 lg6>
-                    <star-logo colored class="star_image" />
-                </v-flex>
-                <v-flex xs12 md6 lg6 px-5 px-md-0 mb-md-8>
-                    <v-flex md8 lg10 xl9>
-                        <v-form class="signin_form" ref="form" @submit.prevent="submit()">
+                <arrows-decorator v-if="$vuetify.breakpoint.mdAndUp" class="arrows_decoration" />
+                <v-flex xs12 md6 lg6 mx-auto px-5 px-md-0 mb-md-8>
+                    <v-flex>
+                        <v-form class="signup_form" ref="form" @submit.prevent="submit()">
                             <h2 class="auth_form_title"><span class="main_text_color">הרשמה</span> לאתר</h2>
                             <h3 class="auth_form_subtitle">ברוך הבא לעולם הספורט</h3>
                             
@@ -280,18 +278,19 @@
 </template>
 
 <script>
-import PasswordInput from '../../components/Form/Inputs/PasswordInput.vue'
-import EmailInput from '../../components/Form/Inputs/EmailInput.vue'
-import MainButton from '../../components/Buttons/MainButton.vue'
-import Divider from '../../components/General/Divider.vue'
-import StarLogo from '../../components/General/StarLogo.vue'
-import FirstNameInput from '../../components/Form/Inputs/FirstNameInput.vue'
-import LastNameInput from '../../components/Form/Inputs/LastNameInput.vue'
-import TeamInput from '../../components/Form/Inputs/TeamInput.vue'
-import PhoneInput from '../../components/Form/Inputs/PhoneInput.vue'
-import CityInput from '../../components/Form/Inputs/CityInput.vue'
-import BirthdateInput from '../../components/Form/Inputs/BirthdateInput.vue'
-import citiesJson from '../../helpers/cities.json'; 
+import PasswordInput    from '../../components/Form/Inputs/PasswordInput.vue'
+import EmailInput       from '../../components/Form/Inputs/EmailInput.vue'
+import MainButton       from '../../components/Buttons/MainButton.vue'
+import Divider          from '../../components/General/Divider.vue'
+import FirstNameInput   from '../../components/Form/Inputs/FirstNameInput.vue'
+import LastNameInput    from '../../components/Form/Inputs/LastNameInput.vue'
+import TeamInput        from '../../components/Form/Inputs/TeamInput.vue'
+import PhoneInput       from '../../components/Form/Inputs/PhoneInput.vue'
+import CityInput        from '../../components/Form/Inputs/CityInput.vue'
+import BirthdateInput   from '../../components/Form/Inputs/BirthdateInput.vue'
+import citiesJson       from '../../helpers/cities.json'; 
+import ArrowsDecorator  from '../../components/Decorators/ArrowsDecorator.vue'
+
 
 export default {
     components: {
@@ -299,7 +298,7 @@ export default {
         PasswordInput,
         MainButton,
         Divider,
-        StarLogo,
+        ArrowsDecorator,
         FirstNameInput,
         LastNameInput,
         TeamInput,
@@ -417,13 +416,7 @@ export default {
 
 <style scoped lang="scss">
 
-    .star_image {
-        width: 60%;
-        position: relative;
-        top: -10%;
-    }
-
-    .signin_wrapper {
+    .signup_wrapper {
         width: 100vw;
         display: flex;
         align-items: center;
@@ -439,12 +432,21 @@ export default {
         height: 20px;
         width: 100%;
     }
+
+    .signup_form {
+        position: relative;
+        z-index: 51;
+    }
+
+    .arrows_decoration {
+        position: absolute;
+        top: 0;
+        left: -70vh;
+        height: 120vh;
+        z-index: 50;
+    }
     
     @media only screen and (max-width: 600px) {
-        .star_image {
-            display: none;
-        }
-
         .spacer {
             height: 40px;
         }

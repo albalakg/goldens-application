@@ -9,6 +9,7 @@
             <v-flex d-flex align-center class="h100" xs9 mx-auto>
                 <div class="logo_wrapper">
                     <Logo 
+                        @onClick="scrollToTop('')"
                         :dark="isDark"
                     />
                 </div>
@@ -35,7 +36,7 @@
                     </template>
                     <template v-else>
                         <v-flex d-flex>
-                            <div v-for="(link, index) in links" :key="index" class="px-3">
+                            <div v-for="(link, index) in links" :key="index" class="px-3" @click="scrollToTop(link.url)">
                                 <router-link class="simple_link" :to="`/${link.url}`">
                                     <span :class="isDark ? 'white_text_color' : 'main_text_color'">
                                         {{link.text}}
@@ -72,7 +73,7 @@
         </div>
 
         <v-flex v-else xs12 d-flex align-center class="h100 pr-md-5 white_bg_color">
-            <v-flex xs1>
+            <v-flex xs2 class="pa-8">
                 <logo />
             </v-flex>
         </v-flex>
@@ -173,6 +174,14 @@ export default {
         onFocus(value) {
             this.isSearchFocused = value;
         },
+
+        scrollToTop(toUrl) {
+            if(this.$route.path === '/' + toUrl) {
+                document.querySelector('#app').scrollIntoView(
+                    {behavior: "smooth", block: "start", inline: "center"}
+                )
+            }
+        }
     }
 }
 </script>

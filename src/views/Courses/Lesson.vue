@@ -75,11 +75,12 @@
       </div>
 
       <br>
-
+      
+      <!-- 
       <div class="px-2 px-md-0s">
         <small v-html="lesson.description">
         </small>
-      </div>
+      </div> -->
 
       <div class="lesson_video_wrapper ma-3 pa-md-0">
         <video-card 
@@ -113,15 +114,15 @@
 </template>
 
 <script>
-import MainButton from '../../components/Buttons/MainButton.vue';
-import ProfileCard from '../../components/Cards/ProfileCard.vue';
-import VideoCard from '../../components/Cards/VideoCard.vue';
+import MainButton           from '../../components/Buttons/MainButton.vue';
+import ProfileCard          from '../../components/Cards/ProfileCard.vue';
+import VideoCard            from '../../components/Cards/VideoCard.vue';
 import LessonDetailsSection from '../../components/Content/LessonDetailsSection.vue';
 import LessonVideoEndScreen from '../../components/Content/LessonVideoEndScreen.vue';
-import CircleDecorator from '../../components/Decorators/CircleDecorator.vue';
-import Heart from '../../components/General/Heart.vue';
-import LessonCompleted from '../../components/General/LessonCompleted.vue';
-import StarLogo from '../../components/General/StarLogo.vue';
+import CircleDecorator      from '../../components/Decorators/CircleDecorator.vue';
+import Heart                from '../../components/General/Heart.vue';
+import LessonCompleted      from '../../components/General/LessonCompleted.vue';
+import StarLogo             from '../../components/General/StarLogo.vue';
 
 const NO_ACCESS_STATUS                    = 400;
 const SPACE_BETWEEN_VIDEO_PROGRESS_UPDATE = 3000;
@@ -144,7 +145,7 @@ export default {
         end_time:    0,
         lesson_id: this.$route.params.lesson_id,
       },
-      showEndLessonScreen: false,
+      showEndLessonScreen:      false,
       alertedALessonHasSkipped: false,
     }
   },

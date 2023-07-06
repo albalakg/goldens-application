@@ -131,6 +131,7 @@ export default {
         max-height: 500px;
         min-height: 420px;
         position: relative;
+        z-index: 100;
         overflow: hidden;
     }
 

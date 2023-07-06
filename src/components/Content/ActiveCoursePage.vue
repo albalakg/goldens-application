@@ -3,8 +3,6 @@
     <!-- small screen -->
     <template v-if="$vuetify.breakpoint.smAndDown">
       <template v-if="hasActiveCourse">
-        <br>
-        <br>
         <user-course-progress :course="course" class="mx-4" />
       </template>
 

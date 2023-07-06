@@ -2,10 +2,10 @@
     <div class="h100">
         <div class="home_header_top">
             <div class="phone_card phone_card_on_side mx-auto">
-                <img src="../../../public/assets/images/phone/header.png" alt="שלב ראשון">
+                <img src="../../../public/assets/images/phone/header_phone_2.webp" alt="שלב שני">
             </div>
             <div class="phone_card phone_card_front mx-auto">
-                <img src="../../../public/assets/images/phone/step1.png" alt="שלב ראשון">
+                <img src="../../../public/assets/images/phone/step1.webp" alt="שלב ראשון">
             </div>
         </div>
         <br>
@@ -108,13 +108,13 @@ strong {
 .phone_card_on_side {
     height: 28vh;
     width: 14vh;
-    left: 25%;
+    left: 18%;
     top: 7%;
     rotate: -15deg;
 }
 
 .phone_card_front {
-    left: 10%;
+    left: calc(18% - 25px);
     right: 0;
     top: 0%;
     height: 34vh;

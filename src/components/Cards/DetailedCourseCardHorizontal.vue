@@ -131,6 +131,7 @@ export default {
         min-width: 100%;
         border-radius: 12px;
         position: relative;
+        background-color: #fff;
 
         img {
             width: 100%;

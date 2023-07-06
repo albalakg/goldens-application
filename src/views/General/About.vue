@@ -20,7 +20,7 @@
 
       <section>
         <v-flex md10 mx-auto class="px-3 px-md-0">
-          <video id="video" src="https://d19tazijx5ii9p.cloudfront.net/website/goldens-academy-trailer.mp4" controls></video>
+          <video id="video" src="https://d19tazijx5ii9p.cloudfront.net/website/goldens-trailer.mp4" controls></video>
         </v-flex>
       </section>
 

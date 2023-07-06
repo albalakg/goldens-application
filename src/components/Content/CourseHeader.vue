@@ -63,10 +63,10 @@
 
         </slot>
         <div class="phone_card phone_card_on_side mx-auto">
-          <img src="../../../public/assets/images/phone/header.png" alt="שלב ראשון">
+          <img src="../../../public/assets/images/phone/header_phone_2.webp" alt="שלב שני">
         </div>
         <div class="phone_card phone_card_front mx-auto">
-          <img src="../../../public/assets/images/phone/step1.png" alt="שלב ראשון">
+          <img src="../../../public/assets/images/phone/step1.webp" alt="שלב ראשון">
         </div>
       </v-flex>
     </v-flex>
@@ -250,7 +250,7 @@ h3 {
 }
 
 .phone_card_front {
-  left: 10%;
+  left: calc(4% + 110px);
   top: 43%;
   height: 34vh;
   width: 17vh;
@@ -258,27 +258,8 @@ h3 {
 
 @media only screen and (max-width: 600px) {
   h1 {
-    font-size: 2.3em;
-  }
-
-  .phone_card_on_side {
-    left: 4%;
-    top: 56%;
-    height: 20vh;
-    width: 10vh;
-    rotate: -15deg;
-  }
-
-  .phone_card_front {
-    left: 18%;
-    top: 54%;
-    height: 24vh;
-    width: 12vh;
-  }
-
-  .phone_card,
-  .phone_card img {
-    border-radius: 12px;
+    font-size: 2em;
+    top: -10px;
   }
 }
 </style>

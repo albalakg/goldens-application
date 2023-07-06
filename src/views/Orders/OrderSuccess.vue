@@ -2,13 +2,18 @@
     <v-flex md10 xl9 mx-auto text-center class="auth_padding_top px-2 px-md-0">
         <br>
         <br>
-        <h1>
-            ההזמנה בוצעה בהצלחה!
-        </h1>
-        <h2 class="grey_text_color">תודה על הרכישה וברוך הבא לאקדמיה שלנו</h2>
-        <br>
-        <br>
-        <v-flex xl5 lg6 md8 sm10 mx-auto v-if="order">
+        <div v-if="!order">
+            <h3>
+                טוען פרטי הזמנה...
+            </h3>
+        </div>
+        <v-flex xl5 lg6 md8 sm10 mx-auto v-else-if="order.order_number">
+            <h1>
+                ההזמנה בוצעה בהצלחה!
+            </h1>
+            <h2 class="grey_text_color">תודה על הרכישה וברוך הבא לאקדמיה שלנו</h2>
+            <br>
+            <br>
             <v-flex d-flex>
                 <v-flex xs6 class="text-right">
                     <span>מספר אישור</span>
@@ -37,19 +42,34 @@
             </v-flex>
             <br>
             <br>
-            <span>
+            <div v-if="orderFinished">
+                <span>
+                    ההזמנה הושלמה והאקדמיה מוכנה לך!
+                </span>
+                <br>
+                <v-flex md6 xs8 mx-auto>
+                    <router-link to="/">
+                        <main-button
+                            class="mt-3" 
+                            text="היכנס לאקדמיה"
+                            shadow
+                        />
+                    </router-link>
+                </v-flex>
+            </div>
+            <span v-else>
                 אנחנו מאמתים את ההזמנה ומכינים לך את האקדמיה,
                 <br>
                 תהליך זה עלול לקחת מספר דקות.
                 <br>
                 ברגע שהאקדמיה שלך מוכנה, יישלח אליך מייל.
                 <br>
-                תודה על הסבלנות, ובהצלחה! 
+                תודה על הסבלנות, ובהצלחה!
             </span>
         </v-flex>
         <div v-else>
             <h3>
-                טוען פרטי הזמנה...
+                מצטערים, אך לא נמצאה הזמנה אחרונה
             </h3>
         </div>
         <br>
@@ -58,14 +78,14 @@
 </template>
 
 <script>
+import { ACTIVE } from '../../helpers/StatusService'
+import MainButton from '../../components/Buttons/MainButton'
 
 export default {
-    data() {
-        return {
-
-        }
+    components: {
+        MainButton,
     },
-
+    
     created() {
         setTimeout(() => {
             this.getOrder();
@@ -78,22 +98,36 @@ export default {
         },
 
         price() {
-            return this.$route.query.amount;
+            return this.order.price;
+        },
+
+        orderFinished() {
+            return this.order.status === ACTIVE;
         },
 
         expiredAt() {
             const date = new Date(new Date().setFullYear(new Date().getFullYear() + 1));
             return this.getEventDate(date);
         },
+
+        hasCourses() {
+            const courses = this.$store.getters['UserState/courses'];
+            return courses ? Boolean(courses.length) : false;
+        }
+    },
+
+    watch: {
+        order() {
+            if(this.orderFinished) {
+                this.$store.dispatch('UserState/clearUserContent');
+                this.$store.dispatch('UserState/getCourses');
+            }
+        }
     },
 
     methods: {
         getOrder() {
-            if(!this.$route.query.page_request_uid) {
-                return this.$router.push('/')
-            }
-            
-            this.$store.dispatch('OrderState/getOrder', this.$route.query.page_request_uid)
+            this.$store.dispatch('OrderState/getUserLastOrder');
         },
 
         getEventDate(date) {

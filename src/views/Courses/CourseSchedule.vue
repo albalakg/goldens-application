@@ -115,6 +115,12 @@
                   v-if="selectedEvent.isSetByUser"
                   @submit="deleteTrainingSchedule(selectedEvent)"
                 />
+                <main-button
+                  class="mt-3"
+                  text="ביטול"
+                  dark
+                  @submit="selectedOpen = false"
+                />
               </v-card-text>
               <v-card-actions> </v-card-actions>
             </v-card>
@@ -125,9 +131,9 @@
 </template>
 
 <script>
-import MainButton from '../../components/Buttons/MainButton.vue';
-import NewTrainingActivityForm from '../../components/Form/NewTrainingActivityForm.vue';
-import { SCHEDULE_TRAINING_TYPE_ID } from '../../helpers/ContentService'
+import MainButton                     from '../../components/Buttons/MainButton.vue';
+import NewTrainingActivityForm        from '../../components/Form/NewTrainingActivityForm.vue';
+import { SCHEDULE_TRAINING_TYPE_ID }  from '../../helpers/ContentService'
 
 export default {
   components: { MainButton, NewTrainingActivityForm, },

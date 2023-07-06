@@ -2,11 +2,8 @@
     <div class="signin_wrapper auth_padding_top">
         <main class="auth_form_top_margin w100">
             <v-flex d-flex flex-wrap>
-                <v-flex xs12 md6 lg7 xl8>
-                    <star-logo colored class="star_image" />
-                </v-flex>
                 <v-flex xs12 md6 lg5 xl4 px-5 px-md-0 mb-md-8>
-                    <v-flex md8>
+                    <v-flex md8 mx-auto>
                         <v-form class="signin_form" ref="form" @submit.prevent="submit()">
                             <h2 class="auth_form_title"><span class="main_text_color">התחברות</span> לאתר</h2>
                             <h3 class="auth_form_subtitle">ברוך הבא לעולם הספורט</h3>
@@ -101,19 +98,23 @@
                         </v-flex>
                     </v-flex>
                 </v-flex>
+                <v-flex v-if="$vuetify.breakpoint.mdAndUp" xs12 md6 lg7 xl8 d-flex justify-end>
+                    <div class="auth_image" style="background-image: url('http://localhost:8080/assets/images/general/auth_background.png');">
+                    </div>
+                </v-flex>
+                
             </v-flex>
         </main>
     </div>
 </template>
 
 <script>
-import PasswordInput from '../../components/Form/Inputs/PasswordInput.vue'
-import EmailInput from '../../components/Form/Inputs/EmailInput.vue'
-import MainButton from '../../components/Buttons/MainButton.vue'
-import CenterLineText from '../../components/Texts/CenterLineText.vue'
-import Divider from '../../components/General/Divider.vue'
-import StarLogo from '../../components/General/StarLogo.vue'
-import PlayerIconDecorator from '../../components/Decorators/playerIconDecorator.vue'
+import PasswordInput        from '../../components/Form/Inputs/PasswordInput.vue'
+import EmailInput           from '../../components/Form/Inputs/EmailInput.vue'
+import MainButton           from '../../components/Buttons/MainButton.vue'
+import CenterLineText       from '../../components/Texts/CenterLineText.vue'
+import Divider              from '../../components/General/Divider.vue'
+import PlayerIconDecorator  from '../../components/Decorators/playerIconDecorator.vue'
 
 export default {
     components: {
@@ -122,18 +123,17 @@ export default {
         MainButton,
         CenterLineText,
         Divider,
-        StarLogo,
         PlayerIconDecorator,
     },
     
     data() {
         return {
             form: {
-                email: '',
-                password: '',
+                email:      '',
+                password:   '',
             },
-            loading: false,
-            errorsMapping: {
+            loading:        false,
+            errorsMapping:  {
                 'Email or password is invalid': 'האימייל או הסיסמה אינם תקינים',
                 'Please confirm your email first': 'מצטערים, אך צריכים שקודם תאשר את המייל',
             }
@@ -227,6 +227,18 @@ export default {
     .player_icon {
         height: 15px;
         width: 15px;
+    }
+
+    .auth_image {
+        width: 60vw;
+        position: absolute;
+        height: 100%;
+        top: 0%;
+        object-fit: cover;
+        clip-path: polygon(0 0, 65% 0, 100% 100%, 0% 100%);
+        background-size: cover;
+        background-position: 20% 20%;
+        z-index: 100;
     }
     
     @media only screen and (max-width: 600px) {

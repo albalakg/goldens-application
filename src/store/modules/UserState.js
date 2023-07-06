@@ -337,6 +337,11 @@ const UserState = {
             })
         },
         
+        clearUserContent({ commit }) {
+            commit('SET_USER_COURSES', null);
+            commit('SET_USER_LESSONS', []);
+        },
+        
         getCourses({ commit, state, dispatch }) {
             return new Promise((resolve) => {
                 if(state.courses) {

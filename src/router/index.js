@@ -169,11 +169,7 @@ const router = new VueRouter({
   mode: 'history',
   
   base: process.env.BASE_URL,
-  routes,
-  scrollBehavior() {
-    // always scroll to top
-    return { top: 0 }
-  },
+  routes
 })
 
 function hasQueryParams(route) {
@@ -181,6 +177,7 @@ function hasQueryParams(route) {
 }
 
 router.beforeEach((to, from, next) => {
+ window.scrollTo(0, 0);
   if(!hasQueryParams(to) && hasQueryParams(from)){
    next({name: to.name, query: from.query});
  } else {

@@ -47,8 +47,8 @@
 
 <script>
 import LastActiveLessonCard from '../../components/Cards/LastActiveLessonCard.vue';
-import CourseHeader from '../../components/Content/CourseHeader.vue';
-import MainTabs from '../../components/Tabs/MainTabs.vue';
+import CourseHeader         from '../../components/Content/CourseHeader.vue';
+import MainTabs             from '../../components/Tabs/MainTabs.vue';
 
 export default {
   components: {
@@ -69,7 +69,7 @@ export default {
           url: 'lessons'
         },
         {
-          title: 'תוכנית אימונים',
+          title: 'יומן',
           url: 'schedule'
         },
       ],

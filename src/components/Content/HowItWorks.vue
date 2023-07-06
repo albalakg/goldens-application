@@ -5,19 +5,19 @@
                 <v-flex xs12 md4 d-flex align-center class="relative mb-7 mb-md-0">
                     <h3>1</h3>
                     <div class="phone_card mx-auto">
-                        <img src="../../../public/assets/images/phone/step1.png" alt="שלב ראשון">
+                        <img src="../../../public/assets/images/phone/step1.webp" alt="שלב ראשון">
                     </div>
                 </v-flex>
                 <v-flex xs12 md4 d-flex align-center class="relative mb-7 mb-md-0">
                     <h3>2</h3>
                     <div class="phone_card mx-auto">
-                        <img src="../../../public/assets/images/phone/step2.png" alt="שלב ראשון">
+                        <img src="../../../public/assets/images/phone/step2.webp" alt="שלב ראשון">
                     </div>
                 </v-flex>
                 <v-flex xs12 md4 d-flex align-center class="relative mb-7 mb-md-0">
                     <h3>3</h3>
                     <div class="phone_card mx-auto">
-                        <img src="../../../public/assets/images/phone/step3.png" alt="שלב ראשון">
+                        <img src="../../../public/assets/images/phone/step3.webp" alt="שלב ראשון">
                     </div>
                 </v-flex>
             </v-flex>
@@ -36,13 +36,13 @@
         <template v-else>
             <v-flex d-flex justify-space-between class="how_it_works_wrapper relative pa-3">
                 <div class="phone_card mx-auto">
-                    <img src="../../../public/assets/images/phone/step1.png" alt="שלב ראשון">
+                    <img src="../../../public/assets/images/phone/step1.webp" alt="שלב ראשון">
                 </div>
                 <div class="phone_card mx-auto">
-                    <img src="../../../public/assets/images/phone/step2.png" alt="שלב ראשון">
+                    <img src="../../../public/assets/images/phone/step2.webp" alt="שלב ראשון">
                 </div>
                 <div class="phone_card mx-auto">
-                        <img src="../../../public/assets/images/phone/step3.png" alt="שלב ראשון">
+                        <img src="../../../public/assets/images/phone/step3.webp" alt="שלב ראשון">
                     </div>
             </v-flex>
             <br>
@@ -109,12 +109,13 @@ export default {
         height: 50vh;
         width: 25vh;
         box-shadow: 0 0 5px 4px var(--subColor);
-        border: 2px solid var(--mainColor);
+        border: 4px solid var(--mainColor);
         border-radius: 20px;
         position: relative;
+        background: var(--mainColor);
 
         img {
-            height: calc(100% + 3px);
+            height: calc(100% + 2px);
             width: calc(100% + 2px);
             border-radius: 20px;
             position: absolute;

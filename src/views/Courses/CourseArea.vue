@@ -85,12 +85,12 @@
 </template>
 
 <script>
-import MainButton from '../../components/Buttons/MainButton.vue';
+import MainButton         from '../../components/Buttons/MainButton.vue';
 import DetailedLessonCard from '../../components/Cards/DetailedLessonCard.vue';
-import SimpleLessonCard from '../../components/Cards/SimpleLessonCard.vue';
-import TimeChip from '../../components/Chips/TimeChip.vue';
-import Heart from '../../components/General/Heart.vue';
-import TrainerDialog from '../../components/Dialogs/TrainerDialog.vue';
+import SimpleLessonCard   from '../../components/Cards/SimpleLessonCard.vue';
+import TimeChip           from '../../components/Chips/TimeChip.vue';
+import Heart              from '../../components/General/Heart.vue';
+import TrainerDialog      from '../../components/Dialogs/TrainerDialog.vue';
 export default {
   components: { TrainerDialog, SimpleLessonCard, MainButton, DetailedLessonCard, TimeChip, Heart },
 
