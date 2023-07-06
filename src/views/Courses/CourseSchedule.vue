@@ -63,33 +63,23 @@
               <v-toolbar :color="selectedEvent.color" dark>
                 <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
                 <v-spacer></v-spacer>
-                <!-- <v-icon @click="selectedOpen = false">mdi-close</v-icon> -->
+                <v-icon @click="selectedOpen = false">mdi-close</v-icon>
                 <v-tooltip top color="black">
-                  <template v-slot:activator="{ on, attrs }">
-                      <v-icon
-                        v-bind="attrs" 
-                        v-on="on"
-                        class="enter_lesson_button" 
-                        @click="enterLesson(selectedEvent)"
-                      >
-                      mdi-play
-                    </v-icon>
-                  </template>
                   <span class="white_text_color">
                     התחל שיעור
                   </span>
                 </v-tooltip>
-                <!-- <v-icon title="התחל שיעור" class="enter_lesson_button" @click="enterLesson(selectedEvent)">mdi-play</v-icon> -->
               </v-toolbar>
               <v-card-text>
                 <div class="event_content mb-3">
-                  <!-- <main-button
-                    subColor
-                    class="mb-3"
-                    text="התחל שיעור"
-                    @submit="enterLesson(selectedEvent)"
-                  /> -->
                   <img class="event_image rounded" :src="selectedEvent.image" />
+                  <v-icon
+                      class="enter_lesson_button" 
+                      color="black"
+                      @click="enterLesson(selectedEvent)"
+                    >
+                    mdi-play
+                  </v-icon>
                   <div class="event_darkner rounded"></div>
                   <span v-html="selectedEvent.description"></span>
                 </div>
@@ -114,12 +104,6 @@
                   dark
                   v-if="selectedEvent.isSetByUser"
                   @submit="deleteTrainingSchedule(selectedEvent)"
-                />
-                <main-button
-                  class="mt-3"
-                  text="ביטול"
-                  dark
-                  @submit="selectedOpen = false"
                 />
               </v-card-text>
               <v-card-actions> </v-card-actions>
@@ -396,10 +380,18 @@ export default {
 }
 
 .enter_lesson_button {
+  font-size: 2.5em;
+  background-color: #fff;
   border: 1px solid #fff;
   border-radius: 50%;
   padding: 5px;
+  position: absolute;
+  inset: 0;
+  width: 45px;
+  height: 45px;
+  margin: auto;
   transform: rotate(180deg);
+  z-index: 2;
 }
 
 .event_content {

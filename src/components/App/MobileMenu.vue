@@ -187,9 +187,9 @@ export default {
         },
 
         scrollToTop(toUrl) {
-            if(this.$route.path === '/' + toUrl) {
+            if(this.$route.path === toUrl) {
                 document.querySelector('#app').scrollIntoView(
-                    {behavior: "smooth", block: "start"}
+                    {behavior: "smooth", block: "start", inline: "center"}
                 )
             }
         }

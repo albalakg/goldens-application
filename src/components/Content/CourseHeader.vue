@@ -74,9 +74,9 @@
 </template>
 
 <script>
-import TrainerDialog from '../Dialogs/TrainerDialog.vue';
+// import TrainerDialog from '../Dialogs/TrainerDialog.vue';
 export default {
-  components: { TrainerDialog },
+  // components: { TrainerDialog },
   props: {
     course: {
       type: Object,

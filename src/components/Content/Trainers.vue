@@ -13,12 +13,13 @@
                         <img class="trainer_shield" src="./../../../public/assets/images/trainers/trainer-card.webp" alt="trainer shield">
                         <img class="trainer_person" :src="trainer.imageSrc" alt="trainer person">
                         <div class="trainer_card_details">
-                            <h4 class="trainer_name">
+                            <h4 class="trainer_name main_text_color">
                                 {{
                                     trainer.name
                                 }}
                             </h4>
-                            <p>
+                            <v-divider class="mb-2 mt-2"></v-divider>
+                            <p class="main_text_color">
                                 {{
                                     trainer.title
                                 }}
@@ -36,12 +37,13 @@
                             <img class="trainer_shield" src="./../../../public/assets/images/trainers/trainer-card.webp" alt="trainer shield">
                             <img class="trainer_person" :src="trainer.imageSrc" alt="trainer person">
                             <div class="trainer_card_details">
-                                <h4 class="trainer_name">
+                                <h4 class="trainer_name main_text_color">
                                     {{
                                         trainer.name
                                     }}
                                 </h4>
-                                <p>
+                                <v-divider class="mb-2 mt-2"></v-divider>
+                                <p class="main_text_color">
                                     {{
                                         trainer.title
                                     }}
@@ -232,7 +234,12 @@ export default {
             margin: auto;
 
             .trainer_name {
+                font-size: 2em;
+            }
 
+            p {
+                font-size: 1.2em;
+                font-weight: bold;
             }
         }
 

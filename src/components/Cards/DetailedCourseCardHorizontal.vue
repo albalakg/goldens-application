@@ -3,11 +3,6 @@
         'flex-wrap': $vuetify.breakpoint.smAndDown
     }">
         <v-flex md4>
-            <!-- <video-card 
-                ref="video"
-                :src="course.trailerSrc"
-                @playClicked="startTrailer()"
-            /> -->
             <img :src="course.imageSrc" alt="תמונת הקורס" />
         </v-flex>
         <v-flex xs12 md4 class="pa-5">
@@ -74,10 +69,9 @@
 <script>
 import MainButton from '../Buttons/MainButton.vue';
 import Arrow from '../General/Arrow.vue';
-import VideoCard from "./VideoCard.vue"
 
 export default {
-    components: { VideoCard, MainButton, Arrow },
+    components: { MainButton, Arrow },
 
     props: {
         course: {
