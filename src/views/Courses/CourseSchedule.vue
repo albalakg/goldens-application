@@ -53,11 +53,13 @@
           >
           </v-calendar>
           <v-menu
+            absolute
             v-model="selectedOpen"
             :close-on-content-click="false"
             :activator="selectedElement"
             offset-x
             max-width="400px"
+            class="event_calendar"
           >
             <v-card color="grey lighten-4" min-width="350px" flat>
               <v-toolbar :color="selectedEvent.color" dark>
@@ -119,6 +121,8 @@ import MainButton                     from '../../components/Buttons/MainButton.
 import NewTrainingActivityForm        from '../../components/Form/NewTrainingActivityForm.vue';
 import { SCHEDULE_TRAINING_TYPE_ID }  from '../../helpers/ContentService'
 
+const WEEKEND_DAYS_IN_NUMBERS                 = [5,6];
+const NUMBER_OF_BASE_CALC_TILL_END_OF_WEEKEND = 7;
 export default {
   components: { MainButton, NewTrainingActivityForm, },
 
@@ -158,7 +162,8 @@ export default {
       scheduleColors: ['blue', 'indigo', 'deep-purple', 'cyan', 'green'],
       trainingScheduleColor: 'orange',
       courseAreaColors: {},
-      hasFocused: false
+      hasFocused: false,
+      daysForwardToEvents: 0
     };
   },
 
@@ -199,12 +204,12 @@ export default {
 
   methods: {
     updateRange() {
-      const events      = [];
-      let lessons       = [];
-      
-      this.course.active_areas_with_active_lessons.forEach(course_area => {
-        lessons = lessons.concat(course_area.active_lessons)
-      })
+      if(this.hasFocused) {
+        return;
+      }
+
+      const events  = [];
+      const lessons = this.getCourseLessons();
 
       if (!lessons) {
         return;
@@ -238,6 +243,16 @@ export default {
       this.hasFocused = true;
     },
 
+    getCourseLessons() {
+      let lessons = [];
+      
+      this.course.active_areas_with_active_lessons.forEach(course_area => {
+        lessons = lessons.concat(course_area.active_lessons)
+      })
+
+      return lessons;
+    },
+
     getEventDate(date) {
       const year  = new Date(date).getFullYear();
       let month   = new Date(date).getMonth() + 1;
@@ -253,7 +268,11 @@ export default {
       const diffInTime          = startDate.getTime() - earliestEventDate.getTime();
       this.startDiffInDays      = Math.floor(diffInTime / (1000 * 3600 * 24));
       return events.map(event => {
-        const eventDate = event.isSetByUser || event.isDateUpdated ? this.getEventDate(event.scheduleDate) : this.getEventDate(event.scheduleDate.addDays(this.startDiffInDays));
+        const isEventUpdated  = event.isSetByUser || event.isDateUpdated;
+        let eventDate         = isEventUpdated ? this.getEventDate(event.scheduleDate) : this.getEventDate(event.scheduleDate.addDays(this.startDiffInDays));
+        if(!isEventUpdated) {
+          eventDate = this.getEventDate(this.getRelevantEventDate(new Date(eventDate)));
+        }
         event.dateOnly  = eventDate;
         event.start     = eventDate;
         event.end       = eventDate;
@@ -261,8 +280,32 @@ export default {
         if(!this.earliestScheduledDate || this.earliestScheduledDate > event.start) {
           this.earliestScheduledDate = event.start; 
         }
+
         return event;
       })
+    },
+
+    getRelevantEventDate(date) {
+      date = date.addDays(this.daysForwardToEvents);
+      
+      if(!this.isWeekend(date)) {
+        return date;
+      }
+      
+      const daysTillEndOfWeekend = this.daysToAddTillEndOfWeekend(date);
+      this.daysForwardToEvents = this.daysForwardToEvents + daysTillEndOfWeekend;
+      date = date.addDays(daysTillEndOfWeekend);
+      return date;
+    },
+
+    isWeekend(date) {
+      const dateDay = date.getDay();
+      return WEEKEND_DAYS_IN_NUMBERS.includes(dateDay);
+    },
+
+    daysToAddTillEndOfWeekend(date) {
+      const dateDay = date.getDay();
+      return NUMBER_OF_BASE_CALC_TILL_END_OF_WEEKEND - dateDay;
     },
      
     setCourseAreaColor(courseAreaId) {
@@ -351,19 +394,62 @@ export default {
       }
 
       this.selectedOpen = false;
-      this.updateRange();
+      this.updateEvent(schedule);
       this.$emit('refreshCourse');
       this.setFocus(schedule.dateOnly);
     },
 
+    updateEvent(updatedEvent) {
+      this.events = this.events.map(event => {
+        if(event.scheduleId === updatedEvent.scheduleId) {
+          event.dateOnly  = updatedEvent.dateOnly;
+          event.start     = updatedEvent.dateOnly;
+          event.end       = updatedEvent.dateOnly;
+        }
+        return event;
+      })
+    },
+
+    addEvent(newEvent) {
+      const lastEvent = this.course.schedules[this.course.schedules.length - 1];
+      if(newEvent.id !== lastEvent.id) {
+        console.warn('new event not equal to last event');
+        return;
+      }
+
+      const lessons = this.getCourseLessons();
+      const lesson  = lessons.find(lesson => lesson.id === lastEvent.course_lesson_id);
+      if(!lesson) {
+        console.warn('lesson not found related to new event', lesson, newEvent, lastEvent);
+        return;
+      }
+
+      this.events.push({
+        scheduleId:     lastEvent.id,
+        typeId:         lastEvent.type_id,
+        isSetByUser:    true,
+        isDateUpdated:  false,
+        lessonId:       lastEvent.course_lesson_id,
+        name:           lesson.name,
+        description:    lesson.description,
+        image:          lesson.imageSrc,
+        dateOnly:       lastEvent.date,
+        start:          lastEvent.date,
+        end:            lastEvent.date,
+        allDay:         true,
+        color:          this.trainingScheduleColor
+      });
+    },
+
     deleteTrainingSchedule(schedule) {
       this.$store.dispatch('UserState/deleteTrainingSchedule', schedule.scheduleId);
+      this.events = this.events.filter(event => schedule.scheduleId !== event.scheduleId)
       this.selectedOpen = false;
     },
 
     async addNewTrainingActivity(training) {
       await this.$store.dispatch('UserState/createTrainingSchedule', training);
-      this.updateRange();
+      this.addEvent(training);
       this.setFocus(training.date);
     },
 
@@ -419,5 +505,9 @@ export default {
     z-index: 2;
     color: #fff;
   }
+}
+
+.event_calendar {
+  z-index: 100;
 }
 </style>

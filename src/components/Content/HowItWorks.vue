@@ -23,7 +23,7 @@
             </v-flex>
             <v-flex d-flex justify-space-between align-start class="mt-5">
                 <v-flex md4 mr-md-3 d-flex align-center class="px-10" v-for="(step, index) in steps" :key="index">
-                    <p class="px-10">
+                    <p class="px-5">
                         <strong>
                             {{ step.title }}
                         </strong>

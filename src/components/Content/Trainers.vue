@@ -149,7 +149,6 @@ export default {
                 const trainer       = this.$refs[`trainer-${goToTrainerIndex}`][0];
                 const trainerMargin = 67;
                 trainers.scrollLeft = (trainer.clientWidth + trainerMargin) * -1 * goToTrainerIndex;
-                console.log('trainer', trainers.offsetWidth, trainers.clientWidth, trainer.clientWidth + trainerMargin);
                 // trainer.scrollIntoView({behavior: "smooth", block: "center", inline: "center"})
                 this.focusedTrainerIndex = goToTrainerIndex;
             } catch(err) {
@@ -207,14 +206,14 @@ export default {
 
         .lesson_wrapper_right_icon {
             position: absolute;
-            right: 0;
+            right: 10px;
             top: 33%;
             z-index: 5;                
         }
 
         .lesson_wrapper_left_icon {
             position: absolute;
-            left: 0;
+            left: 10px;
             top: 33%;
             z-index: 5;                
         }
@@ -241,6 +240,16 @@ export default {
                 font-size: 1.2em;
                 font-weight: bold;
             }
+
+            @media only screen and (max-width: 1600px) {
+                .trainer_name {
+                    font-size: 1.7em;
+                }
+
+                p {
+                    font-size: 1em;
+                }
+            }
         }
 
         .trainer_shield {
@@ -255,6 +264,11 @@ export default {
             right: 0;
             margin: auto;
             width: 90%;
+
+            @media only screen and (max-width: 600px) {
+                width: 88%;
+                top: 38px;
+            }
         }
     }
 </style>

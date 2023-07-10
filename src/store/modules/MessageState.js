@@ -87,7 +87,7 @@ const MessageState = {
             if(!show_messages_interval) {
                 show_messages_interval = setInterval(() => {
                     if(!state.messages_queue.length) {
-                        clearTimeout(show_messages_interval);
+                        clearInterval(show_messages_interval);
                         return show_messages_interval = null;
                     }
 

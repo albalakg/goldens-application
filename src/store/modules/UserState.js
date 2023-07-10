@@ -105,13 +105,13 @@ const UserState = {
 
             course.schedules.push({
                 id:                         newTrainingSchedule.id,
+                scheduleId:                 newTrainingSchedule.id,
                 type_id:                    SCHEDULE_TRAINING_TYPE_ID,
                 course_id:                  course.id,
                 isSetByUser:                true,
                 course_lesson_id:           newTrainingSchedule.lessonId,
                 date:                       newTrainingSchedule.date,
-                course_area_id:             lesson.course_area_id,
-                course_schedule_lesson_id:  null
+                course_area_id:             lesson.course_area_id
             }); 
         },
 

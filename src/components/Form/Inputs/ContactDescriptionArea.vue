@@ -52,7 +52,7 @@ export default {
 
     data() {
         return {
-            text:       'דברו אלינו...',
+            text:       'דברו איתנו...',
             rules:      [
                 {
                     rule: /^.+$/ms,

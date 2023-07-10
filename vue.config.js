@@ -18,13 +18,13 @@ module.exports = {
     iconPaths: {
       favicon32: 'favicon.png',
       favicon16: 'favicon.png',
-      appleTouchIcon: 'favicon.png',
-      maskIcon: 'favicon.png',
-      msTileImage: 'favicon-big.png',
+      appleTouchIcon: 'favicon-blue-bg.png',
+      maskIcon: 'favicon-blue-bg.png',
+      msTileImage: 'favicon-blue-bg.png',
     },
 
     // configure the workbox plugin
-    // workboxPluginMode: 'InjectManifest',
+    workboxPluginMode: 'InjectManifest',
     // workboxOptions: {
     //   // swSrc is required in InjectManifest mode.
     //   swSrc: 'dev/sw.js',
