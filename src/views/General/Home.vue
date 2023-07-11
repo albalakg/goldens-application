@@ -45,7 +45,7 @@
             <section-header class="mr-3 mr-md-0" right :title="'תחומי האקדמיה'" :subtitle="'תוכנית אימון שנתית המשלבת את חמשת המרכיבים הנדרשים על מנת להצליח'" :backgroundTitle="'תחומים'" />
             <course-area-list v-if="courseAreas" :courseAreas="courseAreas" guest separated />
           </v-flex>
-          <v-flex md5 order-1 order-md-2 class="course_area_free_text mb-10 mt-md-0 mx-md-0 mx-5">
+          <v-flex md5 order-1 order-md-2 class="course_area_free_text mb-10 mb-md-0 mx-md-0 mx-5">
             <strong>
               קצת עלינו
             </strong>
@@ -537,6 +537,7 @@ export default {
 
   .course_area_free_text {
     border-radius: 0 50px 0 50px;
+    padding: 20px;
   }
 }
 </style>
