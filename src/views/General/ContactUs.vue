@@ -114,6 +114,7 @@ export default {
 
   created() {
     this.$store.dispatch('SupportState/getSupportCategories');
+    this.$store.dispatch("AppState/setMenuMode", false);
   },
 
   mounted() {

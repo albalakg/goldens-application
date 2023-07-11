@@ -264,6 +264,10 @@ export default {
     },
   },
 
+  destroyed() {
+    this.$store.dispatch("AppState/setMenuMode", true);
+  },
+
   methods: {
     async getContent() {
       await Promise.allSettled([

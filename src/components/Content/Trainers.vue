@@ -267,7 +267,7 @@ export default {
 
             @media only screen and (max-width: 600px) {
                 width: 88%;
-                top: 38px;
+                top: calc(10% - 2px);
             }
         }
     }

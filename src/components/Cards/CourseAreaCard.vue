@@ -66,8 +66,6 @@ export default {
     computed: {
         description() {
             return this.courseArea.description;
-            const dots = this.courseArea.description.length > 50 ? '...' : '';
-            return this.courseArea.description.substring(0, 50) + dots;
         },
 
         totalLessons() {
