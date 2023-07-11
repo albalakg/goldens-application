@@ -318,6 +318,7 @@ export default {
                 team:           '',
                 city:           '',
                 birth_date:     '',
+                redirect:       '',
                 is_subscribed:  false,
             },
             loading: false
@@ -328,6 +329,10 @@ export default {
         cities() {
             return citiesJson.cities;
         }
+    },
+    
+    created() {
+        this.form.redirect = this.$route.query.redirect ?? '';
     },
 
     methods: {

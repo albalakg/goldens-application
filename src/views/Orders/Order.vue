@@ -75,6 +75,10 @@ export default {
         }
     },
 
+    created() {
+        this.$store.dispatch("AppState/setMenuMode", false);
+    },
+
     computed: {
         course() {
             return ContentService.findCourseById(this.$route.query.courseId)
