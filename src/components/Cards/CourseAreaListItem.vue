@@ -6,7 +6,7 @@
             'course_area_item_separated': separated
         }"
         @click="submit()"
-        :style="courseArea.imageSrc"
+        :style="`background-image: url('${courseArea.imageSrc}')`"
     >
         <div class="course_area_darkner"></div>
         <v-flex d-flex align-center class="course_area_content h100 w100 pa-5">
@@ -35,12 +35,10 @@
 
 <script>
 import ProgressBar from '../General/ProgressBar.vue';
-import ArrowsDecorator from '../../components/Decorators/ArrowsDecorator.vue'
 
 export default {
   components: {
     ProgressBar,
-    ArrowsDecorator,
  },
 
     props: {
