@@ -182,7 +182,6 @@ function hasQueryParams(route) {
 }
 
 router.beforeEach((to, from, next) => {
-  document.title = 'GOLDENS | ' + to.name;
 
   window.scrollTo(0, 0);
   if(!hasQueryParams(to) && hasQueryParams(from)){
@@ -191,5 +190,11 @@ router.beforeEach((to, from, next) => {
    next()
  }
 })
+
+router.afterEach((to) => {
+  Vue.nextTick(() => {
+    document.title = 'GOLDENS | ' + to.name;
+  });
+});
 
 export default router
