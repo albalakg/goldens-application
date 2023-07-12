@@ -27,19 +27,19 @@ const routes = [
   },
   {
     path: '/forgot-password',
-    name: 'ForgotPassword',
+    name: 'Forgot Password',
     beforeEnter: Guard.guest,
     component: () => import('../views/Auth/ForgotPassword.vue')
   },
   {
     path: '/reset-password',
-    name: 'ResetPassword',
+    name: 'Reset Password',
     beforeEnter: Guard.guest,
     component: () => import('../views/Auth/ResetPassword.vue')
   },
   {
     path: '/email-confirmation',
-    name: 'EmailConfirmation',
+    name: 'Email Confirmation',
     component: () => import('../views/Auth/EmailConfirmation.vue')
   },
   // ***** AUTH END *****
@@ -64,7 +64,7 @@ const routes = [
   },
   {
     path: '/contact-us',
-    name: 'ContactUs',
+    name: 'Contact Us',
     component: () => import('../views/General/ContactUs.vue')
   },
   {
@@ -83,31 +83,31 @@ const routes = [
     children: [
       {
         path: '',
-        name: 'UserProfile',
+        name: 'User Profile',
         beforeEnter: Guard.user,
         component: () => import('../views/User/UserProfile.vue')
       },
       {
         path: 'favorites',
-        name: 'UserFavorites',
+        name: 'User Favorites',
         beforeEnter: Guard.user,
         component: () => import('../views/User/UserFavorites.vue')
       },
       {
         path: 'history',
-        name: 'UserHistory',
+        name: 'User History',
         beforeEnter: Guard.user,
         component: () => import('../views/User/UserHistory.vue')
       },
       {
         path: 'orders',
-        name: 'UserOrders',
+        name: 'User Orders',
         beforeEnter: Guard.user,
         component: () => import('../views/User/UserOrders.vue')
       },
       {
         path: 'support',
-        name: 'UserSupportTickets',
+        name: 'User Support Tickets',
         beforeEnter: Guard.user,
         component: () => import('../views/User/UserSupportTickets.vue')
       },
@@ -119,19 +119,23 @@ const routes = [
   // ***** COURSES START *****
   {
     path: '/courses/:course_id',
+    name: 'Course',
     component: () => import('../views/Courses/Course.vue'),
     children: [
       {
         path: '',
+        name: 'Course',
         component: () => import('../views/Courses/CourseContent.vue'),
       },
       {
         path: '/courses/:course_id/lessons',
+        name: 'Course Lessons',
         beforeEnter: Guard.user,
         component: () => import('../views/Courses/CourseArea.vue'),
       },
       {
         path: '/courses/:course_id/schedule',
+        name: 'Course Schedule',
         beforeEnter: Guard.user,
         component: () => import('../views/Courses/CourseSchedule.vue'),
       },
@@ -139,6 +143,7 @@ const routes = [
   },
   {
     path: '/courses/:course_id/lessons/:lesson_id',
+    name: 'Lesson',
     component: () => import('../views/Courses/Lesson.vue'),
   },
   // ***** COURSES END *****
@@ -177,7 +182,9 @@ function hasQueryParams(route) {
 }
 
 router.beforeEach((to, from, next) => {
- window.scrollTo(0, 0);
+  document.title = 'GOLDENS | ' + to.name;
+
+  window.scrollTo(0, 0);
   if(!hasQueryParams(to) && hasQueryParams(from)){
    next({name: to.name, query: from.query});
  } else {
