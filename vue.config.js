@@ -18,9 +18,9 @@ module.exports = {
     iconPaths: {
       favicon32: 'favicon.png',
       favicon16: 'favicon.png',
-      appleTouchIcon: 'favicon-blue-bg.png',
-      maskIcon: 'favicon-blue-bg.png',
-      msTileImage: 'favicon-blue-bg.png',
+      appleTouchIcon: 'favicon-white-sm.png',
+      maskIcon: 'favicon-white-sm.png',
+      msTileImage: 'favicon-white-sm.png',
     },
 
     // configure the workbox plugin
