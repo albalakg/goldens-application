@@ -52,6 +52,10 @@ class Auth {
         return this.get() ? this.get().last_name : '';
     }
 
+    fullName() {
+        return this.firstName() + ' ' + this.lastName();
+    }
+
     role() {
         return this.get() ? this.get().role : '';
     }
