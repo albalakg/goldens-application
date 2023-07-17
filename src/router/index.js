@@ -184,11 +184,12 @@ function hasQueryParams(route) {
 router.beforeEach((to, from, next) => {
 
   window.scrollTo(0, 0);
-  if(!hasQueryParams(to) && hasQueryParams(from)){
-   next({name: to.name, query: from.query});
- } else {
-   next()
- }
+  if(!hasQueryParams(to) && hasQueryParams(from) && from.query.redirect){
+    next({name: to.name, query: from.query});
+  } else {
+    next()
+  }
+  // next()
 })
 
 router.afterEach((to) => {
