@@ -53,9 +53,10 @@ class Auth {
     }
 
     fullName() {
-        return this.firstName() + ' ' + this.lastName();
+        const data = this.get();
+        return data ? data.first_name + ' ' + data.last_name : '';
     }
-
+    
     role() {
         return this.get() ? this.get().role : '';
     }
@@ -70,11 +71,6 @@ class Auth {
 
     courses() {
         return this.get() && this.get().courses ? this.get().courses : '';
-    }
-
-    fullName() {
-        const data = this.get();
-        return data ? data.first_name + ' ' + data.last_name : '';
     }
     
     isLogged() {

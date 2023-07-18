@@ -74,7 +74,7 @@
               </v-toolbar>
               <v-card-text>
                 <div class="event_content mb-3">
-                  <img class="event_image rounded" :src="selectedEvent.image" />
+                  <img loading="lazy" class="event_image rounded" :src="selectedEvent.image" />
                   <v-icon
                       class="enter_lesson_button" 
                       color="black"

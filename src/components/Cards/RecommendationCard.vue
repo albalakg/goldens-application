@@ -1,7 +1,7 @@
 <template>
   <div class="recommendation_card px-5 py-8 text-center white_text_color"
     :class="index % 2 === 0 ? 'second_dark_bg_color' : 'main_dark_bg_color'">
-    <img v-if="data.image" :src="data.image" class="recommendation_image" alt="recommender image">
+    <img loading="lazy" v-if="data.image" :src="data.image" class="recommendation_image" alt="recommender image">
 
     <h3>
       {{ data.name }}

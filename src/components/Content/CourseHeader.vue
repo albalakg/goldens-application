@@ -63,10 +63,10 @@
 
         </slot>
         <div class="phone_card phone_card_on_side mx-auto">
-          <img src="../../../public/assets/images/phone/header_phone_2.webp" alt="שלב שני">
+          <img loading="lazy" src="../../../public/assets/images/phone/header_phone_2.webp" alt="שלב שני">
         </div>
         <div class="phone_card phone_card_front mx-auto">
-          <img src="../../../public/assets/images/phone/step1.webp" alt="שלב ראשון">
+          <img loading="lazy" src="../../../public/assets/images/phone/step1.webp" alt="שלב ראשון">
         </div>
       </v-flex>
     </v-flex>

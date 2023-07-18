@@ -26,7 +26,7 @@
                     justify-start
                     class="course_benefit_item mb-4 mb-md-0"
                 >
-                    <img :src="item.icon" :alt="`course ${item.title}`">
+                    <img loading="lazy" :src="item.icon" :alt="`course ${item.title}`">
                     <div class="circle"></div>
                     <h3 class="white_text_color">
                         {{ item.title }}

@@ -60,7 +60,7 @@
     <div class="separator"></div>
 
     <section class="trainers_section pb-4 px-5">
-      <img class="trainers_background" src="./../../../public/assets/images/trainers/Trainers-background-sm.webp" alt="trainers background">
+      <img loading="lazy" class="trainers_background" src="./../../../public/assets/images/trainers/Trainers-background-sm.webp" alt="trainers background">
       <v-flex xl8 lg9 md10 mx-auto>
         <trainers dark :right="!$vuetify.breakpoint.smAndDown" v-if="trainers.length"
           :trainers="trainers" />

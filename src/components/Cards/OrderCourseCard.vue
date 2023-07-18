@@ -7,7 +7,7 @@
     }"
   >
     <v-flex xs12 md4>
-      <img class="course_image" :src="course.imageSrc" alt="course image" />
+      <img loading="lazy" class="course_image" :src="course.imageSrc" alt="course image" />
     </v-flex>
     <v-flex xs12 md8 d-flex flex-column class="px-md-5 pt-3 pt-md-0">
       <div>

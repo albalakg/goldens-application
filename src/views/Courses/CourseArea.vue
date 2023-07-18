@@ -49,7 +49,7 @@
                   @submit="toggleFavorite()"
                 />
             </v-flex>
-            <img :src="activeLesson.imageSrc" class="w100 mt-1" alt="lesson image">
+            <img loading="lazy" :src="activeLesson.imageSrc" class="w100 mt-1" alt="lesson image">
             <div class="active_lesson_darkner"></div>
             <v-flex d-flex align-center justify-space-between class="active_lesson_content">
               <v-flex d-flex flex-column justify-space-between class="h100">

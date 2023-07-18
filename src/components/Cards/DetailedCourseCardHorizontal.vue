@@ -3,7 +3,7 @@
         'flex-wrap': $vuetify.breakpoint.smAndDown
     }">
         <v-flex md4>
-            <img :src="course.imageSrc" alt="תמונת הקורס" />
+            <img loading="lazy" :src="course.imageSrc" alt="תמונת הקורס" />
         </v-flex>
         <v-flex xs12 md4 class="pa-5">
             <strong>

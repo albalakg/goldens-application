@@ -1,6 +1,6 @@
 <template>
   <div class="about_wrapper second_dark_bg_color app_padding_top">
-    <img class="about_background_image" :src="aboutBackgroundImage" alt="about background" />
+    <img loading="lazy" class="about_background_image" :src="aboutBackgroundImage" alt="about background" />
     <div class="about_background_darkner"></div>
     <v-flex md10 xl9 mx-auto class="about_background_content">
       <section class="about_header">

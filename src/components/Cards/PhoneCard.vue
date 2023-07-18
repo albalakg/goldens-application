@@ -1,6 +1,6 @@
 <template>
     <div class="phone_card mx-auto">
-        <img :src="imageSrc" alt="שלב ראשון">
+        <img loading="lazy" :src="imageSrc" alt="שלב ראשון">
     </div>
 </template>
 

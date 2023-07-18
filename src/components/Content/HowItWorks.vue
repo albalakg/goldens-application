@@ -5,19 +5,19 @@
                 <v-flex xs12 md4 d-flex align-center class="relative mb-7 mb-md-0">
                     <h3>1</h3>
                     <div class="phone_card mx-auto">
-                        <img src="../../../public/assets/images/phone/step1.webp" alt="שלב ראשון">
+                        <img loading="lazy" src="../../../public/assets/images/phone/step1.webp" alt="שלב ראשון">
                     </div>
                 </v-flex>
                 <v-flex xs12 md4 d-flex align-center class="relative mb-7 mb-md-0">
                     <h3>2</h3>
                     <div class="phone_card mx-auto">
-                        <img src="../../../public/assets/images/phone/step2.webp" alt="שלב ראשון">
+                        <img loading="lazy" src="../../../public/assets/images/phone/step2.webp" alt="שלב שני">
                     </div>
                 </v-flex>
                 <v-flex xs12 md4 d-flex align-center class="relative mb-7 mb-md-0">
                     <h3>3</h3>
                     <div class="phone_card mx-auto">
-                        <img src="../../../public/assets/images/phone/step3.webp" alt="שלב ראשון">
+                        <img loading="lazy" src="../../../public/assets/images/phone/step3.webp" alt="שלב שלישי">
                     </div>
                 </v-flex>
             </v-flex>
@@ -36,14 +36,14 @@
         <template v-else>
             <v-flex d-flex justify-space-between class="how_it_works_wrapper relative pa-3">
                 <div class="phone_card mx-auto">
-                    <img src="../../../public/assets/images/phone/step1.webp" alt="שלב ראשון">
+                    <img loading="lazy" src="../../../public/assets/images/phone/step1.webp" alt="שלב ראשון">
                 </div>
                 <div class="phone_card mx-auto">
-                    <img src="../../../public/assets/images/phone/step2.webp" alt="שלב ראשון">
+                    <img loading="lazy" src="../../../public/assets/images/phone/step2.webp" alt="שלב שני">
                 </div>
                 <div class="phone_card mx-auto">
-                        <img src="../../../public/assets/images/phone/step3.webp" alt="שלב ראשון">
-                    </div>
+                    <img loading="lazy" src="../../../public/assets/images/phone/step3.webp" alt="שלב שלישי">
+                </div>
             </v-flex>
             <br>
             <div class="mt-10 px-5">

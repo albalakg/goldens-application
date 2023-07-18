@@ -10,8 +10,8 @@
             <v-flex v-if="$vuetify.breakpoint.mdAndUp" d-flex justify-space-between flex-wrap class="trainers_wrapper">
                 <v-flex md3 v-for="(trainer, index) in trainers" :key="index" class="mb-2 px-5 trainer_wrapper">
                     <div class="trainer_card">
-                        <img class="trainer_shield" src="./../../../public/assets/images/trainers/trainer-card.webp" alt="trainer shield">
-                        <img class="trainer_person" :src="trainer.imageSrc" alt="trainer person">
+                        <img loading="lazy" class="trainer_shield" src="./../../../public/assets/images/trainers/trainer-card.webp" alt="trainer shield">
+                        <img loading="lazy" class="trainer_person" :src="trainer.imageSrc" alt="trainer person">
                         <div class="trainer_card_details">
                             <h4 class="trainer_name main_text_color">
                                 {{
@@ -34,8 +34,8 @@
                 <v-flex class="trainers_wrapper" ref="trainers">
                     <div v-for="(trainer, index) in trainers" :key="index" :ref="`trainer-${index}`">
                         <div class="trainer_card">
-                            <img class="trainer_shield" src="./../../../public/assets/images/trainers/trainer-card.webp" alt="trainer shield">
-                            <img class="trainer_person" :src="trainer.imageSrc" alt="trainer person">
+                            <img loading="lazy" class="trainer_shield" src="./../../../public/assets/images/trainers/trainer-card.webp" alt="trainer shield">
+                            <img loading="lazy" class="trainer_person" :src="trainer.imageSrc" alt="trainer person">
                             <div class="trainer_card_details">
                                 <h4 class="trainer_name main_text_color">
                                     {{
