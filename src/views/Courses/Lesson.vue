@@ -312,11 +312,7 @@ export default {
     },
 
     async sendRequest() {
-      if(this.videoProgressLoading) {
-        return;
-      }
-
-      if(this.videoProgress.start_time === this.videoProgress.end_time) {
+      if(!this.canSendRequest()) {
         return;
       }
 
@@ -330,6 +326,25 @@ export default {
         }
       }
       this.videoProgressLoading = false;
+    },
+
+    canSendRequest() {
+      // Incase still loading
+      if(this.videoProgressLoading) {
+        return false;
+      }
+
+      // Incase the start and end is the same
+      if(this.videoProgress.start_time === this.videoProgress.end_time) {
+        return false;
+      }
+
+      // Incase he moves forward with the video
+      if(this.videoProgress.end_time - this.videoProgress.start_time > SPACE_BETWEEN_VIDEO_PROGRESS_UPDATE * 1.2) {
+        return false;
+      }
+
+      return true;
     },
 
     playVideo() {

@@ -1,14 +1,11 @@
 <template>
   <div class="course_area_wrapper" v-if="course">
 
-     <!-- small screen -->
+    <!-- small screen -->
     <template v-if="$vuetify.breakpoint.smAndDown">
       <template v-for="(lesson, index) in lessons">
         <v-flex xs11 mx-auto class="lesson_card_wrapper mb-5" :key="index">
-          <router-link
-            :to="`/courses/${course.id}/lessons/${lesson.id}`"
-            class="simple_link"
-          >
+          <router-link :to="`/courses/${course.id}/lessons/${lesson.id}`" class="simple_link">
             <detailed-lesson-card :lesson="lesson" />
           </router-link>
         </v-flex>
@@ -20,34 +17,23 @@
         <v-flex md5 class="px-2">
           <h2 class="mb-0">
             רשימת השיעורים
-           <small>({{ completedLessons.length }}/{{ lessons.length }})</small>
+            <small>({{ completedLessons.length }}/{{ lessons.length }})</small>
           </h2>
           <div class="lessons_list mt-1">
-          <template v-for="(lesson, index) in lessons">
-            <simple-lesson-card
-              :key="index"
-              :index="index + 1"
-              :lesson="lesson" 
-              :isActive="activeLesson && lesson.id === activeLesson.id"
-              @submit="setActiveLesson(lesson)"
-              :class="{
+            <simple-lesson-card v-for="(lesson, index) in lessons" :key="index" :index="index + 1" :lesson="lesson"
+              :isActive="activeLesson && lesson.id === activeLesson.id" @submit="setActiveLesson(lesson)" :class="{
                 'mb-3': (index + 1) < lessons.length
-              }"
-            />
-          </template>
+              }" />
           </div>
         </v-flex>
         <v-flex md6 class="active_lesson_wrapper">
 
           <template v-if="activeLesson">
             <v-flex d-flex justify-space-between align-center>
-                <h2 class="mb-0">
-                  {{ activeLesson.name }}
-                </h2>
-                <heart
-                  :filled="isFavorite"
-                  @submit="toggleFavorite()"
-                />
+              <h2 class="mb-0">
+                {{ activeLesson.name }}
+              </h2>
+              <heart :filled="isFavorite" @submit="toggleFavorite()" />
             </v-flex>
             <img loading="lazy" :src="activeLesson.imageSrc" class="w100 mt-1" alt="lesson image">
             <div class="active_lesson_darkner"></div>
@@ -58,18 +44,10 @@
                   </small>
                 </div>
                 <v-flex d-flex align-end justify-space-between class="w100">
-                  <time-chip 
-                    class="time_chip"
-                    :seconds="seconds"
-                  />
+                  <time-chip class="time_chip" :seconds="seconds" />
 
                   <v-flex md4>
-                    <main-button 
-                      text="הפעל שיעור"
-                      shadow
-                      slim
-                      @submit="enterLesson()"
-                    />
+                    <main-button text="הפעל שיעור" shadow slim @submit="enterLesson()" />
                   </v-flex>
                 </v-flex>
               </v-flex>
@@ -85,12 +63,12 @@
 </template>
 
 <script>
-import MainButton         from '../../components/Buttons/MainButton.vue';
+import MainButton from '../../components/Buttons/MainButton.vue';
 import DetailedLessonCard from '../../components/Cards/DetailedLessonCard.vue';
-import SimpleLessonCard   from '../../components/Cards/SimpleLessonCard.vue';
-import TimeChip           from '../../components/Chips/TimeChip.vue';
-import Heart              from '../../components/General/Heart.vue';
-import TrainerDialog      from '../../components/Dialogs/TrainerDialog.vue';
+import SimpleLessonCard from '../../components/Cards/SimpleLessonCard.vue';
+import TimeChip from '../../components/Chips/TimeChip.vue';
+import Heart from '../../components/General/Heart.vue';
+import TrainerDialog from '../../components/Dialogs/TrainerDialog.vue';
 export default {
   components: { TrainerDialog, SimpleLessonCard, MainButton, DetailedLessonCard, TimeChip, Heart },
 
@@ -110,7 +88,7 @@ export default {
   },
 
   mounted() {
-    if(this.lessons.length) {
+    if (this.lessons.length) {
       this.setActiveLesson(this.lessons[0])
     }
   },
@@ -198,13 +176,13 @@ export default {
     },
 
     async toggleFavorite() {
-        if(this.loadingFavorite) {
-            return;
-        }
+      if (this.loadingFavorite) {
+        return;
+      }
 
-        this.loadingFavorite = true;
-        await this.$store.dispatch('UserState/toggleFavorite', this.activeLesson.id)
-        this.loadingFavorite = false;
+      this.loadingFavorite = true;
+      await this.$store.dispatch('UserState/toggleFavorite', this.activeLesson.id)
+      this.loadingFavorite = false;
     }
   },
 };
@@ -249,15 +227,10 @@ export default {
     object-fit: cover;
     border-radius: 8px;
   }
-    
-  .time_chip {
-    
-  }
 }
 
 .lessons_list {
   height: 400px;
   overflow-y: auto;
 }
-
 </style>
