@@ -275,6 +275,7 @@ export default {
     onVideoPlay(video) {
       const videoElement = video.target
       this.videoProgress.start_time = videoElement.currentTime;
+      this.stopUpdateProgress();
       this.updateLessonProgressInterval = setInterval(() => {
         this.videoProgress.end_time = videoElement.currentTime;
         this.sendRequest();
@@ -333,14 +334,19 @@ export default {
       if(this.videoProgressLoading) {
         return false;
       }
-
+      
       // Incase the start and end is the same
       if(this.videoProgress.start_time === this.videoProgress.end_time) {
         return false;
       }
 
       // Incase he moves forward with the video
-      if(this.videoProgress.end_time - this.videoProgress.start_time > SPACE_BETWEEN_VIDEO_PROGRESS_UPDATE * 1.2) {
+      if(this.videoProgress.end_time - this.videoProgress.start_time > (SPACE_BETWEEN_VIDEO_PROGRESS_UPDATE / 1000 * 1.2)) {
+        return false;
+      }
+
+      // Incase he moves backward with the video
+      if(this.videoProgress.start_time - this.videoProgress.end_time > (SPACE_BETWEEN_VIDEO_PROGRESS_UPDATE / 1000 * 1.2)) {
         return false;
       }
 
