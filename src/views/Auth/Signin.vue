@@ -99,7 +99,7 @@
                     </v-flex>
                 </v-flex>
                 <v-flex v-if="$vuetify.breakpoint.mdAndUp" xs12 md6 lg7 xl8 d-flex justify-end>
-                    <div class="auth_image" style="background-image: url('http://localhost:8080/assets/images/general/auth_background.png');">
+                    <div class="auth_image" :style="`background-image: url('${backgroundImageSrc}');`">
                     </div>
                 </v-flex>
                 
@@ -137,6 +137,12 @@ export default {
                 'Email or password is invalid': 'האימייל או הסיסמה אינם תקינים',
                 'Please confirm your email first': 'מצטערים, אך צריכים שקודם תאשר את המייל',
             }
+        }
+    },
+
+    computed: {
+        backgroundImageSrc() {
+            return baseURL + 'assets/images/general/auth_background.png';
         }
     },
 

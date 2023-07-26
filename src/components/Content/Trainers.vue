@@ -250,6 +250,26 @@ export default {
                     font-size: 1em;
                 }
             }
+            
+            @media only screen and (max-width: 1400px) {
+                .trainer_name {
+                    font-size: 1.3em;
+                }
+
+                p {
+                    font-size: .7em;
+                }
+            }
+            
+            @media only screen and (max-width: 600px) {
+                .trainer_name {
+                    font-size: 1.7em;
+                }
+
+                p {
+                    font-size: 1em;
+                }
+            }
         }
 
         .trainer_shield {
@@ -259,11 +279,15 @@ export default {
 
         .trainer_person {
             position: absolute;
-            top: 33px;
+            bottom: calc(47% + -1px);
             left: 0;
             right: 0;
             margin: auto;
             width: 90%;
+            
+            @media only screen and (min-width: 1700px) {
+                bottom: calc(47% + -2px);
+            }
 
             @media only screen and (max-width: 600px) {
                 width: 88%;

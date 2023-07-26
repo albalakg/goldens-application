@@ -40,7 +40,7 @@
       <div class="spacer"></div>
     </v-flex>
 
-    <v-flex md8 mx-auto class="trainers_section mt-md-8">
+    <v-flex md9 mx-auto class="trainers_section mt-md-8">
       <trainers v-if="trainers.length" full dark :trainers="trainers" />
     </v-flex>
 
@@ -134,24 +134,30 @@ export default {
 
   methods: {
     listenToScroll() {
-      document.body.addEventListener("scroll", () => {
-        let element = document.querySelector(".about_background_image");
-        if (!element) {
-          return;
-        }
-
-        let position = element.getBoundingClientRect();
-        if (position.top > -200) {
-          if (!this.isDark) {
-            return this.$store.dispatch("AppState/setMenuMode", true);
-          }
-        } else {
-          if (this.isDark) {
-            return this.$store.dispatch("AppState/setMenuMode", false);
-          }
-        }
-      });
+      window.addEventListener("scroll", this.handleScroll, true);
     },
+
+    handleScroll() {
+      let element = document.querySelector(".about_wrapper");
+      if (!element) {
+        return;
+      }
+      
+      let position = element.getBoundingClientRect();
+      if (position.top < 0) {
+        if (this.isDark) {
+          return this.$store.dispatch("AppState/setMenuMode", false);
+        }
+      } else {
+        if (!this.isDark) {
+          return this.$store.dispatch("AppState/setMenuMode", true);
+        }
+      }
+    }
+  },
+
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.handleScroll, true);
   },
 };
 </script>

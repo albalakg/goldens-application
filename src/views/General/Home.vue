@@ -295,24 +295,31 @@ export default {
     // },
 
     listenToScroll() {
-      window.addEventListener("scroll", () => {
-        let element = document.querySelector(".course_page_image_wrapper");
-        if (!element) {
-          return;
-        }
-
-        let position = element.getBoundingClientRect();
-        if (position.top > -600) {
-          if (!this.isDark) {
-            return this.$store.dispatch("AppState/setMenuMode", true);
-          }
-        } else {
-          if (this.isDark) {
-            return this.$store.dispatch("AppState/setMenuMode", false);
-          }
-        }
-      });
+      window.addEventListener("scroll", this.handleScroll, true);
     },
+
+    handleScroll() {
+      console.log('asd');
+      let element = document.querySelector(".course_page_image_wrapper");
+      if (!element) {
+        return;
+      }
+
+      let position = element.getBoundingClientRect();
+      if (position.top > -600) {
+        if (!this.isDark) {
+          return this.$store.dispatch("AppState/setMenuMode", true);
+        }
+      } else {
+        if (this.isDark) {
+          return this.$store.dispatch("AppState/setMenuMode", false);
+        }
+      }
+    }
+  },
+
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.handleScroll, true);
   },
 };
 </script>
