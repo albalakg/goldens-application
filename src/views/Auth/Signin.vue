@@ -140,6 +140,10 @@ export default {
         }
     },
 
+    mounted() {
+        this.removeUnneededQueryParams();
+    },
+
     computed: {
         backgroundImageSrc() {
             return baseURL + 'assets/images/general/auth_background.png';
@@ -147,6 +151,15 @@ export default {
     },
 
     methods: {
+        removeUnneededQueryParams() {
+            if(this.$route.query.redirect === 'signout') {
+                const query = Object.assign({}, this.$route.query);
+                delete query.redirect;
+                query.t = '';
+                this.$router.replace({path: 'signin', query: query });
+            }
+        },
+
         submit() {
 
             if(!this.validate()) {
@@ -182,7 +195,7 @@ export default {
             this.$store.dispatch('AuthState/setLogStatus', true);
             await this.$store.dispatch('UserState/init', true);
 
-            if(this.$route.query.redirect) {
+            if(this.$route.query.redirect && this.$route.query.redirect !== 'signout') {
                 this.redirectToPage();
             } else {
                 this.$store.dispatch('UserState/goToLastActiveCourse');

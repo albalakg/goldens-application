@@ -299,7 +299,6 @@ export default {
     },
 
     handleScroll() {
-      console.log('asd');
       let element = document.querySelector(".course_page_image_wrapper");
       if (!element) {
         return;
