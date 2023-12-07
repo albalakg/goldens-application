@@ -6,7 +6,7 @@
             </template>
             <template v-else>
                 <h2 class="text-center">
-                    לא נמצאו בקשות תמיכה
+                    לא נמצאו בקשות תמיכה 
                 </h2>
             </template>
         </div>
@@ -20,7 +20,13 @@
 </template>
 
 <script>
+import SupportTicketCard from './../../components/Cards/SupportTicketCard'
+
 export default {
+    components: {
+        SupportTicketCard,
+    },
+    
     created() {
         this.$store.dispatch('UserState/getSupportTickets');
     },

@@ -164,6 +164,10 @@ export default {
                         text: 'יומן',
                         url: '/courses/' + courses[0].id + '/schedule'
                     },
+                    {
+                        text: 'אתגרים',
+                        url: '/challenges'
+                    },
                 ]
             } else {
                 extraLinks = [

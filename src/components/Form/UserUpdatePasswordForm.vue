@@ -7,6 +7,7 @@
             outlined
             title
             icon
+            autofocus
             @onChange="setOldPassword" 
         />
         <br>

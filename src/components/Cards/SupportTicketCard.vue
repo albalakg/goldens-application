@@ -22,7 +22,7 @@
 
     <v-flex class="ticket_body mt-5">
         <h2>
-            {{ ticket.category.name}}
+            {{ ticket.category ? ticket.category.name : ''}}
         </h2>
         <p>
             {{ ticket.description }}

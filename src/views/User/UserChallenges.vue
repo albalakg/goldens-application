@@ -1,16 +1,16 @@
 <template>
-    <div class="user_history_wrapper">
+    <div class="user_challenge_wrapper">
         <div v-if="lessons && lessons.length">
             <v-flex d-flex flex-wrap v-if="$vuetify.breakpoint.mdAndUp">
                 <v-flex md3 v-for="lesson in viewLessons" :key="lesson.course_lesson_id" class="mb-10 pl-3">
-                    <lesson-history-card class="lesson_history_card" :lesson="lesson" @submit="enterLesson" />
+                    <challenge-card class="lesson_challenge_card" :lesson="lesson" @submit="enterLesson" />
                 </v-flex>
             </v-flex>
 
-            <v-flex v-else class="user_history_mobile">
-                <v-flex d-flex class="use_history_lessons_wrapper pr-10">
+            <v-flex v-else class="user_challenge_mobile">
+                <v-flex d-flex class="use_challenge_lessons_wrapper pr-10">
                     <v-flex v-for="lesson in viewLessons" :key="lesson.course_lesson_id" class=" pl-3">
-                        <lesson-history-card class="lesson_history_card my-10" :lesson="lesson" @submit="enterLesson" />
+                        <challenge-card class="lesson_challenge_card my-10" :lesson="lesson" @submit="enterLesson" />
                     </v-flex>
                 </v-flex>
             </v-flex>
@@ -36,10 +36,10 @@
 </template>
 
 <script>
-import LessonHistoryCard from '../../components/Cards/LessonHistoryCard.vue';
+import ChallengeCard from '../../components/Cards/ChallengeCard.vue';
 import Pagination from '../../components/General/Pagination.vue';
 export default {
-  components: { LessonHistoryCard, Pagination },
+  components: { ChallengeCard, Pagination },
     data() {
         return {
             page: 1,
@@ -64,11 +64,10 @@ export default {
                 return this.lessons;
             }
 
-            const lessons       = this.lessons.filter(lesson => ContentService.findLessonById(lesson.course_lesson_id))
             const startIndex    = (this.page - 1) * this.totalLessonsPerPage;
             const endIndex      = startIndex + this.totalLessonsPerPage;
 
-            return lessons.slice(startIndex, endIndex);
+            return this.lessons.slice(startIndex, endIndex);
         },
 
         totalPages() {
@@ -90,14 +89,14 @@ export default {
 
 <style scoped lang="scss">
 
-    .lesson_history_card {
+    .lesson_challenge_card {
         height: 70vh;
         max-height: 350px;
     }
 
-    .user_history_mobile {
+    .user_challenge_mobile {
 
-        .use_history_lessons_wrapper {
+        .use_challenge_lessons_wrapper {
             overflow-x: auto;
             position: relative;
             
@@ -105,7 +104,7 @@ export default {
                 display: none;
             }
     
-            .lesson_history_card {
+            .lesson_challenge_card {
                 min-width: 250px;
                 margin-right: 10vw;
             }

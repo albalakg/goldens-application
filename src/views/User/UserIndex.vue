@@ -132,6 +132,10 @@ export default {
                     url: '/user/history'
                 },
                 {
+                    title: 'אתגרים',
+                    url: '/user/challenges'
+                },
+                {
                     title: 'מועדפים',
                     url: '/user/favorites'
                 },

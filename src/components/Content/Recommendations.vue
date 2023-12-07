@@ -9,14 +9,12 @@
 
         <v-flex md9 xl8 mx-auto class="recommendations_list recommendations_scroll"
             v-if="$vuetify.breakpoint.mdAndUp || items.length > 3">
-            <!-- <arrow-chip v-show="!isLeftArrowDisabled && $vuetify.breakpoint.smAndDown" class="arrow_chip left_arrow" @submit="moveLeft()" /> -->
             <carousel :rtl="$vuetify.breakpoint.smAndDown" ref="carousel" :perPage="perPage" :value="currentPage"
                 v-model="currentPage">
                 <slide v-for="(item, index) in items" :key="index + item.name" class="py-8 px-4">
                     <recommendation-card :data="item" :index="index" />
                 </slide>
             </carousel>
-            <!-- <arrow-chip v-show="!isRightArrowDisabled && $vuetify.breakpoint.smAndDown" :left="false" class="arrow_chip right_arrow" @submit="moveRight()" /> -->
         </v-flex>
         <v-flex d-flex md9 xl8 mx-auto class="recommendations_list" v-else>
             <v-flex md4 v-for="(item, index) in items" :key="index" class="py-8 px-4">
@@ -30,7 +28,6 @@
 import SectionHeader from '../Texts/SectionHeader.vue'
 import { Carousel, Slide } from 'vue-carousel';
 import RecommendationCard from '../Cards/RecommendationCard.vue';
-// import ArrowChip from '../Chips/arrowChip.vue';
 
 export default {
     components: {
@@ -38,7 +35,6 @@ export default {
         Carousel,
         Slide,
         RecommendationCard,
-        // ArrowChip,
     },
 
     props: {

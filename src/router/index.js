@@ -72,6 +72,11 @@ const routes = [
     name: 'Policies',
     component: () => import('../views/General/Policies.vue')
   },
+  {
+    path: '/challenges',
+    name: 'Challenges',
+    component: () => import('../views/General/Challenges.vue')
+  },
   // ***** GENERAL PAGES END *****
 
 
@@ -98,6 +103,12 @@ const routes = [
         name: 'User History',
         beforeEnter: Guard.user,
         component: () => import('../views/User/UserHistory.vue')
+      },
+      {
+        path: 'challenges',
+        name: 'User Challenges',
+        beforeEnter: Guard.user,
+        component: () => import('../views/User/UserChallenges.vue')
       },
       {
         path: 'orders',

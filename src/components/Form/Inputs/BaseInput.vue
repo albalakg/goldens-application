@@ -146,6 +146,11 @@ export default {
 
         rules: {
             type: Array,
+        },
+
+        autofocus: {
+            type: Boolean,
+            default: false
         }
     },
     
@@ -157,7 +162,9 @@ export default {
     },
 
     mounted() {
-        this.focusInput();
+        if(this.autofocus) {
+            this.focusInput();
+        }
     },
 
     watch: {

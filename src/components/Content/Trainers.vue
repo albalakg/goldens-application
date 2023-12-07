@@ -60,13 +60,11 @@
 </template>
 
 <script>
-import ArrowChip from '../Chips/arrowChip.vue';
 import SectionHeader from '../Texts/SectionHeader.vue';
 
 export default {
 
     components: {
-        ArrowChip,
         SectionHeader,
     },
 

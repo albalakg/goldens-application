@@ -1,5 +1,5 @@
 <template>
-    <div class="desktop_side_menu_item px-10 pt-10 text-right pointer">
+    <div class="desktop_side_menu_item px-10 pt-10 text-right pointer" v-if="lesson">
         <strong class="grey_text_color">
             {{ lesson.name }}
         </strong>

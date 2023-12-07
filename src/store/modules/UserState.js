@@ -444,6 +444,21 @@ const UserState = {
             })
         },
 
+        submitChallenge({ commit, dispatch }, data) {
+            console.log('submitChallenge', data);
+            // axios.get('profile/challenge/submit/' + data.id)
+            //     .then(res => {
+            //         commit('SET_ACTIVE_CHALLENGE', res.data.data);
+            //     })
+            //     .catch(() => {
+            //         dispatch('MessageState/addInfoMessage', {
+            //             message: 'מצטערים אבל נכשלה הבקשה להגשת האתגר',
+            //             type: 'error',
+            //         }, {root:true});
+            //         Auth.logout()
+            //     })
+        },
+
         // eslint-disable-next-line no-empty-pattern
         saveUserLandedOnPageNotFound({}, path) {
             axios.get('profile/landed-on-page-not-found?path=' + encodeURIComponent(path))

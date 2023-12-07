@@ -11,6 +11,7 @@
             :subIcon="subIconSrc"
             :rules="rules"
             :slim="slim"
+            :autofocus="autofocus"
             :autocomplete="autocomplete"
             @onChange="onChange"
             @subIconClicked="subIconClicked"
@@ -58,6 +59,10 @@ export default {
         },
         
         title: {
+            type: Boolean,
+        },
+        
+        autofocus: {
             type: Boolean,
         },
         

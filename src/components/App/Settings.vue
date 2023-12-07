@@ -20,8 +20,8 @@
     </div>
 
     <div class="settings_links">
-      <div v-for="(link, index) in links" :key="index" class="setting_row mb-6 settings_link">
-        <h3 @click="close()">
+      <div v-for="(link, index) in links" :key="index" class="setting_row mb-6 settings_link" @click="close()">
+        <h3>
           <router-link class="simple_link grey_text_color" :to="'/' + link.url">
             {{ link.text }}
           </router-link>
@@ -45,6 +45,12 @@ export default {
     };
   },
 
+  // watch: {
+  //   $route: () => {
+  //     this.close()
+  //   }
+  // },
+
   computed: {
     isLogged() {
       return this.$store.getters['AuthState/isLogged'];
@@ -55,7 +61,17 @@ export default {
         {
           text: "דף הבית",
           url: "",
-          isLogged: null
+          isLogged: false
+        },
+        {
+          text: "הקורס שלי",
+          url: "",
+          isLogged: true
+        },
+        {
+          text: "אתגרים",
+          url: "challenges",
+          isLogged: true
         },
         {
           text: "מי אנחנו",

@@ -10,6 +10,7 @@
             :title="title ? text : ''"
             :icon="icon ? iconSrc : ''"
             :rules="rules"
+            :autofocus="autofocus"
             :floatingPlaceholder="floatingPlaceholder"
             @onChange="onChange"
         />
@@ -39,6 +40,10 @@ export default {
 
         loading: {
             type: Boolean
+        },
+        
+        autofocus: {
+            type: Boolean,
         },
         
         icon: {
