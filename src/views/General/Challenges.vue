@@ -6,7 +6,7 @@
         <section class="mx-3 mx-md-0">
             <v-flex xl8 lg9 md10 mx-auto text-center>
                 <h1>
-                    אתגר השבוע
+                    האתגר הזמני
                 </h1>
 
                 <br>
@@ -37,9 +37,16 @@
                         </v-flex>
                     </v-flex>
 
-                    <v-flex d-flex flex-wrap class="my-5 mx-md-0">
+                    <v-flex d-flex flex-wrap class="my-5 mx-md-0"
+                        :class="{
+                            'disabled': !canSubmitChallenge
+                        }"
+                    >
                         <v-flex md0 xl10>
-                            <v-flex class="file_input_wrapper">
+                            <v-flex 
+                            class="file_input_wrapper"
+                            
+                            >
                                 <FileInput @onChange="setFile" :text="fileInputText" />
                             </v-flex>
                         </v-flex>
@@ -95,12 +102,14 @@ export default {
             form: {
                 video: null,
                 is_public: true
-            }
+            },
+            loading: false
         };
     },
 
     created() {
         this.$store.dispatch('ChallengeState/getActiveChallenge');
+        this.$store.dispatch('UserState/getChallenges');
     },
 
     computed: {
@@ -121,15 +130,24 @@ export default {
         },
 
         isSubmitChallengeDisabled() {
-            return !this.form.video;
+            return !this.form.video || this.loading;
         },
 
         submitButtonText() {
+            if(this.loading) {
+                console.log('טוען');
+                return 'טוען...';
+            }
+            console.log('לא טוען');
             return this.isFirstAttempt ? 'שגר תאתגר' : 'נסה שוב'
         },
 
         fileInputText() {
             return this.$vuetify.breakpoint.mdAndUp ? 'זרוק או לחץ בשביל לעלות את האתגר' : 'לחץ בשביל לעלות את האתגר'
+        },
+
+        canSubmitChallenge() {
+            return ContentService.canSubmitChallenge(this.$store.getters['ChallengeState/activeChallenge'])
         }
     },
 
@@ -138,9 +156,12 @@ export default {
             this.loading = true;
             await this.$store.dispatch('UserState/submitChallenge', {
                 ...this.form,
-                id: this.activeChallenge.id
+                id: this.activeChallenge.id,
+                is_public: this.form.is_public ? 1 : 0,
+                video: this.form.video
             });
             this.loading = false;
+            this.$forceUpdate();
         },
 
         setFile(file) {

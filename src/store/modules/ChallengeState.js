@@ -29,23 +29,8 @@ const ChallengeState = {
                         message: 'מצטערים אבל נכשלה הבקשה למשיכת אתגר השבוע',
                         type: 'error',
                     }, {root:true});
-                    Auth.logout()
                 })
         },
-
-        submitChallenge({ commit, dispatch }, data) {
-            axios.post('content/challenges/submit-challenge')
-                .then(res => {
-                    commit('SET_ACTIVE_CHALLENGE', res.data.data);
-                })
-                .catch(() => {
-                    dispatch('MessageState/addInfoMessage', {
-                        message: 'מצטערים אבל נכשלה הבקשה למשיכת אתגר השבוע',
-                        type: 'error',
-                    }, {root:true});
-                    Auth.logout()
-                })
-        }
     }
 };
 

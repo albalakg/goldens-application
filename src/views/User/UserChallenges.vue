@@ -1,22 +1,29 @@
 <template>
     <div class="user_challenge_wrapper">
-        <div v-if="lessons && lessons.length">
-            <v-flex d-flex flex-wrap v-if="$vuetify.breakpoint.mdAndUp">
-                <v-flex md3 v-for="lesson in viewLessons" :key="lesson.course_lesson_id" class="mb-10 pl-3">
-                    <challenge-card class="lesson_challenge_card" :lesson="lesson" @submit="enterLesson" />
-                </v-flex>
-            </v-flex>
-
-            <v-flex v-else class="user_challenge_mobile">
-                <v-flex d-flex class="use_challenge_lessons_wrapper pr-10">
-                    <v-flex v-for="lesson in viewLessons" :key="lesson.course_lesson_id" class=" pl-3">
-                        <challenge-card class="lesson_challenge_card my-10" :lesson="lesson" @submit="enterLesson" />
+        <template v-if="userChallenges">
+            <template v-if="userChallenges.length">
+                <v-flex d-flex flex-wrap v-if="$vuetify.breakpoint.mdAndUp">
+                    <v-flex md3 v-for="challenge in viewChallenges" :key="challenge.course_challenge_id" class="mb-10">
+                        <user-challenge-card shadow class="user_challenge_card" :userChallenge="challenge" @submit="enterChallenge" />
                     </v-flex>
                 </v-flex>
-            </v-flex>
 
-            <br>
-            <br>
+                <v-flex v-else class="user_challenge_mobile">
+                    <v-flex d-flex class="use_challenge_challenges_wrapper pr-10">
+                        <v-flex v-for="challenge in viewChallenges" :key="challenge.course_challenge_id" class="pl-3">
+                            <user-challenge-card shadow class="user_challenge_card my-10" :userChallenge="challenge" @submit="enterChallenge" />
+                        </v-flex>
+                    </v-flex>
+                </v-flex>
+
+                <br>
+                <br>
+            </template>
+            <template v-else>
+                <h1 class="text-center">
+                    לא נמצאו אתגרים
+                </h1>
+            </template>
 
             <v-flex md6 mx-auto v-if="$vuetify.breakpoint.mdAndUp">
                 <pagination 
@@ -25,53 +32,55 @@
                     @setPage="setPage"
                 />
             </v-flex>
-        </div>
+        </template>
 
-        <div v-else>
-            <h1 class="text-center">
-                לא נמצאו שיעורים
-            </h1>
-        </div>
+        <template v-else>
+            <h2 class="text-center">
+                טוען...
+            </h2>
+        </template>
     </div>
 </template>
 
 <script>
-import ChallengeCard from '../../components/Cards/ChallengeCard.vue';
+import UserChallengeCard from '../../components/Cards/UserChallengeCard.vue';
 import Pagination from '../../components/General/Pagination.vue';
+
 export default {
-  components: { ChallengeCard, Pagination },
+  components: { UserChallengeCard, Pagination },
     data() {
         return {
             page: 1,
-            totalLessonsPerPage: 8,
-            focusedLessonIndex: 0
+            totalChallengesPerPage: 8,
+            focusedChallengeIndex: 0
         }
     },
 
-    computed: {
-        lessons() {
-            const courses = this.$store.getters['UserState/progress'];
-            let lessons = [];
-            courses.forEach(course => {
-                lessons = lessons.concat(course.lessons_progress)
-            });
+    created() {
+        this.$store.dispatch('UserState/getChallenges');
+    },
 
-            return lessons.filter(lesson => lesson.finished_at);
+    computed: {
+        userChallenges() {
+            const userChallenges = this.$store.getters['UserState/challenges'];
+
+            return userChallenges;
         },
 
-        viewLessons() {
+        viewChallenges() {
             if(this.$vuetify.breakpoint.smAndDown) {
-                return this.lessons;
+                return this.userChallenges;
             }
 
-            const startIndex    = (this.page - 1) * this.totalLessonsPerPage;
-            const endIndex      = startIndex + this.totalLessonsPerPage;
+            const startIndex = (this.page - 1) * this.totalChallengesPerPage;
+            const endIndex   = startIndex + this.totalChallengesPerPage;
 
-            return this.lessons.slice(startIndex, endIndex);
+            return this.userChallenges.slice(startIndex, endIndex)
+                                    .filter(userChallenge => userChallenge.challenge);
         },
 
         totalPages() {
-            return Math.ceil(this.viewLessons.length / this.totalLessonsPerPage);
+            return Math.ceil(this.viewChallenges.length / this.totalChallengesPerPage);
         }
     },
 
@@ -80,8 +89,8 @@ export default {
             this.page = page;
         },
 
-        enterLesson(lesson) {
-            this.$router.push(`/courses/${lesson.course_id}/lessons/${lesson.id}`)
+        enterChallenge(challenge) {
+            this.$router.push(`/courses/${challenge.course_id}/challenges/${challenge.id}`)
         },
     }
 }
@@ -89,14 +98,14 @@ export default {
 
 <style scoped lang="scss">
 
-    .lesson_challenge_card {
+    .user_challenge_card {
         height: 70vh;
         max-height: 350px;
     }
 
     .user_challenge_mobile {
 
-        .use_challenge_lessons_wrapper {
+        .use_challenge_challenges_wrapper {
             overflow-x: auto;
             position: relative;
             
@@ -104,7 +113,7 @@ export default {
                 display: none;
             }
     
-            .lesson_challenge_card {
+            .user_challenge_card {
                 min-width: 250px;
                 margin-right: 10vw;
             }

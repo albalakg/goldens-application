@@ -2,6 +2,7 @@ import axios from "axios";
 import ContentService, { SCHEDULE_TRAINING_TYPE_ID } from "../../helpers/ContentService";
 import router from '../../router';
 import Auth from '../../helpers/Auth'
+import { serialize } from "object-to-formdata";
 
 const UserState = {
     namespaced: true,
@@ -13,6 +14,7 @@ const UserState = {
         lastActive:     null,
         orders:         null,
         supportTickets: null,
+        challenges:     null,
         profile:        {},
         favorites:      [],
         courseAreas:    [],
@@ -30,6 +32,7 @@ const UserState = {
         courses:            state   => state.courses,
         courseAreas:        state   => state.courseAreas,
         lessons:            state   => state.lessons,
+        challenges:         state   => state.challenges,
         firstName:          state   => state.profile.first_name,
         lastName:           state   => state.profile.last_name,
         isSubscribed:       state   => state.profile.isSubscribed,
@@ -146,6 +149,19 @@ const UserState = {
 
         SET_USER_ORDERS(state, userOrders) {
             state.orders = userOrders;
+        },
+
+        SET_USER_CHALLENGES(state, userChallenges) {
+            state.challenges = userChallenges;
+        },
+
+        SET_SUBMITTED_CHALLENGE(state, submittedUserChallenge) {
+            const currentUserChallengeIndex = state.challenges.findIndex(userChallenge => userChallenge.id === submittedUserChallenge);
+            if(currentUserChallengeIndex !== -1) {
+                return state.challenges[currentUserChallengeIndex] = submittedUserChallenge;
+            } 
+
+            state.challenges.push(submittedUserChallenge);
         },
 
         SET_USER_COURSES(state, courses) {
@@ -322,6 +338,43 @@ const UserState = {
                 })
         },
         
+        getChallenges({ state, commit, dispatch }) {
+            if(state.challenges) {
+                return;
+            }
+            
+            axios.get('profile/challenges')
+                .then(res => {
+                    commit('SET_USER_CHALLENGES', res.data.data);
+                })
+                .catch(() => {
+                    dispatch('MessageState/addErrorMessage', {
+                        message: 'מצטערים אבל נכשלה הבקשה למשיכת פרטי היסטוריית האתגרים',
+                        type: 'error',
+                    }, {root:true});
+                })
+        },
+        
+        submitChallenge({ commit, dispatch }, data) {
+            return new Promise((resolve, err) => {
+                const packageToSend = serialize(data, { indices: true });
+                axios.post('profile/challenge/submit/' + data.id, packageToSend, FORM_DATA_CONFIG)
+                    .then(res => {
+                        commit('SET_SUBMITTED_CHALLENGE', res.data.data);
+                        dispatch('MessageState/addInfoMessage', {
+                            message: 'האתגר נשלח בהצלחה, נבדוק את האתגר בהקדם',
+                        }, {root:true});
+                        resolve();
+                    })
+                    .catch(() => {
+                        dispatch('MessageState/addErrorMessage', {
+                            message: 'מצטערים אבל נכשלה הבקשה לשליחת האתגר, נסה שוב בקרוב',
+                        }, {root:true});
+                        err();
+                    })
+            })
+        },
+
         getProgress({ state, commit, dispatch }) {
             return new Promise((resolve) => {
                 if(state.progress) {
@@ -442,21 +495,6 @@ const UserState = {
                         resolve()
                     });
             })
-        },
-
-        submitChallenge({ commit, dispatch }, data) {
-            console.log('submitChallenge', data);
-            // axios.get('profile/challenge/submit/' + data.id)
-            //     .then(res => {
-            //         commit('SET_ACTIVE_CHALLENGE', res.data.data);
-            //     })
-            //     .catch(() => {
-            //         dispatch('MessageState/addInfoMessage', {
-            //             message: 'מצטערים אבל נכשלה הבקשה להגשת האתגר',
-            //             type: 'error',
-            //         }, {root:true});
-            //         Auth.logout()
-            //     })
         },
 
         // eslint-disable-next-line no-empty-pattern

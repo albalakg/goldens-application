@@ -1,16 +1,30 @@
 
 <template>
     <div class="video_wrapper pointer" @click="submit()">
-        <play v-if="!playing" class="play_button"/>
+        <play v-if="showPlayButton" class="play_button"/>
+        <img 
+            v-if="showPlaceholder" 
+            :class="{
+                'rounded': rounded && !roundedTop,
+                'rounded_top': roundedTop
+            }"
+            :src="imagePlaceholder" 
+            :alt="imagePlaceholderAlt"
+        >
         <video 
-            :class="{'video_wrapper_rounded': rounded}" 
+            v-else
+            :class="{
+                'rounded': rounded && !roundedTop,
+                'rounded_top': roundedTop
+            }" 
             ref="video"
-            class="w100"
+            class="w100 h100"
             @playing="onVideoPlay"
             @pause="onVideoPaused"
             @ended="onVideoEnd"
             :controls="controls"
             controlsList="nodownload"
+            :autoplay="shouldAutoplay"
             :disablePictureInPicture="disablePictureInPicture"
         >
             <source :src="src" type="video/mp4" />
@@ -33,6 +47,16 @@ export default {
             required: true
         },
 
+        imagePlaceholder: {
+            type: String,
+            required: false
+        },
+
+        imagePlaceholderAlt: {
+            type: String,
+            default: 'placeholder image'
+        },
+
         controls: {
             type: Boolean,
             default: true
@@ -46,17 +70,39 @@ export default {
         rounded: {
             type: Boolean,
             default: true
-        }
+        },
+
+        roundedTop: {
+            type: Boolean,
+            default: false
+        },
     },
 
     data() {
         return {
-            playing: false
+            playing: false,
+            startedWatching: false
         }
+    },
+
+    computed: {
+        showPlaceholder() {
+            return this.imagePlaceholder && !this.startedWatching;
+        },
+    
+        showPlayButton() {
+            return !this.startedWatching;
+        },
+
+        shouldAutoplay() {
+            return this.imagePlaceholder;
+        },
     },
 
     methods: {
         submit() {
+            this.startedWatching = true;
+
             if(!this.playing) {
                 this.$emit('playClicked')
             }
@@ -89,6 +135,10 @@ export default {
             if(video) {
                 video.currentTime = startTime;
             }
+        },
+
+        resetWatching() {
+            this.startedWatching = false;
         }
     }
 }
@@ -98,11 +148,9 @@ export default {
 
     .video_wrapper {
         width: 100%;
+        height: 100%;
         position: relative;
-    }
-
-    .video_wrapper_rounded {
-        border-radius: 8px;
+        background-color: #000;
     }
 
     .play_button {
@@ -110,6 +158,12 @@ export default {
         inset: 0;
         margin: auto;
         z-index: 2;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
 </style>

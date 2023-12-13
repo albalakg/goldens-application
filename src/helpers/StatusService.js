@@ -6,10 +6,10 @@ export const STATUSES = [
 ];
 
 export const STATUSES_ENUM = {
-  [STATUSES[0]]: 0,
-  [STATUSES[1]]: 1,
-  [STATUSES[2]]: 2,
-  [STATUSES[3]]: 3
+  failed: 0,
+  succeed: 1,
+  pending : 2,
+  inProcess: 3
 };
 
 export const SUPPORT_STATUSES = [
@@ -25,6 +25,18 @@ export const SUPPORT_STATUSES_ENUM = {
   [SUPPORT_STATUSES[0]]: 0,
   [SUPPORT_STATUSES[1]]: 1,
   [SUPPORT_STATUSES[2]]: 2,
+};
+
+export const USER_CHALLENGE_STATUSES = [
+  'לא עבר',
+  'הושלם',
+  'בבדיקה',
+];
+
+export const USER_CHALLENGE_STATUSES_ENUM = {
+  failed: 0,
+  succeed: 1,
+  pending : 2
 };
 
 class StatusService {
@@ -45,6 +57,13 @@ class StatusService {
     return SUPPORT_STATUSES[statusNumber];
   }
 
+  getChallengeStatusAsNumber(statusName) {
+    return USER_CHALLENGE_STATUSES_ENUM[statusName];
+  }
+
+  getChallengeStatusAsString(statusNumber) {
+    return USER_CHALLENGE_STATUSES[statusNumber];
+  }
 }
 
 export default new StatusService();

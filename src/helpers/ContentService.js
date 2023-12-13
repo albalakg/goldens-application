@@ -1,5 +1,7 @@
 import store from "../store";
+import { USER_CHALLENGE_STATUSES_ENUM, STATUSES_ENUM } from "../helpers/StatusService";
 
+const MAXIMUM_USER_CHALLENGE_ATTEMPTS   = 3;
 const MAX_LESSON_CONTENT_CHARS          = 120;
 export const SCHEDULE_LESSON_TYPE_ID    = 1;
 export const SCHEDULE_TRAINING_TYPE_ID  = 2;
@@ -269,6 +271,40 @@ class ContentService {
       error(err);
       return "";
     }
+  }
+
+  isUserChallengeCompleted(userChallenge) {
+    return userChallenge.status === USER_CHALLENGE_STATUSES_ENUM.succeed;
+  }
+    
+  isChallengeActive(challenge) {
+    return challenge.status === STATUSES_ENUM.succeed;
+  }
+    
+  isUserChallengePending(challenge) {
+    return challenge.last_attempt.status === STATUSES_ENUM.pending;
+  }
+    
+  canSubmitChallenge(challenge) {
+    const userChallenges = store.state["UserState"].challenges;
+    if(!userChallenges) {
+      return true;
+    }
+
+    const userChallenge = userChallenges.find(userChallenge => userChallenge.challenge.id === challenge.id);
+    if(!userChallenge) {
+      return true;
+    }
+
+    if(userChallenge.attempts_count >= MAXIMUM_USER_CHALLENGE_ATTEMPTS) {
+      return false;
+    }
+
+    if(userChallenge.last_attempt && [STATUSES_ENUM.pending, STATUSES_ENUM.succeed].includes(userChallenge.last_attempt.status)) {
+      return false;
+    }
+
+    return true;
   }
 
   isLessonCompleted(lessonId) {

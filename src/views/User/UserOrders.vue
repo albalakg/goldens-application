@@ -21,7 +21,8 @@
 <script>
 import OrderCourseCard from '../../components/Cards/OrderCourseCard.vue';
 export default {
-  components: { OrderCourseCard },
+    components: { OrderCourseCard },
+    
     created() {
         this.$store.dispatch('UserState/getOrders');
     },

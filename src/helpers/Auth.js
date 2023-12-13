@@ -19,6 +19,7 @@ class Auth {
     }
 
     logout() {
+        console.log('logout 3');
         if('/signout' !== window.location.pathname) {
             router.push('/signout')
         }
